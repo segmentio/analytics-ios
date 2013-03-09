@@ -25,6 +25,8 @@
 @property(nonatomic,copy)   NSString *secret;
 @property(nonatomic,copy)   NSString *userId;
 @property(nonatomic,assign) NSUInteger flushAt;
+@property(nonatomic,assign) NSUInteger flushAfter;
+@property(nonatomic,retain) NSTimer *flushTimer;
 @property(nonatomic,retain) NSMutableArray *queue;
 @property(nonatomic,retain) NSArray *batch;
 @property(nonatomic,retain) NSURLConnection *connection;
@@ -45,7 +47,7 @@ static Analytics *sharedInstance = nil;
 {
     @synchronized(self) {
         if (sharedInstance == nil) {
-            sharedInstance = [[super alloc] initialize:secret flushAt:2];
+            sharedInstance = [[super alloc] initialize:secret flushAt:20 flushAfter:60];
         }
         return sharedInstance;
     }
@@ -61,18 +63,25 @@ static Analytics *sharedInstance = nil;
     }
 }
 
-- (id)initialize:(NSString *)secret flushAt:(NSUInteger)flushAt
+- (id)initialize:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter
 {
     if (secret == nil || [secret length] == 0) {
-        NSLog(@"%@ WARNING invalid secret was nil or empty string.", self);
+        NSLog(@"%@ WARNING invalid secret... was nil or empty string.", self);
         return nil;
     }
 
     self = [self init];
     self.flushAt = flushAt;
+    self.flushAfter = flushAfter;
     self.secret = secret;
     self.userId = [UniqueIdentifier getUniqueIdentifier];
     self.queue = [NSMutableArray array];
+
+    self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.flushAfter
+        target:self
+        selector:@selector(flush)
+        userInfo:nil
+        repeats:YES];
 
     return self;
 }
@@ -99,13 +108,11 @@ static Analytics *sharedInstance = nil;
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits
 {
     @synchronized(self) {
-
         if (userId != nil) {
             self.userId = userId;
         }
 
         NSMutableDictionary *payload = [NSMutableDictionary dictionary];
-
         [payload setObject:@"identify" forKey:@"action"];
         [payload setObject:self.userId forKey:@"userId"];
         if (traits != nil) {
@@ -114,6 +121,7 @@ static Analytics *sharedInstance = nil;
         [payload setObject:[DateFormat8601 formatDate:[NSDate date]] forKey:@"timestamp"];
 
         AnalyticsDebugLog(@"%@ Enqueueing identify call: %@", self, payload);
+
         [self.queue addObject:payload];
     }
 
@@ -129,14 +137,12 @@ static Analytics *sharedInstance = nil;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties
 {
     @synchronized(self) {
-
         if (event == nil || [event length] == 0) {
             NSLog(@"%@ track requires an event name.", self);
             return;
         }
 
         NSMutableDictionary *payload = [NSMutableDictionary dictionary];
-
         [payload setObject:@"track" forKey:@"action"];
         [payload setObject:self.userId forKey:@"userId"];
         [payload setObject:event forKey:@"event"];
@@ -146,6 +152,7 @@ static Analytics *sharedInstance = nil;
         [payload setObject:[DateFormat8601 formatDate:[NSDate date]] forKey:@"timestamp"];
 
         AnalyticsDebugLog(@"%@ Enqueueing track call: %@", self, payload);
+
         [self.queue addObject:payload];
     }
 
@@ -178,7 +185,6 @@ static Analytics *sharedInstance = nil;
         AnalyticsDebugLog(@"%@ Flushing %u of %u queued API calls.", self, self.batch.count, self.queue.count);
 
         NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
-
         [payloadDictionary setObject:self.secret forKey:@"secret"];
         [payloadDictionary setObject:self.batch forKey:@"batch"];
         
@@ -286,6 +292,9 @@ static Analytics *sharedInstance = nil;
     self.batch = nil;
     self.connection = nil;
     self.responseData = nil;
+
+    [self.flushTimer invalidate];
+    self.flushTimer = nil;
     
     [super dealloc];
 }
