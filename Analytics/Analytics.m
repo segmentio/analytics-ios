@@ -1,11 +1,13 @@
 // Analytics.m
 // Copyright 2013 Segment.io
 
-#import "CJSONDataSerializer.h"
+#import "DateFormat8601.h"
+#import "JSONSerializeObject.h"
+#import "UniqueIdentifier.h"
+
 #import "Analytics.h"
 
 #define VERSION @"0.0.1"
-
 #define API_URL @"https://api.segment.io/v1/import"
 
 #define DebugLog(...) NSLog(__VA_ARGS__)
@@ -45,7 +47,7 @@ static Analytics *sharedInstance = nil;
 {
     @synchronized(self) {
         if (sharedInstance == nil) {
-            NSLog(@"%@ warning getSharedInstance called before createSharedInstance:", self);
+            NSLog(@"%@ WARNING getSharedInstance called before createSharedInstance.", self);
         }
         return sharedInstance;
     }
@@ -53,26 +55,24 @@ static Analytics *sharedInstance = nil;
 
 - (id)initialize:(NSString *)secret flushAt:(NSUInteger)flushAt
 {
-    if (secret == nil) {
-        secret = @"";
+    if (secret == nil || [secret length] == 0) {
+        NSLog(@"%@ WARNING invalid secret was nil or empty string.", self);
+        return nil;
     }
-    if ([secret length] == 0) {
-        NSLog(@"%@ warning now", self);
-    }
-    if (self = [self init]) {
-        self.flushAt = flushAt;
 
-        self.secret = secret;
-        self.userId = [self getDefaultUserId];
-        self.queue = [NSMutableArray array];
-    }
+    self = [self init];
+    self.flushAt = flushAt;
+    self.secret = secret;
+    self.userId = [UniqueIdentifier getUniqueIdentifier];
+    self.queue = [NSMutableArray array];
+
     return self;
 }
 
 - (void)reset
 {
     @synchronized(self) {
-        self.userId = [self getDefaultUserId];
+        self.userId = [UniqueIdentifier getUniqueIdentifier];
         self.queue = [NSMutableArray array];
     }
 }
@@ -103,7 +103,7 @@ static Analytics *sharedInstance = nil;
         if (traits != nil) {
             [payload setObject:traits forKey:@"traits"];
         }
-        [payload setObject:[Analytics formatDate:[NSDate date]] forKey:@"timestamp"];
+        [payload setObject:[DateFormat8601 formatDate:[NSDate date]] forKey:@"timestamp"];
 
         DebugLog(@"%@ enqueueing track call: %@", self, payload);
         [self.queue addObject:payload];
@@ -133,7 +133,7 @@ static Analytics *sharedInstance = nil;
         if (properties != nil) {
             [payload setObject:properties forKey:@"properties"];
         }
-        [payload setObject:[Analytics formatDate:[NSDate date]] forKey:@"timestamp"];
+        [payload setObject:[DateFormat8601 formatDate:[NSDate date]] forKey:@"timestamp"];
 
         DebugLog(@"%@ enqueueing track call: %@", self, payload);
         [self.queue addObject:payload];
@@ -170,7 +170,7 @@ static Analytics *sharedInstance = nil;
         [payloadDictionary setObject:self.secret forKey:@"secret"];
         [payloadDictionary setObject:self.batch forKey:@"batch"];
         
-        NSData *payload = [Analytics JSONSerializeObject:payloadDictionary];
+        NSData *payload = [JSONSerializeObject serialize:payloadDictionary];
         self.connection = [self sendPayload:payload];
     }
 }
@@ -199,7 +199,7 @@ static Analytics *sharedInstance = nil;
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:payload];
-    DebugLog(@"%@ http request: %@", self, [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding]);
+    DebugLog(@"%@ api request: %@", self, [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding]);
     return [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
@@ -252,114 +252,11 @@ static Analytics *sharedInstance = nil;
 
 
 
-#pragma mark * Utilities
-
-- (NSString *)getDefaultUserId
-{
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(identifierForVendor)]) {
-        // For iOS6 and later
-        return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    } else {
-        // For iOS5 and earlier
-        return [[UIDevice currentDevice] uniqueIdentifier];
-    }
-}
-
-+ (NSString *)formatDate:(NSDate *)date
-{
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-    [dateFormat setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    
-    NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [dateFormat setLocale:enUSPOSIXLocale];
-
-    NSString *timestamp = [[dateFormat stringFromDate:date] stringByAppendingString:@"Z"];
-
-    [enUSPOSIXLocale release];
-    [dateFormat release];
-
-    return timestamp;
-}
-
-+ (NSData *)JSONSerializeObject:(id)obj
-{
-    id jsonSerializableObject = [Analytics JSONSerializableObjectForObject:obj];
-
-    CJSONDataSerializer *serializer = [CJSONDataSerializer serializer];
-    NSError *error = nil;
-    NSData *data = nil;
-    @try {
-        data = [serializer serializeObject:jsonSerializableObject error:&error];
-    }
-    @catch (NSException *exception) {
-        NSLog(@"%@ exception serializing api data to json: %@", self, exception);
-    }
-    if (error) {
-        NSLog(@"%@ error serializing api data to json: %@", self, error);
-    }
-    return data;
-}
-
-+ (id)JSONSerializableObjectForObject:(id)obj
-{
-    // already valid json!
-    if ([obj isKindOfClass:[NSString class]] ||
-        [obj isKindOfClass:[NSNumber class]] ||
-        [obj isKindOfClass:[NSNull class]]) {
-        return obj;
-    }
-
-    // urls (to strings)
-    if ([obj isKindOfClass:[NSURL class]]) {
-        return [obj absoluteString];
-    }
-
-    // dates (to strings)
-    if ([obj isKindOfClass:[NSDate class]]) {
-        return [Analytics formatDate:obj];
-    }
-
-    // arrays (iterate and convert)
-    if ([obj isKindOfClass:[NSArray class]]) {
-        NSMutableArray *array = [NSMutableArray array];
-        for (id nestedObj in obj) {
-            [array addObject:[Analytics JSONSerializableObjectForObject:nestedObj]];
-        }
-        return [NSArray arrayWithArray:array];
-    }
-
-    // dictionaries (iterate and convert)
-    if ([obj isKindOfClass:[NSDictionary class]]) {
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        for (id key in obj) {
-            NSString *keyStr;
-            if (![key isKindOfClass:[NSString class]]) {
-                keyStr = [key description];
-                NSLog(@"%@ warning! object keys should be strings. got %@, instead forcing it to be %@", self, [key class], keyStr);
-            } else {
-                keyStr = [NSString stringWithString:key];
-            }
-            id value = [Analytics JSONSerializableObjectForObject:[obj objectForKey:key]];
-            [dict setObject:value forKey:keyStr];
-        }
-        return [NSDictionary dictionaryWithDictionary:dict];
-    }
-
-    // fallback to the description
-    NSString *str = [obj description];
-    NSLog(@"%@ warning! objects should be valid json types. got %@, instead forcing it to be %@", self, [obj class], str);
-    return str;
-}
-
-
-
-
 #pragma mark * NSObject
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<Analytics: %p %@>", self, self.secret];
+    return [NSString stringWithFormat:@"<Analytics secret:%@>", self.secret];
 }
 
 - (void)dealloc

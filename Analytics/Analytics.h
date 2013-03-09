@@ -2,11 +2,8 @@
 // Copyright 2013 Segment.io
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-
 
 @interface Analytics : NSObject
-
 
 
 // Initialization
