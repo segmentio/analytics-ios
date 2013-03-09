@@ -11,7 +11,7 @@
 #define ANALYTICS_API_URL @"https://api.segment.io/v1/import"
 
 // Uncomment this line to turn on debug logging
-//#define ANALYTICS_DEBUG_MODE
+#define ANALYTICS_DEBUG_MODE
 
 #ifdef ANALYTICS_DEBUG_MODE
 #define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
@@ -45,7 +45,7 @@ static Analytics *sharedInstance = nil;
 {
     @synchronized(self) {
         if (sharedInstance == nil) {
-            sharedInstance = [[super alloc] initialize:secret flushAt:20];
+            sharedInstance = [[super alloc] initialize:secret flushAt:2];
         }
         return sharedInstance;
     }
@@ -116,6 +116,8 @@ static Analytics *sharedInstance = nil;
         AnalyticsDebugLog(@"%@ Enqueueing identify call: %@", self, payload);
         [self.queue addObject:payload];
     }
+
+    [self flushQueueByLength];
 }
 
 
@@ -146,6 +148,8 @@ static Analytics *sharedInstance = nil;
         AnalyticsDebugLog(@"%@ Enqueueing track call: %@", self, payload);
         [self.queue addObject:payload];
     }
+
+    [self flushQueueByLength];
 }
 
 
@@ -164,7 +168,7 @@ static Analytics *sharedInstance = nil;
             AnalyticsDebugLog(@"%@ Connection already open", self);
             return;
         }
-        else if ([self.queue count] > self.flushAt) {
+        else if ([self.queue count] >= self.flushAt) {
             self.batch = [self.queue subarrayWithRange:NSMakeRange(0, self.flushAt)];
         }
         else {
@@ -180,6 +184,21 @@ static Analytics *sharedInstance = nil;
         
         NSData *payload = [JSONSerializeObject serialize:payloadDictionary];
         self.connection = [self sendPayload:payload];
+    }
+}
+
+- (void)flushQueueByLength
+{
+    BOOL flushQueue = NO;
+    @synchronized(self) {
+        if (self.connection == nil && [self.queue count] >= self.flushAt) {
+            flushQueue = YES;
+        }
+        AnalyticsDebugLog(@"%@ Length is %u. Flushing? %@.", self, [self.queue count], flushQueue ? @"Yes" : @"No");
+    }
+    
+    if (flushQueue == YES) {
+        [self flush];
     }
 }
 
@@ -218,6 +237,9 @@ static Analytics *sharedInstance = nil;
 
         if (self.responseCode != 200) {
             NSLog(@"%@ API request had an error: %@", self, [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
+        }
+        else {
+            NSLog(@"%@ API request success 200", self);
         }
 
         // TODO
