@@ -105,7 +105,7 @@ static Analytics *sharedInstance = nil;
         }
         [payload setObject:[DateFormat8601 formatDate:[NSDate date]] forKey:@"timestamp"];
 
-        DebugLog(@"%@ enqueueing track call: %@", self, payload);
+        DebugLog(@"%@ enqueueing identify call: %@", self, payload);
         [self.queue addObject:payload];
     }
 }
