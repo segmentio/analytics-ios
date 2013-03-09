@@ -7,21 +7,28 @@
 
 #import "Analytics.h"
 
-#define VERSION @"0.0.1"
-#define API_URL @"https://api.segment.io/v1/import"
+#define ANALYTICS_VERSION @"0.0.1"
+#define ANALYTICS_API_URL @"https://api.segment.io/v1/import"
 
-#define DebugLog(...) NSLog(__VA_ARGS__)
+// Uncomment this line to turn on debug logging
+//#define ANALYTICS_DEBUG_MODE
+
+#ifdef ANALYTICS_DEBUG_MODE
+#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
+#else
+#define AnalyticsDebugLog(...)
+#endif
 
 
 @interface Analytics ()
 
 @property(nonatomic,copy)   NSString *secret;
 @property(nonatomic,copy)   NSString *userId;
-@property(nonatomic,retain) NSUInteger flushAt;
+@property(nonatomic,assign) NSUInteger flushAt;
 @property(nonatomic,retain) NSMutableArray *queue;
 @property(nonatomic,retain) NSArray *batch;
 @property(nonatomic,retain) NSURLConnection *connection;
-@property(nonatomic,retain) NSInteger responseCode;
+@property(nonatomic,assign) NSInteger responseCode;
 @property(nonatomic,retain) NSMutableData *responseData;
 
 @end
@@ -106,7 +113,7 @@ static Analytics *sharedInstance = nil;
         }
         [payload setObject:[DateFormat8601 formatDate:[NSDate date]] forKey:@"timestamp"];
 
-        DebugLog(@"%@ Enqueueing identify call: %@", self, payload);
+        AnalyticsDebugLog(@"%@ Enqueueing identify call: %@", self, payload);
         [self.queue addObject:payload];
     }
 }
@@ -136,7 +143,7 @@ static Analytics *sharedInstance = nil;
         }
         [payload setObject:[DateFormat8601 formatDate:[NSDate date]] forKey:@"timestamp"];
 
-        DebugLog(@"%@ Enqueueing track call: %@", self, payload);
+        AnalyticsDebugLog(@"%@ Enqueueing track call: %@", self, payload);
         [self.queue addObject:payload];
     }
 }
@@ -150,11 +157,11 @@ static Analytics *sharedInstance = nil;
 {
     @synchronized(self) {
         if ([self.queue count] == 0) {
-            DebugLog(@"%@ No queued API calls to flush", self);
+            AnalyticsDebugLog(@"%@ No queued API calls to flush", self);
             return;
         }
         else if (self.connection != nil) {
-            DebugLog(@"%@ Connection already open", self);
+            AnalyticsDebugLog(@"%@ Connection already open", self);
             return;
         }
         else if ([self.queue count] > self.flushAt) {
@@ -164,7 +171,7 @@ static Analytics *sharedInstance = nil;
             self.batch = [NSArray arrayWithArray:self.queue];
         }
 
-        DebugLog(@"%@ Flushing %u of %u queued API calls.", self, self.batch.count, self.queue.count);
+        AnalyticsDebugLog(@"%@ Flushing %u of %u queued API calls.", self, self.batch.count, self.queue.count);
 
         NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
 
@@ -183,13 +190,13 @@ static Analytics *sharedInstance = nil;
 
 - (NSURLConnection *)sendPayload:(NSData *)payload
 {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:API_URL]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:ANALYTICS_API_URL]];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:payload];
 
-    DebugLog(@"%@ Sending batch API request: %@", self, [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding]);
+    AnalyticsDebugLog(@"%@ Sending batch API request: %@", self, [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding]);
 
     return [NSURLConnection connectionWithRequest:request delegate:self];
 }
