@@ -161,11 +161,11 @@ static Analytics *sharedInstance = nil;
 {
     @synchronized(self) {
         if ([self.queue count] == 0) {
-            AnalyticsDebugLog(@"%@ No queued API calls to flush", self);
+            AnalyticsDebugLog(@"%@ No queued API calls to flush.", self);
             return;
         }
         else if (self.connection != nil) {
-            AnalyticsDebugLog(@"%@ Connection already open", self);
+            AnalyticsDebugLog(@"%@ API request already in progress, not flushing again.", self);
             return;
         }
         else if ([self.queue count] >= self.flushAt) {
