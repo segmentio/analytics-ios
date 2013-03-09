@@ -17,7 +17,7 @@
 
 @property(nonatomic,copy)   NSString *secret;
 @property(nonatomic,copy)   NSString *userId;
-@property(nonatomic,assign) NSUInteger *flushAt;
+@property(nonatomic,retain) NSUInteger flushAt;
 @property(nonatomic,retain) NSMutableArray *queue;
 @property(nonatomic,retain) NSArray *batch;
 @property(nonatomic,retain) NSURLConnection *connection;
