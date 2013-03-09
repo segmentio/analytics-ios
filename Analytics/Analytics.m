@@ -21,6 +21,7 @@
 @property(nonatomic,retain) NSMutableArray *queue;
 @property(nonatomic,retain) NSArray *batch;
 @property(nonatomic,retain) NSURLConnection *connection;
+@property(nonatomic,retain) NSInteger responseCode;
 @property(nonatomic,retain) NSMutableData *responseData;
 
 @end
@@ -105,7 +106,7 @@ static Analytics *sharedInstance = nil;
         }
         [payload setObject:[DateFormat8601 formatDate:[NSDate date]] forKey:@"timestamp"];
 
-        DebugLog(@"%@ enqueueing identify call: %@", self, payload);
+        DebugLog(@"%@ Enqueueing identify call: %@", self, payload);
         [self.queue addObject:payload];
     }
 }
@@ -135,7 +136,7 @@ static Analytics *sharedInstance = nil;
         }
         [payload setObject:[DateFormat8601 formatDate:[NSDate date]] forKey:@"timestamp"];
 
-        DebugLog(@"%@ enqueueing track call: %@", self, payload);
+        DebugLog(@"%@ Enqueueing track call: %@", self, payload);
         [self.queue addObject:payload];
     }
 }
@@ -149,11 +150,11 @@ static Analytics *sharedInstance = nil;
 {
     @synchronized(self) {
         if ([self.queue count] == 0) {
-            DebugLog(@"%@ no queued API calls to flush", self);
+            DebugLog(@"%@ No queued API calls to flush", self);
             return;
         }
         else if (self.connection != nil) {
-            DebugLog(@"%@ connection already open", self);
+            DebugLog(@"%@ Connection already open", self);
             return;
         }
         else if ([self.queue count] > self.flushAt) {
@@ -163,7 +164,7 @@ static Analytics *sharedInstance = nil;
             self.batch = [NSArray arrayWithArray:self.queue];
         }
 
-        DebugLog(@"%@ flushing %u of %u queued API calls.", self, self.batch.count, self.queue.count);
+        DebugLog(@"%@ Flushing %u of %u queued API calls.", self, self.batch.count, self.queue.count);
 
         NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
 
@@ -187,19 +188,16 @@ static Analytics *sharedInstance = nil;
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:payload];
-    DebugLog(@"%@ api request: %@", self, [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding]);
+
+    DebugLog(@"%@ Sending batch API request: %@", self, [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding]);
+
     return [NSURLConnection connectionWithRequest:request delegate:self];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
 {
-    DebugLog(@"%@ http status code: %d", self, [response statusCode]);
-    if ([response statusCode] != 200) {
-        NSLog(@"%@ http error: %@", self, [NSHTTPURLResponse localizedStringForStatusCode:[response statusCode]]);
-    }
-    else {
-        self.responseData = [NSMutableData data];
-    }
+    self.responseCode = [response statusCode];
+    self.responseData = [NSMutableData data];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -207,31 +205,34 @@ static Analytics *sharedInstance = nil;
     [self.responseData appendData:data];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     @synchronized(self) {
-        NSLog(@"%@ network failure: %@", self, error);
+
+        if (self.responseCode != 200) {
+            NSLog(@"%@ API request had an error: %@", self, [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
+        }
+
+        // TODO
+        // Currently we don't retry sending any of the queued calls. If they return 
+        // with a response code other than 200 we still remove them from the queue.
+        // Is that the desired behavior?
+        [self.queue removeObjectsInArray:self.batch];
 
         self.batch = nil;
+        self.responseCode = nil;
         self.responseData = nil;
         self.connection = nil;
     }
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     @synchronized(self) {
-        DebugLog(@"%@ http response finished loading", self);
-
-        NSString *response = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
-        if ([response intValue] == 0) {
-            NSLog(@"%@ track api error: %@", self, response);
-        }
-        [response release];
-
-        [self.queue removeObjectsInArray:self.batch];
+        NSLog(@"%@ Network failed while sending API request: %@", self, error);
 
         self.batch = nil;
+        self.responseCode = nil;
         self.responseData = nil;
         self.connection = nil;
     }
