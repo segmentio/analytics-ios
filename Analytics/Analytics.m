@@ -14,6 +14,8 @@
 @interface Analytics ()
 
 @property(nonatomic,copy)   NSString *secret;
+@property(nonatomic,copy)   NSString *userId;
+@property(nonatomic,assign) NSUInteger *flushAt;
 @property(nonatomic,retain) NSMutableArray *queue;
 @property(nonatomic,retain) NSArray *batch;
 @property(nonatomic,retain) NSURLConnection *connection;
@@ -101,7 +103,7 @@ static Analytics *sharedInstance = nil;
         if (traits != nil) {
             [payload setObject:traits forKey:@"traits"];
         }
-        [payload setObject:[self formatDate:[NSDate date]] forKey:@"timestamp"];
+        [payload setObject:[Analytics formatDate:[NSDate date]] forKey:@"timestamp"];
 
         DebugLog(@"%@ enqueueing track call: %@", self, payload);
         [self.queue addObject:payload];
@@ -131,7 +133,7 @@ static Analytics *sharedInstance = nil;
         if (properties != nil) {
             [payload setObject:properties forKey:@"properties"];
         }
-        [payload setObject:[self formatDate:[NSDate date]] forKey:@"timestamp"];
+        [payload setObject:[Analytics formatDate:[NSDate date]] forKey:@"timestamp"];
 
         DebugLog(@"%@ enqueueing track call: %@", self, payload);
         [self.queue addObject:payload];
@@ -263,24 +265,6 @@ static Analytics *sharedInstance = nil;
     }
 }
 
-// Formats a date in ISO 8601 http://en.wikipedia.org/wiki/ISO_8601
-- (NSString *)formatDate:(NSDate *)date
-{
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-    [dateFormat setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    
-    NSLocale *enUSPOSIXLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [dateFormat setLocale:enUSPOSIXLocale];
-
-    NSString *timestamp = [[dateFormat stringFromDate:date] stringByAppendingString:@"Z"];
-
-    [enUSPOSIXLocale release];
-    [dateFormat release];
-
-    return timestamp;
-}
-
 + (NSString *)formatDate:(NSDate *)date
 {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -333,7 +317,7 @@ static Analytics *sharedInstance = nil;
 
     // dates (to strings)
     if ([obj isKindOfClass:[NSDate class]]) {
-        return [self formatDate:obj];
+        return [Analytics formatDate:obj];
     }
 
     // arrays (iterate and convert)
