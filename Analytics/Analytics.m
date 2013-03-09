@@ -175,18 +175,6 @@ static Analytics *sharedInstance = nil;
     }
 }
 
-- (void)cancelFlush
-{
-    if (self.connection == nil) {
-        DebugLog(@"%@ no connection to cancel", self);
-    }
-    else {
-        DebugLog(@"%@ cancelling connection", self);
-        [self.connection cancel];
-        self.connection = nil;
-    }
-}
-
 
 
 
