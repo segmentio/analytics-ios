@@ -13,14 +13,14 @@
 #endif
 
 #define ANALYTICS_VERSION @"0.0.1"
-#define ANALYTICS_API_URL @"https://api.segment.io/v1/import"
+#define ANALYTICS_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
 
 static const NSString * const kSessionID = @"kAnalyticsSessionID";
 
 static NSString *ToISO8601(NSDate *date) {
-    static dispatch_once_t onceToken;
+    static dispatch_once_t dateFormatToken;
     static NSDateFormatter *dateFormat;
-    dispatch_once(&onceToken, ^{
+    dispatch_once(&dateFormatToken, ^{
         dateFormat = [[NSDateFormatter alloc] init];
         dateFormat.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
         dateFormat.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
@@ -54,12 +54,6 @@ static NSString *GetSessionID() {
 
 @interface Analytics ()
 
-@property(nonatomic, strong) NSString *secret;
-@property(nonatomic, strong) NSString *userId;
-@property(nonatomic, strong) NSString *sessionId;
-@property(nonatomic, assign) NSUInteger flushAt;
-@property(nonatomic, assign) NSUInteger flushAfter;
-
 @property(nonatomic, strong) NSTimer *flushTimer;
 @property(nonatomic, strong) NSMutableArray *queue;
 @property(nonatomic, strong) NSArray *batch;
@@ -69,31 +63,27 @@ static NSString *GetSessionID() {
 
 @end
 
+@implementation Analytics {
+    dispatch_queue_t _serialQueue;
+}
 
-@implementation Analytics
-
-static Analytics *sharedInstance = nil;
+static Analytics *sharedAnalytics = nil;
 
 #pragma mark - Initializiation
 
-+ (id)createSharedInstance:(NSString *)secret
++ (instancetype)initializeWithSecret:(NSString *)secret
 {
-    @synchronized(self) {
-        if (sharedInstance == nil) {
-            sharedInstance = [[super alloc] initWithSecret:secret flushAt:20 flushAfter:5];
-        }
-        return sharedInstance;
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedAnalytics = [[self alloc] initWithSecret:secret flushAt:20 flushAfter:2];
+    });
+    return sharedAnalytics;
 }
 
-+ (id)getSharedInstance
++ (instancetype)sharedAnalytics
 {
-    @synchronized(self) {
-        if (sharedInstance == nil) {
-            NSLog(@"%@ WARNING getSharedInstance called before createSharedInstance.", self);
-        }
-        return sharedInstance;
-    }
+    NSAssert(sharedAnalytics, @"%@ WARNING getSharedInstance called before createSharedInstance.", self);
+    return sharedAnalytics;
 }
 
 - (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter
@@ -111,16 +101,9 @@ static Analytics *sharedInstance = nil;
                                                      selector:@selector(flush)
                                                      userInfo:nil
                                                       repeats:YES];
+        _serialQueue = dispatch_queue_create("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
     }
     return self;
-}
-
-- (void)reset
-{
-    @synchronized(self) {
-        self.sessionId = GetSessionID();
-        self.queue = [NSMutableArray array];
-    }
 }
 
 #pragma mark - Analytics API
@@ -137,7 +120,7 @@ static Analytics *sharedInstance = nil;
         NSLog(@"%@ identify requires an userId.", self);
         return;
     }
-    @synchronized(self) {
+    dispatch_async(_serialQueue, ^{
         self.userId = userId;
 
         NSMutableDictionary *payload = [NSMutableDictionary dictionary];
@@ -150,9 +133,9 @@ static Analytics *sharedInstance = nil;
         AnalyticsDebugLog(@"%@ Enqueueing identify call: %@", self, payload);
 
         [self.queue addObject:payload];
-    }
-
-    [self flushQueueByLength];
+        
+        [self flushQueueByLength];
+    });
 }
 
 
@@ -167,7 +150,7 @@ static Analytics *sharedInstance = nil;
         NSLog(@"%@ track requires an event name.", self);
         return;
     }
-    @synchronized(self) {
+    dispatch_async(_serialQueue, ^{
 
         NSMutableDictionary *payload = [NSMutableDictionary dictionary];
         [payload setValue:@"track" forKey:@"action"];
@@ -180,16 +163,16 @@ static Analytics *sharedInstance = nil;
         AnalyticsDebugLog(@"%@ Enqueueing track call: %@", self, payload);
 
         [self.queue addObject:payload];
-    }
-
-    [self flushQueueByLength];
+        
+        [self flushQueueByLength];
+    });
 }
 
 #pragma mark - Queueing
 
 - (void)flush
 {
-    @synchronized(self) {
+    dispatch_async(_serialQueue, ^{
         if ([self.queue count] == 0) {
             AnalyticsDebugLog(@"%@ No queued API calls to flush.", self);
             return;
@@ -213,38 +196,44 @@ static Analytics *sharedInstance = nil;
         
         NSData *payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary
                                                           options:0 error:NULL];
-        self.connection = [self sendPayload:payload];
-    }
+        self.connection = [self connectionForPayload:payload];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.connection start];
+        });
+    });
 }
 
 - (void)flushQueueByLength
 {
-    BOOL flushQueue = NO;
-    @synchronized(self) {
-        if (self.connection == nil && [self.queue count] >= self.flushAt) {
-            flushQueue = YES;
-        }
-        AnalyticsDebugLog(@"%@ Length is %u. Flushing? %@.", self, [self.queue count], flushQueue ? @"Yes" : @"No");
-    }
-    
-    if (flushQueue == YES) {
-        [self flush];
-    }
+    dispatch_async(_serialQueue, ^{
+        AnalyticsDebugLog(@"%@ Length is %u.", self, [self.queue count]);
+        if (self.connection == nil && [self.queue count] >= self.flushAt)
+            [self flush];
+    });
+}
+
+- (void)reset
+{
+    dispatch_async(_serialQueue, ^{
+        self.sessionId = GetSessionID();
+        self.queue = [NSMutableArray array];
+    });
 }
 
 #pragma mark - Connection delegate callbacks
 
-- (NSURLConnection *)sendPayload:(NSData *)payload
+- (NSURLConnection *)connectionForPayload:(NSData *)payload
 {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:ANALYTICS_API_URL]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:ANALYTICS_API_URL];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:payload];
-
-    AnalyticsDebugLog(@"%@ Sending batch API request: %@", self, [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding]);
-
-    return [NSURLConnection connectionWithRequest:request delegate:self];
+    
+    AnalyticsDebugLog(@"%@ Sending batch API request: %@", self,
+                      [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding]);
+    
+    return [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
@@ -260,7 +249,7 @@ static Analytics *sharedInstance = nil;
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    @synchronized(self) {
+    dispatch_async(_serialQueue, ^{
 
         if (self.responseCode != 200) {
             NSLog(@"%@ API request had an error: %@", self, [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
@@ -272,26 +261,26 @@ static Analytics *sharedInstance = nil;
         // TODO
         // Currently we don't retry sending any of the queued calls. If they return 
         // with a response code other than 200 we still remove them from the queue.
-        // Is that the desired behavior?
+        // Is that the desired behavior? Suggestion: (retry if network error or 500 error. But not 400 error)
         [self.queue removeObjectsInArray:self.batch];
 
         self.batch = nil;
         self.responseCode = nil;
         self.responseData = nil;
         self.connection = nil;
-    }
+    });
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    @synchronized(self) {
+    dispatch_async(_serialQueue, ^{
         NSLog(@"%@ Network failed while sending API request: %@", self, error);
 
         self.batch = nil;
         self.responseCode = nil;
         self.responseData = nil;
         self.connection = nil;
-    }
+    });
 }
 
 #pragma mark - NSObject

@@ -5,14 +5,11 @@
 
 @interface Analytics : NSObject
 
-
-// Initialization
-// --------------
-
-+ (id)createSharedInstance:(NSString *)secret;
-+ (id)getSharedInstance;
-
-- (void)reset;
+@property(nonatomic, strong) NSString *secret;
+@property(nonatomic, strong) NSString *userId;
+@property(nonatomic, strong) NSString *sessionId;
+@property(nonatomic, assign) NSUInteger flushAt;
+@property(nonatomic, assign) NSUInteger flushAfter;
 
 
 
@@ -25,12 +22,16 @@
 - (void)track:(NSString *)event;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties;
 
-
-
 // Utilities
 // ---------
 
 - (void)flush;
+- (void)reset;
 
+// Initialization
+// --------------
+
++ (instancetype)initializeWithSecret:(NSString *)secret;
++ (instancetype)sharedAnalytics;
 
 @end
