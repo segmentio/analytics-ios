@@ -116,10 +116,6 @@ static Analytics *sharedAnalytics = nil;
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits
 {
-    if (!userId.length) {
-        NSLog(@"%@ identify requires an userId.", self);
-        return;
-    }
     dispatch_async(_serialQueue, ^{
         self.userId = userId;
 
@@ -146,10 +142,8 @@ static Analytics *sharedAnalytics = nil;
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties
 {
-    if (!event.length) {
-        NSLog(@"%@ track requires an event name.", self);
-        return;
-    }
+    NSAssert(event.length, @"%@ track requires an event name.", self);
+    
     dispatch_async(_serialQueue, ^{
 
         NSMutableDictionary *payload = [NSMutableDictionary dictionary];
