@@ -4,7 +4,7 @@
 #import "Analytics.h"
 
 // Uncomment this line to turn on debug logging
-#define ANALYTICS_DEBUG_MODE
+// #define ANALYTICS_DEBUG_MODE
 
 #ifdef ANALYTICS_DEBUG_MODE
 #define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
@@ -252,7 +252,7 @@ static Analytics *sharedAnalytics = nil;
             NSLog(@"%@ API request had an error: %@", self, [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
         }
         else {
-            NSLog(@"%@ API request success 200", self);
+            AnalyticsDebugLog(@"%@ API request success 200", self);
         }
 
         // TODO
