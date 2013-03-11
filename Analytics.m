@@ -80,7 +80,7 @@ static Analytics *sharedInstance = nil;
 {
     @synchronized(self) {
         if (sharedInstance == nil) {
-            sharedInstance = [[super alloc] initWithSecret:secret flushAt:20 flushAfter:60];
+            sharedInstance = [[super alloc] initWithSecret:secret flushAt:20 flushAfter:5];
         }
         return sharedInstance;
     }
@@ -163,7 +163,7 @@ static Analytics *sharedInstance = nil;
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties
 {
-    if (!event.length == 0) {
+    if (!event.length) {
         NSLog(@"%@ track requires an event name.", self);
         return;
     }
