@@ -75,7 +75,7 @@ static Analytics *sharedAnalytics = nil;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedAnalytics = [[self alloc] initWithSecret:secret flushAt:20 flushAfter:2];
+        sharedAnalytics = [[self alloc] initWithSecret:secret flushAt:20 flushAfter:30];
     });
     return sharedAnalytics;
 }
@@ -238,12 +238,14 @@ static Analytics *sharedAnalytics = nil;
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
 {
+    NSAssert([NSThread isMainThread], @"Should be on main since URL connection should have started on main");
     self.responseCode = [response statusCode];
     self.responseData = [NSMutableData data];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
+    NSAssert([NSThread isMainThread], @"Should be on main since URL connection should have started on main");
     [self.responseData appendData:data];
 }
 
