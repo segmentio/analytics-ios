@@ -54,26 +54,27 @@ static NSString *GetSessionID() {
 
 @interface Analytics ()
 
-@property(nonatomic,copy)   NSString *secret;
-@property(nonatomic,copy)   NSString *userId;
-@property(nonatomic,assign) NSUInteger flushAt;
-@property(nonatomic,assign) NSUInteger flushAfter;
-@property(nonatomic,retain) NSTimer *flushTimer;
-@property(nonatomic,retain) NSMutableArray *queue;
-@property(nonatomic,retain) NSArray *batch;
-@property(nonatomic,retain) NSURLConnection *connection;
-@property(nonatomic,assign) NSInteger responseCode;
-@property(nonatomic,retain) NSMutableData *responseData;
+@property(nonatomic, strong) NSString *secret;
+@property(nonatomic, strong) NSString *userId;
+@property(nonatomic, strong) NSString *sessionId;
+@property(nonatomic, assign) NSUInteger flushAt;
+@property(nonatomic, assign) NSUInteger flushAfter;
+
+@property(nonatomic, strong) NSTimer *flushTimer;
+@property(nonatomic, strong) NSMutableArray *queue;
+@property(nonatomic, strong) NSArray *batch;
+@property(nonatomic, strong) NSURLConnection *connection;
+@property(nonatomic, assign) NSInteger responseCode;
+@property(nonatomic, strong) NSMutableData *responseData;
 
 @end
-
 
 
 @implementation Analytics
 
 static Analytics *sharedInstance = nil;
 
-#pragma mark * Initializiation
+#pragma mark - Initializiation
 
 + (id)createSharedInstance:(NSString *)secret
 {
@@ -103,7 +104,7 @@ static Analytics *sharedInstance = nil;
         _flushAt = flushAt;
         _flushAfter = flushAfter;
         _secret = secret;
-        _userId = GetSessionID();
+        _sessionId = GetSessionID();
         _queue = [NSMutableArray array];
         _flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.flushAfter
                                                        target:self
@@ -117,15 +118,12 @@ static Analytics *sharedInstance = nil;
 - (void)reset
 {
     @synchronized(self) {
-        self.userId = GetSessionID();
+        self.sessionId = GetSessionID();
         self.queue = [NSMutableArray array];
     }
 }
 
-
-
-
-#pragma mark * Analytics API
+#pragma mark - Analytics API
 
 
 - (void)identify:(NSString *)userId
@@ -135,18 +133,19 @@ static Analytics *sharedInstance = nil;
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits
 {
+    if (!userId.length) {
+        NSLog(@"%@ identify requires an userId.", self);
+        return;
+    }
     @synchronized(self) {
-        if (userId != nil) {
-            self.userId = userId;
-        }
+        self.userId = userId;
 
         NSMutableDictionary *payload = [NSMutableDictionary dictionary];
-        [payload setObject:@"identify" forKey:@"action"];
-        [payload setObject:self.userId forKey:@"userId"];
-        if (traits != nil) {
-            [payload setObject:traits forKey:@"traits"];
-        }
-        [payload setObject:ToISO8601([NSDate date]) forKey:@"timestamp"];
+        [payload setValue:@"identify" forKey:@"action"];
+        [payload setValue:self.userId forKey:@"userId"];
+        [payload setValue:self.sessionId forKey:@"sessionId"];
+        [payload setValue:traits forKey:@"traits"];
+        [payload setValue:ToISO8601([NSDate date]) forKey:@"timestamp"];
 
         AnalyticsDebugLog(@"%@ Enqueueing identify call: %@", self, payload);
 
@@ -164,20 +163,19 @@ static Analytics *sharedInstance = nil;
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties
 {
+    if (!event.length == 0) {
+        NSLog(@"%@ track requires an event name.", self);
+        return;
+    }
     @synchronized(self) {
-        if (event == nil || [event length] == 0) {
-            NSLog(@"%@ track requires an event name.", self);
-            return;
-        }
 
         NSMutableDictionary *payload = [NSMutableDictionary dictionary];
-        [payload setObject:@"track" forKey:@"action"];
-        [payload setObject:self.userId forKey:@"userId"];
-        [payload setObject:event forKey:@"event"];
-        if (properties != nil) {
-            [payload setObject:properties forKey:@"properties"];
-        }
-        [payload setObject:ToISO8601([NSDate date]) forKey:@"timestamp"];
+        [payload setValue:@"track" forKey:@"action"];
+        [payload setValue:self.userId forKey:@"userId"];
+        [payload setValue:self.sessionId forKey:@"userId"];
+        [payload setValue:event forKey:@"event"];
+        [payload setValue:properties forKey:@"properties"];
+        [payload setValue:ToISO8601([NSDate date]) forKey:@"timestamp"];
 
         AnalyticsDebugLog(@"%@ Enqueueing track call: %@", self, payload);
 
@@ -187,7 +185,7 @@ static Analytics *sharedInstance = nil;
     [self flushQueueByLength];
 }
 
-#pragma mark * Queueing
+#pragma mark - Queueing
 
 - (void)flush
 {
@@ -234,7 +232,7 @@ static Analytics *sharedInstance = nil;
     }
 }
 
-#pragma mark * Connection delegate callbacks
+#pragma mark - Connection delegate callbacks
 
 - (NSURLConnection *)sendPayload:(NSData *)payload
 {
@@ -296,7 +294,7 @@ static Analytics *sharedInstance = nil;
     }
 }
 
-#pragma mark * NSObject
+#pragma mark - NSObject
 
 - (NSString *)description
 {
@@ -305,15 +303,7 @@ static Analytics *sharedInstance = nil;
 
 - (void)dealloc
 {
-    self.secret = nil;
-    self.userId = nil;
-    self.queue = nil;
-    self.batch = nil;
-    self.connection = nil;
-    self.responseData = nil;
-
     [self.flushTimer invalidate];
-    self.flushTimer = nil;
 }
 
 @end
