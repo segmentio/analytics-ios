@@ -1,14 +1,7 @@
 // Analytics.m
 // Copyright 2013 Segment.io
 
-#import "DateFormat8601.h"
-#import "JSONSerializeObject.h"
-#import "UniqueIdentifier.h"
-
 #import "Analytics.h"
-
-#define ANALYTICS_VERSION @"0.0.1"
-#define ANALYTICS_API_URL @"https://api.segment.io/v1/import"
 
 // Uncomment this line to turn on debug logging
 #define ANALYTICS_DEBUG_MODE
@@ -19,6 +12,45 @@
 #define AnalyticsDebugLog(...)
 #endif
 
+#define ANALYTICS_VERSION @"0.0.1"
+#define ANALYTICS_API_URL @"https://api.segment.io/v1/import"
+
+static const NSString * const kSessionID = @"kAnalyticsSessionID";
+
+static NSString *ToISO8601(NSDate *date) {
+    static dispatch_once_t onceToken;
+    static NSDateFormatter *dateFormat;
+    dispatch_once(&onceToken, ^{
+        dateFormat = [[NSDateFormatter alloc] init];
+        dateFormat.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
+        dateFormat.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+        dateFormat.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    });
+    return [[dateFormat stringFromDate:date] stringByAppendingString:@"Z"];
+}
+
+static NSString *GetSessionID() {
+#if TARGET_OS_MAC
+    // We could use serial number or mac address (see http://developer.apple.com/library/mac/#technotes/tn1103/_index.html )
+    // But it's really not necessary since they can be nil and we are only using them as SessionID anyways
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if (![defaults stringForKey:kSessionID]) {
+        CFUUIDRef theUUID = CFUUIDCreate(NULL);
+        CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+        CFRelease(theUUID);
+        [defaults setObject:(__bridge_transfer NSString *)string forKey:kSessionID];
+    }
+    return [defaults stringForKey:kSessionID];
+#else
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(identifierForVendor)]) {
+        // For iOS6 and later
+        return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    } else {
+        // For iOS5 and earlier
+        return [[UIDevice currentDevice] uniqueIdentifier];
+    }
+#endif
+}
 
 @interface Analytics ()
 
@@ -47,7 +79,7 @@ static Analytics *sharedInstance = nil;
 {
     @synchronized(self) {
         if (sharedInstance == nil) {
-            sharedInstance = [[super alloc] initialize:secret flushAt:20 flushAfter:60];
+            sharedInstance = [[super alloc] initWithSecret:secret flushAt:20 flushAfter:60];
         }
         return sharedInstance;
     }
@@ -63,33 +95,29 @@ static Analytics *sharedInstance = nil;
     }
 }
 
-- (id)initialize:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter
+- (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter
 {
-    if (secret == nil || [secret length] == 0) {
-        NSLog(@"%@ WARNING invalid secret... was nil or empty string.", self);
-        return nil;
+    NSParameterAssert(secret.length);
+    
+    if (self = [self init]) {
+        _flushAt = flushAt;
+        _flushAfter = flushAfter;
+        _secret = secret;
+        _userId = GetSessionID();
+        _queue = [NSMutableArray array];
+        _flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.flushAfter
+                                                       target:self
+                                                     selector:@selector(flush)
+                                                     userInfo:nil
+                                                      repeats:YES];
     }
-
-    self = [self init];
-    self.flushAt = flushAt;
-    self.flushAfter = flushAfter;
-    self.secret = secret;
-    self.userId = [UniqueIdentifier getUniqueIdentifier];
-    self.queue = [NSMutableArray array];
-
-    self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.flushAfter
-        target:self
-        selector:@selector(flush)
-        userInfo:nil
-        repeats:YES];
-
     return self;
 }
 
 - (void)reset
 {
     @synchronized(self) {
-        self.userId = [UniqueIdentifier getUniqueIdentifier];
+        self.userId = GetSessionID();
         self.queue = [NSMutableArray array];
     }
 }
@@ -118,7 +146,7 @@ static Analytics *sharedInstance = nil;
         if (traits != nil) {
             [payload setObject:traits forKey:@"traits"];
         }
-        [payload setObject:[DateFormat8601 formatDate:[NSDate date]] forKey:@"timestamp"];
+        [payload setObject:ToISO8601([NSDate date]) forKey:@"timestamp"];
 
         AnalyticsDebugLog(@"%@ Enqueueing identify call: %@", self, payload);
 
@@ -149,7 +177,7 @@ static Analytics *sharedInstance = nil;
         if (properties != nil) {
             [payload setObject:properties forKey:@"properties"];
         }
-        [payload setObject:[DateFormat8601 formatDate:[NSDate date]] forKey:@"timestamp"];
+        [payload setObject:ToISO8601([NSDate date]) forKey:@"timestamp"];
 
         AnalyticsDebugLog(@"%@ Enqueueing track call: %@", self, payload);
 
@@ -158,9 +186,6 @@ static Analytics *sharedInstance = nil;
 
     [self flushQueueByLength];
 }
-
-
-
 
 #pragma mark * Queueing
 
@@ -188,7 +213,8 @@ static Analytics *sharedInstance = nil;
         [payloadDictionary setObject:self.secret forKey:@"secret"];
         [payloadDictionary setObject:self.batch forKey:@"batch"];
         
-        NSData *payload = [JSONSerializeObject serialize:payloadDictionary];
+        NSData *payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary
+                                                          options:0 error:NULL];
         self.connection = [self sendPayload:payload];
     }
 }
@@ -207,9 +233,6 @@ static Analytics *sharedInstance = nil;
         [self flush];
     }
 }
-
-
-
 
 #pragma mark * Connection delegate callbacks
 
@@ -273,9 +296,6 @@ static Analytics *sharedInstance = nil;
     }
 }
 
-
-
-
 #pragma mark * NSObject
 
 - (NSString *)description
@@ -285,7 +305,6 @@ static Analytics *sharedInstance = nil;
 
 - (void)dealloc
 {
-    
     self.secret = nil;
     self.userId = nil;
     self.queue = nil;
@@ -295,8 +314,6 @@ static Analytics *sharedInstance = nil;
 
     [self.flushTimer invalidate];
     self.flushTimer = nil;
-    
-    [super dealloc];
 }
 
 @end
