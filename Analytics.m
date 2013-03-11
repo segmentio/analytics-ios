@@ -71,8 +71,9 @@ static Analytics *sharedAnalytics = nil;
 
 #pragma mark - Initializiation
 
-+ (instancetype)initializeWithSecret:(NSString *)secret
++ (instancetype)sharedAnalyticsWithSecret:(NSString *)secret
 {
+    NSParameterAssert(secret.length > 0);
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedAnalytics = [[self alloc] initWithSecret:secret flushAt:20 flushAfter:30];
@@ -82,7 +83,7 @@ static Analytics *sharedAnalytics = nil;
 
 + (instancetype)sharedAnalytics
 {
-    NSAssert(sharedAnalytics, @"%@ WARNING getSharedInstance called before createSharedInstance.", self);
+    NSAssert(sharedAnalytics, @"%@ sharedAnalytics called before sharedAnalyticsWithSecret", self);
     return sharedAnalytics;
 }
 
@@ -149,7 +150,7 @@ static Analytics *sharedAnalytics = nil;
         NSMutableDictionary *payload = [NSMutableDictionary dictionary];
         [payload setValue:@"track" forKey:@"action"];
         [payload setValue:self.userId forKey:@"userId"];
-        [payload setValue:self.sessionId forKey:@"userId"];
+        [payload setValue:self.sessionId forKey:@"sessionId"];
         [payload setValue:event forKey:@"event"];
         [payload setValue:properties forKey:@"properties"];
         [payload setValue:ToISO8601([NSDate date]) forKey:@"timestamp"];

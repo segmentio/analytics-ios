@@ -31,7 +31,9 @@
 // Initialization
 // --------------
 
-+ (instancetype)initializeWithSecret:(NSString *)secret;
+- (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
+
++ (instancetype)sharedAnalyticsWithSecret:(NSString *)secret;
 + (instancetype)sharedAnalytics;
 
 @end
