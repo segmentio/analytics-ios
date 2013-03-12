@@ -12,7 +12,7 @@
 #define AnalyticsDebugLog(...)
 #endif
 
-#define ANALYTICS_VERSION @"0.0.1"
+#define ANALYTICS_VERSION @"0.0.2"
 #define ANALYTICS_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
 
 static const NSString * const kSessionID = @"kAnalyticsSessionID";
