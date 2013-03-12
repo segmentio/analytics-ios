@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name         = "Analytics"
   s.version      = "0.0.2"
-  s.summary      = "Segment.io Analytics library for Objective C."
+  s.summary      = "Segment.io Analytics library for iOS and OSX."
   s.homepage     = "https://segment.io/libraries/ios"
   s.license      = "MIT"
   s.author       = { "Peter Reinhardt" => "peter@segment.io" }
