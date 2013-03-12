@@ -1,7 +1,7 @@
 analytics-ios
 ==============
 
-analytics-ios is an iOS client for [Segment.io](https://segment.io)
+analytics-ios is an iOS and OSX client for [Segment.io](https://segment.io)
 
 ## Documentation
 
