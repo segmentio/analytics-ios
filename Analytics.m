@@ -47,7 +47,7 @@ static NSString *GetSessionID() {
         return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     } else {
         // For iOS5 and earlier
-        return [[UIDevice currentDevice] uniqueIdentifier];
+        return [[UIDevice currentDevice] performSelector:@selector(uniqueIdentifier)];
     }
 #endif
 }
@@ -262,7 +262,7 @@ static Analytics *sharedAnalytics = nil;
         [self.queue removeObjectsInArray:self.batch];
 
         self.batch = nil;
-        self.responseCode = nil;
+        self.responseCode = 0;
         self.responseData = nil;
         self.connection = nil;
     });
@@ -274,7 +274,7 @@ static Analytics *sharedAnalytics = nil;
         NSLog(@"%@ Network failed while sending API request: %@", self, error);
 
         self.batch = nil;
-        self.responseCode = nil;
+        self.responseCode = 0;
         self.responseData = nil;
         self.connection = nil;
     });
