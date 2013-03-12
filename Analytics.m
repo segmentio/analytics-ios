@@ -4,7 +4,7 @@
 #import "Analytics.h"
 
 // Uncomment this line to turn on debug logging
-// #define ANALYTICS_DEBUG_MODE
+#define ANALYTICS_DEBUG_MODE
 
 #ifdef ANALYTICS_DEBUG_MODE
 #define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
@@ -73,10 +73,18 @@ static Analytics *sharedAnalytics = nil;
 
 + (instancetype)sharedAnalyticsWithSecret:(NSString *)secret
 {
+    return [Analytics sharedAnalyticsWithSecret:secret flushAt:20 flushAfter:30];
+}
+
++ (instancetype)sharedAnalyticsWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter
+{
     NSParameterAssert(secret.length > 0);
+    NSParameterAssert(flushAt > 0);
+    NSParameterAssert(flushAfter > 0);
+
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedAnalytics = [[self alloc] initWithSecret:secret flushAt:20 flushAfter:30];
+        sharedAnalytics = [[self alloc] initWithSecret:secret flushAt:flushAt flushAfter:flushAfter];
     });
     return sharedAnalytics;
 }

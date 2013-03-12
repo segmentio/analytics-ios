@@ -34,6 +34,7 @@
 - (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
 
 + (instancetype)sharedAnalyticsWithSecret:(NSString *)secret;
++ (instancetype)sharedAnalyticsWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
 + (instancetype)sharedAnalytics;
 
 @end
