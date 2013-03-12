@@ -15,7 +15,7 @@
 #define ANALYTICS_VERSION @"0.0.2"
 #define ANALYTICS_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
 
-static const NSString * const kSessionID = @"kAnalyticsSessionID";
+static NSString * const kSessionID = @"kAnalyticsSessionID";
 
 static NSString *ToISO8601(NSDate *date) {
     static dispatch_once_t dateFormatToken;
