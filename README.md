@@ -7,10 +7,10 @@ analytics-ios is an iOS client for [Segment.io](https://segment.io)
  
 ```objective-c
 // Initialize the shared API instance.
-Analytics *analytics = [Analytics createSharedInstance:@"YOUR SEGMENT.IO API SECRET"];
+Analytics *analytics = [Analytics sharedAnalyticsWithSecret:@"YOUR SEGMENT.IO API SECRET"];
 
 // Later, get the shared instance...
-Analytics *analytics = [Analytics getSharedInstance];
+Analytics *analytics = [Analytics sharedAnalytics];
  
 
 // Identify a user.
