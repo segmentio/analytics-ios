@@ -4,6 +4,7 @@
     * support for OSX apps
     * a shared dispatch queue and async flushing
     * removed JSON library dependency to use native JSON support
+* add enqueueAction to DRY things up
 * Added Cocoapods podspec
 
 0.0.1 / 2013-3-9

@@ -119,20 +119,12 @@ static Analytics *sharedAnalytics = nil;
 {
     dispatch_async(_serialQueue, ^{
         self.userId = userId;
-
-        NSMutableDictionary *payload = [NSMutableDictionary dictionary];
-        [payload setValue:@"identify" forKey:@"action"];
-        [payload setValue:self.userId forKey:@"userId"];
-        [payload setValue:self.sessionId forKey:@"sessionId"];
-        [payload setValue:traits forKey:@"traits"];
-        [payload setValue:ToISO8601([NSDate date]) forKey:@"timestamp"];
-
-        AnalyticsDebugLog(@"%@ Enqueueing identify call: %@", self, payload);
-
-        [self.queue addObject:payload];
-        
-        [self flushQueueByLength];
     });
+
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:traits forKey:@"traits"];
+
+    [self enqueueAction:@"identify" dictionary:dictionary];
 }
 
 
@@ -144,26 +136,34 @@ static Analytics *sharedAnalytics = nil;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties
 {
     NSAssert(event.length, @"%@ track requires an event name.", self);
+
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:event forKey:@"event"];
+    [dictionary setValue:properties forKey:@"properties"];
     
+    [self enqueueAction:@"track" dictionary:dictionary];
+}
+
+#pragma mark - Queueing
+
+- (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)dictionary
+{
     dispatch_async(_serialQueue, ^{
 
         NSMutableDictionary *payload = [NSMutableDictionary dictionary];
-        [payload setValue:@"track" forKey:@"action"];
+        [payload setValue:action forKey:@"action"];
         [payload setValue:self.userId forKey:@"userId"];
         [payload setValue:self.sessionId forKey:@"sessionId"];
-        [payload setValue:event forKey:@"event"];
-        [payload setValue:properties forKey:@"properties"];
         [payload setValue:ToISO8601([NSDate date]) forKey:@"timestamp"];
+        [payload addEntriesFromDictionary:dictionary];
 
-        AnalyticsDebugLog(@"%@ Enqueueing track call: %@", self, payload);
+        AnalyticsDebugLog(@"%@ Enqueueing action: %@", self, payload);
 
         [self.queue addObject:payload];
         
         [self flushQueueByLength];
     });
 }
-
-#pragma mark - Queueing
 
 - (void)flush
 {
