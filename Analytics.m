@@ -15,6 +15,8 @@
 #define ANALYTICS_VERSION @"0.0.2"
 #define ANALYTICS_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
 
+
+
 static NSString * const kSessionID = @"kAnalyticsSessionID";
 
 static NSString *ToISO8601(NSDate *date) {
@@ -52,6 +54,9 @@ static NSString *GetSessionID() {
 #endif
 }
 
+
+
+
 @interface Analytics ()
 
 @property(nonatomic, strong) NSTimer *flushTimer;
@@ -63,11 +68,16 @@ static NSString *GetSessionID() {
 
 @end
 
+
+
+
 @implementation Analytics {
     dispatch_queue_t _serialQueue;
 }
 
 static Analytics *sharedAnalytics = nil;
+
+
 
 #pragma mark - Initializiation
 
@@ -115,6 +125,8 @@ static Analytics *sharedAnalytics = nil;
     return self;
 }
 
+
+
 #pragma mark - Analytics API
 
 
@@ -151,6 +163,8 @@ static Analytics *sharedAnalytics = nil;
     
     [self enqueueAction:@"track" dictionary:dictionary];
 }
+
+
 
 #pragma mark - Queueing
 
@@ -223,6 +237,8 @@ static Analytics *sharedAnalytics = nil;
     });
 }
 
+
+
 #pragma mark - Connection delegate callbacks
 
 - (NSURLConnection *)connectionForPayload:(NSData *)payload
@@ -287,6 +303,8 @@ static Analytics *sharedAnalytics = nil;
         self.connection = nil;
     });
 }
+
+
 
 #pragma mark - NSObject
 
