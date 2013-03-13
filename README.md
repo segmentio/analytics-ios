@@ -1,34 +1,12 @@
 analytics-ios
 ==============
 
-analytics-ios is an iOS client for [Segment.io](https://segment.io)
+analytics-ios is an iOS and OSX client for [Segment.io](https://segment.io)
 
 ## Documentation
- 
-```objective-c
-// Initialize the shared API instance.
-Analytics *analytics = [Analytics sharedAnalyticsWithSecret:@"YOUR SEGMENT.IO API SECRET"];
 
-// Later, get the shared instance...
-Analytics *analytics = [Analytics sharedAnalytics];
- 
+Documentation is available at [https://segment.io/libraries/ios](https://segment.io/libraries/ios).
 
-// Identify a user.
-[analytics identify:@"USER ID"];
-
-// ...optionally set traits for that user
-[analytics identify:@"USER ID" traits:[NSDictionary dictionaryWithObjectsAndKeys:
-    [NSNumber numberWithInt:29], @"friendCount", nil]];
-
-
-// Track an event.
-[analytics track:@"Saved Photo"];
-
-// ...optionally include event properties
-[analytics track:@"Saved Photo" properties:[NSDictionary dictionaryWithObjectsAndKeys:
-    @"Tilt-shift", @"Filter", nil]];
-
-```
 
 ## License
 
