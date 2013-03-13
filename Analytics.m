@@ -170,14 +170,19 @@ static Analytics *sharedAnalytics = nil;
 
 - (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)dictionary
 {
+    // attach these parts of the payload outside since they are all synchronous
+    // and the timestamp will be more accurate.
+    NSMutableDictionary *payload = [NSMutableDictionary dictionary];
+    [payload setValue:action forKey:@"action"];
+    [payload setValue:ToISO8601([NSDate date]) forKey:@"timestamp"];
+    [payload addEntriesFromDictionary:dictionary];
+
     dispatch_async(_serialQueue, ^{
 
-        NSMutableDictionary *payload = [NSMutableDictionary dictionary];
-        [payload setValue:action forKey:@"action"];
+        // attach userId and sessionId inside the dispatch_async in case
+        // they've changed (see identify function)
         [payload setValue:self.userId forKey:@"userId"];
         [payload setValue:self.sessionId forKey:@"sessionId"];
-        [payload setValue:ToISO8601([NSDate date]) forKey:@"timestamp"];
-        [payload addEntriesFromDictionary:dictionary];
 
         AnalyticsDebugLog(@"%@ Enqueueing action: %@", self, payload);
 

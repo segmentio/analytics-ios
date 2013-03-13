@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
   s.summary      = "Segment.io Analytics library for Objective C."
   s.homepage     = "https://segment.io/libraries/ios"
   s.license      = "MIT"
-  s.author       = { "Peter Reinhardt" => "peter@segment.io" }
+  s.author       = { "Segment.io" => "friends@segment.io" }
 
   s.source       = { :git => "https://github.com/segmentio/analytics-ios.git", :tag => "0.0.2" }
   s.source_files = 'Analytics.{h,m}'
