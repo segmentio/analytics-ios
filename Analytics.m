@@ -4,7 +4,7 @@
 #import "Analytics.h"
 
 // Uncomment this line to turn on debug logging
-// #define ANALYTICS_DEBUG_MODE
+#define ANALYTICS_DEBUG_MODE
 
 #ifdef ANALYTICS_DEBUG_MODE
 #define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
@@ -14,6 +14,7 @@
 
 #define ANALYTICS_VERSION @"0.0.2"
 #define ANALYTICS_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
+#define ANALYTICS_MAX_BATCH_SIZE 100
 
 
 
@@ -203,8 +204,8 @@ static Analytics *sharedAnalytics = nil;
             AnalyticsDebugLog(@"%@ API request already in progress, not flushing again.", self);
             return;
         }
-        else if ([self.queue count] >= self.flushAt) {
-            self.batch = [self.queue subarrayWithRange:NSMakeRange(0, self.flushAt)];
+        else if ([self.queue count] >= ANALYTICS_MAX_BATCH_SIZE) {
+            self.batch = [self.queue subarrayWithRange:NSMakeRange(0, ANALYTICS_MAX_BATCH_SIZE)];
         }
         else {
             self.batch = [NSArray arrayWithArray:self.queue];
