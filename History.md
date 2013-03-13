@@ -1,3 +1,8 @@
+0.0.3 / 2013-3-13
+==================
+* Made timestamp more accurate
+* Added max batch size
+
 0.0.2 / 2013-3-12
 ==================
 * Merged in numerous improvements from [tonyxiao](https://github.com/tonyxiao)
