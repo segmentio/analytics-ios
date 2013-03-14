@@ -12,7 +12,7 @@
 #define AnalyticsDebugLog(...)
 #endif
 
-#define ANALYTICS_VERSION @"0.0.2"
+#define ANALYTICS_VERSION @"0.0.3"
 #define ANALYTICS_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
 #define ANALYTICS_MAX_BATCH_SIZE 100
 
@@ -84,7 +84,7 @@ static Analytics *sharedAnalytics = nil;
 
 + (instancetype)sharedAnalyticsWithSecret:(NSString *)secret
 {
-    return [Analytics sharedAnalyticsWithSecret:secret flushAt:20 flushAfter:30];
+    return [self sharedAnalyticsWithSecret:secret flushAt:20 flushAfter:30];
 }
 
 + (instancetype)sharedAnalyticsWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter
