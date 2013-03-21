@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version      = "0.0.3"
   s.summary      = "Segment.io Analytics library for iOS and OSX."
   s.homepage     = "https://segment.io/libraries/ios"
-  s.license      = "MIT"
+  s.license      = { :type => "MIT", :file => "License.md" }
   s.author       = { "Segment.io" => "friends@segment.io" }
 
   s.source       = { :git => "git@github.com:segmentio/analytics-ios.git", :tag => "0.0.3" }
