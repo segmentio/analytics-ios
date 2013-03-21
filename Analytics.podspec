@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "License.md" }
   s.author       = { "Segment.io" => "friends@segment.io" }
 
-  s.source       = { :git => "git@github.com:segmentio/analytics-ios.git", :tag => "0.0.3" }
+  s.source       = { :git => "https://github.com/segmentio/analytics-ios.git", :tag => "0.0.3" }
   s.source_files = 'Analytics.{h,m}'
   s.requires_arc = true
 
