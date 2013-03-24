@@ -1,3 +1,7 @@
+0.0.4 / 2013-3-23
+==================
+* Removed UDID usage after Apple's announcement that it will no longer be accepted in the app store https://developer.apple.com/news/?id=3212013a
+
 0.0.3 / 2013-3-13
 ==================
 * Made timestamp more accurate

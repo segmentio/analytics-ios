@@ -12,7 +12,7 @@
 #define AnalyticsDebugLog(...)
 #endif
 
-#define ANALYTICS_VERSION @"0.0.3"
+#define ANALYTICS_VERSION @"0.0.4"
 #define ANALYTICS_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
 #define ANALYTICS_MAX_BATCH_SIZE 100
 
@@ -32,8 +32,7 @@ static NSString *ToISO8601(NSDate *date) {
     return [[dateFormat stringFromDate:date] stringByAppendingString:@"Z"];
 }
 
-static NSString *GetSessionID() {
-#if TARGET_OS_MAC
+static NSString *GetSessionIDFromDefaults() {
     // We could use serial number or mac address (see http://developer.apple.com/library/mac/#technotes/tn1103/_index.html )
     // But it's really not necessary since they can be nil and we are only using them as SessionID anyways
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -44,13 +43,21 @@ static NSString *GetSessionID() {
         [defaults setObject:(__bridge_transfer NSString *)string forKey:kSessionID];
     }
     return [defaults stringForKey:kSessionID];
+}
+
+static NSString *GetSessionID() {
+#if TARGET_OS_MAC
+    return GetSessionIDFromDefaults();
 #else
     if ([[UIDevice currentDevice] respondsToSelector:@selector(identifierForVendor)]) {
         // For iOS6 and later
         return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     } else {
         // For iOS5 and earlier
-        return [[UIDevice currentDevice] performSelector:@selector(uniqueIdentifier)];
+        // As of May 1, 2013 we cannot use UDIDs 
+        // see https://developer.apple.com/news/?id=3212013a
+        // so we use a generated UUID that we save to NSUserDefaults
+        return GetSessionIDFromDefaults();
     }
 #endif
 }
