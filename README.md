@@ -3,7 +3,7 @@ analytics-ios-osx
 
 analytics-ios-osx is an iOS and OSX client for [Segment.io](https://segment.io)
 
-Special thanks to @TonyXiao for his contributions to this library!
+Special thanks to [Tony Xiao](https://github.com/tonyxiao) for his contributions to this library!
 
 ## Documentation
 
