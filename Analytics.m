@@ -218,7 +218,7 @@ static Analytics *sharedAnalytics = nil;
             self.batch = [NSArray arrayWithArray:self.queue];
         }
 
-        AnalyticsDebugLog(@"%@ Flushing %u of %u queued API calls.", self, self.batch.count, self.queue.count);
+        AnalyticsDebugLog(@"%@ Flushing %lu of %lu queued API calls.", self, self.batch.count, self.queue.count);
 
         NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
         [payloadDictionary setObject:self.secret forKey:@"secret"];
@@ -236,7 +236,7 @@ static Analytics *sharedAnalytics = nil;
 - (void)flushQueueByLength
 {
     dispatch_async(_serialQueue, ^{
-        AnalyticsDebugLog(@"%@ Length is %u.", self, [self.queue count]);
+        AnalyticsDebugLog(@"%@ Length is %lu.", self, [self.queue count]);
         if (self.connection == nil && [self.queue count] >= self.flushAt)
             [self flush];
     });
