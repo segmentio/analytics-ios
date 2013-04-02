@@ -12,7 +12,7 @@
 #define AnalyticsDebugLog(...)
 #endif
 
-#define ANALYTICS_VERSION @"0.0.4"
+#define ANALYTICS_VERSION @"0.0.5"
 #define ANALYTICS_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
 #define ANALYTICS_MAX_BATCH_SIZE 100
 
