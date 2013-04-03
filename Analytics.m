@@ -3,8 +3,9 @@
 
 #import "Analytics.h"
 
-// Uncomment this line to turn on debug logging
+#ifdef DEBUG
 #define ANALYTICS_DEBUG_MODE
+#endif
 
 #ifdef ANALYTICS_DEBUG_MODE
 #define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
