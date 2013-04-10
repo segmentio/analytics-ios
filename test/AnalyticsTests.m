@@ -1,3 +1,6 @@
+// AnalyticsTests.m
+// Copyright 2013 Segment.io
+
 #import "AnalyticsTests.h"
 #import "Analytics.h"
 
