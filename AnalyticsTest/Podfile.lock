@@ -1,0 +1,15 @@
+
+PODS:
+- Analytics (0.0.5)
+
+DEPENDENCIES:
+- Analytics (from `../')
+
+EXTERNAL SOURCES:
+  Analytics:
+    :local: ../
+
+SPEC CHECKSUMS:
+  Analytics: 053da26db1e8f7fc29006473bb37121c5ab79ae8
+
+COCOAPODS: 0.16.4
