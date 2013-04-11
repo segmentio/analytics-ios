@@ -57,7 +57,7 @@
     
     // The analytics thread does things slightly async, just need to
     // create a tiny amount of space for it to get it into the queue.
-    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:0.1f];
     
     STAssertTrue(self.analytics.queue.count == 1, @"Event was not enqueued.");
     
@@ -83,7 +83,7 @@
      
      // The analytics thread does things slightly async, just need to
      // create a tiny amount of space for it to get it into the queue.
-     [NSThread sleepForTimeInterval:1.0f];
+     [NSThread sleepForTimeInterval:0.1f];
      
      STAssertTrue(self.analytics.queue.count == 1, @"Event was not enqueued.");
      
