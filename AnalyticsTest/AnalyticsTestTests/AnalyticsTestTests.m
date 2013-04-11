@@ -68,8 +68,9 @@
     STAssertNil([queuedTrack objectForKey:@"properties"], @"Event had properties, but no properties were passed.");
     
     
-    // TODO
-    // test for context object and default properties there
+    // TODO: test for context object and default properties there
+    
+    // TODO: send a second event, wait and test for 200 from servers
 }
 
 
@@ -95,8 +96,9 @@
      STAssertNotNil([queuedTrack objectForKey:@"properties"], @"Event didn't have properties, but properties were passed in.");
      
      
-     // TODO
-     // test for context object and default properties there
+     // TODO: test for context object and default properties there
+     
+     // TODO: send a second event, wait and test for 200 from servers
  }
 
 
@@ -108,7 +110,7 @@
 // Identify userId, traits, context
 
 
-#pragma mark - Batching
+#pragma mark - Queueing, Batching and Sending
 
 // Change flushAt to 2 and 7... check that it's batched.
 // Change flustAt to 20, wait for 10 seconds after sending 5... check that it's sent in batch of 5.
