@@ -40,6 +40,7 @@
 // Utilities
 // ---------
 
+- (NSString *)getSessionId;
 - (void)flush;
 - (void)reset;
 

@@ -283,7 +283,7 @@
 {
     [self prepare];
     
-    NSString *from = @"lkj1l 2kj3 1kj21j23kj1 l2kj3";
+    NSString *from = [self.analytics getSessionId];
     NSString *to = @"wallowinghippo@wahoooo.net";
     [self.analytics alias:from to:to];
     
@@ -312,7 +312,7 @@
 {
     [self prepare];
     
-    NSString *from = @"lkj1l 2kj3 1kj21j23kj1 l2kj3";
+    NSString *from = [self.analytics getSessionId];
     NSString *to = @"wallowinghippo@wahoooo.net";
     NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @"true", @"Salesforce", @"false", @"Mixpanel", nil];
     NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys: providers, @"providers", nil];

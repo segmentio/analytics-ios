@@ -1,3 +1,7 @@
+0.1.1 / 2013-4-11
+=================
+* Added a getSessionId method
+
 0.1.0 / 2013-4-11
 =================
 * Added a testing suite

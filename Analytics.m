@@ -380,6 +380,11 @@ static Analytics *sharedAnalytics = nil;
 
 #pragma mark - NSObject
 
+- (NSString *)getSessionId
+{
+    return self.sessionId;
+}
+
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<Analytics secret:%@>", self.secret];
