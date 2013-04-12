@@ -28,9 +28,11 @@
 
 - (void)identify:(NSString *)userId;
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits;
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context;
 
 - (void)track:(NSString *)event;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties;
+- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context;
 
 // Utilities
 // ---------

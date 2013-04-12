@@ -62,6 +62,16 @@ static NSString *GetSessionID() {
 #endif
 }
 
+static NSMutableDictionary *CreateContext(NSDictionary *parameters) {
+    NSMutableDictionary *context = [NSMutableDictionary dictionary];
+    [context setValue:@"analytics-ios-osx" forKey:@"library"];
+    // TODO add any device information here
+    if (parameters != nil) {
+        [context addEntriesFromDictionary:parameters];
+    }
+    return context;
+}
+
 
 
 
@@ -156,6 +166,11 @@ static Analytics *sharedAnalytics = nil;
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits
 {
+    [self identify:userId traits:traits context:nil];
+}
+
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
+{
     dispatch_async(_serialQueue, ^{
         self.userId = userId;
     });
@@ -163,7 +178,7 @@ static Analytics *sharedAnalytics = nil;
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:traits forKey:@"traits"];
 
-    [self enqueueAction:@"identify" dictionary:dictionary];
+    [self enqueueAction:@"identify" dictionary:dictionary context:context];
 }
 
 
@@ -174,20 +189,25 @@ static Analytics *sharedAnalytics = nil;
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties
 {
+    [self track:event properties:properties context:nil];
+}
+
+ - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
+{
     NSAssert(event.length, @"%@ track requires an event name.", self);
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:event forKey:@"event"];
     [dictionary setValue:properties forKey:@"properties"];
     
-    [self enqueueAction:@"track" dictionary:dictionary];
+    [self enqueueAction:@"track" dictionary:dictionary context:context];
 }
 
 
 
 #pragma mark - Queueing
 
-- (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)dictionary
+- (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)dictionary context:(NSDictionary *)context
 {
     // attach these parts of the payload outside since they are all synchronous
     // and the timestamp will be more accurate.
@@ -195,6 +215,7 @@ static Analytics *sharedAnalytics = nil;
     [payload setValue:action forKey:@"action"];
     [payload setValue:ToISO8601([NSDate date]) forKey:@"timestamp"];
     [payload addEntriesFromDictionary:dictionary];
+    [payload setValue:CreateContext(context) forKey:@"context"];
 
     dispatch_async(_serialQueue, ^{
 

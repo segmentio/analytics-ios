@@ -82,8 +82,9 @@
     GHAssertNotNil([queuedTrack objectForKey:@"timestamp"], @"Event did not have a timestamp, but it should.");
     GHAssertNil([queuedTrack objectForKey:@"properties"], @"Event had properties, but no properties were passed.");
     
-    
-    // TODO: test for context object and default properties there
+    // test for context object and default properties there
+    GHAssertNotNil([queuedTrack objectForKey:@"context"], @"Event did not have a context, but it should.");
+    GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"library"], @"Event did not have a context.library, but it should.");
     
     // send a second event, wait for 200 from servers
     [self.analytics track:eventName];
@@ -117,8 +118,52 @@
     GHAssertEqualObjects([queuedTrack objectForKey:@"properties"], properties, @"Properties did not match properties passed in.");
     GHAssertNotNil([queuedTrack objectForKey:@"properties"], @"Event didn't have properties, but properties were passed in.");
     
+    // test for context object and default properties there
+    GHAssertNotNil([queuedTrack objectForKey:@"context"], @"Event did not have a context, but it should.");
+    GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"library"], @"Event did not have a context.library, but it should.");
     
-    // TODO: test for context object and default properties there
+    // send a second event, wait for 200 from servers
+    [self.analytics track:eventName properties:properties];
+    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
+}
+
+- (void)testTrackContext
+{
+    
+    // Call prepare to setup the asynchronous action.
+    // This helps in cases where the action is synchronous and the
+    // action occurs before the wait is actually called.
+    [self prepare];
+    
+    NSString *eventName = @"Purchased an iPad 5";
+    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", nil];
+    NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @"true", @"Salesforce", @"false", @"Mixpanel", nil];
+    NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys: providers, @"providers", nil];
+    [self.analytics track:eventName properties:properties context:context];
+    
+    // The analytics thread does things slightly async, just need to
+    // create a tiny amount of space for it to get it into the queue.
+    [NSThread sleepForTimeInterval:0.1f];
+    
+    GHAssertTrue(self.analytics.queue.count == 1, @"Event was not enqueued.");
+    
+    NSDictionary *queuedTrack = [self.analytics.queue objectAtIndex:0];
+    GHAssertEqualObjects([queuedTrack objectForKey:@"action"], @"track", @"Event did not have action: \"track\".");
+    GHAssertEqualObjects([queuedTrack objectForKey:@"event"], eventName, @"Event name did not match event name passed in.");
+    GHAssertNotNil([queuedTrack objectForKey:@"timestamp"], @"Event did not have a timestamp, but it should.");
+    
+    GHAssertEqualObjects([queuedTrack objectForKey:@"properties"], properties, @"Properties did not match properties passed in.");
+    GHAssertNotNil([queuedTrack objectForKey:@"properties"], @"Event didn't have properties, but properties were passed in.");
+    
+    // test for context object and default properties there
+    GHAssertNotNil([queuedTrack objectForKey:@"context"], @"Event did not have a context, but it should.");
+    GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"library"], @"Event did not have a context.library, but it should.");
+    
+    GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"providers"], @"Event did not have a context.providers, but it should.");
+    GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"Salesforce"], @"true", @"Event did not have a context.providers.Salesforce, but it should.");
+    GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"Mixpanel"], @"false", @"Event did not have a context.providers.Mixpanel, but it should.");
+    GHAssertNil([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"KISSmetrics"], @"Event had a context.providers.KISSmetrics, but it wasn't passed in.");
+
     
     // send a second event, wait for 200 from servers
     [self.analytics track:eventName properties:properties];
@@ -152,13 +197,15 @@
     GHAssertNotNil([queuedTrack objectForKey:@"sessionId"], @"Identify did not have a sessionId, but it should.");
     GHAssertNil([queuedTrack objectForKey:@"traits"], @"Identify had traits, but no traits were passed.");
     
-    
-    // TODO: test for context object and default properties there
+    // test for context object and default properties there
+    GHAssertNotNil([queuedTrack objectForKey:@"context"], @"Event did not have a context, but it should.");
+    GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"library"], @"Event did not have a context.library, but it should.");
     
     // send a second event, wait for 200 from servers
     [self.analytics identify:userId];
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
 }
+
 // Identify just traits
 - (void)testTraits
 {
@@ -182,8 +229,9 @@
     GHAssertNotNil([queuedTrack objectForKey:@"sessionId"], @"Identify did not have a sessionId, but it should.");
     GHAssertEqualObjects([queuedTrack objectForKey:@"traits"], traits, @"Identify did not have the right traits.");
     
-    
-    // TODO: test for context object and default properties there
+    // test for context object and default properties there
+    GHAssertNotNil([queuedTrack objectForKey:@"context"], @"Event did not have a context, but it should.");
+    GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"library"], @"Event did not have a context.library, but it should.");
     
     // send a second event, wait for 200 from servers
     [self.analytics identify:nil traits:traits];
