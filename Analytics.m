@@ -91,10 +91,20 @@ static Analytics *sharedAnalytics = nil;
 
 + (instancetype)sharedAnalyticsWithSecret:(NSString *)secret
 {
-    return [self sharedAnalyticsWithSecret:secret flushAt:20 flushAfter:30];
+    return [self sharedAnalyticsWithSecret:secret flushAt:20 flushAfter:30 delegate:nil];
+}
+
++ (instancetype)sharedAnalyticsWithSecret:(NSString *)secret delegate:(AnalyticsListenerDelegate *)delegate
+{
+    return [self sharedAnalyticsWithSecret:secret flushAt:20 flushAfter:30 delegate:delegate];
 }
 
 + (instancetype)sharedAnalyticsWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter
+{
+    return [self sharedAnalyticsWithSecret:secret flushAt:flushAt flushAfter:flushAfter delegate:nil];
+}
+
++ (instancetype)sharedAnalyticsWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter delegate:(AnalyticsListenerDelegate *)delegate
 {
     NSParameterAssert(secret.length > 0);
     NSParameterAssert(flushAt > 0);
@@ -102,7 +112,7 @@ static Analytics *sharedAnalytics = nil;
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedAnalytics = [[self alloc] initWithSecret:secret flushAt:flushAt flushAfter:flushAfter];
+        sharedAnalytics = [[self alloc] initWithSecret:secret flushAt:flushAt flushAfter:flushAfter delegate:delegate];
     });
     return sharedAnalytics;
 }
@@ -113,13 +123,14 @@ static Analytics *sharedAnalytics = nil;
     return sharedAnalytics;
 }
 
-- (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter
+- (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter delegate:(AnalyticsListenerDelegate *)delegate
 {
     NSParameterAssert(secret.length);
     
     if (self = [self init]) {
         _flushAt = flushAt;
         _flushAfter = flushAfter;
+        _delegate = delegate;
         _secret = secret;
         _sessionId = GetSessionID();
         _queue = [NSMutableArray array];
@@ -302,6 +313,10 @@ static Analytics *sharedAnalytics = nil;
         self.responseCode = 0;
         self.responseData = nil;
         self.connection = nil;
+
+        if (self.delegate) {
+            [self.delegate onAPISuccess];
+        }
     });
 }
 
@@ -314,6 +329,10 @@ static Analytics *sharedAnalytics = nil;
         self.responseCode = 0;
         self.responseData = nil;
         self.connection = nil;
+
+        if (self.delegate) {
+            [self.delegate onAPIFailure];
+        }
     });
 }
 

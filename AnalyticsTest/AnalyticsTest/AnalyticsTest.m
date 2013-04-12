@@ -26,10 +26,20 @@
 
 @implementation AnalyticsTest
 
+- (void)onAPISuccess
+{
+    [self notify:kGHUnitWaitStatusSuccess];
+}
+
+- (void)onAPIFail
+{
+    [self notify:kGHUnitWaitStatusFailure forSelector:@selector(testURLConnection)];
+}
+
 - (void)setUp
 {
     [super setUp];
-    self.analytics = [Analytics sharedAnalyticsWithSecret:@"testsecret" flushAt:2 flushAfter:10];
+    self.analytics = [Analytics sharedAnalyticsWithSecret:@"testsecret" flushAt:2 flushAfter:10 delegate:self];
     [self.analytics reset];
 }
 
@@ -52,6 +62,11 @@
 // Track just event name
 - (void)testTrack
 {
+    // Call prepare to setup the asynchronous action.
+    // This helps in cases where the action is synchronous and the
+    // action occurs before the wait is actually called.
+    [self prepare];
+    
     NSString *eventName = @"Purchased an iPhone 6";
     [self.analytics track:eventName];
     
@@ -70,13 +85,20 @@
     
     // TODO: test for context object and default properties there
     
-    // TODO: send a second event, wait and test for 200 from servers
+    // send a second event, wait for 200 from servers
+    [self.analytics track:eventName];
+    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
 }
 
 
 // Track event name, properties
 - (void)testTrackProperties
 {
+    // Call prepare to setup the asynchronous action.
+    // This helps in cases where the action is synchronous and the
+    // action occurs before the wait is actually called.
+    [self prepare];
+    
     NSString *eventName = @"Purchased an iPad 5";
     NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", nil];
     [self.analytics track:eventName properties:properties];
@@ -98,21 +120,111 @@
     
     // TODO: test for context object and default properties there
     
-    // TODO: send a second event, wait and test for 200 from servers
+    // send a second event, wait for 200 from servers
+    [self.analytics track:eventName properties:properties];
+    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
 }
 
 
 #pragma mark - Identify
 
 // Identify just userId
+- (void)testIdentify
+{
+    // Call prepare to setup the asynchronous action.
+    // This helps in cases where the action is synchronous and the
+    // action occurs before the wait is actually called.
+    [self prepare];
+    
+    NSString *userId = @"smile@wrinkledhippo.com";
+    [self.analytics identify:userId];
+    
+    // The analytics thread does things slightly async, just need to
+    // create a tiny amount of space for it to get it into the queue.
+    [NSThread sleepForTimeInterval:0.1f];
+    
+    GHAssertTrue(self.analytics.queue.count == 1, @"Identify was not enqueued.");
+    
+    NSDictionary *queuedTrack = [self.analytics.queue objectAtIndex:0];
+    GHAssertEqualObjects([queuedTrack objectForKey:@"action"], @"identify", @"Identify did not have action: \"identify\".");
+    GHAssertEqualObjects([queuedTrack objectForKey:@"userId"], userId, @"Identify userId did not match userId that was passed in.");
+    GHAssertNotNil([queuedTrack objectForKey:@"timestamp"], @"Identify did not have a timestamp, but it should.");
+    GHAssertNotNil([queuedTrack objectForKey:@"sessionId"], @"Identify did not have a sessionId, but it should.");
+    GHAssertNil([queuedTrack objectForKey:@"traits"], @"Identify had traits, but no traits were passed.");
+    
+    
+    // TODO: test for context object and default properties there
+    
+    // send a second event, wait for 200 from servers
+    [self.analytics identify:userId];
+    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
+}
 // Identify just traits
-// Identify userId, traits
+- (void)testTraits
+{
+    // Call prepare to setup the asynchronous action.
+    // This helps in cases where the action is synchronous and the
+    // action occurs before the wait is actually called.
+    [self prepare];
+    
+    NSDictionary *traits = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", nil];
+    [self.analytics identify:nil traits:traits];
+    
+    // The analytics thread does things slightly async, just need to
+    // create a tiny amount of space for it to get it into the queue.
+    [NSThread sleepForTimeInterval:0.1f];
+    
+    GHAssertTrue(self.analytics.queue.count == 1, @"Identify was not enqueued.");
+    
+    NSDictionary *queuedTrack = [self.analytics.queue objectAtIndex:0];
+    GHAssertEqualObjects([queuedTrack objectForKey:@"action"], @"identify", @"Identify did not have action: \"identify\".");
+    GHAssertNotNil([queuedTrack objectForKey:@"timestamp"], @"Identify did not have a timestamp, but it should.");
+    GHAssertNotNil([queuedTrack objectForKey:@"sessionId"], @"Identify did not have a sessionId, but it should.");
+    GHAssertEqualObjects([queuedTrack objectForKey:@"traits"], traits, @"Identify did not have the right traits.");
+    
+    
+    // TODO: test for context object and default properties there
+    
+    // send a second event, wait for 200 from servers
+    [self.analytics identify:nil traits:traits];
+    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
+}
 // Identify userId, traits, context
 
 
 #pragma mark - Queueing, Batching and Sending
 
-// Change flushAt to 2 and 7... check that it's batched.
+// Check that it's batched
+- (void)testFlustAt
+{
+    [self prepare];
+    
+    NSString *userId = @"smile@wrinkledhippo.com";
+    [self.analytics identify:userId];
+    [NSThread sleepForTimeInterval:0.1f];
+    GHAssertTrue(self.analytics.queue.count == 1, @"Identify was not enqueued.");
+    NSString *eventName = @"Purchased an iPad 5";
+    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", nil];
+    [self.analytics track:eventName properties:properties];
+    [NSThread sleepForTimeInterval:0.1f];
+    GHAssertTrue(self.analytics.queue.count != 2, @"Event queue was not flushed in batch.");
+    
+    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
+    
+}
 // Change flustAt to 20, wait for 10 seconds after sending 5... check that it's sent in batch of 5.
+- (void)testFlushAfter
+{
+    [self prepare];
+    
+    NSString *eventName = @"Purchased an iPad 5";
+    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", nil];
+    [self.analytics track:eventName properties:properties];
+    [NSThread sleepForTimeInterval:0.1f];
+    GHAssertTrue(self.analytics.queue.count == 1, @"Event was not enqueued.");
+    
+    // Wait for more than the timeout
+    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:15.0];
+}
 
 @end
