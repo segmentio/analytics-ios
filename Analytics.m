@@ -204,6 +204,24 @@ static Analytics *sharedAnalytics = nil;
 }
 
 
+- (void)alias:(NSString *)from to:(NSString *)to
+{
+    [self alias:from to:to context:nil];
+}
+
+- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context
+{
+    NSAssert(from.length, @"%@ alias requires a from id.", self);
+    NSAssert(to.length, @"%@ alias requires a to id.", self);
+
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:from forKey:@"from"];
+    [dictionary setValue:to forKey:@"to"];
+    
+    [self enqueueAction:@"alias" dictionary:dictionary context:context];
+}
+
+
 
 #pragma mark - Queueing
 

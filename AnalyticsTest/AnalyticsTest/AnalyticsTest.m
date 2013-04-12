@@ -230,8 +230,8 @@
     GHAssertEqualObjects([queuedTrack objectForKey:@"traits"], traits, @"Identify did not have the right traits.");
     
     // test for context object and default properties there
-    GHAssertNotNil([queuedTrack objectForKey:@"context"], @"Event did not have a context, but it should.");
-    GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"library"], @"Event did not have a context.library, but it should.");
+    GHAssertNotNil([queuedTrack objectForKey:@"context"], @"Identify did not have a context, but it should.");
+    GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"library"], @"Identify did not have a context.library, but it should.");
     
     // send a second event, wait for 200 from servers
     [self.analytics identify:nil traits:traits];
@@ -272,6 +272,76 @@
     
     // send a second event, wait for 200 from servers
     [self.analytics identify:nil traits:traits];
+    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
+}
+
+#pragma mark - Alias
+
+
+// Identify just traits
+- (void)testAlias
+{
+    [self prepare];
+    
+    NSString *from = @"lkj1l 2kj3 1kj21j23kj1 l2kj3";
+    NSString *to = @"wallowinghippo@wahoooo.net";
+    [self.analytics alias:from to:to];
+    
+    // The analytics thread does things slightly async, just need to
+    // create a tiny amount of space for it to get it into the queue.
+    [NSThread sleepForTimeInterval:0.1f];
+    
+    GHAssertTrue(self.analytics.queue.count == 1, @"Alias was not enqueued.");
+    
+    NSDictionary *queuedTrack = [self.analytics.queue objectAtIndex:0];
+    GHAssertEqualObjects([queuedTrack objectForKey:@"action"], @"alias", @"Alias did not have action: \"alias\".");
+    GHAssertNotNil([queuedTrack objectForKey:@"timestamp"], @"Alias did not have a timestamp, but it should.");
+    GHAssertEqualObjects([queuedTrack objectForKey:@"from"], from, @"Alias did not have a from, but it should.");
+    GHAssertEqualObjects([queuedTrack objectForKey:@"to"], to, @"Alias did not have a to, but it should.");
+    
+    // test for context object and default properties there
+    GHAssertNotNil([queuedTrack objectForKey:@"context"], @"Alias did not have a context, but it should.");
+    GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"library"], @"Alias did not have a context.library, but it should.");
+    
+    // send a second event, wait for 200 from servers
+    [self.analytics alias:from to:to];
+    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
+}
+// Identify userId, traits, context
+- (void)testAliasContext
+{
+    [self prepare];
+    
+    NSString *from = @"lkj1l 2kj3 1kj21j23kj1 l2kj3";
+    NSString *to = @"wallowinghippo@wahoooo.net";
+    NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @"true", @"Salesforce", @"false", @"Mixpanel", nil];
+    NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys: providers, @"providers", nil];
+    [self.analytics alias:from to:to context:context];
+    
+    // The analytics thread does things slightly async, just need to
+    // create a tiny amount of space for it to get it into the queue.
+    [NSThread sleepForTimeInterval:0.1f];
+    
+    GHAssertTrue(self.analytics.queue.count == 1, @"Alias was not enqueued.");
+    
+    NSDictionary *queuedTrack = [self.analytics.queue objectAtIndex:0];
+    GHAssertEqualObjects([queuedTrack objectForKey:@"action"], @"alias", @"Alias did not have action: \"alias\".");
+    GHAssertNotNil([queuedTrack objectForKey:@"timestamp"], @"Alias did not have a timestamp, but it should.");
+    GHAssertEqualObjects([queuedTrack objectForKey:@"from"], from, @"Alias did not have a from, but it should.");
+    GHAssertEqualObjects([queuedTrack objectForKey:@"to"], to, @"Alias did not have a to, but it should.");
+    
+    // test for context object and default properties there
+    GHAssertNotNil([queuedTrack objectForKey:@"context"], @"Alias did not have a context, but it should.");
+    GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"library"], @"Alias did not have a context.library, but it should.");
+    
+    GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"providers"], @"Alias did not have a context.providers, but it should.");
+    GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"Salesforce"], @"true", @"Alias did not have a context.providers.Salesforce, but it should.");
+    GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"Mixpanel"], @"false", @"Alias did not have a context.providers.Mixpanel, but it should.");
+    GHAssertNil([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"KISSmetrics"], @"Alias had a context.providers.KISSmetrics, but it wasn't passed in.");
+    
+    
+    // send a second event, wait for 200 from servers
+    [self.analytics alias:from to:to];
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
 }
 

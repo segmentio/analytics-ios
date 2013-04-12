@@ -34,6 +34,9 @@
 - (void)track:(NSString *)event properties:(NSDictionary *)properties;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context;
 
+- (void)alias:(NSString *)from to:(NSString *)to;
+- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context;
+
 // Utilities
 // ---------
 
