@@ -161,7 +161,7 @@ static Analytics *sharedAnalytics = nil;
 
 - (void)identify:(NSString *)userId
 {
-    [self identify:userId traits:nil];
+    [self identify:userId traits:nil context:nil];
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits
@@ -184,7 +184,7 @@ static Analytics *sharedAnalytics = nil;
 
 - (void)track:(NSString *)event
 {
-    [self track:event properties:nil];
+    [self track:event properties:nil context:nil];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties
