@@ -1,0 +1,17 @@
+PODS:
+  - Analytics (0.0.5)
+  - GHUnitIOS (0.5.6)
+
+DEPENDENCIES:
+  - Analytics (from `../`)
+  - GHUnitIOS (~> 0.5.6)
+
+EXTERNAL SOURCES:
+  Analytics:
+    :local: ../
+
+SPEC CHECKSUMS:
+  Analytics: 053da26db1e8f7fc29006473bb37121c5ab79ae8
+  GHUnitIOS: bf149b2c44084eee2785ce4ac3675c3a699e509d
+
+COCOAPODS: 0.18.1

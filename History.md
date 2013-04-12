@@ -1,3 +1,10 @@
+0.1.0 / 2013-4-11
+=================
+* Added a testing suite
+* Added context variable, which includes device info and metadata for Segment.io
+* Added alias method
+
+
 0.0.5 / 2013-4-1
 ================
 * Merged fix from @pkamb to fix types in logging statements.

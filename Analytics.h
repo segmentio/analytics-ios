@@ -3,6 +3,15 @@
 
 #import <Foundation/Foundation.h>
 
+
+@interface AnalyticsListenerDelegate : NSObject
+
+- (void)onAPISuccess;
+- (void)onAPIFailure;
+
+@end
+
+
 @interface Analytics : NSObject
 
 @property(nonatomic, strong) NSString *secret;
@@ -10,6 +19,7 @@
 @property(nonatomic, strong) NSString *sessionId;
 @property(nonatomic, assign) NSUInteger flushAt;
 @property(nonatomic, assign) NSUInteger flushAfter;
+@property(nonatomic, strong) AnalyticsListenerDelegate *delegate;
 
 
 
@@ -18,9 +28,14 @@
 
 - (void)identify:(NSString *)userId;
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits;
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context;
 
 - (void)track:(NSString *)event;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties;
+- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context;
+
+- (void)alias:(NSString *)from to:(NSString *)to;
+- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context;
 
 // Utilities
 // ---------
@@ -34,7 +49,9 @@
 - (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
 
 + (instancetype)sharedAnalyticsWithSecret:(NSString *)secret;
++ (instancetype)sharedAnalyticsWithSecret:(NSString *)secret delegate:(AnalyticsListenerDelegate *)delegate;
 + (instancetype)sharedAnalyticsWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
++ (instancetype)sharedAnalyticsWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter delegate:(AnalyticsListenerDelegate *)delegate;
 + (instancetype)sharedAnalytics;
 
 @end
