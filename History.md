@@ -1,3 +1,7 @@
+0.2.1 / 2013-4-16
+=================
+* Fixing initWithSecret method signature in header file
+
 0.2.0 / 2013-4-16
 =================
 * Simplifying sessionId to behave the same on iOS 6 as on iOS 5 and OS X
