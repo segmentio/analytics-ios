@@ -1,3 +1,8 @@
+0.2.0 / 2013-4-16
+=================
+* Simplifying sessionId to behave the same on iOS 6 as on iOS 5 and OS X
+* Fixing reset function to actually destroy userId and roll sessionId
+
 0.1.1 / 2013-4-11
 =================
 * Added a getSessionId method
