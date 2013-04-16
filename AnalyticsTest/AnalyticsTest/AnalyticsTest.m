@@ -55,6 +55,20 @@
 // JSON conversion
 // Date ISO formatting
 // SessionId generation
+- (void)testSessionId
+{
+    NSString *sessionId1 = [self.analytics getSessionId];
+    GHAssertNotNil(sessionId1, @"SessionID was nil.");
+    
+    [self.analytics reset];
+    
+    // The analytics thread does things slightly async, just need to
+    // create a tiny amount of space for it to get it into the queue.
+    [NSThread sleepForTimeInterval:0.1f];
+    
+    NSString *sessionId2 = [self.analytics getSessionId];
+    GHAssertNotEqualStrings(sessionId1, sessionId2, @"SessionID's were equal after reset.");
+}
 
 
 #pragma mark - Track

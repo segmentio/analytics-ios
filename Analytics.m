@@ -33,34 +33,22 @@ static NSString *ToISO8601(NSDate *date) {
     return [[dateFormat stringFromDate:date] stringByAppendingString:@"Z"];
 }
 
-static NSString *GetSessionIDFromDefaults() {
-    // We could use serial number or mac address (see http://developer.apple.com/library/mac/#technotes/tn1103/_index.html )
-    // But it's really not necessary since they can be nil and we are only using them as SessionID anyways
+static NSString *GetSessionID(BOOL reset) {
+    // As of May 1, 2013 we cannot use UDIDs see https://developer.apple.com/news/?id=3212013a
+    // so we use a generated UUID that we save to NSUserDefaults
+    // We could use serial number or mac address
+    // (see http://developer.apple.com/library/mac/#technotes/tn1103/_index.html )
+    // but it's really not necessary since they can be nil and we are only using them as SessionID anyways.
+    // Similarly, we decided not to use identifierForVendor because it can't be reset to a new value on logout.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (![defaults stringForKey:kSessionID]) {
+    if (![defaults stringForKey:kSessionID] || reset) {
         CFUUIDRef theUUID = CFUUIDCreate(NULL);
         CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+        AnalyticsDebugLog(@"New SessionID: %@", string);
         CFRelease(theUUID);
         [defaults setObject:(__bridge_transfer NSString *)string forKey:kSessionID];
     }
     return [defaults stringForKey:kSessionID];
-}
-
-static NSString *GetSessionID() {
-#if TARGET_OS_MAC
-    return GetSessionIDFromDefaults();
-#else
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(identifierForVendor)]) {
-        // For iOS6 and later
-        return [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    } else {
-        // For iOS5 and earlier
-        // As of May 1, 2013 we cannot use UDIDs 
-        // see https://developer.apple.com/news/?id=3212013a
-        // so we use a generated UUID that we save to NSUserDefaults
-        return GetSessionIDFromDefaults();
-    }
-#endif
 }
 
 static NSMutableDictionary *CreateContext(NSDictionary *parameters) {
@@ -143,7 +131,7 @@ static Analytics *sharedAnalytics = nil;
         _flushAfter = flushAfter;
         _delegate = delegate;
         _secret = secret;
-        _sessionId = GetSessionID();
+        _sessionId = GetSessionID(NO);
         _queue = [NSMutableArray array];
         _flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.flushAfter
                                                        target:self
@@ -296,7 +284,8 @@ static Analytics *sharedAnalytics = nil;
 - (void)reset
 {
     dispatch_async(_serialQueue, ^{
-        self.sessionId = GetSessionID();
+        self.sessionId = GetSessionID(YES); // changes the UUID
+        self.userId = nil;
         self.queue = [NSMutableArray array];
     });
 }
