@@ -1,3 +1,8 @@
+0.2.2 / 2013-4-24
+=================
+* Fixing timestamps to include millisecond precision
+
+
 0.2.1 / 2013-4-16
 =================
 * Fixing initWithSecret method signature in header file
