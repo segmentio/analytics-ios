@@ -26,7 +26,7 @@ static NSString *ToISO8601(NSDate *date) {
     static NSDateFormatter *dateFormat;
     dispatch_once(&dateFormatToken, ^{
         dateFormat = [[NSDateFormatter alloc] init];
-        dateFormat.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
+        dateFormat.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS";
         dateFormat.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
         dateFormat.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     });
