@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.author       = { "Segment.io" => "friends@segment.io" }
 
   s.source       = { :git => "https://github.com/segmentio/analytics-ios-osx.git", :tag => "0.2.2" }
-  s.source_files = 'Analytics.{h,m}'
+  s.source_files = ['Analytics.{h,m}', 'Source/SettingsCache.{h,m}']
   s.requires_arc = true
 
   s.osx.deployment_target = '10.7'

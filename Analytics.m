@@ -2,6 +2,7 @@
 // Copyright 2013 Segment.io
 
 #import "Analytics.h"
+#import "Source/SettingsCache.h"
 
 #ifdef DEBUG
 #define ANALYTICS_DEBUG_MODE
@@ -139,6 +140,8 @@ static Analytics *sharedAnalytics = nil;
                                                      userInfo:nil
                                                       repeats:YES];
         _serialQueue = dispatch_queue_create("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
+
+        [SettingsCache sharedSettingsCacheWithSecret:secret];
     }
     return self;
 }
@@ -377,11 +380,6 @@ static Analytics *sharedAnalytics = nil;
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<Analytics secret:%@>", self.secret];
-}
-
-- (void)dealloc
-{
-    [self.flushTimer invalidate];
 }
 
 @end
