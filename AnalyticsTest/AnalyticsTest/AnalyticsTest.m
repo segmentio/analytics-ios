@@ -1,6 +1,5 @@
 //
-//  AnalyticsTestTests.m
-//  AnalyticsTestTests
+//  AnalyticsTest.m
 //
 //  Created by Peter Reinhardt on 4/10/13.
 //  Copyright (c) 2013 Segment.io. All rights reserved.

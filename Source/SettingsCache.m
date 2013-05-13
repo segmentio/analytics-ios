@@ -75,6 +75,7 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
     [defaults setObject:(NSDictionary *)settings forKey:kSettingsCache];
 
     // Callback with the resulting settings
+    NSLog(@"%@ Callback on delegate %@", self, self.delegate);
     if (self.delegate) {
         [self.delegate onSettingsUpdate:settings];
     }
