@@ -8,6 +8,8 @@
 #import "Provider.h"
 #import "GoogleAnalyticsProvider.h"
 #import "SegmentioProvider.h"
+#import "MixpanelProvider.h"
+#import "GoogleAnalyticsProvider.h"
 
 @interface ProviderManager ()
 
@@ -34,12 +36,13 @@
 {
     if (self = [self init]) {
         _secret = secret;
-        _settingsCache = [SettingsCache withSecret:secret];
+        _settingsCache = [SettingsCache withSecret:secret delegate:self];
         _providersArray = [NSMutableArray arrayWithCapacity:2];
 
         // Create each provider
         [_providersArray addObject:[SegmentioProvider withNothing]];
-        // TODO add the rest
+        [_providersArray addObject:[MixpanelProvider withNothing]];
+        [_providersArray addObject:[GoogleAnalyticsProvider withNothing]];
     }
     return self;
 }
@@ -49,25 +52,51 @@
 
 - (void)onSettingsUpdate:(NSDictionary *)settings
 {
-    // TODO iterate over providersArray, update settings for each provider
+    // Iterate over providersArray
+    for (id object in self.providersArray) {
+        Provider *provider = (Provider *)object;
+        // Extract the settings for this provider and set them
+        NSDictionary *providerSettings = [settings objectForKey:provider.name];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [provider updateSettings:providerSettings];
+        });
+    }
 }
 
 
 #pragma mark - Analytics API
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
 {
-    // TODO iterate over providersArray and call identify
+    // Iterate over providersArray and call identify.
+    for (id object in self.providersArray) {
+        Provider *provider = (Provider *)object;
+        if ([provider ready]) {
+            [provider identify:userId traits:traits context:context];
+        }
+    }
 }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties
+- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
 {
-    // TODO iterate over providersArray and call track
+    // Iterate over providersArray and call track.
+    for (id object in self.providersArray) {
+        Provider *provider = (Provider *)object;
+        if ([provider ready]) {
+            [provider track:event properties:properties context:context];
+        }
+    }
 }
 
-- (void)alias:(NSString *)from to:(NSString *)to
+- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context
 {
-    // TODO iterate over providersArray and call alias
+    // Iterate over providersArray and call alias.
+    for (id object in self.providersArray) {
+        Provider *provider = (Provider *)object;
+        if ([provider ready]) {
+            [provider alias:from to:to context:context];
+        }
+    }
 }
 
 
@@ -76,7 +105,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<Analytics ProviderManager:%@>", self];
+    return @"<Analytics ProviderManager>";
 }
 
 @end

@@ -4,19 +4,13 @@
 #import "Provider.h"
 
 
-@interface Provider ()
-
-@property(nonatomic, strong) NSString *name;
-@property(nonatomic, assign) BOOL enabled;
-@property(nonatomic, assign) BOOL valid;
-@property(nonatomic, strong) NSDictionary *settings;
-
-@end
-
-
 @implementation Provider {
 
 }
+
+#pragma mark - Initialization
+
+- (void)start { }
 
 #pragma mark - Enabled State
 
@@ -30,13 +24,19 @@
     self.enabled = NO;
 }
 
+- (BOOL)ready
+{
+    return (self.enabled && self.valid && self.initialized);
+}
+
 
 #pragma mark - Settings
 
-- (void)setSettings:(NSDictionary *)settings
+- (void)updateSettings:(NSDictionary *)settings
 {
     self.settings = settings;
     [self validate];
+    [self start];
 }
 
 - (void)validate
@@ -47,11 +47,11 @@
 
 #pragma mark - Analytics API
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits { }
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context { }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties { }
+- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context { }
 
-- (void)alias:(NSString *)from to:(NSString *)to { }
+- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context { }
 
 
 

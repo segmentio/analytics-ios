@@ -3,3 +3,5 @@
 
 #define __POD_Analytics
 #define __POD_GHUnitIOS
+#define __POD_GoogleAnalytics_iOS_SDK
+#define __POD_Mixpanel

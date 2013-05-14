@@ -3,6 +3,9 @@
 
 #import "SegmentioProvider.h"
 
+#import "Segmentio.h"
+
+
 @implementation SegmentioProvider {
 
 }
@@ -17,10 +20,23 @@
 - (id)initWithNothing
 {
     if (self = [self init]) {
-        _name = @"Segmentio";
-        // TODO all the other initialization
+        self.name = @"Segmentio";
+        self.enabled = YES;
+        self.valid = NO;
+        self.initialized = NO;
     }
     return self;
+}
+
+- (void)start
+{
+    // Re-validate
+    [self validate];
+
+    // Check that all states are go
+    if (self.enabled && self.valid) {
+        // TODO
+    }
 }
 
 

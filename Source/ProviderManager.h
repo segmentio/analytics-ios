@@ -6,13 +6,12 @@
 
 @interface ProviderManager : NSObject
 
-
 // Analytics API 
 // -------------
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits;
-- (void)track:(NSString *)event properties:(NSDictionary *)properties;
-- (void)alias:(NSString *)from to:(NSString *)to;
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context;
+- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context;
+- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context;
 
 
 // Initialization

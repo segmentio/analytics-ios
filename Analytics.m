@@ -2,7 +2,7 @@
 // Copyright 2013 Segment.io
 
 #import "Analytics.h"
-#import "Source/SettingsCache.h"
+#import "Source/ProviderManager.h"
 
 #ifdef DEBUG
 #define ANALYTICS_DEBUG_MODE
@@ -141,7 +141,7 @@ static Analytics *sharedAnalytics = nil;
                                                       repeats:YES];
         _serialQueue = dispatch_queue_create("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
 
-        [SettingsCache withSecret:secret];
+        [ProviderManager withSecret:secret];
     }
     return self;
 }
