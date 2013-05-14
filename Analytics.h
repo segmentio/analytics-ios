@@ -2,25 +2,12 @@
 // Copyright 2013 Segment.io
 
 #import <Foundation/Foundation.h>
-
-
-@interface AnalyticsListenerDelegate : NSObject
-
-- (void)onAPISuccess;
-- (void)onAPIFailure;
-
-@end
-
+#import "ProviderManager.h"
 
 @interface Analytics : NSObject
 
 @property(nonatomic, strong) NSString *secret;
-@property(nonatomic, strong) NSString *userId;
-@property(nonatomic, strong) NSString *sessionId;
-@property(nonatomic, assign) NSUInteger flushAt;
-@property(nonatomic, assign) NSUInteger flushAfter;
-@property(nonatomic, strong) AnalyticsListenerDelegate *delegate;
-
+@property(nonatomic, strong) ProviderManager *providerManager;
 
 
 // Analytics API 
@@ -37,22 +24,17 @@
 - (void)alias:(NSString *)from to:(NSString *)to;
 - (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context;
 
+
 // Utilities
 // ---------
 
-- (NSString *)getSessionId;
-- (void)flush;
 - (void)reset;
+
 
 // Initialization
 // --------------
 
-- (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter delegate:(AnalyticsListenerDelegate *)delegate;
-
 + (instancetype)sharedAnalyticsWithSecret:(NSString *)secret;
-+ (instancetype)sharedAnalyticsWithSecret:(NSString *)secret delegate:(AnalyticsListenerDelegate *)delegate;
-+ (instancetype)sharedAnalyticsWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
-+ (instancetype)sharedAnalyticsWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter delegate:(AnalyticsListenerDelegate *)delegate;
 + (instancetype)sharedAnalytics;
 
 @end
