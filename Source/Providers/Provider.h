@@ -18,6 +18,7 @@
 // --------------
 
 - (void)setSettings:(NSDictionary *)settings;
+- (void)validate;
 
 
 // Analytics API 

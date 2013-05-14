@@ -38,7 +38,7 @@
         _providersArray = [NSMutableArray arrayWithCapacity:2];
 
         // Create each provider
-        [_providersArray addObject:[SegmentioProvider initEmpty]];
+        [_providersArray addObject:[SegmentioProvider withNothing]];
         // TODO add the rest
     }
     return self;
@@ -76,7 +76,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<Analytics ProviderManager:%@>", self.settings];
+    return [NSString stringWithFormat:@"<Analytics ProviderManager:%@>", self];
 }
 
 @end

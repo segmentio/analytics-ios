@@ -3,6 +3,9 @@
 
 #import "SegmentioProvider.h"
 
+@implementation SegmentioProvider {
+
+}
 
 #pragma mark - Initialization
 

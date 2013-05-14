@@ -4,11 +4,18 @@
 #import "Provider.h"
 
 
+@interface Provider ()
+
+@property(nonatomic, strong) NSString *name;
+@property(nonatomic, assign) BOOL enabled;
+@property(nonatomic, assign) BOOL valid;
+@property(nonatomic, strong) NSDictionary *settings;
+
+@end
+
+
 @implementation Provider {
-    @property(nonatomic, strong) NSString *name;
-    @property(nonatomic, assign) BOOL enabled;
-    @property(nonatomic, assign) BOOL valid;
-    @property(nonatomic, strong) NSDictionary *settings;
+
 }
 
 #pragma mark - Enabled State
@@ -32,6 +39,10 @@
     [self validate];
 }
 
+- (void)validate
+{
+    self.valid = NO;
+}
 
 
 #pragma mark - Analytics API
