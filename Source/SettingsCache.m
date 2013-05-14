@@ -8,6 +8,8 @@
 
 @interface SettingsCache ()
 
+@property(nonatomic, strong) NSString *secret;
+@property(nonatomic, strong) SettingsCacheDelegate *delegate;
 @property(nonatomic, strong) NSTimer *updateTimer;
 @property(nonatomic, strong) NSURLConnection *connection;
 @property(nonatomic, assign) NSInteger responseCode;
@@ -22,33 +24,20 @@
     dispatch_queue_t _serialQueue;
 }
 
-static SettingsCache *sharedSettingsCache = nil;
-
 #pragma mark - Initializiation
 
-+ (instancetype)sharedSettingsCacheWithSecret:(NSString *)secret
++ (instancetype)withSecret:(NSString *)secret
 {
-    return [self sharedSettingsCacheWithSecret:secret delegate:nil];
+    return [[self alloc] initWithSecret:secret delegate:nil];
 }
 
-+ (instancetype)sharedSettingsCacheWithSecret:(NSString *)secret delegate:(SettingsCacheListenerDelegate *)delegate
++ (instancetype)withSecret:(NSString *)secret delegate:(SettingsCacheDelegate *)delegate
 {
     NSParameterAssert(secret.length > 0);
-
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedSettingsCache = [[self alloc] initWithSecret:secret delegate:delegate];
-    });
-    return sharedSettingsCache;
+    return [[self alloc] initWithSecret:secret delegate:delegate];
 }
 
-+ (instancetype)sharedSettingsCache
-{
-    NSAssert(sharedSettingsCache, @"%@ sharedSettingsCache called before sharedSettingsCacheWithSecret", self);
-    return sharedSettingsCache;
-}
-
-- (id)initWithSecret:(NSString *)secret delegate:(SettingsCacheListenerDelegate *)delegate
+- (id)initWithSecret:(NSString *)secret delegate:(SettingsCacheDelegate *)delegate
 {
     if (self = [self init]) {
         _secret = secret;
@@ -59,7 +48,7 @@ static SettingsCache *sharedSettingsCache = nil;
                                                      userInfo:nil
                                                       repeats:YES];
         _serialQueue = dispatch_queue_create("io.segment.analytics.settings", DISPATCH_QUEUE_SERIAL);
-        [self updateSettings];
+        [self update];
     }
     return self;
 }
@@ -88,7 +77,7 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
     return [defaults dictionaryForKey:kSettingsCache];
 }
 
-- (void)updateSettings
+- (void)update
 {
     // Start a request for the settings if not already in progress.
     if (self.connection == nil) {
@@ -97,6 +86,13 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
             [self.connection start];
         });
     }
+}
+
+- (void)clear
+{
+    // Clear the settings from the user defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:kSettingsCache];
 }
 
 

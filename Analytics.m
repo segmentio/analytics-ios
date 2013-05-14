@@ -141,7 +141,7 @@ static Analytics *sharedAnalytics = nil;
                                                       repeats:YES];
         _serialQueue = dispatch_queue_create("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
 
-        [SettingsCache sharedSettingsCacheWithSecret:secret];
+        [SettingsCache withSecret:secret];
     }
     return self;
 }

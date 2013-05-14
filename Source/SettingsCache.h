@@ -4,9 +4,9 @@
 #import <Foundation/Foundation.h>
 
 
-// SettingsCacheListenerDelegate
+// SettingsCacheDelegate
 
-@interface SettingsCacheListenerDelegate : NSObject
+@interface SettingsCacheDelegate : NSObject
 
 - (void)onSettingsUpdate:(NSDictionary *)settings;
 
@@ -19,16 +19,13 @@
 
 @interface SettingsCache : NSObject
 
-@property(nonatomic, strong) NSString *secret;
-@property(nonatomic, strong) SettingsCacheListenerDelegate *delegate;
++ (instancetype)withSecret:(NSString *)secret;
++ (instancetype)withSecret:(NSString *)secret delegate:(SettingsCacheDelegate *)delegate;
 
-+ (instancetype)sharedSettingsCacheWithSecret:(NSString *)secret;
-+ (instancetype)sharedSettingsCacheWithSecret:(NSString *)secret delegate:(SettingsCacheListenerDelegate *)delegate;
-+ (instancetype)sharedSettingsCache;
+- (id)initWithSecret:(NSString *)secret delegate:(SettingsCacheDelegate *)delegate;
 
-- (id)initWithSecret:(NSString *)secret delegate:(SettingsCacheListenerDelegate *)delegate;
-
-- (void)updateSettings;
+- (void)clear;
+- (void)update;
 - (NSDictionary *)getSettings;
 
 @end
