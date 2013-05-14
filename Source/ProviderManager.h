@@ -6,8 +6,6 @@
 
 @interface ProviderManager : NSObject
 
-@property(nonatomic, strong) NSDictionary *settings;
-
 
 // Analytics API 
 // -------------
@@ -16,9 +14,12 @@
 - (void)track:(NSString *)event properties:(NSDictionary *)properties;
 - (void)alias:(NSString *)from to:(NSString *)to;
 
+
 // Initialization
 // --------------
 
-- (id)initWithSettings:(NSDictionary *)settings;
++ (instancetype)withSecret:(NSString *)secret;
+
+- (id)initWithSecret:(NSString *)secret;
 
 @end
