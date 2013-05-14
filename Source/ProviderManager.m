@@ -5,11 +5,15 @@
 
 #import "SettingsCache.h"
 
+#import "Provider.h"
+#import "GoogleAnalyticsProvider.h"
+#import "SegmentioProvider.h"
+
 @interface ProviderManager ()
 
 @property(nonatomic, strong) NSString *secret;
 @property(nonatomic, strong) SettingsCache *settingsCache;
-@property(nonatomic, strong) NSArray *providersArray;
+@property(nonatomic, strong) NSMutableArray *providersArray;
 
 @end
 
@@ -30,6 +34,12 @@
 {
     if (self = [self init]) {
         _secret = secret;
+        _settingsCache = [SettingsCache withSecret:secret];
+        _providersArray = [NSMutableArray arrayWithCapacity:2];
+
+        // Create each provider
+        [_providersArray addObject:[SegmentioProvider initEmpty]];
+        // TODO add the rest
     }
     return self;
 }

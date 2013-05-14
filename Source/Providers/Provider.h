@@ -6,7 +6,18 @@
 
 @interface Provider : NSObject
 
-@property(nonatomic, strong) NSDictionary *settings;
+
+// Enabled State
+// -------------
+
+- (void)enable;
+- (void)disable;
+
+
+// Initialization
+// --------------
+
+- (void)setSettings:(NSDictionary *)settings;
 
 
 // Analytics API 
@@ -15,10 +26,5 @@
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties;
 - (void)alias:(NSString *)from to:(NSString *)to;
-
-// Initialization
-// --------------
-
-- (id)initWithSettings:(NSDictionary *)settings;
 
 @end

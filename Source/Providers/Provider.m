@@ -4,18 +4,32 @@
 #import "Provider.h"
 
 
-@implementation Analytics {
-
+@implementation Provider {
+    @property(nonatomic, strong) NSString *name;
+    @property(nonatomic, assign) BOOL enabled;
+    @property(nonatomic, assign) BOOL valid;
+    @property(nonatomic, strong) NSDictionary *settings;
 }
 
-#pragma mark - Initializiation
+#pragma mark - Enabled State
 
-- (id)initWithSettings:(NSDictionary *)settings
+- (void)enable
 {
-    if (self = [self init]) {
-        _settings = settings;
-    }
-    return self;
+    self.enabled = YES;
+}
+
+- (void)disable
+{
+    self.enabled = NO;
+}
+
+
+#pragma mark - Settings
+
+- (void)setSettings:(NSDictionary *)settings
+{
+    self.settings = settings;
+    [self validate];
 }
 
 
@@ -34,7 +48,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<Analytics Provider:%@>", self.settings];
+    return [NSString stringWithFormat:@"<%@ Analytics Provider:%@>", self.name, self.settings];
 }
 
 @end
