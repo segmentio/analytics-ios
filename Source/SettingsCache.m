@@ -101,7 +101,8 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
 
 - (NSURLConnection *)connectionForSettings
 {
-    NSURL *url = [NSURL URLWithString:@"http://api.segment.io/project/testsecret/settings"];
+    NSString *urlString = [NSString stringWithFormat:@"http://api.segment.io/project/%@/settings", self.secret];
+    NSURL *url = [NSURL URLWithString:urlString];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPMethod:@"GET"];
