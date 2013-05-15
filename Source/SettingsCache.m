@@ -4,7 +4,7 @@
 #import "SettingsCache.h"
 
 // Update the settings every hour
-#define ANALYTICS_SETTINGS_CACHE_UPDATE_INTERVAL 3600
+#define ANALYTICS_SETTINGS_CACHE_UPDATE_INTERVAL 30
 
 @interface SettingsCache ()
 
@@ -44,7 +44,7 @@
         _delegate = delegate;
         _updateTimer = [NSTimer scheduledTimerWithTimeInterval:ANALYTICS_SETTINGS_CACHE_UPDATE_INTERVAL
                                                        target:self
-                                                     selector:@selector(updateSettings)
+                                                     selector:@selector(update)
                                                      userInfo:nil
                                                       repeats:YES];
         _serialQueue = dispatch_queue_create("io.segment.analytics.settings", DISPATCH_QUEUE_SERIAL);

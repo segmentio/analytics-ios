@@ -10,21 +10,27 @@
     dispatch_queue_t _serialQueue;
 }
 
-static Analytics *sharedAnalytics = nil;
+static Analytics *sharedInstance = nil;
 
 
 
 #pragma mark - Initializiation
 
-+ (instancetype)sharedAnalyticsWithSecret:(NSString *)secret
++ (instancetype)withSecret:(NSString *)secret
 {
-    return [self sharedAnalyticsWithSecret:secret];
+    NSParameterAssert(secret.length > 0);
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] initWithSecret:secret];
+    });
+    return sharedInstance;
 }
 
 + (instancetype)sharedAnalytics
 {
-    NSAssert(sharedAnalytics, @"%@ sharedAnalytics called before sharedAnalyticsWithSecret", self);
-    return sharedAnalytics;
+    NSAssert(sharedInstance, @"%@ sharedInstance called before withSecret", self);
+    return sharedInstance;
 }
 
 - (id)initWithSecret:(NSString *)secret
@@ -91,6 +97,11 @@ static Analytics *sharedAnalytics = nil;
 }
 
 #pragma mark - NSObject
+
+- (void)reset
+{
+    // TODO
+}
 
 - (NSString *)description
 {

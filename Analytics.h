@@ -34,7 +34,9 @@
 // Initialization
 // --------------
 
-+ (instancetype)sharedAnalyticsWithSecret:(NSString *)secret;
++ (instancetype)withSecret:(NSString *)secret;
 + (instancetype)sharedAnalytics;
+
+- (id)initWithSecret:(NSString *)secret;
 
 @end

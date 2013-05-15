@@ -13,7 +13,8 @@
 		D33B9582171648B800DACA39 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33B9581171648B800DACA39 /* CoreGraphics.framework */; };
 		D33B9588171648B800DACA39 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D33B9586171648B800DACA39 /* InfoPlist.strings */; };
 		D33B958A171648B800DACA39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D33B9589171648B800DACA39 /* main.m */; };
-		D33B959E17164A2500DACA39 /* AnalyticsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D33B959D17164A2500DACA39 /* AnalyticsTest.m */; };
+		D33B959E17164A2500DACA39 /* SegmentioTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D33B959D17164A2500DACA39 /* SegmentioTest.m */; };
+		D37548C71743461900CD82F9 /* AnalyticsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D37548C61743461900CD82F9 /* AnalyticsTest.m */; };
 		D3CD0B561741AA24008F944B /* AnalyticsSettingsCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CD0B551741AA24008F944B /* AnalyticsSettingsCacheTest.m */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +28,8 @@
 		D33B9587171648B800DACA39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D33B9589171648B800DACA39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D33B958B171648B800DACA39 /* AnalyticsTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnalyticsTest-Prefix.pch"; sourceTree = "<group>"; };
-		D33B959D17164A2500DACA39 /* AnalyticsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsTest.m; sourceTree = "<group>"; };
+		D33B959D17164A2500DACA39 /* SegmentioTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioTest.m; sourceTree = "<group>"; };
+		D37548C61743461900CD82F9 /* AnalyticsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsTest.m; sourceTree = "<group>"; };
 		D3CD0B551741AA24008F944B /* AnalyticsSettingsCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsSettingsCacheTest.m; sourceTree = "<group>"; };
 		F6D88C83F3B34BE484A44808 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -80,8 +82,9 @@
 			isa = PBXGroup;
 			children = (
 				D33B9584171648B800DACA39 /* Supporting Files */,
-				D33B959D17164A2500DACA39 /* AnalyticsTest.m */,
+				D33B959D17164A2500DACA39 /* SegmentioTest.m */,
 				D3CD0B551741AA24008F944B /* AnalyticsSettingsCacheTest.m */,
+				D37548C61743461900CD82F9 /* AnalyticsTest.m */,
 			);
 			path = AnalyticsTest;
 			sourceTree = "<group>";
@@ -193,8 +196,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D33B958A171648B800DACA39 /* main.m in Sources */,
-				D33B959E17164A2500DACA39 /* AnalyticsTest.m in Sources */,
+				D33B959E17164A2500DACA39 /* SegmentioTest.m in Sources */,
 				D3CD0B561741AA24008F944B /* AnalyticsSettingsCacheTest.m in Sources */,
+				D37548C71743461900CD82F9 /* AnalyticsTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
