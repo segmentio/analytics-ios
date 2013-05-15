@@ -33,8 +33,19 @@
 
     // Check that all states are go
     if (self.enabled && self.valid && !self.initialized) {
+        
+        // Require setup with the trackingId.
         NSString *trackingId = [self.settings objectForKey:@"trackingId"];
         [[GAI sharedInstance] trackerWithTrackingId:trackingId];
+        
+        // Optionally turn on uncaught exception tracking.
+        if ([self.settings objectForKey:@"reportUncaughtExceptions"]) {
+            [GAI sharedInstance].trackUncaughtExceptions = YES;
+        }
+        
+        // TODO: add support for sample rate
+        
+        // All done!
         self.initialized = YES;
         NSLog(@"GoogleAnalyticsProvider initialized.");
     }
@@ -45,6 +56,7 @@
 
 - (void)validate
 {
+    // All that's required is the trackingId.
     BOOL hasTrackingId = [self.settings objectForKey:@"trackingId"] != nil;
     self.valid = hasTrackingId;
 }
@@ -64,8 +76,34 @@
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
 {
-    // TODO: extract properties.value or properties.revenue for withValue:
-    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:@"All" withAction:event withLabel:nil withValue:nil];
+    // Try to extract a "category" property.
+    NSString *category = @"All"; // default
+    NSString *categoryProperty = [properties objectForKey:@"revenue"];
+    if (categoryProperty) {
+        category = categoryProperty;
+    }
+    
+    // Try to extract a "label" property.
+    NSString *label = [properties objectForKey:@"label"];
+    
+    // Try to extract a "revenue" or "value" from the event properties
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    
+    NSNumber *value = nil;
+    NSString *revenueProperty = [properties objectForKey:@"revenue"];
+    NSString *valueProperty = [properties objectForKey:@"value"];
+    if (revenueProperty) {
+        // prefer revenue
+        value = [formatter numberFromString:revenueProperty];
+    }
+    else if (valueProperty) {
+        // but also try "value"
+        value = [formatter numberFromString:valueProperty];
+    }
+    
+    // Track the event!
+    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:category withAction:event withLabel:label withValue:value];
 }
 
 
