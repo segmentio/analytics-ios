@@ -157,6 +157,11 @@
     GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"HubSpot"], @"false", @"Identify did not have a context.providers.HubSpot, but it should.");
     GHAssertNil([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"KISSmetrics"], @"Identify had a context.providers.KISSmetrics, but it wasn't passed in.");
     
+    // track an event so that we can see that's working in each analytics interface
+    NSString *eventName = @"Purchased an iPad 5";
+    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", @"Mobile", @"category", @"70.0", @"revenue", @"50.0", @"value", @"gooooga", @"label", nil];
+    [self.analytics track:eventName properties:properties context:context];
+    
     // wait for 200 from servers
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:35.0];
 }

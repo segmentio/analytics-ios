@@ -69,14 +69,31 @@
 - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
 {
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    
+    // Track the raw event.
     [mixpanel track:event properties:properties];
 
-    // TODO add support for trackCharge
+    // If People is enabled, track any "charges" to that API as well.
+    if ([self.settings objectForKey:@"people"]) {
+        
+        // Extract the "revenue" event property and trackCharge if there is revenue.
+        NSString *revenueProperty = [properties objectForKey:@"revenue"];
+        if (revenueProperty) {
+            
+            // Format the revenue.
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+            NSNumber *revenue = [formatter numberFromString:revenueProperty];
+            
+            // Track the charge.
+            [mixpanel.people trackCharge:revenue];
+        }
+    }
 }
 
 - (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context
 {
-    // Mixpanel automatically handles alias on iOS
+    // NOTE: Mixpanel automatically handles alias on iOS
 }
 
 
