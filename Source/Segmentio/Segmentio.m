@@ -254,6 +254,13 @@ static Segmentio *sharedInstance = nil;
 
 - (void)reset
 {
+    [self.flushTimer invalidate];
+    self.flushTimer = nil;
+    self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.flushAfter
+                                                       target:self
+                                                     selector:@selector(flush)
+                                                     userInfo:nil
+                                                      repeats:YES];
     dispatch_async(_serialQueue, ^{
         self.sessionId = GetSessionID(YES); // changes the UUID
         self.userId = nil;

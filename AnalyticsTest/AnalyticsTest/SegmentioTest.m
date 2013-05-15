@@ -38,8 +38,11 @@
 - (void)setUp
 {
     [super setUp];
-    self.segmentio = [Segmentio withSecret:@"testsecret" flushAt:2 flushAfter:10 delegate:self];
-    [self.segmentio reset];
+    self.segmentio = [Segmentio withSecret:@"testsecret" flushAt:2 flushAfter:2 delegate:self];
+    [Segmentio sharedInstance].flushAt = 2;
+    [Segmentio sharedInstance].flushAfter = 2;
+    [Segmentio sharedInstance].delegate = self;
+    [[Segmentio sharedInstance] reset];
 }
 
 - (void)tearDown
@@ -373,7 +376,7 @@
     NSString *eventName = @"Purchased an iPad 5";
     NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", nil];
     [self.segmentio track:eventName properties:properties context:nil];
-    [NSThread sleepForTimeInterval:0.1f];
+    [NSThread sleepForTimeInterval:3.0f];
     GHAssertTrue(self.segmentio.queue.count != 2, @"Event queue was not flushed in batch.");
     
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];

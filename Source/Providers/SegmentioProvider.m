@@ -12,18 +12,21 @@
 
 #pragma mark - Initialization
 
-+ (instancetype)withNothing
++ (instancetype)withSecret:(NSString *)secret
 {
-    return [[self alloc] initWithNothing];
+    return [[self alloc] initWithSecret:secret];
 }
 
-- (id)initWithNothing
+- (id)initWithSecret:(NSString *)secret
 {
     if (self = [self init]) {
         self.name = @"Segmentio";
         self.enabled = YES;
         self.valid = NO;
         self.initialized = NO;
+        
+        self.settings = [NSDictionary dictionaryWithObjectsAndKeys:secret, @"secret", nil];
+        [self start];
     }
     return self;
 }
@@ -35,7 +38,8 @@
 
     // Check that all states are go
     if (self.enabled && self.valid) {
-        // TODO
+        [Segmentio withSecret:[self.settings objectForKey:@"secret"]];
+        self.initialized = YES;
     }
 }
 
@@ -44,26 +48,26 @@
 
 - (void)validate
 {
-    // TODO add validation
-    self.valid = YES;
+    BOOL hasSecret = [self.settings objectForKey:@"secret"] != nil;
+    self.valid = hasSecret;
 }
 
 
 #pragma mark - Analytics API
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
 {
-    // TODO copy in the identify code
+    [[Segmentio sharedInstance] identify:userId traits:traits context:context];
 }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties
+- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
 {
-    // TODO copy in the track code
+    [[Segmentio sharedInstance] track:event properties:properties context:context];
 }
 
-- (void)alias:(NSString *)from to:(NSString *)to
+- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context
 {
-    // TODO copy in the alias code
+    [[Segmentio sharedInstance] alias:from to:to context:context];
 }
 
 

@@ -13,7 +13,7 @@
 @property(nonatomic, assign) BOOL initialized;
 @property(nonatomic, strong) NSDictionary *settings;
 
-+ (instancetype)withNothing;
-- (id)initWithNothing;
++ (instancetype)withSecret:(NSString *)secret;
+- (id)initWithSecret:(NSString *)secret;
 
 @end

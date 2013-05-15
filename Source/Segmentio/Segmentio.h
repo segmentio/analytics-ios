@@ -46,6 +46,6 @@
 + (instancetype)withSecret:(NSString *)secret delegate:(SegmentioListenerDelegate *)delegate;
 + (instancetype)withSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
 + (instancetype)withSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter delegate:(SegmentioListenerDelegate *)delegate;
-+ (instancetype)sharedAnalytics;
++ (instancetype)sharedInstance;
 
 @end
