@@ -45,7 +45,51 @@
     // action occurs before the wait is actually called.
     [self prepare];
     
+    [self.settingsCache update];
+    
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
+}
+
+- (void)testCacheBehavior
+{
+    [self.settingsCache clear];
+    self.settingsCache = nil;
+    
+    self.settingsCache = [SettingsCache withSecret:@"testsecret" delegate:self];
+    
+    // Call prepare to setup the asynchronous action.
+    // This helps in cases where the action is synchronous and the
+    // action occurs before the wait is actually called.
+    [self prepare];
+    
+    NSDictionary *settings = [self.settingsCache getSettings];
+    NSLog(@"%@ settings should be null", settings);
+    GHAssertNil(settings, @"Settings dictionary should be nil after getting cleared.");
+    
+    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
+    
+    settings = [self.settingsCache getSettings];
+    NSLog(@"%d count", [settings count]);
+    GHAssertEquals([settings count], (NSUInteger)18, @"Settings dictionary did not have expected number of providers.");
+    
+    // Destroy this cache
+    self.settingsCache = nil;
+    
+    // Create a new cache, it should immediately have the full settings, which we'll clear, and then wait 30 seconds to see
+    self.settingsCache = [SettingsCache withSecret:@"testsecret" delegate:self];
+    
+    settings = [self.settingsCache getSettings];
+    NSLog(@"%d count", [settings count]);
+    GHAssertEquals([settings count], (NSUInteger)18, @"Settings dictionary did not have expected number of providers.");
+    
+    // wait for the refresh
+    [self prepare];
+    [self waitForStatus:kGHUnitWaitStatusSuccess timeout:40.0];
+    
+    // verify we still have everything
+    settings = [self.settingsCache getSettings];
+    NSLog(@"%d count", [settings count]);
+    GHAssertEquals([settings count], (NSUInteger)18, @"Settings dictionary did not have expected number of providers.");
 }
 
 - (void)testGetSettings
@@ -54,6 +98,8 @@
     // This helps in cases where the action is synchronous and the
     // action occurs before the wait is actually called.
     [self prepare];
+    
+    [self.settingsCache update];
     
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
     
@@ -68,6 +114,8 @@
     // This helps in cases where the action is synchronous and the
     // action occurs before the wait is actually called.
     [self prepare];
+    
+    [self.settingsCache update];
     
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
     
@@ -93,6 +141,8 @@
     // This helps in cases where the action is synchronous and the
     // action occurs before the wait is actually called.
     [self prepare];
+    
+    [self.settingsCache update];
     
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:10.0];
     
