@@ -52,11 +52,16 @@
         
         // Check the cache for synchronous return of cache results.
         NSDictionary *settings = [self getSettings];
-        if (settings && self.delegate) {
-            [self.delegate onSettingsUpdate:settings];
+        if (settings) {
+            NSLog(@"Found settings in cache, will refresh cache later.");
+            if (self.delegate) {
+                NSLog(@"Calling delegate's onSettingsUpdate with cached settings.");
+                [self.delegate onSettingsUpdate:settings async:NO];
+            }
         }
         // Refresh the cache immediately if it's empty.
-        if (settings == nil) {
+        else {
+            NSLog(@"No settings in cache, refreshing cache now.");
             [self update];
         }
     }
@@ -76,7 +81,7 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
     // Callback with the resulting settings
     NSLog(@"%@ Callback on delegate %@", self, self.delegate);
     if (self.delegate) {
-        [self.delegate onSettingsUpdate:settings];
+        [self.delegate onSettingsUpdate:settings async:YES];
     }
 }
 

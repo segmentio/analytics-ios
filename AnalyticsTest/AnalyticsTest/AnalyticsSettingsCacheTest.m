@@ -127,7 +127,7 @@
     
     // Google Analytics settings
     NSDictionary *google = [settings objectForKey:@"Google Analytics"];
-    GHAssertEqualObjects([google valueForKey:@"trackingId"], @"UA-27033709-5", @"Settings for Google Analytics did not match token:UA-27033709-5.");
+    GHAssertEqualObjects([google valueForKey:@"trackingId"], @"UA-27033709-9", @"Settings for Google Analytics did not match token:UA-27033709-9.");
     
     // Mixpanel settings
     NSDictionary *mixpanel = [settings objectForKey:@"Mixpanel"];

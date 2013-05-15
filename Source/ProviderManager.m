@@ -36,13 +36,16 @@
 {
     if (self = [self init]) {
         _secret = secret;
-        _settingsCache = [SettingsCache withSecret:secret delegate:self];
         _providersArray = [NSMutableArray arrayWithCapacity:3];
 
         // Create each provider
         [_providersArray addObject:[SegmentioProvider withSecret:secret]];
         [_providersArray addObject:[MixpanelProvider withNothing]];
         [_providersArray addObject:[GoogleAnalyticsProvider withNothing]];
+        
+        // Create the settings cache last so that it can update settings
+        // on each provider immediately if necessary
+        _settingsCache = [SettingsCache withSecret:secret delegate:self];
     }
     return self;
 }
@@ -50,7 +53,7 @@
 
 #pragma mark - Settings
 
-- (void)onSettingsUpdate:(NSDictionary *)settings
+- (void)onSettingsUpdate:(NSDictionary *)settings async:(BOOL)async
 {
     // Iterate over providersArray
     for (id object in self.providersArray) {
@@ -58,9 +61,14 @@
         if (![provider.name isEqualToString:@"Segmentio"]) {
             // Extract the settings for this provider and set them
             NSDictionary *providerSettings = [settings objectForKey:provider.name];
-            dispatch_async(dispatch_get_main_queue(), ^{
+            if (async) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [provider updateSettings:providerSettings];
+                });
+            }
+            else {
                 [provider updateSettings:providerSettings];
-            });
+            }
         }
     }
 }

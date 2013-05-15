@@ -32,10 +32,11 @@
     [self validate];
 
     // Check that all states are go
-    if (self.enabled && self.valid) {
+    if (self.enabled && self.valid && !self.initialized) {
         NSString *trackingId = [self.settings objectForKey:@"trackingId"];
         [[GAI sharedInstance] trackerWithTrackingId:trackingId];
         self.initialized = YES;
+        NSLog(@"GoogleAnalyticsProvider initialized.");
     }
 }
 
@@ -44,7 +45,7 @@
 
 - (void)validate
 {
-    BOOL hasTrackingId  = [self.settings objectForKey:@"trackingId"] != nil;
+    BOOL hasTrackingId = [self.settings objectForKey:@"trackingId"] != nil;
     self.valid = hasTrackingId;
 }
 

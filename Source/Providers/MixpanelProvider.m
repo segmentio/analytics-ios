@@ -38,6 +38,7 @@
         NSString *token = [self.settings objectForKey:@"token"];
         [Mixpanel sharedInstanceWithToken:token];
         self.initialized = YES;
+        NSLog(@"MixpanelProvider initialized.");
     }
 }
 
@@ -75,7 +76,7 @@
 
 - (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context
 {
-    // TODO mixpanel's library doesn't support alias?
+    // Mixpanel automatically handles alias on iOS
 }
 
 

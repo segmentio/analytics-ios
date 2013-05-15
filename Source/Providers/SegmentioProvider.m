@@ -40,6 +40,7 @@
     if (self.enabled && self.valid) {
         [Segmentio withSecret:[self.settings objectForKey:@"secret"]];
         self.initialized = YES;
+        NSLog(@"SegmentioProvider initialized.");
     }
 }
 
