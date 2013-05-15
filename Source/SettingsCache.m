@@ -40,6 +40,7 @@
 - (id)initWithSecret:(NSString *)secret delegate:(SettingsCacheDelegate *)delegate
 {
     if (self = [self init]) {
+        // Initialize all the components of the cache.
         _secret = secret;
         _delegate = delegate;
         _updateTimer = [NSTimer scheduledTimerWithTimeInterval:ANALYTICS_SETTINGS_CACHE_UPDATE_INTERVAL
@@ -48,7 +49,16 @@
                                                      userInfo:nil
                                                       repeats:YES];
         _serialQueue = dispatch_queue_create("io.segment.analytics.settings", DISPATCH_QUEUE_SERIAL);
-        [self update];
+        
+        // Check the cache for synchronous return of cache results.
+        NSDictionary *settings = [self getSettings];
+        if (settings && self.delegate) {
+            [self.delegate onSettingsUpdate:settings];
+        }
+        // Refresh the cache immediately if it's empty.
+        if (settings == nil) {
+            [self update];
+        }
     }
     return self;
 }
@@ -69,6 +79,8 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
         [self.delegate onSettingsUpdate:settings];
     }
 }
+
+// TODO triggerOnSettingsUpdate
 
 - (NSDictionary *)getSettings
 {
