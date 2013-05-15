@@ -88,7 +88,7 @@
     [self prepare];
     
     NSString *eventName = @"Purchased an iPad 5";
-    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", nil];
+    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", @"Mobile", @"category", @"70.0", @"revenue", @"50.0", @"value", @"gooooga", @"label", nil];
     NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @"true", @"Salesforce", @"false", @"HubSpot", nil];
     NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys: providers, @"providers", nil];
     [self.analytics track:eventName properties:properties context:context];
