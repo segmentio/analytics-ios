@@ -8,7 +8,7 @@
 
 @interface SettingsCacheDelegate : NSObject
 
-- (void)onSettingsUpdate:(NSDictionary *)settings async:(BOOL)async;
+- (void)onSettingsUpdate:(NSDictionary *)settings;
 
 @end
 

@@ -89,7 +89,7 @@
     
     NSString *eventName = @"Purchased an iPad 5";
     NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", @"Mobile", @"category", @"70.0", @"revenue", @"50.0", @"value", @"gooooga", @"label", nil];
-    NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @"true", @"Salesforce", @"false", @"HubSpot", nil];
+    NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @YES, @"Salesforce", @NO, @"HubSpot", nil];
     NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys: providers, @"providers", nil];
     [self.analytics track:eventName properties:properties context:context];
     
@@ -113,8 +113,8 @@
     GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"library"], @"Event did not have a context.library, but it should.");
     
     GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"providers"], @"Event did not have a context.providers, but it should.");
-    GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"Salesforce"], @"true", @"Event did not have a context.providers.Salesforce, but it should.");
-    GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"HubSpot"], @"false", @"Event did not have a context.providers.HubSpot, but it should.");
+    GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"Salesforce"], @YES, @"Event did not have a context.providers.Salesforce, but it should.");
+    GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"HubSpot"], @NO, @"Event did not have a context.providers.HubSpot, but it should.");
     GHAssertNil([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"KISSmetrics"], @"Event had a context.providers.KISSmetrics, but it wasn't passed in.");
     
     // wait for 200 from servers
@@ -130,7 +130,7 @@
     
     NSString *userId = @"smile@wrinkledhippo.com";
     NSDictionary *traits = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", nil];
-    NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @"true", @"Salesforce", @"false", @"HubSpot", nil];
+    NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @YES, @"Salesforce", @NO, @"HubSpot", nil];
     NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys: providers, @"providers", nil];
     [self.analytics identify:userId traits:traits context:context];
     
@@ -153,8 +153,8 @@
     GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"library"], @"Identify did not have a context.library, but it should.");
     
     GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"providers"], @"Identify did not have a context.providers, but it should.");
-    GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"Salesforce"], @"true", @"Identify did not have a context.providers.Salesforce, but it should.");
-    GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"HubSpot"], @"false", @"Identify did not have a context.providers.HubSpot, but it should.");
+    GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"Salesforce"], @YES, @"Identify did not have a context.providers.Salesforce, but it should.");
+    GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"HubSpot"], @NO, @"Identify did not have a context.providers.HubSpot, but it should.");
     GHAssertNil([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"KISSmetrics"], @"Identify had a context.providers.KISSmetrics, but it wasn't passed in.");
     
     // track an event so that we can see that's working in each analytics interface

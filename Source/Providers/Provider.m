@@ -34,9 +34,15 @@
 
 - (void)updateSettings:(NSDictionary *)settings
 {
+    // Store the settings and validate them.
     self.settings = settings;
     [self validate];
-    [self start];
+
+    // If we're ready, initialize the library.
+    if (self.enabled && self.valid) {
+        [self start];
+        self.initialized = YES;
+    }
 }
 
 - (void)validate
@@ -50,8 +56,6 @@
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context { }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context { }
-
-- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context { }
 
 
 

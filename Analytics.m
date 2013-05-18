@@ -82,20 +82,6 @@ static Analytics *sharedInstance = nil;
     [self.providerManager track:event properties:properties context:context];
 }
 
-
-- (void)alias:(NSString *)from to:(NSString *)to
-{
-    [self alias:from to:to context:nil];
-}
-
-- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context
-{
-    NSAssert(from.length, @"%@ alias requires a from id.", self);
-    NSAssert(to.length, @"%@ alias requires a to id.", self);
-    
-    [self.providerManager  alias:from to:to context:context];
-}
-
 #pragma mark - NSObject
 
 - (void)reset

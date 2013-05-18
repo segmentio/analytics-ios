@@ -30,16 +30,9 @@
 
 - (void)start
 {
-    // Re-validate
-    [self validate];
-
-    // Check that all states are go
-    if (self.enabled && self.valid && !self.initialized) {
-        NSString *token = [self.settings objectForKey:@"token"];
-        [Mixpanel sharedInstanceWithToken:token];
-        self.initialized = YES;
-        NSLog(@"MixpanelProvider initialized.");
-    }
+    NSString *token = [self.settings objectForKey:@"token"];
+    [Mixpanel sharedInstanceWithToken:token];
+    NSLog(@"MixpanelProvider initialized.");
 }
 
 
@@ -47,9 +40,8 @@
 
 - (void)validate
 {
-    BOOL hasPeople = [self.settings objectForKey:@"people"] != nil;
     BOOL hasToken  = [self.settings objectForKey:@"token"] != nil;
-    self.valid = hasPeople && hasToken;
+    self.valid = hasToken;
 }
 
 
@@ -89,11 +81,6 @@
             [mixpanel.people trackCharge:revenue];
         }
     }
-}
-
-- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context
-{
-    // NOTE: Mixpanel automatically handles alias on iOS
 }
 
 

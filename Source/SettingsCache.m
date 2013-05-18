@@ -44,10 +44,10 @@
         _secret = secret;
         _delegate = delegate;
         _updateTimer = [NSTimer scheduledTimerWithTimeInterval:ANALYTICS_SETTINGS_CACHE_UPDATE_INTERVAL
-                                                       target:self
-                                                     selector:@selector(update)
-                                                     userInfo:nil
-                                                      repeats:YES];
+                                                        target:self
+                                                      selector:@selector(update)
+                                                      userInfo:nil
+                                                       repeats:YES];
         _serialQueue = dispatch_queue_create("io.segment.analytics.settings", DISPATCH_QUEUE_SERIAL);
         
         // Check the cache for synchronous return of cache results.
@@ -56,7 +56,7 @@
             NSLog(@"Found settings in cache, will refresh cache later.");
             if (self.delegate) {
                 NSLog(@"Calling delegate's onSettingsUpdate with cached settings.");
-                [self.delegate onSettingsUpdate:settings async:NO];
+                [self.delegate onSettingsUpdate:settings];
             }
         }
         // Refresh the cache immediately if it's empty.
@@ -81,11 +81,9 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
     // Callback with the resulting settings
     NSLog(@"%@ Callback on delegate %@", self, self.delegate);
     if (self.delegate) {
-        [self.delegate onSettingsUpdate:settings async:YES];
+        [self.delegate onSettingsUpdate:settings];
     }
 }
-
-// TODO triggerOnSettingsUpdate
 
 - (NSDictionary *)getSettings
 {

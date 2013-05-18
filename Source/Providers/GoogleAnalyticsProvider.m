@@ -28,27 +28,19 @@
 
 - (void)start
 {
-    // Re-validate
-    [self validate];
-
-    // Check that all states are go
-    if (self.enabled && self.valid && !self.initialized) {
-        
-        // Require setup with the trackingId.
-        NSString *trackingId = [self.settings objectForKey:@"trackingId"];
-        [[GAI sharedInstance] trackerWithTrackingId:trackingId];
-        
-        // Optionally turn on uncaught exception tracking.
-        if ([self.settings objectForKey:@"reportUncaughtExceptions"]) {
-            [GAI sharedInstance].trackUncaughtExceptions = YES;
-        }
-        
-        // TODO: add support for sample rate
-        
-        // All done!
-        self.initialized = YES;
-        NSLog(@"GoogleAnalyticsProvider initialized.");
+    // Require setup with the trackingId.
+    NSString *trackingId = [self.settings objectForKey:@"mobileTrackingId"];
+    [[GAI sharedInstance] trackerWithTrackingId:trackingId];
+    
+    // Optionally turn on uncaught exception tracking.
+    if ([self.settings objectForKey:@"reportUncaughtExceptions"]) {
+        [GAI sharedInstance].trackUncaughtExceptions = YES;
     }
+    
+    // TODO: add support for sample rate
+    
+    // All done!
+    NSLog(@"GoogleAnalyticsProvider initialized.");
 }
 
 
@@ -78,7 +70,7 @@
 {
     // Try to extract a "category" property.
     NSString *category = @"All"; // default
-    NSString *categoryProperty = [properties objectForKey:@"revenue"];
+    NSString *categoryProperty = [properties objectForKey:@"category"];
     if (categoryProperty) {
         category = categoryProperty;
     }
@@ -101,6 +93,8 @@
         // but also try "value"
         value = [formatter numberFromString:valueProperty];
     }
+    
+    NSLog(@"Sending to Google Analytics: category %@, action %@, label %@, value %@", category, event, label, value);
     
     // Track the event!
     [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:category withAction:event withLabel:label withValue:value];
