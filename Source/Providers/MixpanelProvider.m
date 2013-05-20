@@ -40,7 +40,7 @@
 
 - (void)validate
 {
-    BOOL hasToken  = [self.settings objectForKey:@"token"] != nil;
+    BOOL hasToken = [self.settings objectForKey:@"token"] != nil;
     self.valid = hasToken;
 }
 
