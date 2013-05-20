@@ -54,7 +54,7 @@
     // Gender
     NSString *gender = [traits objectForKey:@"gender"];
     if (gender) {
-        [Flurry setGender:[gender substringToIndex:1];
+        [Flurry setGender:[gender substringToIndex:1]];
     }
 
     // Age
