@@ -9,6 +9,13 @@
 
 }
 
++ (BOOL) validateEmail:(NSString *)candidate {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"; 
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex]; 
+
+    return [emailTest evaluateWithObject:candidate];
+}
+
 #pragma mark - Initialization
 
 + (instancetype)withNothing
@@ -48,16 +55,42 @@
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
 {
+    if (userId) {
+        [[LocalyticsSession sharedLocalyticsSession] setCustomerId:userId];
+    }
     
+    // Email
+    NSString *email = [traits objectForKey:@"email"];
+    if (!email && [LocalyticsProvider validateEmail:userId]) {
+        email = userId;
+    }
+    if (email) {
+        [[LocalyticsSession sharedLocalyticsSession] setCustomerEmail:email];
+    }
+
+    // Name
+    NSString *name = [traits objectForKey:@"name"];
+    // TODO support first name, last name?
+    if (name) {
+        [[LocalyticsSession sharedLocalyticsSession] setCustomerName:name];
+    }
+
+    // Other traits. Iterate over all the traits and set them.
+    for (NSString *key in traits) {
+        [[LocalyticsSession sharedLocalyticsSession] setValueForIdentifier:key value:[traits objectForKey:key]];
+    }
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
 {
+    // TODO add support for dimensions
+    // TODO add support for value
     [[LocalyticsSession shared] tagEvent:event attributes:properties];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
 {
+    // For enterprise only...
     [[LocalyticsSession sharedLocalyticsSession] tagScreen:screenTitle];
 }
 
