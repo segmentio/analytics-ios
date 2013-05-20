@@ -37,7 +37,7 @@
 - (void)start
 {
     NSString *appKey = [self.settings objectForKey:@"appKey"];
-    [[LocalyticsSession shared] startSession:appKey];
+    [[LocalyticsSession sharedLocalyticsSession] startSession:appKey];
     NSLog(@"LocalyticsProvider initialized.");
 }
 
@@ -85,7 +85,7 @@
 {
     // TODO add support for dimensions
     // TODO add support for value
-    [[LocalyticsSession shared] tagEvent:event attributes:properties];
+    [[LocalyticsSession sharedLocalyticsSession] tagEvent:event attributes:properties];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
@@ -99,30 +99,30 @@
 
 - (void)applicationDidEnterBackground
 {
-    [[LocalyticsSession shared] close];
-    [[LocalyticsSession shared] upload];
+    [[LocalyticsSession sharedLocalyticsSession] close];
+    [[LocalyticsSession sharedLocalyticsSession] upload];
 }
 
 - (void)applicationWillEnterForeground
 {
-    [[LocalyticsSession shared] resume];
-    [[LocalyticsSession shared] upload];
+    [[LocalyticsSession sharedLocalyticsSession] resume];
+    [[LocalyticsSession sharedLocalyticsSession] upload];
 }
 
 - (void)applicationWillTerminate
 {
-    [[LocalyticsSession shared] close];
-    [[LocalyticsSession shared] upload];
+    [[LocalyticsSession sharedLocalyticsSession] close];
+    [[LocalyticsSession sharedLocalyticsSession] upload];
 }
 - (void)applicationWillResignActive
 {
-    [[LocalyticsSession shared] close];
-    [[LocalyticsSession shared] upload];
+    [[LocalyticsSession sharedLocalyticsSession] close];
+    [[LocalyticsSession sharedLocalyticsSession] upload];
 }
 - (void)applicationDidBecomeActive
 {
-    [[LocalyticsSession shared] resume];
-    [[LocalyticsSession shared] upload];
+    [[LocalyticsSession sharedLocalyticsSession] resume];
+    [[LocalyticsSession sharedLocalyticsSession] upload];
 }
 
 

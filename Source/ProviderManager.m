@@ -2,14 +2,15 @@
 // Copyright 2013 Segment.io
 
 #import "ProviderManager.h"
-
 #import "SettingsCache.h"
-
 #import "Provider.h"
-#import "GoogleAnalyticsProvider.h"
 #import "SegmentioProvider.h"
-#import "MixpanelProvider.h"
+
+#import "BugsnagProvider.h"
+#import "CrittercismProvider.h"
 #import "GoogleAnalyticsProvider.h"
+#import "LocalyticsProvider.h"
+#import "MixpanelProvider.h"
 
 @interface ProviderManager ()
 
@@ -36,12 +37,16 @@
 {
     if (self = [self init]) {
         _secret = secret;
-        _providersArray = [NSMutableArray arrayWithCapacity:3];
+        _providersArray = [NSMutableArray arrayWithCapacity:5];
 
         // Create each provider
         [_providersArray addObject:[SegmentioProvider withSecret:secret]];
-        [_providersArray addObject:[MixpanelProvider withNothing]];
+
+        [_providersArray addObject:[BugsnagProvider withNothing]];
+        [_providersArray addObject:[CrittercismProvider withNothing]];
         [_providersArray addObject:[GoogleAnalyticsProvider withNothing]];
+        [_providersArray addObject:[LocalyticsProvider withNothing]];
+        [_providersArray addObject:[MixpanelProvider withNothing]];
         
         // Create the settings cache last so that it can update settings
         // on each provider immediately if necessary

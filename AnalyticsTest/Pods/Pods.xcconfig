@@ -1,8 +1,8 @@
 ALWAYS_SEARCH_USER_PATHS = YES
 HEADER_SEARCH_PATHS = ${PODS_HEADERS_SEARCH_PATHS}
 LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/GoogleAnalytics-iOS-SDK/Library"
-OTHER_LDFLAGS = -ObjC -lGoogleAnalytics -framework AdSupport -framework CFNetwork -framework CoreData -framework CoreTelephony -framework SystemConfiguration
-PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/Analytics" "${PODS_ROOT}/BuildHeaders/GHUnitIOS" "${PODS_ROOT}/BuildHeaders/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/BuildHeaders/Mixpanel"
+OTHER_LDFLAGS = -ObjC -lGoogleAnalytics -lsqlite3 -lz -framework AdSupport -framework CFNetwork -framework CoreData -framework CoreTelephony -framework SystemConfiguration -weak_framework AdSupport
+PODS_BUILD_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/BuildHeaders" "${PODS_ROOT}/BuildHeaders/Analytics" "${PODS_ROOT}/BuildHeaders/GHUnitIOS" "${PODS_ROOT}/BuildHeaders/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/BuildHeaders/Localytics" "${PODS_ROOT}/BuildHeaders/Mixpanel"
 PODS_HEADERS_SEARCH_PATHS = ${PODS_PUBLIC_HEADERS_SEARCH_PATHS}
-PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/Analytics" "${PODS_ROOT}/Headers/GHUnitIOS" "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/Mixpanel"
+PODS_PUBLIC_HEADERS_SEARCH_PATHS = "${PODS_ROOT}/Headers" "${PODS_ROOT}/Headers/Analytics" "${PODS_ROOT}/Headers/GHUnitIOS" "${PODS_ROOT}/Headers/GoogleAnalytics-iOS-SDK" "${PODS_ROOT}/Headers/Localytics" "${PODS_ROOT}/Headers/Mixpanel"
 PODS_ROOT = ${SRCROOT}/Pods

@@ -15,5 +15,6 @@ Pod::Spec.new do |s|
 
   s.dependency 'Mixpanel', '~> 2.0'
   s.dependency 'GoogleAnalytics-iOS-SDK', '~> 2.0beta4'
+  s.dependency 'Localytics'
 
 end

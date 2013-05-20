@@ -13,8 +13,9 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.7'
   s.ios.deployment_target = '5.0'
 
-  s.dependency 'Mixpanel', '~> 2.0'
-  s.dependency 'GoogleAnalytics-iOS-SDK', '~> 2.0beta4'
+  s.dependency 'Mixpanel'
+  s.dependency 'GoogleAnalytics-iOS-SDK'
   s.dependency 'Localytics'
+  s.dependency 'Bugsnag'
 
 end

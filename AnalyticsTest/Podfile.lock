@@ -1,9 +1,11 @@
 PODS:
   - Analytics (0.3.0):
     - GoogleAnalytics-iOS-SDK (~> 2.0beta4)
+    - Localytics
     - Mixpanel (~> 2.0)
   - GHUnitIOS (0.5.6)
   - GoogleAnalytics-iOS-SDK (2.0beta4)
+  - Localytics (0.0.1)
   - Mixpanel (2.0.0)
 
 DEPENDENCIES:
@@ -15,9 +17,10 @@ EXTERNAL SOURCES:
     :local: ../
 
 SPEC CHECKSUMS:
-  Analytics: 44945b70cff1daaa3b66e9470741a7c1406becfe
+  Analytics: 15477179d86efc7c2ee7ea27638b585c60bd4057
   GHUnitIOS: bf149b2c44084eee2785ce4ac3675c3a699e509d
   GoogleAnalytics-iOS-SDK: ae8e58e771b6dec84c0047154cc0e550a15e6f54
+  Localytics: 28e0d464dc098bbe41916010d26077275a104046
   Mixpanel: d456c27f7520e22784a15d0bcd9d5c287080b0cd
 
 COCOAPODS: 0.18.1

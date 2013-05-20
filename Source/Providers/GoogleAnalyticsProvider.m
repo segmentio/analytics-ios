@@ -33,7 +33,7 @@
     [[GAI sharedInstance] trackerWithTrackingId:trackingId];
     
     // Optionally turn on uncaught exception tracking.
-    if ([self.settings objectForKey:@"reportUncaughtExceptions"]) {
+    if ([[self.settings objectForKey:@"reportUncaughtExceptions"] boolVal]) {
         [GAI sharedInstance].trackUncaughtExceptions = YES;
     }
     
