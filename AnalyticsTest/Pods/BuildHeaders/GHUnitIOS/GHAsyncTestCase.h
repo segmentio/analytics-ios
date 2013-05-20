@@ -1,0 +1,1 @@
+../../GHUnitIOS/Classes/GHAsyncTestCase.h

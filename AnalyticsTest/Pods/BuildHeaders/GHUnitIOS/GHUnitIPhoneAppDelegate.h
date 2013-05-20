@@ -1,0 +1,1 @@
+../../GHUnitIOS/Classes-iOS/GHUnitIPhoneAppDelegate.h

@@ -1,0 +1,1 @@
+../../GHUnitIOS/Classes/GHTest/GHTestSuite.h

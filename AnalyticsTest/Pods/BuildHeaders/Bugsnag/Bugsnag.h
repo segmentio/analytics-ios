@@ -1,0 +1,1 @@
+../../Bugsnag/Bugsnag Plugin/Bugsnag.h
