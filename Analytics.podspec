@@ -17,5 +17,6 @@ Pod::Spec.new do |s|
   s.dependency 'GoogleAnalytics-iOS-SDK'
   s.dependency 'Localytics'
   s.dependency 'Bugsnag'
+  s.dependency 'Crittercism'
 
 end
