@@ -1,12 +1,18 @@
 PODS:
   - Analytics (0.3.0):
-    - GoogleAnalytics-iOS-SDK (~> 2.0beta4)
+    - Bugsnag
+    - CrittercismSDK
+    - GoogleAnalytics-iOS-SDK
     - Localytics
-    - Mixpanel (~> 2.0)
+    - Mixpanel
+  - Bugsnag (2.2.3):
+    - Reachability (~> 3.1)
+  - CrittercismSDK (3.5.1)
   - GHUnitIOS (0.5.6)
   - GoogleAnalytics-iOS-SDK (2.0beta4)
   - Localytics (0.0.1)
   - Mixpanel (2.0.0)
+  - Reachability (3.1.0)
 
 DEPENDENCIES:
   - Analytics (from `../`)
@@ -17,10 +23,13 @@ EXTERNAL SOURCES:
     :local: ../
 
 SPEC CHECKSUMS:
-  Analytics: 15477179d86efc7c2ee7ea27638b585c60bd4057
+  Analytics: cec06438c3dc18a889aba281f7a904ad69e00558
+  Bugsnag: 91acf0c2f0f5c0a7b729869385597a29488d27ee
+  CrittercismSDK: 1cd30b0bb1448494da29539a1cf490475288d1d1
   GHUnitIOS: bf149b2c44084eee2785ce4ac3675c3a699e509d
   GoogleAnalytics-iOS-SDK: ae8e58e771b6dec84c0047154cc0e550a15e6f54
   Localytics: 28e0d464dc098bbe41916010d26077275a104046
   Mixpanel: d456c27f7520e22784a15d0bcd9d5c287080b0cd
+  Reachability: ba94ecd4eaa037be3d0588b38956672588530c5b
 
 COCOAPODS: 0.18.1

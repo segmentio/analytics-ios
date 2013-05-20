@@ -33,7 +33,8 @@
     [[GAI sharedInstance] trackerWithTrackingId:trackingId];
     
     // Optionally turn on uncaught exception tracking.
-    if ([[self.settings objectForKey:@"reportUncaughtExceptions"] boolVal]) {
+    NSString *reportUncaughtExceptions = [self.settings objectForKey:@"reportUncaughtExceptions"];
+    if ([reportUncaughtExceptions boolValue]) {
         [GAI sharedInstance].trackUncaughtExceptions = YES;
     }
     
