@@ -83,5 +83,9 @@
     }
 }
 
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
+{
+    // No special support for screens in Mixpanel.
+}
 
 @end

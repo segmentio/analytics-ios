@@ -34,5 +34,16 @@
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context;
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context;
+
+
+// Callbacks for app state changes
+// -------------------------------
+
+- (void)applicationDidEnterBackground;
+- (void)applicationWillEnterForeground;
+- (void)applicationWillTerminate;
+- (void)applicationWillResignActive;
+- (void)applicationDidBecomeActive;
 
 @end

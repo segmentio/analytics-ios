@@ -100,5 +100,9 @@
     [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:category withAction:event withLabel:label withValue:value];
 }
 
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
+{
+    [[[GAI sharedInstance] defaultTracker] sendView:screenTitle];
+}
 
 @end

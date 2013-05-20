@@ -130,6 +130,81 @@
     }
 }
 
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
+{
+    // Augment the context to prevent server-side firing
+    NSDictionary *augmentedContext = [self augmentContext:context];
+    
+    NSLog(@"Augmented context: %@", augmentedContext);
+    
+    // Iterate over providersArray and call track.
+    for (id object in self.providersArray) {
+        Provider *provider = (Provider *)object;
+        if ([provider ready]) {
+            [provider screen:screenTitle properties:properties context:augmentedContext];
+        }
+    }
+}
+
+
+
+#pragma mark - Analytics API
+
+- (void)applicationDidEnterBackground
+{
+    // Iterate over providersArray and call track.
+    for (id object in self.providersArray) {
+        Provider *provider = (Provider *)object;
+        if ([provider ready]) {
+            [provider applicationDidEnterBackground];
+        }
+    }
+}
+
+- (void)applicationWillEnterForeground
+{
+    // Iterate over providersArray and call track.
+    for (id object in self.providersArray) {
+        Provider *provider = (Provider *)object;
+        if ([provider ready]) {
+            [provider applicationWillEnterForeground];
+        }
+    }
+}
+
+- (void)applicationWillTerminate
+{
+    // Iterate over providersArray and call track.
+    for (id object in self.providersArray) {
+        Provider *provider = (Provider *)object;
+        if ([provider ready]) {
+            [provider applicationWillTerminate];
+        }
+    }
+}
+
+- (void)applicationWillResignActive
+{
+    // Iterate over providersArray and call track.
+    for (id object in self.providersArray) {
+        Provider *provider = (Provider *)object;
+        if ([provider ready]) {
+            [provider applicationWillResignActive];
+        }
+    }
+}
+
+- (void)applicationDidBecomeActive
+{
+    // Iterate over providersArray and call track.
+    for (id object in self.providersArray) {
+        Provider *provider = (Provider *)object;
+        if ([provider ready]) {
+            [provider applicationDidBecomeActive];
+        }
+    }
+}
+
 
 
 #pragma mark - NSObject

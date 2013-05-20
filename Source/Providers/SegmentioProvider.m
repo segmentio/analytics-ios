@@ -61,5 +61,10 @@
     [[Segmentio sharedInstance] track:event properties:properties context:context];
 }
 
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
+{
+    [[Segmentio sharedInstance] track:screenTitle properties:properties context:context];
+}
+
 
 @end
