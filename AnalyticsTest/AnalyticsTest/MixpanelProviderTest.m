@@ -36,8 +36,6 @@
 
 - (void)testMixpanelTrack
 {
-    [self prepare];
-    
     NSString *eventName = @"Purchased an iPad 5";
     NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", nil];
     NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @"true", @"Salesforce", @"false", @"HubSpot", nil];
@@ -45,7 +43,6 @@
     [self.provider track:eventName properties:properties context:context];
     
     [[Mixpanel sharedInstance] flush];
-    
 }
 
 - (void)testMixpanelIdentify

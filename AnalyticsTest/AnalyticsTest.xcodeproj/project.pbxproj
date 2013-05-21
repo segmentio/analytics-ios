@@ -20,6 +20,7 @@
 		D3A57F56174AEE6400AAADE3 /* FlurryProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F55174AEE6400AAADE3 /* FlurryProviderTest.m */; };
 		D3A57F58174AF00B00AAADE3 /* GoogleAnalyticsProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F57174AF00B00AAADE3 /* GoogleAnalyticsProviderTest.m */; };
 		D3A57F5A174AF35300AAADE3 /* BugsnagProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F59174AF35300AAADE3 /* BugsnagProviderTest.m */; };
+		D3A57F5C174AFB4F00AAADE3 /* CrittercismProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F5B174AFB4F00AAADE3 /* CrittercismProviderTest.m */; };
 		D3CD0B561741AA24008F944B /* AnalyticsSettingsCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CD0B551741AA24008F944B /* AnalyticsSettingsCacheTest.m */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		D3A57F55174AEE6400AAADE3 /* FlurryProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryProviderTest.m; sourceTree = "<group>"; };
 		D3A57F57174AF00B00AAADE3 /* GoogleAnalyticsProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsProviderTest.m; sourceTree = "<group>"; };
 		D3A57F59174AF35300AAADE3 /* BugsnagProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugsnagProviderTest.m; sourceTree = "<group>"; };
+		D3A57F5B174AFB4F00AAADE3 /* CrittercismProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrittercismProviderTest.m; sourceTree = "<group>"; };
 		D3CD0B551741AA24008F944B /* AnalyticsSettingsCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsSettingsCacheTest.m; sourceTree = "<group>"; };
 		F6D88C83F3B34BE484A44808 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -100,6 +102,7 @@
 				D3A57F55174AEE6400AAADE3 /* FlurryProviderTest.m */,
 				D3A57F57174AF00B00AAADE3 /* GoogleAnalyticsProviderTest.m */,
 				D3A57F59174AF35300AAADE3 /* BugsnagProviderTest.m */,
+				D3A57F5B174AFB4F00AAADE3 /* CrittercismProviderTest.m */,
 			);
 			path = AnalyticsTest;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				D3A57F56174AEE6400AAADE3 /* FlurryProviderTest.m in Sources */,
 				D3A57F58174AF00B00AAADE3 /* GoogleAnalyticsProviderTest.m in Sources */,
 				D3A57F5A174AF35300AAADE3 /* BugsnagProviderTest.m in Sources */,
+				D3A57F5C174AFB4F00AAADE3 /* CrittercismProviderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
