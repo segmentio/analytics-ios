@@ -115,7 +115,7 @@
     GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"providers"], @"Event did not have a context.providers, but it should.");
     GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"Salesforce"], @YES, @"Event did not have a context.providers.Salesforce, but it should.");
     GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"HubSpot"], @NO, @"Event did not have a context.providers.HubSpot, but it should.");
-    GHAssertNil([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"KISSmetrics"], @"Event had a context.providers.KISSmetrics, but it wasn't passed in.");
+    GHAssertNil([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"Olark"], @"Event had a context.providers.Olark, but it wasn't passed in.");
     
     // wait for 200 from servers
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:35.0];
@@ -155,7 +155,7 @@
     GHAssertNotNil([[queuedTrack objectForKey:@"context"] objectForKey:@"providers"], @"Identify did not have a context.providers, but it should.");
     GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"Salesforce"], @YES, @"Identify did not have a context.providers.Salesforce, but it should.");
     GHAssertEqualObjects([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"HubSpot"], @NO, @"Identify did not have a context.providers.HubSpot, but it should.");
-    GHAssertNil([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"KISSmetrics"], @"Identify had a context.providers.KISSmetrics, but it wasn't passed in.");
+    GHAssertNil([[[queuedTrack objectForKey:@"context"] objectForKey:@"providers"] objectForKey:@"Olark"], @"Identify had a context.providers.Olark, but it wasn't passed in.");
     
     // track an event so that we can see that's working in each analytics interface
     NSString *eventName = @"Purchased an iPad 5";
