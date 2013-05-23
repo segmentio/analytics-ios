@@ -27,7 +27,6 @@
 {
     if (self = [self init]) {
         self.name = @"Localytics";
-        self.enabled = YES;
         self.valid = NO;
         self.initialized = NO;
     }

@@ -20,7 +20,6 @@
 {
     if (self = [self init]) {
         self.name = @"Flurry";
-        self.enabled = YES;
         self.valid = NO;
         self.initialized = NO;
     }

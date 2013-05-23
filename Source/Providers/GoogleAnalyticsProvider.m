@@ -19,7 +19,6 @@
 {
     if (self = [self init]) {
         self.name = @"Google Analytics";
-        self.enabled = YES;
         self.valid = NO;
         self.initialized = NO;
     }

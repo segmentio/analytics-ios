@@ -21,7 +21,6 @@
 {
     if (self = [self init]) {
         self.name = @"Chartbeat";
-        self.enabled = YES;
         self.valid = NO;
         self.initialized = NO;
     }
@@ -33,6 +32,12 @@
     NSInteger *uid = [[self.settings objectForKey:@"uid"] integerValue];
     [[CBTracker sharedTracker] startTrackerWithAccountID:uid];
     NSLog(@"ChartbeatProvider initialized.");
+}
+
+- (void)stop
+{
+    // Chartbeat sends pings, which we need to disable.
+    [[CBTracker sharedTracker] stopTracker];
 }
 
 

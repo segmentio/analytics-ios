@@ -21,7 +21,6 @@
 {
     if (self = [self init]) {
         self.name = @"Mixpanel";
-        self.enabled = YES;
         self.valid = NO;
         self.initialized = NO;
     }

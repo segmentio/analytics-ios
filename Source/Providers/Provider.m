@@ -11,22 +11,11 @@
 #pragma mark - Initialization
 
 - (void)start { }
-
-#pragma mark - Enabled State
-
-- (void)enable
-{
-    self.enabled = YES;
-}
-
-- (void)disable
-{
-    self.enabled = NO;
-}
+- (void)stop { }
 
 - (BOOL)ready
 {
-    return (self.enabled && self.valid && self.initialized);
+    return (self.valid && self.initialized);
 }
 
 
@@ -39,9 +28,13 @@
     [self validate];
 
     // If we're ready, initialize the library.
-    if (self.enabled && self.valid) {
+    if (self.valid) {
         [self start];
         self.initialized = YES;
+    }
+    // Initialized but no longer valid settings (i.e. this integration got turned off).
+    else if (self.initialized) {
+        [self stop];
     }
 }
 

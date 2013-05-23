@@ -20,7 +20,6 @@
 {
     if (self = [self init]) {
         self.name = @"Crittercism";
-        self.enabled = YES;
         self.valid = NO;
         self.initialized = NO;
     }
