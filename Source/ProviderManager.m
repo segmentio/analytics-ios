@@ -60,7 +60,7 @@
         
         // Create the settings cache last so that it can update settings
         // on each provider immediately if necessary
-        _settingsCache = [SettingsCache withSecret:secret delegate:self];
+        _settingsCache = [SettingsCache withSecret:secret delegate:(SettingsCacheDelegate *)self];
     }
     return self;
 }
