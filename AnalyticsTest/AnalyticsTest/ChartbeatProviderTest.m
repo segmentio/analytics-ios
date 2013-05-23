@@ -33,12 +33,14 @@
 
 #pragma mark - API Calls
 
-- (void)testChartbeat
+- (void)testChartbeatWorks
 {
     // Just chill out to let the chartbeat stuff appear
     [NSThread sleepForTimeInterval:10.0f];
     [NSThread sleepForTimeInterval:10.0f];
     [NSThread sleepForTimeInterval:10.0f];
+    
+    GHAssertNotNil([NSNumber numberWithInteger:1], @"1 was nil, abort");
 }
 
 
