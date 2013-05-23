@@ -29,7 +29,7 @@
 - (void)start
 {
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
-    [AmplitudeAPI initializeApiKey:apiKey];
+    [Amplitude initializeApiKey:apiKey];
     NSLog(@"AmplitudeProvider initialized.");
 }
 
@@ -48,13 +48,13 @@
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
 {
-    [AmplitudeAPI identify:userId];
-    [AmplitudeAPI setGlobalUserProperties:traits];
+    [Amplitude setUserId:userId];
+    [Amplitude setGlobalUserProperties:traits];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
 {
-    [AmplitudeAPI logEvent:event withCustomProperties:properties];
+    [Amplitude logEvent:event withCustomProperties:properties];
 
     // TODO add support for revenue
 }
