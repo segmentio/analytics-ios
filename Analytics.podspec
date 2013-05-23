@@ -14,11 +14,12 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '5.0'
 
   s.dependency 'Bugsnag'
+  s.dependency 'Chartbeat'
+  s.dependency 'Countly'
   s.dependency 'CrittercismSDK'
   s.dependency 'FlurrySDK'
   s.dependency 'GoogleAnalytics-iOS-SDK'
   s.dependency 'Localytics'
   s.dependency 'Mixpanel'
-  s.dependency 'Chartbeat'
 
 end

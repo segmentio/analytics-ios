@@ -23,6 +23,8 @@
 		D3A57F5C174AFB4F00AAADE3 /* CrittercismProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F5B174AFB4F00AAADE3 /* CrittercismProviderTest.m */; };
 		D3CD0B561741AA24008F944B /* AnalyticsSettingsCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CD0B551741AA24008F944B /* AnalyticsSettingsCacheTest.m */; };
 		D3E378E6174E900000FA9BAF /* ChartbeatProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E378E5174E900000FA9BAF /* ChartbeatProviderTest.m */; };
+		D3E378EA174EB3BF00FA9BAF /* CountlyProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E378E9174EB3BF00FA9BAF /* CountlyProviderTest.m */; };
+		D3E378EC174EB42B00FA9BAF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E378EB174EB42B00FA9BAF /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +47,8 @@
 		D3A57F5B174AFB4F00AAADE3 /* CrittercismProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrittercismProviderTest.m; sourceTree = "<group>"; };
 		D3CD0B551741AA24008F944B /* AnalyticsSettingsCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsSettingsCacheTest.m; sourceTree = "<group>"; };
 		D3E378E5174E900000FA9BAF /* ChartbeatProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartbeatProviderTest.m; sourceTree = "<group>"; };
+		D3E378E9174EB3BF00FA9BAF /* CountlyProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountlyProviderTest.m; sourceTree = "<group>"; };
+		D3E378EB174EB42B00FA9BAF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		F6D88C83F3B34BE484A44808 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -66,6 +70,7 @@
 		D33B9571171648B800DACA39 = {
 			isa = PBXGroup;
 			children = (
+				D3E378EB174EB42B00FA9BAF /* Default-568h@2x.png */,
 				D33B9583171648B800DACA39 /* AnalyticsTest */,
 				D33B957C171648B800DACA39 /* Frameworks */,
 				D33B957B171648B800DACA39 /* Products */,
@@ -106,6 +111,7 @@
 				D3A57F59174AF35300AAADE3 /* BugsnagProviderTest.m */,
 				D3A57F5B174AFB4F00AAADE3 /* CrittercismProviderTest.m */,
 				D3E378E5174E900000FA9BAF /* ChartbeatProviderTest.m */,
+				D3E378E9174EB3BF00FA9BAF /* CountlyProviderTest.m */,
 			);
 			path = AnalyticsTest;
 			sourceTree = "<group>";
@@ -175,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D33B9588171648B800DACA39 /* InfoPlist.strings in Resources */,
+				D3E378EC174EB42B00FA9BAF /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +234,7 @@
 				D3A57F5A174AF35300AAADE3 /* BugsnagProviderTest.m in Sources */,
 				D3A57F5C174AFB4F00AAADE3 /* CrittercismProviderTest.m in Sources */,
 				D3E378E6174E900000FA9BAF /* ChartbeatProviderTest.m in Sources */,
+				D3E378EA174EB3BF00FA9BAF /* CountlyProviderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

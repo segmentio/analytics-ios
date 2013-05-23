@@ -24,6 +24,12 @@
 #define COCOAPODS_VERSION_MINOR_Chartbeat 0
 #define COCOAPODS_VERSION_PATCH_Chartbeat 1
 
+// Countly
+#define COCOAPODS_POD_AVAILABLE_Countly
+#define COCOAPODS_VERSION_MAJOR_Countly 1
+#define COCOAPODS_VERSION_MINOR_Countly 0
+#define COCOAPODS_VERSION_PATCH_Countly 0
+
 // CrittercismSDK
 #define COCOAPODS_POD_AVAILABLE_CrittercismSDK
 #define COCOAPODS_VERSION_MAJOR_CrittercismSDK 3
