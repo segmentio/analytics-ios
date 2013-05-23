@@ -82,6 +82,24 @@ static Analytics *sharedInstance = nil;
     [self.providerManager track:event properties:properties context:context];
 }
 
+
+- (void)screen:(NSString *)screenTitle
+{
+    [self screen:screenTitle properties:nil context:nil];
+}
+
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties
+{
+    [self screen:screenTitle properties:properties context:nil];
+}
+
+ - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
+{
+    NSAssert(screenTitle.length, @"%@ screen requires a screenTitle.", self);
+
+    [self.providerManager screen:screenTitle properties:properties context:context];
+}
+
 #pragma mark - NSObject
 
 - (void)reset

@@ -21,6 +21,10 @@
 - (void)track:(NSString *)event properties:(NSDictionary *)properties;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context;
 
+- (void)screen:(NSString *)screenTitle;
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties;
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context;
+
 
 // Utilities
 // ---------

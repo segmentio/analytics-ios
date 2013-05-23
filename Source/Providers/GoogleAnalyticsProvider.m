@@ -50,7 +50,7 @@
 - (void)validate
 {
     // All that's required is the trackingId.
-    BOOL hasTrackingId = [self.settings objectForKey:@"trackingId"] != nil;
+    BOOL hasTrackingId = [self.settings objectForKey:@"mobileTrackingId"] != nil;
     self.valid = hasTrackingId;
 }
 

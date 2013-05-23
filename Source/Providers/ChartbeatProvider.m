@@ -30,8 +30,8 @@
 
 - (void)start
 {
-    NSString *accountId = [self.settings objectForKey:@"accountId"];
-    [[CBTracker sharedTracker] startTrackerWithAccountID:accountId];
+    NSInteger *uid = [[self.settings objectForKey:@"uid"] integerValue];
+    [[CBTracker sharedTracker] startTrackerWithAccountID:uid];
     NSLog(@"ChartbeatProvider initialized.");
 }
 
@@ -40,13 +40,27 @@
 
 - (void)validate
 {
-    BOOL hasAccountId = [self.settings objectForKey:@"accountId"] != nil;
-    self.valid = hasAccountId;
+    BOOL hasUID = [self.settings objectForKey:@"uid"] != nil;
+    self.valid = hasUID;
 }
 
 
 #pragma mark - Analytics API
 
-// Chartbeat has no event tracking or user identification.
+
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
+{
+    // Chartbeat has no support for identity information.
+}
+
+- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
+{
+    // Chartbeat has no support for event tracking.
+}
+
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
+{
+    [[CBTracker sharedTracker] trackView:nil viewId:screenTitle title:screenTitle];
+}
 
 @end

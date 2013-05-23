@@ -22,7 +22,7 @@
 {
     [super setUp];
     self.provider = [ChartbeatProvider withNothing];
-    [self.provider updateSettings:[NSDictionary dictionaryWithObjectsAndKeys:@"48185", @"accountId", nil]];
+    [self.provider updateSettings:[NSDictionary dictionaryWithObjectsAndKeys:@"48185", @"uid", nil]];
 }
 
 - (void)tearDown
@@ -35,6 +35,10 @@
 
 - (void)testChartbeatWorks
 {
+    [self prepare];
+    
+    [self.provider track:nil properties:nil context:nil];
+    
     // Just chill out to let the chartbeat stuff appear
     [NSThread sleepForTimeInterval:10.0f];
     [NSThread sleepForTimeInterval:10.0f];

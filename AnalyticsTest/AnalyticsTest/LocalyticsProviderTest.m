@@ -10,7 +10,7 @@
 
 
 @interface LocalyticsProviderTest : GHAsyncTestCase
-@property(nonatomic) LocalyticsProvider *provider;
+@property(nonatomic) Provider *provider;
 @end
 
 

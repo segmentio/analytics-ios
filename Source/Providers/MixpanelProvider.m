@@ -85,7 +85,10 @@
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
 {
-    // No special support for screens in Mixpanel.
+    Mixpanel *mixpanel = [Mixpanel sharedInstance];
+    
+    // Track the screen view as an event.
+    [mixpanel track:screenTitle properties:properties];
 }
 
 @end
