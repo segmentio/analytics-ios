@@ -3,7 +3,7 @@
 
 #import "Analytics.h"
 
-#define ANALYTICS_VERSION @"0.2.2"
+#define ANALYTICS_VERSION @"0.3.0"
 
 
 @implementation Analytics {
