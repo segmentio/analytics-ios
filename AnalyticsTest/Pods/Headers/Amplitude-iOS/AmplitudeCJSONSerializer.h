@@ -1,0 +1,1 @@
+../../Amplitude-iOS/AmplitudeCJSONSerializer.h

@@ -13,6 +13,7 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.7'
   s.ios.deployment_target = '5.0'
 
+  s.dependency 'Amplitude-iOS'
   s.dependency 'Bugsnag'
   s.dependency 'Chartbeat'
   s.dependency 'Countly'

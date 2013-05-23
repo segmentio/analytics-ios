@@ -1,5 +1,7 @@
 PODS:
+  - Amplitude-iOS (1.0.0)
   - Analytics (0.3.0):
+    - Amplitude-iOS
     - Bugsnag
     - Chartbeat
     - Countly
@@ -31,7 +33,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Analytics: b5a48e7d1f40ac3a7bbe55649141c48620ca53c7
+  Amplitude-iOS: e83a88ff6b83983d2e6c356551dd0a2baf14b284
+  Analytics: 12d5180819b2f6cb06c5c0486b7c9d8a5dbe6604
   Bugsnag: 91acf0c2f0f5c0a7b729869385597a29488d27ee
   Chartbeat: 0f2772641ee26e87af8fc93d8f14c5479e44a7ec
   Countly: 99c9734f8add2023ab954143ce8f9be6ff6b2e9e

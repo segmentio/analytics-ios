@@ -1,6 +1,11 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## Amplitude-iOS
+
+Copyright (c) 2012 Sonalight, Inc. All rights reserved.
+
+
 ## Analytics
 
 
