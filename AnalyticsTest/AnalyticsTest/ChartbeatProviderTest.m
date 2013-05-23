@@ -37,12 +37,33 @@
 {
     [self prepare];
     
-    [self.provider track:nil properties:nil context:nil];
+    [self.provider screen:@"Test View" properties:nil context:nil];
     
     // Just chill out to let the chartbeat stuff appear
-    [NSThread sleepForTimeInterval:10.0f];
-    [NSThread sleepForTimeInterval:10.0f];
-    [NSThread sleepForTimeInterval:10.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
+    [NSThread sleepForTimeInterval:1.0f];
     
     GHAssertNotNil([NSNumber numberWithInteger:1], @"1 was nil, abort");
 }

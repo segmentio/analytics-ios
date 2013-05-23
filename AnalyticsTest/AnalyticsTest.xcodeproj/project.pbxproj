@@ -14,7 +14,6 @@
 		D33B9588171648B800DACA39 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D33B9586171648B800DACA39 /* InfoPlist.strings */; };
 		D33B958A171648B800DACA39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D33B9589171648B800DACA39 /* main.m */; };
 		D33B959E17164A2500DACA39 /* SegmentioTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D33B959D17164A2500DACA39 /* SegmentioTest.m */; };
-		D36502F7174DAF280049B703 /* ChartbeatProviderTest.m in Resources */ = {isa = PBXBuildFile; fileRef = D36502F6174DAF280049B703 /* ChartbeatProviderTest.m */; };
 		D37548C71743461900CD82F9 /* AnalyticsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D37548C61743461900CD82F9 /* AnalyticsTest.m */; };
 		D3A57F52174AE33600AAADE3 /* LocalyticsProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F51174AE33600AAADE3 /* LocalyticsProviderTest.m */; };
 		D3A57F54174AE7A500AAADE3 /* MixpanelProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F53174AE7A500AAADE3 /* MixpanelProviderTest.m */; };
@@ -23,6 +22,7 @@
 		D3A57F5A174AF35300AAADE3 /* BugsnagProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F59174AF35300AAADE3 /* BugsnagProviderTest.m */; };
 		D3A57F5C174AFB4F00AAADE3 /* CrittercismProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F5B174AFB4F00AAADE3 /* CrittercismProviderTest.m */; };
 		D3CD0B561741AA24008F944B /* AnalyticsSettingsCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CD0B551741AA24008F944B /* AnalyticsSettingsCacheTest.m */; };
+		D3E378E6174E900000FA9BAF /* ChartbeatProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E378E5174E900000FA9BAF /* ChartbeatProviderTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,6 @@
 		D33B9589171648B800DACA39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D33B958B171648B800DACA39 /* AnalyticsTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnalyticsTest-Prefix.pch"; sourceTree = "<group>"; };
 		D33B959D17164A2500DACA39 /* SegmentioTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioTest.m; sourceTree = "<group>"; };
-		D36502F6174DAF280049B703 /* ChartbeatProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartbeatProviderTest.m; sourceTree = "<group>"; };
 		D37548C61743461900CD82F9 /* AnalyticsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsTest.m; sourceTree = "<group>"; };
 		D3A57F51174AE33600AAADE3 /* LocalyticsProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsProviderTest.m; sourceTree = "<group>"; };
 		D3A57F53174AE7A500AAADE3 /* MixpanelProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelProviderTest.m; sourceTree = "<group>"; };
@@ -45,6 +44,7 @@
 		D3A57F59174AF35300AAADE3 /* BugsnagProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugsnagProviderTest.m; sourceTree = "<group>"; };
 		D3A57F5B174AFB4F00AAADE3 /* CrittercismProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrittercismProviderTest.m; sourceTree = "<group>"; };
 		D3CD0B551741AA24008F944B /* AnalyticsSettingsCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsSettingsCacheTest.m; sourceTree = "<group>"; };
+		D3E378E5174E900000FA9BAF /* ChartbeatProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartbeatProviderTest.m; sourceTree = "<group>"; };
 		F6D88C83F3B34BE484A44808 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -105,7 +105,7 @@
 				D3A57F57174AF00B00AAADE3 /* GoogleAnalyticsProviderTest.m */,
 				D3A57F59174AF35300AAADE3 /* BugsnagProviderTest.m */,
 				D3A57F5B174AFB4F00AAADE3 /* CrittercismProviderTest.m */,
-				D36502F6174DAF280049B703 /* ChartbeatProviderTest.m */,
+				D3E378E5174E900000FA9BAF /* ChartbeatProviderTest.m */,
 			);
 			path = AnalyticsTest;
 			sourceTree = "<group>";
@@ -175,7 +175,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D33B9588171648B800DACA39 /* InfoPlist.strings in Resources */,
-				D36502F7174DAF280049B703 /* ChartbeatProviderTest.m in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +226,7 @@
 				D3A57F58174AF00B00AAADE3 /* GoogleAnalyticsProviderTest.m in Sources */,
 				D3A57F5A174AF35300AAADE3 /* BugsnagProviderTest.m in Sources */,
 				D3A57F5C174AFB4F00AAADE3 /* CrittercismProviderTest.m in Sources */,
+				D3E378E6174E900000FA9BAF /* ChartbeatProviderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
