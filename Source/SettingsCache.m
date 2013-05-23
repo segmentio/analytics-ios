@@ -4,7 +4,7 @@
 #import "SettingsCache.h"
 
 // Update the settings every hour
-#define ANALYTICS_SETTINGS_CACHE_UPDATE_INTERVAL 30
+#define ANALYTICS_SETTINGS_CACHE_UPDATE_INTERVAL 3600
 
 @interface SettingsCache ()
 
