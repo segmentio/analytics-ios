@@ -7,6 +7,7 @@
 #import "SegmentioProvider.h"
 
 #import "BugsnagProvider.h"
+#import "ChartbeatProvider.h"
 #import "CrittercismProvider.h"
 #import "FlurryProvider.h"
 #import "GoogleAnalyticsProvider.h"
@@ -38,12 +39,13 @@
 {
     if (self = [self init]) {
         _secret = secret;
-        _providersArray = [NSMutableArray arrayWithCapacity:7];
+        _providersArray = [NSMutableArray arrayWithCapacity:8];
 
         // Create each provider
         [_providersArray addObject:[SegmentioProvider withSecret:secret]];
 
         [_providersArray addObject:[BugsnagProvider withNothing]];
+        [_providersArray addObject:[ChartbeatProvider withNothing]];
         [_providersArray addObject:[CrittercismProvider withNothing]];
         [_providersArray addObject:[FlurryProvider withNothing]];
         [_providersArray addObject:[GoogleAnalyticsProvider withNothing]];

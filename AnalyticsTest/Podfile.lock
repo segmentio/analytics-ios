@@ -1,6 +1,7 @@
 PODS:
   - Analytics (0.3.0):
     - Bugsnag
+    - Chartbeat
     - CrittercismSDK
     - FlurrySDK
     - GoogleAnalytics-iOS-SDK
@@ -8,6 +9,7 @@ PODS:
     - Mixpanel
   - Bugsnag (2.2.3):
     - Reachability (~> 3.1)
+  - Chartbeat (0.0.1)
   - CrittercismSDK (3.5.1)
   - FlurrySDK (4.2.1)
   - GHUnitIOS (0.5.6)
@@ -25,8 +27,9 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Analytics: 26d4027a223bb5405faaf6484130395982865018
+  Analytics: e35cabec90403e627bbe74f719be58c2c2a61dff
   Bugsnag: 91acf0c2f0f5c0a7b729869385597a29488d27ee
+  Chartbeat: 0f2772641ee26e87af8fc93d8f14c5479e44a7ec
   CrittercismSDK: 1cd30b0bb1448494da29539a1cf490475288d1d1
   FlurrySDK: ed65c2389c6028244cb0e57f31fe370cc1b17f22
   GHUnitIOS: bf149b2c44084eee2785ce4ac3675c3a699e509d

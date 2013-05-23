@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_Bugsnag 2
 #define COCOAPODS_VERSION_PATCH_Bugsnag 3
 
+// Chartbeat
+#define COCOAPODS_POD_AVAILABLE_Chartbeat
+#define COCOAPODS_VERSION_MAJOR_Chartbeat 0
+#define COCOAPODS_VERSION_MINOR_Chartbeat 0
+#define COCOAPODS_VERSION_PATCH_Chartbeat 1
+
 // CrittercismSDK
 #define COCOAPODS_POD_AVAILABLE_CrittercismSDK
 #define COCOAPODS_VERSION_MAJOR_CrittercismSDK 3

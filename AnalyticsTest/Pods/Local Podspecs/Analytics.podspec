@@ -19,5 +19,6 @@ Pod::Spec.new do |s|
   s.dependency 'GoogleAnalytics-iOS-SDK'
   s.dependency 'Localytics'
   s.dependency 'Mixpanel'
+  s.dependency 'Chartbeat'
 
 end
