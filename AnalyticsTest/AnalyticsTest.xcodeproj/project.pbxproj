@@ -25,6 +25,7 @@
 		D3E378E6174E900000FA9BAF /* ChartbeatProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E378E5174E900000FA9BAF /* ChartbeatProviderTest.m */; };
 		D3E378EA174EB3BF00FA9BAF /* CountlyProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E378E9174EB3BF00FA9BAF /* CountlyProviderTest.m */; };
 		D3E378EC174EB42B00FA9BAF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E378EB174EB42B00FA9BAF /* Default-568h@2x.png */; };
+		D3E378EE174EB62600FA9BAF /* KISSmetricsProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E378ED174EB62600FA9BAF /* KISSmetricsProviderTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		D3E378E5174E900000FA9BAF /* ChartbeatProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartbeatProviderTest.m; sourceTree = "<group>"; };
 		D3E378E9174EB3BF00FA9BAF /* CountlyProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountlyProviderTest.m; sourceTree = "<group>"; };
 		D3E378EB174EB42B00FA9BAF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D3E378ED174EB62600FA9BAF /* KISSmetricsProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KISSmetricsProviderTest.m; sourceTree = "<group>"; };
 		F6D88C83F3B34BE484A44808 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 				D3A57F5B174AFB4F00AAADE3 /* CrittercismProviderTest.m */,
 				D3E378E5174E900000FA9BAF /* ChartbeatProviderTest.m */,
 				D3E378E9174EB3BF00FA9BAF /* CountlyProviderTest.m */,
+				D3E378ED174EB62600FA9BAF /* KISSmetricsProviderTest.m */,
 			);
 			path = AnalyticsTest;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				D3A57F5C174AFB4F00AAADE3 /* CrittercismProviderTest.m in Sources */,
 				D3E378E6174E900000FA9BAF /* ChartbeatProviderTest.m in Sources */,
 				D3E378EA174EB3BF00FA9BAF /* CountlyProviderTest.m in Sources */,
+				D3E378EE174EB62600FA9BAF /* KISSmetricsProviderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

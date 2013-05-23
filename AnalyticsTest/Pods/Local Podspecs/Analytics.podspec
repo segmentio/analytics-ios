@@ -19,6 +19,7 @@ Pod::Spec.new do |s|
   s.dependency 'CrittercismSDK'
   s.dependency 'FlurrySDK'
   s.dependency 'GoogleAnalytics-iOS-SDK'
+  s.dependency 'KISSmetrics'
   s.dependency 'Localytics'
   s.dependency 'Mixpanel'
 

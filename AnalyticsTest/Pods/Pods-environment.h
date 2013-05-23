@@ -55,6 +55,12 @@
 // Please contact the author.
 // Version: 2.0beta4.
 
+// KISSmetrics
+#define COCOAPODS_POD_AVAILABLE_KISSmetrics
+#define COCOAPODS_VERSION_MAJOR_KISSmetrics 1
+#define COCOAPODS_VERSION_MINOR_KISSmetrics 0
+#define COCOAPODS_VERSION_PATCH_KISSmetrics 0
+
 // Localytics
 #define COCOAPODS_POD_AVAILABLE_Localytics
 #define COCOAPODS_VERSION_MAJOR_Localytics 0
