@@ -33,7 +33,7 @@
 {
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys: @"Peter", @"firstName", @"Reinhardt", @"lastName", @"555 555 5555", @"mobile", nil];
     NSDictionary *map = [NSDictionary dictionaryWithObjectsAndKeys: @"$first_name", @"firstName", @"$last_name", @"lastName", @"$phone", @"phone", nil];
-    NSDictionary *mapped = [Provider aliasKeys:dictionary withMap:map];
+    NSDictionary *mapped = [Provider map:dictionary withMap:map];
     
     GHAssertEqualStrings([mapped objectForKey:@"$first_name"], @"Peter", @"firstName was not properly aliased to $first_name.");
     GHAssertEqualStrings([mapped objectForKey:@"$last_name"], @"Reinhardt", @"lastName was not properly aliased to $last_name.");

@@ -14,8 +14,9 @@
 // Utilities
 // ---------
 
-+ (NSDictionary *)aliasKeys:(NSDictionary *)dictionary withMap:(NSDictionary *)map;
++ (NSDictionary *)map:(NSDictionary *)dictionary withMap:(NSDictionary *)map;
 + (NSNumber *)extractRevenue:(NSDictionary *)dictionary;
++ (NSNumber *)extractRevenue:(NSDictionary *)dictionary withKey:(NSString *)key;
 
 // State
 // -----

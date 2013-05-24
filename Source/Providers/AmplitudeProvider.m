@@ -56,7 +56,11 @@
 {
     [Amplitude logEvent:event withCustomProperties:properties];
 
-    // TODO add support for revenue
+    // Track any revenue.
+    NSNumber *revenue = [Provider extractRevenue:properties];
+    if (revenue) {
+        [Amplitude logRevenue:revenue];
+    }
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context

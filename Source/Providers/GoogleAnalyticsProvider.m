@@ -78,20 +78,12 @@
     // Try to extract a "label" property.
     NSString *label = [properties objectForKey:@"label"];
     
-    // Try to extract a "revenue" or "value" from the event properties
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    
-    NSNumber *value = nil;
-    NSString *revenueProperty = [properties objectForKey:@"revenue"];
-    NSString *valueProperty = [properties objectForKey:@"value"];
-    if (revenueProperty) {
-        // prefer revenue
-        value = [formatter numberFromString:revenueProperty];
-    }
-    else if (valueProperty) {
-        // but also try "value"
-        value = [formatter numberFromString:valueProperty];
+    // Try to extract a "revenue" or "value" property.
+    NSNumber *value = [Provider extractRevenue:properties];
+    NSNumber *valueFallback = [Provider extractRevenue:properties withKey:@"value"];
+    if (!value && valueFallback) {
+        // fall back to the "value" property
+        value = valueFallback;
     }
     
     NSLog(@"Sending to Google Analytics: category %@, action %@, label %@, value %@", category, event, label, value);

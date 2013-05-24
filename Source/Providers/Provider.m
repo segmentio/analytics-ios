@@ -10,18 +10,24 @@
 
 #pragma mark - Utilities
 
-+ (NSDictionary *)aliasKeys:(NSDictionary *)dictionary withMap:(NSDictionary *)map
++ (NSDictionary *)map:(NSDictionary *)dictionary withMap:(NSDictionary *)map
 {
     NSMutableDictionary *mapped = [NSMutableDictionary dictionaryWithDictionary:dictionary];
     for (id key in map) {
         [mapped setValue:[dictionary objectForKey:key] forKey:[map objectForKey:key]];
+        [mapped setValue:nil forKey:key];
     }
     return mapped;
 }
 
 + (NSNumber *)extractRevenue:(NSDictionary *)dictionary
 {
-    id revenueProperty = [dictionary objectForKey:@"revenue"];
+    return [Provider extractRevenue:dictionary withKey:@"revenue"];
+}
+
++ (NSNumber *)extractRevenue:(NSDictionary *)dictionary withKey:(NSString *)key
+{
+    id revenueProperty = [dictionary objectForKey:key];
     if (revenueProperty) {
         
         if ([revenueProperty isKindOfClass:[NSString class]]) {

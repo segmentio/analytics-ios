@@ -37,7 +37,7 @@
 - (void)testMixpanelTrack
 {
     NSString *eventName = @"Purchased an iPad 5";
-    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", nil];
+    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", @"34.20", @"revenue", nil];
     NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @"true", @"Salesforce", @"false", @"HubSpot", nil];
     NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys: providers, @"providers", nil];
     [self.provider track:eventName properties:properties context:context];
@@ -48,7 +48,7 @@
 - (void)testMixpanelIdentify
 {
     NSString *userId = @"smile@wrinkledhippo.com";
-    NSDictionary *traits = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", nil];
+    NSDictionary *traits = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", @"555 555 5555", @"phone", @"Henry", @"firstName", nil];
     NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @"true", @"Salesforce", @"false", @"Mixpanel", nil];
     NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys: providers, @"providers", nil];
     [self.provider identify:userId traits:traits context:context];

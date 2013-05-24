@@ -49,10 +49,22 @@
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
 {
     [[Mixpanel sharedInstance] identify:userId];
-    [[Mixpanel sharedInstance] registerSuperProperties:traits];
+
+    // Map the traits to special mixpanel keywords.
+    NSDictionary *map = [NSDictionary dictionaryWithObjectsAndKeys:
+        @"$first_name", @"firstName",
+        @"$last_name",  @"lastName",
+        @"$created",    @"created",
+        @"$last_seen",  @"lastSeen",
+        @"$email",      @"email",
+        @"$name",       @"name",
+        @"$username",   @"username",
+        @"$phone",      @"phone",  nil];
+    NSDictionary *mappedTraits = [Provider map:traits withMap:map];
+    [[Mixpanel sharedInstance] registerSuperProperties:mappedTraits];
 
     if ([self.settings objectForKey:@"people"]) {
-        [[Mixpanel sharedInstance].people set:traits];
+        [[Mixpanel sharedInstance].people set:mappedTraits];
     }
 }
 
