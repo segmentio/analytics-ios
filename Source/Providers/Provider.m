@@ -8,7 +8,42 @@
 
 }
 
-#pragma mark - Initialization
+#pragma mark - Utilities
+
++ (NSDictionary *)aliasKeys:(NSDictionary *)dictionary withMap:(NSDictionary *)map
+{
+    NSMutableDictionary *mapped = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+    for (id key in map) {
+        [mapped setValue:[dictionary objectForKey:key] forKey:[map objectForKey:key]];
+    }
+    return mapped;
+}
+
++ (NSNumber *)extractRevenue:(NSDictionary *)dictionary
+{
+    id revenueProperty = [dictionary objectForKey:@"revenue"];
+    if (revenueProperty) {
+        
+        if ([revenueProperty isKindOfClass:[NSString class]]) {
+            // Format the revenue.
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+            return [formatter numberFromString:revenueProperty];
+        }
+        else if ([revenueProperty isKindOfClass:[NSNumber class]]) {
+            return revenueProperty;
+        }
+        else {
+            return nil;
+        }
+    }
+    else {
+        return nil;
+    }
+}
+
+
+#pragma mark - State
 
 - (void)start { }
 - (void)stop { }

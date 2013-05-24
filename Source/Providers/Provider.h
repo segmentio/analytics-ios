@@ -11,8 +11,14 @@
 @property(nonatomic, assign) BOOL initialized;
 @property(nonatomic, strong) NSDictionary *settings;
 
-// Initialization
-// --------------
+// Utilities
+// ---------
+
++ (NSDictionary *)aliasKeys:(NSDictionary *)dictionary withMap:(NSDictionary *)map;
++ (NSNumber *)extractRevenue:(NSDictionary *)dictionary;
+
+// State
+// -----
 
 - (void)updateSettings:(NSDictionary *)settings;
 - (void)validate;

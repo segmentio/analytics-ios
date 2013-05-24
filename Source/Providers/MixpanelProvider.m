@@ -48,46 +48,30 @@
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
 {
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    [mixpanel identify:userId];
-    [mixpanel registerSuperProperties:traits];
+    [[Mixpanel sharedInstance] identify:userId];
+    [[Mixpanel sharedInstance] registerSuperProperties:traits];
 
     if ([self.settings objectForKey:@"people"]) {
-        [mixpanel.people set:traits];
+        [[Mixpanel sharedInstance].people set:traits];
     }
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
 {
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    
     // Track the raw event.
-    [mixpanel track:event properties:properties];
+    [[Mixpanel sharedInstance] track:event properties:properties];
 
-    // If People is enabled, track any "charges" to that API as well.
-    if ([self.settings objectForKey:@"people"]) {
-        
-        // Extract the "revenue" event property and trackCharge if there is revenue.
-        NSString *revenueProperty = [properties objectForKey:@"revenue"];
-        if (revenueProperty) {
-            
-            // Format the revenue.
-            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-            [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-            NSNumber *revenue = [formatter numberFromString:revenueProperty];
-            
-            // Track the charge.
-            [mixpanel.people trackCharge:revenue];
-        }
+    // If revenue is included and People is enabled, trackCharge to Mixpanel.
+    NSNumber *revenue = [Provider extractRevenue:properties];
+    if (revenue && [self.settings objectForKey:@"people"]) {
+        [[Mixpanel sharedInstance].people trackCharge:revenue];
     }
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
 {
-    Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    
     // Track the screen view as an event.
-    [mixpanel track:screenTitle properties:properties];
+    [self track:screenTitle properties:properties context:context];
 }
 
 @end
