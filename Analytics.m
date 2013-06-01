@@ -100,6 +100,34 @@ static Analytics *sharedInstance = nil;
     [self.providerManager screen:screenTitle properties:properties context:context];
 }
 
+#pragma mark - Application State API
+
+- (void)applicationDidEnterBackground
+{
+    [self.providerManager applicationDidEnterBackground];
+}
+
+- (void)applicationWillEnterForeground
+{
+    [self.providerManager applicationWillEnterForeground];
+}
+
+- (void)applicationWillTerminate
+{
+    [self.providerManager applicationWillTerminate];
+}
+
+- (void)applicationWillResignActive
+{
+    [self.providerManager applicationWillResignActive];
+}
+
+- (void)applicationDidBecomeActive
+{
+    [self.providerManager applicationDidBecomeActive];
+}
+
+
 #pragma mark - NSObject
 
 - (void)reset

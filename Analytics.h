@@ -26,6 +26,16 @@
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context;
 
 
+// Application state API
+// ---------------------
+
+- (void)applicationDidEnterBackground;
+- (void)applicationWillEnterForeground;
+- (void)applicationWillTerminate;
+- (void)applicationWillResignActive;
+- (void)applicationDidBecomeActive;
+
+
 // Utilities
 // ---------
 
