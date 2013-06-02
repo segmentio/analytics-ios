@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Analytics"
-  s.version      = "0.3.0"
+  s.version      = "0.3.1"
   s.summary      = "Segment.io Analytics library for iOS and OSX."
   s.homepage     = "https://segment.io/libraries/ios-osx"
   s.license      = { :type => "MIT", :file => "License.md" }

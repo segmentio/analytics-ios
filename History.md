@@ -1,3 +1,7 @@
+0.3.1 / 2013-6-1
+================
+* Removing OS X Platform from podfile
+
 0.3.0 / 2013-6-1
 ================
 * Re-architecting the library to bundle providers
