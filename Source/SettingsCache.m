@@ -3,6 +3,12 @@
 
 #import "SettingsCache.h"
 
+#ifdef DEBUG
+#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
+#else
+#define AnalyticsDebugLog(...)
+#endif
+
 // Update the settings every hour
 #define ANALYTICS_SETTINGS_CACHE_UPDATE_INTERVAL 3600
 

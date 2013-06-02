@@ -2,8 +2,13 @@
 // Copyright 2013 Segment.io
 
 #import "MixpanelProvider.h"
-
 #import "Mixpanel.h"
+
+#ifdef DEBUG
+#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
+#else
+#define AnalyticsDebugLog(...)
+#endif
 
 
 @implementation MixpanelProvider {

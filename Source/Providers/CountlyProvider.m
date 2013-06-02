@@ -4,6 +4,12 @@
 #import "CountlyProvider.h"
 #import "Countly.h"
 
+#ifdef DEBUG
+#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
+#else
+#define AnalyticsDebugLog(...)
+#endif
+
 
 @implementation CountlyProvider {
 

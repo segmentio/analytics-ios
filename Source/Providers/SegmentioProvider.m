@@ -2,8 +2,13 @@
 // Copyright 2013 Segment.io
 
 #import "SegmentioProvider.h"
-
 #import "Segmentio.h"
+
+#ifdef DEBUG
+#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
+#else
+#define AnalyticsDebugLog(...)
+#endif
 
 
 @implementation SegmentioProvider {

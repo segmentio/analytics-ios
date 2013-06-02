@@ -4,6 +4,12 @@
 #import "KISSmetricsProvider.h"
 #import "KISSMetricsAPI.h"
 
+#ifdef DEBUG
+#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
+#else
+#define AnalyticsDebugLog(...)
+#endif
+
 
 @implementation KISSmetricsProvider {
 

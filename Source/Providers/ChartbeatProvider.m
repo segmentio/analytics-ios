@@ -2,8 +2,13 @@
 // Copyright 2013 Segment.io
 
 #import "ChartbeatProvider.h"
-
 #import "CBTracker.h"
+
+#ifdef DEBUG
+#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
+#else
+#define AnalyticsDebugLog(...)
+#endif
 
 
 @implementation ChartbeatProvider {
