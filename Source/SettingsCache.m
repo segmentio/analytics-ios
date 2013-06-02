@@ -53,15 +53,15 @@
         // Check the cache for synchronous return of cache results.
         NSDictionary *settings = [self getSettings];
         if (settings) {
-            NSLog(@"Found settings in cache, will refresh cache later.");
+            AnalyticsDebugLog(@"Found settings in cache, will refresh cache later.");
             if (self.delegate) {
-                NSLog(@"Calling delegate's onSettingsUpdate with cached settings.");
+                AnalyticsDebugLog(@"Calling delegate's onSettingsUpdate with cached settings.");
                 [self.delegate onSettingsUpdate:settings];
             }
         }
         // Refresh the cache immediately if it's empty.
         else {
-            NSLog(@"No settings in cache, refreshing cache now.");
+            AnalyticsDebugLog(@"No settings in cache, refreshing cache now.");
             [self update];
         }
     }
@@ -79,7 +79,7 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
     [defaults setObject:(NSDictionary *)settings forKey:kSettingsCache];
 
     // Callback with the resulting settings
-    NSLog(@"%@ Callback on delegate %@", self, self.delegate);
+    AnalyticsDebugLog(@"%@ Callback on delegate %@", self, self.delegate);
     if (self.delegate) {
         [self.delegate onSettingsUpdate:settings];
     }
@@ -122,7 +122,7 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPMethod:@"GET"];
     
-    NSLog(@"%@ Sending API settings request: %@", self, request);
+    AnalyticsDebugLog(@"%@ Sending API settings request: %@", self, request);
     
     return [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
 }
@@ -146,13 +146,13 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
 
         // Log the response status
         if (self.responseCode != 200) {
-            NSLog(@"%@ Settings API request had an error: %@", self, [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
+            AnalyticsDebugLog(@"%@ Settings API request had an error: %@", self, [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
         }
         else {
             // Try to interpret the data as an NSDictionary of NSDictionarys
             NSError* error;
             NSDictionary* settings = [NSJSONSerialization JSONObjectWithData:self.responseData options:nil error:&error];
-            NSLog(@"%@ Settings API request succeeded 200 %@", self, settings);
+            AnalyticsDebugLog(@"%@ Settings API request succeeded 200 %@", self, settings);
             [self setSettings:settings];
         }
 
@@ -167,7 +167,7 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     dispatch_async(_serialQueue, ^{
-        NSLog(@"%@ Network failed while getting settings from API: %@", self, error);
+        AnalyticsDebugLog(@"%@ Network failed while getting settings from API: %@", self, error);
 
         self.responseCode = 0;
         self.responseData = nil;

@@ -31,7 +31,7 @@
     // Initialization
     NSString *appId = [self.settings objectForKey:@"appId"];
     [Crittercism enableWithAppID:appId];
-    NSLog(@"CrittercismProvider initialized.");
+    AnalyticsDebugLog(@"CrittercismProvider initialized.");
 }
 
 

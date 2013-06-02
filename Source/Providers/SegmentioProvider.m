@@ -36,7 +36,7 @@
 - (void)start
 {
     [Segmentio withSecret:[self.settings objectForKey:@"secret"]];
-    NSLog(@"SegmentioProvider initialized.");
+    AnalyticsDebugLog(@"SegmentioProvider initialized.");
 }
 
 

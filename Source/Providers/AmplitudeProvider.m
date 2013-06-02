@@ -30,7 +30,7 @@
 {
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [Amplitude initializeApiKey:apiKey];
-    NSLog(@"AmplitudeProvider initialized.");
+    AnalyticsDebugLog(@"AmplitudeProvider initialized.");
 }
 
 

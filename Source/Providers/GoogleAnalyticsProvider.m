@@ -40,7 +40,7 @@
     // TODO: add support for sample rate
     
     // All done!
-    NSLog(@"GoogleAnalyticsProvider initialized.");
+    AnalyticsDebugLog(@"GoogleAnalyticsProvider initialized.");
 }
 
 
@@ -86,7 +86,7 @@
         value = valueFallback;
     }
     
-    NSLog(@"Sending to Google Analytics: category %@, action %@, label %@, value %@", category, event, label, value);
+    AnalyticsDebugLog(@"Sending to Google Analytics: category %@, action %@, label %@, value %@", category, event, label, value);
     
     // Track the event!
     [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:category withAction:event withLabel:label withValue:value];

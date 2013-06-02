@@ -31,7 +31,7 @@
     // Initialization
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [Flurry startSession:apiKey];
-    NSLog(@"FlurryProvider initialized.");
+    AnalyticsDebugLog(@"FlurryProvider initialized.");
 }
 
 

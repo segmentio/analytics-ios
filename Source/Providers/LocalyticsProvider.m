@@ -37,7 +37,7 @@
 {
     NSString *appKey = [self.settings objectForKey:@"appKey"];
     [[LocalyticsSession sharedLocalyticsSession] startSession:appKey];
-    NSLog(@"LocalyticsProvider initialized.");
+    AnalyticsDebugLog(@"LocalyticsProvider initialized.");
 }
 
 

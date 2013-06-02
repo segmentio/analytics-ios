@@ -118,7 +118,7 @@
     // Augment the context to prevent server-side firing
     NSDictionary *augmentedContext = [self augmentContext:context];
     
-    NSLog(@"Augmented context: %@", augmentedContext);
+    AnalyticsDebugLog(@"Augmented context: %@", augmentedContext);
     
     // Iterate over providersArray and call identify.
     for (id object in self.providersArray) {
@@ -134,7 +134,7 @@
     // Augment the context to prevent server-side firing
     NSDictionary *augmentedContext = [self augmentContext:context];
     
-    NSLog(@"Augmented context: %@", augmentedContext);
+    AnalyticsDebugLog(@"Augmented context: %@", augmentedContext);
     
     // Iterate over providersArray and call track.
     for (id object in self.providersArray) {
@@ -150,7 +150,7 @@
     // Augment the context to prevent server-side firing
     NSDictionary *augmentedContext = [self augmentContext:context];
     
-    NSLog(@"Augmented context: %@", augmentedContext);
+    AnalyticsDebugLog(@"Augmented context: %@", augmentedContext);
     
     // Iterate over providersArray and call track.
     for (id object in self.providersArray) {

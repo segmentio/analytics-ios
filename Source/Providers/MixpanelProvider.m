@@ -31,7 +31,7 @@
 {
     NSString *token = [self.settings objectForKey:@"token"];
     [Mixpanel sharedInstanceWithToken:token];
-    NSLog(@"MixpanelProvider initialized.");
+    AnalyticsDebugLog(@"MixpanelProvider initialized.");
 }
 
 

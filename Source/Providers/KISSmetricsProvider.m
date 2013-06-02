@@ -30,7 +30,7 @@
 {
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [KISSMetricsAPI sharedAPIWithKey:apiKey];
-    NSLog(@"KISSmetricsProvider initialized.");
+    AnalyticsDebugLog(@"KISSmetricsProvider initialized.");
 }
 
 

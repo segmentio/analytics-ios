@@ -31,7 +31,7 @@
     NSString *appKey = [self.settings objectForKey:@"appKey"];
     NSString *serverUrl = [self.settings objectForKey:@"serverUrl"];
     [[Countly sharedInstance] start:appKey withHost:serverUrl];
-    NSLog(@"CountlyProvider initialized.");
+    AnalyticsDebugLog(@"CountlyProvider initialized.");
 }
 
 

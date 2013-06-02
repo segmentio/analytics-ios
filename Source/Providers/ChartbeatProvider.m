@@ -31,7 +31,7 @@
 {
     NSInteger *uid = [[self.settings objectForKey:@"uid"] integerValue];
     [[CBTracker sharedTracker] startTrackerWithAccountID:uid];
-    NSLog(@"ChartbeatProvider initialized.");
+    AnalyticsDebugLog(@"ChartbeatProvider initialized.");
 }
 
 - (void)stop

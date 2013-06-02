@@ -4,10 +4,6 @@
 #import "Segmentio.h"
 
 #ifdef DEBUG
-#define SEGMENTIO_DEBUG_MODE
-#endif
-
-#ifdef SEGMENTIO_DEBUG_MODE
 #define SegmentioDebugLog(...) NSLog(__VA_ARGS__)
 #else
 #define SegmentioDebugLog(...)

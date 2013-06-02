@@ -1,3 +1,7 @@
+0.3.2 / 2013-6-2
+================
+* Cleaning up NSLogs everywhere
+
 0.3.1 / 2013-6-1
 ================
 * Removing OS X Platform from podfile

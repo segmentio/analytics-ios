@@ -31,7 +31,7 @@
     // Initialization
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [Bugsnag startBugsnagWithApiKey:apiKey];
-    NSLog(@"BugsnagProvider initialized.");
+    AnalyticsDebugLog(@"BugsnagProvider initialized.");
 
     // TODO add support for non-SSL?
 }

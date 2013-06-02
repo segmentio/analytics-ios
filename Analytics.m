@@ -3,7 +3,13 @@
 
 #import "Analytics.h"
 
-#define ANALYTICS_VERSION @"0.3.1"
+#define ANALYTICS_VERSION @"0.3.2"
+
+#ifdef DEBUG
+#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
+#else
+#define AnalyticsDebugLog(...)
+#endif
 
 
 @implementation Analytics {
