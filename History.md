@@ -1,3 +1,14 @@
+0.3.0 / 2013-6-1
+================
+* Re-architecting the library to bundle providers
+* Adding support for Amplitude
+* Adding support for Bugsnag
+* Adding support for Chartbeat
+* Adding support for Countly
+* Adding support for Crittercism
+* Adding support for Flurry
+* Library now downloads the provider settings from the Segment.io server
+
 0.2.2 / 2013-4-24
 =================
 * Fixing timestamps to include millisecond precision

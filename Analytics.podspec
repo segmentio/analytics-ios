@@ -10,7 +10,6 @@ Pod::Spec.new do |s|
   s.source_files = ['Analytics.{h,m}', 'Source/**/*.{h,m}']
   s.requires_arc = true
 
-  s.osx.deployment_target = '10.7'
   s.ios.deployment_target = '5.0'
 
   s.dependency 'Amplitude-iOS'
