@@ -166,4 +166,24 @@
     [self waitForStatus:kGHUnitWaitStatusSuccess timeout:35.0];
 }
 
+- (void)testReset
+{
+    
+    // Call prepare to setup the asynchronous action.
+    // This helps in cases where the action is synchronous and the
+    // action occurs before the wait is actually called.
+    [self prepare];
+    
+    NSString *eventName = @"Purchased an iPad 5";
+    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", @"Mobile", @"category", @"70.0", @"revenue", @"50.0", @"value", @"gooooga", @"label", nil];
+    NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @YES, @"Salesforce", @NO, @"HubSpot", nil];
+    NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys: providers, @"providers", nil];
+    
+    [self.analytics track:eventName properties:properties context:context];
+    
+    [self.analytics reset];
+    
+    [self.analytics track:eventName properties:properties context:context];
+}
+
 @end

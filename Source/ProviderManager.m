@@ -230,6 +230,12 @@
 
 #pragma mark - NSObject
 
+- (void)reset
+{
+    [self.settingsCache update];
+}
+
+
 - (NSString *)description
 {
     return @"<Analytics ProviderManager>";

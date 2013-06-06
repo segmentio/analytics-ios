@@ -31,4 +31,6 @@
 
 - (id)initWithSecret:(NSString *)secret;
 
+- (void)reset;
+
 @end

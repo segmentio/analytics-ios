@@ -132,7 +132,7 @@ static Analytics *sharedInstance = nil;
 
 - (void)reset
 {
-    // TODO
+    [self.providerManager reset];
 }
 
 - (NSString *)description
