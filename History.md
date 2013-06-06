@@ -1,3 +1,7 @@
+0.3.3 / 2013-6-5
+================
+* Implementing the reset method to help with debugging
+
 0.3.2 / 2013-6-2
 ================
 * Cleaning up NSLogs everywhere
