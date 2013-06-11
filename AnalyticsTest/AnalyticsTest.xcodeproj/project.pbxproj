@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		126C288C17679F0C005CF5E3 /* TapstreamProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 126C288B17679F0C005CF5E3 /* TapstreamProviderTest.m */; };
 		768E9C7027BA46E49D57970F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D88C83F3B34BE484A44808 /* libPods.a */; };
 		D33B957E171648B800DACA39 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33B957D171648B800DACA39 /* UIKit.framework */; };
 		D33B9580171648B800DACA39 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33B957F171648B800DACA39 /* Foundation.framework */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		126C288B17679F0C005CF5E3 /* TapstreamProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapstreamProviderTest.m; sourceTree = "<group>"; };
 		7070FEB22F6640D1AF6DBD8E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		D33B957A171648B800DACA39 /* AnalyticsTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnalyticsTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33B957D171648B800DACA39 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -121,6 +123,7 @@
 				D3A57F51174AE33600AAADE3 /* LocalyticsProviderTest.m */,
 				D3A57F53174AE7A500AAADE3 /* MixpanelProviderTest.m */,
 				D3E378F1174F0C4500FA9BAF /* ProviderUtilitiesTest.m */,
+				126C288B17679F0C005CF5E3 /* TapstreamProviderTest.m */,
 			);
 			path = AnalyticsTest;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				D3E378EE174EB62600FA9BAF /* KISSmetricsProviderTest.m in Sources */,
 				D3E378F0174EBA9F00FA9BAF /* AmplitudeProviderTest.m in Sources */,
 				D3E378F2174F0C4500FA9BAF /* ProviderUtilitiesTest.m in Sources */,
+				126C288C17679F0C005CF5E3 /* TapstreamProviderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

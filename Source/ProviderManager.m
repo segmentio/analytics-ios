@@ -16,6 +16,7 @@
 #import "KISSmetricsProvider.h"
 #import "LocalyticsProvider.h"
 #import "MixpanelProvider.h"
+#import "TapstreamProvider.h"
 
 #ifdef DEBUG
 #define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
@@ -63,6 +64,7 @@
         [_providersArray addObject:[KISSmetricsProvider withNothing]];
         [_providersArray addObject:[LocalyticsProvider withNothing]];
         [_providersArray addObject:[MixpanelProvider withNothing]];
+        [_providersArray addObject:[TapstreamProvider withNothing]];
         
         // Create the settings cache last so that it can update settings
         // on each provider immediately if necessary
