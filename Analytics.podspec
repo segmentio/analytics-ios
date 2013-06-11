@@ -22,5 +22,6 @@ Pod::Spec.new do |s|
   s.dependency 'KISSmetrics'
   s.dependency 'Localytics'
   s.dependency 'Mixpanel'
+  s.dependency 'Tapstream'
 
 end
