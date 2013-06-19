@@ -7,7 +7,7 @@ Special thanks to [Tony Xiao](https://github.com/tonyxiao) for his contributions
 
 ## Documentation
 
-Documentation is available at [https://segment.io/libraries/ios-osx](https://segment.io/libraries/ios-osx).
+Documentation is available at [https://segment.io/libraries/ios](https://segment.io/libraries/ios).
 
 
 ## License
