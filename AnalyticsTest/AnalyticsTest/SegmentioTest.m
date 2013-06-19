@@ -5,8 +5,8 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import "Segmentio.h"
-#import "GHUnit.h"
+#import "Analytics/Segmentio.h"
+#import "GHUnitIOS/GHUnit.h"
 
 
 

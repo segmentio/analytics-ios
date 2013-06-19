@@ -5,9 +5,9 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import "MixpanelProvider.h"
-#import "Mixpanel.h"
-#import "GHUnit.h"
+#import "Analytics/MixpanelProvider.h"
+#import "Analytics/Mixpanel.h"
+#import "GHUnitIOS/GHUnit.h"
 
 
 @interface MixpanelProviderTest : GHAsyncTestCase
@@ -38,7 +38,7 @@
 {
     NSString *eventName = @"Purchased an iPad 5";
     NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", @"34.20", @"revenue", nil];
-    NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @"true", @"Salesforce", @"false", @"HubSpot", nil];
+    NSMutableDictionary *providers = [NSMutableDictionary dictionaryWithObjectsAndKeys: @"true", @"Salesforce", @"false", @"HubSpot", nil];
     NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys: providers, @"providers", nil];
     [self.provider track:eventName properties:properties context:context];
     

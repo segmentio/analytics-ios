@@ -5,9 +5,8 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import "GoogleAnalyticsProvider.h"
-#import "GHUnit.h"
-
+#import "Analytics/GoogleAnalyticsProvider.h"
+#import "GHUnitIOS/GHUnit.h"
 
 @interface GoogleAnalyticsProviderTest : GHAsyncTestCase
 @property(nonatomic) GoogleAnalyticsProvider *provider;

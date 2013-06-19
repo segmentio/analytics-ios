@@ -5,9 +5,8 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import "CountlyProvider.h"
-#import "GHUnit.h"
-
+#import "Analytics/CountlyProvider.h"
+#import "GHUnitIOS/GHUnit.h"
 
 @interface CountlyProviderTest : GHAsyncTestCase
 @property(nonatomic) Provider *provider;

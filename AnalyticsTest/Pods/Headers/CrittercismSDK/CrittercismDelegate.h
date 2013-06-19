@@ -1,1 +1,0 @@
-../../CrittercismSDK/CrittercismSDK/CrittercismDelegate.h

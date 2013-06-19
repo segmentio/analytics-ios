@@ -5,9 +5,9 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import "BugsnagProvider.h"
-#import "Bugsnag.h"
-#import "GHUnit.h"
+#import "Analytics/BugsnagProvider.h"
+#import "Analytics/Bugsnag.h"
+#import "GHUnitIOS/GHUnit.h"
 
 
 @interface BugsnagProviderTest : GHAsyncTestCase

@@ -5,10 +5,10 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import "Analytics.h"
-#import "ProviderManager.h"
-#import "Segmentio.h"
-#import "GHUnit.h"
+#import "Analytics/Analytics.h"
+#import "Analytics/ProviderManager.h"
+#import "Analytics/Segmentio.h"
+#import "GHUnitIOS/GHUnit.h"
 
 
 

@@ -1,1 +1,0 @@
-../../Amplitude-iOS/AmplitudeCJSONScanner.h

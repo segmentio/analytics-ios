@@ -5,8 +5,8 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import "Provider.h"
-#import "GHUnit.h"
+#import "Analytics/Provider.h"
+#import "GHUnitIOS/GHUnit.h"
 
 
 @interface ProviderUtilitiesTest : GHAsyncTestCase
