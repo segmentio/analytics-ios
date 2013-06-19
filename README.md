@@ -1,7 +1,7 @@
-analytics-ios-osx
+analytics-ios
 =================
 
-analytics-ios-osx is an iOS and OSX client for [Segment.io](https://segment.io)
+analytics-ios is an iOS client for [Segment.io](https://segment.io)
 
 Special thanks to [Tony Xiao](https://github.com/tonyxiao) for his contributions to this library!
 

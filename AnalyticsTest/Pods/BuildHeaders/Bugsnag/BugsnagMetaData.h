@@ -1,1 +1,0 @@
-../../Bugsnag/Bugsnag Plugin/BugsnagMetaData.h

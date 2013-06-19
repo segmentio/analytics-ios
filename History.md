@@ -1,3 +1,13 @@
+0.4.0 / 2013-6-18
+================
+* Adding provider headers and binaries to project
+* Restructuring project for Framework Builds vs CocoaPod builds
+
+0.3.4 / 2013-6-16
+================
+* Removing Crittercism to avoid HockeySDK PLCrashReporter collisions
+* Adding support for context.providers to ProviderManager
+
 0.3.3 / 2013-6-5
 ================
 * Implementing the reset method to help with debugging

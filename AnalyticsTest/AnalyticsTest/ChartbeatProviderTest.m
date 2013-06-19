@@ -5,8 +5,8 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import "ChartbeatProvider.h"
-#import "GHUnit.h"
+#import "Analytics/ChartbeatProvider.h"
+#import "GHUnitIOS/GHUnit.h"
 
 
 @interface ChartbeatProviderTest : GHAsyncTestCase

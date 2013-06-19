@@ -1,1 +1,0 @@
-../../GHUnitIOS/Classes/GHViewTestCase.h

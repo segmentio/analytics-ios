@@ -5,8 +5,8 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import "KISSmetricsProvider.h"
-#import "GHUnit.h"
+#import "Analytics/KISSmetricsProvider.h"
+#import "GHUnitIOS/GHUnit.h"
 
 
 @interface KISSmetricsProviderTest : GHAsyncTestCase

@@ -5,8 +5,8 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import "AmplitudeProvider.h"
-#import "GHUnit.h"
+#import "Analytics/AmplitudeProvider.h"
+#import "GHUnitIOS/GHUnit.h"
 
 
 @interface AmplitudeProviderTest : GHAsyncTestCase

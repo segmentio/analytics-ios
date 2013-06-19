@@ -5,8 +5,8 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import "LocalyticsProvider.h"
-#import "GHUnit.h"
+#import "Analytics/LocalyticsProvider.h"
+#import "GHUnitIOS/GHUnit.h"
 
 
 @interface LocalyticsProviderTest : GHAsyncTestCase

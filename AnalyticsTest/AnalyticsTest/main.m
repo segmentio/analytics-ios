@@ -2,7 +2,7 @@
 //  main.m
 //  AnalyticsTest
 //
-//  Created by Peter Reinhardt on 4/10/13.
+//  Created by Ilya Volodarsky on 6/9/13.
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 

@@ -5,8 +5,8 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import "FlurryProvider.h"
-#import "GHUnit.h"
+#import "Analytics/FlurryProvider.h"
+#import "GHUnitIOS/GHUnit.h"
 
 
 @interface FlurryProviderTest : GHAsyncTestCase

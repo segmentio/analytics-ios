@@ -1,1 +1,0 @@
-../../GHUnitIOS/Libraries/GTM/Foundation/GTMNSString+XML.h

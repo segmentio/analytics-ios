@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Analytics' target in the 'Analytics' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

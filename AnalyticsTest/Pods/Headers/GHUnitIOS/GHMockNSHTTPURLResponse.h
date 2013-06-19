@@ -1,1 +1,0 @@
-../../GHUnitIOS/Classes/Mock/GHMockNSHTTPURLResponse.h

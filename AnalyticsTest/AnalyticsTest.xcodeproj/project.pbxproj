@@ -7,131 +7,201 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		768E9C7027BA46E49D57970F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6D88C83F3B34BE484A44808 /* libPods.a */; };
-		D33B957E171648B800DACA39 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33B957D171648B800DACA39 /* UIKit.framework */; };
-		D33B9580171648B800DACA39 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33B957F171648B800DACA39 /* Foundation.framework */; };
-		D33B9582171648B800DACA39 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33B9581171648B800DACA39 /* CoreGraphics.framework */; };
-		D33B9588171648B800DACA39 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D33B9586171648B800DACA39 /* InfoPlist.strings */; };
-		D33B958A171648B800DACA39 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D33B9589171648B800DACA39 /* main.m */; };
-		D33B959E17164A2500DACA39 /* SegmentioTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D33B959D17164A2500DACA39 /* SegmentioTest.m */; };
-		D37548C71743461900CD82F9 /* AnalyticsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D37548C61743461900CD82F9 /* AnalyticsTest.m */; };
-		D3A57F52174AE33600AAADE3 /* LocalyticsProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F51174AE33600AAADE3 /* LocalyticsProviderTest.m */; };
-		D3A57F54174AE7A500AAADE3 /* MixpanelProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F53174AE7A500AAADE3 /* MixpanelProviderTest.m */; };
-		D3A57F56174AEE6400AAADE3 /* FlurryProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F55174AEE6400AAADE3 /* FlurryProviderTest.m */; };
-		D3A57F58174AF00B00AAADE3 /* GoogleAnalyticsProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F57174AF00B00AAADE3 /* GoogleAnalyticsProviderTest.m */; };
-		D3A57F5A174AF35300AAADE3 /* BugsnagProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F59174AF35300AAADE3 /* BugsnagProviderTest.m */; };
-		D3A57F5C174AFB4F00AAADE3 /* CrittercismProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A57F5B174AFB4F00AAADE3 /* CrittercismProviderTest.m */; };
-		D3CD0B561741AA24008F944B /* AnalyticsSettingsCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CD0B551741AA24008F944B /* AnalyticsSettingsCacheTest.m */; };
-		D3E378E6174E900000FA9BAF /* ChartbeatProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E378E5174E900000FA9BAF /* ChartbeatProviderTest.m */; };
-		D3E378EA174EB3BF00FA9BAF /* CountlyProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E378E9174EB3BF00FA9BAF /* CountlyProviderTest.m */; };
-		D3E378EC174EB42B00FA9BAF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3E378EB174EB42B00FA9BAF /* Default-568h@2x.png */; };
-		D3E378EE174EB62600FA9BAF /* KISSmetricsProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E378ED174EB62600FA9BAF /* KISSmetricsProviderTest.m */; };
-		D3E378F0174EBA9F00FA9BAF /* AmplitudeProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E378EF174EBA9F00FA9BAF /* AmplitudeProviderTest.m */; };
-		D3E378F2174F0C4500FA9BAF /* ProviderUtilitiesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E378F1174F0C4500FA9BAF /* ProviderUtilitiesTest.m */; };
+		F78D29BF1765B0BF000B937E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29BE1765B0BF000B937E /* Foundation.framework */; };
+		F78D29C11765B0BF000B937E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29C01765B0BF000B937E /* CoreGraphics.framework */; };
+		F78D29C71765B0BF000B937E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F78D29C51765B0BF000B937E /* InfoPlist.strings */; };
+		F78D29C91765B0BF000B937E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D29C81765B0BF000B937E /* main.m */; };
+		F78D29CF1765B0BF000B937E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = F78D29CE1765B0BF000B937E /* Default.png */; };
+		F78D29D11765B0BF000B937E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F78D29D01765B0BF000B937E /* Default@2x.png */; };
+		F78D29D31765B0BF000B937E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F78D29D21765B0BF000B937E /* Default-568h@2x.png */; };
+		F78D29DC1765B16A000B937E /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29DB1765B16A000B937E /* GHUnitIOS.framework */; };
+		F78D29EA1765B1BC000B937E /* AmplitudeProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D29DD1765B1BC000B937E /* AmplitudeProviderTest.m */; };
+		F78D29EB1765B1BC000B937E /* AnalyticsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D29DE1765B1BC000B937E /* AnalyticsTest.m */; };
+		F78D29EC1765B1BC000B937E /* BugsnagProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D29DF1765B1BC000B937E /* BugsnagProviderTest.m */; };
+		F78D29ED1765B1BC000B937E /* ChartbeatProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D29E01765B1BC000B937E /* ChartbeatProviderTest.m */; };
+		F78D29EE1765B1BC000B937E /* CountlyProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D29E11765B1BC000B937E /* CountlyProviderTest.m */; };
+		F78D29F01765B1BC000B937E /* FlurryProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D29E31765B1BC000B937E /* FlurryProviderTest.m */; };
+		F78D29F11765B1BC000B937E /* GoogleAnalyticsProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D29E41765B1BC000B937E /* GoogleAnalyticsProviderTest.m */; };
+		F78D29F21765B1BC000B937E /* KISSmetricsProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D29E51765B1BC000B937E /* KISSmetricsProviderTest.m */; };
+		F78D29F31765B1BC000B937E /* LocalyticsProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D29E61765B1BC000B937E /* LocalyticsProviderTest.m */; };
+		F78D29F41765B1BC000B937E /* MixpanelProviderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D29E71765B1BC000B937E /* MixpanelProviderTest.m */; };
+		F78D29F51765B1BC000B937E /* ProviderUtilitiesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D29E81765B1BC000B937E /* ProviderUtilitiesTest.m */; };
+		F78D29F61765B1BC000B937E /* SegmentioTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F78D29E91765B1BC000B937E /* SegmentioTest.m */; };
+		F78D2A021765B52B000B937E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D2A011765B52B000B937E /* CoreData.framework */; };
+		F78D2A041765B530000B937E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D2A031765B530000B937E /* CoreTelephony.framework */; };
+		F78D2A061765B598000B937E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D2A051765B598000B937E /* SystemConfiguration.framework */; };
+		F78D2A081765B5F4000B937E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D2A071765B5F4000B937E /* AdSupport.framework */; };
+		F78D2A131765B78F000B937E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D2A0B1765B751000B937E /* libsqlite3.dylib */; };
+		F78D2A1E1765B89C000B937E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D2A141765B7AA000B937E /* libz.dylib */; };
+		F7DAAADD1767CE7300A219E0 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7DAAADC1767CE7300A219E0 /* Analytics.framework */; };
+		F7E9522E1766F16E00FE8341 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29FF1765B4AD000B937E /* QuartzCore.framework */; };
+		F7E9522F1766F17700FE8341 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29BC1765B0BF000B937E /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7070FEB22F6640D1AF6DBD8E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
-		D33B957A171648B800DACA39 /* AnalyticsTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnalyticsTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D33B957D171648B800DACA39 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		D33B957F171648B800DACA39 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		D33B9581171648B800DACA39 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		D33B9585171648B800DACA39 /* AnalyticsTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnalyticsTest-Info.plist"; sourceTree = "<group>"; };
-		D33B9587171648B800DACA39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D33B9589171648B800DACA39 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D33B958B171648B800DACA39 /* AnalyticsTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnalyticsTest-Prefix.pch"; sourceTree = "<group>"; };
-		D33B959D17164A2500DACA39 /* SegmentioTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioTest.m; sourceTree = "<group>"; };
-		D37548C61743461900CD82F9 /* AnalyticsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsTest.m; sourceTree = "<group>"; };
-		D3A57F51174AE33600AAADE3 /* LocalyticsProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsProviderTest.m; sourceTree = "<group>"; };
-		D3A57F53174AE7A500AAADE3 /* MixpanelProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelProviderTest.m; sourceTree = "<group>"; };
-		D3A57F55174AEE6400AAADE3 /* FlurryProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryProviderTest.m; sourceTree = "<group>"; };
-		D3A57F57174AF00B00AAADE3 /* GoogleAnalyticsProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsProviderTest.m; sourceTree = "<group>"; };
-		D3A57F59174AF35300AAADE3 /* BugsnagProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugsnagProviderTest.m; sourceTree = "<group>"; };
-		D3A57F5B174AFB4F00AAADE3 /* CrittercismProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrittercismProviderTest.m; sourceTree = "<group>"; };
-		D3CD0B551741AA24008F944B /* AnalyticsSettingsCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsSettingsCacheTest.m; sourceTree = "<group>"; };
-		D3E378E5174E900000FA9BAF /* ChartbeatProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartbeatProviderTest.m; sourceTree = "<group>"; };
-		D3E378E9174EB3BF00FA9BAF /* CountlyProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountlyProviderTest.m; sourceTree = "<group>"; };
-		D3E378EB174EB42B00FA9BAF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		D3E378ED174EB62600FA9BAF /* KISSmetricsProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KISSmetricsProviderTest.m; sourceTree = "<group>"; };
-		D3E378EF174EBA9F00FA9BAF /* AmplitudeProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmplitudeProviderTest.m; sourceTree = "<group>"; };
-		D3E378F1174F0C4500FA9BAF /* ProviderUtilitiesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderUtilitiesTest.m; sourceTree = "<group>"; };
-		F6D88C83F3B34BE484A44808 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F78D29B91765B0BF000B937E /* AnalyticsTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnalyticsTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F78D29BC1765B0BF000B937E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F78D29BE1765B0BF000B937E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F78D29C01765B0BF000B937E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F78D29C41765B0BF000B937E /* AnalyticsTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnalyticsTest-Info.plist"; sourceTree = "<group>"; };
+		F78D29C61765B0BF000B937E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F78D29C81765B0BF000B937E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F78D29CA1765B0BF000B937E /* AnalyticsTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnalyticsTest-Prefix.pch"; sourceTree = "<group>"; };
+		F78D29CE1765B0BF000B937E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F78D29D01765B0BF000B937E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F78D29D21765B0BF000B937E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		F78D29DB1765B16A000B937E /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = ../../../Downloads/GHUnitIOS.framework; sourceTree = "<group>"; };
+		F78D29DD1765B1BC000B937E /* AmplitudeProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmplitudeProviderTest.m; sourceTree = "<group>"; };
+		F78D29DE1765B1BC000B937E /* AnalyticsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsTest.m; sourceTree = "<group>"; };
+		F78D29DF1765B1BC000B937E /* BugsnagProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugsnagProviderTest.m; sourceTree = "<group>"; };
+		F78D29E01765B1BC000B937E /* ChartbeatProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChartbeatProviderTest.m; sourceTree = "<group>"; };
+		F78D29E11765B1BC000B937E /* CountlyProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountlyProviderTest.m; sourceTree = "<group>"; };
+		F78D29E31765B1BC000B937E /* FlurryProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryProviderTest.m; sourceTree = "<group>"; };
+		F78D29E41765B1BC000B937E /* GoogleAnalyticsProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsProviderTest.m; sourceTree = "<group>"; };
+		F78D29E51765B1BC000B937E /* KISSmetricsProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KISSmetricsProviderTest.m; sourceTree = "<group>"; };
+		F78D29E61765B1BC000B937E /* LocalyticsProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsProviderTest.m; sourceTree = "<group>"; };
+		F78D29E71765B1BC000B937E /* MixpanelProviderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelProviderTest.m; sourceTree = "<group>"; };
+		F78D29E81765B1BC000B937E /* ProviderUtilitiesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderUtilitiesTest.m; sourceTree = "<group>"; };
+		F78D29E91765B1BC000B937E /* SegmentioTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioTest.m; sourceTree = "<group>"; };
+		F78D29FF1765B4AD000B937E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F78D2A011765B52B000B937E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F78D2A031765B530000B937E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		F78D2A051765B598000B937E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F78D2A071765B5F4000B937E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		F78D2A0B1765B751000B937E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		F78D2A0D1765B76C000B937E /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		F78D2A0F1765B778000B937E /* libiconv.2.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.4.0.dylib; path = usr/lib/libiconv.2.4.0.dylib; sourceTree = SDKROOT; };
+		F78D2A111765B788000B937E /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		F78D2A141765B7AA000B937E /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F7DAAADC1767CE7300A219E0 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Analytics.framework; path = "../../../Library/Developer/Xcode/DerivedData/analytics-dkeruanhjboexceirkktybciblsa/Build/Products/Debug-iphoneos/Analytics.framework"; sourceTree = "<group>"; };
+		F7F252AC176E660B0055771D /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		F7F252AE176E660C0055771D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F7F252B0176E660C0055771D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F7F252B2176E660C0055771D /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		F7F252B3176E660C0055771D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F7F252B4176E660C0055771D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F7F252B6176E660C0055771D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		F7F252B8176E660C0055771D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		F7F252BA176E660C0055771D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D33B9577171648B800DACA39 /* Frameworks */ = {
+		F78D29B61765B0BF000B937E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D33B957E171648B800DACA39 /* UIKit.framework in Frameworks */,
-				D33B9580171648B800DACA39 /* Foundation.framework in Frameworks */,
-				D33B9582171648B800DACA39 /* CoreGraphics.framework in Frameworks */,
-				768E9C7027BA46E49D57970F /* libPods.a in Frameworks */,
+				F7E9522F1766F17700FE8341 /* UIKit.framework in Frameworks */,
+				F7E9522E1766F16E00FE8341 /* QuartzCore.framework in Frameworks */,
+				F78D2A1E1765B89C000B937E /* libz.dylib in Frameworks */,
+				F78D2A131765B78F000B937E /* libsqlite3.dylib in Frameworks */,
+				F78D2A081765B5F4000B937E /* AdSupport.framework in Frameworks */,
+				F78D2A061765B598000B937E /* SystemConfiguration.framework in Frameworks */,
+				F78D2A041765B530000B937E /* CoreTelephony.framework in Frameworks */,
+				F78D2A021765B52B000B937E /* CoreData.framework in Frameworks */,
+				F78D29BF1765B0BF000B937E /* Foundation.framework in Frameworks */,
+				F78D29C11765B0BF000B937E /* CoreGraphics.framework in Frameworks */,
+				F78D29DC1765B16A000B937E /* GHUnitIOS.framework in Frameworks */,
+				F7DAAADD1767CE7300A219E0 /* Analytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D33B9571171648B800DACA39 = {
+		F78D29B01765B0BF000B937E = {
 			isa = PBXGroup;
 			children = (
-				D3E378EB174EB42B00FA9BAF /* Default-568h@2x.png */,
-				D33B9583171648B800DACA39 /* AnalyticsTest */,
-				D33B957C171648B800DACA39 /* Frameworks */,
-				D33B957B171648B800DACA39 /* Products */,
-				7070FEB22F6640D1AF6DBD8E /* Pods.xcconfig */,
+				F78D2A141765B7AA000B937E /* libz.dylib */,
+				F78D2A111765B788000B937E /* libsqlite3.0.dylib */,
+				F78D2A0F1765B778000B937E /* libiconv.2.4.0.dylib */,
+				F78D2A0D1765B76C000B937E /* libiconv.dylib */,
+				F78D2A0B1765B751000B937E /* libsqlite3.dylib */,
+				F78D2A071765B5F4000B937E /* AdSupport.framework */,
+				F78D2A051765B598000B937E /* SystemConfiguration.framework */,
+				F78D2A031765B530000B937E /* CoreTelephony.framework */,
+				F78D2A011765B52B000B937E /* CoreData.framework */,
+				F78D29FF1765B4AD000B937E /* QuartzCore.framework */,
+				F78D29C21765B0BF000B937E /* AnalyticsTest */,
+				F7F252AA176E660B0055771D /* Tests */,
+				F78D29BB1765B0BF000B937E /* Frameworks */,
+				F78D29BA1765B0BF000B937E /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		D33B957B171648B800DACA39 /* Products */ = {
+		F78D29BA1765B0BF000B937E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D33B957A171648B800DACA39 /* AnalyticsTest.app */,
+				F78D29B91765B0BF000B937E /* AnalyticsTest.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D33B957C171648B800DACA39 /* Frameworks */ = {
+		F78D29BB1765B0BF000B937E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D33B957D171648B800DACA39 /* UIKit.framework */,
-				D33B957F171648B800DACA39 /* Foundation.framework */,
-				D33B9581171648B800DACA39 /* CoreGraphics.framework */,
-				F6D88C83F3B34BE484A44808 /* libPods.a */,
+				F7DAAADC1767CE7300A219E0 /* Analytics.framework */,
+				F78D29DB1765B16A000B937E /* GHUnitIOS.framework */,
+				F78D29BC1765B0BF000B937E /* UIKit.framework */,
+				F78D29BE1765B0BF000B937E /* Foundation.framework */,
+				F78D29C01765B0BF000B937E /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D33B9583171648B800DACA39 /* AnalyticsTest */ = {
+		F78D29C21765B0BF000B937E /* AnalyticsTest */ = {
 			isa = PBXGroup;
 			children = (
-				D33B9584171648B800DACA39 /* Supporting Files */,
-				D33B959D17164A2500DACA39 /* SegmentioTest.m */,
-				D3E378EF174EBA9F00FA9BAF /* AmplitudeProviderTest.m */,
-				D3CD0B551741AA24008F944B /* AnalyticsSettingsCacheTest.m */,
-				D37548C61743461900CD82F9 /* AnalyticsTest.m */,
-				D3A57F59174AF35300AAADE3 /* BugsnagProviderTest.m */,
-				D3E378E5174E900000FA9BAF /* ChartbeatProviderTest.m */,
-				D3E378E9174EB3BF00FA9BAF /* CountlyProviderTest.m */,
-				D3A57F5B174AFB4F00AAADE3 /* CrittercismProviderTest.m */,
-				D3A57F55174AEE6400AAADE3 /* FlurryProviderTest.m */,
-				D3A57F57174AF00B00AAADE3 /* GoogleAnalyticsProviderTest.m */,
-				D3E378ED174EB62600FA9BAF /* KISSmetricsProviderTest.m */,
-				D3A57F51174AE33600AAADE3 /* LocalyticsProviderTest.m */,
-				D3A57F53174AE7A500AAADE3 /* MixpanelProviderTest.m */,
-				D3E378F1174F0C4500FA9BAF /* ProviderUtilitiesTest.m */,
+				F78D29DD1765B1BC000B937E /* AmplitudeProviderTest.m */,
+				F78D29DE1765B1BC000B937E /* AnalyticsTest.m */,
+				F78D29DF1765B1BC000B937E /* BugsnagProviderTest.m */,
+				F78D29E01765B1BC000B937E /* ChartbeatProviderTest.m */,
+				F78D29E11765B1BC000B937E /* CountlyProviderTest.m */,
+				F78D29E31765B1BC000B937E /* FlurryProviderTest.m */,
+				F78D29E41765B1BC000B937E /* GoogleAnalyticsProviderTest.m */,
+				F78D29E51765B1BC000B937E /* KISSmetricsProviderTest.m */,
+				F78D29E61765B1BC000B937E /* LocalyticsProviderTest.m */,
+				F78D29E71765B1BC000B937E /* MixpanelProviderTest.m */,
+				F78D29E81765B1BC000B937E /* ProviderUtilitiesTest.m */,
+				F78D29E91765B1BC000B937E /* SegmentioTest.m */,
+				F78D29C31765B0BF000B937E /* Supporting Files */,
 			);
 			path = AnalyticsTest;
 			sourceTree = "<group>";
 		};
-		D33B9584171648B800DACA39 /* Supporting Files */ = {
+		F78D29C31765B0BF000B937E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D33B9585171648B800DACA39 /* AnalyticsTest-Info.plist */,
-				D33B9586171648B800DACA39 /* InfoPlist.strings */,
-				D33B9589171648B800DACA39 /* main.m */,
-				D33B958B171648B800DACA39 /* AnalyticsTest-Prefix.pch */,
+				F78D29C41765B0BF000B937E /* AnalyticsTest-Info.plist */,
+				F78D29C51765B0BF000B937E /* InfoPlist.strings */,
+				F78D29C81765B0BF000B937E /* main.m */,
+				F78D29CA1765B0BF000B937E /* AnalyticsTest-Prefix.pch */,
+				F78D29CE1765B0BF000B937E /* Default.png */,
+				F78D29D01765B0BF000B937E /* Default@2x.png */,
+				F78D29D21765B0BF000B937E /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F7F252AA176E660B0055771D /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F7F252B3176E660C0055771D /* AppDelegate.h */,
+				F7F252B4176E660C0055771D /* AppDelegate.m */,
+				F7F252AB176E660B0055771D /* Supporting Files */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		F7F252AB176E660B0055771D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F7F252AC176E660B0055771D /* Tests-Info.plist */,
+				F7F252AD176E660C0055771D /* InfoPlist.strings */,
+				F7F252B0176E660C0055771D /* main.m */,
+				F7F252B2176E660C0055771D /* Tests-Prefix.pch */,
+				F7F252B6176E660C0055771D /* Default.png */,
+				F7F252B8176E660C0055771D /* Default@2x.png */,
+				F7F252BA176E660C0055771D /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -139,15 +209,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D33B9579171648B800DACA39 /* AnalyticsTest */ = {
+		F78D29B81765B0BF000B937E /* AnalyticsTest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D33B9597171648B800DACA39 /* Build configuration list for PBXNativeTarget "AnalyticsTest" */;
+			buildConfigurationList = F78D29D61765B0BF000B937E /* Build configuration list for PBXNativeTarget "AnalyticsTest" */;
 			buildPhases = (
-				7E0F124815F14650AE1F9AD0 /* Check Pods Manifest.lock */,
-				D33B9576171648B800DACA39 /* Sources */,
-				D33B9577171648B800DACA39 /* Frameworks */,
-				D33B9578171648B800DACA39 /* Resources */,
-				55099A2DD8F941FFB2C2EF8F /* Copy Pods Resources */,
+				F78D29B51765B0BF000B937E /* Sources */,
+				F78D29B61765B0BF000B937E /* Frameworks */,
+				F78D29B71765B0BF000B937E /* Resources */,
 			);
 			buildRules = (
 			);
@@ -155,108 +223,85 @@
 			);
 			name = AnalyticsTest;
 			productName = AnalyticsTest;
-			productReference = D33B957A171648B800DACA39 /* AnalyticsTest.app */;
+			productReference = F78D29B91765B0BF000B937E /* AnalyticsTest.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D33B9572171648B800DACA39 /* Project object */ = {
+		F78D29B11765B0BF000B937E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Segment.io;
 			};
-			buildConfigurationList = D33B9575171648B800DACA39 /* Build configuration list for PBXProject "AnalyticsTest" */;
+			buildConfigurationList = F78D29B41765B0BF000B937E /* Build configuration list for PBXProject "AnalyticsTest" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = D33B9571171648B800DACA39;
-			productRefGroup = D33B957B171648B800DACA39 /* Products */;
+			mainGroup = F78D29B01765B0BF000B937E;
+			productRefGroup = F78D29BA1765B0BF000B937E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D33B9579171648B800DACA39 /* AnalyticsTest */,
+				F78D29B81765B0BF000B937E /* AnalyticsTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D33B9578171648B800DACA39 /* Resources */ = {
+		F78D29B71765B0BF000B937E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D33B9588171648B800DACA39 /* InfoPlist.strings in Resources */,
-				D3E378EC174EB42B00FA9BAF /* Default-568h@2x.png in Resources */,
+				F78D29C71765B0BF000B937E /* InfoPlist.strings in Resources */,
+				F78D29CF1765B0BF000B937E /* Default.png in Resources */,
+				F78D29D11765B0BF000B937E /* Default@2x.png in Resources */,
+				F78D29D31765B0BF000B937E /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		55099A2DD8F941FFB2C2EF8F /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
-		};
-		7E0F124815F14650AE1F9AD0 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sanbox is not in sync with the Podfile.lock. Run 'pod install'.\nEOM\n    exit 1\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		D33B9576171648B800DACA39 /* Sources */ = {
+		F78D29B51765B0BF000B937E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D33B958A171648B800DACA39 /* main.m in Sources */,
-				D33B959E17164A2500DACA39 /* SegmentioTest.m in Sources */,
-				D3CD0B561741AA24008F944B /* AnalyticsSettingsCacheTest.m in Sources */,
-				D37548C71743461900CD82F9 /* AnalyticsTest.m in Sources */,
-				D3A57F52174AE33600AAADE3 /* LocalyticsProviderTest.m in Sources */,
-				D3A57F54174AE7A500AAADE3 /* MixpanelProviderTest.m in Sources */,
-				D3A57F56174AEE6400AAADE3 /* FlurryProviderTest.m in Sources */,
-				D3A57F58174AF00B00AAADE3 /* GoogleAnalyticsProviderTest.m in Sources */,
-				D3A57F5A174AF35300AAADE3 /* BugsnagProviderTest.m in Sources */,
-				D3A57F5C174AFB4F00AAADE3 /* CrittercismProviderTest.m in Sources */,
-				D3E378E6174E900000FA9BAF /* ChartbeatProviderTest.m in Sources */,
-				D3E378EA174EB3BF00FA9BAF /* CountlyProviderTest.m in Sources */,
-				D3E378EE174EB62600FA9BAF /* KISSmetricsProviderTest.m in Sources */,
-				D3E378F0174EBA9F00FA9BAF /* AmplitudeProviderTest.m in Sources */,
-				D3E378F2174F0C4500FA9BAF /* ProviderUtilitiesTest.m in Sources */,
+				F78D29C91765B0BF000B937E /* main.m in Sources */,
+				F78D29EA1765B1BC000B937E /* AmplitudeProviderTest.m in Sources */,
+				F78D29EB1765B1BC000B937E /* AnalyticsTest.m in Sources */,
+				F78D29EC1765B1BC000B937E /* BugsnagProviderTest.m in Sources */,
+				F78D29ED1765B1BC000B937E /* ChartbeatProviderTest.m in Sources */,
+				F78D29EE1765B1BC000B937E /* CountlyProviderTest.m in Sources */,
+				F78D29F01765B1BC000B937E /* FlurryProviderTest.m in Sources */,
+				F78D29F11765B1BC000B937E /* GoogleAnalyticsProviderTest.m in Sources */,
+				F78D29F21765B1BC000B937E /* KISSmetricsProviderTest.m in Sources */,
+				F78D29F31765B1BC000B937E /* LocalyticsProviderTest.m in Sources */,
+				F78D29F41765B1BC000B937E /* MixpanelProviderTest.m in Sources */,
+				F78D29F51765B1BC000B937E /* ProviderUtilitiesTest.m in Sources */,
+				F78D29F61765B1BC000B937E /* SegmentioTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D33B9586171648B800DACA39 /* InfoPlist.strings */ = {
+		F78D29C51765B0BF000B937E /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D33B9587171648B800DACA39 /* en */,
+				F78D29C61765B0BF000B937E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F7F252AD176E660C0055771D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F7F252AE176E660C0055771D /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -264,7 +309,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		D33B9595171648B800DACA39 /* Debug */ = {
+		F78D29D41765B0BF000B937E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -296,7 +341,7 @@
 			};
 			name = Debug;
 		};
-		D33B9596171648B800DACA39 /* Release */ = {
+		F78D29D51765B0BF000B937E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -322,26 +367,52 @@
 			};
 			name = Release;
 		};
-		D33B9598171648B800DACA39 /* Debug */ = {
+		F78D29D71765B0BF000B937E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7070FEB22F6640D1AF6DBD8E /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/analytics-dkeruanhjboexceirkktybciblsa/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Downloads\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnalyticsTest/AnalyticsTest-Prefix.pch";
 				INFOPLIST_FILE = "AnalyticsTest/AnalyticsTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
-		D33B9599171648B800DACA39 /* Release */ = {
+		F78D29D81765B0BF000B937E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7070FEB22F6640D1AF6DBD8E /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/analytics-dkeruanhjboexceirkktybciblsa/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Downloads\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnalyticsTest/AnalyticsTest-Prefix.pch";
 				INFOPLIST_FILE = "AnalyticsTest/AnalyticsTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -349,25 +420,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D33B9575171648B800DACA39 /* Build configuration list for PBXProject "AnalyticsTest" */ = {
+		F78D29B41765B0BF000B937E /* Build configuration list for PBXProject "AnalyticsTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D33B9595171648B800DACA39 /* Debug */,
-				D33B9596171648B800DACA39 /* Release */,
+				F78D29D41765B0BF000B937E /* Debug */,
+				F78D29D51765B0BF000B937E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D33B9597171648B800DACA39 /* Build configuration list for PBXNativeTarget "AnalyticsTest" */ = {
+		F78D29D61765B0BF000B937E /* Build configuration list for PBXNativeTarget "AnalyticsTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D33B9598171648B800DACA39 /* Debug */,
-				D33B9599171648B800DACA39 /* Release */,
+				F78D29D71765B0BF000B937E /* Debug */,
+				F78D29D81765B0BF000B937E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = D33B9572171648B800DACA39 /* Project object */;
+	rootObject = F78D29B11765B0BF000B937E /* Project object */;
 }
