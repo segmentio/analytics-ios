@@ -4,7 +4,7 @@
 #import "SegmentioProvider.h"
 #import "Segmentio.h"
 
-#ifdef DEBUG
+#ifdef ANALYTICS_DEBUG
 #define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
 #else
 #define AnalyticsDebugLog(...)
