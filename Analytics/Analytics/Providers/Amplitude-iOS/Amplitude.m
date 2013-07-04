@@ -8,8 +8,6 @@
 
 #import "Amplitude.h"
 #import "AmplitudeLocationManagerDelegate.h"
-#import "AmplitudeCJSONSerializer.h"
-#import "AmplitudeCJSONDeserializer.h"
 #import "AmplitudeARCMacros.h"
 #import <math.h>
 #import <sys/socket.h>
@@ -315,9 +313,9 @@ static AmplitudeLocationManagerDelegate *locationManagerDelegate;
         [fingerprint setObject:[Amplitude replaceWithJSONNull:_phoneCarrier] forKey:@"carrier"];
         
         NSError *error = nil;
-        NSData *fingerprintData = [[AmplitudeCJSONSerializer serializer] serializeDictionary:fingerprint error:&error];
+        NSData *fingerprintData = [NSJSONSerialization dataWithJSONObject:fingerprint options:0 error:&error];
         if (error != nil) {
-            NSLog(@"ERROR: JSONSerializer error: %@", error);
+            NSLog(@"ERROR: NSJSONSerialization error: %@", error);
             isCurrentlyTrackingCampaign = NO;
             return;
         }
@@ -351,7 +349,7 @@ static AmplitudeLocationManagerDelegate *locationManagerDelegate;
          if (response != nil) {
              if ([httpResponse statusCode] == 200) {
                  NSError *error = nil;
-                 NSDictionary *result = [[AmplitudeCJSONDeserializer deserializer] deserialize:data error:&error];
+                 NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
                  
                  if (error != nil) {
                      NSLog(@"ERROR: Deserialization error:%@", error);
@@ -399,7 +397,7 @@ static AmplitudeLocationManagerDelegate *locationManagerDelegate;
     }
     
     NSError *error = nil;
-    NSDictionary *result = [[AmplitudeCJSONDeserializer deserializer] deserialize:[_campaignInformation dataUsingEncoding:NSUTF8StringEncoding] error:&error];
+    NSDictionary *result = [NSJSONSerialization JSONObjectWithData:[_campaignInformation dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&error];
     if (error != nil) {
         NSLog(@"ERROR: Deserialization error:%@", error);
     } else if (![result isKindOfClass:[NSDictionary class]]) {
@@ -578,9 +576,9 @@ static AmplitudeLocationManagerDelegate *locationManagerDelegate;
             NSArray *uploadEvents = [events subarrayWithRange:NSMakeRange(0, numEvents)];
             long long lastEventIDUploaded = [[[uploadEvents lastObject] objectForKey:@"event_id"] longLongValue];
             NSError *error = nil;
-            NSData *eventsDataLocal = [[AmplitudeCJSONSerializer serializer] serializeArray:uploadEvents error:&error];
+            NSData *eventsDataLocal = [NSJSONSerialization dataWithJSONObject:uploadEvents options:0 error:&error];
             if (error != nil) {
-                NSLog(@"ERROR: JSONSerializer error: %@", error);
+                NSLog(@"ERROR: NSJSONSerialization error: %@", error);
                 updatingCurrently = NO;
                 return;
             }
