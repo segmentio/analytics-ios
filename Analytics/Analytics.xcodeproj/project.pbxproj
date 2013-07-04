@@ -41,14 +41,8 @@
 		F7200BA517659BBF003F3138 /* Segmentio.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BA417659BBF003F3138 /* Segmentio.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7200BA817659C91003F3138 /* libChartbeat-iOS-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200BA717659C91003F3138 /* libChartbeat-iOS-SDK.a */; };
 		F7200BAC17659CCF003F3138 /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200BAB17659CCF003F3138 /* libFlurry.a */; };
-		F7200BAE17659CDB003F3138 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200BAD17659CDB003F3138 /* libGoogleAnalytics.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		F7200BD017659D5F003F3138 /* Amplitude.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BAF17659D5F003F3138 /* Amplitude.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7200BD117659D5F003F3138 /* AmplitudeARCMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BB017659D5F003F3138 /* AmplitudeARCMacros.h */; };
-		F7200BD217659D5F003F3138 /* AmplitudeCDataScanner_Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BB117659D5F003F3138 /* AmplitudeCDataScanner_Extensions.h */; };
-		F7200BD317659D5F003F3138 /* AmplitudeCDataScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BB217659D5F003F3138 /* AmplitudeCDataScanner.h */; };
-		F7200BD417659D5F003F3138 /* AmplitudeCJSONDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BB317659D5F003F3138 /* AmplitudeCJSONDeserializer.h */; };
-		F7200BD517659D5F003F3138 /* AmplitudeCJSONScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BB417659D5F003F3138 /* AmplitudeCJSONScanner.h */; };
-		F7200BD617659D5F003F3138 /* AmplitudeCJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BB517659D5F003F3138 /* AmplitudeCJSONSerializer.h */; };
 		F7200BD717659D5F003F3138 /* AmplitudeLocationManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BB617659D5F003F3138 /* AmplitudeLocationManagerDelegate.h */; };
 		F7200BD817659D5F003F3138 /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BB717659D5F003F3138 /* Bugsnag.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7200BD917659D5F003F3138 /* BugsnagEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BB817659D5F003F3138 /* BugsnagEvent.h */; settings = {ATTRIBUTES = (); }; };
@@ -120,11 +114,6 @@
 		F74DC8F417659F3A00734A95 /* Countly_OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8E817659F3A00734A95 /* Countly_OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F74DC8F517659F3A00734A95 /* Countly.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8E917659F3A00734A95 /* Countly.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F74DC8FD17659F4600734A95 /* Amplitude.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8F617659F4600734A95 /* Amplitude.m */; };
-		F74DC8FE17659F4600734A95 /* AmplitudeCDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8F717659F4600734A95 /* AmplitudeCDataScanner_Extensions.m */; };
-		F74DC8FF17659F4600734A95 /* AmplitudeCDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8F817659F4600734A95 /* AmplitudeCDataScanner.m */; };
-		F74DC90017659F4600734A95 /* AmplitudeCJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8F917659F4600734A95 /* AmplitudeCJSONDeserializer.m */; };
-		F74DC90117659F4600734A95 /* AmplitudeCJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8FA17659F4600734A95 /* AmplitudeCJSONScanner.m */; };
-		F74DC90217659F4600734A95 /* AmplitudeCJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8FB17659F4600734A95 /* AmplitudeCJSONSerializer.m */; };
 		F74DC90317659F4600734A95 /* AmplitudeLocationManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8FC17659F4600734A95 /* AmplitudeLocationManagerDelegate.m */; };
 		F78D29911765AEC4000B937E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29901765AEC4000B937E /* CoreData.framework */; };
 		F78D29931765AECB000B937E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29921765AECB000B937E /* SystemConfiguration.framework */; };
@@ -134,6 +123,7 @@
 		F78D2A171765B81D000B937E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D2A161765B81D000B937E /* AdSupport.framework */; };
 		F78D2A191765B823000B937E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D2A181765B823000B937E /* libsqlite3.dylib */; };
 		F78D2A1B1765B828000B937E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D2A1A1765B828000B937E /* libz.dylib */; };
+		F7D632C317862D73005DF9A4 /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200BAD17659CDB003F3138 /* libGoogleAnalytics.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,11 +164,6 @@
 		F7200BAD17659CDB003F3138 /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalytics.a; path = "Analytics/Providers/GoogleAnalytics-iOS-SDK/Library/libGoogleAnalytics.a"; sourceTree = "<group>"; };
 		F7200BAF17659D5F003F3138 /* Amplitude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Amplitude.h; path = "Analytics/Providers/Amplitude-iOS/Amplitude.h"; sourceTree = "<group>"; };
 		F7200BB017659D5F003F3138 /* AmplitudeARCMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AmplitudeARCMacros.h; path = "Analytics/Providers/Amplitude-iOS/AmplitudeARCMacros.h"; sourceTree = "<group>"; };
-		F7200BB117659D5F003F3138 /* AmplitudeCDataScanner_Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AmplitudeCDataScanner_Extensions.h; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCDataScanner_Extensions.h"; sourceTree = "<group>"; };
-		F7200BB217659D5F003F3138 /* AmplitudeCDataScanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AmplitudeCDataScanner.h; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCDataScanner.h"; sourceTree = "<group>"; };
-		F7200BB317659D5F003F3138 /* AmplitudeCJSONDeserializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AmplitudeCJSONDeserializer.h; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCJSONDeserializer.h"; sourceTree = "<group>"; };
-		F7200BB417659D5F003F3138 /* AmplitudeCJSONScanner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AmplitudeCJSONScanner.h; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCJSONScanner.h"; sourceTree = "<group>"; };
-		F7200BB517659D5F003F3138 /* AmplitudeCJSONSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AmplitudeCJSONSerializer.h; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCJSONSerializer.h"; sourceTree = "<group>"; };
 		F7200BB617659D5F003F3138 /* AmplitudeLocationManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AmplitudeLocationManagerDelegate.h; path = "Analytics/Providers/Amplitude-iOS/AmplitudeLocationManagerDelegate.h"; sourceTree = "<group>"; };
 		F7200BB717659D5F003F3138 /* Bugsnag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bugsnag.h; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Bugsnag.h"; sourceTree = "<group>"; };
 		F7200BB817659D5F003F3138 /* BugsnagEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagEvent.h; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/BugsnagEvent.h"; sourceTree = "<group>"; };
@@ -214,11 +199,6 @@
 		F7200BFE17659D7F003F3138 /* GAITransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITransaction.h; path = "Analytics/Providers/GoogleAnalytics-iOS-SDK/Library/GAITransaction.h"; sourceTree = "<group>"; };
 		F7200BFF17659D7F003F3138 /* GAITransactionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITransactionItem.h; path = "Analytics/Providers/GoogleAnalytics-iOS-SDK/Library/GAITransactionItem.h"; sourceTree = "<group>"; };
 		F7200C0617659E42003F3138 /* Amplitude.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Amplitude.m; path = "Analytics/Providers/Amplitude-iOS/Amplitude.m"; sourceTree = "<group>"; };
-		F7200C0717659E42003F3138 /* AmplitudeCDataScanner_Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCDataScanner_Extensions.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCDataScanner_Extensions.m"; sourceTree = "<group>"; };
-		F7200C0817659E42003F3138 /* AmplitudeCDataScanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCDataScanner.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCDataScanner.m"; sourceTree = "<group>"; };
-		F7200C0917659E42003F3138 /* AmplitudeCJSONDeserializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCJSONDeserializer.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCJSONDeserializer.m"; sourceTree = "<group>"; };
-		F7200C0A17659E42003F3138 /* AmplitudeCJSONScanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCJSONScanner.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCJSONScanner.m"; sourceTree = "<group>"; };
-		F7200C0B17659E42003F3138 /* AmplitudeCJSONSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCJSONSerializer.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCJSONSerializer.m"; sourceTree = "<group>"; };
 		F7200C0C17659E42003F3138 /* AmplitudeLocationManagerDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeLocationManagerDelegate.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeLocationManagerDelegate.m"; sourceTree = "<group>"; };
 		F7200C0D17659E42003F3138 /* Bugsnag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Bugsnag.m; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Bugsnag.m"; sourceTree = "<group>"; };
 		F7200C0E17659E42003F3138 /* BugsnagEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BugsnagEvent.m; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/BugsnagEvent.m"; sourceTree = "<group>"; };
@@ -295,11 +275,6 @@
 		F74DC8E817659F3A00734A95 /* Countly_OpenUDID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Countly_OpenUDID.m; path = Analytics/Providers/Countly/Countly_OpenUDID.m; sourceTree = "<group>"; };
 		F74DC8E917659F3A00734A95 /* Countly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Countly.m; path = Analytics/Providers/Countly/Countly.m; sourceTree = "<group>"; };
 		F74DC8F617659F4600734A95 /* Amplitude.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Amplitude.m; path = "Analytics/Providers/Amplitude-iOS/Amplitude.m"; sourceTree = "<group>"; };
-		F74DC8F717659F4600734A95 /* AmplitudeCDataScanner_Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCDataScanner_Extensions.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCDataScanner_Extensions.m"; sourceTree = "<group>"; };
-		F74DC8F817659F4600734A95 /* AmplitudeCDataScanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCDataScanner.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCDataScanner.m"; sourceTree = "<group>"; };
-		F74DC8F917659F4600734A95 /* AmplitudeCJSONDeserializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCJSONDeserializer.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCJSONDeserializer.m"; sourceTree = "<group>"; };
-		F74DC8FA17659F4600734A95 /* AmplitudeCJSONScanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCJSONScanner.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCJSONScanner.m"; sourceTree = "<group>"; };
-		F74DC8FB17659F4600734A95 /* AmplitudeCJSONSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCJSONSerializer.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCJSONSerializer.m"; sourceTree = "<group>"; };
 		F74DC8FC17659F4600734A95 /* AmplitudeLocationManagerDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeLocationManagerDelegate.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeLocationManagerDelegate.m"; sourceTree = "<group>"; };
 		F74DC90417659F4B00734A95 /* Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Analytics.m; path = Analytics/Analytics.m; sourceTree = "<group>"; };
 		F74DC9051765A02E00734A95 /* LocalyticsDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsDatabase.h; path = Analytics/Providers/Localytics/LocalyticsDatabase.h; sourceTree = "<group>"; };
@@ -311,11 +286,6 @@
 		F74DC90C1765A11700734A95 /* KISSMetricsAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KISSMetricsAPI.m; path = Analytics/Providers/KISSmetrics/KISSMetricsAPI.m; sourceTree = "<group>"; };
 		F74DC90D1765A18D00734A95 /* Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Analytics.m; path = Analytics/Analytics.m; sourceTree = "<group>"; };
 		F74DC90E1765A1A900734A95 /* Amplitude.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Amplitude.m; path = "Analytics/Providers/Amplitude-iOS/Amplitude.m"; sourceTree = "<group>"; };
-		F74DC90F1765A1A900734A95 /* AmplitudeCDataScanner_Extensions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCDataScanner_Extensions.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCDataScanner_Extensions.m"; sourceTree = "<group>"; };
-		F74DC9101765A1A900734A95 /* AmplitudeCDataScanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCDataScanner.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCDataScanner.m"; sourceTree = "<group>"; };
-		F74DC9111765A1A900734A95 /* AmplitudeCJSONDeserializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCJSONDeserializer.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCJSONDeserializer.m"; sourceTree = "<group>"; };
-		F74DC9121765A1A900734A95 /* AmplitudeCJSONScanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCJSONScanner.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCJSONScanner.m"; sourceTree = "<group>"; };
-		F74DC9131765A1A900734A95 /* AmplitudeCJSONSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeCJSONSerializer.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeCJSONSerializer.m"; sourceTree = "<group>"; };
 		F74DC9141765A1A900734A95 /* AmplitudeLocationManagerDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeLocationManagerDelegate.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeLocationManagerDelegate.m"; sourceTree = "<group>"; };
 		F74DC9151765A1A900734A95 /* AmplitudeProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeProvider.m; path = Analytics/Source/Providers/AmplitudeProvider.m; sourceTree = "<group>"; };
 		F74DC9161765A1A900734A95 /* Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Analytics.m; path = Analytics/Analytics.m; sourceTree = "<group>"; };
@@ -383,7 +353,7 @@
 				F78D29FA1765B382000B937E /* UIKit.framework in Frameworks */,
 				F78D29951765AF6A000B937E /* CoreTelephony.framework in Frameworks */,
 				F78D29931765AECB000B937E /* SystemConfiguration.framework in Frameworks */,
-				F7200BAE17659CDB003F3138 /* libGoogleAnalytics.a in Frameworks */,
+				F7D632C317862D73005DF9A4 /* libGoogleAnalytics.a in Frameworks */,
 				F7200BAC17659CCF003F3138 /* libFlurry.a in Frameworks */,
 				F7200BA817659C91003F3138 /* libChartbeat-iOS-SDK.a in Frameworks */,
 				F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */,
@@ -405,11 +375,6 @@
 				F78D29921765AECB000B937E /* SystemConfiguration.framework */,
 				F78D29901765AEC4000B937E /* CoreData.framework */,
 				F74DC90E1765A1A900734A95 /* Amplitude.m */,
-				F74DC90F1765A1A900734A95 /* AmplitudeCDataScanner_Extensions.m */,
-				F74DC9101765A1A900734A95 /* AmplitudeCDataScanner.m */,
-				F74DC9111765A1A900734A95 /* AmplitudeCJSONDeserializer.m */,
-				F74DC9121765A1A900734A95 /* AmplitudeCJSONScanner.m */,
-				F74DC9131765A1A900734A95 /* AmplitudeCJSONSerializer.m */,
 				F74DC9141765A1A900734A95 /* AmplitudeLocationManagerDelegate.m */,
 				F74DC9151765A1A900734A95 /* AmplitudeProvider.m */,
 				F74DC9161765A1A900734A95 /* Analytics.m */,
@@ -462,11 +427,6 @@
 				F74DC9071765A02E00734A95 /* LocalyticsUploader.m */,
 				F74DC90417659F4B00734A95 /* Analytics.m */,
 				F74DC8F617659F4600734A95 /* Amplitude.m */,
-				F74DC8F717659F4600734A95 /* AmplitudeCDataScanner_Extensions.m */,
-				F74DC8F817659F4600734A95 /* AmplitudeCDataScanner.m */,
-				F74DC8F917659F4600734A95 /* AmplitudeCJSONDeserializer.m */,
-				F74DC8FA17659F4600734A95 /* AmplitudeCJSONScanner.m */,
-				F74DC8FB17659F4600734A95 /* AmplitudeCJSONSerializer.m */,
 				F74DC8FC17659F4600734A95 /* AmplitudeLocationManagerDelegate.m */,
 				F74DC8DE17659F3A00734A95 /* Bugsnag.m */,
 				F74DC8DF17659F3A00734A95 /* BugsnagEvent.m */,
@@ -506,11 +466,6 @@
 				F74DC8B617659EF500734A95 /* Segmentio.m */,
 				F74DC8B717659EF500734A95 /* SettingsCache.m */,
 				F7200C0617659E42003F3138 /* Amplitude.m */,
-				F7200C0717659E42003F3138 /* AmplitudeCDataScanner_Extensions.m */,
-				F7200C0817659E42003F3138 /* AmplitudeCDataScanner.m */,
-				F7200C0917659E42003F3138 /* AmplitudeCJSONDeserializer.m */,
-				F7200C0A17659E42003F3138 /* AmplitudeCJSONScanner.m */,
-				F7200C0B17659E42003F3138 /* AmplitudeCJSONSerializer.m */,
 				F7200C0C17659E42003F3138 /* AmplitudeLocationManagerDelegate.m */,
 				F7200C0D17659E42003F3138 /* Bugsnag.m */,
 				F7200C0E17659E42003F3138 /* BugsnagEvent.m */,
@@ -561,11 +516,6 @@
 				F7200BF517659D72003F3138 /* ODIN.h */,
 				F7200BAF17659D5F003F3138 /* Amplitude.h */,
 				F7200BB017659D5F003F3138 /* AmplitudeARCMacros.h */,
-				F7200BB117659D5F003F3138 /* AmplitudeCDataScanner_Extensions.h */,
-				F7200BB217659D5F003F3138 /* AmplitudeCDataScanner.h */,
-				F7200BB317659D5F003F3138 /* AmplitudeCJSONDeserializer.h */,
-				F7200BB417659D5F003F3138 /* AmplitudeCJSONScanner.h */,
-				F7200BB517659D5F003F3138 /* AmplitudeCJSONSerializer.h */,
 				F7200BB617659D5F003F3138 /* AmplitudeLocationManagerDelegate.h */,
 				F7200BB717659D5F003F3138 /* Bugsnag.h */,
 				F7200BB817659D5F003F3138 /* BugsnagEvent.h */,
@@ -690,11 +640,6 @@
 				F7200BDB17659D5F003F3138 /* BugsnagMetaData.h in Headers */,
 				F7200BDC17659D5F003F3138 /* BugsnagNotifier.h in Headers */,
 				F7200BD117659D5F003F3138 /* AmplitudeARCMacros.h in Headers */,
-				F7200BD217659D5F003F3138 /* AmplitudeCDataScanner_Extensions.h in Headers */,
-				F7200BD317659D5F003F3138 /* AmplitudeCDataScanner.h in Headers */,
-				F7200BD417659D5F003F3138 /* AmplitudeCJSONDeserializer.h in Headers */,
-				F7200BD517659D5F003F3138 /* AmplitudeCJSONScanner.h in Headers */,
-				F7200BD617659D5F003F3138 /* AmplitudeCJSONSerializer.h in Headers */,
 				F7200BD717659D5F003F3138 /* AmplitudeLocationManagerDelegate.h in Headers */,
 				F7200BDE17659D5F003F3138 /* NSDictionary+BSJSON.h in Headers */,
 				F7200BDF17659D5F003F3138 /* NSMutableDictionary+BSMerge.h in Headers */,
@@ -800,11 +745,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F74DC8FD17659F4600734A95 /* Amplitude.m in Sources */,
-				F74DC8FE17659F4600734A95 /* AmplitudeCDataScanner_Extensions.m in Sources */,
-				F74DC8FF17659F4600734A95 /* AmplitudeCDataScanner.m in Sources */,
-				F74DC90017659F4600734A95 /* AmplitudeCJSONDeserializer.m in Sources */,
-				F74DC90117659F4600734A95 /* AmplitudeCJSONScanner.m in Sources */,
-				F74DC90217659F4600734A95 /* AmplitudeCJSONSerializer.m in Sources */,
 				F74DC90317659F4600734A95 /* AmplitudeLocationManagerDelegate.m in Sources */,
 				F74DC8B817659EF500734A95 /* AmplitudeProvider.m in Sources */,
 				F7200B7E17659B2F003F3138 /* Analytics.m in Sources */,
