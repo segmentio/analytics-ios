@@ -26,22 +26,16 @@
 
 - (void)enableReachability
 {
-    // allocate a reachability object
-    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNetworkChange:) name:kReachabilityChangedNotification object:nil];
     
-    // set the blocks
-    reach.reachableBlock = ^(Reachability*reach)
-    {
-        NSLog(@"REACHABLE!");
-    };
+    Reachability* reachability = [Reachability reachabilityForInternetConnection];
+    [reachability startNotifier];
     
-    reach.unreachableBlock = ^(Reachability*reach)
-    {
-        NSLog(@"UNREACHABLE!");
-    };
+    NetworkStatus remoteHostStatus = [reachability currentReachabilityStatus];
     
-    // start the notifier which will cause the reachability object to retain itself!
-    [reach startNotifier];
+    if(remoteHostStatus == NotReachable) {NSLog(@"no");}
+    else if (remoteHostStatus == ReachableViaWiFi) {NSLog(@"wifi"); }
+    else if (remoteHostStatus == ReachableViaWWAN) {NSLog(@"cell"); }
 }
 
 - (NSDictionary *)getMonsterDictionary
