@@ -43,7 +43,6 @@
 		F7D632CB17862E3D005DF9A4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D632CA17862E3D005DF9A4 /* libz.dylib */; };
 		F7D632CD17862E59005DF9A4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D632CC17862E59005DF9A4 /* CoreTelephony.framework */; };
 		F7D632CF17862E72005DF9A4 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D632CE17862E72005DF9A4 /* AdSupport.framework */; };
-		F7D632D117863320005DF9A4 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D632D017863320005DF9A4 /* Analytics.framework */; };
 		F7D632D61786391D005DF9A4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D632D31786391D005DF9A4 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
@@ -107,7 +106,6 @@
 		F7D632CA17862E3D005DF9A4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F7D632CC17862E59005DF9A4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		F7D632CE17862E72005DF9A4 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		F7D632D017863320005DF9A4 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Analytics.framework; path = ../Releases/Analytics.framework; sourceTree = "<group>"; };
 		F7D632D21786391D005DF9A4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = AnalyticsApp/Reachability/Reachability.h; sourceTree = "<group>"; };
 		F7D632D31786391D005DF9A4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = AnalyticsApp/Reachability/Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -435,6 +433,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnalyticsApp/AnalyticsApp-Prefix.pch";
 				INFOPLIST_FILE = "AnalyticsApp/AnalyticsApp-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -451,6 +450,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnalyticsApp/AnalyticsApp-Prefix.pch";
 				INFOPLIST_FILE = "AnalyticsApp/AnalyticsApp-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

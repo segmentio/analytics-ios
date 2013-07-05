@@ -207,11 +207,11 @@
 
 - (IBAction)onTrackClick:(id)sender {
     
-    [[Analytics sharedAnalytics] track:@"PhotoStream \\/ Select filter" properties:@{ @"Available Offline": @"Option"}];
+    [[Analytics sharedAnalytics] track:@"PhotoStream Select filter"];// properties:@{ @"Available Offline": @"Option"}];
     
-    NSDictionary *monster = [self getMonsterDictionary];
+    //NSDictionary *monster = [self getMonsterDictionary];
     
-    [[Analytics sharedAnalytics] track:@"Monster Attack" properties:monster];
+    //[[Analytics sharedAnalytics] track:@"Monster Attack" properties:monster];
     
     NSLog(@"Sent analytics events");
 }
