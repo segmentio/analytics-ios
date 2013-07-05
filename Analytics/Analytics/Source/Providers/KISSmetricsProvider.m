@@ -3,12 +3,7 @@
 
 #import "KISSmetricsProvider.h"
 #import "KISSMetricsAPI.h"
-
-#ifdef ANALYTICS_DEBUG
-#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
-#else
-#define AnalyticsDebugLog(...)
-#endif
+#import "AnalyticsLogger.h"
 
 
 @implementation KISSmetricsProvider {
@@ -36,7 +31,7 @@
 {
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [KISSMetricsAPI sharedAPIWithKey:apiKey];
-    AnalyticsDebugLog(@"KISSmetricsProvider initialized.");
+    [AnalyticsLogger log:@"KISSmetricsProvider initialized."];
 }
 
 

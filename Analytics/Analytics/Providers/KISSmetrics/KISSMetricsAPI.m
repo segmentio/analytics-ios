@@ -511,7 +511,7 @@ static KISSMetricsAPI *sharedAPI = nil;
         NSString *escapedKey = [self urlEncode:stringKey];
         if([escapedKey length] > 255)
         {
-            InfoLog(@"KISSMetricsAPI: WARNING - property key cannot longer than 255 characters. When URL escaped, your key is %lu characters long (the submitted value is %@, the URL escaped value is %@). Dropping property.", [escapedKey length], stringKey, escapedKey);
+            InfoLog(@"KISSMetricsAPI: WARNING - property key cannot longer than 255 characters. When URL escaped, your key is %lu characters long (the submitted value is %@, the URL escaped value is %@). Dropping property.", (unsigned long)[escapedKey length], stringKey, escapedKey);
             continue;
         }
         

@@ -3,12 +3,7 @@
 
 #import "SegmentioProvider.h"
 #import "Segmentio.h"
-
-#ifdef ANALYTICS_DEBUG
-#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
-#else
-#define AnalyticsDebugLog(...)
-#endif
+#import "AnalyticsLogger.h"
 
 
 @implementation SegmentioProvider {
@@ -41,7 +36,7 @@
 - (void)start
 {
     [Segmentio withSecret:[self.settings objectForKey:@"secret"]];
-    AnalyticsDebugLog(@"SegmentioProvider initialized.");
+    [AnalyticsLogger log:@"SegmentioProvider initialized."];
 }
 
 

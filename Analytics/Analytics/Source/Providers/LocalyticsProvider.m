@@ -3,12 +3,7 @@
 
 #import "LocalyticsProvider.h"
 #import "LocalyticsSession.h"
-
-#ifdef ANALYTICS_DEBUG
-#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
-#else
-#define AnalyticsDebugLog(...)
-#endif
+#import "AnalyticsLogger.h"
 
 
 @implementation LocalyticsProvider {
@@ -43,7 +38,7 @@
 {
     NSString *appKey = [self.settings objectForKey:@"appKey"];
     [[LocalyticsSession sharedLocalyticsSession] startSession:appKey];
-    AnalyticsDebugLog(@"LocalyticsProvider initialized.");
+    [AnalyticsLogger log:@"LocalyticsProvider initialized."];
 }
 
 

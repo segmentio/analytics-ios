@@ -3,12 +3,6 @@
 
 #import "Provider.h"
 
-#ifdef ANALYTICS_DEBUG
-#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
-#else
-#define AnalyticsDebugLog(...)
-#endif
-
 
 @implementation Provider {
 

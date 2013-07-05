@@ -3,12 +3,7 @@
 
 #import "FlurryProvider.h"
 #import "Flurry.h"
-
-#ifdef ANALYTICS_DEBUG
-#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
-#else
-#define AnalyticsDebugLog(...)
-#endif
+#import "AnalyticsLogger.h"
 
 
 @implementation FlurryProvider {
@@ -37,7 +32,7 @@
     // Initialization
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [Flurry startSession:apiKey];
-    AnalyticsDebugLog(@"FlurryProvider initialized.");
+    [AnalyticsLogger log:@"FlurryProvider initialized."];
 }
 
 

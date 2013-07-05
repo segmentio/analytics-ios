@@ -3,12 +3,7 @@
 
 #import "GoogleAnalyticsProvider.h"
 #import "GAI.h"
-
-#ifdef ANALYTICS_DEBUG
-#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
-#else
-#define AnalyticsDebugLog(...)
-#endif
+#import "AnalyticsLogger.h"
 
 @implementation GoogleAnalyticsProvider {
     
@@ -46,7 +41,7 @@
     // TODO: add support for sample rate
     
     // All done!
-    AnalyticsDebugLog(@"GoogleAnalyticsProvider initialized.");
+    [AnalyticsLogger log:@"GoogleAnalyticsProvider initialized."];
 }
 
 
@@ -92,7 +87,7 @@
         value = valueFallback;
     }
     
-    AnalyticsDebugLog(@"Sending to Google Analytics: category %@, action %@, label %@, value %@", category, event, label, value);
+    [AnalyticsLogger log:@"Sending to Google Analytics: category %@, action %@, label %@, value %@", category, event, label, value];
     
     // Track the event!
     [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:category withAction:event withLabel:label withValue:value];

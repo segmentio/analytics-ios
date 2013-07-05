@@ -3,12 +3,7 @@
 
 #import "AmplitudeProvider.h"
 #import "Amplitude.h"
-
-#ifdef ANALYTICS_DEBUG
-#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
-#else
-#define AnalyticsDebugLog(...)
-#endif
+#import "AnalyticsLogger.h"
 
 
 @implementation AmplitudeProvider {
@@ -36,7 +31,7 @@
 {
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [Amplitude initializeApiKey:apiKey];
-    AnalyticsDebugLog(@"AmplitudeProvider initialized.");
+    [AnalyticsLogger log:@"AmplitudeProvider initialized."];
 }
 
 

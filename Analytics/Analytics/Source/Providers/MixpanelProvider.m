@@ -3,12 +3,7 @@
 
 #import "MixpanelProvider.h"
 #import "Mixpanel.h"
-
-#ifdef ANALYTICS_DEBUG
-#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
-#else
-#define AnalyticsDebugLog(...)
-#endif
+#import "AnalyticsLogger.h"
 
 
 @implementation MixpanelProvider {
@@ -36,7 +31,7 @@
 {
     NSString *token = [self.settings objectForKey:@"token"];
     [Mixpanel sharedInstanceWithToken:token];
-    AnalyticsDebugLog(@"MixpanelProvider initialized.");
+    [AnalyticsLogger log:@"MixpanelProvider initialized."];
 }
 
 

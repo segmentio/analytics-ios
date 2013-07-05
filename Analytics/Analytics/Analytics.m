@@ -2,8 +2,9 @@
 // Copyright 2013 Segment.io
 
 #import "Analytics.h"
+#import "AnalyticsLogger.h"
 
-#define ANALYTICS_VERSION @"0.3.3"
+#define ANALYTICS_VERSION @"0.5.0"
 
 
 @implementation Analytics {
@@ -133,6 +134,11 @@ static Analytics *sharedInstance = nil;
 - (void)reset
 {
     [self.providerManager reset];
+}
+
+- (void)debug:(BOOL)showDebugLogs
+{
+    [AnalyticsLogger showDebugLogs:showDebugLogs];
 }
 
 - (NSString *)description

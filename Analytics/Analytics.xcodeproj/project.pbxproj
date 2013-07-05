@@ -22,6 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		D3B2AB751786554100D60FE3 /* AnalyticsLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B2AB741786554100D60FE3 /* AnalyticsLogger.m */; };
+		D3B2AB771786555A00D60FE3 /* AnalyticsLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D3B2AB761786555A00D60FE3 /* AnalyticsLogger.h */; };
 		F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		F7200B7E17659B2F003F3138 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = F7200B7D17659B2F003F3138 /* Analytics.m */; };
 		F7200B8717659B95003F3138 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200B8617659B95003F3138 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -137,6 +139,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D3B2AB741786554100D60FE3 /* AnalyticsLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AnalyticsLogger.m; path = Analytics/Source/AnalyticsLogger.m; sourceTree = "<group>"; };
+		D3B2AB761786555A00D60FE3 /* AnalyticsLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AnalyticsLogger.h; path = Analytics/Source/AnalyticsLogger.h; sourceTree = "<group>"; };
 		F7200B7317659B2F003F3138 /* libAnalytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAnalytics.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7200B7617659B2F003F3138 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F7200B7A17659B2F003F3138 /* Analytics-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Analytics-Prefix.pch"; sourceTree = "<group>"; };
@@ -198,45 +202,6 @@
 		F7200BFD17659D7F003F3138 /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = "Analytics/Providers/GoogleAnalytics-iOS-SDK/Library/GAITracker.h"; sourceTree = "<group>"; };
 		F7200BFE17659D7F003F3138 /* GAITransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITransaction.h; path = "Analytics/Providers/GoogleAnalytics-iOS-SDK/Library/GAITransaction.h"; sourceTree = "<group>"; };
 		F7200BFF17659D7F003F3138 /* GAITransactionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITransactionItem.h; path = "Analytics/Providers/GoogleAnalytics-iOS-SDK/Library/GAITransactionItem.h"; sourceTree = "<group>"; };
-		F7200C0617659E42003F3138 /* Amplitude.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Amplitude.m; path = "Analytics/Providers/Amplitude-iOS/Amplitude.m"; sourceTree = "<group>"; };
-		F7200C0C17659E42003F3138 /* AmplitudeLocationManagerDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeLocationManagerDelegate.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeLocationManagerDelegate.m"; sourceTree = "<group>"; };
-		F7200C0D17659E42003F3138 /* Bugsnag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Bugsnag.m; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Bugsnag.m"; sourceTree = "<group>"; };
-		F7200C0E17659E42003F3138 /* BugsnagEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BugsnagEvent.m; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/BugsnagEvent.m"; sourceTree = "<group>"; };
-		F7200C0F17659E42003F3138 /* BugsnagMetaData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BugsnagMetaData.m; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/BugsnagMetaData.m"; sourceTree = "<group>"; };
-		F7200C1017659E42003F3138 /* BugsnagNotifier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BugsnagNotifier.m; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/BugsnagNotifier.m"; sourceTree = "<group>"; };
-		F7200C1117659E42003F3138 /* NSDictionary+BSJSON.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+BSJSON.m"; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Categories/NSDictionary+BSJSON.m"; sourceTree = "<group>"; };
-		F7200C1217659E42003F3138 /* NSMutableDictionary+BSMerge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+BSMerge.m"; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Categories/NSMutableDictionary+BSMerge.m"; sourceTree = "<group>"; };
-		F7200C1317659E42003F3138 /* NSNumber+BSDuration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+BSDuration.m"; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Categories/NSNumber+BSDuration.m"; sourceTree = "<group>"; };
-		F7200C1417659E42003F3138 /* NSNumber+BSFileSizes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+BSFileSizes.m"; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Categories/NSNumber+BSFileSizes.m"; sourceTree = "<group>"; };
-		F7200C1517659E42003F3138 /* UIDevice+BSStats.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+BSStats.m"; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Categories/UIDevice+BSStats.m"; sourceTree = "<group>"; };
-		F7200C1617659E42003F3138 /* UIViewController+BSVisibility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+BSVisibility.m"; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Categories/UIViewController+BSVisibility.m"; sourceTree = "<group>"; };
-		F7200C1717659E42003F3138 /* Countly_OpenUDID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Countly_OpenUDID.m; path = Analytics/Providers/Countly/Countly_OpenUDID.m; sourceTree = "<group>"; };
-		F7200C1817659E42003F3138 /* Countly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Countly.m; path = Analytics/Providers/Countly/Countly.m; sourceTree = "<group>"; };
-		F7200C1917659E42003F3138 /* KISSMetricsAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KISSMetricsAPI.m; path = Analytics/Providers/KISSmetrics/KISSMetricsAPI.m; sourceTree = "<group>"; };
-		F7200C1A17659E42003F3138 /* LocalyticsDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalyticsDatabase.m; path = Analytics/Providers/Localytics/LocalyticsDatabase.m; sourceTree = "<group>"; };
-		F7200C1B17659E42003F3138 /* LocalyticsSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalyticsSession.m; path = Analytics/Providers/Localytics/LocalyticsSession.m; sourceTree = "<group>"; };
-		F7200C1C17659E42003F3138 /* LocalyticsUploader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalyticsUploader.m; path = Analytics/Providers/Localytics/LocalyticsUploader.m; sourceTree = "<group>"; };
-		F7200C1D17659E42003F3138 /* MPCJSONDataSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MPCJSONDataSerializer.m; path = Analytics/Providers/Mixpanel/Mixpanel/Library/JSON/MPCJSONDataSerializer.m; sourceTree = "<group>"; };
-		F7200C1E17659E42003F3138 /* MPCJSONSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MPCJSONSerializer.m; path = Analytics/Providers/Mixpanel/Mixpanel/Library/JSON/MPCJSONSerializer.m; sourceTree = "<group>"; };
-		F7200C1F17659E42003F3138 /* MPCSerializedJSONData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MPCSerializedJSONData.m; path = Analytics/Providers/Mixpanel/Mixpanel/Library/JSON/MPCSerializedJSONData.m; sourceTree = "<group>"; };
-		F7200C2017659E42003F3138 /* NSData+MPBase64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSData+MPBase64.m"; path = "Analytics/Providers/Mixpanel/Mixpanel/Library/NSData_Base64/NSData+MPBase64.m"; sourceTree = "<group>"; };
-		F7200C2117659E42003F3138 /* ODIN.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ODIN.m; path = Analytics/Providers/Mixpanel/Mixpanel/Library/ODIN/ODIN.m; sourceTree = "<group>"; };
-		F7200C2217659E42003F3138 /* Mixpanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Mixpanel.m; path = Analytics/Providers/Mixpanel/Mixpanel/Mixpanel.m; sourceTree = "<group>"; };
-		F7200C2317659E42003F3138 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Analytics/Providers/Reachability/Reachability.m; sourceTree = "<group>"; };
-		F7200C2417659E42003F3138 /* ProviderManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ProviderManager.m; path = Analytics/Source/ProviderManager.m; sourceTree = "<group>"; };
-		F7200C2517659E42003F3138 /* AmplitudeProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeProvider.m; path = Analytics/Source/Providers/AmplitudeProvider.m; sourceTree = "<group>"; };
-		F7200C2617659E42003F3138 /* BugsnagProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BugsnagProvider.m; path = Analytics/Source/Providers/BugsnagProvider.m; sourceTree = "<group>"; };
-		F7200C2717659E42003F3138 /* ChartbeatProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ChartbeatProvider.m; path = Analytics/Source/Providers/ChartbeatProvider.m; sourceTree = "<group>"; };
-		F7200C2817659E42003F3138 /* CountlyProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CountlyProvider.m; path = Analytics/Source/Providers/CountlyProvider.m; sourceTree = "<group>"; };
-		F7200C2A17659E43003F3138 /* FlurryProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FlurryProvider.m; path = Analytics/Source/Providers/FlurryProvider.m; sourceTree = "<group>"; };
-		F7200C2B17659E43003F3138 /* GoogleAnalyticsProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GoogleAnalyticsProvider.m; path = Analytics/Source/Providers/GoogleAnalyticsProvider.m; sourceTree = "<group>"; };
-		F7200C2C17659E43003F3138 /* KISSmetricsProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KISSmetricsProvider.m; path = Analytics/Source/Providers/KISSmetricsProvider.m; sourceTree = "<group>"; };
-		F7200C2D17659E43003F3138 /* LocalyticsProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalyticsProvider.m; path = Analytics/Source/Providers/LocalyticsProvider.m; sourceTree = "<group>"; };
-		F7200C2E17659E43003F3138 /* MixpanelProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MixpanelProvider.m; path = Analytics/Source/Providers/MixpanelProvider.m; sourceTree = "<group>"; };
-		F7200C2F17659E43003F3138 /* Provider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Provider.m; path = Analytics/Source/Providers/Provider.m; sourceTree = "<group>"; };
-		F7200C3017659E43003F3138 /* SegmentioProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SegmentioProvider.m; path = Analytics/Source/Providers/SegmentioProvider.m; sourceTree = "<group>"; };
-		F7200C3117659E43003F3138 /* Segmentio.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Segmentio.m; path = Analytics/Source/Segmentio/Segmentio.m; sourceTree = "<group>"; };
-		F7200C3217659E43003F3138 /* SettingsCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SettingsCache.m; path = Analytics/Source/SettingsCache.m; sourceTree = "<group>"; };
 		F74DC8AA17659EF500734A95 /* AmplitudeProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeProvider.m; path = Analytics/Source/Providers/AmplitudeProvider.m; sourceTree = "<group>"; };
 		F74DC8AB17659EF500734A95 /* BugsnagProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BugsnagProvider.m; path = Analytics/Source/Providers/BugsnagProvider.m; sourceTree = "<group>"; };
 		F74DC8AC17659EF500734A95 /* ChartbeatProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ChartbeatProvider.m; path = Analytics/Source/Providers/ChartbeatProvider.m; sourceTree = "<group>"; };
@@ -277,57 +242,6 @@
 		F74DC8F617659F4600734A95 /* Amplitude.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Amplitude.m; path = "Analytics/Providers/Amplitude-iOS/Amplitude.m"; sourceTree = "<group>"; };
 		F74DC8FC17659F4600734A95 /* AmplitudeLocationManagerDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeLocationManagerDelegate.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeLocationManagerDelegate.m"; sourceTree = "<group>"; };
 		F74DC90417659F4B00734A95 /* Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Analytics.m; path = Analytics/Analytics.m; sourceTree = "<group>"; };
-		F74DC9051765A02E00734A95 /* LocalyticsDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsDatabase.h; path = Analytics/Providers/Localytics/LocalyticsDatabase.h; sourceTree = "<group>"; };
-		F74DC9061765A02E00734A95 /* LocalyticsSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalyticsSession.m; path = Analytics/Providers/Localytics/LocalyticsSession.m; sourceTree = "<group>"; };
-		F74DC9071765A02E00734A95 /* LocalyticsUploader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalyticsUploader.m; path = Analytics/Providers/Localytics/LocalyticsUploader.m; sourceTree = "<group>"; };
-		F74DC9091765A03700734A95 /* LocalyticsDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalyticsDatabase.m; path = Analytics/Providers/Localytics/LocalyticsDatabase.m; sourceTree = "<group>"; };
-		F74DC90A1765A07500734A95 /* Countly_OpenUDID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Countly_OpenUDID.m; path = Analytics/Providers/Countly/Countly_OpenUDID.m; sourceTree = "<group>"; };
-		F74DC90B1765A07500734A95 /* Countly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Countly.m; path = Analytics/Providers/Countly/Countly.m; sourceTree = "<group>"; };
-		F74DC90C1765A11700734A95 /* KISSMetricsAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KISSMetricsAPI.m; path = Analytics/Providers/KISSmetrics/KISSMetricsAPI.m; sourceTree = "<group>"; };
-		F74DC90D1765A18D00734A95 /* Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Analytics.m; path = Analytics/Analytics.m; sourceTree = "<group>"; };
-		F74DC90E1765A1A900734A95 /* Amplitude.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Amplitude.m; path = "Analytics/Providers/Amplitude-iOS/Amplitude.m"; sourceTree = "<group>"; };
-		F74DC9141765A1A900734A95 /* AmplitudeLocationManagerDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeLocationManagerDelegate.m; path = "Analytics/Providers/Amplitude-iOS/AmplitudeLocationManagerDelegate.m"; sourceTree = "<group>"; };
-		F74DC9151765A1A900734A95 /* AmplitudeProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AmplitudeProvider.m; path = Analytics/Source/Providers/AmplitudeProvider.m; sourceTree = "<group>"; };
-		F74DC9161765A1A900734A95 /* Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Analytics.m; path = Analytics/Analytics.m; sourceTree = "<group>"; };
-		F74DC9171765A1A900734A95 /* Bugsnag.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Bugsnag.m; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Bugsnag.m"; sourceTree = "<group>"; };
-		F74DC9181765A1A900734A95 /* BugsnagEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BugsnagEvent.m; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/BugsnagEvent.m"; sourceTree = "<group>"; };
-		F74DC9191765A1A900734A95 /* BugsnagMetaData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BugsnagMetaData.m; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/BugsnagMetaData.m"; sourceTree = "<group>"; };
-		F74DC91A1765A1A900734A95 /* BugsnagNotifier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BugsnagNotifier.m; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/BugsnagNotifier.m"; sourceTree = "<group>"; };
-		F74DC91B1765A1A900734A95 /* BugsnagProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = BugsnagProvider.m; path = Analytics/Source/Providers/BugsnagProvider.m; sourceTree = "<group>"; };
-		F74DC91C1765A1A900734A95 /* ChartbeatProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ChartbeatProvider.m; path = Analytics/Source/Providers/ChartbeatProvider.m; sourceTree = "<group>"; };
-		F74DC91D1765A1A900734A95 /* Countly_OpenUDID.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Countly_OpenUDID.m; path = Analytics/Providers/Countly/Countly_OpenUDID.m; sourceTree = "<group>"; };
-		F74DC91E1765A1AA00734A95 /* Countly.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Countly.m; path = Analytics/Providers/Countly/Countly.m; sourceTree = "<group>"; };
-		F74DC91F1765A1AA00734A95 /* CountlyProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CountlyProvider.m; path = Analytics/Source/Providers/CountlyProvider.m; sourceTree = "<group>"; };
-		F74DC9211765A1AA00734A95 /* FlurryProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = FlurryProvider.m; path = Analytics/Source/Providers/FlurryProvider.m; sourceTree = "<group>"; };
-		F74DC9221765A1AA00734A95 /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = "Analytics/Providers/GoogleAnalytics-iOS-SDK/Library/GAITracker.h"; sourceTree = "<group>"; };
-		F74DC9231765A1AA00734A95 /* GAITransaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITransaction.h; path = "Analytics/Providers/GoogleAnalytics-iOS-SDK/Library/GAITransaction.h"; sourceTree = "<group>"; };
-		F74DC9241765A1AA00734A95 /* GoogleAnalyticsProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GoogleAnalyticsProvider.m; path = Analytics/Source/Providers/GoogleAnalyticsProvider.m; sourceTree = "<group>"; };
-		F74DC9251765A1AA00734A95 /* KISSMetricsAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KISSMetricsAPI.m; path = Analytics/Providers/KISSmetrics/KISSMetricsAPI.m; sourceTree = "<group>"; };
-		F74DC9261765A1AA00734A95 /* KISSmetricsProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KISSmetricsProvider.m; path = Analytics/Source/Providers/KISSmetricsProvider.m; sourceTree = "<group>"; };
-		F74DC9271765A1AA00734A95 /* LocalyticsDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalyticsDatabase.m; path = Analytics/Providers/Localytics/LocalyticsDatabase.m; sourceTree = "<group>"; };
-		F74DC9281765A1AA00734A95 /* LocalyticsProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalyticsProvider.m; path = Analytics/Source/Providers/LocalyticsProvider.m; sourceTree = "<group>"; };
-		F74DC9291765A1AA00734A95 /* LocalyticsSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalyticsSession.m; path = Analytics/Providers/Localytics/LocalyticsSession.m; sourceTree = "<group>"; };
-		F74DC92A1765A1AA00734A95 /* LocalyticsUploader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalyticsUploader.m; path = Analytics/Providers/Localytics/LocalyticsUploader.m; sourceTree = "<group>"; };
-		F74DC92B1765A1AA00734A95 /* Mixpanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Mixpanel.h; path = Analytics/Providers/Mixpanel/Mixpanel/Mixpanel.h; sourceTree = "<group>"; };
-		F74DC92C1765A1AA00734A95 /* Mixpanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Mixpanel.m; path = Analytics/Providers/Mixpanel/Mixpanel/Mixpanel.m; sourceTree = "<group>"; };
-		F74DC92D1765A1AA00734A95 /* MixpanelProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MixpanelProvider.m; path = Analytics/Source/Providers/MixpanelProvider.m; sourceTree = "<group>"; };
-		F74DC92E1765A1AA00734A95 /* MPCJSONDataSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MPCJSONDataSerializer.m; path = Analytics/Providers/Mixpanel/Mixpanel/Library/JSON/MPCJSONDataSerializer.m; sourceTree = "<group>"; };
-		F74DC92F1765A1AA00734A95 /* MPCJSONSerializer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MPCJSONSerializer.m; path = Analytics/Providers/Mixpanel/Mixpanel/Library/JSON/MPCJSONSerializer.m; sourceTree = "<group>"; };
-		F74DC9301765A1AA00734A95 /* MPCSerializedJSONData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MPCSerializedJSONData.m; path = Analytics/Providers/Mixpanel/Mixpanel/Library/JSON/MPCSerializedJSONData.m; sourceTree = "<group>"; };
-		F74DC9311765A1AA00734A95 /* NSData+MPBase64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSData+MPBase64.m"; path = "Analytics/Providers/Mixpanel/Mixpanel/Library/NSData_Base64/NSData+MPBase64.m"; sourceTree = "<group>"; };
-		F74DC9321765A1AA00734A95 /* NSDictionary+BSJSON.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+BSJSON.m"; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Categories/NSDictionary+BSJSON.m"; sourceTree = "<group>"; };
-		F74DC9331765A1AA00734A95 /* NSMutableDictionary+BSMerge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSMutableDictionary+BSMerge.m"; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Categories/NSMutableDictionary+BSMerge.m"; sourceTree = "<group>"; };
-		F74DC9341765A1AA00734A95 /* NSNumber+BSDuration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+BSDuration.m"; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Categories/NSNumber+BSDuration.m"; sourceTree = "<group>"; };
-		F74DC9351765A1AA00734A95 /* NSNumber+BSFileSizes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSNumber+BSFileSizes.m"; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Categories/NSNumber+BSFileSizes.m"; sourceTree = "<group>"; };
-		F74DC9361765A1AA00734A95 /* ODIN.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ODIN.m; path = Analytics/Providers/Mixpanel/Mixpanel/Library/ODIN/ODIN.m; sourceTree = "<group>"; };
-		F74DC9371765A1AA00734A95 /* Provider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Provider.m; path = Analytics/Source/Providers/Provider.m; sourceTree = "<group>"; };
-		F74DC9381765A1AA00734A95 /* ProviderManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ProviderManager.m; path = Analytics/Source/ProviderManager.m; sourceTree = "<group>"; };
-		F74DC9391765A1AA00734A95 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Analytics/Providers/Reachability/Reachability.m; sourceTree = "<group>"; };
-		F74DC93A1765A1AA00734A95 /* Segmentio.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Segmentio.m; path = Analytics/Source/Segmentio/Segmentio.m; sourceTree = "<group>"; };
-		F74DC93B1765A1AA00734A95 /* SegmentioProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SegmentioProvider.m; path = Analytics/Source/Providers/SegmentioProvider.m; sourceTree = "<group>"; };
-		F74DC93C1765A1AA00734A95 /* SettingsCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SettingsCache.m; path = Analytics/Source/SettingsCache.m; sourceTree = "<group>"; };
-		F74DC93D1765A1AA00734A95 /* UIDevice+BSStats.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+BSStats.m"; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Categories/UIDevice+BSStats.m"; sourceTree = "<group>"; };
-		F74DC93E1765A1AA00734A95 /* UIViewController+BSVisibility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+BSVisibility.m"; path = "Analytics/Providers/Bugsnag/Bugsnag Plugin/Categories/UIViewController+BSVisibility.m"; sourceTree = "<group>"; };
 		F78D29901765AEC4000B937E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F78D29921765AECB000B937E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		F78D29941765AF6A000B937E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -366,65 +280,8 @@
 		F7200B6A17659B2F003F3138 = {
 			isa = PBXGroup;
 			children = (
-				F78D2A1A1765B828000B937E /* libz.dylib */,
-				F78D2A181765B823000B937E /* libsqlite3.dylib */,
-				F78D2A161765B81D000B937E /* AdSupport.framework */,
-				F78D29FB1765B38A000B937E /* QuartzCore.framework */,
-				F78D29F91765B382000B937E /* UIKit.framework */,
-				F78D29941765AF6A000B937E /* CoreTelephony.framework */,
-				F78D29921765AECB000B937E /* SystemConfiguration.framework */,
-				F78D29901765AEC4000B937E /* CoreData.framework */,
-				F74DC90E1765A1A900734A95 /* Amplitude.m */,
-				F74DC9141765A1A900734A95 /* AmplitudeLocationManagerDelegate.m */,
-				F74DC9151765A1A900734A95 /* AmplitudeProvider.m */,
-				F74DC9161765A1A900734A95 /* Analytics.m */,
-				F74DC9171765A1A900734A95 /* Bugsnag.m */,
-				F74DC9181765A1A900734A95 /* BugsnagEvent.m */,
-				F74DC9191765A1A900734A95 /* BugsnagMetaData.m */,
-				F74DC91A1765A1A900734A95 /* BugsnagNotifier.m */,
-				F74DC91B1765A1A900734A95 /* BugsnagProvider.m */,
-				F74DC91C1765A1A900734A95 /* ChartbeatProvider.m */,
-				F74DC91D1765A1A900734A95 /* Countly_OpenUDID.m */,
-				F74DC91E1765A1AA00734A95 /* Countly.m */,
-				F74DC91F1765A1AA00734A95 /* CountlyProvider.m */,
-				F74DC9211765A1AA00734A95 /* FlurryProvider.m */,
-				F74DC9221765A1AA00734A95 /* GAITracker.h */,
-				F74DC9231765A1AA00734A95 /* GAITransaction.h */,
-				F74DC9241765A1AA00734A95 /* GoogleAnalyticsProvider.m */,
-				F74DC9251765A1AA00734A95 /* KISSMetricsAPI.m */,
-				F74DC9261765A1AA00734A95 /* KISSmetricsProvider.m */,
-				F74DC9271765A1AA00734A95 /* LocalyticsDatabase.m */,
-				F74DC9281765A1AA00734A95 /* LocalyticsProvider.m */,
-				F74DC9291765A1AA00734A95 /* LocalyticsSession.m */,
-				F74DC92A1765A1AA00734A95 /* LocalyticsUploader.m */,
-				F74DC92B1765A1AA00734A95 /* Mixpanel.h */,
-				F74DC92C1765A1AA00734A95 /* Mixpanel.m */,
-				F74DC92D1765A1AA00734A95 /* MixpanelProvider.m */,
-				F74DC92E1765A1AA00734A95 /* MPCJSONDataSerializer.m */,
-				F74DC92F1765A1AA00734A95 /* MPCJSONSerializer.m */,
-				F74DC9301765A1AA00734A95 /* MPCSerializedJSONData.m */,
-				F74DC9311765A1AA00734A95 /* NSData+MPBase64.m */,
-				F74DC9321765A1AA00734A95 /* NSDictionary+BSJSON.m */,
-				F74DC9331765A1AA00734A95 /* NSMutableDictionary+BSMerge.m */,
-				F74DC9341765A1AA00734A95 /* NSNumber+BSDuration.m */,
-				F74DC9351765A1AA00734A95 /* NSNumber+BSFileSizes.m */,
-				F74DC9361765A1AA00734A95 /* ODIN.m */,
-				F74DC9371765A1AA00734A95 /* Provider.m */,
-				F74DC9381765A1AA00734A95 /* ProviderManager.m */,
-				F74DC9391765A1AA00734A95 /* Reachability.m */,
-				F74DC93A1765A1AA00734A95 /* Segmentio.m */,
-				F74DC93B1765A1AA00734A95 /* SegmentioProvider.m */,
-				F74DC93C1765A1AA00734A95 /* SettingsCache.m */,
-				F74DC93D1765A1AA00734A95 /* UIDevice+BSStats.m */,
-				F74DC93E1765A1AA00734A95 /* UIViewController+BSVisibility.m */,
-				F74DC90D1765A18D00734A95 /* Analytics.m */,
-				F74DC90C1765A11700734A95 /* KISSMetricsAPI.m */,
-				F74DC90A1765A07500734A95 /* Countly_OpenUDID.m */,
-				F74DC90B1765A07500734A95 /* Countly.m */,
-				F74DC9091765A03700734A95 /* LocalyticsDatabase.m */,
-				F74DC9051765A02E00734A95 /* LocalyticsDatabase.h */,
-				F74DC9061765A02E00734A95 /* LocalyticsSession.m */,
-				F74DC9071765A02E00734A95 /* LocalyticsUploader.m */,
+				D3B2AB761786555A00D60FE3 /* AnalyticsLogger.h */,
+				D3B2AB741786554100D60FE3 /* AnalyticsLogger.m */,
 				F74DC90417659F4B00734A95 /* Analytics.m */,
 				F74DC8F617659F4600734A95 /* Amplitude.m */,
 				F74DC8FC17659F4600734A95 /* AmplitudeLocationManagerDelegate.m */,
@@ -465,45 +322,6 @@
 				F74DC8B517659EF500734A95 /* SegmentioProvider.m */,
 				F74DC8B617659EF500734A95 /* Segmentio.m */,
 				F74DC8B717659EF500734A95 /* SettingsCache.m */,
-				F7200C0617659E42003F3138 /* Amplitude.m */,
-				F7200C0C17659E42003F3138 /* AmplitudeLocationManagerDelegate.m */,
-				F7200C0D17659E42003F3138 /* Bugsnag.m */,
-				F7200C0E17659E42003F3138 /* BugsnagEvent.m */,
-				F7200C0F17659E42003F3138 /* BugsnagMetaData.m */,
-				F7200C1017659E42003F3138 /* BugsnagNotifier.m */,
-				F7200C1117659E42003F3138 /* NSDictionary+BSJSON.m */,
-				F7200C1217659E42003F3138 /* NSMutableDictionary+BSMerge.m */,
-				F7200C1317659E42003F3138 /* NSNumber+BSDuration.m */,
-				F7200C1417659E42003F3138 /* NSNumber+BSFileSizes.m */,
-				F7200C1517659E42003F3138 /* UIDevice+BSStats.m */,
-				F7200C1617659E42003F3138 /* UIViewController+BSVisibility.m */,
-				F7200C1717659E42003F3138 /* Countly_OpenUDID.m */,
-				F7200C1817659E42003F3138 /* Countly.m */,
-				F7200C1917659E42003F3138 /* KISSMetricsAPI.m */,
-				F7200C1A17659E42003F3138 /* LocalyticsDatabase.m */,
-				F7200C1B17659E42003F3138 /* LocalyticsSession.m */,
-				F7200C1C17659E42003F3138 /* LocalyticsUploader.m */,
-				F7200C1D17659E42003F3138 /* MPCJSONDataSerializer.m */,
-				F7200C1E17659E42003F3138 /* MPCJSONSerializer.m */,
-				F7200C1F17659E42003F3138 /* MPCSerializedJSONData.m */,
-				F7200C2017659E42003F3138 /* NSData+MPBase64.m */,
-				F7200C2117659E42003F3138 /* ODIN.m */,
-				F7200C2217659E42003F3138 /* Mixpanel.m */,
-				F7200C2317659E42003F3138 /* Reachability.m */,
-				F7200C2417659E42003F3138 /* ProviderManager.m */,
-				F7200C2517659E42003F3138 /* AmplitudeProvider.m */,
-				F7200C2617659E42003F3138 /* BugsnagProvider.m */,
-				F7200C2717659E42003F3138 /* ChartbeatProvider.m */,
-				F7200C2817659E42003F3138 /* CountlyProvider.m */,
-				F7200C2A17659E43003F3138 /* FlurryProvider.m */,
-				F7200C2B17659E43003F3138 /* GoogleAnalyticsProvider.m */,
-				F7200C2C17659E43003F3138 /* KISSmetricsProvider.m */,
-				F7200C2D17659E43003F3138 /* LocalyticsProvider.m */,
-				F7200C2E17659E43003F3138 /* MixpanelProvider.m */,
-				F7200C2F17659E43003F3138 /* Provider.m */,
-				F7200C3017659E43003F3138 /* SegmentioProvider.m */,
-				F7200C3117659E43003F3138 /* Segmentio.m */,
-				F7200C3217659E43003F3138 /* SettingsCache.m */,
 				F7200BFB17659D7F003F3138 /* GAI.h */,
 				F7200BFC17659D7F003F3138 /* GAITrackedViewController.h */,
 				F7200BFD17659D7F003F3138 /* GAITracker.h */,
@@ -576,6 +394,14 @@
 		F7200B7517659B2F003F3138 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F78D2A1A1765B828000B937E /* libz.dylib */,
+				F78D2A181765B823000B937E /* libsqlite3.dylib */,
+				F78D2A161765B81D000B937E /* AdSupport.framework */,
+				F78D29FB1765B38A000B937E /* QuartzCore.framework */,
+				F78D29F91765B382000B937E /* UIKit.framework */,
+				F78D29941765AF6A000B937E /* CoreTelephony.framework */,
+				F78D29921765AECB000B937E /* SystemConfiguration.framework */,
+				F78D29901765AEC4000B937E /* CoreData.framework */,
 				F7200B7617659B2F003F3138 /* Foundation.framework */,
 				F7F252C4176E66350055771D /* UIKit.framework */,
 				F7F252C7176E66350055771D /* CoreGraphics.framework */,
@@ -635,6 +461,7 @@
 				F7200BA117659BB4003F3138 /* MixpanelProvider.h in Headers */,
 				F7200BA217659BB4003F3138 /* Provider.h in Headers */,
 				F7200BA317659BB4003F3138 /* SegmentioProvider.h in Headers */,
+				D3B2AB771786555A00D60FE3 /* AnalyticsLogger.h in Headers */,
 				F7200BD917659D5F003F3138 /* BugsnagEvent.h in Headers */,
 				F7200BDA17659D5F003F3138 /* BugsnagLogging.h in Headers */,
 				F7200BDB17659D5F003F3138 /* BugsnagMetaData.h in Headers */,
@@ -744,6 +571,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B2AB751786554100D60FE3 /* AnalyticsLogger.m in Sources */,
 				F74DC8FD17659F4600734A95 /* Amplitude.m in Sources */,
 				F74DC90317659F4600734A95 /* AmplitudeLocationManagerDelegate.m in Sources */,
 				F74DC8B817659EF500734A95 /* AmplitudeProvider.m in Sources */,
