@@ -51,12 +51,12 @@
 		F7200BDA17659D5F003F3138 /* BugsnagLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BB917659D5F003F3138 /* BugsnagLogging.h */; settings = {ATTRIBUTES = (); }; };
 		F7200BDB17659D5F003F3138 /* BugsnagMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BBA17659D5F003F3138 /* BugsnagMetaData.h */; settings = {ATTRIBUTES = (); }; };
 		F7200BDC17659D5F003F3138 /* BugsnagNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BBB17659D5F003F3138 /* BugsnagNotifier.h */; settings = {ATTRIBUTES = (); }; };
-		F7200BDE17659D5F003F3138 /* NSDictionary+BSJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BBD17659D5F003F3138 /* NSDictionary+BSJSON.h */; };
-		F7200BDF17659D5F003F3138 /* NSMutableDictionary+BSMerge.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BBE17659D5F003F3138 /* NSMutableDictionary+BSMerge.h */; };
-		F7200BE017659D5F003F3138 /* NSNumber+BSDuration.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BBF17659D5F003F3138 /* NSNumber+BSDuration.h */; };
-		F7200BE117659D5F003F3138 /* NSNumber+BSFileSizes.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BC017659D5F003F3138 /* NSNumber+BSFileSizes.h */; };
-		F7200BE217659D5F003F3138 /* UIDevice+BSStats.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BC117659D5F003F3138 /* UIDevice+BSStats.h */; };
-		F7200BE317659D5F003F3138 /* UIViewController+BSVisibility.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BC217659D5F003F3138 /* UIViewController+BSVisibility.h */; };
+		F7200BDE17659D5F003F3138 /* NSDictionary+BSJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BBD17659D5F003F3138 /* NSDictionary+BSJSON.h */; settings = {ATTRIBUTES = (); }; };
+		F7200BDF17659D5F003F3138 /* NSMutableDictionary+BSMerge.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BBE17659D5F003F3138 /* NSMutableDictionary+BSMerge.h */; settings = {ATTRIBUTES = (); }; };
+		F7200BE017659D5F003F3138 /* NSNumber+BSDuration.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BBF17659D5F003F3138 /* NSNumber+BSDuration.h */; settings = {ATTRIBUTES = (); }; };
+		F7200BE117659D5F003F3138 /* NSNumber+BSFileSizes.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BC017659D5F003F3138 /* NSNumber+BSFileSizes.h */; settings = {ATTRIBUTES = (); }; };
+		F7200BE217659D5F003F3138 /* UIDevice+BSStats.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BC117659D5F003F3138 /* UIDevice+BSStats.h */; settings = {ATTRIBUTES = (); }; };
+		F7200BE317659D5F003F3138 /* UIViewController+BSVisibility.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BC217659D5F003F3138 /* UIViewController+BSVisibility.h */; settings = {ATTRIBUTES = (); }; };
 		F7200BE417659D5F003F3138 /* CBTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BC317659D5F003F3138 /* CBTracker.h */; };
 		F7200BE517659D5F003F3138 /* Countly_OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BC417659D5F003F3138 /* Countly_OpenUDID.h */; };
 		F7200BE617659D5F003F3138 /* Countly.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BC517659D5F003F3138 /* Countly.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -67,11 +67,11 @@
 		F7200BED17659D5F003F3138 /* LocalyticsUploader.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BCC17659D5F003F3138 /* LocalyticsUploader.h */; };
 		F7200BEE17659D5F003F3138 /* WebserviceConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BCD17659D5F003F3138 /* WebserviceConstants.h */; };
 		F7200BEF17659D5F003F3138 /* Mixpanel.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BCE17659D5F003F3138 /* Mixpanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F7200BF017659D5F003F3138 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BCF17659D5F003F3138 /* Reachability.h */; };
+		F7200BF017659D5F003F3138 /* AnalyticsReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BCF17659D5F003F3138 /* AnalyticsReachability.h */; };
 		F7200BF617659D72003F3138 /* MPCJSONDataSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BF117659D72003F3138 /* MPCJSONDataSerializer.h */; };
 		F7200BF717659D72003F3138 /* MPCJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BF217659D72003F3138 /* MPCJSONSerializer.h */; };
 		F7200BF817659D72003F3138 /* MPCSerializedJSONData.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BF317659D72003F3138 /* MPCSerializedJSONData.h */; };
-		F7200BF917659D72003F3138 /* NSData+MPBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BF417659D72003F3138 /* NSData+MPBase64.h */; };
+		F7200BF917659D72003F3138 /* NSData+MPBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BF417659D72003F3138 /* NSData+MPBase64.h */; settings = {ATTRIBUTES = (); }; };
 		F7200BFA17659D72003F3138 /* ODIN.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BF517659D72003F3138 /* ODIN.h */; };
 		F7200C0017659D7F003F3138 /* GAI.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BFB17659D7F003F3138 /* GAI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F7200C0117659D7F003F3138 /* GAITrackedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200BFC17659D7F003F3138 /* GAITrackedViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -98,7 +98,7 @@
 		F74DC8D217659F1800734A95 /* NSData+MPBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8CB17659F1800734A95 /* NSData+MPBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F74DC8D317659F1800734A95 /* ODIN.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8CC17659F1800734A95 /* ODIN.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F74DC8D417659F1800734A95 /* Mixpanel.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8CD17659F1800734A95 /* Mixpanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		F74DC8D517659F1800734A95 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8CE17659F1800734A95 /* Reachability.m */; };
+		F74DC8D517659F1800734A95 /* AnalyticsReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8CE17659F1800734A95 /* AnalyticsReachability.m */; };
 		F74DC8DA17659F2400734A95 /* KISSMetricsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8D617659F2400734A95 /* KISSMetricsAPI.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F74DC8DB17659F2400734A95 /* LocalyticsDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8D717659F2400734A95 /* LocalyticsDatabase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F74DC8DC17659F2400734A95 /* LocalyticsSession.m in Sources */ = {isa = PBXBuildFile; fileRef = F74DC8D817659F2400734A95 /* LocalyticsSession.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -191,7 +191,7 @@
 		F7200BCC17659D5F003F3138 /* LocalyticsUploader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsUploader.h; path = Analytics/Providers/Localytics/LocalyticsUploader.h; sourceTree = "<group>"; };
 		F7200BCD17659D5F003F3138 /* WebserviceConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WebserviceConstants.h; path = Analytics/Providers/Localytics/WebserviceConstants.h; sourceTree = "<group>"; };
 		F7200BCE17659D5F003F3138 /* Mixpanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Mixpanel.h; path = Analytics/Providers/Mixpanel/Mixpanel/Mixpanel.h; sourceTree = "<group>"; };
-		F7200BCF17659D5F003F3138 /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Analytics/Providers/Reachability/Reachability.h; sourceTree = "<group>"; };
+		F7200BCF17659D5F003F3138 /* AnalyticsReachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AnalyticsReachability.h; path = Analytics/Providers/Reachability/AnalyticsReachability.h; sourceTree = "<group>"; };
 		F7200BF117659D72003F3138 /* MPCJSONDataSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPCJSONDataSerializer.h; path = Analytics/Providers/Mixpanel/Mixpanel/Library/JSON/MPCJSONDataSerializer.h; sourceTree = "<group>"; };
 		F7200BF217659D72003F3138 /* MPCJSONSerializer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPCJSONSerializer.h; path = Analytics/Providers/Mixpanel/Mixpanel/Library/JSON/MPCJSONSerializer.h; sourceTree = "<group>"; };
 		F7200BF317659D72003F3138 /* MPCSerializedJSONData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPCSerializedJSONData.h; path = Analytics/Providers/Mixpanel/Mixpanel/Library/JSON/MPCSerializedJSONData.h; sourceTree = "<group>"; };
@@ -222,7 +222,7 @@
 		F74DC8CB17659F1800734A95 /* NSData+MPBase64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSData+MPBase64.m"; path = "Analytics/Providers/Mixpanel/Mixpanel/Library/NSData_Base64/NSData+MPBase64.m"; sourceTree = "<group>"; };
 		F74DC8CC17659F1800734A95 /* ODIN.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ODIN.m; path = Analytics/Providers/Mixpanel/Mixpanel/Library/ODIN/ODIN.m; sourceTree = "<group>"; };
 		F74DC8CD17659F1800734A95 /* Mixpanel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Mixpanel.m; path = Analytics/Providers/Mixpanel/Mixpanel/Mixpanel.m; sourceTree = "<group>"; };
-		F74DC8CE17659F1800734A95 /* Reachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Analytics/Providers/Reachability/Reachability.m; sourceTree = "<group>"; };
+		F74DC8CE17659F1800734A95 /* AnalyticsReachability.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AnalyticsReachability.m; path = Analytics/Providers/Reachability/AnalyticsReachability.m; sourceTree = "<group>"; };
 		F74DC8D617659F2400734A95 /* KISSMetricsAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = KISSMetricsAPI.m; path = Analytics/Providers/KISSmetrics/KISSMetricsAPI.m; sourceTree = "<group>"; };
 		F74DC8D717659F2400734A95 /* LocalyticsDatabase.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalyticsDatabase.m; path = Analytics/Providers/Localytics/LocalyticsDatabase.m; sourceTree = "<group>"; };
 		F74DC8D817659F2400734A95 /* LocalyticsSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LocalyticsSession.m; path = Analytics/Providers/Localytics/LocalyticsSession.m; sourceTree = "<group>"; };
@@ -307,7 +307,7 @@
 				F74DC8CB17659F1800734A95 /* NSData+MPBase64.m */,
 				F74DC8CC17659F1800734A95 /* ODIN.m */,
 				F74DC8CD17659F1800734A95 /* Mixpanel.m */,
-				F74DC8CE17659F1800734A95 /* Reachability.m */,
+				F74DC8CE17659F1800734A95 /* AnalyticsReachability.m */,
 				F74DC8C617659EFD00734A95 /* ProviderManager.m */,
 				F74DC8AA17659EF500734A95 /* AmplitudeProvider.m */,
 				F74DC8AB17659EF500734A95 /* BugsnagProvider.m */,
@@ -357,7 +357,7 @@
 				F7200BCC17659D5F003F3138 /* LocalyticsUploader.h */,
 				F7200BCD17659D5F003F3138 /* WebserviceConstants.h */,
 				F7200BCE17659D5F003F3138 /* Mixpanel.h */,
-				F7200BCF17659D5F003F3138 /* Reachability.h */,
+				F7200BCF17659D5F003F3138 /* AnalyticsReachability.h */,
 				F7200BAD17659CDB003F3138 /* libGoogleAnalytics.a */,
 				F7200BAB17659CCF003F3138 /* libFlurry.a */,
 				F7200BA717659C91003F3138 /* libChartbeat-iOS-SDK.a */,
@@ -468,23 +468,23 @@
 				F7200BDC17659D5F003F3138 /* BugsnagNotifier.h in Headers */,
 				F7200BD117659D5F003F3138 /* AmplitudeARCMacros.h in Headers */,
 				F7200BD717659D5F003F3138 /* AmplitudeLocationManagerDelegate.h in Headers */,
-				F7200BDE17659D5F003F3138 /* NSDictionary+BSJSON.h in Headers */,
-				F7200BDF17659D5F003F3138 /* NSMutableDictionary+BSMerge.h in Headers */,
-				F7200BE017659D5F003F3138 /* NSNumber+BSDuration.h in Headers */,
-				F7200BE117659D5F003F3138 /* NSNumber+BSFileSizes.h in Headers */,
-				F7200BE217659D5F003F3138 /* UIDevice+BSStats.h in Headers */,
-				F7200BE317659D5F003F3138 /* UIViewController+BSVisibility.h in Headers */,
 				F7200BE417659D5F003F3138 /* CBTracker.h in Headers */,
 				F7200BE517659D5F003F3138 /* Countly_OpenUDID.h in Headers */,
 				F7200BF617659D72003F3138 /* MPCJSONDataSerializer.h in Headers */,
 				F7200BF717659D72003F3138 /* MPCJSONSerializer.h in Headers */,
 				F7200BF817659D72003F3138 /* MPCSerializedJSONData.h in Headers */,
-				F7200BF917659D72003F3138 /* NSData+MPBase64.h in Headers */,
 				F7200BFA17659D72003F3138 /* ODIN.h in Headers */,
+				F7200BE217659D5F003F3138 /* UIDevice+BSStats.h in Headers */,
+				F7200BE317659D5F003F3138 /* UIViewController+BSVisibility.h in Headers */,
+				F7200BF917659D72003F3138 /* NSData+MPBase64.h in Headers */,
+				F7200BDF17659D5F003F3138 /* NSMutableDictionary+BSMerge.h in Headers */,
+				F7200BE117659D5F003F3138 /* NSNumber+BSFileSizes.h in Headers */,
+				F7200BE017659D5F003F3138 /* NSNumber+BSDuration.h in Headers */,
+				F7200BDE17659D5F003F3138 /* NSDictionary+BSJSON.h in Headers */,
 				F7200BEB17659D5F003F3138 /* LocalyticsDatabase.h in Headers */,
 				F7200BED17659D5F003F3138 /* LocalyticsUploader.h in Headers */,
 				F7200BEE17659D5F003F3138 /* WebserviceConstants.h in Headers */,
-				F7200BF017659D5F003F3138 /* Reachability.h in Headers */,
+				F7200BF017659D5F003F3138 /* AnalyticsReachability.h in Headers */,
 				F7200B8B17659BA2003F3138 /* SettingsCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -606,7 +606,7 @@
 				F74DC8D317659F1800734A95 /* ODIN.m in Sources */,
 				F74DC8C217659EF500734A95 /* Provider.m in Sources */,
 				F74DC8C717659EFD00734A95 /* ProviderManager.m in Sources */,
-				F74DC8D517659F1800734A95 /* Reachability.m in Sources */,
+				F74DC8D517659F1800734A95 /* AnalyticsReachability.m in Sources */,
 				F74DC8C417659EF500734A95 /* Segmentio.m in Sources */,
 				F74DC8C317659EF500734A95 /* SegmentioProvider.m in Sources */,
 				F74DC8C517659EF500734A95 /* SettingsCache.m in Sources */,
@@ -735,6 +735,7 @@
 		F78D29831765A632000B937E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -742,6 +743,7 @@
 		F78D29841765A632000B937E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

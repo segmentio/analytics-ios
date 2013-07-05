@@ -31,13 +31,14 @@
 {
     NSInteger uid = [[self.settings objectForKey:@"uid"] integerValue];
     [[CBTracker sharedTracker] startTrackerWithAccountID:uid];
-    [AnalyticsLogger log:@"ChartbeatProvider initialized."];
+    [AnalyticsLogger log:@"ChartbeatProvider initialized with uid %d", uid];
 }
 
 - (void)stop
 {
     // Chartbeat sends pings, which we need to disable.
     [[CBTracker sharedTracker] stopTracker];
+    [AnalyticsLogger log:@"ChartbeatProvider stopped."];
 }
 
 
