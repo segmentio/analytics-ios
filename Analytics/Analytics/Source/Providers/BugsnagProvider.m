@@ -3,12 +3,7 @@
 
 #import "BugsnagProvider.h"
 #import "Bugsnag.h"
-
-#ifdef ANALYTICS_DEBUG
-#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
-#else
-#define AnalyticsDebugLog(...)
-#endif
+#import "AnalyticsLogger.h"
 
 
 @implementation BugsnagProvider {
@@ -37,7 +32,7 @@
     // Initialization
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [Bugsnag startBugsnagWithApiKey:apiKey];
-    AnalyticsDebugLog(@"BugsnagProvider initialized.");
+    [AnalyticsLogger log:@"BugsnagProvider initialized."];
 
     // TODO add support for non-SSL?
 }

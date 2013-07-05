@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D3B2AB721786375400D60FE3 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B2AB711786375400D60FE3 /* Analytics.framework */; };
 		F7D63265178604E7005DF9A4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D63264178604E7005DF9A4 /* UIKit.framework */; };
 		F7D63267178604E7005DF9A4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D63266178604E7005DF9A4 /* Foundation.framework */; };
 		F7D63269178604E7005DF9A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D63268178604E7005DF9A4 /* CoreGraphics.framework */; };
@@ -43,10 +44,10 @@
 		F7D632CB17862E3D005DF9A4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D632CA17862E3D005DF9A4 /* libz.dylib */; };
 		F7D632CD17862E59005DF9A4 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D632CC17862E59005DF9A4 /* CoreTelephony.framework */; };
 		F7D632CF17862E72005DF9A4 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D632CE17862E72005DF9A4 /* AdSupport.framework */; };
-		F7D632D117863320005DF9A4 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7D632D017863320005DF9A4 /* Analytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D3B2AB711786375400D60FE3 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Analytics.framework; sourceTree = "<group>"; };
 		F7D63261178604E7005DF9A4 /* AnalyticsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnalyticsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7D63264178604E7005DF9A4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		F7D63266178604E7005DF9A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -107,7 +108,6 @@
 		F7D632CA17862E3D005DF9A4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F7D632CC17862E59005DF9A4 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		F7D632CE17862E72005DF9A4 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		F7D632D017863320005DF9A4 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Analytics.framework; path = ../Releases/Analytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,21 +125,16 @@
 				F7D63265178604E7005DF9A4 /* UIKit.framework in Frameworks */,
 				F7D63267178604E7005DF9A4 /* Foundation.framework in Frameworks */,
 				F7D63269178604E7005DF9A4 /* CoreGraphics.framework in Frameworks */,
-				F7D632D117863320005DF9A4 /* Analytics.framework in Frameworks */,
+				D3B2AB721786375400D60FE3 /* Analytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F7D63258178604E7005DF9A4 = {
+		D3B2AB731786379D00D60FE3 /* JSON */ = {
 			isa = PBXGroup;
 			children = (
-				F7D632CE17862E72005DF9A4 /* AdSupport.framework */,
-				F7D632CC17862E59005DF9A4 /* CoreTelephony.framework */,
-				F7D632CA17862E3D005DF9A4 /* libz.dylib */,
-				F7D632C817862E38005DF9A4 /* libsqlite3.dylib */,
-				F7D632C617862E2F005DF9A4 /* QuartzCore.framework */,
 				F7D632B917862309005DF9A4 /* CJSONDeserializer.h */,
 				F7D632BA17862309005DF9A4 /* CJSONDeserializer.m */,
 				F7D632BB17862309005DF9A4 /* CJSONSerializer.h */,
@@ -172,10 +167,16 @@
 				F7D632AA17861B0E005DF9A4 /* SBJsonUTF8Stream.m */,
 				F7D632AB17861B0F005DF9A4 /* SBJsonWriter.h */,
 				F7D632AC17861B0F005DF9A4 /* SBJsonWriter.m */,
-				F7D6329217861095005DF9A4 /* CoreData.framework */,
 				F7D6328F178608A9005DF9A4 /* JSONKit.h */,
 				F7D63290178608A9005DF9A4 /* JSONKit.m */,
-				F7D6328D1786071C005DF9A4 /* SystemConfiguration.framework */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		F7D63258178604E7005DF9A4 = {
+			isa = PBXGroup;
+			children = (
+				D3B2AB731786379D00D60FE3 /* JSON */,
 				F7D6326A178604E7005DF9A4 /* AnalyticsApp */,
 				F7D63263178604E7005DF9A4 /* Frameworks */,
 				F7D63262178604E7005DF9A4 /* Products */,
@@ -193,7 +194,14 @@
 		F7D63263178604E7005DF9A4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F7D632D017863320005DF9A4 /* Analytics.framework */,
+				F7D632CA17862E3D005DF9A4 /* libz.dylib */,
+				F7D632C817862E38005DF9A4 /* libsqlite3.dylib */,
+				D3B2AB711786375400D60FE3 /* Analytics.framework */,
+				F7D632CE17862E72005DF9A4 /* AdSupport.framework */,
+				F7D632CC17862E59005DF9A4 /* CoreTelephony.framework */,
+				F7D632C617862E2F005DF9A4 /* QuartzCore.framework */,
+				F7D6329217861095005DF9A4 /* CoreData.framework */,
+				F7D6328D1786071C005DF9A4 /* SystemConfiguration.framework */,
 				F7D63264178604E7005DF9A4 /* UIKit.framework */,
 				F7D63266178604E7005DF9A4 /* Foundation.framework */,
 				F7D63268178604E7005DF9A4 /* CoreGraphics.framework */,
@@ -415,6 +423,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnalyticsApp/AnalyticsApp-Prefix.pch";
@@ -430,6 +439,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnalyticsApp/AnalyticsApp-Prefix.pch";

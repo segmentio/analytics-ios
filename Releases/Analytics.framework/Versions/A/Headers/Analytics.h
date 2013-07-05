@@ -40,6 +40,7 @@
 // ---------
 
 - (void)reset;
+- (void)debug:(BOOL)showDebugLogs;
 
 
 // Initialization

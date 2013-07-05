@@ -2,17 +2,10 @@
 // Copyright 2013 Segment.io
 
 #import "Segmentio.h"
-
-#ifdef ANALYTICS_DEBUG
-#define SegmentioDebugLog(...) NSLog(__VA_ARGS__)
-#else
-#define SegmentioDebugLog(...)
-#endif
+#import "AnalyticsLogger.h"
 
 #define SEGMENTIO_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
 #define SEGMENTIO_MAX_BATCH_SIZE 100
-
-
 
 static NSString * const kSessionID = @"kSegmentioSessionID";
 
@@ -39,7 +32,7 @@ static NSString *GetSessionID(BOOL reset) {
     if (![defaults stringForKey:kSessionID] || reset) {
         CFUUIDRef theUUID = CFUUIDCreate(NULL);
         CFStringRef string = CFUUIDCreateString(NULL, theUUID);
-        SegmentioDebugLog(@"New SessionID: %@", string);
+        [AnalyticsLogger log:@"New SessionID: %@", string];
         CFRelease(theUUID);
         [defaults setObject:(__bridge_transfer NSString *)string forKey:kSessionID];
     }
@@ -198,7 +191,7 @@ static Segmentio *sharedInstance = nil;
         [payload setValue:self.userId forKey:@"userId"];
         [payload setValue:self.sessionId forKey:@"sessionId"];
 
-        SegmentioDebugLog(@"%@ Enqueueing action: %@", self, payload);
+        [AnalyticsLogger log:@"%@ Enqueueing action: %@", self, payload];
 
         [self.queue addObject:payload];
         
@@ -210,11 +203,11 @@ static Segmentio *sharedInstance = nil;
 {
     dispatch_async(_serialQueue, ^{
         if ([self.queue count] == 0) {
-            SegmentioDebugLog(@"%@ No queued API calls to flush.", self);
+            [AnalyticsLogger log:@"%@ No queued API calls to flush.", self];
             return;
         }
         else if (self.connection != nil) {
-            SegmentioDebugLog(@"%@ API request already in progress, not flushing again.", self);
+            [AnalyticsLogger log:@"%@ API request already in progress, not flushing again.", self];
             return;
         }
         else if ([self.queue count] >= SEGMENTIO_MAX_BATCH_SIZE) {
@@ -224,7 +217,7 @@ static Segmentio *sharedInstance = nil;
             self.batch = [NSArray arrayWithArray:self.queue];
         }
 
-        SegmentioDebugLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)self.batch.count, (unsigned long)self.queue.count);
+        [AnalyticsLogger log:@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)self.batch.count, (unsigned long)self.queue.count];
 
         NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
         [payloadDictionary setObject:self.secret forKey:@"secret"];
@@ -242,7 +235,7 @@ static Segmentio *sharedInstance = nil;
 - (void)flushQueueByLength
 {
     dispatch_async(_serialQueue, ^{
-        SegmentioDebugLog(@"%@ Length is %lu.", self, (unsigned long)self.queue.count);
+        [AnalyticsLogger log:@"%@ Length is %lu.", self, (unsigned long)self.queue.count];
         if (self.connection == nil && [self.queue count] >= self.flushAt)
             [self flush];
     });
@@ -276,8 +269,8 @@ static Segmentio *sharedInstance = nil;
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:payload];
     
-    SegmentioDebugLog(@"%@ Sending batch API request: %@", self,
-                      [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding]);
+    [AnalyticsLogger log:@"%@ Sending batch API request: %@", self,
+                      [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding]];
     
     return [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
 }
@@ -303,7 +296,7 @@ static Segmentio *sharedInstance = nil;
             NSLog(@"%@ API request had an error: %@", self, [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
         }
         else {
-            SegmentioDebugLog(@"%@ API request success 200", self);
+            [AnalyticsLogger log:@"%@ API request success 200", self];
         }
 
         // TODO

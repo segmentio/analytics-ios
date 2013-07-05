@@ -16,11 +16,7 @@
 #import "LocalyticsProvider.h"
 #import "MixpanelProvider.h"
 
-#ifdef ANALYTICS_DEBUG
-#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
-#else
-#define AnalyticsDebugLog(...)
-#endif
+
 
 @interface ProviderManager ()
 

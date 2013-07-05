@@ -3,12 +3,7 @@
 
 #import "ChartbeatProvider.h"
 #import "CBTracker.h"
-
-#ifdef ANALYTICS_DEBUG
-#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
-#else
-#define AnalyticsDebugLog(...)
-#endif
+#import "AnalyticsLogger.h"
 
 
 @implementation ChartbeatProvider {
@@ -34,9 +29,9 @@
 
 - (void)start
 {
-    NSInteger *uid = [[self.settings objectForKey:@"uid"] integerValue];
+    NSInteger uid = [[self.settings objectForKey:@"uid"] integerValue];
     [[CBTracker sharedTracker] startTrackerWithAccountID:uid];
-    AnalyticsDebugLog(@"ChartbeatProvider initialized.");
+    [AnalyticsLogger log:@"ChartbeatProvider initialized."];
 }
 
 - (void)stop

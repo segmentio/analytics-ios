@@ -3,13 +3,7 @@
 
 #import "CountlyProvider.h"
 #import "Countly.h"
-
-#ifdef ANALYTICS_DEBUG
-#define AnalyticsDebugLog(...) NSLog(__VA_ARGS__)
-#else
-#define AnalyticsDebugLog(...)
-#endif
-
+#import "AnalyticsLogger.h"
 
 @implementation CountlyProvider {
 
@@ -37,7 +31,7 @@
     NSString *appKey = [self.settings objectForKey:@"appKey"];
     NSString *serverUrl = [self.settings objectForKey:@"serverUrl"];
     [[Countly sharedInstance] start:appKey withHost:serverUrl];
-    AnalyticsDebugLog(@"CountlyProvider initialized.");
+    [AnalyticsLogger log:@"CountlyProvider initialized."];
 }
 
 
