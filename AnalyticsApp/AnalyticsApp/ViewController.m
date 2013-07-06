@@ -225,7 +225,7 @@
 }
 
 - (IBAction)onScreenClick:(id)sender {
-    [[Analytics sharedAnalytics] track:@"Fake Screen Test!!" properties:@{ @"Available Offline": @"Option"}];
+    [[Analytics sharedAnalytics] screen:@"Fake Screen Test!!" properties:@{ @"Available Offline": @"Option"}];
     
     NSLog(@"Record screen view.");
 }
