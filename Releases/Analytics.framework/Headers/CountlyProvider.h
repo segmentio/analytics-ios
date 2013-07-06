@@ -15,4 +15,6 @@
 + (instancetype)withNothing;
 - (id)initWithNothing;
 
+- (NSDictionary *)ensureNotNested:(NSDictionary *)dictionary;
+
 @end

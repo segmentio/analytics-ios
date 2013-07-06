@@ -207,13 +207,37 @@
 
 - (IBAction)onTrackClick:(id)sender {
     
-    [[Analytics sharedAnalytics] track:@"PhotoStream Select filter"];// properties:@{ @"Available Offline": @"Option"}];
+    [[Analytics sharedAnalytics] track:@"PhotoStream Select filter" properties:@{ @"Available Offline": @"Option"}];
     
-    //NSDictionary *monster = [self getMonsterDictionary];
+    NSDictionary *monster = [self getMonsterDictionary];
     
-    //[[Analytics sharedAnalytics] track:@"Monster Attack" properties:monster];
+    [[Analytics sharedAnalytics] track:@"Monster Attack" properties:monster];
     
-    NSLog(@"Sent analytics events");
+    NSLog(@"Sent analytics events.");
+}
+
+- (IBAction)onIdentifyClick:(id)sender {
+    NSString *userId = @"smile@wrinkledhippo.com";
+    NSDictionary *traits = [NSDictionary dictionaryWithObjectsAndKeys: @"Tilt-shift", @"Filter", nil];
+    NSDictionary *providers = [NSDictionary dictionaryWithObjectsAndKeys: @YES, @"Salesforce", @NO, @"HubSpot", nil];
+    NSDictionary *context = [NSDictionary dictionaryWithObjectsAndKeys: providers, @"providers", nil];
+    [[Analytics sharedAnalytics] identify:userId traits:traits context:context];
+}
+
+- (IBAction)onScreenClick:(id)sender {
+    [[Analytics sharedAnalytics] track:@"Fake Screen Test!!" properties:@{ @"Available Offline": @"Option"}];
+    
+    NSLog(@"Record screen view.");
+}
+
+- (IBAction)onCrashClick:(id)sender {
+    // How to crash an app:
+    // http://support.crashlytics.com/knowledgebase/articles/92523-why-can-t-i-have-xcode-connected-
+    // http://support.crashlytics.com/knowledgebase/articles/92522-is-there-a-quick-way-to-force-a-crash-
+    NSLog(@"About to crash on purpose...");
+    int *x = NULL;
+    *x = 42;
+    NSLog(@"Should have crashed :)");
 }
 
 @end
