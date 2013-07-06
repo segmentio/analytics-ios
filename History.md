@@ -1,3 +1,9 @@
+0.5.0 / 2013-7-5
+================
+* Fixing compile and run-time bugs
+* Adding a complete testing app, including for crash reporting tests
+* Adding debug logging setting to reduce debug log output by default
+
 0.4.0 / 2013-6-18
 ================
 * Adding provider headers and binaries to project
