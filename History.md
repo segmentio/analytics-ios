@@ -1,3 +1,8 @@
+0.5.1 / 2013-7-11
+=================
+* Fixing build settings to include an armv7s slice, optimized for iPhone 5
+* Moving version number to be visible externally from the library
+
 0.5.0 / 2013-7-5
 ================
 * Fixing compile and run-time bugs
