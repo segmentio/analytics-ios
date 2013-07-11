@@ -4,9 +4,6 @@
 #import "Analytics.h"
 #import "AnalyticsLogger.h"
 
-#define ANALYTICS_VERSION @"0.5.0"
-
-
 @implementation Analytics {
     dispatch_queue_t _serialQueue;
 }
