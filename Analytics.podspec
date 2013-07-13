@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.frameworks     = 'Foundation', 'CoreData', 'SystemConfiguration', 'CoreTelephony', 'UIKit', 'QuartzCore', 'CFNetwork', 'AdSupport'
   s.libraries      = 'sqlite3.0', 'z', 'Analytics'
 
-  s.xcconfig       = { 'OTHER_LDFLAGS' => '-lObjC', 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/Analytics.framework"' }
+  s.xcconfig       = { 'OTHER_LDFLAGS' => '-ObjC', 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/Analytics/Analytics.framework"' }
 
 end

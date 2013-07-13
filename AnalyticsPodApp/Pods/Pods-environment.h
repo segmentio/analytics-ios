@@ -12,10 +12,3 @@
 #define COCOAPODS_VERSION_MINOR_Analytics 5
 #define COCOAPODS_VERSION_PATCH_Analytics 2
 
-// GoogleAnalytics-iOS-SDK
-#define COCOAPODS_POD_AVAILABLE_GoogleAnalytics_iOS_SDK
-// This library does not follow semantic-versioning,
-// so we were not able to define version macros.
-// Please contact the author.
-// Version: 2.0beta4.
-
