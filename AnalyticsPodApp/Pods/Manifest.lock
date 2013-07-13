@@ -1,0 +1,13 @@
+PODS:
+  - Analytics (0.5.2)
+  - GoogleAnalytics-iOS-SDK (2.0beta4)
+
+DEPENDENCIES:
+  - Analytics
+  - GoogleAnalytics-iOS-SDK
+
+SPEC CHECKSUMS:
+  Analytics: 07e00e2b6580b5b25d1469a9292a8de3341f3745
+  GoogleAnalytics-iOS-SDK: ae8e58e771b6dec84c0047154cc0e550a15e6f54
+
+COCOAPODS: 0.20.2
