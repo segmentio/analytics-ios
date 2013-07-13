@@ -1,3 +1,8 @@
+0.5.2 / 2013-7-12
+=================
+* Adding Cocoapod podspec, with testing project
+* Updating podspec to download from AWS rather than Github Raw
+
 0.5.1 / 2013-7-11
 =================
 * Fixing build settings to include an armv7s slice, optimized for iPhone 5
