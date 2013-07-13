@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
 
   s.source         = { :http => "https://github.com/segmentio/analytics-ios/raw/master/Releases/Analytics.framework.zip", :flatten => true }
   s.source_files   = 'Analytics.framework/Headers/*.h'
-  s.preserve_paths = 'Analytics.framework/*.a'
+  s.preserve_paths = 'Analytics.framework/Analytics'
 
   s.frameworks     = 'Foundation', 'CoreData', 'SystemConfiguration', 'CoreTelephony', 'UIKit', 'QuartzCore', 'CFNetwork', 'AdSupport'
   s.libraries      = 'sqlite3.0', 'z', 'Analytics'
