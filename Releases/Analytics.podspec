@@ -14,8 +14,7 @@ Pod::Spec.new do |s|
   s.source_files   = 'Analytics.framework/Headers/*.h'
   s.preserve_paths = 'Analytics.framework/*.a'
 
-  s.library        = 'sqlite3.0'
-
-  s.xcconfig       =  { 'Other Linker Flags' => '-ObjC' }
+  s.libraries = 'sqlite3.0', 'z', 'Analytics'
+  s.xcconfig  = { 'OTHER_LDFLAGS' => '-lObjC', 'LIBRARY_SEARCH_PATHS' => '"$(PODS_ROOT)/Analytics.framework"' }
 
 end
