@@ -1,3 +1,2 @@
 platform :ios
 pod 'Analytics'
-pod 'GoogleAnalytics-iOS-SDK'
