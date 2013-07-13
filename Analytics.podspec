@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license        = { :type => "MIT", :file => "License.md" }
   s.author         = { "Segment.io" => "friends@segment.io" }
 
-  s.source         = { :http => "https://dl.dropboxusercontent.com/u/682022/Analytics.framework.zip", :flatten => true }
+  s.source         = { :http => "https://github.com/segmentio/analytics-ios/raw/master/Releases/Analytics.framework.zip", :flatten => true }
   s.source_files   = 'Analytics.framework/Headers/*.h'
   s.preserve_paths = 'Analytics.framework/*.a'
 
