@@ -4,7 +4,7 @@
 #import <Foundation/Foundation.h>
 #import "ProviderManager.h"
 
-#define ANALYTICS_VERSION @"0.5.2"
+#define ANALYTICS_VERSION @"0.5.3"
 
 @interface Analytics : NSObject
 
@@ -224,24 +224,6 @@
  Used internally to create an Analytics instance.
 */
 - (id)initWithSecret:(NSString *)secret;
-
-
-
-
-
-// Application state API
-// ---------------------
-
-- (void)applicationDidEnterBackground;
-- (void)applicationWillEnterForeground;
-- (void)applicationWillTerminate;
-- (void)applicationWillResignActive;
-- (void)applicationDidBecomeActive;
-
-
-
-
-
 
 
 @end
