@@ -2,6 +2,7 @@
 // Copyright 2013 Segment.io
 
 #import "ProviderManager.h"
+#import "AnalyticsLogger.h"
 #import "SettingsCache.h"
 #import "Provider.h"
 #import "SegmentioProvider.h"
@@ -61,6 +62,33 @@
         // Create the settings cache last so that it can update settings
         // on each provider immediately if necessary
         _settingsCache = [SettingsCache withSecret:secret delegate:(SettingsCacheDelegate *)self];
+
+        // Attach to application state change hooks
+        [[NSNotificationCenter defaultCenter]
+            addObserver:self
+            selector:@selector(applicationDidEnterBackground)
+            name:UIApplicationDidEnterBackgroundNotification 
+            object:NULL];
+        [[NSNotificationCenter defaultCenter]
+            addObserver:self
+            selector:@selector(applicationWillEnterForeground)
+            name:UIApplicationWillEnterForegroundNotification 
+            object:NULL];
+        [[NSNotificationCenter defaultCenter]
+            addObserver:self
+            selector:@selector(applicationWillTerminate)
+            name:UIApplicationWillTerminateNotification 
+            object:NULL];
+        [[NSNotificationCenter defaultCenter]
+            addObserver:self
+            selector:@selector(applicationWillResignActive)
+            name:UIApplicationWillResignActiveNotification 
+            object:NULL];
+        [[NSNotificationCenter defaultCenter]
+            addObserver:self
+            selector:@selector(applicationDidBecomeActive)
+            name:UIApplicationDidBecomeActiveNotification 
+            object:NULL];
     }
     return self;
 }
@@ -203,6 +231,7 @@
 
 - (void)applicationDidEnterBackground
 {
+    [AnalyticsLogger log:@"Application state change notification: applicationDidEnterBackground"];
     // Iterate over providersArray and call track.
     for (id object in self.providersArray) {
         Provider *provider = (Provider *)object;
@@ -214,6 +243,7 @@
 
 - (void)applicationWillEnterForeground
 {
+    [AnalyticsLogger log:@"Application state change notification: applicationWillEnterForeground"];
     // Iterate over providersArray and call track.
     for (id object in self.providersArray) {
         Provider *provider = (Provider *)object;
@@ -225,6 +255,7 @@
 
 - (void)applicationWillTerminate
 {
+    [AnalyticsLogger log:@"Application state change notification: applicationWillTerminate"];
     // Iterate over providersArray and call track.
     for (id object in self.providersArray) {
         Provider *provider = (Provider *)object;
@@ -236,6 +267,7 @@
 
 - (void)applicationWillResignActive
 {
+    [AnalyticsLogger log:@"Application state change notification: applicationWillResignActive"];
     // Iterate over providersArray and call track.
     for (id object in self.providersArray) {
         Provider *provider = (Provider *)object;
@@ -247,6 +279,7 @@
 
 - (void)applicationDidBecomeActive
 {
+    [AnalyticsLogger log:@"Application state change notification: applicationDidBecomeActive"];
     // Iterate over providersArray and call track.
     for (id object in self.providersArray) {
         Provider *provider = (Provider *)object;

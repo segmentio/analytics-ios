@@ -1,3 +1,8 @@
+0.5.3 / 2013-7-31
+=================
+* Adding comments, documentation and setup guide to Analytics.h
+* Automatically handling app state hooks internally
+
 0.5.2 / 2013-7-12
 =================
 * Adding Cocoapod podspec, with testing project
