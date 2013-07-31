@@ -5,6 +5,6 @@ DEPENDENCIES:
   - Analytics
 
 SPEC CHECKSUMS:
-  Analytics: 16a98848254cdc9de56efaf744dde5ad9cdc79e5
+  Analytics: 95d91c7fa0632dfef2dad8017d4710e27c856b23
 
 COCOAPODS: 0.20.2
