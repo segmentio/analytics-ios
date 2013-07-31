@@ -1,6 +1,8 @@
 // ProviderManager.m
 // Copyright 2013 Segment.io
 
+#import <UIKit/UIKit.h>
+
 #import "ProviderManager.h"
 #import "AnalyticsLogger.h"
 #import "SettingsCache.h"
