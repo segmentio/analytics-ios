@@ -1,0 +1,1 @@
+../../Analytics/Analytics.framework/Headers/Segmentio.h
