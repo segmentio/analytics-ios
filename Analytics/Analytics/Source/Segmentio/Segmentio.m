@@ -22,12 +22,9 @@ static NSString *ToISO8601(NSDate *date) {
 }
 
 static NSString *GetSessionID(BOOL reset) {
-    // As of May 1, 2013 we cannot use UDIDs see https://developer.apple.com/news/?id=3212013a
-    // so we use a generated UUID that we save to NSUserDefaults
-    // We could use serial number or mac address
-    // (see http://developer.apple.com/library/mac/#technotes/tn1103/_index.html )
-    // but it's really not necessary since they can be nil and we are only using them as SessionID anyways.
-    // Similarly, we decided not to use identifierForVendor because it can't be reset to a new value on logout.
+    // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
+    // identifierForVendor (iOS6 and later, can't be changed on logout),
+    // or MAC address (blocked in iOS 7). For more info see https://segment.io/libraries/ios#ids
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if (![defaults stringForKey:kSessionID] || reset) {
         CFUUIDRef theUUID = CFUUIDCreate(NULL);
@@ -236,8 +233,9 @@ static Segmentio *sharedInstance = nil;
 {
     dispatch_async(_serialQueue, ^{
         [AnalyticsLogger log:@"%@ Length is %lu.", self, (unsigned long)self.queue.count];
-        if (self.connection == nil && [self.queue count] >= self.flushAt)
+        if (self.connection == nil && [self.queue count] >= self.flushAt) {
             [self flush];
+        }
     });
 }
 
