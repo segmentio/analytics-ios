@@ -1,6 +1,6 @@
 //
 //  LocalyticsDatabase.h
-//  Copyright (C) 2012 Char Software Inc., DBA Localytics
+//  Copyright (C) 2013 Char Software Inc., DBA Localytics
 //
 //  This code is provided under the Localytics Modified BSD License.
 //  A copy of this license has been distributed in a file called LICENSE
@@ -18,7 +18,7 @@
     sqlite3 *_databaseConnection;
 }
 
-+ (LocalyticsDatabase *)sharedLocalyticsDatabase;
+@property (nonatomic, assign, readonly) BOOL firstRun;
 
 - (unsigned long long)databaseSize;
 - (int)eventCount;
@@ -52,6 +52,8 @@
 
 - (BOOL)isOptedOut;
 - (BOOL)setOptedOut:(BOOL)optOut;
+- (NSString *)appVersion;
+- (BOOL)updateAppVersion:(NSString *)appVersion;
 - (NSString *)installId;
 - (NSString *)appKey; // Most recent app key-- may not be that used to open the session.
 

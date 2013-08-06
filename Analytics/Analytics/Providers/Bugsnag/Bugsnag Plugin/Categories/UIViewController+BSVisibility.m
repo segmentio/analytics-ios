@@ -28,10 +28,10 @@
         
         UIViewController *presentedViewController = nil;
         
-        if ([viewController respondsToSelector:@selector(modalViewController)]) {
+        if ([viewController respondsToSelector:@selector(presentedViewController)]) {
+            presentedViewController = viewController.presentedViewController;
+        } else {
             presentedViewController = [viewController performSelector:@selector(modalViewController)];
-        } else if(([viewController respondsToSelector:@selector(presentedViewController)])) {
-            presentedViewController = [viewController performSelector:@selector(presentedViewController)];
         }
         
         if (presentedViewController == nil) {
