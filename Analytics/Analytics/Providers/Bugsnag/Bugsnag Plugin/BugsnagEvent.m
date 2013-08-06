@@ -13,7 +13,7 @@
 #import "UIDevice+BSStats.h"
 #import "UIViewController+BSVisibility.h"
 
-#import "Reachability.h"
+#import "AnalyticsReachability.h"
 #import "BugsnagEvent.h"
 #import "Bugsnag.h"
 #import "BugsnagLogging.h"
@@ -114,7 +114,7 @@
         [device setObject:[UIDevice osVersion] forKey:@"iOS Version"];
         [device setObject:[[UIDevice uptime] durationString] forKey:@"Time since boot"];
         
-        Reachability *reachability = [Reachability reachabilityForInternetConnection];
+        AnalyticsReachability *reachability = [AnalyticsReachability reachabilityForInternetConnection];
         [reachability startNotifier];
         NetworkStatus status = [reachability currentReachabilityStatus];
         [reachability stopNotifier];
