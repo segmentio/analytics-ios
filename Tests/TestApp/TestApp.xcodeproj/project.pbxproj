@@ -23,7 +23,10 @@
 		D326EA7817A9AE6500266B18 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D326EA7717A9AE6500266B18 /* AdSupport.framework */; };
 		D326EA7A17A9AE6C00266B18 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D326EA7917A9AE6C00266B18 /* libsqlite3.dylib */; };
 		D326EA7C17A9AE7200266B18 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D326EA7B17A9AE7200266B18 /* libz.dylib */; };
-		D326EA7E17A9AE7E00266B18 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D326EA7D17A9AE7E00266B18 /* Analytics.framework */; };
+		D3B3AB3B17B0D2F200BFFA48 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3B3AB3A17B0D2F200BFFA48 /* Analytics.framework */; };
+		D3B3AB3D17B0D3C600BFFA48 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B3AB3C17B0D3C600BFFA48 /* ViewController.m */; };
+		D3B3AB4017B0D3CB00BFFA48 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B3AB3E17B0D3CB00BFFA48 /* MainStoryboard_iPad.storyboard */; };
+		D3B3AB4117B0D3CB00BFFA48 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B3AB3F17B0D3CB00BFFA48 /* MainStoryboard_iPhone.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,7 +50,11 @@
 		D326EA7717A9AE6500266B18 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		D326EA7917A9AE6C00266B18 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D326EA7B17A9AE7200266B18 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		D326EA7D17A9AE7E00266B18 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Analytics.framework; sourceTree = "<group>"; };
+		D3B3AB3A17B0D2F200BFFA48 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Analytics.framework; sourceTree = "<group>"; };
+		D3B3AB3C17B0D3C600BFFA48 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D3B3AB3E17B0D3CB00BFFA48 /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		D3B3AB3F17B0D3CB00BFFA48 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		D3B3AB4217B0D46600BFFA48 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,13 +66,13 @@
 				D326EA7A17A9AE6C00266B18 /* libsqlite3.dylib in Frameworks */,
 				D326EA7817A9AE6500266B18 /* AdSupport.framework in Frameworks */,
 				D326EA7617A9AE5F00266B18 /* QuartzCore.framework in Frameworks */,
+				D3B3AB3B17B0D2F200BFFA48 /* Analytics.framework in Frameworks */,
 				D326EA7417A9AE5800266B18 /* CoreTelephony.framework in Frameworks */,
 				D326EA7217A9AE5100266B18 /* SystemConfiguration.framework in Frameworks */,
 				D326EA7017A9AE4B00266B18 /* CoreData.framework in Frameworks */,
 				D326EA5317A9AE2B00266B18 /* UIKit.framework in Frameworks */,
 				D326EA5517A9AE2B00266B18 /* Foundation.framework in Frameworks */,
 				D326EA5717A9AE2B00266B18 /* CoreGraphics.framework in Frameworks */,
-				D326EA7E17A9AE7E00266B18 /* Analytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +99,7 @@
 		D326EA5117A9AE2B00266B18 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3B3AB3A17B0D2F200BFFA48 /* Analytics.framework */,
 				D326EA7B17A9AE7200266B18 /* libz.dylib */,
 				D326EA7917A9AE6C00266B18 /* libsqlite3.dylib */,
 				D326EA7717A9AE6500266B18 /* AdSupport.framework */,
@@ -99,7 +107,6 @@
 				D326EA7317A9AE5800266B18 /* CoreTelephony.framework */,
 				D326EA7117A9AE5100266B18 /* SystemConfiguration.framework */,
 				D326EA6F17A9AE4B00266B18 /* CoreData.framework */,
-				D326EA7D17A9AE7E00266B18 /* Analytics.framework */,
 				D326EA5217A9AE2B00266B18 /* UIKit.framework */,
 				D326EA5417A9AE2B00266B18 /* Foundation.framework */,
 				D326EA5617A9AE2B00266B18 /* CoreGraphics.framework */,
@@ -112,6 +119,8 @@
 			children = (
 				D326EA6117A9AE2B00266B18 /* AppDelegate.h */,
 				D326EA6217A9AE2B00266B18 /* AppDelegate.m */,
+				D3B3AB4217B0D46600BFFA48 /* ViewController.h */,
+				D3B3AB3C17B0D3C600BFFA48 /* ViewController.m */,
 				D326EA5917A9AE2B00266B18 /* Supporting Files */,
 			);
 			path = TestApp;
@@ -120,6 +129,8 @@
 		D326EA5917A9AE2B00266B18 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D3B3AB3E17B0D3CB00BFFA48 /* MainStoryboard_iPad.storyboard */,
+				D3B3AB3F17B0D3CB00BFFA48 /* MainStoryboard_iPhone.storyboard */,
 				D326EA5A17A9AE2B00266B18 /* TestApp-Info.plist */,
 				D326EA5B17A9AE2B00266B18 /* InfoPlist.strings */,
 				D326EA5E17A9AE2B00266B18 /* main.m */,
@@ -182,10 +193,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B3AB4117B0D3CB00BFFA48 /* MainStoryboard_iPhone.storyboard in Resources */,
 				D326EA5D17A9AE2B00266B18 /* InfoPlist.strings in Resources */,
 				D326EA6517A9AE2B00266B18 /* Default.png in Resources */,
 				D326EA6717A9AE2B00266B18 /* Default@2x.png in Resources */,
 				D326EA6917A9AE2B00266B18 /* Default-568h@2x.png in Resources */,
+				D3B3AB4017B0D3CB00BFFA48 /* MainStoryboard_iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3B3AB3D17B0D3C600BFFA48 /* ViewController.m in Sources */,
 				D326EA5F17A9AE2B00266B18 /* main.m in Sources */,
 				D326EA6317A9AE2B00266B18 /* AppDelegate.m in Sources */,
 			);
@@ -278,11 +292,13 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"/Users/reinpk/dev/segmentio-project/analytics-ios-osx/Tests/TestApp",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TestApp/TestApp-Prefix.pch";
 				INFOPLIST_FILE = "TestApp/TestApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -294,11 +310,13 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"/Users/reinpk/dev/segmentio-project/analytics-ios-osx/Tests/TestApp",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TestApp/TestApp-Prefix.pch";
 				INFOPLIST_FILE = "TestApp/TestApp-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
