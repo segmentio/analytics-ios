@@ -693,7 +693,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Analytics/Providers/Chartbeat\"",
-					"\"$(SRCROOT)/Analytics/Providers/CrittercismSDK/CrittercismSDK\"",
 					"\"$(SRCROOT)/Analytics/Providers/FlurrySDK/Flurry\"",
 					"\"$(SRCROOT)/Analytics/Providers/GoogleAnalytics-iOS-SDK/Library\"",
 				);
@@ -721,7 +720,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Analytics/Providers/Chartbeat\"",
-					"\"$(SRCROOT)/Analytics/Providers/CrittercismSDK/CrittercismSDK\"",
 					"\"$(SRCROOT)/Analytics/Providers/FlurrySDK/Flurry\"",
 					"\"$(SRCROOT)/Analytics/Providers/GoogleAnalytics-iOS-SDK/Library\"",
 				);
