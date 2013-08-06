@@ -1,11 +1,11 @@
 //  LocalyticsUploader.h
-//  Copyright (C) 2012 Char Software Inc., DBA Localytics
+//  Copyright (C) 2013 Char Software Inc., DBA Localytics
 //
 //  This code is provided under the Localytics Modified BSD License.
 //  A copy of this license has been distributed in a file called LICENSE
 //  with this source code.
 //
-// Please visit www.localytics.com for more information.
+//  Please visit www.localytics.com for more information.
 
 #import <UIKit/UIKit.h>
 
@@ -22,14 +22,6 @@ extern NSString * const kLocalyticsKeyResponseBody;
 @property (readonly, atomic) BOOL isUploading;
 
 /*!
- @method sharedLocalyticsUploader
- @abstract Establishes this as a Singleton Class allowing for data persistence.
- The class is accessed within the code using the following syntax:
- [[LocalyticsUploader sharedLocalyticsUploader] functionHere]
- */
-+ (LocalyticsUploader *)sharedLocalyticsUploader;
-
-/*!
  @method LocalyticsUploader
  @abstract Creates a thread which uploads all queued header and event data.
  All files starting with sessionFilePrefix are renamed,
@@ -42,8 +34,9 @@ extern NSString * const kLocalyticsKeyResponseBody;
  @param localyticsApplicationKey the Localytics application ID
  @param useHTTPS Flag determining whether HTTP or HTTPS is used for the post URL.
  @param installId Install id passed to the server in the x-install-id header field.
+ @param libraryVersion Library version to be passed to the server in the x-client-version header field.
  */
-- (void)uploaderWithApplicationKey:(NSString *)localyticsApplicationKey useHTTPS:(BOOL)useHTTPS installId:(NSString *)installId;
+- (void)uploaderWithApplicationKey:(NSString *)localyticsApplicationKey useHTTPS:(BOOL)useHTTPS installId:(NSString *)installId libraryVersion:(NSString *)libraryVersion;
 
 /*!
  @method LocalyticsUploader
@@ -56,19 +49,17 @@ extern NSString * const kLocalyticsKeyResponseBody;
  @param localyticsApplicationKey the Localytics application ID
  @param useHTTPS Flag determining whether HTTP or HTTPS is used for the post URL.
  @param installId Install id passed to the server in the x-install-id header field.
+ @param libraryVersion Library version to be passed to the server in the x-client-version header field.
  @param resultTarget Result target is the target for the callback method that knows how to handle response data
  @param callback Callback is the method of the target class that is to be called with the data begin returned by an upload
  */
-- (void)uploaderWithApplicationKey:(NSString *)localyticsApplicationKey useHTTPS:(BOOL)useHTTPS installId:(NSString *)installId resultTarget:(id)target callback:(SEL)callbackMethod;
+- (void)uploaderWithApplicationKey:(NSString *)localyticsApplicationKey useHTTPS:(BOOL)useHTTPS installId:(NSString *)installId libraryVersion:(NSString *)libraryVersion resultTarget:(id)target callback:(SEL)callbackMethod;
 
 
 /*!
- @method LocalyticsUploader
- @abstract Upload Facebook attribution data to Localytics.
- @param localyticsApplicationKey the Localytics application ID
- @param originalAttribution Attribution cookie captured at install time
- @param currentAttribution Current attribution cookie at time of upload
+ @method uploadTimeStamp
+ @abstract Retrieve upload TimeStamp.
  */
-- (void)uploaderFacebookWithApplicationKey:(NSString *)appKey originalAttribution:(NSString *)originalAttribution currentAttribution:(NSString *)currentAttribution installId:(NSString *)installId uniqueIdentifier:(NSString *)uniqueIdentifier advertisingIdentifier:(NSString *)advertisingIdentifier;
+- (NSString *)uploadTimeStamp;
 
 @end

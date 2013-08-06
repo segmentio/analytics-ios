@@ -1,5 +1,5 @@
 //  LocalyticsSession.h
-//  Copyright (C) 2012 Char Software Inc., DBA Localytics
+//  Copyright (C) 2013 Char Software Inc., DBA Localytics
 //
 //  This code is provided under the Localytics Modified BSD License.
 //  A copy of this license has been distributed in a file called LICENSE
@@ -10,7 +10,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-#define CLIENT_VERSION              @"iOS_2.15.2"      // The version of this library
+#define CLIENT_VERSION              @"2.18.0"
+#define MARKETING_PLATFORM
 
 /*!
  @class LocalyticsSession
@@ -18,7 +19,8 @@
  Please see the following guides for information on how to best use this
  library, sample code, and other useful information:
  <ul>
- <li><a href="http://wiki.localytics.com/index.php?title=Developer's_Integration_Guide">Main Developer's Integration Guide</a></li>
+ <li><a href="http://wiki.localytics.com/index.php?title=Developer's_Integration_Guide">
+ Main Developer's Integration Guide</a></li>
  </ul>
  
  <strong>Best Practices</strong>
@@ -39,92 +41,56 @@
  @author Localytics
  */
 
-// Optional delegate. Set this delegate if you require the following callbacks
+// Forward declaration
+@protocol LocalyticsSessionDelegate;
 
-@protocol LocalyticsSessionDelegate <NSObject>
-@optional
+@interface LocalyticsSession : NSObject
 
-/*!
- @method localyticsResumedSession
- @abstract Register for this callback to be notified when Localytics has either 
- resumed a previous session or created a new one. See the on the 'resume' method 
- for additional details.
- @param didResumeExistingSession This flag will indicate if Localytics restored an existing
- session or started a new one. 
- */
-- (void)localyticsResumedSession:(BOOL)didResumeExistingSession;
-
-@end
-
-@interface LocalyticsSession : NSObject {
-    
-	BOOL _hasInitialized;               // Whether or not the session object has been initialized.
-	BOOL _isSessionOpen;                // Whether or not this session has been opened.
-    float _backgroundSessionTimeout;    // If an App stays in the background for more
-    // than this many seconds, start a new session
-    // when it returns to foreground.
-@private
-#pragma mark Member Variables
-    dispatch_queue_t _queue;                // Queue of Localytics block objects.
-    dispatch_group_t _criticalGroup;        // Group of blocks the must complete before backgrounding.
-	NSString *_sessionUUID;                 // Unique identifier for this session.
-	NSString *_applicationKey;              // Unique identifier for the instrumented application
-    NSTimeInterval _lastSessionStartTimestamp;  // The start time of the most recent session.
-    NSDate *_sessionResumeTime;                 // Time session was started or resumed.
-    NSDate *_sessionCloseTime;              // Time session was closed.
-    NSMutableString *_unstagedFlowEvents;        // Comma-delimited list of app screens and events tagged during this
-    // session that have NOT been staged for upload.
-    NSMutableString *_stagedFlowEvents;        // App screens and events tagged during this session that HAVE been staged
-    // for upload.
-    NSMutableString *_screens;              // Comma-delimited list of screens tagged during this session.
-    NSTimeInterval _sessionActiveDuration;  // Duration that session open.
-	BOOL _sessionHasBeenOpen;               // Whether or not this session has ever been open.
-}
-
-@property (nonatomic,readonly) dispatch_queue_t queue;
-@property (nonatomic,readonly) dispatch_group_t criticalGroup;
-@property (atomic) BOOL isSessionOpen;
-@property (atomic) BOOL hasInitialized;
-@property (atomic) float backgroundSessionTimeout;
-@property (nonatomic, assign, readonly) NSTimeInterval lastSessionStartTimestamp;
-@property (nonatomic, assign, readonly) NSInteger sessionNumber;
-@property (nonatomic, assign) id<LocalyticsSessionDelegate> localyticsDelegate;
 
 + (void)logMessage:(NSString *)message;
 
 /*!
  @property enableHTTPS
- @abstract Determines whether or not HTTPS is used when calling the Localytics
+ @abstract (Optional) Determines whether or not HTTPS is used when calling the Localytics
  post URL. The default is NO.
  */
 @property (nonatomic, assign) BOOL enableHTTPS;
 
 /*!
  @property loggingEnabled
- @abstract Determines whether or Localytics debugging information is shown
+ @abstract (Optional) Determines whether or Localytics debugging information is shown
  to the console. The default is NO
  */
 @property (nonatomic, assign) BOOL loggingEnabled;
 
+/*!
+ @property sessionTimeoutInterval
+ @abstrac (Optional) If an App stays in the background for more than this many seconds,
+ start a new session when it returns to foreground.
+ */
+@property (atomic) float sessionTimeoutInterval;
+
+/*!
+ @property localyticsDelegate
+ @abstract (Optional) Assign this delegate to the class you'd like to register to recieve 
+ the Localytics delegate callbacks (Defined at the end of this file)
+ */
+@property (nonatomic, assign) id<LocalyticsSessionDelegate> localyticsDelegate;
+
 #pragma mark Public Methods
 /*!
- @method sharedLocalyticsSession
+ @method shared
  @abstract Accesses the Session object.  This is a Singleton class which maintains
  a single session throughout your application.  It is possible to manage your own
  session, but this is the easiest way to access the Localytics object throughout your code.
  The class is accessed within the code using the following syntax:
- [[LocalyticsSession sharedLocalyticsSession] functionHere]
+ [[LocalyticsSession shared] functionHere]
  So, to tag an event, all that is necessary, anywhere in the code is:
- [[LocalyticsSession sharedLocalyticsSession] tagEvent:@"MY_EVENT"];
+ [[LocalyticsSession shared] tagEvent:@"MY_EVENT"];
  */
 + (LocalyticsSession *)sharedLocalyticsSession;
++ (LocalyticsSession *)shared;
 
-/*!
- @method LocalyticsSession
- @abstract Initializes the Localytics Object.  Not necessary if you choose to use startSession.
- @param applicationKey The key unique for each application generated at www.localytics.com
- */
-- (void)LocalyticsSession:(NSString *)appKey;
 
 /*!
  @method startSession
@@ -136,16 +102,6 @@
  at www.localytics.com
  */
 - (void)startSession:(NSString *)appKey;
-
-/*!
- @method setOptIn
- @abstract (OPTIONAL) Allows the application to control whether or not it will collect user data.
- Even if this call is used, it is necessary to continue calling upload().  No new data will be
- collected, so nothing new will be uploaded but it is necessary to upload an event telling the
- server this user has opted out.
- @param optedIn True if the user is opted in, false otherwise.
- */
-- (void)setOptIn:(BOOL)optedIn;
 
 /*!
  @method open
@@ -203,6 +159,12 @@
  <br>
  See the tagging guide at: http://wiki.localytics.com/
  @param event The name of the event which occurred.
+ @param attributes (Optional) An object/hash/dictionary of key-value pairs, contains 
+ contextual data specific to the event.
+ @param rerportAttributes (Optional) Additional attributes used for custom reporting.
+ Available to Enterprise customers, please contact services for more details.
+ @param customerValueIncrease (Optional) Numeric value, added to customer lifetime value.
+ Integer expected. Try to use lowest possible unit, such as cents for US currency.
  */
 - (void)tagEvent:(NSString *)event;
 
@@ -241,6 +203,23 @@ customerValueIncrease:(NSNumber *)customerValueIncrease;
 - (void)upload;
 
 /*!
+ @method LocalyticsSession
+ @abstract Initializes the Localytics Object.  Not necessary if you choose to use startSession.
+ @param applicationKey The key unique for each application generated at www.localytics.com
+ */
+- (void)LocalyticsSession:(NSString *)appKey;
+
+/*!
+ @method setOptIn
+ @abstract (OPTIONAL) Allows the application to control whether or not it will collect user data.
+ Even if this call is used, it is necessary to continue calling upload().  No new data will be
+ collected, so nothing new will be uploaded but it is necessary to upload an event telling the
+ server this user has opted out.
+ @param optedIn True if the user is opted in, false otherwise.
+ */
+- (void)setOptIn:(BOOL)optedIn;
+
+/*!
  @method setLocation
  @abstract Stores the user's location.  This will be used in all event and session calls.
  If your application has already collected the user's location, it may be passed to Localytics
@@ -253,7 +232,7 @@ customerValueIncrease:(NSNumber *)customerValueIncrease;
 
 /*!
  @method setCustomDimension
- @abstract (ENTERPRISE ONLY) Sets the value of a custom dimension. Custom dimensions are dimensions
+ @abstract Sets the value of a custom dimension. Custom dimensions are dimensions
  which contain user defined data unlike the predefined dimensions such as carrier, model, and country.
  Once a value for a custom dimension is set, the device it was set on will continue to upload that value
  until the value is changed. To clear a value pass nil as the value.
@@ -263,10 +242,16 @@ customerValueIncrease:(NSNumber *)customerValueIncrease;
  */
 - (void)setCustomDimension:(int)dimension value:(NSString *)value;
 
+/*!
+ @method customDimension
+ @abstract Gets the custom dimension value for a given dimension. Avoid calling this on the main thread, as it
+ may take some time for all pending database execution. */
+- (NSString *)customDimension:(int)dimension;
+
 
 /*!
  @method setValueForIdentifier
- @abstract (ENTERPRISE ONLY) Sets the value of a custom identifier. Identifiers are a form of key/value storage
+ @abstract Sets the value of a custom identifier. Identifiers are a form of key/value storage
  which contain custom user data. Identifiers might include things like email addresses, customer IDs, twitter
  handles, and facebook IDs.
  Once a value is set, the device it was set on will continue to upload that value until the value is changed.
@@ -276,7 +261,7 @@ customerValueIncrease:(NSNumber *)customerValueIncrease;
 
 /*!
  @method setCustomerName
- @abstract (ENTERPRISE ONLY) Record the customer name
+ @abstract Record the customer name
  Once this value is set, the device it was set on will continue to upload that value until the value is changed.
  To delete the value, pass in nil.
  */
@@ -284,7 +269,7 @@ customerValueIncrease:(NSNumber *)customerValueIncrease;
 
 /*!
  @method setCustomerId
- @abstract (ENTERPRISE ONLY) Record your custom customer identifier
+ @abstract Record your custom customer identifier
  Once this value is set, the device it was set on will continue to upload that value until the value is changed.
  To delete the value, pass in nil.
  */
@@ -292,30 +277,27 @@ customerValueIncrease:(NSNumber *)customerValueIncrease;
 
 /*!
  @method setCustomerId
- @abstract (ENTERPRISE ONLY) Record the customer's email address
+ @abstract Record the customer's email address
  Once this value is set, the device it was set on will continue to upload that value until the value is changed.
  To delete the value, pass in nil.
  */
 - (void)setCustomerEmail:(NSString *)email;
 
+@end
+
+@protocol LocalyticsSessionDelegate <NSObject>
+@optional
+
 /*!
- @method ampTrigger
- @abstract Displays the AMP message for the specific event.
- Is a stub implementation here to prevent crashes if this class is accidentally used inplace of
- the LocalyticsAmpSession
- @param event Name of the event.
+ @method localyticsResumedSession
+ @abstract Register for this callback to be notified when Localytics has either
+ resumed a previous session or created a new one. See the on the 'resume' method
+ for additional details.
+ @param didResumeExistingSession This flag will indicate if Localytics restored an existing
+ session or started a new one.
  */
-- (void)ampTrigger:(NSString *)event;
-- (void)ampTrigger:(NSString *)event attributes:(NSDictionary *)attributes;
-- (void)ampTrigger:(NSString *)event attributes:(NSDictionary *)attributes reportAttributes:(NSDictionary *)reportAttributes;
-
-// Private methods
-- (void)ll_open;
-
-
-// Internal logging macros. You should not need to modify this
-#define LOCALYTICS_LOGGING_ENABLED [[LocalyticsSession sharedLocalyticsSession] loggingEnabled]
-#define LocalyticsLog(message, ...)if([[LocalyticsSession sharedLocalyticsSession] loggingEnabled]) \
-[LocalyticsSession logMessage:[NSString stringWithFormat:@"%s:\n + " message "\n\n", __PRETTY_FUNCTION__, ##__VA_ARGS__]]
+- (void)localyticsResumedSession:(BOOL)didResumeExistingSession;
 
 @end
+
+
