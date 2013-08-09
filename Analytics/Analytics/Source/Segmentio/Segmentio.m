@@ -38,7 +38,7 @@ static NSString *GetSessionID(BOOL reset) {
 
 static NSMutableDictionary *CreateContext(NSDictionary *parameters) {
     NSMutableDictionary *context = [NSMutableDictionary dictionary];
-    [context setValue:@"analytics-ios-osx" forKey:@"library"];
+    [context setValue:@"analytics-ios" forKey:@"library"];
     // TODO add any device information here
     if (parameters != nil) {
         [context addEntriesFromDictionary:parameters];
