@@ -1,8 +1,8 @@
 // AmplitudeProvider.m
 // Copyright 2013 Segment.io
 
+#import <Amplitude-iOS/Amplitude.h>
 #import "AmplitudeProvider.h"
-#import "Amplitude.h"
 #import "SOUtils.h"
 #import "Analytics.h"
 

@@ -22,77 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		EA2E928D17C04A1F0074369C /* Amplitude.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E920417C04A1F0074369C /* Amplitude.h */; };
-		EA2E928E17C04A1F0074369C /* Amplitude.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E920517C04A1F0074369C /* Amplitude.m */; };
-		EA2E928F17C04A1F0074369C /* AmplitudeARCMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E920617C04A1F0074369C /* AmplitudeARCMacros.h */; };
-		EA2E929017C04A1F0074369C /* AmplitudeLocationManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E920717C04A1F0074369C /* AmplitudeLocationManagerDelegate.h */; };
-		EA2E929117C04A1F0074369C /* AmplitudeLocationManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E920817C04A1F0074369C /* AmplitudeLocationManagerDelegate.m */; };
-		EA2E929217C04A1F0074369C /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E920C17C04A1F0074369C /* Bugsnag.h */; };
-		EA2E929317C04A1F0074369C /* Bugsnag.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E920D17C04A1F0074369C /* Bugsnag.m */; };
-		EA2E929417C04A1F0074369C /* BugsnagEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E920E17C04A1F0074369C /* BugsnagEvent.h */; };
-		EA2E929517C04A1F0074369C /* BugsnagEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E920F17C04A1F0074369C /* BugsnagEvent.m */; };
-		EA2E929617C04A1F0074369C /* BugsnagLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E921017C04A1F0074369C /* BugsnagLogging.h */; };
-		EA2E929717C04A1F0074369C /* BugsnagMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E921117C04A1F0074369C /* BugsnagMetaData.h */; };
-		EA2E929817C04A1F0074369C /* BugsnagMetaData.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E921217C04A1F0074369C /* BugsnagMetaData.m */; };
-		EA2E929917C04A1F0074369C /* BugsnagNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E921317C04A1F0074369C /* BugsnagNotifier.h */; };
-		EA2E929A17C04A1F0074369C /* BugsnagNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E921417C04A1F0074369C /* BugsnagNotifier.m */; };
-		EA2E929B17C04A1F0074369C /* BugsnagPrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E921517C04A1F0074369C /* BugsnagPrivate.h */; };
-		EA2E929C17C04A1F0074369C /* NSDictionary+BSJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E921717C04A1F0074369C /* NSDictionary+BSJSON.h */; };
-		EA2E929D17C04A1F0074369C /* NSDictionary+BSJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E921817C04A1F0074369C /* NSDictionary+BSJSON.m */; };
-		EA2E929E17C04A1F0074369C /* NSMutableDictionary+BSMerge.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E921917C04A1F0074369C /* NSMutableDictionary+BSMerge.h */; };
-		EA2E929F17C04A1F0074369C /* NSMutableDictionary+BSMerge.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E921A17C04A1F0074369C /* NSMutableDictionary+BSMerge.m */; };
-		EA2E92A017C04A1F0074369C /* NSNumber+BSDuration.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E921B17C04A1F0074369C /* NSNumber+BSDuration.h */; };
-		EA2E92A117C04A1F0074369C /* NSNumber+BSDuration.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E921C17C04A1F0074369C /* NSNumber+BSDuration.m */; };
-		EA2E92A217C04A1F0074369C /* NSNumber+BSFileSizes.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E921D17C04A1F0074369C /* NSNumber+BSFileSizes.h */; };
-		EA2E92A317C04A1F0074369C /* NSNumber+BSFileSizes.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E921E17C04A1F0074369C /* NSNumber+BSFileSizes.m */; };
-		EA2E92A417C04A1F0074369C /* UIDevice+BSStats.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E921F17C04A1F0074369C /* UIDevice+BSStats.h */; };
-		EA2E92A517C04A1F0074369C /* UIDevice+BSStats.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E922017C04A1F0074369C /* UIDevice+BSStats.m */; };
-		EA2E92A617C04A1F0074369C /* UIViewController+BSVisibility.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E922117C04A1F0074369C /* UIViewController+BSVisibility.h */; };
-		EA2E92A717C04A1F0074369C /* UIViewController+BSVisibility.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E922217C04A1F0074369C /* UIViewController+BSVisibility.m */; };
-		EA2E92A817C04A1F0074369C /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E922417C04A1F0074369C /* Reachability.h */; };
-		EA2E92A917C04A1F0074369C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E922517C04A1F0074369C /* Reachability.m */; };
-		EA2E92AA17C04A1F0074369C /* CBTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E922917C04A1F0074369C /* CBTracker.h */; };
-		EA2E92AB17C04A1F0074369C /* libChartbeat-iOS-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2E922A17C04A1F0074369C /* libChartbeat-iOS-SDK.a */; };
-		EA2E92AC17C04A1F0074369C /* Countly.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E922C17C04A1F0074369C /* Countly.h */; };
-		EA2E92AD17C04A1F0074369C /* Countly.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E922D17C04A1F0074369C /* Countly.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA2E92AE17C04A1F0074369C /* Countly.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA2E922E17C04A1F0074369C /* Countly.xcdatamodeld */; };
-		EA2E92AF17C04A1F0074369C /* Countly_OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E923017C04A1F0074369C /* Countly_OpenUDID.h */; };
-		EA2E92B017C04A1F0074369C /* Countly_OpenUDID.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E923117C04A1F0074369C /* Countly_OpenUDID.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA2E92B117C04A1F0074369C /* CountlyDB.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E923217C04A1F0074369C /* CountlyDB.h */; };
-		EA2E92B217C04A1F0074369C /* CountlyDB.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E923317C04A1F0074369C /* CountlyDB.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA2E92B317C04A1F0074369C /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E923817C04A1F0074369C /* Flurry.h */; };
-		EA2E92B417C04A1F0074369C /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2E923917C04A1F0074369C /* libFlurry.a */; };
-		EA2E92B517C04A1F0074369C /* GAI.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E923E17C04A1F0074369C /* GAI.h */; };
-		EA2E92B617C04A1F0074369C /* GAITrackedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E923F17C04A1F0074369C /* GAITrackedViewController.h */; };
-		EA2E92B717C04A1F0074369C /* GAITracker.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E924017C04A1F0074369C /* GAITracker.h */; };
-		EA2E92B817C04A1F0074369C /* GAITransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E924117C04A1F0074369C /* GAITransaction.h */; };
-		EA2E92B917C04A1F0074369C /* GAITransactionItem.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E924217C04A1F0074369C /* GAITransactionItem.h */; };
-		EA2E92BA17C04A1F0074369C /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2E924317C04A1F0074369C /* libGoogleAnalytics.a */; };
-		EA2E92BB17C04A200074369C /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA2E924417C04A1F0074369C /* libGoogleAnalytics_debug.a */; };
-		EA2E92BC17C04A200074369C /* KISSMetricsAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E924717C04A1F0074369C /* KISSMetricsAPI.h */; };
-		EA2E92BD17C04A200074369C /* KISSMetricsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E924817C04A1F0074369C /* KISSMetricsAPI.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA2E92BE17C04A200074369C /* LocalyticsDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E924C17C04A1F0074369C /* LocalyticsDatabase.h */; };
-		EA2E92BF17C04A200074369C /* LocalyticsDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E924D17C04A1F0074369C /* LocalyticsDatabase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA2E92C017C04A200074369C /* LocalyticsSession+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E924E17C04A1F0074369C /* LocalyticsSession+Private.h */; };
-		EA2E92C117C04A200074369C /* LocalyticsSession.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E924F17C04A1F0074369C /* LocalyticsSession.h */; };
-		EA2E92C217C04A200074369C /* LocalyticsSession.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E925017C04A1F0074369C /* LocalyticsSession.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA2E92C317C04A200074369C /* LocalyticsUploader.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E925117C04A1F0074369C /* LocalyticsUploader.h */; };
-		EA2E92C417C04A200074369C /* LocalyticsUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E925217C04A1F0074369C /* LocalyticsUploader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA2E92C517C04A200074369C /* WebserviceConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E925317C04A1F0074369C /* WebserviceConstants.h */; };
-		EA2E92C617C04A200074369C /* MPCJSONDataSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E925917C04A1F0074369C /* MPCJSONDataSerializer.h */; };
-		EA2E92C717C04A200074369C /* MPCJSONDataSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E925A17C04A1F0074369C /* MPCJSONDataSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA2E92C817C04A200074369C /* MPCJSONSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E925B17C04A1F0074369C /* MPCJSONSerializer.h */; };
-		EA2E92C917C04A200074369C /* MPCJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E925C17C04A1F0074369C /* MPCJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA2E92CA17C04A200074369C /* MPCSerializedJSONData.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E925D17C04A1F0074369C /* MPCSerializedJSONData.h */; };
-		EA2E92CB17C04A200074369C /* MPCSerializedJSONData.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E925E17C04A1F0074369C /* MPCSerializedJSONData.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA2E92CC17C04A200074369C /* NSData+MPBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E926017C04A1F0074369C /* NSData+MPBase64.h */; };
-		EA2E92CD17C04A200074369C /* NSData+MPBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E926117C04A1F0074369C /* NSData+MPBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA2E92CE17C04A200074369C /* ODIN.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E926317C04A1F0074369C /* ODIN.h */; };
-		EA2E92CF17C04A200074369C /* ODIN.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E926417C04A1F0074369C /* ODIN.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA2E92D017C04A200074369C /* Mixpanel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E926517C04A1F0074369C /* Mixpanel.h */; };
-		EA2E92D117C04A200074369C /* Mixpanel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E926617C04A1F0074369C /* Mixpanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		EA2E92D217C04A200074369C /* AnalyticsReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E926917C04A1F0074369C /* AnalyticsReachability.h */; };
-		EA2E92D317C04A200074369C /* AnalyticsReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E926A17C04A1F0074369C /* AnalyticsReachability.m */; };
+		B8A1B15E08994855871D1685 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B38155D048462482A91850 /* libPods.a */; };
 		EA2E92D817C04A200074369C /* AmplitudeProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E927217C04A1F0074369C /* AmplitudeProvider.h */; };
 		EA2E92D917C04A200074369C /* AmplitudeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E927317C04A1F0074369C /* AmplitudeProvider.m */; };
 		EA2E92DA17C04A200074369C /* BugsnagProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E927417C04A1F0074369C /* BugsnagProvider.h */; };
@@ -138,7 +68,6 @@
 		EA3D9AD517C0AC87001DD476 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29FB1765B38A000B937E /* QuartzCore.framework */; };
 		EA3D9AD617C0AC91001DD476 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29941765AF6A000B937E /* CoreTelephony.framework */; };
 		EA3D9AD717C0AC96001DD476 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29921765AECB000B937E /* SystemConfiguration.framework */; };
-		EA3D9AD817C0AD02001DD476 /* Countly.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EA2E922E17C04A1F0074369C /* Countly.xcdatamodeld */; };
 		F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		F7200B7E17659B2F003F3138 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = F7200B7D17659B2F003F3138 /* Analytics.m */; };
 		F78D29911765AEC4000B937E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29901765AEC4000B937E /* CoreData.framework */; };
@@ -169,90 +98,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EA2E920417C04A1F0074369C /* Amplitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Amplitude.h; sourceTree = "<group>"; };
-		EA2E920517C04A1F0074369C /* Amplitude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Amplitude.m; sourceTree = "<group>"; };
-		EA2E920617C04A1F0074369C /* AmplitudeARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmplitudeARCMacros.h; sourceTree = "<group>"; };
-		EA2E920717C04A1F0074369C /* AmplitudeLocationManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmplitudeLocationManagerDelegate.h; sourceTree = "<group>"; };
-		EA2E920817C04A1F0074369C /* AmplitudeLocationManagerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmplitudeLocationManagerDelegate.m; sourceTree = "<group>"; };
-		EA2E920917C04A1F0074369C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		EA2E920C17C04A1F0074369C /* Bugsnag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bugsnag.h; sourceTree = "<group>"; };
-		EA2E920D17C04A1F0074369C /* Bugsnag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bugsnag.m; sourceTree = "<group>"; };
-		EA2E920E17C04A1F0074369C /* BugsnagEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsnagEvent.h; sourceTree = "<group>"; };
-		EA2E920F17C04A1F0074369C /* BugsnagEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugsnagEvent.m; sourceTree = "<group>"; };
-		EA2E921017C04A1F0074369C /* BugsnagLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsnagLogging.h; sourceTree = "<group>"; };
-		EA2E921117C04A1F0074369C /* BugsnagMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsnagMetaData.h; sourceTree = "<group>"; };
-		EA2E921217C04A1F0074369C /* BugsnagMetaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugsnagMetaData.m; sourceTree = "<group>"; };
-		EA2E921317C04A1F0074369C /* BugsnagNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsnagNotifier.h; sourceTree = "<group>"; };
-		EA2E921417C04A1F0074369C /* BugsnagNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugsnagNotifier.m; sourceTree = "<group>"; };
-		EA2E921517C04A1F0074369C /* BugsnagPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsnagPrivate.h; sourceTree = "<group>"; };
-		EA2E921717C04A1F0074369C /* NSDictionary+BSJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+BSJSON.h"; sourceTree = "<group>"; };
-		EA2E921817C04A1F0074369C /* NSDictionary+BSJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+BSJSON.m"; sourceTree = "<group>"; };
-		EA2E921917C04A1F0074369C /* NSMutableDictionary+BSMerge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+BSMerge.h"; sourceTree = "<group>"; };
-		EA2E921A17C04A1F0074369C /* NSMutableDictionary+BSMerge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+BSMerge.m"; sourceTree = "<group>"; };
-		EA2E921B17C04A1F0074369C /* NSNumber+BSDuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+BSDuration.h"; sourceTree = "<group>"; };
-		EA2E921C17C04A1F0074369C /* NSNumber+BSDuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+BSDuration.m"; sourceTree = "<group>"; };
-		EA2E921D17C04A1F0074369C /* NSNumber+BSFileSizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+BSFileSizes.h"; sourceTree = "<group>"; };
-		EA2E921E17C04A1F0074369C /* NSNumber+BSFileSizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+BSFileSizes.m"; sourceTree = "<group>"; };
-		EA2E921F17C04A1F0074369C /* UIDevice+BSStats.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+BSStats.h"; sourceTree = "<group>"; };
-		EA2E922017C04A1F0074369C /* UIDevice+BSStats.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+BSStats.m"; sourceTree = "<group>"; };
-		EA2E922117C04A1F0074369C /* UIViewController+BSVisibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BSVisibility.h"; sourceTree = "<group>"; };
-		EA2E922217C04A1F0074369C /* UIViewController+BSVisibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BSVisibility.m"; sourceTree = "<group>"; };
-		EA2E922417C04A1F0074369C /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		EA2E922517C04A1F0074369C /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		EA2E922617C04A1F0074369C /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		EA2E922717C04A1F0074369C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		EA2E922917C04A1F0074369C /* CBTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBTracker.h; sourceTree = "<group>"; };
-		EA2E922A17C04A1F0074369C /* libChartbeat-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libChartbeat-iOS-SDK.a"; sourceTree = "<group>"; };
-		EA2E922C17C04A1F0074369C /* Countly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countly.h; sourceTree = "<group>"; };
-		EA2E922D17C04A1F0074369C /* Countly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countly.m; sourceTree = "<group>"; };
-		EA2E922F17C04A1F0074369C /* Countly.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Countly.xcdatamodel; sourceTree = "<group>"; };
-		EA2E923017C04A1F0074369C /* Countly_OpenUDID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countly_OpenUDID.h; sourceTree = "<group>"; };
-		EA2E923117C04A1F0074369C /* Countly_OpenUDID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countly_OpenUDID.m; sourceTree = "<group>"; };
-		EA2E923217C04A1F0074369C /* CountlyDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountlyDB.h; sourceTree = "<group>"; };
-		EA2E923317C04A1F0074369C /* CountlyDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountlyDB.m; sourceTree = "<group>"; };
-		EA2E923417C04A1F0074369C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		EA2E923517C04A1F0074369C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		EA2E923817C04A1F0074369C /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		EA2E923917C04A1F0074369C /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
-		EA2E923A17C04A1F0074369C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		EA2E923B17C04A1F0074369C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		EA2E923E17C04A1F0074369C /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
-		EA2E923F17C04A1F0074369C /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITrackedViewController.h; sourceTree = "<group>"; };
-		EA2E924017C04A1F0074369C /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITracker.h; sourceTree = "<group>"; };
-		EA2E924117C04A1F0074369C /* GAITransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransaction.h; sourceTree = "<group>"; };
-		EA2E924217C04A1F0074369C /* GAITransactionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAITransactionItem.h; sourceTree = "<group>"; };
-		EA2E924317C04A1F0074369C /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
-		EA2E924417C04A1F0074369C /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
-		EA2E924517C04A1F0074369C /* Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Readme.txt; sourceTree = "<group>"; };
-		EA2E924717C04A1F0074369C /* KISSMetricsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KISSMetricsAPI.h; sourceTree = "<group>"; };
-		EA2E924817C04A1F0074369C /* KISSMetricsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KISSMetricsAPI.m; sourceTree = "<group>"; };
-		EA2E924917C04A1F0074369C /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
-		EA2E924B17C04A1F0074369C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		EA2E924C17C04A1F0074369C /* LocalyticsDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsDatabase.h; sourceTree = "<group>"; };
-		EA2E924D17C04A1F0074369C /* LocalyticsDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsDatabase.m; sourceTree = "<group>"; };
-		EA2E924E17C04A1F0074369C /* LocalyticsSession+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LocalyticsSession+Private.h"; sourceTree = "<group>"; };
-		EA2E924F17C04A1F0074369C /* LocalyticsSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsSession.h; sourceTree = "<group>"; };
-		EA2E925017C04A1F0074369C /* LocalyticsSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsSession.m; sourceTree = "<group>"; };
-		EA2E925117C04A1F0074369C /* LocalyticsUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsUploader.h; sourceTree = "<group>"; };
-		EA2E925217C04A1F0074369C /* LocalyticsUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsUploader.m; sourceTree = "<group>"; };
-		EA2E925317C04A1F0074369C /* WebserviceConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceConstants.h; sourceTree = "<group>"; };
-		EA2E925517C04A1F0074369C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		EA2E925917C04A1F0074369C /* MPCJSONDataSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCJSONDataSerializer.h; sourceTree = "<group>"; };
-		EA2E925A17C04A1F0074369C /* MPCJSONDataSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCJSONDataSerializer.m; sourceTree = "<group>"; };
-		EA2E925B17C04A1F0074369C /* MPCJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCJSONSerializer.h; sourceTree = "<group>"; };
-		EA2E925C17C04A1F0074369C /* MPCJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCJSONSerializer.m; sourceTree = "<group>"; };
-		EA2E925D17C04A1F0074369C /* MPCSerializedJSONData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPCSerializedJSONData.h; sourceTree = "<group>"; };
-		EA2E925E17C04A1F0074369C /* MPCSerializedJSONData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPCSerializedJSONData.m; sourceTree = "<group>"; };
-		EA2E926017C04A1F0074369C /* NSData+MPBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+MPBase64.h"; sourceTree = "<group>"; };
-		EA2E926117C04A1F0074369C /* NSData+MPBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+MPBase64.m"; sourceTree = "<group>"; };
-		EA2E926317C04A1F0074369C /* ODIN.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODIN.h; sourceTree = "<group>"; };
-		EA2E926417C04A1F0074369C /* ODIN.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODIN.m; sourceTree = "<group>"; };
-		EA2E926517C04A1F0074369C /* Mixpanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mixpanel.h; sourceTree = "<group>"; };
-		EA2E926617C04A1F0074369C /* Mixpanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Mixpanel.m; sourceTree = "<group>"; };
-		EA2E926717C04A1F0074369C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		EA2E926917C04A1F0074369C /* AnalyticsReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsReachability.h; sourceTree = "<group>"; };
-		EA2E926A17C04A1F0074369C /* AnalyticsReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsReachability.m; sourceTree = "<group>"; };
-		EA2E926B17C04A1F0074369C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		EA2E927217C04A1F0074369C /* AmplitudeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmplitudeProvider.h; sourceTree = "<group>"; };
 		EA2E927317C04A1F0074369C /* AmplitudeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmplitudeProvider.m; sourceTree = "<group>"; };
 		EA2E927417C04A1F0074369C /* BugsnagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsnagProvider.h; sourceTree = "<group>"; };
@@ -341,267 +188,13 @@
 				F78D29951765AF6A000B937E /* CoreTelephony.framework in Frameworks */,
 				F78D29931765AECB000B937E /* SystemConfiguration.framework in Frameworks */,
 				F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */,
-				EA2E92AB17C04A1F0074369C /* libChartbeat-iOS-SDK.a in Frameworks */,
-				EA2E92B417C04A1F0074369C /* libFlurry.a in Frameworks */,
-				EA2E92BA17C04A1F0074369C /* libGoogleAnalytics.a in Frameworks */,
-				EA2E92BB17C04A200074369C /* libGoogleAnalytics_debug.a in Frameworks */,
+				B8A1B15E08994855871D1685 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EA2E920217C04A1F0074369C /* Providers */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E920317C04A1F0074369C /* Amplitude-iOS */,
-				EA2E920A17C04A1F0074369C /* Bugsnag */,
-				EA2E922817C04A1F0074369C /* Chartbeat */,
-				EA2E922B17C04A1F0074369C /* Countly */,
-				EA2E923617C04A1F0074369C /* FlurrySDK */,
-				EA2E923C17C04A1F0074369C /* GoogleAnalytics-iOS-SDK */,
-				EA2E924617C04A1F0074369C /* KISSmetrics */,
-				EA2E924A17C04A1F0074369C /* Localytics */,
-				EA2E925417C04A1F0074369C /* Mixpanel */,
-				EA2E926817C04A1F0074369C /* Reachability */,
-			);
-			path = Providers;
-			sourceTree = "<group>";
-		};
-		EA2E920317C04A1F0074369C /* Amplitude-iOS */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E920417C04A1F0074369C /* Amplitude.h */,
-				EA2E920517C04A1F0074369C /* Amplitude.m */,
-				EA2E920617C04A1F0074369C /* AmplitudeARCMacros.h */,
-				EA2E920717C04A1F0074369C /* AmplitudeLocationManagerDelegate.h */,
-				EA2E920817C04A1F0074369C /* AmplitudeLocationManagerDelegate.m */,
-				EA2E920917C04A1F0074369C /* README.md */,
-			);
-			path = "Amplitude-iOS";
-			sourceTree = "<group>";
-		};
-		EA2E920A17C04A1F0074369C /* Bugsnag */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E920B17C04A1F0074369C /* Bugsnag Plugin */,
-				EA2E922617C04A1F0074369C /* LICENSE.txt */,
-				EA2E922717C04A1F0074369C /* README.md */,
-			);
-			path = Bugsnag;
-			sourceTree = "<group>";
-		};
-		EA2E920B17C04A1F0074369C /* Bugsnag Plugin */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E920C17C04A1F0074369C /* Bugsnag.h */,
-				EA2E920D17C04A1F0074369C /* Bugsnag.m */,
-				EA2E920E17C04A1F0074369C /* BugsnagEvent.h */,
-				EA2E920F17C04A1F0074369C /* BugsnagEvent.m */,
-				EA2E921017C04A1F0074369C /* BugsnagLogging.h */,
-				EA2E921117C04A1F0074369C /* BugsnagMetaData.h */,
-				EA2E921217C04A1F0074369C /* BugsnagMetaData.m */,
-				EA2E921317C04A1F0074369C /* BugsnagNotifier.h */,
-				EA2E921417C04A1F0074369C /* BugsnagNotifier.m */,
-				EA2E921517C04A1F0074369C /* BugsnagPrivate.h */,
-				EA2E921617C04A1F0074369C /* Categories */,
-				EA2E922317C04A1F0074369C /* Dependencies */,
-			);
-			path = "Bugsnag Plugin";
-			sourceTree = "<group>";
-		};
-		EA2E921617C04A1F0074369C /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E921717C04A1F0074369C /* NSDictionary+BSJSON.h */,
-				EA2E921817C04A1F0074369C /* NSDictionary+BSJSON.m */,
-				EA2E921917C04A1F0074369C /* NSMutableDictionary+BSMerge.h */,
-				EA2E921A17C04A1F0074369C /* NSMutableDictionary+BSMerge.m */,
-				EA2E921B17C04A1F0074369C /* NSNumber+BSDuration.h */,
-				EA2E921C17C04A1F0074369C /* NSNumber+BSDuration.m */,
-				EA2E921D17C04A1F0074369C /* NSNumber+BSFileSizes.h */,
-				EA2E921E17C04A1F0074369C /* NSNumber+BSFileSizes.m */,
-				EA2E921F17C04A1F0074369C /* UIDevice+BSStats.h */,
-				EA2E922017C04A1F0074369C /* UIDevice+BSStats.m */,
-				EA2E922117C04A1F0074369C /* UIViewController+BSVisibility.h */,
-				EA2E922217C04A1F0074369C /* UIViewController+BSVisibility.m */,
-			);
-			path = Categories;
-			sourceTree = "<group>";
-		};
-		EA2E922317C04A1F0074369C /* Dependencies */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E922417C04A1F0074369C /* Reachability.h */,
-				EA2E922517C04A1F0074369C /* Reachability.m */,
-			);
-			path = Dependencies;
-			sourceTree = "<group>";
-		};
-		EA2E922817C04A1F0074369C /* Chartbeat */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E922917C04A1F0074369C /* CBTracker.h */,
-				EA2E922A17C04A1F0074369C /* libChartbeat-iOS-SDK.a */,
-			);
-			path = Chartbeat;
-			sourceTree = "<group>";
-		};
-		EA2E922B17C04A1F0074369C /* Countly */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E922C17C04A1F0074369C /* Countly.h */,
-				EA2E922D17C04A1F0074369C /* Countly.m */,
-				EA2E922E17C04A1F0074369C /* Countly.xcdatamodeld */,
-				EA2E923017C04A1F0074369C /* Countly_OpenUDID.h */,
-				EA2E923117C04A1F0074369C /* Countly_OpenUDID.m */,
-				EA2E923217C04A1F0074369C /* CountlyDB.h */,
-				EA2E923317C04A1F0074369C /* CountlyDB.m */,
-				EA2E923417C04A1F0074369C /* LICENSE */,
-				EA2E923517C04A1F0074369C /* README.md */,
-			);
-			path = Countly;
-			sourceTree = "<group>";
-		};
-		EA2E923617C04A1F0074369C /* FlurrySDK */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E923717C04A1F0074369C /* Flurry */,
-				EA2E923A17C04A1F0074369C /* LICENSE */,
-				EA2E923B17C04A1F0074369C /* README.md */,
-			);
-			path = FlurrySDK;
-			sourceTree = "<group>";
-		};
-		EA2E923717C04A1F0074369C /* Flurry */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E923817C04A1F0074369C /* Flurry.h */,
-				EA2E923917C04A1F0074369C /* libFlurry.a */,
-			);
-			path = Flurry;
-			sourceTree = "<group>";
-		};
-		EA2E923C17C04A1F0074369C /* GoogleAnalytics-iOS-SDK */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E923D17C04A1F0074369C /* Library */,
-				EA2E924517C04A1F0074369C /* Readme.txt */,
-			);
-			path = "GoogleAnalytics-iOS-SDK";
-			sourceTree = "<group>";
-		};
-		EA2E923D17C04A1F0074369C /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E923E17C04A1F0074369C /* GAI.h */,
-				EA2E923F17C04A1F0074369C /* GAITrackedViewController.h */,
-				EA2E924017C04A1F0074369C /* GAITracker.h */,
-				EA2E924117C04A1F0074369C /* GAITransaction.h */,
-				EA2E924217C04A1F0074369C /* GAITransactionItem.h */,
-				EA2E924317C04A1F0074369C /* libGoogleAnalytics.a */,
-				EA2E924417C04A1F0074369C /* libGoogleAnalytics_debug.a */,
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
-		EA2E924617C04A1F0074369C /* KISSmetrics */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E924717C04A1F0074369C /* KISSMetricsAPI.h */,
-				EA2E924817C04A1F0074369C /* KISSMetricsAPI.m */,
-				EA2E924917C04A1F0074369C /* README */,
-			);
-			path = KISSmetrics;
-			sourceTree = "<group>";
-		};
-		EA2E924A17C04A1F0074369C /* Localytics */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E924B17C04A1F0074369C /* LICENSE */,
-				EA2E924C17C04A1F0074369C /* LocalyticsDatabase.h */,
-				EA2E924D17C04A1F0074369C /* LocalyticsDatabase.m */,
-				EA2E924E17C04A1F0074369C /* LocalyticsSession+Private.h */,
-				EA2E924F17C04A1F0074369C /* LocalyticsSession.h */,
-				EA2E925017C04A1F0074369C /* LocalyticsSession.m */,
-				EA2E925117C04A1F0074369C /* LocalyticsUploader.h */,
-				EA2E925217C04A1F0074369C /* LocalyticsUploader.m */,
-				EA2E925317C04A1F0074369C /* WebserviceConstants.h */,
-			);
-			path = Localytics;
-			sourceTree = "<group>";
-		};
-		EA2E925417C04A1F0074369C /* Mixpanel */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E925517C04A1F0074369C /* LICENSE */,
-				EA2E925617C04A1F0074369C /* Mixpanel */,
-				EA2E926717C04A1F0074369C /* README.md */,
-			);
-			path = Mixpanel;
-			sourceTree = "<group>";
-		};
-		EA2E925617C04A1F0074369C /* Mixpanel */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E925717C04A1F0074369C /* Library */,
-				EA2E926517C04A1F0074369C /* Mixpanel.h */,
-				EA2E926617C04A1F0074369C /* Mixpanel.m */,
-			);
-			path = Mixpanel;
-			sourceTree = "<group>";
-		};
-		EA2E925717C04A1F0074369C /* Library */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E925817C04A1F0074369C /* JSON */,
-				EA2E925F17C04A1F0074369C /* NSData_Base64 */,
-				EA2E926217C04A1F0074369C /* ODIN */,
-			);
-			path = Library;
-			sourceTree = "<group>";
-		};
-		EA2E925817C04A1F0074369C /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E925917C04A1F0074369C /* MPCJSONDataSerializer.h */,
-				EA2E925A17C04A1F0074369C /* MPCJSONDataSerializer.m */,
-				EA2E925B17C04A1F0074369C /* MPCJSONSerializer.h */,
-				EA2E925C17C04A1F0074369C /* MPCJSONSerializer.m */,
-				EA2E925D17C04A1F0074369C /* MPCSerializedJSONData.h */,
-				EA2E925E17C04A1F0074369C /* MPCSerializedJSONData.m */,
-			);
-			path = JSON;
-			sourceTree = "<group>";
-		};
-		EA2E925F17C04A1F0074369C /* NSData_Base64 */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E926017C04A1F0074369C /* NSData+MPBase64.h */,
-				EA2E926117C04A1F0074369C /* NSData+MPBase64.m */,
-			);
-			path = NSData_Base64;
-			sourceTree = "<group>";
-		};
-		EA2E926217C04A1F0074369C /* ODIN */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E926317C04A1F0074369C /* ODIN.h */,
-				EA2E926417C04A1F0074369C /* ODIN.m */,
-			);
-			path = ODIN;
-			sourceTree = "<group>";
-		};
-		EA2E926817C04A1F0074369C /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				EA2E926917C04A1F0074369C /* AnalyticsReachability.h */,
-				EA2E926A17C04A1F0074369C /* AnalyticsReachability.m */,
-				EA2E926B17C04A1F0074369C /* README.md */,
-			);
-			path = Reachability;
-			sourceTree = "<group>";
-		};
 		EA2E926C17C04A1F0074369C /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -685,6 +278,7 @@
 				EA3D9AB317C0A6AA001DD476 /* TestAppIOS */,
 				F7200B7517659B2F003F3138 /* Frameworks */,
 				F7200B7417659B2F003F3138 /* Products */,
+				8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -711,6 +305,7 @@
 				F7200B7617659B2F003F3138 /* Foundation.framework */,
 				F7F252C4176E66350055771D /* UIKit.framework */,
 				F7F252C7176E66350055771D /* CoreGraphics.framework */,
+				70B38155D048462482A91850 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -718,7 +313,6 @@
 		F7200B7817659B2F003F3138 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				EA2E920217C04A1F0074369C /* Providers */,
 				EA2E926C17C04A1F0074369C /* Source */,
 				F7200B7B17659B2F003F3138 /* Analytics.h */,
 				F7200B7D17659B2F003F3138 /* Analytics.m */,
@@ -742,45 +336,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA2E928D17C04A1F0074369C /* Amplitude.h in Headers */,
-				EA2E928F17C04A1F0074369C /* AmplitudeARCMacros.h in Headers */,
-				EA2E929017C04A1F0074369C /* AmplitudeLocationManagerDelegate.h in Headers */,
-				EA2E929217C04A1F0074369C /* Bugsnag.h in Headers */,
-				EA2E929417C04A1F0074369C /* BugsnagEvent.h in Headers */,
-				EA2E929617C04A1F0074369C /* BugsnagLogging.h in Headers */,
-				EA2E929717C04A1F0074369C /* BugsnagMetaData.h in Headers */,
-				EA2E929917C04A1F0074369C /* BugsnagNotifier.h in Headers */,
-				EA2E929B17C04A1F0074369C /* BugsnagPrivate.h in Headers */,
-				EA2E929C17C04A1F0074369C /* NSDictionary+BSJSON.h in Headers */,
-				EA2E929E17C04A1F0074369C /* NSMutableDictionary+BSMerge.h in Headers */,
-				EA2E92A017C04A1F0074369C /* NSNumber+BSDuration.h in Headers */,
-				EA2E92A217C04A1F0074369C /* NSNumber+BSFileSizes.h in Headers */,
-				EA2E92A417C04A1F0074369C /* UIDevice+BSStats.h in Headers */,
-				EA2E92A617C04A1F0074369C /* UIViewController+BSVisibility.h in Headers */,
-				EA2E92A817C04A1F0074369C /* Reachability.h in Headers */,
-				EA2E92AA17C04A1F0074369C /* CBTracker.h in Headers */,
-				EA2E92AC17C04A1F0074369C /* Countly.h in Headers */,
-				EA2E92AF17C04A1F0074369C /* Countly_OpenUDID.h in Headers */,
-				EA2E92B117C04A1F0074369C /* CountlyDB.h in Headers */,
-				EA2E92B317C04A1F0074369C /* Flurry.h in Headers */,
-				EA2E92B517C04A1F0074369C /* GAI.h in Headers */,
-				EA2E92B617C04A1F0074369C /* GAITrackedViewController.h in Headers */,
-				EA2E92B717C04A1F0074369C /* GAITracker.h in Headers */,
-				EA2E92B817C04A1F0074369C /* GAITransaction.h in Headers */,
-				EA2E92B917C04A1F0074369C /* GAITransactionItem.h in Headers */,
-				EA2E92BC17C04A200074369C /* KISSMetricsAPI.h in Headers */,
-				EA2E92BE17C04A200074369C /* LocalyticsDatabase.h in Headers */,
-				EA2E92C017C04A200074369C /* LocalyticsSession+Private.h in Headers */,
-				EA2E92C117C04A200074369C /* LocalyticsSession.h in Headers */,
-				EA2E92C317C04A200074369C /* LocalyticsUploader.h in Headers */,
-				EA2E92C517C04A200074369C /* WebserviceConstants.h in Headers */,
-				EA2E92C617C04A200074369C /* MPCJSONDataSerializer.h in Headers */,
-				EA2E92C817C04A200074369C /* MPCJSONSerializer.h in Headers */,
-				EA2E92CA17C04A200074369C /* MPCSerializedJSONData.h in Headers */,
-				EA2E92CC17C04A200074369C /* NSData+MPBase64.h in Headers */,
-				EA2E92CE17C04A200074369C /* ODIN.h in Headers */,
-				EA2E92D017C04A200074369C /* Mixpanel.h in Headers */,
-				EA2E92D217C04A200074369C /* AnalyticsReachability.h in Headers */,
 				EA2E92D817C04A200074369C /* AmplitudeProvider.h in Headers */,
 				EA2E92DA17C04A200074369C /* BugsnagProvider.h in Headers */,
 				EA2E92DC17C04A200074369C /* ChartbeatProvider.h in Headers */,
@@ -822,10 +377,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F7200B8117659B2F003F3138 /* Build configuration list for PBXNativeTarget "Analytics" */;
 			buildPhases = (
+				380BF1B2A860431EA9D5604F /* Check Pods Manifest.lock */,
 				F7200B6F17659B2F003F3138 /* Sources */,
 				F7200B7017659B2F003F3138 /* Frameworks */,
 				F7200B8517659B83003F3138 /* Headers */,
 				F74DC9421765A3C300734A95 /* ShellScript */,
+				BB672FCD0430415AB87EF64C /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -880,6 +437,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		380BF1B2A860431EA9D5604F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BB672FCD0430415AB87EF64C /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F74DC9421765A3C300734A95 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -913,7 +500,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA3D9AD817C0AD02001DD476 /* Countly.xcdatamodeld in Sources */,
 				EA3D9ABA17C0A6AA001DD476 /* main.m in Sources */,
 				EA3D9ABE17C0A6AA001DD476 /* AppDelegate.m in Sources */,
 				EA3D9ACA17C0A6AA001DD476 /* ViewController.m in Sources */,
@@ -925,34 +511,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7200B7E17659B2F003F3138 /* Analytics.m in Sources */,
-				EA2E928E17C04A1F0074369C /* Amplitude.m in Sources */,
-				EA2E929117C04A1F0074369C /* AmplitudeLocationManagerDelegate.m in Sources */,
-				EA2E929317C04A1F0074369C /* Bugsnag.m in Sources */,
-				EA2E929517C04A1F0074369C /* BugsnagEvent.m in Sources */,
-				EA2E929817C04A1F0074369C /* BugsnagMetaData.m in Sources */,
-				EA2E929A17C04A1F0074369C /* BugsnagNotifier.m in Sources */,
-				EA2E929D17C04A1F0074369C /* NSDictionary+BSJSON.m in Sources */,
-				EA2E929F17C04A1F0074369C /* NSMutableDictionary+BSMerge.m in Sources */,
-				EA2E92A117C04A1F0074369C /* NSNumber+BSDuration.m in Sources */,
-				EA2E92A317C04A1F0074369C /* NSNumber+BSFileSizes.m in Sources */,
-				EA2E92A517C04A1F0074369C /* UIDevice+BSStats.m in Sources */,
-				EA2E92A717C04A1F0074369C /* UIViewController+BSVisibility.m in Sources */,
-				EA2E92A917C04A1F0074369C /* Reachability.m in Sources */,
-				EA2E92AD17C04A1F0074369C /* Countly.m in Sources */,
-				EA2E92AE17C04A1F0074369C /* Countly.xcdatamodeld in Sources */,
-				EA2E92B017C04A1F0074369C /* Countly_OpenUDID.m in Sources */,
-				EA2E92B217C04A1F0074369C /* CountlyDB.m in Sources */,
-				EA2E92BD17C04A200074369C /* KISSMetricsAPI.m in Sources */,
-				EA2E92BF17C04A200074369C /* LocalyticsDatabase.m in Sources */,
-				EA2E92C217C04A200074369C /* LocalyticsSession.m in Sources */,
-				EA2E92C417C04A200074369C /* LocalyticsUploader.m in Sources */,
-				EA2E92C717C04A200074369C /* MPCJSONDataSerializer.m in Sources */,
-				EA2E92C917C04A200074369C /* MPCJSONSerializer.m in Sources */,
-				EA2E92CB17C04A200074369C /* MPCSerializedJSONData.m in Sources */,
-				EA2E92CD17C04A200074369C /* NSData+MPBase64.m in Sources */,
-				EA2E92CF17C04A200074369C /* ODIN.m in Sources */,
-				EA2E92D117C04A200074369C /* Mixpanel.m in Sources */,
-				EA2E92D317C04A200074369C /* AnalyticsReachability.m in Sources */,
 				EA2E92D917C04A200074369C /* AmplitudeProvider.m in Sources */,
 				EA2E92DB17C04A200074369C /* BugsnagProvider.m in Sources */,
 				EA2E92DD17C04A200074369C /* ChartbeatProvider.m in Sources */,
@@ -1086,6 +644,7 @@
 		};
 		F7200B8217659B2F003F3138 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Analytics.dst;
@@ -1112,6 +671,7 @@
 		};
 		F7200B8317659B2F003F3138 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
@@ -1163,6 +723,7 @@
 				EA3D9ACD17C0A6AA001DD476 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F7200B6E17659B2F003F3138 /* Build configuration list for PBXProject "Analytics" */ = {
 			isa = XCConfigurationList;
@@ -1192,19 +753,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		EA2E922E17C04A1F0074369C /* Countly.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				EA2E922F17C04A1F0074369C /* Countly.xcdatamodel */,
-			);
-			currentVersion = EA2E922F17C04A1F0074369C /* Countly.xcdatamodel */;
-			path = Countly.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = F7200B6B17659B2F003F3138 /* Project object */;
 }
