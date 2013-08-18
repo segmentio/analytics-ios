@@ -4,22 +4,18 @@
 #import "KISSmetricsProvider.h"
 #import "KISSMetricsAPI.h"
 #import "SOUtils.h"
+#import "Analytics.h"
 
-
-@implementation KISSmetricsProvider {
-
-}
+@implementation KISSmetricsProvider
 
 #pragma mark - Initialization
 
-+ (instancetype)withNothing
-{
-    return [[self alloc] initWithNothing];
++ (void)load {
+    [Analytics registerProvider:self withIdentifier:@"KISSmetrics"];
 }
 
-- (id)initWithNothing
-{
-    if (self = [self init]) {
+- (id)init {
+    if (self = [super init]) {
         self.name = @"KISSmetrics";
         self.valid = NO;
         self.initialized = NO;

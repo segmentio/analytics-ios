@@ -207,11 +207,7 @@
 - (void)debug:(BOOL)showDebugLogs;
 
 
-
-
-
-
-// Internal
+// Advanced
 // --------
 
 /*!
@@ -222,5 +218,8 @@
 */
 - (id)initWithSecret:(NSString *)secret;
 
+// Must be called before initializing Analytics in order to successfully register provider
++ (NSDictionary *)registeredProviders;
++ (void)registerProvider:(Class)providerClass withIdentifier:(NSString *)identifer;
 
 @end

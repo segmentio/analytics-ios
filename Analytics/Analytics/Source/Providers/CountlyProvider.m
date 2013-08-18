@@ -4,21 +4,18 @@
 #import "CountlyProvider.h"
 #import "Countly.h"
 #import "SOUtils.h"
+#import "Analytics.h"
 
-@implementation CountlyProvider {
-
-}
+@implementation CountlyProvider
 
 #pragma mark - Initialization
 
-+ (instancetype)withNothing
-{
-    return [[self alloc] initWithNothing];
++ (void)load {
+    [Analytics registerProvider:self withIdentifier:@"Countly"];
 }
 
-- (id)initWithNothing
-{
-    if (self = [self init]) {
+- (id)init {
+    if (self = [super init]) {
         self.name = @"Countly";
         self.valid = NO;
         self.initialized = NO;

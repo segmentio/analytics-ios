@@ -111,14 +111,14 @@
 		EA2E92E717C04A200074369C /* LocalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E928117C04A1F0074369C /* LocalyticsProvider.m */; };
 		EA2E92E817C04A200074369C /* MixpanelProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E928217C04A1F0074369C /* MixpanelProvider.h */; };
 		EA2E92E917C04A200074369C /* MixpanelProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E928317C04A1F0074369C /* MixpanelProvider.m */; };
-		EA2E92EA17C04A200074369C /* Provider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E928417C04A1F0074369C /* Provider.h */; };
-		EA2E92EB17C04A200074369C /* Provider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E928517C04A1F0074369C /* Provider.m */; };
 		EA2E92EC17C04A200074369C /* SegmentioProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E928617C04A1F0074369C /* SegmentioProvider.h */; };
 		EA2E92ED17C04A200074369C /* SegmentioProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E928717C04A1F0074369C /* SegmentioProvider.m */; };
 		EA2E92EE17C04A200074369C /* Segmentio.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E928917C04A1F0074369C /* Segmentio.h */; };
 		EA2E92EF17C04A200074369C /* Segmentio.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E928A17C04A1F0074369C /* Segmentio.m */; };
 		EA2E92F417C0583C0074369C /* SOUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E92F217C0583B0074369C /* SOUtils.h */; };
 		EA2E92F517C0583C0074369C /* SOUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E92F317C0583B0074369C /* SOUtils.m */; };
+		EA3D9AA917C0A592001DD476 /* AnalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA3D9AA717C0A592001DD476 /* AnalyticsProvider.h */; };
+		EA3D9AAA17C0A592001DD476 /* AnalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3D9AA817C0A592001DD476 /* AnalyticsProvider.m */; };
 		F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		F7200B7E17659B2F003F3138 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = F7200B7D17659B2F003F3138 /* Analytics.m */; };
 		F78D29911765AEC4000B937E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29901765AEC4000B937E /* CoreData.framework */; };
@@ -244,14 +244,14 @@
 		EA2E928117C04A1F0074369C /* LocalyticsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsProvider.m; sourceTree = "<group>"; };
 		EA2E928217C04A1F0074369C /* MixpanelProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixpanelProvider.h; sourceTree = "<group>"; };
 		EA2E928317C04A1F0074369C /* MixpanelProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelProvider.m; sourceTree = "<group>"; };
-		EA2E928417C04A1F0074369C /* Provider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Provider.h; sourceTree = "<group>"; };
-		EA2E928517C04A1F0074369C /* Provider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Provider.m; sourceTree = "<group>"; };
 		EA2E928617C04A1F0074369C /* SegmentioProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentioProvider.h; sourceTree = "<group>"; };
 		EA2E928717C04A1F0074369C /* SegmentioProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioProvider.m; sourceTree = "<group>"; };
 		EA2E928917C04A1F0074369C /* Segmentio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Segmentio.h; sourceTree = "<group>"; };
 		EA2E928A17C04A1F0074369C /* Segmentio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Segmentio.m; sourceTree = "<group>"; };
 		EA2E92F217C0583B0074369C /* SOUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOUtils.h; sourceTree = "<group>"; };
 		EA2E92F317C0583B0074369C /* SOUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOUtils.m; sourceTree = "<group>"; };
+		EA3D9AA717C0A592001DD476 /* AnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsProvider.h; sourceTree = "<group>"; };
+		EA3D9AA817C0A592001DD476 /* AnalyticsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsProvider.m; sourceTree = "<group>"; };
 		F7200B7317659B2F003F3138 /* libAnalytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAnalytics.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7200B7617659B2F003F3138 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F7200B7A17659B2F003F3138 /* Analytics-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Analytics-Prefix.pch"; sourceTree = "<group>"; };
@@ -549,6 +549,8 @@
 			children = (
 				EA2E927117C04A1F0074369C /* Providers */,
 				EA2E928817C04A1F0074369C /* Segmentio */,
+				EA3D9AA717C0A592001DD476 /* AnalyticsProvider.h */,
+				EA3D9AA817C0A592001DD476 /* AnalyticsProvider.m */,
 				EA2E92F217C0583B0074369C /* SOUtils.h */,
 				EA2E92F317C0583B0074369C /* SOUtils.m */,
 			);
@@ -578,8 +580,6 @@
 				EA2E928317C04A1F0074369C /* MixpanelProvider.m */,
 				EA2E928617C04A1F0074369C /* SegmentioProvider.h */,
 				EA2E928717C04A1F0074369C /* SegmentioProvider.m */,
-				EA2E928417C04A1F0074369C /* Provider.h */,
-				EA2E928517C04A1F0074369C /* Provider.m */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -703,10 +703,10 @@
 				EA2E92E417C04A200074369C /* KISSmetricsProvider.h in Headers */,
 				EA2E92E617C04A200074369C /* LocalyticsProvider.h in Headers */,
 				EA2E92E817C04A200074369C /* MixpanelProvider.h in Headers */,
-				EA2E92EA17C04A200074369C /* Provider.h in Headers */,
 				EA2E92EC17C04A200074369C /* SegmentioProvider.h in Headers */,
 				EA2E92EE17C04A200074369C /* Segmentio.h in Headers */,
 				EA2E92F417C0583C0074369C /* SOUtils.h in Headers */,
+				EA3D9AA917C0A592001DD476 /* AnalyticsProvider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -830,10 +830,10 @@
 				EA2E92E517C04A200074369C /* KISSmetricsProvider.m in Sources */,
 				EA2E92E717C04A200074369C /* LocalyticsProvider.m in Sources */,
 				EA2E92E917C04A200074369C /* MixpanelProvider.m in Sources */,
-				EA2E92EB17C04A200074369C /* Provider.m in Sources */,
 				EA2E92ED17C04A200074369C /* SegmentioProvider.m in Sources */,
 				EA2E92EF17C04A200074369C /* Segmentio.m in Sources */,
 				EA2E92F517C0583C0074369C /* SOUtils.m in Sources */,
+				EA3D9AAA17C0A592001DD476 /* AnalyticsProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
