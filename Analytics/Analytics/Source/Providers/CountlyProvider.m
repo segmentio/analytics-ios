@@ -3,7 +3,7 @@
 
 #import "CountlyProvider.h"
 #import "Countly.h"
-#import "AnalyticsLogger.h"
+#import "SOUtils.h"
 
 @implementation CountlyProvider {
 
@@ -31,7 +31,7 @@
     NSString *appKey = [self.settings objectForKey:@"appKey"];
     NSString *serverUrl = [self.settings objectForKey:@"serverUrl"];
     [[Countly sharedInstance] start:appKey withHost:serverUrl];
-    [AnalyticsLogger log:@"CountlyProvider initialized."];
+    SOLog(@"CountlyProvider initialized.");
 }
 
 

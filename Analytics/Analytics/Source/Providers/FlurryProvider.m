@@ -3,7 +3,7 @@
 
 #import "FlurryProvider.h"
 #import "Flurry.h"
-#import "AnalyticsLogger.h"
+#import "SOUtils.h"
 
 
 @implementation FlurryProvider {
@@ -32,7 +32,7 @@
     // Initialization
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [Flurry startSession:apiKey];
-    [AnalyticsLogger log:@"FlurryProvider initialized."];
+    SOLog(@"FlurryProvider initialized.");
 }
 
 

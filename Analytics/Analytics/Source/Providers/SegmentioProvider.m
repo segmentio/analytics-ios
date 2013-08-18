@@ -3,7 +3,7 @@
 
 #import "SegmentioProvider.h"
 #import "Segmentio.h"
-#import "AnalyticsLogger.h"
+#import "SOUtils.h"
 
 
 @implementation SegmentioProvider {
@@ -36,7 +36,7 @@
 - (void)start
 {
     [Segmentio withSecret:[self.settings objectForKey:@"secret"]];
-    [AnalyticsLogger log:@"SegmentioProvider initialized."];
+    SOLog(@"SegmentioProvider initialized.");
 }
 
 

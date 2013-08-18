@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+// Logging
+
+void SetShowDebugLogs(BOOL showDebugLogs);
+void SOLog(NSString *format, ...);
+
+// JSON Utils
+
 NSDictionary *CoerceDictionary(NSDictionary *dict);
 id CoerceJSONObject(id obj);
 void AssertDictionaryTypes(NSDictionary *dict);

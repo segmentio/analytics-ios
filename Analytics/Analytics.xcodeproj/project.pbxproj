@@ -93,8 +93,6 @@
 		EA2E92D117C04A200074369C /* Mixpanel.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E926617C04A1F0074369C /* Mixpanel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		EA2E92D217C04A200074369C /* AnalyticsReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E926917C04A1F0074369C /* AnalyticsReachability.h */; };
 		EA2E92D317C04A200074369C /* AnalyticsReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E926A17C04A1F0074369C /* AnalyticsReachability.m */; };
-		EA2E92D417C04A200074369C /* AnalyticsLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E926D17C04A1F0074369C /* AnalyticsLogger.h */; };
-		EA2E92D517C04A200074369C /* AnalyticsLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E926E17C04A1F0074369C /* AnalyticsLogger.m */; };
 		EA2E92D617C04A200074369C /* ProviderManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E926F17C04A1F0074369C /* ProviderManager.h */; };
 		EA2E92D717C04A200074369C /* ProviderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E927017C04A1F0074369C /* ProviderManager.m */; };
 		EA2E92D817C04A200074369C /* AmplitudeProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E927217C04A1F0074369C /* AmplitudeProvider.h */; };
@@ -232,8 +230,6 @@
 		EA2E926917C04A1F0074369C /* AnalyticsReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsReachability.h; sourceTree = "<group>"; };
 		EA2E926A17C04A1F0074369C /* AnalyticsReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsReachability.m; sourceTree = "<group>"; };
 		EA2E926B17C04A1F0074369C /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		EA2E926D17C04A1F0074369C /* AnalyticsLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsLogger.h; sourceTree = "<group>"; };
-		EA2E926E17C04A1F0074369C /* AnalyticsLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsLogger.m; sourceTree = "<group>"; };
 		EA2E926F17C04A1F0074369C /* ProviderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviderManager.h; sourceTree = "<group>"; };
 		EA2E927017C04A1F0074369C /* ProviderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProviderManager.m; sourceTree = "<group>"; };
 		EA2E927217C04A1F0074369C /* AmplitudeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmplitudeProvider.h; sourceTree = "<group>"; };
@@ -561,8 +557,6 @@
 			children = (
 				EA2E927117C04A1F0074369C /* Providers */,
 				EA2E928817C04A1F0074369C /* Segmentio */,
-				EA2E926D17C04A1F0074369C /* AnalyticsLogger.h */,
-				EA2E926E17C04A1F0074369C /* AnalyticsLogger.m */,
 				EA2E926F17C04A1F0074369C /* ProviderManager.h */,
 				EA2E927017C04A1F0074369C /* ProviderManager.m */,
 				EA2E928B17C04A1F0074369C /* SettingsCache.h */,
@@ -712,7 +706,6 @@
 				EA2E92CE17C04A200074369C /* ODIN.h in Headers */,
 				EA2E92D017C04A200074369C /* Mixpanel.h in Headers */,
 				EA2E92D217C04A200074369C /* AnalyticsReachability.h in Headers */,
-				EA2E92D417C04A200074369C /* AnalyticsLogger.h in Headers */,
 				EA2E92D617C04A200074369C /* ProviderManager.h in Headers */,
 				EA2E92D817C04A200074369C /* AmplitudeProvider.h in Headers */,
 				EA2E92DA17C04A200074369C /* BugsnagProvider.h in Headers */,
@@ -842,7 +835,6 @@
 				EA2E92CF17C04A200074369C /* ODIN.m in Sources */,
 				EA2E92D117C04A200074369C /* Mixpanel.m in Sources */,
 				EA2E92D317C04A200074369C /* AnalyticsReachability.m in Sources */,
-				EA2E92D517C04A200074369C /* AnalyticsLogger.m in Sources */,
 				EA2E92D717C04A200074369C /* ProviderManager.m in Sources */,
 				EA2E92D917C04A200074369C /* AmplitudeProvider.m in Sources */,
 				EA2E92DB17C04A200074369C /* BugsnagProvider.m in Sources */,

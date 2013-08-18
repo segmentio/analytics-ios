@@ -2,7 +2,7 @@
 // Copyright 2013 Segment.io
 
 #import "SettingsCache.h"
-#import "AnalyticsLogger.h"
+#import "SOUtils.h"
 
 // Update the settings every hour
 #define ANALYTICS_SETTINGS_CACHE_UPDATE_INTERVAL 3600
@@ -54,13 +54,13 @@
         // Check the cache for synchronous return of cache results.
         NSDictionary *settings = [self getSettings];
         if (settings) {
-            [AnalyticsLogger log:@"Found settings in cache, will refresh cache later."];
-            [AnalyticsLogger log:@"Calling delegate's onSettingsUpdate with cached settings."];
+            SOLog(@"Found settings in cache, will refresh cache later.");
+            SOLog(@"Calling delegate's onSettingsUpdate with cached settings.");
             [self.delegate onSettingsUpdate:settings];
         }
         // Refresh the cache immediately if it's empty.
         else {
-            [AnalyticsLogger log:@"No settings in cache, refreshing cache now."];
+            SOLog(@"No settings in cache, refreshing cache now.");
             [self update];
         }
     }
@@ -78,7 +78,7 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
     [defaults setObject:(NSDictionary *)settings forKey:kSettingsCache];
 
     // Callback with the resulting settings
-    [AnalyticsLogger log:@"%@ Callback on delegate %@", self, self.delegate];
+    SOLog(@"%@ Callback on delegate %@", self, self.delegate);
     [self.delegate onSettingsUpdate:settings];
 }
 
@@ -119,7 +119,7 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setHTTPMethod:@"GET"];
     
-    [AnalyticsLogger log:@"%@ Sending API settings request: %@", self, request];
+    SOLog(@"%@ Sending API settings request: %@", self, request);
     
     return [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
 }
@@ -143,13 +143,13 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
 
         // Log the response status
         if (self.responseCode != 200) {
-            [AnalyticsLogger log:@"%@ Settings API request had an error: %@", self, [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]];
+            SOLog(@"%@ Settings API request had an error: %@", self, [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
         }
         else {
             // Try to interpret the data as an NSDictionary of NSDictionarys
             NSError* error;
             NSDictionary* settings = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
-            [AnalyticsLogger log:@"%@ Settings API request succeeded 200 %@", self, settings];
+            SOLog(@"%@ Settings API request succeeded 200 %@", self, settings);
             [self setSettings:settings];
         }
 
@@ -164,7 +164,7 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     dispatch_async(_serialQueue, ^{
-        [AnalyticsLogger log:@"%@ Network failed while getting settings from API: %@", self, error];
+        SOLog(@"%@ Network failed while getting settings from API: %@", self, error);
 
         self.responseCode = 0;
         self.responseData = nil;

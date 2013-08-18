@@ -5,7 +5,7 @@
 
 #import "SOUtils.h"
 #import "ProviderManager.h"
-#import "AnalyticsLogger.h"
+#import "SOUtils.h"
 #import "SettingsCache.h"
 #import "Provider.h"
 #import "SegmentioProvider.h"
@@ -212,27 +212,27 @@
 }
 
 - (void)applicationDidEnterBackground {
-    [AnalyticsLogger log:@"Application state change notification: applicationDidEnterBackground"];
+    SOLog(@"Application state change notification: applicationDidEnterBackground");
     [self forwardSelectorToProviders:@selector(applicationDidEnterBackground)];
 }
 
 - (void)applicationWillEnterForeground {
-    [AnalyticsLogger log:@"Application state change notification: applicationWillEnterForeground"];
+    SOLog(@"Application state change notification: applicationWillEnterForeground");
     [self forwardSelectorToProviders:@selector(applicationWillEnterForeground)];
 }
 
 - (void)applicationWillTerminate {
-    [AnalyticsLogger log:@"Application state change notification: applicationWillTerminate"];
+    SOLog(@"Application state change notification: applicationWillTerminate");
     [self forwardSelectorToProviders:@selector(applicationWillTerminate)];
 }
 
 - (void)applicationWillResignActive {
-    [AnalyticsLogger log:@"Application state change notification: applicationWillResignActive"];
+    SOLog(@"Application state change notification: applicationWillResignActive");
     [self forwardSelectorToProviders:@selector(applicationWillResignActive)];
 }
 
 - (void)applicationDidBecomeActive {
-    [AnalyticsLogger log:@"Application state change notification: applicationDidBecomeActive"];
+    SOLog(@"Application state change notification: applicationDidBecomeActive");
     [self forwardSelectorToProviders:@selector(applicationDidBecomeActive)];
 }
 

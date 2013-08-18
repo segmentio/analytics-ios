@@ -2,7 +2,7 @@
 // Copyright 2013 Segment.io
 
 #import "Analytics.h"
-#import "AnalyticsLogger.h"
+#import "SOUtils.h"
 
 @implementation Analytics {
     dispatch_queue_t _serialQueue;
@@ -108,7 +108,7 @@ static Analytics *sharedInstance = nil;
 
 - (void)debug:(BOOL)showDebugLogs
 {
-    [AnalyticsLogger showDebugLogs:showDebugLogs];
+    SetShowDebugLogs(showDebugLogs);
 }
 
 - (NSString *)description

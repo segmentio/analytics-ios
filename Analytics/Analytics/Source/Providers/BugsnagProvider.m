@@ -3,7 +3,7 @@
 
 #import "BugsnagProvider.h"
 #import "Bugsnag.h"
-#import "AnalyticsLogger.h"
+#import "SOUtils.h"
 
 
 @implementation BugsnagProvider {
@@ -32,7 +32,7 @@
     // Initialization
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [Bugsnag startBugsnagWithApiKey:apiKey];
-    [AnalyticsLogger log:@"BugsnagProvider initialized."];
+    SOLog(@"BugsnagProvider initialized.");
 
     // TODO add support for non-SSL?
 }
