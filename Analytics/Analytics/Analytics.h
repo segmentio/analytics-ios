@@ -2,15 +2,12 @@
 // Copyright 2013 Segment.io
 
 #import <Foundation/Foundation.h>
-#import "ProviderManager.h"
 
 #define ANALYTICS_VERSION @"0.5.3"
 
 @interface Analytics : NSObject
 
 @property(nonatomic, strong) NSString *secret;
-@property(nonatomic, strong) ProviderManager *providerManager;
-
 
 
 // Step 1: Initialization
