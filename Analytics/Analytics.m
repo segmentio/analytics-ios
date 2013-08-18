@@ -7,16 +7,6 @@
 #import "SegmentioProvider.h"
 #import "Analytics.h"
 
-#import "AmplitudeProvider.h"
-#import "BugsnagProvider.h"
-#import "ChartbeatProvider.h"
-#import "CountlyProvider.h"
-#import "FlurryProvider.h"
-#import "GoogleAnalyticsProvider.h"
-#import "KISSmetricsProvider.h"
-#import "LocalyticsProvider.h"
-#import "MixpanelProvider.h"
-
 static NSString * const kAnalyticsSettings = @"kAnalyticsSettings";
 static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
@@ -327,15 +317,6 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 static Analytics *SharedInstance = nil;
 
 + (instancetype)withSecret:(NSString *)secret {
-    [AmplitudeProvider class];
-    [BugsnagProvider class];
-    [ChartbeatProvider class];
-    [CountlyProvider class];
-    [FlurryProvider class];
-    [GoogleAnalyticsProvider class];
-    [KISSmetricsProvider class];
-    [LocalyticsProvider class];
-    [MixpanelProvider class];
     NSParameterAssert(secret.length > 0);
     
     static dispatch_once_t onceToken;
