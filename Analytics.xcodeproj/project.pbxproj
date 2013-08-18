@@ -6,26 +6,10 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		F78D29811765A632000B937E /* Framework */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = F78D29821765A632000B937E /* Build configuration list for PBXAggregateTarget "Framework" */;
-			buildPhases = (
-				F78D29871765A642000B937E /* ShellScript */,
-			);
-			dependencies = (
-				F78D29861765A63A000B937E /* PBXTargetDependency */,
-			);
-			name = Framework;
-			productName = Framework;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		B8A1B15E08994855871D1685 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B38155D048462482A91850 /* libPods.a */; };
 		EA3D9AB017C0A6AA001DD476 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
 		EA3D9AB117C0A6AA001DD476 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
-		EA3D9AB217C0A6AA001DD476 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F252C7176E66350055771D /* CoreGraphics.framework */; };
 		EA3D9AB817C0A6AA001DD476 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA3D9AB617C0A6AA001DD476 /* InfoPlist.strings */; };
 		EA3D9ABA17C0A6AA001DD476 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3D9AB917C0A6AA001DD476 /* main.m */; };
 		EA3D9ABE17C0A6AA001DD476 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3D9ABD17C0A6AA001DD476 /* AppDelegate.m */; };
@@ -61,27 +45,14 @@
 		EACB4DE917C0BB3100624129 /* SegmentioProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DCF17C0BB3100624129 /* SegmentioProvider.m */; };
 		EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DD017C0BB3100624129 /* AnalyticsUtils.h */; };
 		EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DD117C0BB3100624129 /* AnalyticsUtils.m */; };
+		EACB4E0D17C0C02A00624129 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F252C7176E66350055771D /* CoreGraphics.framework */; };
 		F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		F7200B7E17659B2F003F3138 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = F7200B7D17659B2F003F3138 /* Analytics.m */; };
-		F78D29911765AEC4000B937E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29901765AEC4000B937E /* CoreData.framework */; };
-		F78D29931765AECB000B937E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29921765AECB000B937E /* SystemConfiguration.framework */; };
-		F78D29951765AF6A000B937E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29941765AF6A000B937E /* CoreTelephony.framework */; };
 		F78D29FA1765B382000B937E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
-		F78D29FC1765B38A000B937E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29FB1765B38A000B937E /* QuartzCore.framework */; };
-		F78D2A171765B81D000B937E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D2A161765B81D000B937E /* AdSupport.framework */; };
-		F78D2A191765B823000B937E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D2A181765B823000B937E /* libsqlite3.dylib */; };
-		F78D2A1B1765B828000B937E /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D2A1A1765B828000B937E /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		EA3D9ACF17C0A836001DD476 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F7200B6B17659B2F003F3138 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F7200B7217659B2F003F3138;
-			remoteInfo = Analytics;
-		};
-		F78D29851765A63A000B937E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F7200B6B17659B2F003F3138 /* Project object */;
 			proxyType = 1;
@@ -161,7 +132,7 @@
 				EA3D9ACE17C0A833001DD476 /* libAnalytics.a in Frameworks */,
 				EA3D9AB017C0A6AA001DD476 /* UIKit.framework in Frameworks */,
 				EA3D9AB117C0A6AA001DD476 /* Foundation.framework in Frameworks */,
-				EA3D9AB217C0A6AA001DD476 /* CoreGraphics.framework in Frameworks */,
+				EACB4E0D17C0C02A00624129 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,14 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F78D2A1B1765B828000B937E /* libz.dylib in Frameworks */,
-				F78D2A191765B823000B937E /* libsqlite3.dylib in Frameworks */,
-				F78D2A171765B81D000B937E /* AdSupport.framework in Frameworks */,
-				F78D29911765AEC4000B937E /* CoreData.framework in Frameworks */,
-				F78D29FC1765B38A000B937E /* QuartzCore.framework in Frameworks */,
 				F78D29FA1765B382000B937E /* UIKit.framework in Frameworks */,
-				F78D29951765AF6A000B937E /* CoreTelephony.framework in Frameworks */,
-				F78D29931765AECB000B937E /* SystemConfiguration.framework in Frameworks */,
 				F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */,
 				B8A1B15E08994855871D1685 /* libPods.a in Frameworks */,
 			);
@@ -449,7 +413,6 @@
 				F7200B6F17659B2F003F3138 /* Sources */,
 				F7200B7017659B2F003F3138 /* Frameworks */,
 				F7200B8517659B83003F3138 /* Headers */,
-				F74DC9421765A3C300734A95 /* ShellScript */,
 				BB672FCD0430415AB87EF64C /* Copy Pods Resources */,
 			);
 			buildRules = (
@@ -483,7 +446,6 @@
 			projectRoot = "";
 			targets = (
 				F7200B7217659B2F003F3138 /* Analytics */,
-				F78D29811765A632000B937E /* Framework */,
 				EA3D9AAE17C0A6AA001DD476 /* TestAppIOS */,
 			);
 		};
@@ -565,32 +527,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F74DC9421765A3C300734A95 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "exit 0\nset -e\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Headers\"\n/bin/ln -sfh \"Versions/Current/${PRODUCT_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}\"\n\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${TARGET_BUILD_DIR}/${PUBLIC_HEADERS_FOLDER_PATH}/\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.framework/Versions/A/Headers\"\n";
-		};
-		F78D29871765A642000B937E /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "set -e\nset +u\n# Avoid recursively calling this script.\nif [[ $SF_MASTER_SCRIPT_RUNNING ]]\nthen\nexit 0\nfi\nset -u\nexport SF_MASTER_SCRIPT_RUNNING=1\n\nSF_TARGET_NAME=${PROJECT_NAME}\nSF_EXECUTABLE_PATH=\"lib${SF_TARGET_NAME}.a\"\nSF_WRAPPER_NAME=\"${SF_TARGET_NAME}.framework\"\n\n# The following conditionals come from\n# https://github.com/kstenerud/iOS-Universal-Framework\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\nSF_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\necho \"Could not find platform name from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\nSF_SDK_VERSION=${BASH_REMATCH[1]}\nelse\necho \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\nexit 1\nfi\n\nif [[ \"$SF_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\nSF_OTHER_PLATFORM=iphonesimulator\nelse\nSF_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$SF_SDK_PLATFORM$ ]]\nthen\nSF_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${SF_OTHER_PLATFORM}\"\nelse\necho \"Could not find platform name from build products directory: $BUILT_PRODUCTS_DIR\"\nexit 1\nfi\n\n# Build the other platform.\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${SF_OTHER_PLATFORM}${SF_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" OBJROOT=\"${OBJROOT}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\" $ACTION\n\n# Smash the two static libraries into one fat binary and store it in the .framework\nlipo -create \"${BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_EXECUTABLE_PATH}\" -output \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n# Copy the binary to the other architecture folder to have a complete framework in both.\ncp -a \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\" \"${SF_OTHER_BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}/Versions/A/${SF_TARGET_NAME}\"\n\n#\n# Custom Segment.io Code\n# Bugs to ilya@segment.io\n#\n\n# Find the /analytics-ios/Releases folder\nPROJECT_FOLDER=\"`dirname ${PROJECT_DIR}`\"\nRELEASE_FOLDER=\"`dirname ${PROJECT_DIR}`/Releases\"\n\n# Remove any existing release in the folder\nrm -rf \"$RELEASE_FOLDER/${SF_WRAPPER_NAME}\"\n# Copy from the /DerivedData build directory into our /Releases directory\ncp -r \"${BUILT_PRODUCTS_DIR}/${SF_WRAPPER_NAME}\" \"$RELEASE_FOLDER\"\ncd \"$RELEASE_FOLDER/${SF_WRAPPER_NAME}\"; ln -s \"Analytics\" \"libAnalytics.a\"\nrm -rf \"$RELEASE_FOLDER/${SF_WRAPPER_NAME}/Versions\"\ncp \"$PROJECT_FOLDER/Analytics.podspec\" \"$RELEASE_FOLDER/Analytics.podspec\"\ncp \"$PROJECT_FOLDER/License.md\" \"$RELEASE_FOLDER/License.md\"\n\n# Zip File\n# Remove the zip we're also about to create\nrm -rf \"$RELEASE_FOLDER/${SF_WRAPPER_NAME}.zip\"\n# Create the zip archive\ncd \"$RELEASE_FOLDER\"\nzip -r -X -y \"${SF_WRAPPER_NAME}.zip\" \"${SF_WRAPPER_NAME}\"\nzip -X -u \"${SF_WRAPPER_NAME}.zip\" \"Analytics.podspec\"\nzip -X -u \"${SF_WRAPPER_NAME}.zip\" \"License.md\"\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -632,11 +568,6 @@
 			isa = PBXTargetDependency;
 			target = F7200B7217659B2F003F3138 /* Analytics */;
 			targetProxy = EA3D9ACF17C0A836001DD476 /* PBXContainerItemProxy */;
-		};
-		F78D29861765A63A000B937E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F7200B7217659B2F003F3138 /* Analytics */;
-			targetProxy = F78D29851765A63A000B937E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -796,23 +727,6 @@
 			};
 			name = Release;
 		};
-		F78D29831765A632000B937E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		F78D29841765A632000B937E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -839,15 +753,6 @@
 			buildConfigurations = (
 				F7200B8217659B2F003F3138 /* Debug */,
 				F7200B8317659B2F003F3138 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F78D29821765A632000B937E /* Build configuration list for PBXAggregateTarget "Framework" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F78D29831765A632000B937E /* Debug */,
-				F78D29841765A632000B937E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
