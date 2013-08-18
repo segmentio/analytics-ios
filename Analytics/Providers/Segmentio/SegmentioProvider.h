@@ -4,16 +4,48 @@
 #import <Foundation/Foundation.h>
 #import "AnalyticsProvider.h"
 
+@interface SegmentioListenerDelegate : NSObject
 
-@interface SegmentioProvider : AnalyticsProvider
+- (void)onAPISuccess;
+- (void)onAPIFailure;
 
-@property(nonatomic, strong) NSString *name;
-@property(nonatomic, assign) BOOL enabled;
-@property(nonatomic, assign) BOOL valid;
-@property(nonatomic, assign) BOOL initialized;
-@property(nonatomic, strong) NSDictionary *settings;
+@end
+
+
+@interface SegmentioProvider : AnalyticsProvider <AnalyticsProvider>
+
+@property(nonatomic, strong) NSString *secret;
+@property(nonatomic, strong) NSString *userId;
+@property(nonatomic, strong) NSString *sessionId;
+@property(nonatomic, assign) NSUInteger flushAt;
+@property(nonatomic, assign) NSUInteger flushAfter;
+@property(nonatomic, strong) SegmentioListenerDelegate *delegate;
+
+
+
+// Analytics API 
+// -------------
+
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context;
+- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context;
+- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context;
+
+// Utilities
+// ---------
+
+- (NSString *)getSessionId;
+- (void)flush;
+- (void)reset;
+
+// Initialization
+// --------------
+
+- (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter delegate:(SegmentioListenerDelegate *)delegate;
 
 + (instancetype)withSecret:(NSString *)secret;
-- (id)initWithSecret:(NSString *)secret;
++ (instancetype)withSecret:(NSString *)secret delegate:(SegmentioListenerDelegate *)delegate;
++ (instancetype)withSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
++ (instancetype)withSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter delegate:(SegmentioListenerDelegate *)delegate;
++ (instancetype)sharedInstance;
 
 @end

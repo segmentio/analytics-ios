@@ -39,10 +39,8 @@
 		EACB4DE317C0BB3100624129 /* LocalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DC717C0BB3100624129 /* LocalyticsProvider.m */; };
 		EACB4DE417C0BB3100624129 /* MixpanelProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DC917C0BB3100624129 /* MixpanelProvider.h */; };
 		EACB4DE517C0BB3100624129 /* MixpanelProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DCA17C0BB3100624129 /* MixpanelProvider.m */; };
-		EACB4DE617C0BB3100624129 /* Segmentio.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DCC17C0BB3100624129 /* Segmentio.h */; };
-		EACB4DE717C0BB3100624129 /* Segmentio.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DCD17C0BB3100624129 /* Segmentio.m */; };
-		EACB4DE817C0BB3100624129 /* SegmentioProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DCE17C0BB3100624129 /* SegmentioProvider.h */; };
-		EACB4DE917C0BB3100624129 /* SegmentioProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DCF17C0BB3100624129 /* SegmentioProvider.m */; };
+		EACB4DE617C0BB3100624129 /* SegmentioProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DCC17C0BB3100624129 /* SegmentioProvider.h */; };
+		EACB4DE717C0BB3100624129 /* SegmentioProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DCD17C0BB3100624129 /* SegmentioProvider.m */; };
 		EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DD017C0BB3100624129 /* AnalyticsUtils.h */; };
 		EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DD117C0BB3100624129 /* AnalyticsUtils.m */; };
 		EACB4E0D17C0C02A00624129 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7F252C7176E66350055771D /* CoreGraphics.framework */; };
@@ -97,10 +95,8 @@
 		EACB4DC717C0BB3100624129 /* LocalyticsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsProvider.m; sourceTree = "<group>"; };
 		EACB4DC917C0BB3100624129 /* MixpanelProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixpanelProvider.h; sourceTree = "<group>"; };
 		EACB4DCA17C0BB3100624129 /* MixpanelProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelProvider.m; sourceTree = "<group>"; };
-		EACB4DCC17C0BB3100624129 /* Segmentio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Segmentio.h; sourceTree = "<group>"; };
-		EACB4DCD17C0BB3100624129 /* Segmentio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Segmentio.m; sourceTree = "<group>"; };
-		EACB4DCE17C0BB3100624129 /* SegmentioProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentioProvider.h; sourceTree = "<group>"; };
-		EACB4DCF17C0BB3100624129 /* SegmentioProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioProvider.m; sourceTree = "<group>"; };
+		EACB4DCC17C0BB3100624129 /* SegmentioProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentioProvider.h; sourceTree = "<group>"; };
+		EACB4DCD17C0BB3100624129 /* SegmentioProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioProvider.m; sourceTree = "<group>"; };
 		EACB4DD017C0BB3100624129 /* AnalyticsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsUtils.h; sourceTree = "<group>"; };
 		EACB4DD117C0BB3100624129 /* AnalyticsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsUtils.m; sourceTree = "<group>"; };
 		EACB4DF117C0BD9300624129 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
@@ -279,10 +275,8 @@
 		EACB4DCB17C0BB3100624129 /* Segmentio */ = {
 			isa = PBXGroup;
 			children = (
-				EACB4DCC17C0BB3100624129 /* Segmentio.h */,
-				EACB4DCD17C0BB3100624129 /* Segmentio.m */,
-				EACB4DCE17C0BB3100624129 /* SegmentioProvider.h */,
-				EACB4DCF17C0BB3100624129 /* SegmentioProvider.m */,
+				EACB4DCC17C0BB3100624129 /* SegmentioProvider.h */,
+				EACB4DCD17C0BB3100624129 /* SegmentioProvider.m */,
 			);
 			path = Segmentio;
 			sourceTree = "<group>";
@@ -376,8 +370,7 @@
 				EACB4DE017C0BB3100624129 /* KISSmetricsProvider.h in Headers */,
 				EACB4DE217C0BB3100624129 /* LocalyticsProvider.h in Headers */,
 				EACB4DE417C0BB3100624129 /* MixpanelProvider.h in Headers */,
-				EACB4DE617C0BB3100624129 /* Segmentio.h in Headers */,
-				EACB4DE817C0BB3100624129 /* SegmentioProvider.h in Headers */,
+				EACB4DE617C0BB3100624129 /* SegmentioProvider.h in Headers */,
 				EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -555,8 +548,7 @@
 				EACB4DE117C0BB3100624129 /* KISSmetricsProvider.m in Sources */,
 				EACB4DE317C0BB3100624129 /* LocalyticsProvider.m in Sources */,
 				EACB4DE517C0BB3100624129 /* MixpanelProvider.m in Sources */,
-				EACB4DE717C0BB3100624129 /* Segmentio.m in Sources */,
-				EACB4DE917C0BB3100624129 /* SegmentioProvider.m in Sources */,
+				EACB4DE717C0BB3100624129 /* SegmentioProvider.m in Sources */,
 				EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
