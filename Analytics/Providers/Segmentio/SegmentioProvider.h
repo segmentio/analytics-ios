@@ -4,14 +4,6 @@
 #import <Foundation/Foundation.h>
 #import "AnalyticsProvider.h"
 
-@interface SegmentioListenerDelegate : NSObject
-
-- (void)onAPISuccess;
-- (void)onAPIFailure;
-
-@end
-
-
 @interface SegmentioProvider : AnalyticsProvider <AnalyticsProvider>
 
 @property(nonatomic, strong) NSString *secret;
@@ -19,7 +11,6 @@
 @property(nonatomic, strong) NSString *sessionId;
 @property(nonatomic, assign) NSUInteger flushAt;
 @property(nonatomic, assign) NSUInteger flushAfter;
-@property(nonatomic, strong) SegmentioListenerDelegate *delegate;
 
 
 
@@ -40,12 +31,10 @@
 // Initialization
 // --------------
 
-- (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter delegate:(SegmentioListenerDelegate *)delegate;
+- (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
 
 + (instancetype)withSecret:(NSString *)secret;
-+ (instancetype)withSecret:(NSString *)secret delegate:(SegmentioListenerDelegate *)delegate;
 + (instancetype)withSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
-+ (instancetype)withSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter delegate:(SegmentioListenerDelegate *)delegate;
 + (instancetype)sharedInstance;
 
 @end

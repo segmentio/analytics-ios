@@ -66,48 +66,32 @@ static SegmentioProvider *sharedInstance = nil;
 
 #pragma mark - Initializiation
 
-+ (instancetype)withSecret:(NSString *)secret
-{
-    return [self withSecret:secret flushAt:20 flushAfter:30 delegate:nil];
++ (instancetype)withSecret:(NSString *)secret {
+    return [self withSecret:secret flushAt:20 flushAfter:30];
 }
 
-+ (instancetype)withSecret:(NSString *)secret delegate:(SegmentioListenerDelegate *)delegate
-{
-    return [self withSecret:secret flushAt:20 flushAfter:30 delegate:delegate];
-}
-
-+ (instancetype)withSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter
-{
-    return [self withSecret:secret flushAt:flushAt flushAfter:flushAfter delegate:nil];
-}
-
-+ (instancetype)withSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter delegate:(SegmentioListenerDelegate *)delegate
-{
-    NSParameterAssert(secret.length > 0);
-    NSParameterAssert(flushAt > 0);
-    NSParameterAssert(flushAfter > 0);
++ (instancetype)withSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] initWithSecret:secret flushAt:flushAt flushAfter:flushAfter delegate:delegate];
+        sharedInstance = [[self alloc] initWithSecret:secret flushAt:flushAt flushAfter:flushAfter];
     });
     SOLog(@"SegmentioProvider initialized.");
     return sharedInstance;
 }
 
-+ (instancetype)sharedInstance
-{
++ (instancetype)sharedInstance {
     NSAssert(sharedInstance, @"%@ sharedInstance called before withSecret", self);
     return sharedInstance;
 }
 
-- (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter delegate:(SegmentioListenerDelegate *)delegate
-{
+- (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter {
     NSParameterAssert(secret.length);
+    NSParameterAssert(flushAt > 0);
+    NSParameterAssert(flushAfter > 0);
     
     if (self = [self init]) {
         _flushAt = flushAt;
         _flushAfter = flushAfter;
-        _delegate = delegate;
         _secret = secret;
         _sessionId = GetSessionID(NO);
         _queue = [NSMutableArray array];
@@ -128,16 +112,14 @@ static SegmentioProvider *sharedInstance = nil;
     return self;
 }
 
-- (void)validate
-{
+- (void)validate {
     BOOL hasSecret = [self.settings objectForKey:@"secret"] != nil;
     self.valid = hasSecret;
 }
 
 #pragma mark - Analytics API
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
-{
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context {
     dispatch_async(_serialQueue, ^{
         self.userId = userId;
     });
@@ -148,8 +130,7 @@ static SegmentioProvider *sharedInstance = nil;
     [self enqueueAction:@"identify" dictionary:dictionary context:context];
 }
 
- - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
-{
+ - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context {
     NSAssert(event.length, @"%@ track requires an event name.", self);
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -159,8 +140,7 @@ static SegmentioProvider *sharedInstance = nil;
     [self enqueueAction:@"track" dictionary:dictionary context:context];
 }
 
-- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context
-{
+- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context {
     NSAssert(from.length, @"%@ alias requires a from id.", self);
     NSAssert(to.length, @"%@ alias requires a to id.", self);
 
@@ -175,8 +155,7 @@ static SegmentioProvider *sharedInstance = nil;
 
 #pragma mark - Queueing
 
-- (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)dictionary context:(NSDictionary *)context
-{
+- (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)dictionary context:(NSDictionary *)context {
     // attach these parts of the payload outside since they are all synchronous
     // and the timestamp will be more accurate.
     NSMutableDictionary *payload = [NSMutableDictionary dictionary];
@@ -310,10 +289,6 @@ static SegmentioProvider *sharedInstance = nil;
         self.responseCode = 0;
         self.responseData = nil;
         self.connection = nil;
-
-        if (self.delegate) {
-            [self.delegate onAPISuccess];
-        }
     });
 }
 
@@ -326,14 +301,8 @@ static SegmentioProvider *sharedInstance = nil;
         self.responseCode = 0;
         self.responseData = nil;
         self.connection = nil;
-
-        if (self.delegate) {
-            [self.delegate onAPIFailure];
-        }
     });
 }
-
-
 
 #pragma mark - NSObject
 
@@ -344,7 +313,7 @@ static SegmentioProvider *sharedInstance = nil;
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<Segmentio secret:%@>", self.secret];
+    return [NSString stringWithFormat:@"<SegmentioProvider secret:%@>", self.secret];
 }
 
 @end
