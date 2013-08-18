@@ -7,6 +7,16 @@
 #import "SegmentioProvider.h"
 #import "Analytics.h"
 
+#import "AmplitudeProvider.h"
+#import "BugsnagProvider.h"
+#import "ChartbeatProvider.h"
+#import "CountlyProvider.h"
+#import "FlurryProvider.h"
+#import "GoogleAnalyticsProvider.h"
+#import "KISSmetricsProvider.h"
+#import "LocalyticsProvider.h"
+#import "MixpanelProvider.h"
+
 static NSString * const kAnalyticsSettings = @"kAnalyticsSettings";
 static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
@@ -31,11 +41,11 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     
     if (self = [self init]) {
         _secret = secret;
+        _serialQueue = dispatch_queue_create("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         _providers = [@[[SegmentioProvider withSecret:secret]] mutableCopy];
         for (Class providerClass in [[[self class] registeredProviders] allValues]) {
             [_providers addObject:[[providerClass alloc] init]];
         }
-        
         // Update settings on each provider immediately
         [self updateProvidersWithSettings:[self localSettings]];
         _updateTimer = [NSTimer scheduledTimerWithTimeInterval:AnalyticsSettingsUpdateInterval
@@ -74,7 +84,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 #pragma mark - Private Helpers
 
 - (NSDictionary *)sengmentIOContext:(NSDictionary *)context {
-    NSMutableDictionary *providersDict = [context[@"providers"] mutableCopy];
+    NSMutableDictionary *providersDict = [context[@"providers"] ?: @{} mutableCopy];
     for (AnalyticsProvider *provider in self.providers)
         if (![provider isKindOfClass:[SegmentioProvider class]])
             providersDict[provider.name] = @NO;
@@ -267,7 +277,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
         
         SOLog(@"%@ Sending API settings request: %@", self, request);
         
-        self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
+        self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
     }
 }
 
@@ -289,8 +299,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
         // Log the response status
         if (self.responseCode != 200) {
             SOLog(@"%@ Settings API request had an error: %@", self, [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
-        }
-        else {
+        } else {
             // Try to interpret the data as an NSDictionary of NSDictionarys
             NSError* error;
             NSDictionary* settings = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
@@ -318,6 +327,15 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 static Analytics *SharedInstance = nil;
 
 + (instancetype)withSecret:(NSString *)secret {
+    [AmplitudeProvider class];
+    [BugsnagProvider class];
+    [ChartbeatProvider class];
+    [CountlyProvider class];
+    [FlurryProvider class];
+    [GoogleAnalyticsProvider class];
+    [KISSmetricsProvider class];
+    [LocalyticsProvider class];
+    [MixpanelProvider class];
     NSParameterAssert(secret.length > 0);
     
     static dispatch_once_t onceToken;
