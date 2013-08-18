@@ -8,6 +8,25 @@
 
 #import "SOUtils.h"
 
+static BOOL kAnalyticsLoggerShowLogs = NO;
+
+// Logging
+
+void SetShowDebugLogs(BOOL showDebugLogs) {
+    kAnalyticsLoggerShowLogs = showDebugLogs;
+}
+
+void SOLog(NSString *format, ...) {   
+    if (kAnalyticsLoggerShowLogs) {
+        va_list args;
+        va_start(args, format);
+        NSLogv(format, args);
+        va_end(args);
+    }
+}
+
+// JSON Utils
+
 NSDictionary *CoerceDictionary(NSDictionary *dict) {
     // make sure that a new dictionary exists even if the input is null
     NSDictionary * ensured = [NSDictionary dictionaryWithDictionary:dict];

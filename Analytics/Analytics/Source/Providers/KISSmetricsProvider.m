@@ -3,7 +3,7 @@
 
 #import "KISSmetricsProvider.h"
 #import "KISSMetricsAPI.h"
-#import "AnalyticsLogger.h"
+#import "SOUtils.h"
 
 
 @implementation KISSmetricsProvider {
@@ -31,7 +31,7 @@
 {
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [KISSMetricsAPI sharedAPIWithKey:apiKey];
-    [AnalyticsLogger log:@"KISSmetricsProvider initialized."];
+    SOLog(@"KISSmetricsProvider initialized.");
 }
 
 

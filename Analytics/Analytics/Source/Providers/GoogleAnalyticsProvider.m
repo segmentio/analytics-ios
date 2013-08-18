@@ -3,7 +3,7 @@
 
 #import "GoogleAnalyticsProvider.h"
 #import "GAI.h"
-#import "AnalyticsLogger.h"
+#import "SOUtils.h"
 
 @implementation GoogleAnalyticsProvider {
     
@@ -41,7 +41,7 @@
     // TODO: add support for sample rate
     
     // All done!
-    [AnalyticsLogger log:@"GoogleAnalyticsProvider initialized."];
+    SOLog(@"GoogleAnalyticsProvider initialized.");
 }
 
 
@@ -87,7 +87,7 @@
         value = valueFallback;
     }
     
-    [AnalyticsLogger log:@"Sending to Google Analytics: category %@, action %@, label %@, value %@", category, event, label, value];
+    SOLog(@"Sending to Google Analytics: category %@, action %@, label %@, value %@", category, event, label, value);
     
     // Track the event!
     [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:category withAction:event withLabel:label withValue:value];

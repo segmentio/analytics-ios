@@ -3,7 +3,7 @@
 
 #import "LocalyticsProvider.h"
 #import "LocalyticsSession.h"
-#import "AnalyticsLogger.h"
+#import "SOUtils.h"
 
 
 @implementation LocalyticsProvider {
@@ -38,7 +38,7 @@
 {
     NSString *appKey = [self.settings objectForKey:@"appKey"];
     [[LocalyticsSession sharedLocalyticsSession] startSession:appKey];
-    [AnalyticsLogger log:@"LocalyticsProvider initialized."];
+    SOLog(@"LocalyticsProvider initialized.");
 }
 
 

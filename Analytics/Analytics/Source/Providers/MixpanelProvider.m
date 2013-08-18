@@ -3,7 +3,7 @@
 
 #import "MixpanelProvider.h"
 #import "Mixpanel.h"
-#import "AnalyticsLogger.h"
+#import "SOUtils.h"
 
 
 @implementation MixpanelProvider {
@@ -31,7 +31,7 @@
 {
     NSString *token = [self.settings objectForKey:@"token"];
     [Mixpanel sharedInstanceWithToken:token];
-    [AnalyticsLogger log:@"MixpanelProvider initialized."];
+    SOLog(@"MixpanelProvider initialized.");
 }
 
 

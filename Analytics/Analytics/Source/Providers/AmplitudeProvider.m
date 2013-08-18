@@ -3,7 +3,7 @@
 
 #import "AmplitudeProvider.h"
 #import "Amplitude.h"
-#import "AnalyticsLogger.h"
+#import "SOUtils.h"
 
 
 @implementation AmplitudeProvider {
@@ -31,7 +31,7 @@
 {
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [Amplitude initializeApiKey:apiKey];
-    [AnalyticsLogger log:@"AmplitudeProvider initialized."];
+    SOLog(@"AmplitudeProvider initialized.");
 }
 
 
