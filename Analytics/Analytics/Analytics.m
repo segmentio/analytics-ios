@@ -4,7 +4,6 @@
 #import <UIKit/UIKit.h>
 #import "SOUtils.h"
 #import "Provider.h"
-#import "SettingsCache.h"
 #import "SegmentioProvider.h"
 #import "AmplitudeProvider.h"
 #import "BugsnagProvider.h"
@@ -17,10 +16,18 @@
 #import "MixpanelProvider.h"
 #import "Analytics.h"
 
-@interface Analytics () <SettingsCacheDelegate>
+static NSString * const kAnalyticsSettings = @"kAnalyticsSettings";
+static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
-@property(nonatomic, strong) SettingsCache *settingsCache;
+@interface Analytics ()
+
 @property(nonatomic, strong) NSArray *providers;
+
+// Settings
+@property(nonatomic, strong) NSTimer *updateTimer;
+@property(nonatomic, strong) NSURLConnection *connection;
+@property(nonatomic, assign) NSInteger responseCode;
+@property(nonatomic, strong) NSMutableData *responseData;
 
 @end
 
@@ -28,29 +35,7 @@
     dispatch_queue_t _serialQueue;
 }
 
-static Analytics *sharedInstance = nil;
-
-#pragma mark - Initializiation
-
-+ (instancetype)withSecret:(NSString *)secret
-{
-    NSParameterAssert(secret.length > 0);
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] initWithSecret:secret];
-    });
-    return sharedInstance;
-}
-
-+ (instancetype)sharedAnalytics
-{
-    NSAssert(sharedInstance, @"%@ sharedInstance called before withSecret", self);
-    return sharedInstance;
-}
-
-- (id)initWithSecret:(NSString *)secret
-{
+- (id)initWithSecret:(NSString *)secret {
     NSParameterAssert(secret.length);
     
     if (self = [self init]) {
@@ -67,9 +52,13 @@ static Analytics *sharedInstance = nil;
             [LocalyticsProvider withNothing],
             [MixpanelProvider withNothing]
         ];
-        // Create the settings cache last so that it can update settings
-        // on each provider immediately if necessary
-        _settingsCache = [SettingsCache withSecret:secret delegate:self];
+        // Update settings on each provider immediately
+        [self updateProvidersWithSettings:[self localSettings]];
+        _updateTimer = [NSTimer scheduledTimerWithTimeInterval:AnalyticsSettingsUpdateInterval
+                                                        target:self
+                                                      selector:@selector(requestSettingsFromNetwork)
+                                                      userInfo:nil
+                                                       repeats:YES];
         
         // Attach to application state change hooks
         for (NSString *name in @[UIApplicationDidEnterBackgroundNotification,
@@ -86,37 +75,19 @@ static Analytics *sharedInstance = nil;
     return self;
 }
 
-- (void)handleAppStateNotification:(NSNotification *)note {
-    SOLog(@"Application state change notification: %@", note.name);
-    static NSDictionary *selectorMapping;
-    static dispatch_once_t selectorMappingOnce;
-    dispatch_once(&selectorMappingOnce, ^{
-        selectorMapping = @{
-            UIApplicationDidEnterBackgroundNotification:
-                NSStringFromSelector(@selector(applicationDidEnterBackground)),
-            UIApplicationWillEnterForegroundNotification:
-                NSStringFromSelector(@selector(applicationWillEnterForeground)),
-            UIApplicationWillTerminateNotification:
-                NSStringFromSelector(@selector(applicationWillTerminate)),
-            UIApplicationWillResignActiveNotification:
-                NSStringFromSelector(@selector(applicationWillResignActive)),
-            UIApplicationDidBecomeActiveNotification:
-                NSStringFromSelector(@selector(applicationDidBecomeActive))
-        };
-    });
-    NSString *selectorName = selectorMapping[note.name];
-    if (selectorName) {
-        SEL selector = NSSelectorFromString(selectorName);
-        for (Provider *provider in self.providers) {
-            if (provider.ready) {
-                [provider performSelector:selector];
-            }
-        }
-    }
+- (void)reset {
+    [self requestSettingsFromNetwork];
 }
 
+- (void)debug:(BOOL)showDebugLogs {
+    SetShowDebugLogs(showDebugLogs);
+}
 
-#pragma mark - Provider Utils
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<Analytics secret:%@>", self.secret];
+}
+
+#pragma mark - Private Helpers
 
 - (NSDictionary *)sengmentIOContext:(NSDictionary *)context {
     NSMutableDictionary *providersDict = [context[@"providers"] mutableCopy];
@@ -148,6 +119,39 @@ static Analytics *sharedInstance = nil;
     
     return enabled;
 }
+
+- (void)handleAppStateNotification:(NSNotification *)note {
+    SOLog(@"Application state change notification: %@", note.name);
+    static NSDictionary *selectorMapping;
+    static dispatch_once_t selectorMappingOnce;
+    dispatch_once(&selectorMappingOnce, ^{
+        selectorMapping = @{
+            UIApplicationDidEnterBackgroundNotification:
+                NSStringFromSelector(@selector(applicationDidEnterBackground)),
+            UIApplicationWillEnterForegroundNotification:
+                NSStringFromSelector(@selector(applicationWillEnterForeground)),
+            UIApplicationWillTerminateNotification:
+                NSStringFromSelector(@selector(applicationWillTerminate)),
+            UIApplicationWillResignActiveNotification:
+                NSStringFromSelector(@selector(applicationWillResignActive)),
+            UIApplicationDidBecomeActiveNotification:
+                NSStringFromSelector(@selector(applicationDidBecomeActive))
+        };
+    });
+    NSString *selectorName = selectorMapping[note.name];
+    if (selectorName) {
+        SEL selector = NSSelectorFromString(selectorName);
+        for (Provider *provider in self.providers) {
+            if (!provider.ready)
+                continue;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            [provider performSelector:selector];
+#pragma clang diagnostic pop
+        }
+    }
+}
+
 
 #pragma mark - Analytics API
 
@@ -232,24 +236,21 @@ static Analytics *sharedInstance = nil;
     }
 }
 
-#pragma mark -
+#pragma mark - Settings
 
-- (void)reset {
-    [self.settingsCache update];
+- (NSDictionary *)localSettings {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:kAnalyticsSettings];
 }
 
-- (void)debug:(BOOL)showDebugLogs {
-    SetShowDebugLogs(showDebugLogs);
+- (void)setLocalSettings:(NSDictionary *)settings {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:settings forKey:kAnalyticsSettings];
+    [self updateProvidersWithSettings:settings];
 }
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<Analytics secret:%@>", self.secret];
-}
-
-#pragma mark - SettingsCacheDelegate
-
-- (void)onSettingsUpdate:(NSDictionary *)settings {
-    // Iterate over providersArray
+- (void)updateProvidersWithSettings:(NSDictionary *)settings {
+    if (!settings)
+        return;
     for (Provider *provider in self.providers) {
         if (![provider.name isEqualToString:@"Segment.io"]) {
             // Extract the settings for this provider and set them
@@ -269,6 +270,82 @@ static Analytics *sharedInstance = nil;
             }
         }
     }
+
+}
+
+- (void)requestSettingsFromNetwork {
+    if (!self.connection) {
+        NSString *urlString = [NSString stringWithFormat:@"http://api.segment.io/project/%@/settings", self.secret];
+        NSURL *url = [NSURL URLWithString:urlString];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+        [request setHTTPMethod:@"GET"];
+        
+        SOLog(@"%@ Sending API settings request: %@", self, request);
+        
+        self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
+    }
+}
+
+#pragma mark - NSURLConnection Delegate
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
+    NSAssert([NSThread isMainThread], @"Should be on main since URL connection should have started on main");
+    self.responseCode = [response statusCode];
+    self.responseData = [NSMutableData data];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    NSAssert([NSThread isMainThread], @"Should be on main since URL connection should have started on main");
+    [self.responseData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    dispatch_async(_serialQueue, ^{
+        // Log the response status
+        if (self.responseCode != 200) {
+            SOLog(@"%@ Settings API request had an error: %@", self, [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
+        }
+        else {
+            // Try to interpret the data as an NSDictionary of NSDictionarys
+            NSError* error;
+            NSDictionary* settings = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
+            SOLog(@"%@ Settings API request succeeded 200 %@", self, settings);
+            [self setLocalSettings:settings];
+        }
+        // Clear the request data
+        self.responseCode = 0;
+        self.responseData = nil;
+        self.connection = nil;
+    });
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    dispatch_async(_serialQueue, ^{
+        SOLog(@"%@ Network failed while getting settings from API: %@", self, error);
+        self.responseCode = 0;
+        self.responseData = nil;
+        self.connection = nil;
+    });
+}
+
+#pragma mark - Class Methods
+
+static Analytics *sharedInstance = nil;
+
++ (instancetype)withSecret:(NSString *)secret {
+    NSParameterAssert(secret.length > 0);
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[self alloc] initWithSecret:secret];
+    });
+    return sharedInstance;
+}
+
++ (instancetype)sharedAnalytics {
+    NSAssert(sharedInstance, @"%@ sharedInstance called before withSecret", self);
+    return sharedInstance;
 }
 
 @end
