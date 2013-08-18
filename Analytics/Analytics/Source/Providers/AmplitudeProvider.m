@@ -4,22 +4,18 @@
 #import "AmplitudeProvider.h"
 #import "Amplitude.h"
 #import "SOUtils.h"
+#import "Analytics.h"
 
-
-@implementation AmplitudeProvider {
-
-}
+@implementation AmplitudeProvider
 
 #pragma mark - Initialization
 
-+ (instancetype)withNothing
-{
-    return [[self alloc] initWithNothing];
++ (void)load {
+    [Analytics registerProvider:self withIdentifier:@"Amplitude"];
 }
 
-- (id)initWithNothing
-{
-    if (self = [self init]) {
+- (id)init {
+    if (self = [super init]) {
         self.name = @"Amplitude";
         self.valid = NO;
         self.initialized = NO;
@@ -58,7 +54,7 @@
     [Amplitude logEvent:event withCustomProperties:properties];
 
     // Track any revenue.
-    NSNumber *revenue = [Provider extractRevenue:properties];
+    NSNumber *revenue = [AnalyticsProvider extractRevenue:properties];
     if (revenue) {
         [Amplitude logRevenue:revenue];
     }

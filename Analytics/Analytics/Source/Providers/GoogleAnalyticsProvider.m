@@ -4,21 +4,18 @@
 #import "GoogleAnalyticsProvider.h"
 #import "GAI.h"
 #import "SOUtils.h"
+#import "Analytics.h"
 
-@implementation GoogleAnalyticsProvider {
-    
-}
+@implementation GoogleAnalyticsProvider
 
 #pragma mark - Initialization
 
-+ (instancetype)withNothing
-{
-    return [[self alloc] initWithNothing];
++ (void)load {
+    [Analytics registerProvider:self withIdentifier:@"Google Analytics"];
 }
 
-- (id)initWithNothing
-{
-    if (self = [self init]) {
+- (id)init {
+    if (self = [super init]) {
         self.name = @"Google Analytics";
         self.valid = NO;
         self.initialized = NO;
@@ -80,8 +77,8 @@
     NSString *label = [properties objectForKey:@"label"];
     
     // Try to extract a "revenue" or "value" property.
-    NSNumber *value = [Provider extractRevenue:properties];
-    NSNumber *valueFallback = [Provider extractRevenue:properties withKey:@"value"];
+    NSNumber *value = [AnalyticsProvider extractRevenue:properties];
+    NSNumber *valueFallback = [AnalyticsProvider extractRevenue:properties withKey:@"value"];
     if (!value && valueFallback) {
         // fall back to the "value" property
         value = valueFallback;

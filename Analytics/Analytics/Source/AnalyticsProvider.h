@@ -3,33 +3,16 @@
 
 #import <Foundation/Foundation.h>
 
-
-@interface Provider : NSObject
-
-@property(nonatomic, strong) NSString *name;
-@property(nonatomic, assign) BOOL valid;
-@property(nonatomic, assign) BOOL initialized;
-@property(nonatomic, strong) NSDictionary *settings;
-
-// Utilities
-// ---------
-
-+ (NSDictionary *)map:(NSDictionary *)dictionary withMap:(NSDictionary *)map;
-+ (NSNumber *)extractRevenue:(NSDictionary *)dictionary;
-+ (NSNumber *)extractRevenue:(NSDictionary *)dictionary withKey:(NSString *)key;
+@protocol AnalyticsProvider <NSObject>
 
 // State
 // -----
 
-- (void)updateSettings:(NSDictionary *)settings;
-- (void)validate;
-- (void)start;
-- (void)stop;
-
+- (NSString *)name;
 - (BOOL)ready;
+- (void)updateSettings:(NSDictionary *)settings;
 
-
-// Analytics API 
+// Analytics API
 // -------------
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context;
@@ -45,5 +28,27 @@
 - (void)applicationWillTerminate;
 - (void)applicationWillResignActive;
 - (void)applicationDidBecomeActive;
+
+@end
+
+@interface AnalyticsProvider : NSObject <AnalyticsProvider>
+
+@property(nonatomic, strong) NSString *name;
+@property(nonatomic, assign) BOOL valid;
+@property(nonatomic, assign) BOOL initialized;
+@property(nonatomic, strong) NSDictionary *settings;
+
+
+- (void)validate;
+- (void)start;
+- (void)stop;
+
+
+// Utilities
+// ---------
+
++ (NSDictionary *)map:(NSDictionary *)dictionary withMap:(NSDictionary *)map;
++ (NSNumber *)extractRevenue:(NSDictionary *)dictionary;
++ (NSNumber *)extractRevenue:(NSDictionary *)dictionary withKey:(NSString *)key;
 
 @end

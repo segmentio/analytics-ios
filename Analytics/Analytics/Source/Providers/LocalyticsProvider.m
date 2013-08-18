@@ -4,11 +4,9 @@
 #import "LocalyticsProvider.h"
 #import "LocalyticsSession.h"
 #import "SOUtils.h"
+#import "Analytics.h"
 
-
-@implementation LocalyticsProvider {
-
-}
+@implementation LocalyticsProvider
 
 + (BOOL) validateEmail:(NSString *)candidate {
     NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"; 
@@ -17,16 +15,14 @@
     return [emailTest evaluateWithObject:candidate];
 }
 
-#pragma mark - Initialization
-
-+ (instancetype)withNothing
-{
-    return [[self alloc] initWithNothing];
++ (void)load {
+    [Analytics registerProvider:self withIdentifier:@"Localytics"];
 }
 
-- (id)initWithNothing
-{
-    if (self = [self init]) {
+#pragma mark - Initialization
+
+- (id)init {
+    if (self = [super init]) {
         self.name = @"Localytics";
         self.valid = NO;
         self.initialized = NO;

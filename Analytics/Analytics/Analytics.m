@@ -3,17 +3,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SOUtils.h"
-#import "Provider.h"
+#import "AnalyticsProvider.h"
 #import "SegmentioProvider.h"
-#import "AmplitudeProvider.h"
-#import "BugsnagProvider.h"
-#import "ChartbeatProvider.h"
-#import "CountlyProvider.h"
-#import "FlurryProvider.h"
-#import "GoogleAnalyticsProvider.h"
-#import "KISSmetricsProvider.h"
-#import "LocalyticsProvider.h"
-#import "MixpanelProvider.h"
 #import "Analytics.h"
 
 static NSString * const kAnalyticsSettings = @"kAnalyticsSettings";
@@ -21,7 +12,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 @interface Analytics ()
 
-@property(nonatomic, strong) NSArray *providers;
+@property(nonatomic, strong) NSMutableArray *providers;
 
 // Settings
 @property(nonatomic, strong) NSTimer *updateTimer;
@@ -40,18 +31,11 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     
     if (self = [self init]) {
         _secret = secret;
-        _providers = @[
-            [SegmentioProvider withSecret:secret],
-            [AmplitudeProvider withNothing],
-            [BugsnagProvider withNothing],
-            [ChartbeatProvider withNothing],
-            [CountlyProvider withNothing],
-            [FlurryProvider withNothing],
-            [GoogleAnalyticsProvider withNothing],
-            [KISSmetricsProvider withNothing],
-            [LocalyticsProvider withNothing],
-            [MixpanelProvider withNothing]
-        ];
+        _providers = [@[[SegmentioProvider withSecret:secret]] mutableCopy];
+        for (Class providerClass in [[[self class] registeredProviders] allValues]) {
+            [_providers addObject:[[providerClass alloc] init]];
+        }
+        
         // Update settings on each provider immediately
         [self updateProvidersWithSettings:[self localSettings]];
         _updateTimer = [NSTimer scheduledTimerWithTimeInterval:AnalyticsSettingsUpdateInterval
@@ -91,15 +75,15 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 - (NSDictionary *)sengmentIOContext:(NSDictionary *)context {
     NSMutableDictionary *providersDict = [context[@"providers"] mutableCopy];
-    for (Provider *provider in self.providers)
-        if (![provider.name isEqualToString:@"Segment.io"])
+    for (AnalyticsProvider *provider in self.providers)
+        if (![provider isKindOfClass:[SegmentioProvider class]])
             providersDict[provider.name] = @NO;
     NSMutableDictionary *sioContext = [context mutableCopy];
     sioContext[@"providers"] = providersDict;
     return sioContext;
 }
 
-- (BOOL)isProvider:(Provider *)provider enabledInContext:(NSDictionary *)context {
+- (BOOL)isProvider:(AnalyticsProvider *)provider enabledInContext:(NSDictionary *)context {
     // checks if context.providers is enabling this provider
     
     if (!context) return YES;
@@ -141,7 +125,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     NSString *selectorName = selectorMapping[note.name];
     if (selectorName) {
         SEL selector = NSSelectorFromString(selectorName);
-        for (Provider *provider in self.providers) {
+        for (AnalyticsProvider *provider in self.providers) {
             if (!provider.ready)
                 continue;
 #pragma clang diagnostic push
@@ -169,9 +153,9 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     
     // Iterate over providersArray and call identify.
     for (id object in self.providers) {
-        Provider *provider = (Provider *)object;
+        AnalyticsProvider *provider = (AnalyticsProvider *)object;
         if ([provider ready] && [self isProvider:provider enabledInContext:context]) {
-            if ([provider.name isEqualToString:@"Segment.io"]) {
+            if ([provider isKindOfClass:[SegmentioProvider class]]) {
                 // Segment.io provider gets an augmented context to prevent server-side firing
                 NSDictionary *augmentedContext = [self sengmentIOContext:context];
                 [provider identify:userId traits:traits context:augmentedContext];
@@ -196,9 +180,9 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     
     // Iterate over providersArray and call track.
     for (id object in self.providers) {
-        Provider *provider = (Provider *)object;
+        AnalyticsProvider *provider = (AnalyticsProvider *)object;
         if ([provider ready] && [self isProvider:provider enabledInContext:context]) {
-            if ([provider.name isEqualToString:@"Segment.io"]) {
+            if ([provider isKindOfClass:[SegmentioProvider class]]) {
                 // Segment.io provider gets an augmented context to prevent server-side firing
                 NSDictionary *augmentedContext = [self sengmentIOContext:context];
                 [provider track:event properties:properties context:augmentedContext];
@@ -223,9 +207,9 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     
     // Iterate over providersArray and call track.
     for (id object in self.providers) {
-        Provider *provider = (Provider *)object;
+        AnalyticsProvider *provider = (AnalyticsProvider *)object;
         if ([provider ready] && [self isProvider:provider enabledInContext:context]) {
-            if ([provider.name isEqualToString:@"Segment.io"]) {
+            if ([provider isKindOfClass:[SegmentioProvider class]]) {
                 // Segment.io provider gets an augmented context to prevent server-side firing
                 NSDictionary *augmentedContext = [self sengmentIOContext:context];
                 [provider screen:screenTitle properties:properties context:augmentedContext];
@@ -251,8 +235,8 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 - (void)updateProvidersWithSettings:(NSDictionary *)settings {
     if (!settings)
         return;
-    for (Provider *provider in self.providers) {
-        if (![provider.name isEqualToString:@"Segment.io"]) {
+    for (AnalyticsProvider *provider in self.providers) {
+        if (![provider isKindOfClass:[SegmentioProvider class]]) {
             // Extract the settings for this provider and set them
             NSDictionary *providerSettings = settings[provider.name];
             
@@ -331,21 +315,36 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 #pragma mark - Class Methods
 
-static Analytics *sharedInstance = nil;
+static Analytics *SharedInstance = nil;
 
 + (instancetype)withSecret:(NSString *)secret {
     NSParameterAssert(secret.length > 0);
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] initWithSecret:secret];
+        SharedInstance = [[self alloc] initWithSecret:secret];
     });
-    return sharedInstance;
+    return SharedInstance;
 }
 
 + (instancetype)sharedAnalytics {
-    NSAssert(sharedInstance, @"%@ sharedInstance called before withSecret", self);
-    return sharedInstance;
+    NSAssert(SharedInstance, @"%@ sharedInstance called before withSecret", self);
+    return SharedInstance;
+}
+
+static NSMutableDictionary *RegisteredProviders = nil;
+
++ (NSDictionary *)registeredProviders { return [RegisteredProviders copy]; }
+
++ (void)registerProvider:(Class)providerClass withIdentifier:(NSString *)identifer {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        RegisteredProviders = [[NSMutableDictionary alloc] init];
+    });
+    NSAssert([NSThread isMainThread], @"%s must ce called fro main thread", __func__);
+    NSAssert(SharedInstance == nil, @"%s can only be called before Analytics initialization", __func__);
+    NSAssert(identifer.length > 0, @"Provider must have a valid identifier;");
+    RegisteredProviders[identifer] = providerClass;
 }
 
 @end

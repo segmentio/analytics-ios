@@ -4,22 +4,18 @@
 #import "MixpanelProvider.h"
 #import "Mixpanel.h"
 #import "SOUtils.h"
+#import "Analytics.h"
 
-
-@implementation MixpanelProvider {
-
-}
+@implementation MixpanelProvider
 
 #pragma mark - Initialization
 
-+ (instancetype)withNothing
-{
-    return [[self alloc] initWithNothing];
++ (void)load {
+    [Analytics registerProvider:self withIdentifier:@"Mixpanel"];
 }
 
-- (id)initWithNothing
-{
-    if (self = [self init]) {
+- (id)init {
+    if (self = [super init]) {
         self.name = @"Mixpanel";
         self.valid = NO;
         self.initialized = NO;
@@ -60,7 +56,7 @@
         @"$name",       @"name",
         @"$username",   @"username",
         @"$phone",      @"phone",  nil];
-    NSDictionary *mappedTraits = [Provider map:traits withMap:map];
+    NSDictionary *mappedTraits = [AnalyticsProvider map:traits withMap:map];
     [[Mixpanel sharedInstance] registerSuperProperties:mappedTraits];
 
     if ([self.settings objectForKey:@"people"]) {
@@ -74,7 +70,7 @@
     [[Mixpanel sharedInstance] track:event properties:properties];
 
     // If revenue is included and People is enabled, trackCharge to Mixpanel.
-    NSNumber *revenue = [Provider extractRevenue:properties];
+    NSNumber *revenue = [AnalyticsProvider extractRevenue:properties];
     if (revenue && [self.settings objectForKey:@"people"]) {
         [[Mixpanel sharedInstance].people trackCharge:revenue];
     }

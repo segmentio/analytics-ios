@@ -4,22 +4,18 @@
 #import "ChartbeatProvider.h"
 #import "CBTracker.h"
 #import "SOUtils.h"
+#import "Analytics.h"
 
-
-@implementation ChartbeatProvider {
-
-}
+@implementation ChartbeatProvider
 
 #pragma mark - Initialization
 
-+ (instancetype)withNothing
-{
-    return [[self alloc] initWithNothing];
++ (void)load {
+    [Analytics registerProvider:self withIdentifier:@"Chartbeat"];
 }
 
-- (id)initWithNothing
-{
-    if (self = [self init]) {
+- (id)init {
+    if (self = [super init]) {
         self.name = @"Chartbeat";
         self.valid = NO;
         self.initialized = NO;

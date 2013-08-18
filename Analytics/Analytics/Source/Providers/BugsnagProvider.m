@@ -4,22 +4,18 @@
 #import "BugsnagProvider.h"
 #import "Bugsnag.h"
 #import "SOUtils.h"
+#import "Analytics.h"
 
-
-@implementation BugsnagProvider {
-
-}
+@implementation BugsnagProvider
 
 #pragma mark - Initialization
 
-+ (instancetype)withNothing
-{
-    return [[self alloc] initWithNothing];
++ (void)load {
+    [Analytics registerProvider:self withIdentifier:@"Bugsnag"];
 }
 
-- (id)initWithNothing
-{
-    if (self = [self init]) {
+- (id)init {
+    if (self = [super init]) {
         self.name = @"Bugsnag";
         self.valid = NO;
         self.initialized = NO;
