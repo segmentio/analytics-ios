@@ -123,6 +123,8 @@
 		EA2E92EF17C04A200074369C /* Segmentio.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E928A17C04A1F0074369C /* Segmentio.m */; };
 		EA2E92F017C04A200074369C /* SettingsCache.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E928B17C04A1F0074369C /* SettingsCache.h */; };
 		EA2E92F117C04A200074369C /* SettingsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E928C17C04A1F0074369C /* SettingsCache.m */; };
+		EA2E92F417C0583C0074369C /* SOUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EA2E92F217C0583B0074369C /* SOUtils.h */; };
+		EA2E92F517C0583C0074369C /* SOUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA2E92F317C0583B0074369C /* SOUtils.m */; };
 		F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		F7200B7E17659B2F003F3138 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = F7200B7D17659B2F003F3138 /* Analytics.m */; };
 		F78D29911765AEC4000B937E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29901765AEC4000B937E /* CoreData.framework */; };
@@ -260,6 +262,8 @@
 		EA2E928A17C04A1F0074369C /* Segmentio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Segmentio.m; sourceTree = "<group>"; };
 		EA2E928B17C04A1F0074369C /* SettingsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsCache.h; sourceTree = "<group>"; };
 		EA2E928C17C04A1F0074369C /* SettingsCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCache.m; sourceTree = "<group>"; };
+		EA2E92F217C0583B0074369C /* SOUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOUtils.h; sourceTree = "<group>"; };
+		EA2E92F317C0583B0074369C /* SOUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SOUtils.m; sourceTree = "<group>"; };
 		F7200B7317659B2F003F3138 /* libAnalytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAnalytics.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7200B7617659B2F003F3138 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F7200B7A17659B2F003F3138 /* Analytics-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Analytics-Prefix.pch"; sourceTree = "<group>"; };
@@ -563,6 +567,8 @@
 				EA2E927017C04A1F0074369C /* ProviderManager.m */,
 				EA2E928B17C04A1F0074369C /* SettingsCache.h */,
 				EA2E928C17C04A1F0074369C /* SettingsCache.m */,
+				EA2E92F217C0583B0074369C /* SOUtils.h */,
+				EA2E92F317C0583B0074369C /* SOUtils.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -721,6 +727,7 @@
 				EA2E92EC17C04A200074369C /* SegmentioProvider.h in Headers */,
 				EA2E92EE17C04A200074369C /* Segmentio.h in Headers */,
 				EA2E92F017C04A200074369C /* SettingsCache.h in Headers */,
+				EA2E92F417C0583C0074369C /* SOUtils.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -850,6 +857,7 @@
 				EA2E92ED17C04A200074369C /* SegmentioProvider.m in Sources */,
 				EA2E92EF17C04A200074369C /* Segmentio.m in Sources */,
 				EA2E92F117C04A200074369C /* SettingsCache.m in Sources */,
+				EA2E92F517C0583C0074369C /* SOUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
