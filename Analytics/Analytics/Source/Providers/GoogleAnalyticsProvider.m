@@ -1,10 +1,13 @@
 // GoogleAnalyticsProvider.m
 // Copyright 2013 Segment.io
 
-#import "GoogleAnalyticsProvider.h"
-#import "GAI.h"
+
+#import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>
+#import <GoogleAnalytics-iOS-SDK/GAIFields.h>
+#import <GoogleAnalytics-iOS-SDK/GAI.h>
 #import "SOUtils.h"
 #import "Analytics.h"
+#import "GoogleAnalyticsProvider.h"
 
 @implementation GoogleAnalyticsProvider
 
@@ -87,12 +90,17 @@
     SOLog(@"Sending to Google Analytics: category %@, action %@, label %@, value %@", category, event, label, value);
     
     // Track the event!
-    [[[GAI sharedInstance] defaultTracker] sendEventWithCategory:category withAction:event withLabel:label withValue:value];
+    [[[GAI sharedInstance] defaultTracker] send:
+     [[GAIDictionaryBuilder createEventWithCategory:category
+                                             action:event
+                                              label:label
+                                              value:value] build]];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
 {
-    [[[GAI sharedInstance] defaultTracker] sendView:screenTitle];
+    [[[GAI sharedInstance] defaultTracker] set:kGAIScreenName value:screenTitle];
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 @end
