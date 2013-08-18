@@ -21,7 +21,7 @@
 
 
 
-@interface ProviderManager ()
+@interface ProviderManager () <SettingsCacheDelegate>
 
 @property(nonatomic, strong) NSString *secret;
 @property(nonatomic, strong) SettingsCache *settingsCache;
@@ -33,7 +33,6 @@
 @implementation ProviderManager {
     dispatch_queue_t _serialQueue;
 }
-
 
 #pragma mark - Initializiation
 
@@ -63,8 +62,8 @@
         
         // Create the settings cache last so that it can update settings
         // on each provider immediately if necessary
-        _settingsCache = [SettingsCache withSecret:secret delegate:(SettingsCacheDelegate *)self];
-
+        _settingsCache = [SettingsCache withSecret:secret delegate:self];
+        
         // Attach to application state change hooks
         [[NSNotificationCenter defaultCenter]
             addObserver:self
@@ -93,34 +92,6 @@
             object:NULL];
     }
     return self;
-}
-
-
-#pragma mark - Settings
-
-- (void)onSettingsUpdate:(NSDictionary *)settings
-{
-    // Iterate over providersArray
-    for (id object in self.providersArray) {
-        Provider *provider = (Provider *)object;
-        if (![provider.name isEqualToString:@"Segment.io"]) {
-            // Extract the settings for this provider and set them
-            NSDictionary *providerSettings = [settings objectForKey:provider.name];
-
-            // Google Analytics needs to be initialized on the main thread, but
-            // dispatch-ing to the main queue when already on the main thread
-            // causes the initialization to happen async. After first startup
-            // we need the initialization to be synchronous.
-            if ([NSThread isMainThread]) {
-                [provider updateSettings:providerSettings];
-            }
-            else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [provider updateSettings:providerSettings];
-                });
-            }
-        }
-    }
 }
 
 #pragma mark - Provider Utils
@@ -153,11 +124,13 @@
     
     BOOL enabled = YES;
     // from: http://stackoverflow.com/questions/3822601/restoring-a-bool-inside-an-nsdictionary-from-a-plist-file
-    if ([providers valueForKey:@"all"]) enabled = [[providers valueForKey:@"all"] boolValue];
-    if ([providers valueForKey:@"All"]) enabled = [[providers valueForKey:@"All"] boolValue];
+    if ([providers valueForKey:@"all"])
+        enabled = [providers[@"all"] boolValue];
+    if ([providers valueForKey:@"All"])
+        enabled = [providers[@"All"] boolValue];
     
-    if ([providers valueForKey:provider.name]) enabled = [[providers valueForKey:provider.name] boolValue];
-
+    if ([providers valueForKey:provider.name])
+        enabled = [providers[provider.name] boolValue];
     
     return enabled;
 }
@@ -231,78 +204,48 @@
 
 #pragma mark - Analytics App Events Forwarding
 
-- (void)applicationDidEnterBackground
-{
+- (void)forwardSelectorToProviders:(SEL)selector {
+    for (Provider *provider in self.providersArray) {
+        if (provider.ready) {
+            [provider performSelector:selector];
+        }
+    }
+}
+
+- (void)applicationDidEnterBackground {
     [AnalyticsLogger log:@"Application state change notification: applicationDidEnterBackground"];
-    // Iterate over providersArray and call track.
-    for (id object in self.providersArray) {
-        Provider *provider = (Provider *)object;
-        if ([provider ready]) {
-            [provider applicationDidEnterBackground];
-        }
-    }
+    [self forwardSelectorToProviders:@selector(applicationDidEnterBackground)];
 }
 
-- (void)applicationWillEnterForeground
-{
+- (void)applicationWillEnterForeground {
     [AnalyticsLogger log:@"Application state change notification: applicationWillEnterForeground"];
-    // Iterate over providersArray and call track.
-    for (id object in self.providersArray) {
-        Provider *provider = (Provider *)object;
-        if ([provider ready]) {
-            [provider applicationWillEnterForeground];
-        }
-    }
+    [self forwardSelectorToProviders:@selector(applicationWillEnterForeground)];
 }
 
-- (void)applicationWillTerminate
-{
+- (void)applicationWillTerminate {
     [AnalyticsLogger log:@"Application state change notification: applicationWillTerminate"];
-    // Iterate over providersArray and call track.
-    for (id object in self.providersArray) {
-        Provider *provider = (Provider *)object;
-        if ([provider ready]) {
-            [provider applicationWillTerminate];
-        }
-    }
+    [self forwardSelectorToProviders:@selector(applicationWillTerminate)];
 }
 
-- (void)applicationWillResignActive
-{
+- (void)applicationWillResignActive {
     [AnalyticsLogger log:@"Application state change notification: applicationWillResignActive"];
-    // Iterate over providersArray and call track.
-    for (id object in self.providersArray) {
-        Provider *provider = (Provider *)object;
-        if ([provider ready]) {
-            [provider applicationWillResignActive];
-        }
-    }
+    [self forwardSelectorToProviders:@selector(applicationWillResignActive)];
 }
 
-- (void)applicationDidBecomeActive
-{
+- (void)applicationDidBecomeActive {
     [AnalyticsLogger log:@"Application state change notification: applicationDidBecomeActive"];
-    // Iterate over providersArray and call track.
-    for (id object in self.providersArray) {
-        Provider *provider = (Provider *)object;
-        if ([provider ready]) {
-            [provider applicationDidBecomeActive];
-        }
-    }
+    [self forwardSelectorToProviders:@selector(applicationDidBecomeActive)];
 }
 
 
 #pragma mark - NSObject
 
-- (void)reset
-{
+- (void)reset {
     [self.settingsCache update];
 }
 
-
-- (NSString *)description
-{
-    return @"<Analytics ProviderManager>";
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<Analytics ProviderManager(%p) Secret: %@>", self, self.secret];
 }
 
 #pragma mark JSON Utilities
@@ -409,6 +352,32 @@
                  [value isKindOfClass:[NSDate class]] ||
                  [value isKindOfClass:[NSURL class]],
                  @"%@ Dictionary values must be NSString, NSNumber, NSNull, NSArray, NSDictionary, NSDate or NSURL. got: %@ %@", self, [[dict objectForKey:key] class], value);
+    }
+}
+
+#pragma mark - SettingsCacheDelegate
+
+- (void)onSettingsUpdate:(NSDictionary *)settings
+{
+    // Iterate over providersArray
+    for (Provider *provider in self.providersArray) {
+        if (![provider.name isEqualToString:@"Segment.io"]) {
+            // Extract the settings for this provider and set them
+            NSDictionary *providerSettings = settings[provider.name];
+            
+            // Google Analytics needs to be initialized on the main thread, but
+            // dispatch-ing to the main queue when already on the main thread
+            // causes the initialization to happen async. After first startup
+            // we need the initialization to be synchronous.
+            if ([NSThread isMainThread]) {
+                [provider updateSettings:providerSettings];
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [provider updateSettings:providerSettings];
+                });
+            }
+        }
     }
 }
 

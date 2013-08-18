@@ -10,7 +10,7 @@
 @interface SettingsCache ()
 
 @property(nonatomic, strong) NSString *secret;
-@property(nonatomic, strong) SettingsCacheDelegate *delegate;
+@property(nonatomic, weak) id<SettingsCacheDelegate> delegate;
 @property(nonatomic, strong) NSTimer *updateTimer;
 @property(nonatomic, strong) NSURLConnection *connection;
 @property(nonatomic, assign) NSInteger responseCode;
@@ -32,13 +32,13 @@
     return [[self alloc] initWithSecret:secret delegate:nil];
 }
 
-+ (instancetype)withSecret:(NSString *)secret delegate:(SettingsCacheDelegate *)delegate
++ (instancetype)withSecret:(NSString *)secret delegate:(id<SettingsCacheDelegate>)delegate
 {
     NSParameterAssert(secret.length > 0);
     return [[self alloc] initWithSecret:secret delegate:delegate];
 }
 
-- (id)initWithSecret:(NSString *)secret delegate:(SettingsCacheDelegate *)delegate
+- (id)initWithSecret:(NSString *)secret delegate:(id<SettingsCacheDelegate>)delegate
 {
     if (self = [self init]) {
         // Initialize all the components of the cache.
@@ -55,10 +55,8 @@
         NSDictionary *settings = [self getSettings];
         if (settings) {
             [AnalyticsLogger log:@"Found settings in cache, will refresh cache later."];
-            if (self.delegate) {
-                [AnalyticsLogger log:@"Calling delegate's onSettingsUpdate with cached settings."];
-                [self.delegate onSettingsUpdate:settings];
-            }
+            [AnalyticsLogger log:@"Calling delegate's onSettingsUpdate with cached settings."];
+            [self.delegate onSettingsUpdate:settings];
         }
         // Refresh the cache immediately if it's empty.
         else {
@@ -81,9 +79,7 @@ static NSString * const kSettingsCache = @"kAnalyticsSettingsCache";
 
     // Callback with the resulting settings
     [AnalyticsLogger log:@"%@ Callback on delegate %@", self, self.delegate];
-    if (self.delegate) {
-        [self.delegate onSettingsUpdate:settings];
-    }
+    [self.delegate onSettingsUpdate:settings];
 }
 
 - (NSDictionary *)getSettings
