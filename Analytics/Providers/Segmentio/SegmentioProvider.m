@@ -259,6 +259,7 @@ static NSString *GetSessionID(BOOL reset) {
 }
 
 - (void)applicationWillTerminate {
+    [self flush];
     dispatch_sync(_serialQueue, ^{
         if (self.queue.count)
             [self.queue writeToFile:[self diskQueuePath] atomically:YES];
