@@ -23,6 +23,10 @@
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context;
 
 
+@optional;
+
+- (void)registerPushDeviceToken:(NSData *)deviceToken;
+
 // Callbacks for app state changes
 // -------------------------------
 
