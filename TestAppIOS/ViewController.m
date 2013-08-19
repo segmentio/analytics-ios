@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [Analytics withSecret:@"k5l6rrye0hsv566zwuk7"];
+    [Analytics initializeWithSecret:@"k5l6rrye0hsv566zwuk7"];
     [[Analytics sharedAnalytics] debug:YES];
     [[Analytics sharedAnalytics] reset];
 }
