@@ -3,7 +3,7 @@
 
 #import "Analytics.h"
 #import "AnalyticsUtils.h"
-#import "AnalyticsJSONRequest.h"
+#import "AnalyticsRequest.h"
 #import "SegmentioProvider.h"
 
 #define SEGMENTIO_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
@@ -48,13 +48,13 @@ static NSMutableDictionary *CreateContext(NSDictionary *parameters) {
     return context;
 }
 
-@interface SegmentioProvider () <AnalyticsJSONRequestDelegate>
+@interface SegmentioProvider () <AnalyticsRequestDelegate>
 
 @property (nonatomic, weak) Analytics *analytics;
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, strong) NSArray *batch;
-@property (nonatomic, strong) AnalyticsJSONRequest *request;
+@property (nonatomic, strong) AnalyticsRequest *request;
 
 @end
 
@@ -255,13 +255,13 @@ static NSMutableDictionary *CreateContext(NSDictionary *parameters) {
         [urlRequest setHTTPBody:data];
         SOLog(@"%@ Sending batch API request: %@", self,
               [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        self.request = [AnalyticsJSONRequest startRequestWithURLRequest:urlRequest delegate:self];
+        self.request = [AnalyticsRequest startRequestWithURLRequest:urlRequest delegate:self];
     });
 }
 
 #pragma mark - AnalyticsJSONRequest Delegate
 
-- (void)requestDidComplete:(AnalyticsJSONRequest *)request {
+- (void)requestDidComplete:(AnalyticsRequest *)request {
     dispatch_async(_serialQueue, ^{
         if (request.error) {
             SOLog(@"%@ API request had an error: %@", self, request.error);

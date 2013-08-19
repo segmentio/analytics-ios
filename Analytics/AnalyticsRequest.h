@@ -1,5 +1,5 @@
 //
-//  AnalyticsJSONRequest.h
+//  AnalyticsRequest.h
 //  Analytics
 //
 //  Created by Tony Xiao on 8/19/13.
@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@class AnalyticsJSONRequest;
-@protocol AnalyticsJSONRequestDelegate <NSObject>
+@class AnalyticsRequest;
+@protocol AnalyticsRequestDelegate <NSObject>
 
-- (void)requestDidComplete:(AnalyticsJSONRequest *)request;
+- (void)requestDidComplete:(AnalyticsRequest *)request;
 
 @end
 
-@interface AnalyticsJSONRequest : NSObject
+@interface AnalyticsRequest : NSObject
 
-@property (nonatomic, weak) id<AnalyticsJSONRequestDelegate> delegate;
+@property (nonatomic, weak) id<AnalyticsRequestDelegate> delegate;
 
 @property (nonatomic, readonly) NSURLRequest *urlRequest;
 @property (nonatomic, readonly) NSHTTPURLResponse *response;
@@ -26,6 +26,6 @@
 @property (nonatomic, readonly) NSError *error;
 
 + (instancetype)startRequestWithURLRequest:(NSURLRequest *)urlRequest
-                                  delegate:(id<AnalyticsJSONRequestDelegate>)delegate;
+                                  delegate:(id<AnalyticsRequestDelegate>)delegate;
 
 @end

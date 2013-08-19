@@ -4,17 +4,17 @@
 #import <UIKit/UIKit.h>
 #import "AnalyticsUtils.h"
 #import "AnalyticsProvider.h"
-#import "AnalyticsJSONRequest.h"
+#import "AnalyticsRequest.h"
 #import "Analytics.h"
 
 static NSString * const kAnalyticsSettings = @"kAnalyticsSettings";
 static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
-@interface Analytics () <AnalyticsJSONRequestDelegate>
+@interface Analytics () <AnalyticsRequestDelegate>
 
 @property(nonatomic, strong) NSArray *providers;
 @property(nonatomic, strong) NSTimer *updateTimer;
-@property(nonatomic, strong) AnalyticsJSONRequest *request;
+@property(nonatomic, strong) AnalyticsRequest *request;
 
 @end
 
@@ -224,13 +224,13 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
         
         SOLog(@"%@ Sending API settings request: %@", self, urlRequest);
         
-        self.request = [AnalyticsJSONRequest startRequestWithURLRequest:urlRequest delegate:self];
+        self.request = [AnalyticsRequest startRequestWithURLRequest:urlRequest delegate:self];
     }
 }
 
 #pragma mark - AnalyticsJSONRequest Delegate
 
-- (void)requestDidComplete:(AnalyticsJSONRequest *)request {
+- (void)requestDidComplete:(AnalyticsRequest *)request {
     dispatch_async(_serialQueue, ^{
         if (!request.error) {
             [self setLocalSettings:request.responseJSON];

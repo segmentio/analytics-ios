@@ -27,18 +27,8 @@ void SOLog(NSString *format, ...) {
 
 // JSON Utils
 
-NSDictionary *CoerceDictionary(NSDictionary *dict) {
-    // make sure that a new dictionary exists even if the input is null
-    NSDictionary * ensured = [NSDictionary dictionaryWithDictionary:dict];
-    
-    // assert that the proper types are in the dictionary
-    AssertDictionaryTypes(ensured);
-    
-    // coerce urls, and dates to the proper format
-    return CoerceJSONObject(ensured);
-}
 
-id CoerceJSONObject(id obj) {
+static id CoerceJSONObject(id obj) {
     // if the object is a NSString, NSNumber or NSNull
     // then we're good
     if ([obj isKindOfClass:[NSString class]] ||
@@ -91,7 +81,7 @@ id CoerceJSONObject(id obj) {
     return desc;
 }
 
-void AssertDictionaryTypes(NSDictionary *dict) {
+static void AssertDictionaryTypes(NSDictionary *dict) {
     for (id key in dict) {
         assert([key isKindOfClass: [NSString class]]);
         id value = [dict objectForKey:key];
@@ -105,3 +95,15 @@ void AssertDictionaryTypes(NSDictionary *dict) {
                [value isKindOfClass:[NSURL class]]);
     }
 }
+
+NSDictionary *CoerceDictionary(NSDictionary *dict) {
+    // make sure that a new dictionary exists even if the input is null
+    NSDictionary * ensured = [NSDictionary dictionaryWithDictionary:dict];
+    
+    // assert that the proper types are in the dictionary
+    AssertDictionaryTypes(ensured);
+    
+    // coerce urls, and dates to the proper format
+    return CoerceJSONObject(ensured);
+}
+

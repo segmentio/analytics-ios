@@ -1,5 +1,5 @@
 //
-//  AnalyticsJSONRequest.m
+//  AnalyticsRequest.m
 //  Analytics
 //
 //  Created by Tony Xiao on 8/19/13.
@@ -8,9 +8,9 @@
 
 #define AssertMainThread() NSAssert([NSThread isMainThread], @"%s must be called form main thread", __func__)
 
-#import "AnalyticsJSONRequest.h"
+#import "AnalyticsRequest.h"
 
-@interface AnalyticsJSONRequest () <NSURLConnectionDataDelegate>
+@interface AnalyticsRequest () <NSURLConnectionDataDelegate>
 
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSURLRequest *urlRequest;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation AnalyticsJSONRequest
+@implementation AnalyticsRequest
 
 - (id)initWithURLRequest:(NSURLRequest *)urlRequest {
     if (self = [super init]) {
@@ -78,8 +78,8 @@
 #pragma mark Class Methods
 
 + (instancetype)startRequestWithURLRequest:(NSURLRequest *)urlRequest
-                                  delegate:(id<AnalyticsJSONRequestDelegate>)delegate {
-    AnalyticsJSONRequest *request = [[self alloc] initWithURLRequest:urlRequest];
+                                  delegate:(id<AnalyticsRequestDelegate>)delegate {
+    AnalyticsRequest *request = [[self alloc] initWithURLRequest:urlRequest];
     request.delegate = delegate;
     [request start];
     return request;
