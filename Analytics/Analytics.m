@@ -55,39 +55,34 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     return self;
 }
 
-- (void)reset {
-    [self requestSettingsFromNetwork];
-}
 
-- (void)debug:(BOOL)showDebugLogs {
-    SetShowDebugLogs(showDebugLogs);
-}
 
-- (NSString *)description {
-    return [NSString stringWithFormat:@"<Analytics secret:%@>", self.secret];
-}
-
-#pragma mark - Private Helpers
-
-- (BOOL)isProvider:(AnalyticsProvider *)provider enabledInContext:(NSDictionary *)context {
+- (BOOL)isProvider:(id<AnalyticsProvider>)provider enabledInContext:(NSDictionary *)context {
     // checks if context.providers is enabling this provider
-    
-    if (!context) return YES;
-    
-    NSDictionary* providers = [context objectForKey:@"providers"];
-    if (!providers) return YES;
-    
-    BOOL enabled = YES;
-    // from: http://stackoverflow.com/questions/3822601/restoring-a-bool-inside-an-nsdictionary-from-a-plist-file
-    if ([providers valueForKey:@"all"])
-        enabled = [providers[@"all"] boolValue];
-    if ([providers valueForKey:@"All"])
-        enabled = [providers[@"All"] boolValue];
-    
-    if ([providers valueForKey:provider.name])
-        enabled = [providers[provider.name] boolValue];
-    
-    return enabled;
+    NSDictionary *providers = context[@"providers"];
+    if (providers[provider.name]) {
+        return [providers[provider.name] boolValue];
+    } else if (providers[@"All"]) {
+        return [providers[@"All"] boolValue];
+    } else if (providers[@"all"]) {
+        return [providers[@"all"] boolValue];
+    }
+    return YES;
+}
+
+- (void)callProvidersWithSelector:(SEL)selector arguments:(NSArray *)arguments context:(NSDictionary *)context {
+    NSMethodSignature *methodSignature = [AnalyticsProvider instanceMethodSignatureForSelector:selector];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
+    invocation.selector = selector;
+    for (int i=0; i<arguments.count; i++) {
+        id argument = arguments[i];
+        [invocation setArgument:&argument atIndex:i+2];
+    }
+    for (id<AnalyticsProvider> provider in self.providers) {
+        if (provider.ready && [self isProvider:provider enabledInContext:context]) {
+            [invocation invokeWithTarget:provider];
+        }
+    }
 }
 
 - (void)handleAppStateNotification:(NSNotification *)note {
@@ -108,20 +103,24 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
                 NSStringFromSelector(@selector(applicationDidBecomeActive))
         };
     });
-    NSString *selectorName = selectorMapping[note.name];
-    if (selectorName) {
-        SEL selector = NSSelectorFromString(selectorName);
-        for (AnalyticsProvider *provider in self.providers) {
-            if (!provider.ready)
-                continue;
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            [provider performSelector:selector];
-#pragma clang diagnostic pop
-        }
-    }
+    SEL selector = NSSelectorFromString(selectorMapping[note.name]);
+    if (selector)
+        [self callProvidersWithSelector:selector arguments:nil context:nil];
 }
 
+#pragma mark - Public API
+
+- (void)reset {
+    [self requestSettingsFromNetwork];
+}
+
+- (void)debug:(BOOL)showDebugLogs {
+    SetShowDebugLogs(showDebugLogs);
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<Analytics secret:%@>", self.secret];
+}
 
 #pragma mark - Analytics API
 
@@ -134,15 +133,9 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context {
-    traits = CoerceDictionary(traits);
-    context = CoerceDictionary(context);
-    
-    // Iterate over providersArray and call identify.
-    for (id<AnalyticsProvider> provider in self.providers) {
-        if ([provider ready] && [self isProvider:provider enabledInContext:context]) {
-            [provider identify:userId traits:traits context:context];
-        }
-    }
+    [self callProvidersWithSelector:_cmd
+                          arguments:@[userId, CoerceDictionary(traits), CoerceDictionary(context)]
+                            context:context];
 }
 
 - (void)track:(NSString *)event {
@@ -154,15 +147,9 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context {
-    properties = CoerceDictionary(properties);
-    context = CoerceDictionary(context);
-    
-    // Iterate over providersArray and call track.
-    for (id<AnalyticsProvider> provider in self.providers) {
-        if ([provider ready] && [self isProvider:provider enabledInContext:context]) {
-            [provider track:event properties:properties context:context];
-        }
-    }
+    [self callProvidersWithSelector:_cmd
+                          arguments:@[event, CoerceDictionary(properties), CoerceDictionary(context)]
+                            context:context];
 }
 
 - (void)screen:(NSString *)screenTitle {
@@ -174,18 +161,12 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context {
-    properties = CoerceDictionary(properties);
-    context = CoerceDictionary(context);
-    
-    // Iterate over providersArray and call track.
-    for (id<AnalyticsProvider> provider in self.providers) {
-        if ([provider ready] && [self isProvider:provider enabledInContext:context]) {
-            [provider screen:screenTitle properties:properties context:context];
-        }
-    }
+    [self callProvidersWithSelector:_cmd
+                          arguments:@[screenTitle, CoerceDictionary(properties), CoerceDictionary(context)]
+                            context:context];
 }
 
-#pragma mark - Settings
+#pragma mark - Analytics Settings
 
 - (NSDictionary *)localSettings {
     return [[NSUserDefaults standardUserDefaults] objectForKey:kAnalyticsSettings];
@@ -208,7 +189,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
         [self performSelectorOnMainThread:@selector(updateProvidersWithSettings:) withObject:settings waitUntilDone:NO];
         return;
     }
-    for (AnalyticsProvider *provider in self.providers) {
+    for (id<AnalyticsProvider> provider in self.providers) {
         // Extract the settings for this provider and set them
         [provider updateSettings:settings[provider.name]];
     }
@@ -228,7 +209,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     }
 }
 
-#pragma mark - AnalyticsJSONRequest Delegate
+#pragma mark - AnalyticsRequest Delegate
 
 - (void)requestDidComplete:(AnalyticsRequest *)request {
     dispatch_async(_serialQueue, ^{
@@ -240,6 +221,21 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 }
 
 #pragma mark - Class Methods
+
+static NSMutableDictionary *RegisteredProviders = nil;
+
++ (NSDictionary *)registeredProviders { return [RegisteredProviders copy]; }
+
++ (void)registerProvider:(Class)providerClass withIdentifier:(NSString *)identifer {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        RegisteredProviders = [[NSMutableDictionary alloc] init];
+    });
+    NSAssert([NSThread isMainThread], @"%s must ce called fro main thread", __func__);
+    NSAssert(SharedInstance == nil, @"%s can only be called before Analytics initialization", __func__);
+    NSAssert(identifer.length > 0, @"Provider must have a valid identifier;");
+    RegisteredProviders[identifer] = providerClass;
+}
 
 static Analytics *SharedInstance = nil;
 
@@ -255,21 +251,6 @@ static Analytics *SharedInstance = nil;
 + (instancetype)sharedAnalytics {
     NSAssert(SharedInstance, @"%@ sharedInstance called before withSecret", self);
     return SharedInstance;
-}
-
-static NSMutableDictionary *RegisteredProviders = nil;
-
-+ (NSDictionary *)registeredProviders { return [RegisteredProviders copy]; }
-
-+ (void)registerProvider:(Class)providerClass withIdentifier:(NSString *)identifer {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        RegisteredProviders = [[NSMutableDictionary alloc] init];
-    });
-    NSAssert([NSThread isMainThread], @"%s must ce called fro main thread", __func__);
-    NSAssert(SharedInstance == nil, @"%s can only be called before Analytics initialization", __func__);
-    NSAssert(identifer.length > 0, @"Provider must have a valid identifier;");
-    RegisteredProviders[identifer] = providerClass;
 }
 
 @end

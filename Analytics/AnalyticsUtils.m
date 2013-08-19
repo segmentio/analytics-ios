@@ -27,7 +27,6 @@ void SOLog(NSString *format, ...) {
 
 // JSON Utils
 
-
 static id CoerceJSONObject(id obj) {
     // if the object is a NSString, NSNumber or NSNull
     // then we're good
@@ -38,49 +37,39 @@ static id CoerceJSONObject(id obj) {
     }
     
     if ([obj isKindOfClass:[NSArray class]]) {
-        NSMutableArray *a = [NSMutableArray array];
-        for (id i in obj) {
-            [a addObject:CoerceJSONObject(i)];
-        }
-        return [NSArray arrayWithArray:a];
+        NSMutableArray *array = [NSMutableArray array];
+        for (id i in obj)
+            [array addObject:CoerceJSONObject(i)];
+        return array;
     }
     
     if ([obj isKindOfClass:[NSDictionary class]]) {
-        NSMutableDictionary *d = [NSMutableDictionary dictionary];
-        for (id key in obj) {
-            NSString *stringKey;
-            if (![key isKindOfClass:[NSString class]]) {
-                stringKey = [key description];
-                NSLog(@"warning: dictionary keys should be strings. got: %@. coercing to: %@", [key class], stringKey);
-            } else {
-                stringKey = [NSString stringWithString:key];
-            }
-            
-            id v = CoerceJSONObject([obj objectForKey:key]);
-            [d setObject:v forKey:stringKey];
+        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        for (NSString *key in obj) {
+            if (![key isKindOfClass:[NSString class]])
+                NSLog(@"warning: dictionary keys should be strings. got: %@. coercing to: %@", [key class], [key description]);
+            dict[key.description] = CoerceJSONObject(obj[key]);
         }
-        return [NSDictionary dictionaryWithDictionary:d];
+        return dict;
     }
     
-    // check for NSDate, NSDate description is already a valid ISO8061 string
-    if ([obj isKindOfClass:[NSDate class]]) {
+    // NSDate description is already a valid ISO8061 string
+    if ([obj isKindOfClass:[NSDate class]])
         return [obj description];
-    }
-    // and NSUrl
-    else if ([obj isKindOfClass:[NSURL class]]) {
+
+    if ([obj isKindOfClass:[NSURL class]])
         return [obj absoluteString];
-    }
     
     // default to sending the object's description
-    NSString *desc = [obj description];
-    NSLog(@"warning: dictionary values should be valid json types. got: %@. coercing to: %@", [obj class], desc);
-    return desc;
+    NSLog(@"warning: dictionary values should be valid json types. got: %@. coercing to: %@", [obj class], [obj description]);
+    return [obj description];
 }
 
-static void AssertDictionaryTypes(NSDictionary *dict) {
+static void AssertDictionaryTypes(id dict) {
+    assert([dict isKindOfClass:[NSDictionary class]]);
     for (id key in dict) {
         assert([key isKindOfClass: [NSString class]]);
-        id value = [dict objectForKey:key];
+        id value = dict[key];
         
         assert([value isKindOfClass:[NSString class]] ||
                [value isKindOfClass:[NSNumber class]] ||
@@ -94,12 +83,10 @@ static void AssertDictionaryTypes(NSDictionary *dict) {
 
 NSDictionary *CoerceDictionary(NSDictionary *dict) {
     // make sure that a new dictionary exists even if the input is null
-    NSDictionary * ensured = [NSDictionary dictionaryWithDictionary:dict];
-    
+    dict = dict ?: @{};
     // assert that the proper types are in the dictionary
-    AssertDictionaryTypes(ensured);
-    
+    AssertDictionaryTypes(dict);
     // coerce urls, and dates to the proper format
-    return CoerceJSONObject(ensured);
+    return CoerceJSONObject(dict);
 }
 
