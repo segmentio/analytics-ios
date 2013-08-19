@@ -184,6 +184,13 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
                             context:context];
 }
 
+- (void)registerPushDeviceToken:(NSData *)deviceToken {
+    NSParameterAssert(deviceToken);
+    [self callProvidersWithSelector:_cmd
+                          arguments:@[deviceToken]
+                            context:nil];
+}
+
 #pragma mark - Analytics Settings
 
 - (NSDictionary *)cachedSettings {

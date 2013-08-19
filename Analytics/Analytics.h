@@ -138,6 +138,21 @@
 
 
 
+/*!
+ @method
+ 
+ @abstract
+ Register the given device to receive push notifications from applicable providers.
+ 
+ @discussion
+ Some providers (such as Mixpanel) are capable of sending push notification to users based on 
+ their traits and actions. This will associate the device token with the current user in providers
+ that have this capability. You should call this method with the <code>NSData</code> token passed to
+ <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>.
+ 
+ @param deviceToken     device token as returned <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>
+ */
+- (void)registerPushDeviceToken:(NSData *)deviceToken;
 
 
 // Development Tools
