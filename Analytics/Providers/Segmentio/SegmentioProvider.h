@@ -33,8 +33,4 @@
 
 - (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
 
-+ (instancetype)withSecret:(NSString *)secret;
-+ (instancetype)withSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
-+ (instancetype)sharedInstance;
-
 @end

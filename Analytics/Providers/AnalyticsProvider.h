@@ -3,7 +3,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class Analytics;
 @protocol AnalyticsProvider <NSObject>
+
+- (id)initWithAnalytics:(Analytics *)analytics;
 
 // State
 // -----

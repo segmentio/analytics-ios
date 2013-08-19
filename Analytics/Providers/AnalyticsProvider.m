@@ -18,6 +18,10 @@
 
 #pragma mark - Analytics Provider Default Implementation
 
+- (id)initWithAnalytics:(Analytics *)analytics {
+    return [self init];
+}
+
 - (BOOL)ready {
     return (self.valid && self.initialized);
 }
