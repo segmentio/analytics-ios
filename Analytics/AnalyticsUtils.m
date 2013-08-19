@@ -62,13 +62,9 @@ static id CoerceJSONObject(id obj) {
         return [NSDictionary dictionaryWithDictionary:d];
     }
     
-    // check for NSDate
+    // check for NSDate, NSDate description is already a valid ISO8061 string
     if ([obj isKindOfClass:[NSDate class]]) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
-        [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-        NSString *s = [formatter stringFromDate:obj];
-        return s;
+        return [obj description];
     }
     // and NSUrl
     else if ([obj isKindOfClass:[NSURL class]]) {
