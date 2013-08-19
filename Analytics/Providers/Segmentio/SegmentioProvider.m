@@ -1,8 +1,9 @@
 // SegmentioProvider.m
 // Copyright 2013 Segment.io
 
-#import "SegmentioProvider.h"
 #import "AnalyticsUtils.h"
+#import "AnalyticsJSONRequest.h"
+#import "SegmentioProvider.h"
 
 #define SEGMENTIO_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
 #define SEGMENTIO_MAX_BATCH_SIZE 100
@@ -46,14 +47,12 @@ static NSMutableDictionary *CreateContext(NSDictionary *parameters) {
     return context;
 }
 
-@interface SegmentioProvider ()
+@interface SegmentioProvider () <AnalyticsJSONRequestDelegate>
 
-@property(nonatomic, strong) NSTimer *flushTimer;
-@property(nonatomic, strong) NSMutableArray *queue;
-@property(nonatomic, strong) NSArray *batch;
-@property(nonatomic, strong) NSURLConnection *connection;
-@property(nonatomic, assign) NSInteger responseCode;
-@property(nonatomic, strong) NSMutableData *responseData;
+@property (nonatomic, strong) NSTimer *flushTimer;
+@property (nonatomic, strong) NSMutableArray *queue;
+@property (nonatomic, strong) NSArray *batch;
+@property (nonatomic, strong) AnalyticsJSONRequest *request;
 
 @end
 
@@ -186,7 +185,7 @@ static SegmentioProvider *sharedInstance = nil;
             SOLog(@"%@ No queued API calls to flush.", self);
             return;
         }
-        else if (self.connection != nil) {
+        else if (self.request != nil) {
             SOLog(@"%@ API request already in progress, not flushing again.", self);
             return;
         }
@@ -205,10 +204,7 @@ static SegmentioProvider *sharedInstance = nil;
         
         NSData *payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary
                                                           options:0 error:NULL];
-        self.connection = [self connectionForPayload:payload];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.connection start];
-        });
+        [self sendData:payload];
     });
 }
 
@@ -216,7 +212,7 @@ static SegmentioProvider *sharedInstance = nil;
 {
     dispatch_async(_serialQueue, ^{
         SOLog(@"%@ Length is %lu.", self, (unsigned long)self.queue.count);
-        if (self.connection == nil && [self.queue count] >= self.flushAt) {
+        if (self.request == nil && [self.queue count] >= self.flushAt) {
             [self flush];
         }
     });
@@ -238,69 +234,38 @@ static SegmentioProvider *sharedInstance = nil;
     });
 }
 
-
-
 #pragma mark - Connection delegate callbacks
 
-- (NSURLConnection *)connectionForPayload:(NSData *)payload
-{
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:SEGMENTIO_API_URL];
-    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:payload];
-    SOLog(@"%@ Sending batch API request: %@", self,
-          [[NSString alloc] initWithData:payload encoding:NSUTF8StringEncoding]);
-    
-    return [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:NO];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response
-{
-    NSAssert([NSThread isMainThread], @"Should be on main since URL connection should have started on main");
-    self.responseCode = [response statusCode];
-    self.responseData = [NSMutableData data];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSAssert([NSThread isMainThread], @"Should be on main since URL connection should have started on main");
-    [self.responseData appendData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    dispatch_async(_serialQueue, ^{
-
-        if (self.responseCode != 200) {
-            NSLog(@"%@ API request had an error: %@", self, [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
-        }
-        else {
-            SOLog(@"%@ API request success 200", self);
-        }
-
-        // TODO
-        // Currently we don't retry sending any of the queued calls. If they return 
-        // with a response code other than 200 we still remove them from the queue.
-        // Is that the desired behavior? Suggestion: (retry if network error or 500 error. But not 400 error)
-        [self.queue removeObjectsInArray:self.batch];
-
-        self.batch = nil;
-        self.responseCode = 0;
-        self.responseData = nil;
-        self.connection = nil;
+- (void)sendData:(NSData *)data {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:SEGMENTIO_API_URL];
+        [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+        [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [urlRequest setHTTPMethod:@"POST"];
+        [urlRequest setHTTPBody:data];
+        SOLog(@"%@ Sending batch API request: %@", self,
+              [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        self.request = [AnalyticsJSONRequest startRequestWithURLRequest:urlRequest delegate:self];
     });
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    dispatch_async(_serialQueue, ^{
-        NSLog(@"%@ Network failed while sending API request: %@", self, error);
+#pragma mark - AnalyticsJSONRequest Delegate
 
+- (void)requestDidComplete:(AnalyticsJSONRequest *)request {
+    dispatch_async(_serialQueue, ^{
+        if (request.error) {
+            SOLog(@"%@ API request had an error: %@", self, request.error);
+        } else {
+            SOLog(@"%@ API request success 200", self);
+            // TODO
+            // Currently we don't retry sending any of the queued calls. If they return
+            // with a response code other than 200 we still remove them from the queue.
+            // Is that the desired behavior? Suggestion: (retry if network error or 500 error. But not 400 error)
+            [self.queue removeObjectsInArray:self.batch];
+        }
+        
         self.batch = nil;
-        self.responseCode = 0;
-        self.responseData = nil;
-        self.connection = nil;
+        self.request = nil;
     });
 }
 
