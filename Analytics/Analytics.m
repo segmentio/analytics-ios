@@ -5,20 +5,19 @@
 #import "AnalyticsUtils.h"
 #import "AnalyticsProvider.h"
 #import "SegmentioProvider.h"
+#import "AnalyticsJSONRequest.h"
 #import "Analytics.h"
 
 static NSString * const kAnalyticsSettings = @"kAnalyticsSettings";
 static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
-@interface Analytics ()
+@interface Analytics () <AnalyticsJSONRequestDelegate>
 
 @property(nonatomic, strong) NSMutableArray *providers;
 
 // Settings
 @property(nonatomic, strong) NSTimer *updateTimer;
-@property(nonatomic, strong) NSURLConnection *connection;
-@property(nonatomic, assign) NSInteger responseCode;
-@property(nonatomic, strong) NSMutableData *responseData;
+@property(nonatomic, strong) AnalyticsJSONRequest *request;
 
 @end
 
@@ -258,57 +257,27 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 }
 
 - (void)requestSettingsFromNetwork {
-    if (!self.connection) {
+    if (!self.request) {
         NSString *urlString = [NSString stringWithFormat:@"http://api.segment.io/project/%@/settings", self.secret];
         NSURL *url = [NSURL URLWithString:urlString];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-        [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-        [request setHTTPMethod:@"GET"];
+        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
+        [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+        [urlRequest setHTTPMethod:@"GET"];
         
-        SOLog(@"%@ Sending API settings request: %@", self, request);
+        SOLog(@"%@ Sending API settings request: %@", self, urlRequest);
         
-        self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+        self.request = [AnalyticsJSONRequest startRequestWithURLRequest:urlRequest delegate:self];
     }
 }
 
-#pragma mark - NSURLConnection Delegate
+#pragma mark - AnalyticsJSONRequest Delegate
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSHTTPURLResponse *)response {
-    NSAssert([NSThread isMainThread], @"Should be on main since URL connection should have started on main");
-    self.responseCode = [response statusCode];
-    self.responseData = [NSMutableData data];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    NSAssert([NSThread isMainThread], @"Should be on main since URL connection should have started on main");
-    [self.responseData appendData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+- (void)requestDidComplete:(AnalyticsJSONRequest *)request {
     dispatch_async(_serialQueue, ^{
-        // Log the response status
-        if (self.responseCode != 200) {
-            SOLog(@"%@ Settings API request had an error: %@", self, [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding]);
-        } else {
-            // Try to interpret the data as an NSDictionary of NSDictionarys
-            NSError* error;
-            NSDictionary* settings = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&error];
-            SOLog(@"%@ Settings API request succeeded 200 %@", self, settings);
-            [self setLocalSettings:settings];
+        if (!request.error) {
+            [self setLocalSettings:request.responseJSON];
         }
-        // Clear the request data
-        self.responseCode = 0;
-        self.responseData = nil;
-        self.connection = nil;
-    });
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    dispatch_async(_serialQueue, ^{
-        SOLog(@"%@ Network failed while getting settings from API: %@", self, error);
-        self.responseCode = 0;
-        self.responseData = nil;
-        self.connection = nil;
+        self.request = nil;
     });
 }
 
