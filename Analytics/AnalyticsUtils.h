@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NSURL *AnalyticsURLForFilename(NSString *filename);
+
 // Logging
 
 void SetShowDebugLogs(BOOL showDebugLogs);
