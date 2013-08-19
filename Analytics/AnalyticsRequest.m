@@ -12,6 +12,7 @@
 
 @interface AnalyticsRequest () <NSURLConnectionDataDelegate>
 
+@property (nonatomic, strong) AnalyticsRequestCompletionBlock completion;
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSURLRequest *urlRequest;
 @property (nonatomic, strong) NSHTTPURLResponse *response;
@@ -35,6 +36,11 @@
     self.connection = [[NSURLConnection alloc] initWithRequest:self.urlRequest
                                                       delegate:self
                                               startImmediately:YES];
+}
+
+- (void)finish {
+    if (self.completion)
+        self.completion();
 }
 
 #pragma mark NSURLConnection Delegate
@@ -66,21 +72,21 @@
                         [NSString stringWithFormat:@"HTTP Error %d", statusCode]}];
 
     }
-    [self.delegate requestDidComplete:self];
+    [self finish];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     AssertMainThread();
     self.error = error;
-    [self.delegate requestDidComplete:self];
+    [self finish];
 }
 
 #pragma mark Class Methods
 
-+ (instancetype)startRequestWithURLRequest:(NSURLRequest *)urlRequest
-                                  delegate:(id<AnalyticsRequestDelegate>)delegate {
++ (instancetype)startWithURLRequest:(NSURLRequest *)urlRequest
+                         completion:(AnalyticsRequestCompletionBlock)completion {
     AnalyticsRequest *request = [[self alloc] initWithURLRequest:urlRequest];
-    request.delegate = delegate;
+    request.completion = completion;
     [request start];
     return request;
 }

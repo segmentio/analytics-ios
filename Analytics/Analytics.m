@@ -10,7 +10,7 @@
 static NSString * const kAnalyticsSettings = @"kAnalyticsSettings";
 static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
-@interface Analytics () <AnalyticsRequestDelegate>
+@interface Analytics ()
 
 @property(nonatomic, strong) NSArray *providers;
 @property(nonatomic, strong) NSTimer *updateTimer;
@@ -202,22 +202,17 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
         [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
         [urlRequest setHTTPMethod:@"GET"];
-        
         SOLog(@"%@ Sending API settings request: %@", self, urlRequest);
         
-        self.request = [AnalyticsRequest startRequestWithURLRequest:urlRequest delegate:self];
+        self.request = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
+            dispatch_async(_serialQueue, ^{
+                if (!self.request.error) {
+                    [self setLocalSettings:self.request.responseJSON];
+                }
+                self.request = nil;
+            });
+        }];
     }
-}
-
-#pragma mark - AnalyticsRequest Delegate
-
-- (void)requestDidComplete:(AnalyticsRequest *)request {
-    dispatch_async(_serialQueue, ^{
-        if (!request.error) {
-            [self setLocalSettings:request.responseJSON];
-        }
-        self.request = nil;
-    });
 }
 
 #pragma mark - Class Methods

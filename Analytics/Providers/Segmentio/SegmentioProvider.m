@@ -26,7 +26,7 @@ static NSString *GetSessionID(BOOL reset) {
     return [defaults stringForKey:kSessionID];
 }
 
-@interface SegmentioProvider () <AnalyticsRequestDelegate>
+@interface SegmentioProvider ()
 
 @property (nonatomic, weak) Analytics *analytics;
 @property (nonatomic, strong) NSTimer *flushTimer;
@@ -232,27 +232,23 @@ static NSString *GetSessionID(BOOL reset) {
         [urlRequest setHTTPBody:data];
         SOLog(@"%@ Sending batch API request: %@", self,
               [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        self.request = [AnalyticsRequest startRequestWithURLRequest:urlRequest delegate:self];
-    });
-}
-
-#pragma mark - AnalyticsJSONRequest Delegate
-
-- (void)requestDidComplete:(AnalyticsRequest *)request {
-    dispatch_async(_serialQueue, ^{
-        if (request.error) {
-            SOLog(@"%@ API request had an error: %@", self, request.error);
-        } else {
-            SOLog(@"%@ API request success 200", self);
-            // TODO
-            // Currently we don't retry sending any of the queued calls. If they return
-            // with a response code other than 200 we still remove them from the queue.
-            // Is that the desired behavior? Suggestion: (retry if network error or 500 error. But not 400 error)
-            [self.queue removeObjectsInArray:self.batch];
-        }
-        
-        self.batch = nil;
-        self.request = nil;
+        self.request = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
+            dispatch_async(_serialQueue, ^{
+                if (self.request.error) {
+                    SOLog(@"%@ API request had an error: %@", self, self.request.error);
+                } else {
+                    SOLog(@"%@ API request success 200", self);
+                    // TODO
+                    // Currently we don't retry sending any of the queued calls. If they return
+                    // with a response code other than 200 we still remove them from the queue.
+                    // Is that the desired behavior? Suggestion: (retry if network error or 500 error. But not 400 error)
+                    [self.queue removeObjectsInArray:self.batch];
+                }
+                
+                self.batch = nil;
+                self.request = nil;
+            });
+        }];
     });
 }
 
