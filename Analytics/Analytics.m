@@ -20,6 +20,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     dispatch_queue_t _serialQueue;
     AnalyticsRequest *_settingsRequest;
     NSTimer *_settingsTimer;
+    NSMutableArray *_delayedMessages;
 }
 
 - (id)initWithSecret:(NSString *)secret {
@@ -27,6 +28,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     if (self = [self init]) {
         _secret = secret;
         _serialQueue = dispatch_queue_create("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
+        _delayedMessages = [[NSMutableArray alloc] init];
         _providers = [[NSMutableArray alloc] init];
         for (Class providerClass in [[[self class] registeredProviders] allValues]) {
             [(NSMutableArray *)_providers addObject:[[providerClass alloc] initWithAnalytics:self]];
@@ -65,8 +67,8 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     return YES;
 }
 
-- (void)callProvidersWithSelector:(SEL)selector arguments:(NSArray *)arguments context:(NSDictionary *)context {
-    NSMethodSignature *methodSignature = [AnalyticsProvider instanceMethodSignatureForSelector:selector];
+- (void)_callProvidersWithSelector:(SEL)selector arguments:(NSArray *)arguments context:(NSDictionary *)context {
+   NSMethodSignature *methodSignature = [AnalyticsProvider instanceMethodSignatureForSelector:selector];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
     invocation.selector = selector;
     for (int i=0; i<arguments.count; i++) {
@@ -79,6 +81,24 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
             [invocation invokeWithTarget:provider];
         }
     }
+}
+
+- (void)callProvidersWithSelector:(SEL)selector arguments:(NSArray *)arguments context:(NSDictionary *)context  {
+    dispatch_async(_serialQueue, ^{
+        if (![self cachedSettings]) {
+            [_delayedMessages addObject:@[NSStringFromSelector(selector), arguments ?: @[], context ?: @{}]];
+            return;
+        }
+        if (_delayedMessages.count) {
+            for (NSArray *triplet in _delayedMessages) {
+                [self _callProvidersWithSelector:NSSelectorFromString(triplet[0])
+                                       arguments:triplet[1]
+                                         context:triplet[2]];
+            }
+            [_delayedMessages removeAllObjects];
+        }
+        [self _callProvidersWithSelector:selector arguments:arguments context:context];
+    });
 }
 
 - (void)handleAppStateNotification:(NSNotification *)note {
