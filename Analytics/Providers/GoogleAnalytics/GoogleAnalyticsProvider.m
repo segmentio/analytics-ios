@@ -26,8 +26,15 @@
     return self;
 }
 
-- (void)start
-{
+- (void)start {
+    // Google Analytics needs to be initialized on the main thread, but
+    // dispatch-ing to the main queue when already on the main thread
+    // causes the initialization to happen async. After first startup
+    // we need the initialization to be synchronous.
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:YES];
+        return;
+    }
     // Require setup with the trackingId.
     NSString *trackingId = [self.settings objectForKey:@"mobileTrackingId"];
     [[GAI sharedInstance] trackerWithTrackingId:trackingId];
