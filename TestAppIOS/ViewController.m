@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-
+#import "SegmentioProvider.h"
 #import "Analytics.h"
 #import "ViewController.h"
 
@@ -36,6 +36,14 @@
 - (IBAction)screen:(id)sender {
     NSLog(@"test screen");
     [[Analytics sharedAnalytics] screen:@"Initial Screen"];
+}
+
+- (IBAction)flush:(id)sender {
+    for (id provider in [[Analytics sharedAnalytics] providers]) {
+        if ([provider isKindOfClass:[SegmentioProvider class]]) {
+            [provider flush];
+        }
+    }
 }
 
 @end

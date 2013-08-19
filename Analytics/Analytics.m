@@ -13,18 +13,17 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 @interface Analytics ()
 
 @property(nonatomic, strong) NSArray *providers;
-@property(nonatomic, strong) NSTimer *updateTimer;
-@property(nonatomic, strong) AnalyticsRequest *request;
 
 @end
 
 @implementation Analytics {
     dispatch_queue_t _serialQueue;
+    AnalyticsRequest *_settingsRequest;
+    NSTimer *_settingsTimer;
 }
 
 - (id)initWithSecret:(NSString *)secret {
     NSParameterAssert(secret.length);
-    
     if (self = [self init]) {
         _secret = secret;
         _serialQueue = dispatch_queue_create("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
@@ -33,12 +32,12 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
             [(NSMutableArray *)_providers addObject:[[providerClass alloc] initWithAnalytics:self]];
         }
         // Update settings on each provider immediately
-        [self updateProvidersWithSettings:[self localSettings]];
-        _updateTimer = [NSTimer scheduledTimerWithTimeInterval:AnalyticsSettingsUpdateInterval
-                                                        target:self
-                                                      selector:@selector(requestSettingsFromNetwork)
-                                                      userInfo:nil
-                                                       repeats:YES];
+        [self updateProvidersWithSettings:[self cachedSettings]];
+        _settingsTimer = [NSTimer scheduledTimerWithTimeInterval:AnalyticsSettingsUpdateInterval
+                                                          target:self
+                                                        selector:@selector(refreshSettings)
+                                                        userInfo:nil
+                                                         repeats:YES];
         
         // Attach to application state change hooks
         for (NSString *name in @[UIApplicationDidEnterBackgroundNotification,
@@ -46,16 +45,12 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
                                  UIApplicationWillTerminateNotification,
                                  UIApplicationWillResignActiveNotification,
                                  UIApplicationDidBecomeActiveNotification]) {
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(handleAppStateNotification:)
-                                                         name:name
-                                                       object:nil];
+            NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+            [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:nil];
         }
     }
     return self;
 }
-
-
 
 - (BOOL)isProvider:(id<AnalyticsProvider>)provider enabledInContext:(NSDictionary *)context {
     // checks if context.providers is enabling this provider
@@ -79,7 +74,8 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
         [invocation setArgument:&argument atIndex:i+2];
     }
     for (id<AnalyticsProvider> provider in self.providers) {
-        if (provider.ready && [self isProvider:provider enabledInContext:context]) {
+        if (provider.ready && [provider respondsToSelector:selector]
+            && [self isProvider:provider enabledInContext:context]) {
             [invocation invokeWithTarget:provider];
         }
     }
@@ -111,7 +107,8 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 #pragma mark - Public API
 
 - (void)reset {
-    [self requestSettingsFromNetwork];
+    [self setCachedSettings:nil];
+    [self refreshSettings];
 }
 
 - (void)debug:(BOOL)showDebugLogs {
@@ -168,35 +165,23 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 #pragma mark - Analytics Settings
 
-- (NSDictionary *)localSettings {
+- (NSDictionary *)cachedSettings {
     return [[NSUserDefaults standardUserDefaults] objectForKey:kAnalyticsSettings];
 }
 
-- (void)setLocalSettings:(NSDictionary *)settings {
+- (void)setCachedSettings:(NSDictionary *)settings {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:settings forKey:kAnalyticsSettings];
     [self updateProvidersWithSettings:settings];
 }
 
 - (void)updateProvidersWithSettings:(NSDictionary *)settings {
-    if (!settings)
-        return;
-    // Google Analytics needs to be initialized on the main thread, but
-    // dispatch-ing to the main queue when already on the main thread
-    // causes the initialization to happen async. After first startup
-    // we need the initialization to be synchronous.
-    if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(updateProvidersWithSettings:) withObject:settings waitUntilDone:NO];
-        return;
-    }
-    for (id<AnalyticsProvider> provider in self.providers) {
-        // Extract the settings for this provider and set them
+    for (id<AnalyticsProvider> provider in self.providers)
         [provider updateSettings:settings[provider.name]];
-    }
 }
 
-- (void)requestSettingsFromNetwork {
-    if (!self.request) {
+- (void)refreshSettings {
+    if (!_settingsRequest) {
         NSString *urlString = [NSString stringWithFormat:@"http://api.segment.io/project/%@/settings", self.secret];
         NSURL *url = [NSURL URLWithString:urlString];
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
@@ -204,12 +189,12 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
         [urlRequest setHTTPMethod:@"GET"];
         SOLog(@"%@ Sending API settings request: %@", self, urlRequest);
         
-        self.request = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
+        _settingsRequest = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
             dispatch_async(_serialQueue, ^{
-                if (!self.request.error) {
-                    [self setLocalSettings:self.request.responseJSON];
+                if (!_settingsRequest.error) {
+                    [self setCachedSettings:_settingsRequest.responseJSON];
                 }
-                self.request = nil;
+                _settingsRequest = nil;
             });
         }];
     }
