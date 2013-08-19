@@ -243,14 +243,13 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 static Analytics *SharedInstance = nil;
 
-+ (instancetype)withSecret:(NSString *)secret {
++ (void)initializeWithSecret:(NSString *)secret {
     NSParameterAssert(secret.length > 0);
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         SharedInstance = [[self alloc] initWithSecret:secret];
     });
-    return SharedInstance;
 }
 
 + (instancetype)sharedAnalytics {

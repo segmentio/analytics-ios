@@ -41,7 +41,7 @@
 }
 
 */
-+ (instancetype)withSecret:(NSString *)secret;
++ (void)initializeWithSecret:(NSString *)secret;
 
 
 
@@ -57,7 +57,7 @@
  Gets the shared Analytics instance.
 
  @discussion
- Once you initialize the shared Analytics instance via [Analytics withSecret:...] you can get the instance at any time like this:
+ Once you initialize the shared Analytics instance via [Analytics initializeWithSecret:...] you can get the instance at any time like this:
 
  [Analytics sharedInstance]
 
@@ -157,7 +157,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Initialize your shared Analytics instance.
-    [Analytics withSecret:@"YOUR SEGMENT.IO SECRET KEY FROM THE SETUP GUIDE AT HTTPS://SEGMENT.IO"];
+    [Analytics initializeWithSecret:@"YOUR SEGMENT.IO SECRET KEY FROM THE SETUP GUIDE AT HTTPS://SEGMENT.IO"];
     
     // During development: reset the settings cache frequently so that
     // as you change settings on your integrations page, the settings update quickly here.
@@ -190,7 +190,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Initialize your shared Analytics instance.
-    [Analytics withSecret:@"YOUR SEGMENT.IO SECRET KEY FROM THE SETUP GUIDE AT HTTPS://SEGMENT.IO"];
+    [Analytics initializeWithSecret:@"YOUR SEGMENT.IO SECRET KEY FROM THE SETUP GUIDE AT HTTPS://SEGMENT.IO"];
     
     // During development: reset the settings cache frequently so that
     // as you change settings on your integrations page, the settings update quickly here.
