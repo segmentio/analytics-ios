@@ -11,18 +11,6 @@
 
 static NSString * const kSessionID = @"kSegmentioSessionID";
 
-static NSString *ToISO8601(NSDate *date) {
-    static dispatch_once_t dateFormatToken;
-    static NSDateFormatter *dateFormat;
-    dispatch_once(&dateFormatToken, ^{
-        dateFormat = [[NSDateFormatter alloc] init];
-        dateFormat.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS";
-        dateFormat.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-        dateFormat.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    });
-    return [[dateFormat stringFromDate:date] stringByAppendingString:@"Z"];
-}
-
 static NSString *GetSessionID(BOOL reset) {
     // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
     // identifierForVendor (iOS6 and later, can't be changed on logout),
@@ -36,16 +24,6 @@ static NSString *GetSessionID(BOOL reset) {
         [defaults setObject:(__bridge_transfer NSString *)string forKey:kSessionID];
     }
     return [defaults stringForKey:kSessionID];
-}
-
-static NSMutableDictionary *CreateContext(NSDictionary *parameters) {
-    NSMutableDictionary *context = [NSMutableDictionary dictionary];
-    [context setValue:@"analytics-ios" forKey:@"library"];
-    // TODO add any device information here
-    if (parameters != nil) {
-        [context addEntriesFromDictionary:parameters];
-    }
-    return context;
 }
 
 @interface SegmentioProvider () <AnalyticsRequestDelegate>
@@ -153,25 +131,24 @@ static NSMutableDictionary *CreateContext(NSDictionary *parameters) {
 #pragma mark - Queueing
 
 - (NSDictionary *)serverContextForContext:(NSDictionary *)context {
+    NSMutableDictionary *serverContext = [context ?: @{} mutableCopy];
     NSMutableDictionary *providersDict = [context[@"providers"] ?: @{} mutableCopy];
     for (AnalyticsProvider *provider in self.analytics.providers)
         if (![provider isKindOfClass:[SegmentioProvider class]])
             providersDict[provider.name] = @NO;
-    NSMutableDictionary *serverContext = [context mutableCopy];
     serverContext[@"providers"] = providersDict;
+    serverContext[@"library"] = @"analytics-ios";
     return serverContext;
+    
 }
 
 - (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)dictionary context:(NSDictionary *)context {
     // attach these parts of the payload outside since they are all synchronous
     // and the timestamp will be more accurate.
-    NSMutableDictionary *payload = [NSMutableDictionary dictionary];
-    [payload setValue:action forKey:@"action"];
-    [payload setValue:ToISO8601([NSDate date]) forKey:@"timestamp"];
-    [payload addEntriesFromDictionary:dictionary];
-    [payload setValue:CreateContext(context) forKey:@"context"];
-    
-    context = [self serverContextForContext:context];
+    NSMutableDictionary *payload = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+    payload[@"action"] = action;
+    payload[@"timestamp"] = [[NSDate date] description];
+    payload[@"context"] = [self serverContextForContext:context];
 
     dispatch_async(_serialQueue, ^{
 
