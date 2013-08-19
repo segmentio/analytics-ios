@@ -4,7 +4,6 @@
 #import <UIKit/UIKit.h>
 #import "AnalyticsUtils.h"
 #import "AnalyticsProvider.h"
-#import "SegmentioProvider.h"
 #import "AnalyticsJSONRequest.h"
 #import "Analytics.h"
 
@@ -13,9 +12,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 @interface Analytics () <AnalyticsJSONRequestDelegate>
 
-@property(nonatomic, strong) NSMutableArray *providers;
-
-// Settings
+@property(nonatomic, strong) NSArray *providers;
 @property(nonatomic, strong) NSTimer *updateTimer;
 @property(nonatomic, strong) AnalyticsJSONRequest *request;
 
@@ -31,9 +28,9 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     if (self = [self init]) {
         _secret = secret;
         _serialQueue = dispatch_queue_create("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
-        _providers = [@[[SegmentioProvider withSecret:secret]] mutableCopy];
+        _providers = [[NSMutableArray alloc] init];
         for (Class providerClass in [[[self class] registeredProviders] allValues]) {
-            [_providers addObject:[[providerClass alloc] init]];
+            [(NSMutableArray *)_providers addObject:[[providerClass alloc] initWithAnalytics:self]];
         }
         // Update settings on each provider immediately
         [self updateProvidersWithSettings:[self localSettings]];
@@ -71,16 +68,6 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 }
 
 #pragma mark - Private Helpers
-
-- (NSDictionary *)sengmentIOContext:(NSDictionary *)context {
-    NSMutableDictionary *providersDict = [context[@"providers"] ?: @{} mutableCopy];
-    for (AnalyticsProvider *provider in self.providers)
-        if (![provider isKindOfClass:[SegmentioProvider class]])
-            providersDict[provider.name] = @NO;
-    NSMutableDictionary *sioContext = [context mutableCopy];
-    sioContext[@"providers"] = providersDict;
-    return sioContext;
-}
 
 - (BOOL)isProvider:(AnalyticsProvider *)provider enabledInContext:(NSDictionary *)context {
     // checks if context.providers is enabling this provider
@@ -151,16 +138,9 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     context = CoerceDictionary(context);
     
     // Iterate over providersArray and call identify.
-    for (id object in self.providers) {
-        AnalyticsProvider *provider = (AnalyticsProvider *)object;
+    for (id<AnalyticsProvider> provider in self.providers) {
         if ([provider ready] && [self isProvider:provider enabledInContext:context]) {
-            if ([provider isKindOfClass:[SegmentioProvider class]]) {
-                // Segment.io provider gets an augmented context to prevent server-side firing
-                NSDictionary *augmentedContext = [self sengmentIOContext:context];
-                [provider identify:userId traits:traits context:augmentedContext];
-            } else {
-                [provider identify:userId traits:traits context:context];
-            }
+            [provider identify:userId traits:traits context:context];
         }
     }
 }
@@ -178,16 +158,9 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     context = CoerceDictionary(context);
     
     // Iterate over providersArray and call track.
-    for (id object in self.providers) {
-        AnalyticsProvider *provider = (AnalyticsProvider *)object;
+    for (id<AnalyticsProvider> provider in self.providers) {
         if ([provider ready] && [self isProvider:provider enabledInContext:context]) {
-            if ([provider isKindOfClass:[SegmentioProvider class]]) {
-                // Segment.io provider gets an augmented context to prevent server-side firing
-                NSDictionary *augmentedContext = [self sengmentIOContext:context];
-                [provider track:event properties:properties context:augmentedContext];
-            } else {
-                [provider track:event properties:properties context:context];
-            }
+            [provider track:event properties:properties context:context];
         }
     }
 }
@@ -205,16 +178,9 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     context = CoerceDictionary(context);
     
     // Iterate over providersArray and call track.
-    for (id object in self.providers) {
-        AnalyticsProvider *provider = (AnalyticsProvider *)object;
+    for (id<AnalyticsProvider> provider in self.providers) {
         if ([provider ready] && [self isProvider:provider enabledInContext:context]) {
-            if ([provider isKindOfClass:[SegmentioProvider class]]) {
-                // Segment.io provider gets an augmented context to prevent server-side firing
-                NSDictionary *augmentedContext = [self sengmentIOContext:context];
-                [provider screen:screenTitle properties:properties context:augmentedContext];
-            } else {
-                [provider screen:screenTitle properties:properties context:context];
-            }
+            [provider screen:screenTitle properties:properties context:context];
         }
     }
 }
@@ -234,26 +200,18 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 - (void)updateProvidersWithSettings:(NSDictionary *)settings {
     if (!settings)
         return;
-    for (AnalyticsProvider *provider in self.providers) {
-        if (![provider isKindOfClass:[SegmentioProvider class]]) {
-            // Extract the settings for this provider and set them
-            NSDictionary *providerSettings = settings[provider.name];
-            
-            // Google Analytics needs to be initialized on the main thread, but
-            // dispatch-ing to the main queue when already on the main thread
-            // causes the initialization to happen async. After first startup
-            // we need the initialization to be synchronous.
-            if ([NSThread isMainThread]) {
-                [provider updateSettings:providerSettings];
-            }
-            else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [provider updateSettings:providerSettings];
-                });
-            }
-        }
+    // Google Analytics needs to be initialized on the main thread, but
+    // dispatch-ing to the main queue when already on the main thread
+    // causes the initialization to happen async. After first startup
+    // we need the initialization to be synchronous.
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(updateProvidersWithSettings:) withObject:settings waitUntilDone:NO];
+        return;
     }
-
+    for (AnalyticsProvider *provider in self.providers) {
+        // Extract the settings for this provider and set them
+        [provider updateSettings:settings[provider.name]];
+    }
 }
 
 - (void)requestSettingsFromNetwork {

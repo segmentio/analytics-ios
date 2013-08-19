@@ -1,6 +1,7 @@
 // SegmentioProvider.m
 // Copyright 2013 Segment.io
 
+#import "Analytics.h"
 #import "AnalyticsUtils.h"
 #import "AnalyticsJSONRequest.h"
 #import "SegmentioProvider.h"
@@ -49,6 +50,7 @@ static NSMutableDictionary *CreateContext(NSDictionary *parameters) {
 
 @interface SegmentioProvider () <AnalyticsJSONRequestDelegate>
 
+@property (nonatomic, weak) Analytics *analytics;
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, strong) NSArray *batch;
@@ -61,26 +63,11 @@ static NSMutableDictionary *CreateContext(NSDictionary *parameters) {
     dispatch_queue_t _serialQueue;
 }
 
-static SegmentioProvider *sharedInstance = nil;
-
-#pragma mark - Initializiation
-
-+ (instancetype)withSecret:(NSString *)secret {
-    return [self withSecret:secret flushAt:20 flushAfter:30];
-}
-
-+ (instancetype)withSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedInstance = [[self alloc] initWithSecret:secret flushAt:flushAt flushAfter:flushAfter];
-    });
-    SOLog(@"SegmentioProvider initialized.");
-    return sharedInstance;
-}
-
-+ (instancetype)sharedInstance {
-    NSAssert(sharedInstance, @"%@ sharedInstance called before withSecret", self);
-    return sharedInstance;
+- (id)initWithAnalytics:(Analytics *)analytics {
+    if (self = [self initWithSecret:analytics.secret flushAt:20 flushAfter:30]) {
+        self.analytics = analytics;
+    }
+    return self;
 }
 
 - (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter {
@@ -111,10 +98,23 @@ static SegmentioProvider *sharedInstance = nil;
     return self;
 }
 
+- (void)updateSettings:(NSDictionary *)settings {
+    
+}
+
 - (void)validate {
     BOOL hasSecret = [self.settings objectForKey:@"secret"] != nil;
     self.valid = hasSecret;
 }
+
+- (NSString *)getSessionId {
+    return self.sessionId;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<SegmentioProvider secret:%@>", self.secret];
+}
+
 
 #pragma mark - Analytics API
 
@@ -150,9 +150,17 @@ static SegmentioProvider *sharedInstance = nil;
     [self enqueueAction:@"alias" dictionary:dictionary context:context];
 }
 
-
-
 #pragma mark - Queueing
+
+- (NSDictionary *)serverContextForContext:(NSDictionary *)context {
+    NSMutableDictionary *providersDict = [context[@"providers"] ?: @{} mutableCopy];
+    for (AnalyticsProvider *provider in self.analytics.providers)
+        if (![provider isKindOfClass:[SegmentioProvider class]])
+            providersDict[provider.name] = @NO;
+    NSMutableDictionary *serverContext = [context mutableCopy];
+    serverContext[@"providers"] = providersDict;
+    return serverContext;
+}
 
 - (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)dictionary context:(NSDictionary *)context {
     // attach these parts of the payload outside since they are all synchronous
@@ -162,6 +170,8 @@ static SegmentioProvider *sharedInstance = nil;
     [payload setValue:ToISO8601([NSDate date]) forKey:@"timestamp"];
     [payload addEntriesFromDictionary:dictionary];
     [payload setValue:CreateContext(context) forKey:@"context"];
+    
+    context = [self serverContextForContext:context];
 
     dispatch_async(_serialQueue, ^{
 
@@ -269,16 +279,10 @@ static SegmentioProvider *sharedInstance = nil;
     });
 }
 
-#pragma mark - NSObject
+#pragma mark - Class Methods
 
-- (NSString *)getSessionId
-{
-    return self.sessionId;
-}
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"<SegmentioProvider secret:%@>", self.secret];
++ (void)load {
+    [Analytics registerProvider:self withIdentifier:@"Segment.io"];
 }
 
 @end

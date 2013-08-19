@@ -8,6 +8,7 @@
 @interface Analytics : NSObject
 
 @property(nonatomic, strong) NSString *secret;
+@property(nonatomic, readonly) NSArray *providers;
 
 
 // Step 1: Initialization
