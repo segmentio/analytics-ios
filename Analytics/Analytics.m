@@ -7,7 +7,7 @@
 #import "AnalyticsRequest.h"
 #import "Analytics.h"
 
-static NSString * const kAnalyticsSettings = @"kAnalyticsSettings";
+#define SETTING_CACHE_URL AnalyticsURLForFilename(@"analytics.settings.plist")
 static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 @interface Analytics ()
@@ -21,6 +21,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     AnalyticsRequest *_settingsRequest;
     NSTimer *_settingsTimer;
     NSMutableArray *_delayedMessages;
+    NSDictionary *_cachedSettings;
 }
 
 - (id)initWithSecret:(NSString *)secret {
@@ -186,12 +187,14 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 #pragma mark - Analytics Settings
 
 - (NSDictionary *)cachedSettings {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:kAnalyticsSettings];
+    if (!_cachedSettings)
+        _cachedSettings = [NSDictionary dictionaryWithContentsOfURL:SETTING_CACHE_URL] ?: @{};
+    return _cachedSettings;
 }
 
 - (void)setCachedSettings:(NSDictionary *)settings {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:settings forKey:kAnalyticsSettings];
+    _cachedSettings = settings;
+    [_cachedSettings writeToURL:SETTING_CACHE_URL atomically:YES];
     [self updateProvidersWithSettings:settings];
 }
 

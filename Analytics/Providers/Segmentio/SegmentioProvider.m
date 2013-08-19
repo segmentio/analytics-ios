@@ -8,21 +8,21 @@
 
 #define SEGMENTIO_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
 #define SEGMENTIO_MAX_BATCH_SIZE 100
+#define SESSION_ID_URL AnalyticsURLForFilename(@"segmentio.sessionID")
+#define DISK_QUEUE_URL AnalyticsURLForFilename(@"segmentio.queue.plist")
 
 static NSString *GetSessionID(BOOL reset) {
     // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
     // identifierForVendor (iOS6 and later, can't be changed on logout),
     // or MAC address (blocked in iOS 7). For more info see https://segment.io/libraries/ios#ids
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"segmentio.sessionID"];
-    
-    NSString *sessionID = [[NSString alloc] initWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
+    NSURL *url = SESSION_ID_URL;
+    NSString *sessionID = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
     if (!sessionID || reset) {
         CFUUIDRef theUUID = CFUUIDCreate(NULL);
         sessionID = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, theUUID);
         CFRelease(theUUID);
         SOLog(@"New SessionID: %@", sessionID);
-        [sessionID writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+        [sessionID writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:NULL];
     }
     return sessionID;
 }
@@ -59,7 +59,7 @@ static NSString *GetSessionID(BOOL reset) {
         _flushAfter = flushAfter;
         _secret = secret;
         _sessionId = GetSessionID(NO);
-        _queue = [NSMutableArray arrayWithContentsOfFile:[self diskQueuePath]];
+        _queue = [NSMutableArray arrayWithContentsOfURL:DISK_QUEUE_URL];
         if (!_queue)
             _queue = [[NSMutableArray alloc] init];
         _flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.flushAfter
@@ -253,16 +253,11 @@ static NSString *GetSessionID(BOOL reset) {
     });
 }
 
-- (NSString *)diskQueuePath {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    return [[paths objectAtIndex:0] stringByAppendingPathComponent:@"segmentio.queue.plist"];
-}
-
 - (void)applicationWillTerminate {
     [self flush];
     dispatch_sync(_serialQueue, ^{
         if (self.queue.count)
-            [self.queue writeToFile:[self diskQueuePath] atomically:YES];
+            [self.queue writeToURL:DISK_QUEUE_URL atomically:YES];
     });
 }
 

@@ -10,6 +10,13 @@
 
 static BOOL kAnalyticsLoggerShowLogs = NO;
 
+NSURL *AnalyticsURLForFilename(NSString *filename) {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *path = [[paths objectAtIndex:0] stringByAppendingPathComponent:filename];
+    return [NSURL fileURLWithPath:path];
+}
+
+
 // Logging
 
 void SetShowDebugLogs(BOOL showDebugLogs) {
