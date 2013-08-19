@@ -19,6 +19,8 @@
 		EA3D9AC717C0A6AA001DD476 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA3D9AC517C0A6AA001DD476 /* MainStoryboard.storyboard */; };
 		EA3D9ACA17C0A6AA001DD476 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3D9AC917C0A6AA001DD476 /* ViewController.m */; };
 		EA3D9ACE17C0A833001DD476 /* libAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7317659B2F003F3138 /* libAnalytics.a */; };
+		EAA604C917C28C7C00911919 /* AnalyticsJSONRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA604C717C28C7C00911919 /* AnalyticsJSONRequest.h */; };
+		EAA604CA17C28C7C00911919 /* AnalyticsJSONRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA604C817C28C7C00911919 /* AnalyticsJSONRequest.m */; };
 		EACB4DD217C0BB3100624129 /* AmplitudeProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DAF17C0BB3100624129 /* AmplitudeProvider.h */; };
 		EACB4DD317C0BB3100624129 /* AmplitudeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DB017C0BB3100624129 /* AmplitudeProvider.m */; };
 		EACB4DD417C0BB3100624129 /* AnalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DB117C0BB3100624129 /* AnalyticsProvider.h */; };
@@ -75,6 +77,8 @@
 		EA3D9AC617C0A6AA001DD476 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		EA3D9AC817C0A6AA001DD476 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		EA3D9AC917C0A6AA001DD476 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EAA604C717C28C7C00911919 /* AnalyticsJSONRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsJSONRequest.h; sourceTree = "<group>"; };
+		EAA604C817C28C7C00911919 /* AnalyticsJSONRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsJSONRequest.m; sourceTree = "<group>"; };
 		EACB4DAF17C0BB3100624129 /* AmplitudeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmplitudeProvider.h; sourceTree = "<group>"; };
 		EACB4DB017C0BB3100624129 /* AmplitudeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmplitudeProvider.m; sourceTree = "<group>"; };
 		EACB4DB117C0BB3100624129 /* AnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsProvider.h; sourceTree = "<group>"; };
@@ -339,6 +343,8 @@
 				F7200B7D17659B2F003F3138 /* Analytics.m */,
 				EACB4DD017C0BB3100624129 /* AnalyticsUtils.h */,
 				EACB4DD117C0BB3100624129 /* AnalyticsUtils.m */,
+				EAA604C717C28C7C00911919 /* AnalyticsJSONRequest.h */,
+				EAA604C817C28C7C00911919 /* AnalyticsJSONRequest.m */,
 				EACB4DAD17C0BB3100624129 /* Providers */,
 				F7200B7917659B2F003F3138 /* Supporting Files */,
 			);
@@ -372,6 +378,7 @@
 				EACB4DE417C0BB3100624129 /* MixpanelProvider.h in Headers */,
 				EACB4DE617C0BB3100624129 /* SegmentioProvider.h in Headers */,
 				EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */,
+				EAA604C917C28C7C00911919 /* AnalyticsJSONRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,6 +557,7 @@
 				EACB4DE517C0BB3100624129 /* MixpanelProvider.m in Sources */,
 				EACB4DE717C0BB3100624129 /* SegmentioProvider.m in Sources */,
 				EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */,
+				EAA604CA17C28C7C00911919 /* AnalyticsJSONRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
