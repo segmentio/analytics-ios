@@ -12,24 +12,26 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 @interface Analytics ()
 
-@property(nonatomic, strong) NSArray *providers;
+@property (nonatomic, strong) NSArray *providers;
+@property (nonatomic, strong) NSDictionary *cachedSettings;
 
 @end
 
 @implementation Analytics {
     dispatch_queue_t _serialQueue;
+    NSMutableArray *_messageQueue;
     AnalyticsRequest *_settingsRequest;
     NSTimer *_settingsTimer;
-    NSMutableArray *_delayedMessages;
-    NSDictionary *_cachedSettings;
 }
+
+@synthesize cachedSettings = _cachedSettings;
 
 - (id)initWithSecret:(NSString *)secret {
     NSParameterAssert(secret.length);
     if (self = [self init]) {
         _secret = secret;
         _serialQueue = dispatch_queue_create("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
-        _delayedMessages = [[NSMutableArray alloc] init];
+        _messageQueue = [[NSMutableArray alloc] init];
         _providers = [[NSMutableArray alloc] init];
         for (Class providerClass in [[[self class] registeredProviders] allValues]) {
             [(NSMutableArray *)_providers addObject:[[providerClass alloc] initWithAnalytics:self]];
@@ -68,8 +70,8 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     return YES;
 }
 
-- (void)_callProvidersWithSelector:(SEL)selector arguments:(NSArray *)arguments context:(NSDictionary *)context {
-   NSMethodSignature *methodSignature = [AnalyticsProvider instanceMethodSignatureForSelector:selector];
+- (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments context:(NSDictionary *)context {
+    NSMethodSignature *methodSignature = [AnalyticsProvider instanceMethodSignatureForSelector:selector];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
     invocation.selector = selector;
     for (int i=0; i<arguments.count; i++) {
@@ -84,23 +86,30 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     }
 }
 
+- (void)queueSelector:(SEL)selector arguments:(NSArray *)arguments context:(NSDictionary *)context {
+    [_messageQueue addObject:@[NSStringFromSelector(selector), arguments ?: @[], context ?: @{}]];
+}
+
+- (void)flushMessageQueue {
+    if (_messageQueue.count) {
+        for (NSArray *arr in _messageQueue)
+            [self forwardSelector:NSSelectorFromString(arr[0]) arguments:arr[1] context:arr[2]];
+        [_messageQueue removeAllObjects];
+    }
+}
+
 - (void)callProvidersWithSelector:(SEL)selector arguments:(NSArray *)arguments context:(NSDictionary *)context  {
     dispatch_async(_serialQueue, ^{
-        if (![self cachedSettings]) {
-            [_delayedMessages addObject:@[NSStringFromSelector(selector), arguments ?: @[], context ?: @{}]];
-            return;
+        if (!self.cachedSettings.count) {
+            [self queueSelector:selector arguments:arguments context:context];
+        } else {
+            [self flushMessageQueue];
+            [self forwardSelector:selector arguments:arguments context:context];
         }
-        if (_delayedMessages.count) {
-            for (NSArray *triplet in _delayedMessages) {
-                [self _callProvidersWithSelector:NSSelectorFromString(triplet[0])
-                                       arguments:triplet[1]
-                                         context:triplet[2]];
-            }
-            [_delayedMessages removeAllObjects];
-        }
-        [self _callProvidersWithSelector:selector arguments:arguments context:context];
     });
 }
+
+#pragma mark - NSNotificationCenter Callback
 
 - (void)handleAppStateNotification:(NSNotification *)note {
     SOLog(@"Application state change notification: %@", note.name);
@@ -201,13 +210,16 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 - (void)setCachedSettings:(NSDictionary *)settings {
     _cachedSettings = settings;
-    [_cachedSettings writeToURL:SETTING_CACHE_URL atomically:YES];
+    [_cachedSettings ?: @{} writeToURL:SETTING_CACHE_URL atomically:YES];
     [self updateProvidersWithSettings:settings];
 }
 
 - (void)updateProvidersWithSettings:(NSDictionary *)settings {
     for (id<AnalyticsProvider> provider in self.providers)
         [provider updateSettings:settings[provider.name]];
+    dispatch_async(_serialQueue, ^{
+        [self flushMessageQueue];
+    });
 }
 
 - (void)refreshSettings {
