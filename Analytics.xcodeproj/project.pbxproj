@@ -6,8 +6,23 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		EA25891E17C693C2000CEF61 /* Analytics.framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = EA25892117C693C2000CEF61 /* Build configuration list for PBXAggregateTarget "Analytics.framework" */;
+			buildPhases = (
+				EA25892217C693DD000CEF61 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Analytics.framework;
+			productName = Analytics.framework;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		B8A1B15E08994855871D1685 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B38155D048462482A91850 /* libPods.a */; };
+		EA25892317C6979D000CEF61 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200B7B17659B2F003F3138 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3D9AB017C0A6AA001DD476 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
 		EA3D9AB117C0A6AA001DD476 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		EA3D9AB817C0A6AA001DD476 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA3D9AB617C0A6AA001DD476 /* InfoPlist.strings */; };
@@ -19,7 +34,7 @@
 		EA3D9AC717C0A6AA001DD476 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA3D9AC517C0A6AA001DD476 /* MainStoryboard.storyboard */; };
 		EA3D9ACA17C0A6AA001DD476 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3D9AC917C0A6AA001DD476 /* ViewController.m */; };
 		EA3D9ACE17C0A833001DD476 /* libAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7317659B2F003F3138 /* libAnalytics.a */; };
-		EA65F96617C2ABA600389A1A /* AnalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* AnalyticsProvider.h */; };
+		EA65F96617C2ABA600389A1A /* AnalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* AnalyticsProvider.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA65F96717C2ABA600389A1A /* AnalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* AnalyticsProvider.m */; };
 		EAA604C917C28C7C00911919 /* AnalyticsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA604C717C28C7C00911919 /* AnalyticsRequest.h */; };
 		EAA604CA17C28C7C00911919 /* AnalyticsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA604C817C28C7C00911919 /* AnalyticsRequest.m */; };
@@ -41,7 +56,7 @@
 		EACB4DE317C0BB3100624129 /* LocalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DC717C0BB3100624129 /* LocalyticsProvider.m */; };
 		EACB4DE417C0BB3100624129 /* MixpanelProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DC917C0BB3100624129 /* MixpanelProvider.h */; };
 		EACB4DE517C0BB3100624129 /* MixpanelProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DCA17C0BB3100624129 /* MixpanelProvider.m */; };
-		EACB4DE617C0BB3100624129 /* SegmentioProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DCC17C0BB3100624129 /* SegmentioProvider.h */; };
+		EACB4DE617C0BB3100624129 /* SegmentioProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DCC17C0BB3100624129 /* SegmentioProvider.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EACB4DE717C0BB3100624129 /* SegmentioProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DCD17C0BB3100624129 /* SegmentioProvider.m */; };
 		EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DD017C0BB3100624129 /* AnalyticsUtils.h */; };
 		EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DD117C0BB3100624129 /* AnalyticsUtils.m */; };
@@ -366,6 +381,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA25892317C6979D000CEF61 /* Analytics.h in Headers */,
+				EACB4DE617C0BB3100624129 /* SegmentioProvider.h in Headers */,
+				EA65F96617C2ABA600389A1A /* AnalyticsProvider.h in Headers */,
 				EACB4DD217C0BB3100624129 /* AmplitudeProvider.h in Headers */,
 				EACB4DD617C0BB3100624129 /* BugsnagProvider.h in Headers */,
 				EACB4DD817C0BB3100624129 /* ChartbeatProvider.h in Headers */,
@@ -375,10 +393,8 @@
 				EACB4DE017C0BB3100624129 /* KISSmetricsProvider.h in Headers */,
 				EACB4DE217C0BB3100624129 /* LocalyticsProvider.h in Headers */,
 				EACB4DE417C0BB3100624129 /* MixpanelProvider.h in Headers */,
-				EACB4DE617C0BB3100624129 /* SegmentioProvider.h in Headers */,
 				EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */,
 				EAA604C917C28C7C00911919 /* AnalyticsRequest.h in Headers */,
-				EA65F96617C2ABA600389A1A /* AnalyticsProvider.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +460,7 @@
 			projectRoot = "";
 			targets = (
 				F7200B7217659B2F003F3138 /* Analytics */,
+				EA25891E17C693C2000CEF61 /* Analytics.framework */,
 				EA3D9AAE17C0A6AA001DD476 /* TestAppIOS */,
 			);
 		};
@@ -494,6 +511,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		EA25892217C693DD000CEF61 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\nPRODUCT_PATH=\"${SYMROOT}/Release/Analytics.framework\"\n\n## Prepare the framework Folder Structure\n\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Headers\"\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${PRODUCT_PATH}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${PRODUCT_PATH}/Headers\"\n/bin/ln -sfh Versions/Current/Analytics \"${PRODUCT_PATH}/Analytics\"\n\n## Compile for both iPhone (armv7, armv7s) and iPhone Simulator (i386)\n\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphonesimulator6.1\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphoneos6.1\n\n## Combine the two separate libAnalytics.a into a single fat binary containing all 3 architectures\n# Use xcrun --find to avoid the infinite loop bug (at least on Tony's computer)\n`xcrun -sdk iphoneos6.1 --find lipo` -output \"${SYMROOT}/Release/libAnalytics.a\" -create \\\n\"${SYMROOT}/Release-iphoneos/libAnalytics.a\" \\\n\"${SYMROOT}/Release-iphonesimulator/libAnalytics.a\"\n\n## Merge bundled libriaries and libAnalytics into the final framework library\nlibtool -static -o \"${PRODUCT_PATH}/Versions/A/Analytics\" \\\n\"${SYMROOT}/Release/libAnalytics.a\" \\\n\"${PODS_ROOT}/GoogleAnalytics-iOS-SDK/libGoogleAnalyticsServices.a\" \\\n\"${PODS_ROOT}/FlurrySDK/Flurry/libFlurry_4.2.3.a\" \\\n\"${PODS_ROOT}/Chartbeat/libChartbeat-iOS-SDK.a\"\n\n## Copy headers into the framework\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${SYMROOT}/Release-iphoneos/AnalyticsHeaders/\" \"${PRODUCT_PATH}/Versions/A/Headers/\"\nopen \"${SYMROOT}/Release\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -559,6 +589,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EA25891F17C693C2000CEF61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EA25892017C693C2000CEF61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		EA3D9ACC17C0A6AA001DD476 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
@@ -661,6 +707,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
@@ -688,6 +735,7 @@
 					"\"$(SRCROOT)/Analytics/Providers/GoogleAnalytics-iOS-SDK/Library\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
+				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
 				SKIP_INSTALL = YES;
@@ -698,6 +746,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EA25892117C693C2000CEF61 /* Build configuration list for PBXAggregateTarget "Analytics.framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA25891F17C693C2000CEF61 /* Debug */,
+				EA25892017C693C2000CEF61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		EA3D9ACB17C0A6AA001DD476 /* Build configuration list for PBXNativeTarget "TestAppIOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
