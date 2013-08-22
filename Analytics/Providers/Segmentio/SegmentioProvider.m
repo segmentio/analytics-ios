@@ -253,6 +253,10 @@ static NSString *GetSessionID(BOOL reset) {
     });
 }
 
+- (void)applicationDidEnterBackground {
+    [self flush];
+}
+
 - (void)applicationWillTerminate {
     [self flush];
     dispatch_sync(_serialQueue, ^{
