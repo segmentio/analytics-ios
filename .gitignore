@@ -2,4 +2,5 @@
 /Pods
 *.xcuserdatad*
 /Examples/CocoaPodsExample/Pods/
-Examples/CocoaPodsExample/Podfile.lock
+/Examples/CocoaPodsExample/Podfile.lock
+/Examples/DirectIncludeExample/Analytics.framework
