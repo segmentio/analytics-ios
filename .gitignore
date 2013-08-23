@@ -1,3 +1,5 @@
 .DS_STORE
 /Pods
 *.xcuserdatad*
+/Examples/CocoaPodsExample/Pods/
+Examples/CocoaPodsExample/Podfile.lock
