@@ -38,6 +38,9 @@
 		EA65F96717C2ABA600389A1A /* AnalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* AnalyticsProvider.m */; };
 		EAA604C917C28C7C00911919 /* AnalyticsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA604C717C28C7C00911919 /* AnalyticsRequest.h */; };
 		EAA604CA17C28C7C00911919 /* AnalyticsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA604C817C28C7C00911919 /* AnalyticsRequest.m */; };
+		EACAAD6817C75FE5000A8337 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */; };
+		EACAAD6A17C7600D000A8337 /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6917C7600D000A8337 /* libFlurry_4.2.3.a */; };
+		EACAAD6C17C7601C000A8337 /* libChartbeat-iOS-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6B17C7601C000A8337 /* libChartbeat-iOS-SDK.a */; };
 		EACB4DD217C0BB3100624129 /* AmplitudeProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DAF17C0BB3100624129 /* AmplitudeProvider.h */; };
 		EACB4DD317C0BB3100624129 /* AmplitudeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DB017C0BB3100624129 /* AmplitudeProvider.m */; };
 		EACB4DD617C0BB3100624129 /* BugsnagProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DB417C0BB3100624129 /* BugsnagProvider.h */; };
@@ -96,6 +99,9 @@
 		EA65F96517C2ABA600389A1A /* AnalyticsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsProvider.m; sourceTree = "<group>"; };
 		EAA604C717C28C7C00911919 /* AnalyticsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsRequest.h; sourceTree = "<group>"; };
 		EAA604C817C28C7C00911919 /* AnalyticsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsRequest.m; sourceTree = "<group>"; };
+		EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = "Pods/GoogleAnalytics-iOS-SDK/libGoogleAnalyticsServices.a"; sourceTree = "<group>"; };
+		EACAAD6917C7600D000A8337 /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.3.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.2.3.a; sourceTree = "<group>"; };
+		EACAAD6B17C7601C000A8337 /* libChartbeat-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libChartbeat-iOS-SDK.a"; path = "Pods/Chartbeat/libChartbeat-iOS-SDK.a"; sourceTree = "<group>"; };
 		EACB4DAF17C0BB3100624129 /* AmplitudeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmplitudeProvider.h; sourceTree = "<group>"; };
 		EACB4DB017C0BB3100624129 /* AmplitudeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmplitudeProvider.m; sourceTree = "<group>"; };
 		EACB4DB417C0BB3100624129 /* BugsnagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsnagProvider.h; sourceTree = "<group>"; };
@@ -118,7 +124,6 @@
 		EACB4DCD17C0BB3100624129 /* SegmentioProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioProvider.m; sourceTree = "<group>"; };
 		EACB4DD017C0BB3100624129 /* AnalyticsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsUtils.h; sourceTree = "<group>"; };
 		EACB4DD117C0BB3100624129 /* AnalyticsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsUtils.m; sourceTree = "<group>"; };
-		EACB4DF117C0BD9300624129 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		EACB4DF417C0BD9300624129 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		EACB4DF517C0BD9300624129 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EACB4DF617C0BD9300624129 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -158,6 +163,9 @@
 				F78D29FA1765B382000B937E /* UIKit.framework in Frameworks */,
 				F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */,
 				B8A1B15E08994855871D1685 /* libPods.a in Frameworks */,
+				EACAAD6C17C7601C000A8337 /* libChartbeat-iOS-SDK.a in Frameworks */,
+				EACAAD6A17C7600D000A8337 /* libFlurry_4.2.3.a in Frameworks */,
+				EACAAD6817C75FE5000A8337 /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,7 +351,9 @@
 				F7F252C4176E66350055771D /* UIKit.framework */,
 				F7F252C7176E66350055771D /* CoreGraphics.framework */,
 				70B38155D048462482A91850 /* libPods.a */,
-				EACB4DF117C0BD9300624129 /* Cocoa.framework */,
+				EACAAD6B17C7601C000A8337 /* libChartbeat-iOS-SDK.a */,
+				EACAAD6917C7600D000A8337 /* libFlurry_4.2.3.a */,
+				EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */,
 				EACB4DF317C0BD9300624129 /* Other Frameworks */,
 			);
 			name = Frameworks;
@@ -523,7 +533,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n# Use xcrun --find to avoid the infinite loop bug (at least on Tony's computer)\nalias lipo='`xcrun -sdk iphoneos6.1 --find lipo`'\n\nPRODUCT_PATH=\"${SYMROOT}/Release/Analytics.framework\"\n\n## Prepare the framework Folder Structure\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Headers\"\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${PRODUCT_PATH}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${PRODUCT_PATH}/Headers\"\n/bin/ln -sfh Versions/Current/Analytics \"${PRODUCT_PATH}/Analytics\"\n\n## Compile for both iPhone (armv7, armv7s) and iPhone Simulator (i386)\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphonesimulator6.1\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphoneos6.1\n\n## Combine the two separate libAnalytics.a into a single fat binary containing all 3 architectures\nlipo -output \"${SYMROOT}/Release/libAnalytics.a\" -create \\\n    \"${SYMROOT}/Release-iphoneos/libAnalytics.a\" \\\n    \"${SYMROOT}/Release-iphonesimulator/libAnalytics.a\"\n\n## Strip out Pods-dummy objects to prevent duplicate symbol when used by CocoaPods\nfor ARCH in i386 armv7 armv7s\ndo\n    lipo \"${SYMROOT}/Release/libAnalytics.a\" -thin $ARCH -output \"${SYMROOT}/Release/libAnalytics-${ARCH}.a\"\n    DUMMY_OBJECTS=`ar -t ${SYMROOT}/Release/libAnalytics-${ARCH}.a | grep ^Pods.*-dummy.o$ | tr '\\n' ' '`\n    ar -d \"${SYMROOT}/Release/libAnalytics-${ARCH}.a\" $DUMMY_OBJECTS\ndone\n\nlipo -output \"${SYMROOT}/Release/libAnalytics.a\" -create \\\n    \"${SYMROOT}/Release/libAnalytics-i386.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-armv7.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-armv7s.a\"\n\n## Merge bundled libriaries and libAnalytics into the final framework library\nlibtool -static -o \"${PRODUCT_PATH}/Versions/A/Analytics\" \\\n    \"${SYMROOT}/Release/libAnalytics.a\" \\\n    \"${PODS_ROOT}/GoogleAnalytics-iOS-SDK/libGoogleAnalyticsServices.a\" \\\n    \"${PODS_ROOT}/FlurrySDK/Flurry/libFlurry_4.2.3.a\" \\\n    \"${PODS_ROOT}/Chartbeat/libChartbeat-iOS-SDK.a\"\n\n## Remove Unsupported Architectures\nlipo \"${PRODUCT_PATH}/Versions/A/Analytics\" -remove armv6 -output \"${PRODUCT_PATH}/Versions/A/Analytics\"\n\n## Copy headers into the framework\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${SYMROOT}/Release-iphoneos/AnalyticsHeaders/\" \"${PRODUCT_PATH}/Versions/A/Headers/\"\n\n# Zip up the framework and license for distribution, and open products folder\ncd \"${SYMROOT}/Release\"\ncp \"${PROJECT_DIR}/License.md\" .\nzip --symlinks -r Analytics.zip Analytics.framework License.md\nopen .\n";
+			shellScript = "set -e\n# Use xcrun --find to avoid the infinite loop bug (at least on Tony's computer)\nalias lipo='`xcrun -sdk iphoneos6.1 --find lipo`'\n\nPRODUCT_PATH=\"${SYMROOT}/Release/Analytics.framework\"\n\n## Prepare the framework Folder Structure\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Headers\"\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${PRODUCT_PATH}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${PRODUCT_PATH}/Headers\"\n/bin/ln -sfh Versions/Current/Analytics \"${PRODUCT_PATH}/Analytics\"\n\n## Compile for both iPhone (armv7, armv7s) and iPhone Simulator (i386)\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphonesimulator6.1\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphoneos6.1\n\n## Combine the two separate libAnalytics.a into a single fat binary containing all 3 architectures\nlipo -output \"${SYMROOT}/Release/libAnalytics.a\" -create \\\n    \"${SYMROOT}/Release-iphoneos/libAnalytics.a\" \\\n    \"${SYMROOT}/Release-iphonesimulator/libAnalytics.a\"\n\n## Strip out Pods-dummy objects to prevent duplicate symbol when used by CocoaPods\nfor ARCH in i386 armv7 armv7s\ndo\n    lipo \"${SYMROOT}/Release/libAnalytics.a\" -thin $ARCH -output \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\"\n    DUMMY_OBJECTS=`ar -t ${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a | grep ^Pods.*-dummy.o$ | tr '\\n' ' '`\n    ar -sd \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\" $DUMMY_OBJECTS\ndone\n\n## Create a fat lib from the now cleaned up thin libs and place inside framework\nlipo -output \"${PRODUCT_PATH}/Versions/A/Analytics\" -create \\\n    \"${SYMROOT}/Release/libAnalytics-i386-clean.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-armv7-clean.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-armv7s-clean.a\"\n\n## Copy headers into the framework\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${SYMROOT}/Release-iphoneos/AnalyticsHeaders/\" \"${PRODUCT_PATH}/Versions/A/Headers/\"\n\n# Zip up the framework and license for distribution, and open products folder\ncd \"${SYMROOT}/Release\"\ncp \"${PROJECT_DIR}/License.md\" .\nzip --symlinks -r Analytics.zip Analytics.framework License.md\nopen .\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -591,7 +601,6 @@
 /* Begin XCBuildConfiguration section */
 		EA25891F17C693C2000CEF61 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -599,7 +608,6 @@
 		};
 		EA25892017C693C2000CEF61 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -607,7 +615,6 @@
 		};
 		EA3D9ACC17C0A6AA001DD476 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -621,7 +628,6 @@
 		};
 		EA3D9ACD17C0A6AA001DD476 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -704,6 +710,9 @@
 					"\"$(SRCROOT)/Analytics/Providers/Chartbeat\"",
 					"\"$(SRCROOT)/Analytics/Providers/FlurrySDK/Flurry\"",
 					"\"$(SRCROOT)/Analytics/Providers/GoogleAnalytics-iOS-SDK/Library\"",
+					"\"$(SRCROOT)/Pods/GoogleAnalytics-iOS-SDK\"",
+					"\"$(SRCROOT)/Pods/FlurrySDK/Flurry\"",
+					"\"$(SRCROOT)/Pods/Chartbeat\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -733,6 +742,9 @@
 					"\"$(SRCROOT)/Analytics/Providers/Chartbeat\"",
 					"\"$(SRCROOT)/Analytics/Providers/FlurrySDK/Flurry\"",
 					"\"$(SRCROOT)/Analytics/Providers/GoogleAnalytics-iOS-SDK/Library\"",
+					"\"$(SRCROOT)/Pods/GoogleAnalytics-iOS-SDK\"",
+					"\"$(SRCROOT)/Pods/FlurrySDK/Flurry\"",
+					"\"$(SRCROOT)/Pods/Chartbeat\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
