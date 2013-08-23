@@ -11,14 +11,13 @@
 		EACAAD4517C750B0000A8337 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD4417C750B0000A8337 /* UIKit.framework */; };
 		EACAAD4717C750B0000A8337 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD4617C750B0000A8337 /* Foundation.framework */; };
 		EACAAD4917C750B0000A8337 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD4817C750B0000A8337 /* CoreGraphics.framework */; };
-		EACAAD8B17C76CBB000A8337 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAAD8817C76CBB000A8337 /* AppDelegate.m */; };
-		EACAAD8C17C76CBB000A8337 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAAD8A17C76CBB000A8337 /* ViewController.m */; };
-		EACAAD8F17C76CC4000A8337 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD8D17C76CC4000A8337 /* MainStoryboard.storyboard */; };
-		EACAAD9317C76CCB000A8337 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD9017C76CCB000A8337 /* Default-568h@2x.png */; };
-		EACAAD9417C76CCB000A8337 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD9117C76CCB000A8337 /* Default.png */; };
-		EACAAD9517C76CCB000A8337 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD9217C76CCB000A8337 /* Default@2x.png */; };
-		EACAAD9717C76CDA000A8337 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAAD9617C76CDA000A8337 /* main.m */; };
-		EACAAD9A17C76CE8000A8337 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD9817C76CE8000A8337 /* InfoPlist.strings */; };
+		EACAAE1017C772D2000A8337 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAAE0D17C772D2000A8337 /* AppDelegate.m */; };
+		EACAAE1117C772D2000A8337 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAAE0F17C772D2000A8337 /* ViewController.m */; };
+		EACAAE1417C772D6000A8337 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EACAAE1217C772D6000A8337 /* MainStoryboard.storyboard */; };
+		EACAAE1817C772DD000A8337 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAAE1517C772DD000A8337 /* Default-568h@2x.png */; };
+		EACAAE1917C772DD000A8337 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAAE1617C772DD000A8337 /* Default.png */; };
+		EACAAE1A17C772DD000A8337 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAAE1717C772DD000A8337 /* Default@2x.png */; };
+		EACAAE1C17C772E5000A8337 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAAE1B17C772E4000A8337 /* main.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,16 +29,15 @@
 		EACAAD4817C750B0000A8337 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EACAAD4C17C750B0000A8337 /* CocoaPodsExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CocoaPodsExample-Info.plist"; sourceTree = "<group>"; };
 		EACAAD5217C750B0000A8337 /* CocoaPodsExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CocoaPodsExample-Prefix.pch"; sourceTree = "<group>"; };
-		EACAAD8717C76CBB000A8337 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../../Common/AppDelegate.h; sourceTree = "<group>"; };
-		EACAAD8817C76CBB000A8337 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../../Common/AppDelegate.m; sourceTree = "<group>"; };
-		EACAAD8917C76CBB000A8337 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../../Common/ViewController.h; sourceTree = "<group>"; };
-		EACAAD8A17C76CBB000A8337 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../../Common/ViewController.m; sourceTree = "<group>"; };
-		EACAAD8E17C76CC4000A8337 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = ../../Common/en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		EACAAD9017C76CCB000A8337 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../../Common/Default-568h@2x.png"; sourceTree = "<group>"; };
-		EACAAD9117C76CCB000A8337 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../../Common/Default.png; sourceTree = "<group>"; };
-		EACAAD9217C76CCB000A8337 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../Common/Default@2x.png"; sourceTree = "<group>"; };
-		EACAAD9617C76CDA000A8337 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../../Common/main.m; sourceTree = "<group>"; };
-		EACAAD9917C76CE8000A8337 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = ../../Common/en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EACAAE0C17C772D2000A8337 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ../Common/AppDelegate.h; sourceTree = "<group>"; };
+		EACAAE0D17C772D2000A8337 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ../Common/AppDelegate.m; sourceTree = "<group>"; };
+		EACAAE0E17C772D2000A8337 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../Common/ViewController.h; sourceTree = "<group>"; };
+		EACAAE0F17C772D2000A8337 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ../Common/ViewController.m; sourceTree = "<group>"; };
+		EACAAE1317C772D6000A8337 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = ../Common/en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		EACAAE1517C772DD000A8337 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Common/Default-568h@2x.png"; sourceTree = "<group>"; };
+		EACAAE1617C772DD000A8337 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Common/Default.png; sourceTree = "<group>"; };
+		EACAAE1717C772DD000A8337 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Common/Default@2x.png"; sourceTree = "<group>"; };
+		EACAAE1B17C772E4000A8337 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../Common/main.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,26 +87,25 @@
 		EACAAD4A17C750B0000A8337 /* CocoaPodsExample */ = {
 			isa = PBXGroup;
 			children = (
-				EACAAD8717C76CBB000A8337 /* AppDelegate.h */,
-				EACAAD8817C76CBB000A8337 /* AppDelegate.m */,
-				EACAAD8917C76CBB000A8337 /* ViewController.h */,
-				EACAAD8A17C76CBB000A8337 /* ViewController.m */,
-				EACAAD8D17C76CC4000A8337 /* MainStoryboard.storyboard */,
+				EACAAE0C17C772D2000A8337 /* AppDelegate.h */,
+				EACAAE0D17C772D2000A8337 /* AppDelegate.m */,
+				EACAAE0E17C772D2000A8337 /* ViewController.h */,
+				EACAAE0F17C772D2000A8337 /* ViewController.m */,
+				EACAAE1217C772D6000A8337 /* MainStoryboard.storyboard */,
 				EACAAD4B17C750B0000A8337 /* Supporting Files */,
 			);
-			path = CocoaPodsExample;
+			name = CocoaPodsExample;
 			sourceTree = "<group>";
 		};
 		EACAAD4B17C750B0000A8337 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				EACAAD4C17C750B0000A8337 /* CocoaPodsExample-Info.plist */,
-				EACAAD9817C76CE8000A8337 /* InfoPlist.strings */,
-				EACAAD9617C76CDA000A8337 /* main.m */,
 				EACAAD5217C750B0000A8337 /* CocoaPodsExample-Prefix.pch */,
-				EACAAD9017C76CCB000A8337 /* Default-568h@2x.png */,
-				EACAAD9117C76CCB000A8337 /* Default.png */,
-				EACAAD9217C76CCB000A8337 /* Default@2x.png */,
+				EACAAE1B17C772E4000A8337 /* main.m */,
+				EACAAE1517C772DD000A8337 /* Default-568h@2x.png */,
+				EACAAE1617C772DD000A8337 /* Default.png */,
+				EACAAE1717C772DD000A8337 /* Default@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -166,11 +163,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EACAAD8F17C76CC4000A8337 /* MainStoryboard.storyboard in Resources */,
-				EACAAD9317C76CCB000A8337 /* Default-568h@2x.png in Resources */,
-				EACAAD9417C76CCB000A8337 /* Default.png in Resources */,
-				EACAAD9517C76CCB000A8337 /* Default@2x.png in Resources */,
-				EACAAD9A17C76CE8000A8337 /* InfoPlist.strings in Resources */,
+				EACAAE1417C772D6000A8337 /* MainStoryboard.storyboard in Resources */,
+				EACAAE1817C772DD000A8337 /* Default-568h@2x.png in Resources */,
+				EACAAE1917C772DD000A8337 /* Default.png in Resources */,
+				EACAAE1A17C772DD000A8337 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,29 +210,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EACAAD8B17C76CBB000A8337 /* AppDelegate.m in Sources */,
-				EACAAD8C17C76CBB000A8337 /* ViewController.m in Sources */,
-				EACAAD9717C76CDA000A8337 /* main.m in Sources */,
+				EACAAE1017C772D2000A8337 /* AppDelegate.m in Sources */,
+				EACAAE1117C772D2000A8337 /* ViewController.m in Sources */,
+				EACAAE1C17C772E5000A8337 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		EACAAD8D17C76CC4000A8337 /* MainStoryboard.storyboard */ = {
+		EACAAE1217C772D6000A8337 /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				EACAAD8E17C76CC4000A8337 /* en */,
+				EACAAE1317C772D6000A8337 /* en */,
 			);
 			name = MainStoryboard.storyboard;
-			sourceTree = "<group>";
-		};
-		EACAAD9817C76CE8000A8337 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EACAAD9917C76CE8000A8337 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -303,8 +291,8 @@
 			baseConfigurationReference = 2338712B30614403B121D6F9 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CocoaPodsExample/CocoaPodsExample-Prefix.pch";
-				INFOPLIST_FILE = "CocoaPodsExample/CocoaPodsExample-Info.plist";
+				GCC_PREFIX_HEADER = "CocoaPodsExample-Prefix.pch";
+				INFOPLIST_FILE = "CocoaPodsExample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -315,8 +303,8 @@
 			baseConfigurationReference = 2338712B30614403B121D6F9 /* Pods.xcconfig */;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CocoaPodsExample/CocoaPodsExample-Prefix.pch";
-				INFOPLIST_FILE = "CocoaPodsExample/CocoaPodsExample-Info.plist";
+				GCC_PREFIX_HEADER = "CocoaPodsExample-Prefix.pch";
+				INFOPLIST_FILE = "CocoaPodsExample-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
