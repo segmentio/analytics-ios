@@ -25,14 +25,6 @@
 		EA25892317C6979D000CEF61 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200B7B17659B2F003F3138 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3D9AB017C0A6AA001DD476 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
 		EA3D9AB117C0A6AA001DD476 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
-		EA3D9AB817C0A6AA001DD476 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA3D9AB617C0A6AA001DD476 /* InfoPlist.strings */; };
-		EA3D9ABA17C0A6AA001DD476 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3D9AB917C0A6AA001DD476 /* main.m */; };
-		EA3D9ABE17C0A6AA001DD476 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3D9ABD17C0A6AA001DD476 /* AppDelegate.m */; };
-		EA3D9AC017C0A6AA001DD476 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3D9ABF17C0A6AA001DD476 /* Default.png */; };
-		EA3D9AC217C0A6AA001DD476 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3D9AC117C0A6AA001DD476 /* Default@2x.png */; };
-		EA3D9AC417C0A6AA001DD476 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EA3D9AC317C0A6AA001DD476 /* Default-568h@2x.png */; };
-		EA3D9AC717C0A6AA001DD476 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA3D9AC517C0A6AA001DD476 /* MainStoryboard.storyboard */; };
-		EA3D9ACA17C0A6AA001DD476 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3D9AC917C0A6AA001DD476 /* ViewController.m */; };
 		EA3D9ACE17C0A833001DD476 /* libAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7317659B2F003F3138 /* libAnalytics.a */; };
 		EA65F96617C2ABA600389A1A /* AnalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* AnalyticsProvider.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA65F96717C2ABA600389A1A /* AnalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* AnalyticsProvider.m */; };
@@ -41,6 +33,14 @@
 		EACAAD6817C75FE5000A8337 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */; };
 		EACAAD6A17C7600D000A8337 /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6917C7600D000A8337 /* libFlurry_4.2.3.a */; };
 		EACAAD6C17C7601C000A8337 /* libChartbeat-iOS-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6B17C7601C000A8337 /* libChartbeat-iOS-SDK.a */; };
+		EACAAD7117C76B6D000A8337 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAAD6E17C76B6D000A8337 /* AppDelegate.m */; };
+		EACAAD7217C76B6D000A8337 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAAD7017C76B6D000A8337 /* ViewController.m */; };
+		EACAAD7517C76B77000A8337 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD7317C76B77000A8337 /* MainStoryboard.storyboard */; };
+		EACAAD7F17C76BAB000A8337 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD7C17C76BAB000A8337 /* Default-568h@2x.png */; };
+		EACAAD8017C76BAB000A8337 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD7D17C76BAB000A8337 /* Default.png */; };
+		EACAAD8117C76BAB000A8337 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD7E17C76BAB000A8337 /* Default@2x.png */; };
+		EACAAD8417C76BBC000A8337 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD8217C76BBC000A8337 /* InfoPlist.strings */; };
+		EACAAD8617C76BE0000A8337 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAAD8517C76BE0000A8337 /* main.m */; };
 		EACB4DD217C0BB3100624129 /* AmplitudeProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DAF17C0BB3100624129 /* AmplitudeProvider.h */; };
 		EACB4DD317C0BB3100624129 /* AmplitudeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DB017C0BB3100624129 /* AmplitudeProvider.m */; };
 		EACB4DD617C0BB3100624129 /* BugsnagProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DB417C0BB3100624129 /* BugsnagProvider.h */; };
@@ -84,17 +84,7 @@
 		8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		EA3D9AAF17C0A6AA001DD476 /* TestAppIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestAppIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA3D9AB517C0A6AA001DD476 /* TestAppIOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestAppIOS-Info.plist"; sourceTree = "<group>"; };
-		EA3D9AB717C0A6AA001DD476 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EA3D9AB917C0A6AA001DD476 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EA3D9ABB17C0A6AA001DD476 /* TestAppIOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestAppIOS-Prefix.pch"; sourceTree = "<group>"; };
-		EA3D9ABC17C0A6AA001DD476 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		EA3D9ABD17C0A6AA001DD476 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EA3D9ABF17C0A6AA001DD476 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		EA3D9AC117C0A6AA001DD476 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		EA3D9AC317C0A6AA001DD476 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		EA3D9AC617C0A6AA001DD476 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		EA3D9AC817C0A6AA001DD476 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EA3D9AC917C0A6AA001DD476 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		EA65F96417C2ABA600389A1A /* AnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsProvider.h; sourceTree = "<group>"; };
 		EA65F96517C2ABA600389A1A /* AnalyticsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsProvider.m; sourceTree = "<group>"; };
 		EAA604C717C28C7C00911919 /* AnalyticsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsRequest.h; sourceTree = "<group>"; };
@@ -102,6 +92,16 @@
 		EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = "Pods/GoogleAnalytics-iOS-SDK/libGoogleAnalyticsServices.a"; sourceTree = "<group>"; };
 		EACAAD6917C7600D000A8337 /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.3.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.2.3.a; sourceTree = "<group>"; };
 		EACAAD6B17C7601C000A8337 /* libChartbeat-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libChartbeat-iOS-SDK.a"; path = "Pods/Chartbeat/libChartbeat-iOS-SDK.a"; sourceTree = "<group>"; };
+		EACAAD6D17C76B6D000A8337 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Examples/Common/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		EACAAD6E17C76B6D000A8337 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Examples/Common/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		EACAAD6F17C76B6D000A8337 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Examples/Common/ViewController.h; sourceTree = SOURCE_ROOT; };
+		EACAAD7017C76B6D000A8337 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = Examples/Common/ViewController.m; sourceTree = SOURCE_ROOT; };
+		EACAAD7417C76B77000A8337 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = Examples/Common/en.lproj/MainStoryboard.storyboard; sourceTree = SOURCE_ROOT; };
+		EACAAD7C17C76BAB000A8337 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Examples/Common/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
+		EACAAD7D17C76BAB000A8337 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Examples/Common/Default.png; sourceTree = SOURCE_ROOT; };
+		EACAAD7E17C76BAB000A8337 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Examples/Common/Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		EACAAD8317C76BBC000A8337 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Examples/Common/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		EACAAD8517C76BE0000A8337 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Examples/Common/main.m; sourceTree = SOURCE_ROOT; };
 		EACB4DAF17C0BB3100624129 /* AmplitudeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmplitudeProvider.h; sourceTree = "<group>"; };
 		EACB4DB017C0BB3100624129 /* AmplitudeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmplitudeProvider.m; sourceTree = "<group>"; };
 		EACB4DB417C0BB3100624129 /* BugsnagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsnagProvider.h; sourceTree = "<group>"; };
@@ -175,11 +175,11 @@
 		EA3D9AB317C0A6AA001DD476 /* TestAppIOS */ = {
 			isa = PBXGroup;
 			children = (
-				EA3D9ABC17C0A6AA001DD476 /* AppDelegate.h */,
-				EA3D9ABD17C0A6AA001DD476 /* AppDelegate.m */,
-				EA3D9AC517C0A6AA001DD476 /* MainStoryboard.storyboard */,
-				EA3D9AC817C0A6AA001DD476 /* ViewController.h */,
-				EA3D9AC917C0A6AA001DD476 /* ViewController.m */,
+				EACAAD6D17C76B6D000A8337 /* AppDelegate.h */,
+				EACAAD6E17C76B6D000A8337 /* AppDelegate.m */,
+				EACAAD6F17C76B6D000A8337 /* ViewController.h */,
+				EACAAD7017C76B6D000A8337 /* ViewController.m */,
+				EACAAD7317C76B77000A8337 /* MainStoryboard.storyboard */,
 				EA3D9AB417C0A6AA001DD476 /* Supporting Files */,
 			);
 			path = TestAppIOS;
@@ -189,12 +189,12 @@
 			isa = PBXGroup;
 			children = (
 				EA3D9AB517C0A6AA001DD476 /* TestAppIOS-Info.plist */,
-				EA3D9AB617C0A6AA001DD476 /* InfoPlist.strings */,
-				EA3D9AB917C0A6AA001DD476 /* main.m */,
 				EA3D9ABB17C0A6AA001DD476 /* TestAppIOS-Prefix.pch */,
-				EA3D9ABF17C0A6AA001DD476 /* Default.png */,
-				EA3D9AC117C0A6AA001DD476 /* Default@2x.png */,
-				EA3D9AC317C0A6AA001DD476 /* Default-568h@2x.png */,
+				EACAAD8517C76BE0000A8337 /* main.m */,
+				EACAAD8217C76BBC000A8337 /* InfoPlist.strings */,
+				EACAAD7C17C76BAB000A8337 /* Default-568h@2x.png */,
+				EACAAD7D17C76BAB000A8337 /* Default.png */,
+				EACAAD7E17C76BAB000A8337 /* Default@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -481,11 +481,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA3D9AB817C0A6AA001DD476 /* InfoPlist.strings in Resources */,
-				EA3D9AC017C0A6AA001DD476 /* Default.png in Resources */,
-				EA3D9AC217C0A6AA001DD476 /* Default@2x.png in Resources */,
-				EA3D9AC417C0A6AA001DD476 /* Default-568h@2x.png in Resources */,
-				EA3D9AC717C0A6AA001DD476 /* MainStoryboard.storyboard in Resources */,
+				EACAAD7517C76B77000A8337 /* MainStoryboard.storyboard in Resources */,
+				EACAAD7F17C76BAB000A8337 /* Default-568h@2x.png in Resources */,
+				EACAAD8017C76BAB000A8337 /* Default.png in Resources */,
+				EACAAD8117C76BAB000A8337 /* Default@2x.png in Resources */,
+				EACAAD8417C76BBC000A8337 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,9 +542,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA3D9ABA17C0A6AA001DD476 /* main.m in Sources */,
-				EA3D9ABE17C0A6AA001DD476 /* AppDelegate.m in Sources */,
-				EA3D9ACA17C0A6AA001DD476 /* ViewController.m in Sources */,
+				EACAAD7117C76B6D000A8337 /* AppDelegate.m in Sources */,
+				EACAAD7217C76B6D000A8337 /* ViewController.m in Sources */,
+				EACAAD8617C76BE0000A8337 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,20 +580,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		EA3D9AB617C0A6AA001DD476 /* InfoPlist.strings */ = {
+		EACAAD7317C76B77000A8337 /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				EA3D9AB717C0A6AA001DD476 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		EA3D9AC517C0A6AA001DD476 /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA3D9AC617C0A6AA001DD476 /* en */,
+				EACAAD7417C76B77000A8337 /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		EACAAD8217C76BBC000A8337 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EACAAD8317C76BBC000A8337 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -6,22 +6,14 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import "SegmentioProvider.h"
-#import "Analytics.h"
+
 #import "ViewController.h"
-
-@interface ViewController ()
-
-@end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [Analytics initializeWithSecret:@"k5l6rrye0hsv566zwuk7"];
-    [[Analytics sharedAnalytics] debug:YES];
-    [[Analytics sharedAnalytics] reset];
-    [[Analytics sharedAnalytics] track:@"Test Event"];
+    [[Analytics sharedAnalytics] track:@"Test View Load Event"];
 }
 
 - (IBAction)identify:(id)sender {
