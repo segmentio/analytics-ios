@@ -6,8 +6,6 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import <Kiwi/Kiwi.h>
-#import "Analytics.h"
 #import "SegmentioProvider.h"
 
 SPEC_BEGIN(AnalyticsTests)

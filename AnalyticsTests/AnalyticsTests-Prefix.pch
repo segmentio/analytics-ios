@@ -6,3 +6,6 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+#import <Kiwi/Kiwi.h>
+#import "Analytics.h"
