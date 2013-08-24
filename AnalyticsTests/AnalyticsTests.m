@@ -7,14 +7,30 @@
 //
 
 #import <Kiwi/Kiwi.h>
+#import "Analytics.h"
+#import "SegmentioProvider.h"
 
-SPEC_BEGIN(MathSpec)
+SPEC_BEGIN(AnalyticsTests)
 
-describe(@"Math", ^{
-    it(@"is pretty cool", ^{
-        NSUInteger a = 16;
-        NSUInteger b = 26;
-        [[theValue(a + b) should] equal:theValue(42)];
+describe(@"Analytics", ^{
+    __block SegmentioProvider *segmentio = nil;
+    __block Analytics *analytics = nil;
+    beforeAll(^{
+        [Analytics initializeWithSecret:@"testsecret"];
+        analytics = [Analytics sharedAnalytics];
+        for (id<AnalyticsProvider> provider in [[Analytics sharedAnalytics] providers])
+            if ([provider isKindOfClass:[SegmentioProvider class]])
+                segmentio = provider;
+        segmentio.flushAt = 2;
+    });
+    
+    it(@"should have a secret", ^{
+        [[analytics.secret should] equal:@"testsecret"];
+        [[segmentio.secret should] equal:@"testsecret"];
+    });
+    
+    it(@"should have 10 providers", ^{
+        [[@(analytics.providers.count) should] equal:@10];
     });
 });
 
