@@ -699,21 +699,8 @@
 			buildSettings = {
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Analytics.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Downloads\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Analytics/Analytics-Prefix.pch";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Analytics/Providers/Chartbeat\"",
-					"\"$(SRCROOT)/Analytics/Providers/FlurrySDK/Flurry\"",
-					"\"$(SRCROOT)/Analytics/Providers/GoogleAnalytics-iOS-SDK/Library\"",
-					"\"$(SRCROOT)/Pods/GoogleAnalytics-iOS-SDK\"",
-					"\"$(SRCROOT)/Pods/FlurrySDK/Flurry\"",
-					"\"$(SRCROOT)/Pods/Chartbeat\"",
-				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
@@ -731,21 +718,8 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Analytics.dst;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../Downloads\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Analytics/Analytics-Prefix.pch";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Analytics/Providers/Chartbeat\"",
-					"\"$(SRCROOT)/Analytics/Providers/FlurrySDK/Flurry\"",
-					"\"$(SRCROOT)/Analytics/Providers/GoogleAnalytics-iOS-SDK/Library\"",
-					"\"$(SRCROOT)/Pods/GoogleAnalytics-iOS-SDK\"",
-					"\"$(SRCROOT)/Pods/FlurrySDK/Flurry\"",
-					"\"$(SRCROOT)/Pods/Chartbeat\"",
-				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
 				PRODUCT_NAME = "$(TARGET_NAME)";
