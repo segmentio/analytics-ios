@@ -1,5 +1,5 @@
 
-link_with ['Analytics', 'TestAppIOS']
+link_with 'Analytics'
 
 pod 'Amplitude-iOS', '~> 1.0.1'
 pod 'Bugsnag', '~> 2.2.3'
