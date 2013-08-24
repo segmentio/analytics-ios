@@ -10,3 +10,8 @@ pod 'GoogleAnalytics-iOS-SDK', '~> 3.0'
 pod 'KISSmetrics', '~> 1.1.3'
 pod 'Localytics-iOS-Client', '~> 2.17.0'
 pod 'Mixpanel', '~> 2.0.0'
+
+target :AnalyticsTests, :exclusive => true do
+    link_with 'AnalyticsTests'
+    pod 'Kiwi'
+end
