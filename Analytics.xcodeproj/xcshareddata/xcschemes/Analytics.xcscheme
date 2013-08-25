@@ -37,14 +37,6 @@
                BlueprintName = "AnalyticsTests"
                ReferencedContainer = "container:Analytics.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "AnalyticsUtilsTests">
-               </Test>
-               <Test
-                  Identifier = "SegmentioTests">
-               </Test>
-            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

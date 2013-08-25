@@ -44,6 +44,7 @@ static NSString *GetSessionID(BOOL reset) {
 
 @implementation SegmentioProvider {
     dispatch_queue_t _serialQueue;
+    void *_serialQueueTag;
 }
 
 - (id)initWithAnalytics:(Analytics *)analytics {
@@ -72,6 +73,7 @@ static NSString *GetSessionID(BOOL reset) {
                                                      userInfo:nil
                                                       repeats:YES];
         _serialQueue = dispatch_queue_create("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
+        dispatch_queue_set_specific(_serialQueue, &_serialQueueTag, &_serialQueueTag, NULL);
         self.name = @"Segment.io";
         self.valid = NO;
         self.initialized = NO;
@@ -81,6 +83,20 @@ static NSString *GetSessionID(BOOL reset) {
 
     }
     return self;
+}
+
+- (void)dispatchBackground:(void(^)(void))block {
+    [self dispatchBackground:block forceSync:NO];
+}
+
+- (void)dispatchBackground:(void(^)(void))block forceSync:(BOOL)forceSync {
+    if (dispatch_get_specific(&_serialQueueTag)) {
+        block();
+    } else if (forceSync) {
+        dispatch_sync(_serialQueue, block);
+    } else {
+        dispatch_async(_serialQueue, block);
+    }
 }
 
 - (void)updateSettings:(NSDictionary *)settings {
@@ -104,9 +120,9 @@ static NSString *GetSessionID(BOOL reset) {
 #pragma mark - Analytics API
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context {
-    dispatch_async(_serialQueue, ^{
+    [self dispatchBackground:^{
         self.userId = userId;
-    });
+    }];
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:traits forKey:@"traits"];
@@ -157,41 +173,37 @@ static NSString *GetSessionID(BOOL reset) {
     payload[@"timestamp"] = [[NSDate date] description];
     payload[@"context"] = [self serverContextForContext:context];
 
-    dispatch_async(_serialQueue, ^{
-
+    [self dispatchBackground:^{
         // attach userId and sessionId inside the dispatch_async in case
         // they've changed (see identify function)
         [payload setValue:self.userId forKey:@"userId"];
         [payload setValue:self.sessionId forKey:@"sessionId"];
-
+        
         SOLog(@"%@ Enqueueing action: %@", self, payload);
-
+        
         [self.queue addObject:payload];
         
         [self flushQueueByLength];
-    });
+    }];
 }
 
-- (void)flush
-{
-    dispatch_async(_serialQueue, ^{
+- (void)flush {
+    [self dispatchBackground:^{
         if ([self.queue count] == 0) {
             SOLog(@"%@ No queued API calls to flush.", self);
             return;
-        }
-        else if (self.request != nil) {
+        } else if (self.request != nil) {
             SOLog(@"%@ API request already in progress, not flushing again.", self);
+            NSLog(@"%@ %@", self.batch, self.request);
             return;
-        }
-        else if ([self.queue count] >= SEGMENTIO_MAX_BATCH_SIZE) {
+        } else if ([self.queue count] >= SEGMENTIO_MAX_BATCH_SIZE) {
             self.batch = [self.queue subarrayWithRange:NSMakeRange(0, SEGMENTIO_MAX_BATCH_SIZE)];
-        }
-        else {
+        } else {
             self.batch = [NSArray arrayWithArray:self.queue];
         }
-
+        
         SOLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)self.batch.count, (unsigned long)self.queue.count);
-
+        
         NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
         [payloadDictionary setObject:self.secret forKey:@"secret"];
         [payloadDictionary setObject:self.batch forKey:@"batch"];
@@ -199,21 +211,19 @@ static NSString *GetSessionID(BOOL reset) {
         NSData *payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary
                                                           options:0 error:NULL];
         [self sendData:payload];
-    });
+    }];
 }
 
-- (void)flushQueueByLength
-{
-    dispatch_async(_serialQueue, ^{
+- (void)flushQueueByLength {
+    [self dispatchBackground:^{
         SOLog(@"%@ Length is %lu.", self, (unsigned long)self.queue.count);
         if (self.request == nil && [self.queue count] >= self.flushAt) {
             [self flush];
         }
-    });
+    }];
 }
 
-- (void)reset
-{
+- (void)reset {
     [self.flushTimer invalidate];
     self.flushTimer = nil;
     self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.flushAfter
@@ -221,54 +231,48 @@ static NSString *GetSessionID(BOOL reset) {
                                                      selector:@selector(flush)
                                                      userInfo:nil
                                                       repeats:YES];
-    dispatch_sync(_serialQueue, ^{
+    [self dispatchBackground:^{
         self.sessionId = GetSessionID(YES); // changes the UUID
         self.userId = nil;
         self.queue = [NSMutableArray array];
-    });
+//        self.request.completion = nil;
+//        self.request = nil;
+    } forceSync:YES];
 }
 
 - (void)notifyForName:(NSString *)name userInfo:(id)userInfo {
-    if (![NSThread isMainThread]) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self notifyForName:name userInfo:userInfo];
-        });
-        return;
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:name object:self];
-    NSLog(@"post note %@", name);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:name object:self];
+        NSLog(@"sent notification %@", name);
+    });
 }
 
 - (void)sendData:(NSData *)data {
-    dispatch_sync(dispatch_get_main_queue(), ^{
-        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:SEGMENTIO_API_URL];
-        [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-        [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        [urlRequest setHTTPMethod:@"POST"];
-        [urlRequest setHTTPBody:data];
-        SOLog(@"%@ Sending batch API request: %@", self,
-              [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        self.request = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
-            dispatch_async(_serialQueue, ^{
-                if (self.request.error) {
-                    SOLog(@"%@ API request had an error: %@", self, self.request.error);
-                    [self notifyForName:SegmentioRequestDidFailNotification userInfo:self.batch];
-                } else {
-                    SOLog(@"%@ API request success 200", self);
-                    // TODO
-                    // Currently we don't retry sending any of the queued calls. If they return
-                    // with a response code other than 200 we still remove them from the queue.
-                    // Is that the desired behavior? Suggestion: (retry if network error or 500 error. But not 400 error)
-                    [self.queue removeObjectsInArray:self.batch];
-                    [self notifyForName:SegmentioRequestDidSucceedNotification userInfo:self.batch];
-                }
-                
-                self.batch = nil;
-                self.request = nil;
-            });
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:SEGMENTIO_API_URL];
+    [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:data];
+    SOLog(@"%@ Sending batch API request: %@", self,
+          [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    self.request = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
+        [self dispatchBackground:^{
+            if (self.request.error) {
+                SOLog(@"%@ API request had an error: %@", self, self.request.error);
+                [self notifyForName:SegmentioRequestDidFailNotification userInfo:self.batch];
+            } else {
+                SOLog(@"%@ API request success 200", self);
+                // TODO
+                // Currently we don't actively retry sending any of batched calls
+                [self.queue removeObjectsInArray:self.batch];
+                [self notifyForName:SegmentioRequestDidSucceedNotification userInfo:self.batch];
+            }
+            
+            self.batch = nil;
+            self.request = nil;
         }];
-        [self notifyForName:SegmentioDidSendRequestNotification userInfo:self.batch];
-    });
+    }];
+    [self notifyForName:SegmentioDidSendRequestNotification userInfo:self.batch];
 }
 
 - (void)applicationDidEnterBackground {
@@ -277,10 +281,10 @@ static NSString *GetSessionID(BOOL reset) {
 
 - (void)applicationWillTerminate {
     [self flush];
-    dispatch_sync(_serialQueue, ^{
+    [self dispatchBackground:^{
         if (self.queue.count)
             [self.queue writeToURL:DISK_QUEUE_URL atomically:YES];
-    });
+    } forceSync:YES];
 }
 
 #pragma mark - Class Methods
