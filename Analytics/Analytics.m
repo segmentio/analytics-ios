@@ -30,7 +30,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     NSParameterAssert(secret.length);
     if (self = [self init]) {
         _secret = secret;
-        _serialQueue = dispatch_queue_create("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
+        _serialQueue = dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         _messageQueue = [[NSMutableArray alloc] init];
         _providers = [[NSMutableArray alloc] init];
         for (Class providerClass in [[[self class] registeredProviders] allValues]) {
@@ -99,7 +99,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 }
 
 - (void)callProvidersWithSelector:(SEL)selector arguments:(NSArray *)arguments context:(NSDictionary *)context  {
-    dispatch_async(_serialQueue, ^{
+    dispatch_specific_async(_serialQueue, ^{
         if (!self.cachedSettings.count) {
             [self queueSelector:selector arguments:arguments context:context];
         } else {
@@ -217,7 +217,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 - (void)updateProvidersWithSettings:(NSDictionary *)settings {
     for (id<AnalyticsProvider> provider in self.providers)
         [provider updateSettings:settings[provider.name]];
-    dispatch_async(_serialQueue, ^{
+    dispatch_specific_async(_serialQueue, ^{
         [self flushMessageQueue];
     });
 }
@@ -232,7 +232,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
         SOLog(@"%@ Sending API settings request: %@", self, urlRequest);
         
         _settingsRequest = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
-            dispatch_async(_serialQueue, ^{
+            dispatch_specific_async(_serialQueue, ^{
                 if (!_settingsRequest.error) {
                     [self setCachedSettings:_settingsRequest.responseJSON];
                 }

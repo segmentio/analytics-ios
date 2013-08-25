@@ -71,8 +71,8 @@ static NSString *GetSessionID(BOOL reset) {
                                                      selector:@selector(flush)
                                                      userInfo:nil
                                                       repeats:YES];
-        _serialQueue = dispatch_queue_create("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
-        dispatch_queue_set_specific(_serialQueue, &_serialQueue, &_serialQueue, NULL);
+        _serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
+
         self.name = @"Segment.io";
         self.valid = NO;
         self.initialized = NO;
@@ -85,17 +85,11 @@ static NSString *GetSessionID(BOOL reset) {
 }
 
 - (void)dispatchBackground:(void(^)(void))block {
-    [self dispatchBackground:block forceSync:NO];
+    dispatch_specific_async(_serialQueue, block);
 }
 
-- (void)dispatchBackground:(void(^)(void))block forceSync:(BOOL)forceSync {
-    if (dispatch_get_specific(&_serialQueue)) {
-        block();
-    } else if (forceSync) {
-        dispatch_sync(_serialQueue, block);
-    } else {
-        dispatch_async(_serialQueue, block);
-    }
+- (void)dispatchBackgroundAndWait:(void(^)(void))block {
+    dispatch_specific_sync(_serialQueue, block);
 }
 
 - (void)updateSettings:(NSDictionary *)settings {
@@ -230,13 +224,13 @@ static NSString *GetSessionID(BOOL reset) {
                                                      selector:@selector(flush)
                                                      userInfo:nil
                                                       repeats:YES];
-    [self dispatchBackground:^{
+    [self dispatchBackgroundAndWait:^{
         self.sessionId = GetSessionID(YES); // changes the UUID
         self.userId = nil;
         self.queue = [NSMutableArray array];
-//        self.request.completion = nil;
-//        self.request = nil;
-    } forceSync:YES];
+        self.request.completion = nil;
+        self.request = nil;
+    }];
 }
 
 - (void)notifyForName:(NSString *)name userInfo:(id)userInfo {
@@ -280,10 +274,10 @@ static NSString *GetSessionID(BOOL reset) {
 
 - (void)applicationWillTerminate {
     [self flush];
-    [self dispatchBackground:^{
+    [self dispatchBackgroundAndWait:^{
         if (self.queue.count)
             [self.queue writeToURL:DISK_QUEUE_URL atomically:YES];
-    } forceSync:YES];
+    }];
 }
 
 #pragma mark - Class Methods
