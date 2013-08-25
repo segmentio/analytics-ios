@@ -9,7 +9,78 @@
 #import "AnalyticsUtils.h"
 #import "AnalyticsProvider.h"
 
+#define ShouldBeOnSpecificQueue(queue) [[@(dispatch_is_on_specific_queue(queue)) should] beYes]
+#define ShouldNotBeOnSpecificQueue(queue) [[@(dispatch_is_on_specific_queue(queue)) should] beNo]
+#define MarkerBlock ^{ blockRan = YES; }
+
 SPEC_BEGIN(AnalyticsUtilsTests)
+
+describe(@"Specific dispatch_queue", ^{
+    __block dispatch_queue_t queue = nil;
+    beforeEach(^{
+        queue = dispatch_queue_create_specific("io.segment.test.queue", DISPATCH_QUEUE_SERIAL);
+    });
+    
+    it(@"Should have specific value set to self and detect if already running on queue", ^{
+        [[@(dispatch_get_specific((__bridge const void *)queue) != NULL) should] beNo];
+        [[@(dispatch_is_on_specific_queue(queue)) should] beNo];
+        dispatch_sync(queue, ^{
+            [[@(dispatch_get_specific((__bridge const void *)queue) != NULL) should] beYes];
+            [[@(dispatch_is_on_specific_queue(queue)) should] beYes];
+        });
+    });
+    
+    it(@"Should never result in deadlock", ^{
+        __block BOOL deadlock = YES;
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            ShouldNotBeOnSpecificQueue(queue);
+            dispatch_specific_or_sync(queue, ^{
+                ShouldBeOnSpecificQueue(queue);
+                dispatch_specific_or_async(queue, ^{
+                    ShouldBeOnSpecificQueue(queue);
+                    dispatch_specific_or_sync(queue, ^{
+                        ShouldBeOnSpecificQueue(queue);
+                        deadlock = NO;
+                    });
+                });
+            });
+        });
+        [[expectFutureValue(@(deadlock)) shouldEventually] beNo];
+    });
+    
+    it(@"Should always run block synchronously if already on queue", ^{
+        dispatch_sync(queue, ^{
+            ShouldBeOnSpecificQueue(queue);
+            // Sanity check assumptions with dispatch_async
+            __block BOOL blockRan = NO;
+            dispatch_async(queue, MarkerBlock);
+            [[@(blockRan) should] beNo];
+            
+            blockRan = NO;
+            dispatch_specific_or_sync(queue, MarkerBlock);
+            [[@(blockRan) should] beYes];
+            
+            blockRan = NO;
+            dispatch_specific_or_async(queue, MarkerBlock);
+            [[@(blockRan) should] beYes];
+        });
+    });
+    
+    it(@"Should dispatch_async if not on queue and async desired", ^{
+        [[@(dispatch_is_on_specific_queue(queue)) should] beNo];
+        __block BOOL blockRan = NO;
+        dispatch_specific_or_async(queue, MarkerBlock);
+        [[@(blockRan) should] beNo];
+        [[@(blockRan) shouldEventually] beYes];
+    });
+    
+    it(@"Should dispatch_sync if not on queue and sync desired", ^{
+        [[@(dispatch_is_on_specific_queue(queue)) should] beNo];
+        __block BOOL blockRan = NO;
+        dispatch_specific_or_sync(queue, MarkerBlock);
+        [[@(blockRan) should] beYes];
+    });
+});
 
 describe(@"Analytics Utils", ^{
     it(@"should correctly map provider alias keys", ^{
