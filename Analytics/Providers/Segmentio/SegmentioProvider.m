@@ -44,7 +44,6 @@ static NSString *GetSessionID(BOOL reset) {
 
 @implementation SegmentioProvider {
     dispatch_queue_t _serialQueue;
-    void *_serialQueueTag;
 }
 
 - (id)initWithAnalytics:(Analytics *)analytics {
@@ -73,7 +72,7 @@ static NSString *GetSessionID(BOOL reset) {
                                                      userInfo:nil
                                                       repeats:YES];
         _serialQueue = dispatch_queue_create("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
-        dispatch_queue_set_specific(_serialQueue, &_serialQueueTag, &_serialQueueTag, NULL);
+        dispatch_queue_set_specific(_serialQueue, &_serialQueue, &_serialQueue, NULL);
         self.name = @"Segment.io";
         self.valid = NO;
         self.initialized = NO;
@@ -90,7 +89,7 @@ static NSString *GetSessionID(BOOL reset) {
 }
 
 - (void)dispatchBackground:(void(^)(void))block forceSync:(BOOL)forceSync {
-    if (dispatch_get_specific(&_serialQueueTag)) {
+    if (dispatch_get_specific(&_serialQueue)) {
         block();
     } else if (forceSync) {
         dispatch_sync(_serialQueue, block);
