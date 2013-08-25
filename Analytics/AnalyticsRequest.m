@@ -12,7 +12,6 @@
 
 @interface AnalyticsRequest () <NSURLConnectionDataDelegate>
 
-@property (nonatomic, strong) AnalyticsRequestCompletionBlock completion;
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSURLRequest *urlRequest;
 @property (nonatomic, strong) NSHTTPURLResponse *response;
@@ -32,10 +31,11 @@
 }
 
 - (void)start {
-    AssertMainThread();
     self.connection = [[NSURLConnection alloc] initWithRequest:self.urlRequest
                                                       delegate:self
-                                              startImmediately:YES];
+                                              startImmediately:NO];
+    [self.connection setDelegateQueue:[[self class] networkQueue]];
+    [self.connection start];
 }
 
 - (void)finish {
@@ -46,18 +46,15 @@
 #pragma mark NSURLConnection Delegate
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    AssertMainThread();
     self.response = (NSHTTPURLResponse *)response;
     self.responseData = [[NSMutableData alloc] init];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    AssertMainThread();
     [self.responseData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    AssertMainThread();
     int statusCode = self.response.statusCode;
     if (statusCode >= 200 && statusCode < 300) {
         NSError *error = nil;
@@ -76,7 +73,6 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    AssertMainThread();
     self.error = error;
     [self finish];
 }
@@ -89,6 +85,15 @@
     request.completion = completion;
     [request start];
     return request;
+}
+
++ (NSOperationQueue *)networkQueue {
+    static dispatch_once_t onceToken;
+    static NSOperationQueue *networkQueue;
+    dispatch_once(&onceToken, ^{
+        networkQueue = [[NSOperationQueue alloc] init];
+    });
+    return networkQueue;
 }
 
 @end

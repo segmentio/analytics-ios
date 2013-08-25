@@ -60,6 +60,7 @@ describe(@"Analytics", ^{
         [[queuedIdentify[@"context"][@"providers"][@"HubSpot"] should] equal:@NO];
 
         [segmentio flush];
+
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
