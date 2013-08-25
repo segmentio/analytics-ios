@@ -14,4 +14,6 @@ pod 'Mixpanel', '~> 2.0.0'
 target :AnalyticsTests, :exclusive => true do
     link_with 'AnalyticsTests'
     pod 'Kiwi'
+#    pod 'CLToolkit/Testing'
+    pod 'CLToolkit/Testing', :path => '~/Code/Collections/CLToolkit'
 end
