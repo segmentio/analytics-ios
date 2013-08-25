@@ -221,7 +221,7 @@ static NSString *GetSessionID(BOOL reset) {
                                                      selector:@selector(flush)
                                                      userInfo:nil
                                                       repeats:YES];
-    dispatch_async(_serialQueue, ^{
+    dispatch_sync(_serialQueue, ^{
         self.sessionId = GetSessionID(YES); // changes the UUID
         self.userId = nil;
         self.queue = [NSMutableArray array];
@@ -240,7 +240,7 @@ static NSString *GetSessionID(BOOL reset) {
 }
 
 - (void)sendData:(NSData *)data {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_sync(dispatch_get_main_queue(), ^{
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:SEGMENTIO_API_URL];
         [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
         [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
