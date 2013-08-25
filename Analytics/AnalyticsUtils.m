@@ -27,21 +27,21 @@ BOOL dispatch_is_on_specific_queue(dispatch_queue_t queue) {
     return dispatch_get_specific(queue) != NULL;
 }
 
-void dispatch_specific(dispatch_queue_t queue, dispatch_block_t block, BOOL forceSync) {
+void dispatch_specific(dispatch_queue_t queue, dispatch_block_t block, BOOL waitForCompletion) {
     if (dispatch_get_specific(queue)) {
         block();
-    } else if (forceSync) {
+    } else if (waitForCompletion) {
         dispatch_sync(queue, block);
     } else {
         dispatch_async(queue, block);
     }
 }
 
-void dispatch_specific_or_async(dispatch_queue_t queue, dispatch_block_t block) {
+void dispatch_specific_async(dispatch_queue_t queue, dispatch_block_t block) {
     dispatch_specific(queue, block, NO);
 }
 
-void dispatch_specific_or_sync(dispatch_queue_t queue, dispatch_block_t block) {
+void dispatch_specific_sync(dispatch_queue_t queue, dispatch_block_t block) {
     dispatch_specific(queue, block, YES);
 }
 

@@ -34,11 +34,11 @@ describe(@"Specific dispatch_queue", ^{
         __block BOOL deadlock = YES;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             ShouldNotBeOnSpecificQueue(queue);
-            dispatch_specific_or_sync(queue, ^{
+            dispatch_specific_sync(queue, ^{
                 ShouldBeOnSpecificQueue(queue);
-                dispatch_specific_or_async(queue, ^{
+                dispatch_specific_async(queue, ^{
                     ShouldBeOnSpecificQueue(queue);
-                    dispatch_specific_or_sync(queue, ^{
+                    dispatch_specific_sync(queue, ^{
                         ShouldBeOnSpecificQueue(queue);
                         deadlock = NO;
                     });
@@ -57,11 +57,11 @@ describe(@"Specific dispatch_queue", ^{
             [[@(blockRan) should] beNo];
             
             blockRan = NO;
-            dispatch_specific_or_sync(queue, MarkerBlock);
+            dispatch_specific_sync(queue, MarkerBlock);
             [[@(blockRan) should] beYes];
             
             blockRan = NO;
-            dispatch_specific_or_async(queue, MarkerBlock);
+            dispatch_specific_async(queue, MarkerBlock);
             [[@(blockRan) should] beYes];
         });
     });
@@ -69,7 +69,7 @@ describe(@"Specific dispatch_queue", ^{
     it(@"Should dispatch_async if not on queue and async desired", ^{
         [[@(dispatch_is_on_specific_queue(queue)) should] beNo];
         __block BOOL blockRan = NO;
-        dispatch_specific_or_async(queue, MarkerBlock);
+        dispatch_specific_async(queue, MarkerBlock);
         [[@(blockRan) should] beNo];
         [[@(blockRan) shouldEventually] beYes];
     });
@@ -77,7 +77,7 @@ describe(@"Specific dispatch_queue", ^{
     it(@"Should dispatch_sync if not on queue and sync desired", ^{
         [[@(dispatch_is_on_specific_queue(queue)) should] beNo];
         __block BOOL blockRan = NO;
-        dispatch_specific_or_sync(queue, MarkerBlock);
+        dispatch_specific_sync(queue, MarkerBlock);
         [[@(blockRan) should] beYes];
     });
 });
