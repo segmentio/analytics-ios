@@ -4,6 +4,10 @@
 #import <Foundation/Foundation.h>
 #import "AnalyticsProvider.h"
 
+extern NSString *const SegmentioDidSendRequestNotification;
+extern NSString *const SegmentioRequestDidSucceedNotification;
+extern NSString *const SegmentioRequestDidFailNotification;
+
 @interface SegmentioProvider : AnalyticsProvider <AnalyticsProvider>
 
 @property(nonatomic, strong) NSString *secret;

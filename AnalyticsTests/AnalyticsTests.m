@@ -7,6 +7,7 @@
 //
 
 #import "SegmentioProvider.h"
+#import "KWNotificationMatcher.h"
 
 @interface SegmentioProvider (Private)
 @property (nonatomic, readonly) NSMutableArray *queue;
@@ -17,6 +18,7 @@ SPEC_BEGIN(AnalyticsTests)
 describe(@"Analytics", ^{
     __block SegmentioProvider *segmentio = nil;
     __block Analytics *analytics = nil;
+    __block NSNotificationCenter *nc = nil;
     beforeAll(^{
         [Analytics initializeWithSecret:@"testsecret"];
         [[Analytics sharedAnalytics] debug:YES];
@@ -25,12 +27,13 @@ describe(@"Analytics", ^{
             if ([provider isKindOfClass:[SegmentioProvider class]])
                 segmentio = provider;
         segmentio.flushAt = 2;
+        nc = [NSNotificationCenter defaultCenter];
     });
     
     it(@"Should have a secret and 10 providers", ^{
         [[analytics.secret should] equal:@"testsecret"];
         [[segmentio.secret should] equal:@"testsecret"];
-                [[@(analytics.providers.count) should] equal:@10];
+        [[[analytics should] have:10] providers];
     });
     
     it(@"Should identify", ^{
@@ -55,19 +58,12 @@ describe(@"Analytics", ^{
         [queuedIdentify[@"context"][@"providers"][@"Olark"] shouldBeNil];
         [[queuedIdentify[@"context"][@"providers"][@"Salesforce"] should] equal:@YES];
         [[queuedIdentify[@"context"][@"providers"][@"HubSpot"] should] equal:@NO];
-        
-        // track an event so that we can see that's working in each analytics interface
-//        NSString *eventName = @"Purchased an iPad 5";
-//        NSDictionary *properties = @{@"Filter": @"Tilt-shift", @"category": @"Mobile", @"revenue": @"70.0", @"value": @"50.0", @"label": @"gooooga"};
-//        [analytics track:eventName properties:properties context:context];
-        
-        // wait for 200 from servers
-        // TODO: Make segment.io provider send notification for success and failure
-//        [self waitForStatus:kGHUnitWaitStatusSuccess timeout:35.0];
+
+        [segmentio flush];
+        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
     it(@"Should track", ^{
-        return;
         NSString *eventName = @"Purchased an iPad 5";
         NSDictionary *properties = @{
             @"Filter": @"Tilt-shift",
@@ -97,11 +93,11 @@ describe(@"Analytics", ^{
         [[queuedTrack[@"context"][@"providers"][@"HubSpot"] should] equal:@NO];
         
         // wait for 200 from servers
-//        [self waitForStatus:kGHUnitWaitStatusSuccess timeout:35.0];
+        [segmentio flush];
+        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
-    it(@"Should reset", ^{
-        return;
+    pending(@"Should reset", ^{
         NSString *eventName = @"Purchased an iPad 5";
         NSDictionary *properties = @{@"Filter": @"Tilt-shift", @"category": @"Mobile", @"revenue": @"70.0", @"value": @"50.0", @"label": @"gooooga"};
         NSDictionary *providers = @{@"Salesforce": @YES, @"HubSpot": @NO};

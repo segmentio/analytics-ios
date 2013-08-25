@@ -11,6 +11,10 @@
 #define SESSION_ID_URL AnalyticsURLForFilename(@"segmentio.sessionID")
 #define DISK_QUEUE_URL AnalyticsURLForFilename(@"segmentio.queue.plist")
 
+NSString *const SegmentioDidSendRequestNotification = @"SegmentioDidSendRequest";
+NSString *const SegmentioRequestDidSucceedNotification = @"SegmentioRequestDidSucceed";
+NSString *const SegmentioRequestDidFailNotification = @"SegmentioRequestDidFail";
+
 static NSString *GetSessionID(BOOL reset) {
     // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
     // identifierForVendor (iOS6 and later, can't be changed on logout),
@@ -224,6 +228,17 @@ static NSString *GetSessionID(BOOL reset) {
     });
 }
 
+- (void)notifyForName:(NSString *)name userInfo:(id)userInfo {
+    if (![NSThread isMainThread]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self notifyForName:name userInfo:userInfo];
+        });
+        return;
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:name object:self];
+    NSLog(@"post note %@", name);
+}
+
 - (void)sendData:(NSData *)data {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:SEGMENTIO_API_URL];
@@ -237,6 +252,7 @@ static NSString *GetSessionID(BOOL reset) {
             dispatch_async(_serialQueue, ^{
                 if (self.request.error) {
                     SOLog(@"%@ API request had an error: %@", self, self.request.error);
+                    [self notifyForName:SegmentioRequestDidFailNotification userInfo:self.batch];
                 } else {
                     SOLog(@"%@ API request success 200", self);
                     // TODO
@@ -244,12 +260,14 @@ static NSString *GetSessionID(BOOL reset) {
                     // with a response code other than 200 we still remove them from the queue.
                     // Is that the desired behavior? Suggestion: (retry if network error or 500 error. But not 400 error)
                     [self.queue removeObjectsInArray:self.batch];
+                    [self notifyForName:SegmentioRequestDidSucceedNotification userInfo:self.batch];
                 }
                 
                 self.batch = nil;
                 self.request = nil;
             });
         }];
+        [self notifyForName:SegmentioDidSendRequestNotification userInfo:self.batch];
     });
 }
 
