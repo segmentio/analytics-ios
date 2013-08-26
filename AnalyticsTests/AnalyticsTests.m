@@ -7,6 +7,7 @@
 //
 
 #import "SegmentioProvider.h"
+#import "AnalyticsUtils.h"
 #import "KWNotificationMatcher.h"
 
 @interface SegmentioProvider (Private)
@@ -16,18 +17,16 @@
 SPEC_BEGIN(AnalyticsTests)
 
 describe(@"Analytics", ^{
+    SetShowDebugLogs(YES);
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     __block SegmentioProvider *segmentio = nil;
     __block Analytics *analytics = nil;
-    __block NSNotificationCenter *nc = nil;
-    beforeAll(^{
-        [Analytics initializeWithSecret:@"testsecret"];
-        [[Analytics sharedAnalytics] debug:YES];
-        analytics = [Analytics sharedAnalytics];
-        for (id<AnalyticsProvider> provider in [[Analytics sharedAnalytics] providers])
+    beforeEach(^{
+        analytics = [[Analytics alloc] initWithSecret:@"testsecret"];
+        for (id<AnalyticsProvider> provider in [analytics providers])
             if ([provider isKindOfClass:[SegmentioProvider class]])
                 segmentio = provider;
         segmentio.flushAt = 2;
-        nc = [NSNotificationCenter defaultCenter];
     });
     
     it(@"Should have a secret and 10 providers", ^{
@@ -65,6 +64,7 @@ describe(@"Analytics", ^{
     });
     
     it(@"Should track", ^{
+        [[segmentio.queue should] beEmpty];
         NSString *eventName = @"Purchased an iPad 5";
         NSDictionary *properties = @{
             @"Filter": @"Tilt-shift",
@@ -98,17 +98,6 @@ describe(@"Analytics", ^{
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
-    pending(@"Should reset", ^{
-        NSString *eventName = @"Purchased an iPad 5";
-        NSDictionary *properties = @{@"Filter": @"Tilt-shift", @"category": @"Mobile", @"revenue": @"70.0", @"value": @"50.0", @"label": @"gooooga"};
-        NSDictionary *providers = @{@"Salesforce": @YES, @"HubSpot": @NO};
-        NSDictionary *context = @{@"providers": providers};
-        
-        [analytics track:eventName properties:properties context:context];
-        [analytics reset];
-        [analytics track:eventName properties:properties context:context];
-        // TODO: Actually impement the tests here!
-    });
 });
 
 SPEC_END
