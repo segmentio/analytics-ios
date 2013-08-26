@@ -25,8 +25,6 @@
 		B8A1B15E08994855871D1685 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B38155D048462482A91850 /* libPods.a */; };
 		EA25892317C6979D000CEF61 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200B7B17659B2F003F3138 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3B4CC717C8900A00233EA9 /* SegmentioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */; };
-		EA3D9AB117C0A6AA001DD476 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
-		EA3D9ACE17C0A833001DD476 /* libAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7317659B2F003F3138 /* libAnalytics.a */; };
 		EA65F96617C2ABA600389A1A /* AnalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* AnalyticsProvider.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA65F96717C2ABA600389A1A /* AnalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* AnalyticsProvider.m */; };
 		EA722AF417C87BB00016E8B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
@@ -35,16 +33,6 @@
 		EA722B0317C883C00016E8B0 /* libAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7317659B2F003F3138 /* libAnalytics.a */; };
 		EAA604C917C28C7C00911919 /* AnalyticsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA604C717C28C7C00911919 /* AnalyticsRequest.h */; };
 		EAA604CA17C28C7C00911919 /* AnalyticsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA604C817C28C7C00911919 /* AnalyticsRequest.m */; };
-		EABE4F2317C887A500A1081B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2217C887A500A1081B /* CoreData.framework */; };
-		EABE4F2517C887B100A1081B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2417C887B100A1081B /* SystemConfiguration.framework */; };
-		EABE4F2717C887BD00A1081B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2617C887BD00A1081B /* QuartzCore.framework */; };
-		EABE4F2917C887C400A1081B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2817C887C400A1081B /* CFNetwork.framework */; };
-		EABE4F2B17C887C800A1081B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2A17C887C800A1081B /* AdSupport.framework */; };
-		EABE4F2D17C887D000A1081B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2C17C887D000A1081B /* CoreTelephony.framework */; };
-		EABE4F2F17C887D900A1081B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2E17C887D900A1081B /* Security.framework */; };
-		EABE4F3117C887E000A1081B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3017C887E000A1081B /* CoreGraphics.framework */; };
-		EABE4F3317C887E400A1081B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3217C887E400A1081B /* libsqlite3.dylib */; };
-		EABE4F3517C887E800A1081B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3417C887E800A1081B /* libz.dylib */; };
 		EABE4F3617C8883A00A1081B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3017C887E000A1081B /* CoreGraphics.framework */; };
 		EABE4F3717C8883A00A1081B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2E17C887D900A1081B /* Security.framework */; };
 		EABE4F3817C8883A00A1081B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2C17C887D000A1081B /* CoreTelephony.framework */; };
@@ -59,14 +47,6 @@
 		EACAAD6817C75FE5000A8337 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */; };
 		EACAAD6A17C7600D000A8337 /* libFlurry_4.2.3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6917C7600D000A8337 /* libFlurry_4.2.3.a */; };
 		EACAAD6C17C7601C000A8337 /* libChartbeat-iOS-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6B17C7601C000A8337 /* libChartbeat-iOS-SDK.a */; };
-		EACAAD7117C76B6D000A8337 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAAD6E17C76B6D000A8337 /* AppDelegate.m */; };
-		EACAAD7217C76B6D000A8337 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAAD7017C76B6D000A8337 /* ViewController.m */; };
-		EACAAD7517C76B77000A8337 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD7317C76B77000A8337 /* MainStoryboard.storyboard */; };
-		EACAAD7F17C76BAB000A8337 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD7C17C76BAB000A8337 /* Default-568h@2x.png */; };
-		EACAAD8017C76BAB000A8337 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD7D17C76BAB000A8337 /* Default.png */; };
-		EACAAD8117C76BAB000A8337 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD7E17C76BAB000A8337 /* Default@2x.png */; };
-		EACAAD8417C76BBC000A8337 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EACAAD8217C76BBC000A8337 /* InfoPlist.strings */; };
-		EACAAD8617C76BE0000A8337 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EACAAD8517C76BE0000A8337 /* main.m */; };
 		EACB4DD217C0BB3100624129 /* AmplitudeProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DAF17C0BB3100624129 /* AmplitudeProvider.h */; };
 		EACB4DD317C0BB3100624129 /* AmplitudeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DB017C0BB3100624129 /* AmplitudeProvider.m */; };
 		EACB4DD617C0BB3100624129 /* BugsnagProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DB417C0BB3100624129 /* BugsnagProvider.h */; };
@@ -90,20 +70,12 @@
 		EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DD017C0BB3100624129 /* AnalyticsUtils.h */; };
 		EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DD117C0BB3100624129 /* AnalyticsUtils.m */; };
 		EAD415C717C9B72D00EB0490 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA722AF217C87BB00016E8B0 /* SenTestingKit.framework */; };
-		EAE10AFF17C8868300C66882 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
 		F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		F7200B7E17659B2F003F3138 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = F7200B7D17659B2F003F3138 /* Analytics.m */; };
 		F78D29FA1765B382000B937E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EA3D9ACF17C0A836001DD476 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F7200B6B17659B2F003F3138 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F7200B7217659B2F003F3138;
-			remoteInfo = Analytics;
-		};
 		EAE10AFC17C8855400C66882 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F7200B6B17659B2F003F3138 /* Project object */;
@@ -119,9 +91,6 @@
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioTests.m; sourceTree = "<group>"; };
-		EA3D9AAF17C0A6AA001DD476 /* TestAppIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestAppIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA3D9AB517C0A6AA001DD476 /* TestAppIOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestAppIOS-Info.plist"; sourceTree = "<group>"; };
-		EA3D9ABB17C0A6AA001DD476 /* TestAppIOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestAppIOS-Prefix.pch"; sourceTree = "<group>"; };
 		EA65F96417C2ABA600389A1A /* AnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsProvider.h; sourceTree = "<group>"; };
 		EA65F96517C2ABA600389A1A /* AnalyticsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsProvider.m; sourceTree = "<group>"; };
 		EA722AF117C87BB00016E8B0 /* AnalyticsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,16 +114,6 @@
 		EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = "Pods/GoogleAnalytics-iOS-SDK/libGoogleAnalyticsServices.a"; sourceTree = "<group>"; };
 		EACAAD6917C7600D000A8337 /* libFlurry_4.2.3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.3.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.2.3.a; sourceTree = "<group>"; };
 		EACAAD6B17C7601C000A8337 /* libChartbeat-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libChartbeat-iOS-SDK.a"; path = "Pods/Chartbeat/libChartbeat-iOS-SDK.a"; sourceTree = "<group>"; };
-		EACAAD6D17C76B6D000A8337 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Examples/Common/AppDelegate.h; sourceTree = SOURCE_ROOT; };
-		EACAAD6E17C76B6D000A8337 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Examples/Common/AppDelegate.m; sourceTree = SOURCE_ROOT; };
-		EACAAD6F17C76B6D000A8337 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = Examples/Common/ViewController.h; sourceTree = SOURCE_ROOT; };
-		EACAAD7017C76B6D000A8337 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = Examples/Common/ViewController.m; sourceTree = SOURCE_ROOT; };
-		EACAAD7417C76B77000A8337 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = Examples/Common/en.lproj/MainStoryboard.storyboard; sourceTree = SOURCE_ROOT; };
-		EACAAD7C17C76BAB000A8337 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Examples/Common/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
-		EACAAD7D17C76BAB000A8337 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Examples/Common/Default.png; sourceTree = SOURCE_ROOT; };
-		EACAAD7E17C76BAB000A8337 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Examples/Common/Default@2x.png"; sourceTree = SOURCE_ROOT; };
-		EACAAD8317C76BBC000A8337 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Examples/Common/en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
-		EACAAD8517C76BE0000A8337 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Examples/Common/main.m; sourceTree = SOURCE_ROOT; };
 		EACB4DAF17C0BB3100624129 /* AmplitudeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmplitudeProvider.h; sourceTree = "<group>"; };
 		EACB4DB017C0BB3100624129 /* AmplitudeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmplitudeProvider.m; sourceTree = "<group>"; };
 		EACB4DB417C0BB3100624129 /* BugsnagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsnagProvider.h; sourceTree = "<group>"; };
@@ -186,26 +145,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EA3D9AAC17C0A6AA001DD476 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EABE4F3517C887E800A1081B /* libz.dylib in Frameworks */,
-				EABE4F3317C887E400A1081B /* libsqlite3.dylib in Frameworks */,
-				EABE4F3117C887E000A1081B /* CoreGraphics.framework in Frameworks */,
-				EABE4F2F17C887D900A1081B /* Security.framework in Frameworks */,
-				EABE4F2D17C887D000A1081B /* CoreTelephony.framework in Frameworks */,
-				EABE4F2B17C887C800A1081B /* AdSupport.framework in Frameworks */,
-				EABE4F2917C887C400A1081B /* CFNetwork.framework in Frameworks */,
-				EABE4F2717C887BD00A1081B /* QuartzCore.framework in Frameworks */,
-				EABE4F2517C887B100A1081B /* SystemConfiguration.framework in Frameworks */,
-				EABE4F2317C887A500A1081B /* CoreData.framework in Frameworks */,
-				EAE10AFF17C8868300C66882 /* UIKit.framework in Frameworks */,
-				EA3D9AB117C0A6AA001DD476 /* Foundation.framework in Frameworks */,
-				EA3D9ACE17C0A833001DD476 /* libAnalytics.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EA722AED17C87BB00016E8B0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -244,33 +183,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EA3D9AB317C0A6AA001DD476 /* TestAppIOS */ = {
-			isa = PBXGroup;
-			children = (
-				EACAAD6D17C76B6D000A8337 /* AppDelegate.h */,
-				EACAAD6E17C76B6D000A8337 /* AppDelegate.m */,
-				EACAAD6F17C76B6D000A8337 /* ViewController.h */,
-				EACAAD7017C76B6D000A8337 /* ViewController.m */,
-				EACAAD7317C76B77000A8337 /* MainStoryboard.storyboard */,
-				EA3D9AB417C0A6AA001DD476 /* Supporting Files */,
-			);
-			path = TestAppIOS;
-			sourceTree = "<group>";
-		};
-		EA3D9AB417C0A6AA001DD476 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				EA3D9AB517C0A6AA001DD476 /* TestAppIOS-Info.plist */,
-				EA3D9ABB17C0A6AA001DD476 /* TestAppIOS-Prefix.pch */,
-				EACAAD8517C76BE0000A8337 /* main.m */,
-				EACAAD8217C76BBC000A8337 /* InfoPlist.strings */,
-				EACAAD7C17C76BAB000A8337 /* Default-568h@2x.png */,
-				EACAAD7D17C76BAB000A8337 /* Default.png */,
-				EACAAD7E17C76BAB000A8337 /* Default@2x.png */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		EA722AF617C87BB00016E8B0 /* AnalyticsTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,7 +314,6 @@
 			isa = PBXGroup;
 			children = (
 				F7200B7817659B2F003F3138 /* Analytics */,
-				EA3D9AB317C0A6AA001DD476 /* TestAppIOS */,
 				EA722AF617C87BB00016E8B0 /* AnalyticsTests */,
 				F7200B7517659B2F003F3138 /* Frameworks */,
 				F7200B7417659B2F003F3138 /* Products */,
@@ -415,7 +326,6 @@
 			isa = PBXGroup;
 			children = (
 				F7200B7317659B2F003F3138 /* libAnalytics.a */,
-				EA3D9AAF17C0A6AA001DD476 /* TestAppIOS.app */,
 				EA722AF117C87BB00016E8B0 /* AnalyticsTests.octest */,
 			);
 			name = Products;
@@ -498,24 +408,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EA3D9AAE17C0A6AA001DD476 /* TestAppIOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EA3D9ACB17C0A6AA001DD476 /* Build configuration list for PBXNativeTarget "TestAppIOS" */;
-			buildPhases = (
-				EA3D9AAB17C0A6AA001DD476 /* Sources */,
-				EA3D9AAC17C0A6AA001DD476 /* Frameworks */,
-				EA3D9AAD17C0A6AA001DD476 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EA3D9AD017C0A836001DD476 /* PBXTargetDependency */,
-			);
-			name = TestAppIOS;
-			productName = TestAppIOS;
-			productReference = EA3D9AAF17C0A6AA001DD476 /* TestAppIOS.app */;
-			productType = "com.apple.product-type.application";
-		};
 		EA722AF017C87BB00016E8B0 /* AnalyticsTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA722B0017C87BB00016E8B0 /* Build configuration list for PBXNativeTarget "AnalyticsTests" */;
@@ -580,24 +472,11 @@
 				F7200B7217659B2F003F3138 /* Analytics */,
 				EA722AF017C87BB00016E8B0 /* AnalyticsTests */,
 				EA25891E17C693C2000CEF61 /* Analytics.framework */,
-				EA3D9AAE17C0A6AA001DD476 /* TestAppIOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		EA3D9AAD17C0A6AA001DD476 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EACAAD7517C76B77000A8337 /* MainStoryboard.storyboard in Resources */,
-				EACAAD7F17C76BAB000A8337 /* Default-568h@2x.png in Resources */,
-				EACAAD8017C76BAB000A8337 /* Default.png in Resources */,
-				EACAAD8117C76BAB000A8337 /* Default@2x.png in Resources */,
-				EACAAD8417C76BBC000A8337 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EA722AEE17C87BB00016E8B0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -697,16 +576,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		EA3D9AAB17C0A6AA001DD476 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EACAAD7117C76B6D000A8337 /* AppDelegate.m in Sources */,
-				EACAAD7217C76B6D000A8337 /* ViewController.m in Sources */,
-				EACAAD8617C76BE0000A8337 /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EA722AEC17C87BB00016E8B0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -741,36 +610,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		EA3D9AD017C0A836001DD476 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F7200B7217659B2F003F3138 /* Analytics */;
-			targetProxy = EA3D9ACF17C0A836001DD476 /* PBXContainerItemProxy */;
-		};
 		EAE10AFD17C8855400C66882 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F7200B7217659B2F003F3138 /* Analytics */;
 			targetProxy = EAE10AFC17C8855400C66882 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		EACAAD7317C76B77000A8337 /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EACAAD7417C76B77000A8337 /* en */,
-			);
-			name = MainStoryboard.storyboard;
-			sourceTree = "<group>";
-		};
-		EACAAD8217C76BBC000A8337 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EACAAD8317C76BBC000A8337 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		EA25891F17C693C2000CEF61 /* Debug */ = {
@@ -784,35 +629,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		EA3D9ACC17C0A6AA001DD476 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TestAppIOS/TestAppIOS-Prefix.pch";
-				INFOPLIST_FILE = "TestAppIOS/TestAppIOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		EA3D9ACD17C0A6AA001DD476 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TestAppIOS/TestAppIOS-Prefix.pch";
-				INFOPLIST_FILE = "TestAppIOS/TestAppIOS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
 		};
@@ -947,15 +763,6 @@
 			buildConfigurations = (
 				EA25891F17C693C2000CEF61 /* Debug */,
 				EA25892017C693C2000CEF61 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EA3D9ACB17C0A6AA001DD476 /* Build configuration list for PBXNativeTarget "TestAppIOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EA3D9ACC17C0A6AA001DD476 /* Debug */,
-				EA3D9ACD17C0A6AA001DD476 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
