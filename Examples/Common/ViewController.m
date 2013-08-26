@@ -32,11 +32,8 @@
 }
 
 - (IBAction)flush:(id)sender {
-    for (id provider in [[Analytics sharedAnalytics] providers]) {
-        if ([provider isKindOfClass:[SegmentioProvider class]]) {
-            [provider flush];
-        }
-    }
+    SegmentioProvider *segmentio = [[Analytics sharedAnalytics] providers][@"Segment.io"];
+    [segmentio flush];
 }
 
 @end

@@ -4,3 +4,4 @@
 /Examples/CocoaPodsExample/Pods/
 /Examples/CocoaPodsExample/Podfile.lock
 /Examples/DirectIncludeExample/Analytics.framework
+*.xccheckout
