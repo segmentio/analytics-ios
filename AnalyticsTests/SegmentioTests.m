@@ -247,7 +247,7 @@ describe(@"Segment.io", ^{
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
-    pending(@"Should reset", ^{
+    it(@"Should reset", ^{
         NSString *eventName = @"Purchased an iPad 5";
         NSDictionary *properties = @{@"Filter": @"Tilt-shift", @"category": @"Mobile", @"revenue": @"70.0", @"value": @"50.0", @"label": @"gooooga"};
         NSDictionary *context = @{@"providers": @{@"Salesforce": @YES, @"HubSpot": @NO}};

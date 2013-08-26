@@ -71,7 +71,7 @@ describe(@"Specific dispatch_queue", ^{
         __block BOOL blockRan = NO;
         dispatch_specific_async(queue, MarkerBlock);
         [[@(blockRan) should] beNo];
-        [[@(blockRan) shouldEventually] beYes];
+        [[expectFutureValue(@(blockRan)) shouldEventually] beYes];
     });
     
     it(@"Should dispatch_sync if not on queue and sync desired", ^{
