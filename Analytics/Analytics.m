@@ -12,7 +12,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 @interface Analytics ()
 
-@property (nonatomic, strong) NSArray *providers;
+@property (nonatomic, strong) NSDictionary *providers;
 @property (nonatomic, strong) NSDictionary *cachedSettings;
 
 @end
@@ -32,10 +32,11 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
         _secret = secret;
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         _messageQueue = [[NSMutableArray alloc] init];
-        _providers = [[NSMutableArray alloc] init];
-        for (Class providerClass in [[[self class] registeredProviders] allValues]) {
-            [(NSMutableArray *)_providers addObject:[[providerClass alloc] initWithAnalytics:self]];
-        }
+        _providers = [[NSMutableDictionary alloc] init];
+        [[[self class] registeredProviders] enumerateKeysAndObjectsUsingBlock:
+                ^(NSString *identifier, Class providerClass, BOOL *stop) {
+             ((NSMutableDictionary *)_providers)[identifier] = [[providerClass alloc] initWithAnalytics:self];
+        }];
         // Update settings on each provider immediately
         [self updateProvidersWithSettings:[self cachedSettings]];
         _settingsTimer = [NSTimer scheduledTimerWithTimeInterval:AnalyticsSettingsUpdateInterval
@@ -78,7 +79,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
         id argument = arguments[i];
         [invocation setArgument:&argument atIndex:i+2];
     }
-    for (id<AnalyticsProvider> provider in self.providers) {
+    for (id<AnalyticsProvider> provider in self.providers.allValues) {
         if (provider.ready && [provider respondsToSelector:selector]
             && [self isProvider:provider enabledInContext:context]) {
             [invocation invokeWithTarget:provider];
@@ -215,7 +216,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 }
 
 - (void)updateProvidersWithSettings:(NSDictionary *)settings {
-    for (id<AnalyticsProvider> provider in self.providers)
+    for (id<AnalyticsProvider> provider in self.providers.allValues)
         [provider updateSettings:settings[provider.name]];
     dispatch_specific_async(_serialQueue, ^{
         [self flushMessageQueue];

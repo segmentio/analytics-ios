@@ -23,16 +23,15 @@ describe(@"Analytics", ^{
     __block Analytics *analytics = nil;
     beforeEach(^{
         analytics = [[Analytics alloc] initWithSecret:@"testsecret"];
-        for (id<AnalyticsProvider> provider in [analytics providers])
-            if ([provider isKindOfClass:[SegmentioProvider class]])
-                segmentio = provider;
+        segmentio = analytics.providers[@"Segment.io"];
         segmentio.flushAt = 2;
     });
     
-    it(@"Should have a secret and 10 providers", ^{
+    it(@"has a secret and 10 providers, including Segment.io", ^{
         [[analytics.secret should] equal:@"testsecret"];
         [[segmentio.secret should] equal:@"testsecret"];
         [[[analytics should] have:10] providers];
+        [segmentio shouldNotBeNil];
     });
     
     it(@"Should identify", ^{
