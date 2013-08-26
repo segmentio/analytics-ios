@@ -149,7 +149,7 @@ static NSString *GetSessionID(BOOL reset) {
 - (NSDictionary *)serverContextForContext:(NSDictionary *)context {
     NSMutableDictionary *serverContext = [context ?: @{} mutableCopy];
     NSMutableDictionary *providersDict = [context[@"providers"] ?: @{} mutableCopy];
-    for (AnalyticsProvider *provider in self.analytics.providers)
+    for (AnalyticsProvider *provider in self.analytics.providers.allValues)
         if (![provider isKindOfClass:[SegmentioProvider class]])
             providersDict[provider.name] = @NO;
     serverContext[@"providers"] = providersDict;
