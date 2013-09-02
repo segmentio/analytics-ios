@@ -1,6 +1,7 @@
 // SegmentioProvider.m
 // Copyright 2013 Segment.io
 
+#import <UIKit/UIKit.h>
 #import "Analytics.h"
 #import "AnalyticsUtils.h"
 #import "AnalyticsRequest.h"
@@ -38,6 +39,7 @@ static NSString *GetSessionID(BOOL reset) {
 @property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, strong) NSArray *batch;
 @property (nonatomic, strong) AnalyticsRequest *request;
+@property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
 
 @end
 
@@ -72,7 +74,8 @@ static NSString *GetSessionID(BOOL reset) {
                                                      userInfo:nil
                                                       repeats:YES];
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
-
+        _flushTaskID = UIBackgroundTaskInvalid;
+        
         self.name = @"Segment.io";
         self.valid = NO;
         self.initialized = NO;
@@ -90,6 +93,22 @@ static NSString *GetSessionID(BOOL reset) {
 
 - (void)dispatchBackgroundAndWait:(void(^)(void))block {
     dispatch_specific_sync(_serialQueue, block);
+}
+
+- (void)beginBackgroundTask {
+    NSParameterAssert(self.flushTaskID == UIBackgroundTaskInvalid);
+    self.flushTaskID = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [self endBackgroundTask];
+    }];
+}
+
+- (void)endBackgroundTask {
+    [self dispatchBackgroundAndWait:^{
+        if (self.flushTaskID != UIBackgroundTaskInvalid) {
+            [[UIApplication sharedApplication] endBackgroundTask:self.flushTaskID];
+            self.flushTaskID = UIBackgroundTaskInvalid;
+        }
+    }];
 }
 
 - (void)updateSettings:(NSDictionary *)settings {
@@ -263,17 +282,18 @@ static NSString *GetSessionID(BOOL reset) {
             
             self.batch = nil;
             self.request = nil;
+            [self endBackgroundTask];
         }];
     }];
     [self notifyForName:SegmentioDidSendRequestNotification userInfo:self.batch];
 }
 
 - (void)applicationDidEnterBackground {
+    [self beginBackgroundTask];
     [self flush];
 }
 
 - (void)applicationWillTerminate {
-    [self flush];
     [self dispatchBackgroundAndWait:^{
         if (self.queue.count)
             [self.queue writeToURL:DISK_QUEUE_URL atomically:YES];
