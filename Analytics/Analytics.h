@@ -1,6 +1,6 @@
 // Analytics.h
 // Copyright 2013 Segment.io
-// Version 0.6.1 (Check + version method to be sure)
+// Version 0.6.1 (Do not change this line. It is automatically modified by the build process)
 
 #import <Foundation/Foundation.h>
 
