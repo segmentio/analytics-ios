@@ -1,9 +1,8 @@
 // Analytics.h
 // Copyright 2013 Segment.io
+// Version 0.6.1 (Check + version method to be sure)
 
 #import <Foundation/Foundation.h>
-
-#define ANALYTICS_VERSION @"0.6.1"
 
 @interface Analytics : NSObject
 
@@ -233,9 +232,11 @@
  Used internally to create an Analytics instance.
 */
 - (id)initWithSecret:(NSString *)secret;
++ (NSString *)version;
 
 // Must be called before initializing Analytics in order to successfully register provider
 + (NSDictionary *)registeredProviders;
 + (void)registerProvider:(Class)providerClass withIdentifier:(NSString *)identifer;
+
 
 @end
