@@ -3,7 +3,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define ANALYTICS_VERSION @"0.5.3"
+#define ANALYTICS_VERSION @"0.6.1"
 
 @interface Analytics : NSObject
 
