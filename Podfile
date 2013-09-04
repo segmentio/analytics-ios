@@ -2,7 +2,7 @@
 link_with 'Analytics'
 
 pod 'Amplitude-iOS', '~> 1.0.1'
-pod 'Bugsnag', '~> 2.2.3'
+pod 'Bugsnag', '2.2.3.fork'
 pod 'Chartbeat', '~> 0.0.1'
 pod 'Countly', '~> 1.0.0'
 pod 'FlurrySDK', '~> 4.2.3'

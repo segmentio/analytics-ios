@@ -17,6 +17,7 @@ and in order to contribute to the SDK, you will need cocoapods, as well as an ad
 This can be accomplished as follow
 
 `[sudo] gem install cocoapods`
+`pod repo add Collections-Podspecs git@github.com:segmentio/Podspecs.git`
 `pod repo add Collections-Podspecs git@github.com:collections/Podspecs.git`
 `pod install`
 

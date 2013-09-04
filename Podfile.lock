@@ -2,8 +2,7 @@ PODS:
   - Amplitude-iOS (1.0.1)
   - BlocksKit (1.8.2):
     - libffi
-  - Bugsnag (2.2.3):
-    - Reachability (~> 3.1)
+  - Bugsnag (2.2.3.fork)
   - Chartbeat (0.0.1)
   - CLToolkit/Core (0.0.5):
     - BlocksKit
@@ -37,7 +36,6 @@ PODS:
   - Localytics-iOS-Client (2.17.0)
   - Mixpanel (2.0.0)
   - NSLogger (1.1)
-  - Reachability (3.1.1)
   - ReactiveCocoa (1.9.7):
     - ReactiveCocoa/Core
     - ReactiveCocoa/RACExtensions
@@ -51,7 +49,7 @@ PODS:
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 1.0.1)
-  - Bugsnag (~> 2.2.3)
+  - Bugsnag (= 2.2.3.fork)
   - Chartbeat (~> 0.0.1)
   - CLToolkit/Testing (from `~/Code/Collections/CLToolkit`)
   - Countly (~> 1.0.0)
@@ -69,7 +67,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Amplitude-iOS: 165d4a619a5a40ea74de412d7a33a2e4f3fdd0f9
   BlocksKit: 7396526b0816734103f6133fbb1a520c8b04e80c
-  Bugsnag: 91acf0c2f0f5c0a7b729869385597a29488d27ee
+  Bugsnag: 26ef4c366f9f756e84fb268b04e082df2647993f
   Chartbeat: 0f2772641ee26e87af8fc93d8f14c5479e44a7ec
   CLToolkit: bce707420abb7577b852d6a34096951ea3077d9e
   ConciseKit: 1e086a66d098ba160ca5faa86458a0431b280b30
@@ -85,7 +83,6 @@ SPEC CHECKSUMS:
   Localytics-iOS-Client: 6f67f3d23eb5ca7958af5155a2c570b641d53417
   Mixpanel: e4af97adb60a10541b7869929a83d734025058a6
   NSLogger: 4567fef08d0db18a89cce91b2053823fc0950738
-  Reachability: 2be6bc2fd2bd31d97f5db33e75e4b29c79e95883
   ReactiveCocoa: b680ab9b8c64a3c9956492f0702006ea541164fc
 
 COCOAPODS: 0.23.0
