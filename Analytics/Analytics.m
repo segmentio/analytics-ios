@@ -7,9 +7,6 @@
 #import "AnalyticsRequest.h"
 #import "Analytics.h"
 
-#define NSStringize_helper(x) #x
-#define NSStringize(x) @NSStringize_helper(x)
-
 #define SETTING_CACHE_URL AnalyticsURLForFilename(@"analytics.settings.plist")
 static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 

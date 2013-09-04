@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#define NSStringize_helper(x) #x
+#define NSStringize(x) @NSStringize_helper(x)
+
 NSURL *AnalyticsURLForFilename(NSString *filename);
 
 // Async Utils

@@ -173,6 +173,7 @@ static NSString *GetSessionID(BOOL reset) {
             providersDict[provider.name] = @NO;
     serverContext[@"providers"] = providersDict;
     serverContext[@"library"] = @"analytics-ios";
+    serverContext[@"library-version"] = NSStringize(ANALYTICS_VERSION);
     return serverContext;
     
 }
