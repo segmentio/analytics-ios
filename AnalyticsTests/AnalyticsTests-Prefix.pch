@@ -1,0 +1,12 @@
+//
+// Prefix header for all source files of the 'AnalyticsTests' target in the 'AnalyticsTests' project
+//
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+#import <Kiwi/Kiwi.h>
+#import <CLToolkit/Testing.h>
+#import "Analytics.h"
