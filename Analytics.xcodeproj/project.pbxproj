@@ -434,7 +434,7 @@
 			buildConfigurationList = F7200B8117659B2F003F3138 /* Build configuration list for PBXNativeTarget "Analytics" */;
 			buildPhases = (
 				380BF1B2A860431EA9D5604F /* Check Pods Manifest.lock */,
-				EA8758AB17D7B77200833FB1 /* Update Version Number in Analytics.h Header */,
+				EA8758AB17D7B77200833FB1 /* Sync Version Number References with ANALYTICS_VERSION */,
 				F7200B6F17659B2F003F3138 /* Sources */,
 				F7200B7017659B2F003F3138 /* Frameworks */,
 				F7200B8517659B83003F3138 /* Headers */,
@@ -575,19 +575,19 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-		EA8758AB17D7B77200833FB1 /* Update Version Number in Analytics.h Header */ = {
+		EA8758AB17D7B77200833FB1 /* Sync Version Number References with ANALYTICS_VERSION */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Update Version Number in Analytics.h Header";
+			name = "Sync Version Number References with ANALYTICS_VERSION";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "_r1=\"/nfs/apache/logs/rawlogs/access.log\"\n\n## Escape path for sed using bash find and replace\noldVersion=\"\\/\\/ Version .*\"\nnewVersion=\"\\/\\/ Version ${ANALYTICS_VERSION} (Do not change this line. It is automatically modified by the build process)\"\nsed -i '' -e \"s/${oldVersion}/${newVersion}/g\" Analytics/Analytics.h";
+			shellScript = "# Update the version in Analytics.h header\noldVersion=\"\\/\\/ Version .*\"\nnewVersion=\"\\/\\/ Version ${ANALYTICS_VERSION} (Do not change this line. It is automatically modified by the build process)\"\nsed -i '' -e \"s/${oldVersion}/${newVersion}/g\" Analytics/Analytics.h\n\n# Update the version in Analytics.podspec\noldVersion=\"s.version         = .*\"\nnewVersion=\"s.version         = \\\"${ANALYTICS_VERSION}\\\"\"\nsed -i '' -e \"s/${oldVersion}/${newVersion}/g\" Analytics.podspec\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
