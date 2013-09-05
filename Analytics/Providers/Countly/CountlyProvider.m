@@ -55,8 +55,13 @@
     // Countly doesn't accept nested properties, so remove them (with warning).
     NSDictionary *notNestedProperties = [self ensureNotNested:properties];
     
-    // Record the event!
-    [[Countly sharedInstance] recordEvent:event segmentation:notNestedProperties count:1];
+    // Record the event! Track any revenue.
+    NSNumber *revenue = [AnalyticsProvider extractRevenue:properties];
+    if (revenue) {
+        [[Countly sharedInstance] recordEvent:event segmentation:notNestedProperties count:1 sum:revenue.longValue];
+    } else {
+        [[Countly sharedInstance] recordEvent:event segmentation:notNestedProperties count:1];
+    }
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context

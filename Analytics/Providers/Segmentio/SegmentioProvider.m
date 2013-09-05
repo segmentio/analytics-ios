@@ -9,8 +9,9 @@
 
 #define SEGMENTIO_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
 #define SEGMENTIO_MAX_BATCH_SIZE 100
-#define SESSION_ID_URL AnalyticsURLForFilename(@"segmentio.sessionID")
+#define DISK_SESSION_ID_URL AnalyticsURLForFilename(@"segmentio.sessionID")
 #define DISK_QUEUE_URL AnalyticsURLForFilename(@"segmentio.queue.plist")
+#define DISK_TRAITS_URL AnalyticsURLForFilename(@"segmentio.traits.plist")
 
 NSString *const SegmentioDidSendRequestNotification = @"SegmentioDidSendRequest";
 NSString *const SegmentioRequestDidSucceedNotification = @"SegmentioRequestDidSucceed";
@@ -20,7 +21,7 @@ static NSString *GetSessionID(BOOL reset) {
     // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
     // identifierForVendor (iOS6 and later, can't be changed on logout),
     // or MAC address (blocked in iOS 7). For more info see https://segment.io/libraries/ios#ids
-    NSURL *url = SESSION_ID_URL;
+    NSURL *url = DISK_SESSION_ID_URL;
     NSString *sessionID = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
     if (!sessionID || reset) {
         CFUUIDRef theUUID = CFUUIDCreate(NULL);
@@ -46,6 +47,7 @@ static NSString *GetSessionID(BOOL reset) {
 
 @implementation SegmentioProvider {
     dispatch_queue_t _serialQueue;
+    NSMutableDictionary *_traits;
 }
 
 - (id)initWithAnalytics:(Analytics *)analytics {
@@ -68,6 +70,9 @@ static NSString *GetSessionID(BOOL reset) {
         _queue = [NSMutableArray arrayWithContentsOfURL:DISK_QUEUE_URL];
         if (!_queue)
             _queue = [[NSMutableArray alloc] init];
+        _traits = [NSMutableDictionary dictionaryWithContentsOfURL:DISK_TRAITS_URL];
+        if (!_traits)
+            _traits = [[NSMutableDictionary alloc] init];
         _flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.flushAfter
                                                        target:self
                                                      selector:@selector(flush)
@@ -128,6 +133,12 @@ static NSString *GetSessionID(BOOL reset) {
     return [NSString stringWithFormat:@"<SegmentioProvider secret:%@>", self.secret];
 }
 
+- (void)addTraits:(NSDictionary *)traits {
+    [self dispatchBackground:^{
+        [_traits addEntriesFromDictionary:traits];
+        [_traits writeToURL:DISK_TRAITS_URL atomically:YES];
+    }];
+}
 
 #pragma mark - Analytics API
 
@@ -174,6 +185,7 @@ static NSString *GetSessionID(BOOL reset) {
     serverContext[@"providers"] = providersDict;
     serverContext[@"library"] = @"analytics-ios";
     serverContext[@"library-version"] = NSStringize(ANALYTICS_VERSION);
+    serverContext[@"traits"] = _traits;
     return serverContext;
     
 }
@@ -184,13 +196,13 @@ static NSString *GetSessionID(BOOL reset) {
     NSMutableDictionary *payload = [NSMutableDictionary dictionaryWithDictionary:dictionary];
     payload[@"action"] = action;
     payload[@"timestamp"] = [[NSDate date] description];
-    payload[@"context"] = [self serverContextForContext:context];
 
     [self dispatchBackground:^{
         // attach userId and sessionId inside the dispatch_async in case
         // they've changed (see identify function)
         [payload setValue:self.userId forKey:@"userId"];
         [payload setValue:self.sessionId forKey:@"sessionId"];
+        [payload setValue:[self serverContextForContext:context] forKey:@"context"];
         
         SOLog(@"%@ Enqueueing action: %@", self, payload);
         
@@ -245,7 +257,9 @@ static NSString *GetSessionID(BOOL reset) {
                                                      userInfo:nil
                                                       repeats:YES];
     [self dispatchBackgroundAndWait:^{
-        self.sessionId = GetSessionID(YES); // changes the UUID
+        [[NSFileManager defaultManager] removeItemAtURL:DISK_SESSION_ID_URL error:NULL];
+        [[NSFileManager defaultManager] removeItemAtURL:DISK_TRAITS_URL error:NULL];
+        [[NSFileManager defaultManager] removeItemAtURL:DISK_QUEUE_URL error:NULL];
         self.userId = nil;
         self.queue = [NSMutableArray array];
         self.request.completion = nil;
