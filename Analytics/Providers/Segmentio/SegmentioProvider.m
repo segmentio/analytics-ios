@@ -213,6 +213,10 @@ static NSString *GetSessionID(BOOL reset) {
 }
 
 - (void)flush {
+    [self flushWithMaxSize:SEGMENTIO_MAX_BATCH_SIZE];
+}
+
+- (void)flushWithMaxSize:(NSUInteger)maxBatchSize {
     [self dispatchBackground:^{
         if ([self.queue count] == 0) {
             SOLog(@"%@ No queued API calls to flush.", self);
@@ -221,8 +225,8 @@ static NSString *GetSessionID(BOOL reset) {
             SOLog(@"%@ API request already in progress, not flushing again.", self);
             NSLog(@"%@ %@", self.batch, self.request);
             return;
-        } else if ([self.queue count] >= SEGMENTIO_MAX_BATCH_SIZE) {
-            self.batch = [self.queue subarrayWithRange:NSMakeRange(0, SEGMENTIO_MAX_BATCH_SIZE)];
+        } else if ([self.queue count] >= maxBatchSize) {
+            self.batch = [self.queue subarrayWithRange:NSMakeRange(0, maxBatchSize)];
         } else {
             self.batch = [NSArray arrayWithArray:self.queue];
         }
@@ -305,7 +309,9 @@ static NSString *GetSessionID(BOOL reset) {
 
 - (void)applicationDidEnterBackground {
     [self beginBackgroundTask];
-    [self flush];
+    // We are gonna try to flush as much as we reasonably can when we enter background
+    // since there is a chance that the user will never launch the app again.
+    [self flushWithMaxSize:1000];
 }
 
 - (void)applicationWillTerminate {
