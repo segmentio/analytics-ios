@@ -14,7 +14,13 @@
     [Analytics initializeWithSecret:@"k5l6rrye0hsv566zwuk7"];
     [[Analytics sharedAnalytics] debug:YES];
     [[Analytics sharedAnalytics] reset];
+    [[Analytics sharedAnalytics] identify:@"Test User"];
+    [[Analytics sharedAnalytics] track:@"First App Launch"];
     return YES;
+}
+    
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    [[Analytics sharedAnalytics] track:@"Background Event"];
 }
 
 @end
