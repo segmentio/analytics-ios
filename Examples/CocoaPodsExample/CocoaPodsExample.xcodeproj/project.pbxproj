@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BC09486476BD467A8386DFC0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9F84660793441A6A6A9B01A /* libPods.a */; };
+		D36020A317DF76EF002B9D7E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D36020A217DF76EF002B9D7E /* Reachability.m */; };
 		EACAAD4517C750B0000A8337 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD4417C750B0000A8337 /* UIKit.framework */; };
 		EACAAD4717C750B0000A8337 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD4617C750B0000A8337 /* Foundation.framework */; };
 		EACAAD4917C750B0000A8337 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD4817C750B0000A8337 /* CoreGraphics.framework */; };
@@ -22,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		2338712B30614403B121D6F9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		D36020A117DF76EF002B9D7E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		D36020A217DF76EF002B9D7E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		E9F84660793441A6A6A9B01A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EACAAD4117C750B0000A8337 /* CocoaPodsExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CocoaPodsExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EACAAD4417C750B0000A8337 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -87,6 +90,8 @@
 		EACAAD4A17C750B0000A8337 /* CocoaPodsExample */ = {
 			isa = PBXGroup;
 			children = (
+				D36020A117DF76EF002B9D7E /* Reachability.h */,
+				D36020A217DF76EF002B9D7E /* Reachability.m */,
 				EACAAE0C17C772D2000A8337 /* AppDelegate.h */,
 				EACAAE0D17C772D2000A8337 /* AppDelegate.m */,
 				EACAAE0E17C772D2000A8337 /* ViewController.h */,
@@ -213,6 +218,7 @@
 				EACAAE1017C772D2000A8337 /* AppDelegate.m in Sources */,
 				EACAAE1117C772D2000A8337 /* ViewController.m in Sources */,
 				EACAAE1C17C772E5000A8337 /* main.m in Sources */,
+				D36020A317DF76EF002B9D7E /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

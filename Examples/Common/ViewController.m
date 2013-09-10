@@ -8,12 +8,15 @@
 
 
 #import "ViewController.h"
+#import "Reachability.h"
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[Analytics sharedAnalytics] track:@"Test View Load Event"];
+    Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
+    reach.reachableOnWWAN = NO;
 }
 
 - (IBAction)identify:(id)sender {
