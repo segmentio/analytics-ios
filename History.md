@@ -1,3 +1,12 @@
+0.6.2 / 2013-9-10
+=================
+* Queueing before settings cache is loaded the first time
+* Flushing data to Segment.io on app close
+* Using a custom store in NSUserDefaults to maintain user identity
+* Prefixing internal classes to prevent compilation time conflicts
+* Updating the Flurry and Mixpanel SDKs (iOS 7 support)
+* Adding support for Mixpanel push notifications
+
 0.5.3 / 2013-7-31
 =================
 * Adding comments, documentation and setup guide to Analytics.h
