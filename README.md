@@ -16,10 +16,10 @@ lightweight Analytics SDK for ObjC developers. However, there is no such restric
 and in order to contribute to the SDK, you will need cocoapods, as well as an additional pod specs repo. 
 This can be accomplished as follow
 
-`[sudo] gem install cocoapods`
-`pod repo add Collections-Podspecs git@github.com:segmentio/Podspecs.git`
-`pod repo add Collections-Podspecs git@github.com:collections/Podspecs.git`
-`pod install`
+    [sudo] gem install cocoapods
+    pod repo add Segmentio-Podspecs git@github.com:segmentio/Podspecs.git
+    pod repo add Collections-Podspecs git@github.com:collections/Podspecs.git
+    pod install
 
 ## License
 
