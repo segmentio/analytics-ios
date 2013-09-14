@@ -101,7 +101,7 @@ static NSString *GetSessionID(BOOL reset) {
 }
 
 - (void)beginBackgroundTask {
-    NSParameterAssert(self.flushTaskID == UIBackgroundTaskInvalid);
+    [self endBackgroundTask];
     self.flushTaskID = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
         [self endBackgroundTask];
     }];

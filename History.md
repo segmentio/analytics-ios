@@ -1,3 +1,8 @@
+0.6.3 / 2013-9-13
+=================
+
+
+
 0.6.2 / 2013-9-10
 =================
 * Queueing before settings cache is loaded the first time
