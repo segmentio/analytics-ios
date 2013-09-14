@@ -1,6 +1,7 @@
 0.6.3 / 2013-9-13
 =================
-
+* Fixing backgrounding crash issue
+* Improving Countly logging
 
 
 0.6.2 / 2013-9-10

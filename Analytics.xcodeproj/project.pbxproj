@@ -637,6 +637,7 @@
 		EA25891F17C693C2000CEF61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ANALYTICS_VERSION = 0.6.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -644,6 +645,7 @@
 		EA25892017C693C2000CEF61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ANALYTICS_VERSION = 0.6.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
