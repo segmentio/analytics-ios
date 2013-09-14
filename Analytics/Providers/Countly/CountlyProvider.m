@@ -28,7 +28,7 @@
     NSString *appKey = [self.settings objectForKey:@"appKey"];
     NSString *serverUrl = [self.settings objectForKey:@"serverUrl"];
     [[Countly sharedInstance] start:appKey withHost:serverUrl];
-    SOLog(@"CountlyProvider initialized.");
+    SOLog(@"CountlyProvider initialized with appKey %@ and serverUrl %@", appKey, serverUrl);
 }
 
 
