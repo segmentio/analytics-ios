@@ -2,6 +2,7 @@
 =================
 * Fixing backgrounding crash issue
 * Improving Countly logging
+* Merging @cristianbica's pull request to fix literals syntax for iOS 5
 
 0.6.2 / 2013-9-10
 =================
