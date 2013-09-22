@@ -62,6 +62,18 @@ describe(@"Analytics", ^{
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
+    it(@"Should gracefully handle nil userId", ^{
+        [analytics identify:nil traits:nil context:nil];
+        [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
+        NSDictionary *queuedIdentify = (segmentio.queue)[0];
+        [[queuedIdentify[@"action"] should] equal:@"identify"];
+        [queuedIdentify[@"timestamp"] shouldNotBeNil];
+        [queuedIdentify[@"sessionId"] shouldNotBeNil];
+        [segmentio flush];
+        
+        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
+    });
+    
     it(@"Should track", ^{
         [[segmentio.queue should] beEmpty];
         NSString *eventName = @"Purchased an iPad 5";

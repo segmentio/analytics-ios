@@ -76,7 +76,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
     invocation.selector = selector;
     for (int i=0; i<arguments.count; i++) {
-        id argument = arguments[i];
+        id argument = (arguments[i] == [NSNull null]) ? nil : arguments[i];
         [invocation setArgument:&argument atIndex:i+2];
     }
     for (id<AnalyticsProvider> provider in self.providers.allValues) {
@@ -162,7 +162,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context {
     [self callProvidersWithSelector:_cmd
-                          arguments:@[userId, CoerceDictionary(traits), CoerceDictionary(context)]
+                          arguments:@[userId ?: [NSNull null], CoerceDictionary(traits), CoerceDictionary(context)]
                             context:context];
 }
 
@@ -175,6 +175,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context {
+    NSParameterAssert(event);
     [self callProvidersWithSelector:_cmd
                           arguments:@[event, CoerceDictionary(properties), CoerceDictionary(context)]
                             context:context];
@@ -189,6 +190,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context {
+    NSParameterAssert(screenTitle);
     [self callProvidersWithSelector:_cmd
                           arguments:@[screenTitle, CoerceDictionary(properties), CoerceDictionary(context)]
                             context:context];
