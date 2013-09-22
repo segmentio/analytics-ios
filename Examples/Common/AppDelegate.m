@@ -12,10 +12,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Analytics initializeWithSecret:@"k5l6rrye0hsv566zwuk7"];
-    [[Analytics sharedAnalytics] debug:NO];
+    [[Analytics sharedAnalytics] debug:YES];
     [[Analytics sharedAnalytics] reset];
+    [[Analytics sharedAnalytics] identify:nil];
+    [[Analytics sharedAnalytics] track:@"First Anonymous Event"];
     [[Analytics sharedAnalytics] identify:@"Test User"];
-    [[Analytics sharedAnalytics] track:@"First App Launch"];
+    [[Analytics sharedAnalytics] track:@"First Logged In Event"];
     return YES;
 }
     
