@@ -236,6 +236,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
         
         _settingsRequest = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
             dispatch_specific_async(_serialQueue, ^{
+                SOLog(@"%@ Received API settings response: %@", self, _settingsRequest.responseJSON);
                 if (!_settingsRequest.error) {
                     [self setCachedSettings:_settingsRequest.responseJSON];
                 }
