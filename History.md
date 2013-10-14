@@ -1,3 +1,12 @@
+0.6.5 / 2013-10-14
+==================
+* Updating Google Analytics, Chartbeat, Flurry and Amplitude SDKs
+* Fixes common linker issue with old Google Analytics SDK
+
+0.6.4 / 2013-10-2
+=================
+* Fixed identify to allow nil userId
+
 0.6.3 / 2013-9-13
 =================
 * Fixing backgrounding crash issue
