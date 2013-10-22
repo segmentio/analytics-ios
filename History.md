@@ -1,3 +1,8 @@
+0.6.6 / 2013-10-21
+==================
+* Updating Google Analytics SDK
+* Fixing internal version number
+
 0.6.5 / 2013-10-14
 ==================
 * Updating Google Analytics, Chartbeat, Flurry and Amplitude SDKs
