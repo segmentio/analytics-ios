@@ -1,3 +1,10 @@
+0.7.0 / 2013-10-29
+==================
+* Changing debug to a class method
+* Updating the internals so that reset method is unnecessary
+* Fixing issue with cached settings
+* Updating Mixpanel SDK to 2.0.4
+
 0.6.6 / 2013-10-21
 ==================
 * Updating Google Analytics SDK

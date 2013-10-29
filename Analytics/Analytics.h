@@ -1,6 +1,6 @@
 // Analytics.h
 // Copyright 2013 Segment.io
-// Version 0.6.6 (Do not change this line. It is automatically modified by the build process)
+// Version 0.7.0 (Do not change this line. It is automatically modified by the build process)
 
 #import <Foundation/Foundation.h>
 
@@ -41,6 +41,41 @@
 
 */
 + (void)initializeWithSecret:(NSString *)secret;
+
+/*!
+ @method
+ 
+ @abstract
+ Enables/disables additional debug logging to help you track down any analytics issues.
+ 
+ @param showDebugLogs        YES to enable debug logging, NO to disable debug logging.
+ 
+ @discussion
+ By default, the SDK will not log anything to the Xcode output console. If you want to track down an issue affecting your analytics code, or just see that analytics requests are indeed going out, you can enable debug logging with this method.
+ 
+ While developing, we recommend you reset the settings and turn on debug logging right after you initialize the Analytics instance with your secret:
+ 
+ - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+ {
+ // Initialize your shared Analytics instance.
+ [Analytics initializeWithSecret:@"YOUR SEGMENT.IO SECRET KEY FROM THE SETUP GUIDE AT HTTPS://SEGMENT.IO"];
+ 
+ // During development: reset the settings cache frequently so that
+ // as you change settings on your integrations page, the settings update quickly here.
+ [[Analytics sharedAnalytics] reset]; // remove before app store release
+ [[Analytics sharedAnalytics] debug:YES]; // if you want to see debug logs
+ 
+ // Override point for customization after application launch.
+ 
+ // YOUR OTHER APP LAUNCH CODE HERE
+ 
+ return YES;
+ }
+ 
+ */
++ (void)debug:(BOOL)showDebugLogs;
+
+
 
 
 
@@ -152,74 +187,6 @@
  @param deviceToken     device token as returned <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>
  */
 - (void)registerPushDeviceToken:(NSData *)deviceToken;
-
-
-// Development Tools
-// -----------------
-
-/*!
- @method
-
- @abstract
- Forces an update of your analytics settings, including which services are enabled, API keys and options.
-
- @discussion
- By default, the SDK will retrieve updated settings (including which services are enabled, API keys and options) on first SDK initialization per device, and on a regular time interval (typically 1 hour). While you integrate the SDK and test you'll probably want to frequently update your analytics settings, espeically if you are playing with the settings on https://segment.io, hence this reset function.
-
- While developing, we recommend you reset the settings and turn on debug logging right after you initialize the Analytics instance with your secret:
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Initialize your shared Analytics instance.
-    [Analytics initializeWithSecret:@"YOUR SEGMENT.IO SECRET KEY FROM THE SETUP GUIDE AT HTTPS://SEGMENT.IO"];
-    
-    // During development: reset the settings cache frequently so that
-    // as you change settings on your integrations page, the settings update quickly here.
-    [[Analytics sharedAnalytics] reset]; // remove before app store release
-    [[Analytics sharedAnalytics] debug:YES]; // if you want to see debug logs
-    
-    // Override point for customization after application launch.
-
-    // YOUR OTHER APP LAUNCH CODE HERE
-
-    return YES;
-}
-
-*/
-- (void)reset;
-
-/*!
- @method
-
- @abstract
- Enables/disables additional debug logging to help you track down any analytics issues.
-
- @param showDebugLogs        YES to enable debug logging, NO to disable debug logging.
-
- @discussion
- By default, the SDK will not log anything to the Xcode output console. If you want to track down an issue affecting your analytics code, or just see that analytics requests are indeed going out, you can enable debug logging with this method.
-
- While developing, we recommend you reset the settings and turn on debug logging right after you initialize the Analytics instance with your secret:
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // Initialize your shared Analytics instance.
-    [Analytics initializeWithSecret:@"YOUR SEGMENT.IO SECRET KEY FROM THE SETUP GUIDE AT HTTPS://SEGMENT.IO"];
-    
-    // During development: reset the settings cache frequently so that
-    // as you change settings on your integrations page, the settings update quickly here.
-    [[Analytics sharedAnalytics] reset]; // remove before app store release
-    [[Analytics sharedAnalytics] debug:YES]; // if you want to see debug logs
-    
-    // Override point for customization after application launch.
-
-    // YOUR OTHER APP LAUNCH CODE HERE
-
-    return YES;
-}
-
-*/
-- (void)debug:(BOOL)showDebugLogs;
 
 
 // Advanced
