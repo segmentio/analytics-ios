@@ -38,7 +38,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
              ((NSMutableDictionary *)_providers)[identifier] = [[providerClass alloc] initWithAnalytics:self];
         }];
         // Update settings on each provider immediately
-        [self updateProvidersWithSettings:[self cachedSettings]];
+        [self refreshSettings];
         _settingsTimer = [NSTimer scheduledTimerWithTimeInterval:AnalyticsSettingsUpdateInterval
                                                           target:self
                                                         selector:@selector(refreshSettings)
@@ -136,15 +136,6 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 }
 
 #pragma mark - Public API
-
-- (void)reset {
-    [self setCachedSettings:nil];
-    [self refreshSettings];
-}
-
-- (void)debug:(BOOL)showDebugLogs {
-    SetShowDebugLogs(showDebugLogs);
-}
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"<Analytics secret:%@>", self.secret];
@@ -277,6 +268,10 @@ static Analytics *SharedInstance = nil;
 + (instancetype)sharedAnalytics {
     NSAssert(SharedInstance, @"%@ sharedInstance called before withSecret", self);
     return SharedInstance;
+}
+
++ (void)debug:(BOOL)showDebugLogs {
+    SetShowDebugLogs(showDebugLogs);
 }
 
 + (NSString *)version {

@@ -9,7 +9,7 @@ pod 'Chartbeat', '~> 0.0.1'
 pod 'Countly', '~> 1.0.0'
 pod 'KISSmetrics', '~> 1.1.3'
 pod 'Localytics-iOS-Client', '~> 2.17.0'
-pod 'Mixpanel', '~> 2.0.2'
+pod 'Mixpanel', '~> 2.0.4'
 
 target :AnalyticsTests, :exclusive => true do
     link_with 'AnalyticsTests'
