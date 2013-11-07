@@ -3,7 +3,7 @@ analytics-ios
 
 analytics-ios is an iOS client for [Segment.io](https://segment.io)
 
-Special thanks to [Tony Xiao](https://github.com/tonyxiao) and [Cristian Bica](https://github.com/cristianbica) for their contributions to the library!
+Special thanks to [Tony Xiao](https://github.com/tonyxiao), [Lee Hasiuk](https://github.com/lhasiuk) and [Cristian Bica](https://github.com/cristianbica) for their contributions to the library!
 
 ## Documentation
 
