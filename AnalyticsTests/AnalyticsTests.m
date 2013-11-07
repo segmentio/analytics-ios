@@ -26,7 +26,7 @@ describe(@"Analytics", ^{
     __block SegmentioProvider *segmentio = nil;
     __block Analytics *analytics = nil;
     beforeEach(^{
-        analytics = [[Analytics alloc] initWithSecret:@"testsecret"];
+        analytics = [[Analytics alloc] initWithSecret:@"k5l6rrye0hsv566zwuk7"];
         analytics.cachedSettings = $jsonLoadsData([NSData dataWithContentsOfURL:
                                                    [[NSBundle bundleForClass:[self class]]
                                                     URLForResource:@"settings" withExtension:@"json"]]);
@@ -36,15 +36,15 @@ describe(@"Analytics", ^{
     
     it(@"has a secret, cached settings and 10 providers, including Segment.io", ^{
         [[analytics.cachedSettings shouldNot] beEmpty];
-        [[analytics.secret should] equal:@"testsecret"];
-        [[segmentio.secret should] equal:@"testsecret"];
+        [[analytics.secret should] equal:@"k5l6rrye0hsv566zwuk7"];
+        [[segmentio.secret should] equal:@"k5l6rrye0hsv566zwuk7"];
         [[[analytics should] have:10] providers];
         [segmentio shouldNotBeNil];
     });
     
     it(@"Should identify", ^{
         NSString *userId = @"smile@wrinkledhippo.com";
-        NSDictionary *traits = @{@"Filter": @"Tilt-shift"};
+        NSDictionary *traits = @{@"Filter": @"Tilt-shift", @"HasFriends": @YES, @"FriendCount" : @233 };
         NSDictionary *context = @{@"providers": @{@"Salesforce": @YES, @"HubSpot": @NO}};
         [analytics identify:userId traits:traits context:context];
         
