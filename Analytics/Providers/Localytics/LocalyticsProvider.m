@@ -73,7 +73,8 @@
 
     // Other traits. Iterate over all the traits and set them.
     for (NSString *key in traits) {
-        [[LocalyticsSession sharedLocalyticsSession] setValueForIdentifier:key value:[traits objectForKey:key]];
+        NSString* traitValue = [NSString stringWithFormat:@"%@", [traits objectForKey:key]];
+        [[LocalyticsSession sharedLocalyticsSession] setValueForIdentifier:key value:traitValue];
     }
 }
 
