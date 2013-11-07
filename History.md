@@ -1,3 +1,7 @@
+0.7.2 / 2013-11-6
+=================
+* Fixes critical issue #60 with NSContainer array subscripting, many thanks to @lhasiuk
+
 0.7.1 / 2013-11-6
 =================
 * Fixing issue with Localytics not accepting booleans or integers, only strings.

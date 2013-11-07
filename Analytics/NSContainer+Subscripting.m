@@ -5,7 +5,7 @@
 //  Copyright 2012 nxtbgthng. All rights reserved.
 //
 
-#if !defined(__IPHONE_6_0) || __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
+#if !( defined(__IPHONE_6_0) || defined(__IPHONE_7_0) ) || __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
 
 #import "NSContainer+Subscripting.h"
 
@@ -17,7 +17,7 @@
 
 @implementation NSMutableArray (MutableSubscripting)
 - (void)setObject:(id)anObject atIndexedSubscript:(NSUInteger)index {
-    [self insertObject:anObject atIndex:index];
+    [self replaceObjectAtIndex:index withObject:anObject];
 }
 @end
 
