@@ -2,6 +2,7 @@
 =================
 * Adds support for Mixpanel Surveys
 * Adds support for Omniture SiteCatalyst by Adobe
+* Adds support for Amazon's new Analytics service
 * Improves internal reporting to Segment.io
 
 0.7.3 / 2013-11-8
