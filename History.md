@@ -1,3 +1,7 @@
+0.7.3 / 2013-11-8
+=================
+* Fixes critical issue #60 with NSContainer array subscripting, many thanks to @lhasiuk
+
 0.7.2 / 2013-11-6
 =================
 * Fixes critical issue #60 with NSContainer array subscripting, many thanks to @lhasiuk
