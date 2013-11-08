@@ -1,3 +1,9 @@
+0.7.4 / 2013-11-8
+=================
+* Adds support for Mixpanel Surveys
+* Adds support for Omniture SiteCatalyst by Adobe
+* Improves internal reporting to Segment.io
+
 0.7.3 / 2013-11-8
 =================
 * Fixes critical issue #60 with NSContainer array subscripting, many thanks to @lhasiuk
