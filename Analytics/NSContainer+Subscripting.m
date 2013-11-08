@@ -17,7 +17,10 @@
 
 @implementation NSMutableArray (MutableSubscripting)
 - (void)setObject:(id)anObject atIndexedSubscript:(NSUInteger)index {
-    [self replaceObjectAtIndex:index withObject:anObject];
+    if (index < self.count)
+        [self replaceObjectAtIndex:index withObject:anObject];
+    else
+        [self insertObject:anObject atIndex:index];
 }
 @end
 

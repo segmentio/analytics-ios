@@ -31,6 +31,18 @@ describe(@"Specific dispatch_queue", ^{
     });
     
     it(@"Should have properly functioning arrays", ^{
+        NSMutableArray *foo1 = [NSMutableArray array];
+        foo1[0] = @"a";
+        foo1[1] = @"b";
+        foo1[2] = @"c";
+        [[foo1[0] should] equal:@"a"];
+        [[foo1[1] should] equal:@"b"];
+        [[foo1[2] should] equal:@"c"];
+        foo1[0] = @"z";
+        [[foo1[0] should] equal:@"z"];
+        [[foo1[1] should] equal:@"b"];
+        [[foo1[2] should] equal:@"c"];
+        
         NSMutableArray *foo2 = [NSMutableArray array];
         [foo2 addObject:@"a"];
         [foo2 addObject:@"b"];
