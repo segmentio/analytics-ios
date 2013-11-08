@@ -36,7 +36,7 @@ PODS:
   - libextobjc/RuntimeExtensions (0.3)
   - libffi (3.0.13)
   - Localytics-iOS-Client (2.17.0)
-  - Mixpanel (2.0.4)
+  - Mixpanel (2.1.0)
   - NSLogger (1.1)
   - ReactiveCocoa (1.9.7):
     - ReactiveCocoa/Core
@@ -60,7 +60,7 @@ DEPENDENCIES:
   - KISSmetrics (~> 1.1.3)
   - Kiwi
   - Localytics-iOS-Client (~> 2.17.0)
-  - Mixpanel (~> 2.0.4)
+  - Mixpanel (~> 2.1.0)
   - ReactiveCocoa (= 1.9.7)
 
 SPEC CHECKSUMS:
@@ -80,7 +80,7 @@ SPEC CHECKSUMS:
   libextobjc: 820a79dbbbc498611e04fffd07d2d52a5588e7ac
   libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
   Localytics-iOS-Client: 6f67f3d23eb5ca7958af5155a2c570b641d53417
-  Mixpanel: b23d1b358f9e2d3904ee13621beed4e5205929a5
+  Mixpanel: f007967b585bf66c4e56325ce3af9bbcd52eccf0
   NSLogger: 4567fef08d0db18a89cce91b2053823fc0950738
   ReactiveCocoa: 86033375e366207afad5a5067f2dd10a1f2d8f32
 
