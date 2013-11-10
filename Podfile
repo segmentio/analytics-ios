@@ -10,6 +10,7 @@ pod 'Countly', '~> 1.0.0'
 pod 'KISSmetrics', '~> 1.1.3'
 pod 'Localytics-iOS-Client', '~> 2.17.0'
 pod 'Mixpanel', '~> 2.1.0'
+pod 'Omniture', '~> 0.0.1'
 
 target :AnalyticsTests, :exclusive => true do
     link_with 'AnalyticsTests'
