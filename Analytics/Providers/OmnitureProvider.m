@@ -101,8 +101,10 @@
         [[ADMS_Measurement sharedInstance] trackEvents:eventMapped withContextData:properties];
     }
     else {
-        [AnalyticsLogger log:@"The event %@ is not yet mapped to Adobe (Omniture) eventN in your integration page settings. Here are the existing mappings: %@", event, eventMap];
+        SOLog(@"The event %@ is not yet mapped to Adobe (Omniture) eventN in your integration page settings. Here are the existing mappings: %@", event, eventMap);
     }
+    
+    // TODO evars and props
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context

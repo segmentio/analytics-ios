@@ -1,7 +1,12 @@
 // SegmentioProvider.m
 // Copyright 2013 Segment.io
 
+#include <sys/sysctl.h>
+
 #import <UIKit/UIKit.h>
+#import <AdSupport/ASIdentifierManager.h>
+#import <CoreTelephony/CTCarrier.h>
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import "Analytics.h"
 #import "AnalyticsUtils.h"
 #import "AnalyticsRequest.h"
@@ -48,6 +53,7 @@ static NSString *GetSessionID(BOOL reset) {
 @implementation SegmentioProvider {
     dispatch_queue_t _serialQueue;
     NSMutableDictionary *_traits;
+    NSMutableDictionary *_deviceInformation;
 }
 
 - (id)initWithAnalytics:(Analytics *)analytics {
@@ -73,6 +79,7 @@ static NSString *GetSessionID(BOOL reset) {
         _traits = [NSMutableDictionary dictionaryWithContentsOfURL:DISK_TRAITS_URL];
         if (!_traits)
             _traits = [[NSMutableDictionary alloc] init];
+        _deviceInformation = [self getDeviceInformation];
         _flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.flushAfter
                                                        target:self
                                                      selector:@selector(flush)
@@ -90,6 +97,52 @@ static NSString *GetSessionID(BOOL reset) {
 
     }
     return self;
+}
+
+- (NSMutableDictionary *)getDeviceInformation
+{
+    NSMutableDictionary *deviceInfo = [NSMutableDictionary dictionary];
+    
+    // Application information
+    [deviceInfo setValue:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"appVersion"];
+    [deviceInfo setValue:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] forKey:@"appReleaseVersion"];
+    
+    // Device information
+    UIDevice *device = [UIDevice currentDevice];
+    NSString *deviceModel = [self deviceModel];
+    [deviceInfo setValue:@"Apple" forKey:@"deviceManufacturer"];
+    [deviceInfo setValue:deviceModel forKey:@"deviceModel"];
+    [deviceInfo setValue:[device systemName] forKey:@"os"];
+    [deviceInfo setValue:[device systemVersion] forKey:@"osVersion"];
+    
+    // Network Carrier
+    CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
+    CTCarrier *carrier = [networkInfo subscriberCellularProvider];
+    if (carrier.carrierName.length) {
+        [deviceInfo setValue:carrier.carrierName forKey:@"carrier"];
+    }
+    
+    // ID for Advertiser (IFA)
+    if (NSClassFromString(@"ASIdentifierManager")) {
+        [deviceInfo setValue:[[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString] forKey:@"idForAdvertiser"];
+    }
+    
+    // Screen size
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    [deviceInfo setValue:[NSNumber numberWithInt:(int)screenSize.width] forKey:@"screenWidth"];
+    [deviceInfo setValue:[NSNumber numberWithInt:(int)screenSize.height] forKey:@"screenHeight"];
+    
+    return deviceInfo;
+}
+
+- (NSString *)deviceModel
+{
+    size_t size;
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char result[size];
+    sysctlbyname("hw.machine", result, &size, NULL, 0);
+    NSString *results = [NSString stringWithCString:result encoding:NSUTF8StringEncoding];
+    return results;
 }
 
 - (void)dispatchBackground:(void(^)(void))block {
@@ -145,6 +198,7 @@ static NSString *GetSessionID(BOOL reset) {
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context {
     [self dispatchBackground:^{
         self.userId = userId;
+        [self addTraits:traits];
     }];
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -186,6 +240,9 @@ static NSString *GetSessionID(BOOL reset) {
     serverContext[@"library"] = @"analytics-ios";
     serverContext[@"library-version"] = NSStringize(ANALYTICS_VERSION);
     serverContext[@"traits"] = _traits;
+    for(id key in _deviceInformation) {
+        serverContext[key] = [_deviceInformation objectForKey:key];
+    }
     return serverContext;
     
 }
