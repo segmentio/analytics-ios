@@ -41,11 +41,11 @@
     }
 }
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context { }
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options { }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context { }
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options { }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context { }
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options { }
 
 
 - (void)applicationDidEnterBackground { }

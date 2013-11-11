@@ -1,6 +1,6 @@
 // Analytics.h
 // Copyright 2013 Segment.io
-// Version 0.7.4 (Do not change this line. It is automatically modified by the build process)
+// Version 0.7.5 (Do not change this line. It is automatically modified by the build process)
 
 #import <Foundation/Foundation.h>
 
@@ -128,7 +128,7 @@
 */
 - (void)identify:(NSString *)userId;
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits;
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context;
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options;
 
 /*!
  @method
@@ -148,7 +148,7 @@
 */
 - (void)track:(NSString *)event;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties;
-- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context;
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options;
 
 /*!
  @method
@@ -168,7 +168,7 @@
 */
 - (void)screen:(NSString *)screenTitle;
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties;
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context;
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options;
 
 
 

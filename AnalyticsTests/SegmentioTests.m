@@ -33,7 +33,7 @@ describe(@"Segment.io", ^{
     
     it(@"Should track", ^{
         NSString *eventName = @"Purchased an iPhone 6";
-        [segmentio track:eventName properties:nil context:nil];
+        [segmentio track:eventName properties:nil options:nil];
 
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
 
@@ -46,16 +46,27 @@ describe(@"Segment.io", ^{
         // test for context object and default properties there
         [queuedTrack[@"context"] shouldNotBeNil];
         [queuedTrack[@"context"][@"library"] shouldNotBeNil];
+        [queuedTrack[@"context"][@"library-version"] shouldNotBeNil];
+        [queuedTrack[@"context"][@"os"] shouldNotBeNil];
+        [queuedTrack[@"context"][@"osVersion"] shouldNotBeNil];
+        [queuedTrack[@"context"][@"appVersion"] shouldNotBeNil];
+        [queuedTrack[@"context"][@"appReleaseVersion"] shouldNotBeNil];
+        [queuedTrack[@"context"][@"deviceModel"] shouldNotBeNil];
+        [queuedTrack[@"context"][@"deviceManufacturer"] shouldNotBeNil];
+        [queuedTrack[@"context"][@"carrier"] shouldNotBeNil];
+        [queuedTrack[@"context"][@"idForAdvertiser"] shouldNotBeNil];
+        [queuedTrack[@"context"][@"screenWidth"] shouldNotBeNil];
+        [queuedTrack[@"context"][@"screenHeight"] shouldNotBeNil];
         
         // send a second event, wait for 200 from servers
-        [segmentio track:eventName properties:nil context:nil];
+        [segmentio track:eventName properties:nil options:nil];
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
     it(@"Should track with properties", ^{
         NSString *eventName = @"Purchased an iPad 5";
         NSDictionary *properties = @{@"Filter": @"Tilt-shift"};
-        [segmentio track:eventName properties:properties context:nil];
+        [segmentio track:eventName properties:properties options:nil];
 
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
@@ -71,15 +82,15 @@ describe(@"Segment.io", ^{
         [queuedTrack[@"context"][@"library"] shouldNotBeNil];
         
         // send a second event, wait for 200 from servers
-        [segmentio track:eventName properties:properties context:nil];
+        [segmentio track:eventName properties:properties options:nil];
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
     it(@"Should track with context", ^{
         NSString *eventName = @"Purchased an iPad 5";
         NSDictionary *properties = @{@"Filter": @"Tilt-shift"};
-        NSDictionary *context = @{@"providers": @{@"Salesforce": @"true", @"Mixpanel": @"false"}};
-        [segmentio track:eventName properties:properties context:context];
+        NSDictionary *options = @{@"providers": @{@"Salesforce": @"true", @"Mixpanel": @"false"}};
+        [segmentio track:eventName properties:properties options:options];
         
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
@@ -101,13 +112,13 @@ describe(@"Segment.io", ^{
         [queuedTrack[@"context"][@"providers"][@"KISSmetrics"] shouldBeNil];
         
         // send a second event, wait for 200 from servers
-        [segmentio track:eventName properties:properties context:nil];
+        [segmentio track:eventName properties:properties options:nil];
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
     it(@"Should identify", ^{
         NSString *userId = @"smile@wrinkledhippo.com";
-        [segmentio identify:userId traits:nil context:nil];
+        [segmentio identify:userId traits:nil options:nil];
         
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
@@ -122,13 +133,13 @@ describe(@"Segment.io", ^{
         [queuedTrack[@"context"] shouldNotBeNil];
         [queuedTrack[@"context"][@"library"] shouldNotBeNil];
         
-        [segmentio identify:userId traits:nil context:nil];
+        [segmentio identify:userId traits:nil options:nil];
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
     it(@"Should identify with traits", ^{
         NSDictionary *traits = @{@"Filter": @"Tilt-shift"};
-        [segmentio identify:nil traits:traits context:nil];
+        [segmentio identify:nil traits:traits options:nil];
         
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
@@ -143,14 +154,14 @@ describe(@"Segment.io", ^{
         [queuedTrack[@"context"] shouldNotBeNil];
         [queuedTrack[@"context"][@"library"] shouldNotBeNil];
         
-        [segmentio identify:nil traits:traits context:nil];
+        [segmentio identify:nil traits:traits options:nil];
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
     it(@"Should identify with context", ^{
         NSDictionary *traits = @{@"Filter": @"Tilt-shift"};
-        NSDictionary *context = @{@"providers": @{@"Salesforce": @"true", @"Mixpanel": @"false"}};
-        [segmentio identify:nil traits:traits context:context];
+        NSDictionary *options = @{@"providers": @{@"Salesforce": @"true", @"Mixpanel": @"false"}};
+        [segmentio identify:nil traits:traits options:options];
         
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
@@ -170,14 +181,14 @@ describe(@"Segment.io", ^{
         [queuedTrack[@"context"][@"providers"][@"KISSmetrics"] shouldBeNil];
         
         // send a second event, wait for 200 from servers
-        [segmentio identify:nil traits:traits context:nil];
+        [segmentio identify:nil traits:traits options:nil];
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
     it(@"Should alias", ^{
         NSString *from = [segmentio getSessionId];
         NSString *to = @"wallowinghippo@wahoooo.net";
-        [segmentio alias:from to:to context:nil];
+        [segmentio alias:from to:to options:nil];
         
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
@@ -193,15 +204,15 @@ describe(@"Segment.io", ^{
         [queuedTrack[@"context"][@"library"] shouldNotBeNil];
         
         // send a second event, wait for 200 from servers
-        [segmentio alias:from to:to context:nil];
+        [segmentio alias:from to:to options:nil];
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
     it(@"Should alias with context", ^{
         NSString *from = [segmentio getSessionId];
         NSString *to = @"wallowinghippo@wahoooo.net";
-        NSDictionary *context = @{@"providers": @{@"Salesforce": @"true", @"Mixpanel": @"false"}};
-        [segmentio alias:from to:to context:context];
+        NSDictionary *options = @{@"providers": @{@"Salesforce": @"true", @"Mixpanel": @"false"}};
+        [segmentio alias:from to:to options:options];
         
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
@@ -223,7 +234,7 @@ describe(@"Segment.io", ^{
         [queuedTrack[@"context"][@"providers"][@"KISSmetrics"] shouldBeNil];
         
         // send a second event, wait for 200 from servers
-        [segmentio alias:from to:to context:nil];
+        [segmentio alias:from to:to options:nil];
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
@@ -231,7 +242,7 @@ describe(@"Segment.io", ^{
         [[segmentio.queue should] beEmpty];
         [segmentio.userId shouldBeNil];
         NSString *userId = @"smile@wrinkledhippo.com";
-        [segmentio identify:userId traits:nil context:nil];
+        [segmentio identify:userId traits:nil options:nil];
         [[segmentio.userId shouldEventually] beNonNil];
         [[segmentio.queue shouldEventually] have:1];
         [[nc shouldNotEventually] receiveNotification:SegmentioDidSendRequestNotification];
@@ -240,8 +251,8 @@ describe(@"Segment.io", ^{
     it(@"Should flush when full", ^{
         NSString *eventName = @"Purchased an iPad 5";
         NSDictionary *properties = @{@"Filter": @"Tilt-shift"};
-        [segmentio track:eventName properties:properties context:nil];
-        [segmentio track:eventName properties:properties context:nil];
+        [segmentio track:eventName properties:properties options:nil];
+        [segmentio track:eventName properties:properties options:nil];
         [[segmentio.queue should] beEmpty];
         [[segmentio.queue shouldEventually] have:2];
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
@@ -250,9 +261,9 @@ describe(@"Segment.io", ^{
     it(@"Should reset", ^{
         NSString *eventName = @"Purchased an iPad 5";
         NSDictionary *properties = @{@"Filter": @"Tilt-shift", @"category": @"Mobile", @"revenue": @"70.0", @"value": @"50.0", @"label": @"gooooga"};
-        NSDictionary *context = @{@"providers": @{@"Salesforce": @YES, @"HubSpot": @NO}};
+        NSDictionary *options = @{@"providers": @{@"Salesforce": @YES, @"HubSpot": @NO}};
         
-        [segmentio track:eventName properties:properties context:context];
+        [segmentio track:eventName properties:properties options:options];
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         [segmentio reset];
         [[segmentio.queue should] beEmpty];

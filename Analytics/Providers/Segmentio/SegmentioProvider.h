@@ -21,9 +21,9 @@ extern NSString *const SegmentioRequestDidFailNotification;
 // Analytics API 
 // -------------
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context;
-- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context;
-- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context;
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options;
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options;
+- (void)alias:(NSString *)from to:(NSString *)to options:(NSDictionary *)options;
 
 // Utilities
 // ---------
