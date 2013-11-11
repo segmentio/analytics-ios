@@ -27,7 +27,7 @@
 - (IBAction)track:(id)sender {
     NSLog(@"test track");
     [[Analytics sharedAnalytics] track:@"Hello Event"
-        properties:@{ @"bear" : @"pigbearstrong", @"dog" : @"duckduckgoose", @"cat" : @"fur" }];
+        properties:@{ @"bear" : @"pigbearstrong", @"dog" : @"duckduckgoose", @"cat" : @89 }];
 }
 
 - (IBAction)screen:(id)sender {
