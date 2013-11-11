@@ -89,12 +89,48 @@
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    // TODO: keep traits in a local store and merge them onto event/screen properties when they're sent?
-    // set eVars and props
+    // FEATURE: keep traits in a local store and merge them onto event/screen properties when they're sent?
+    // set eVars and props?
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
+    // Set props before tracking the event
+    NSDictionary *propMap = [self.settings objectForKey:@"props"];
+    for(id property in properties) {
+        NSString *propertyMapped = [propMap objectForKey:property];
+        if (propertyMapped != nil) {
+            NSUInteger number = [self getNumberForSetting:propertyMapped];
+            [[ADMS_Measurement sharedInstance] setProp:number toValue:properties[property]];
+        }
+        else {
+            SOLog(@"The property %@ is not yet mapped to an Omniture propN in your integration page settings. Here are the existing props mappings: %@", property, propMap);
+        }
+    }
+    
+    // Set eVars before tracking the event.
+    NSDictionary *eVarMap = [self.settings objectForKey:@"eVars"];
+    for(id property in properties) {
+        NSString *propertyMapped = [eVarMap objectForKey:property];
+        if (propertyMapped != nil) {
+            NSUInteger number = [self getNumberForSetting:propertyMapped];
+            [[ADMS_Measurement sharedInstance] setEvar:number toValue:properties[property]];
+        }
+        else {
+            SOLog(@"The property %@ is not yet mapped to an Omniture eVarN in your integration page settings. Here are the existing eVar mappings: %@", property, eVarMap);
+        }
+    }
+    // eVars can also be the event, since they represent funnel steps.
+    NSString *eventEVarMapped = [eVarMap objectForKey:event];
+    if (eventEVarMapped != nil) {
+        NSUInteger number = [self getNumberForSetting:eventEVarMapped];
+        [[ADMS_Measurement sharedInstance] setEvar:number toValue:event];
+    }
+    else {
+        SOLog(@"The event %@ is not yet mapped to an Omniture eVarN in your integration page settings. Here are the existing eVar mappings: %@", event, eVarMap);
+    }
+    
+    // Finally map the event and send it if successful
     NSDictionary *eventMap = [self.settings objectForKey:@"events"];
     NSString *eventMapped = [eventMap objectForKey:event];
     if (eventMapped != nil) {
@@ -103,13 +139,17 @@
     else {
         SOLog(@"The event %@ is not yet mapped to Adobe (Omniture) eventN in your integration page settings. Here are the existing mappings: %@", event, eventMap);
     }
-    
-    // TODO evars and props
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     [[ADMS_Measurement sharedInstance] trackAppState:screenTitle withContextData:properties];
+}
+
+- (NSUInteger) getNumberForSetting:(NSString *)setting
+{
+    NSString *numberPart = [setting substringFromIndex:4];
+    return (NSUInteger)[numberPart integerValue];
 }
 
 @end
