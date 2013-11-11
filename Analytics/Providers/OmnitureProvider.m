@@ -101,7 +101,8 @@
         NSString *propertyMapped = [propMap objectForKey:property];
         if (propertyMapped != nil) {
             NSUInteger number = [self getNumberForSetting:propertyMapped];
-            [[ADMS_Measurement sharedInstance] setProp:number toValue:properties[property]];
+            NSString *value = [self getStringFromProperty:properties[property]];
+            [[ADMS_Measurement sharedInstance] setProp:number toValue:value];
         }
         else {
             SOLog(@"The property %@ is not yet mapped to an Omniture propN in your integration page settings. Here are the existing props mappings: %@", property, propMap);
@@ -114,7 +115,8 @@
         NSString *propertyMapped = [eVarMap objectForKey:property];
         if (propertyMapped != nil) {
             NSUInteger number = [self getNumberForSetting:propertyMapped];
-            [[ADMS_Measurement sharedInstance] setEvar:number toValue:properties[property]];
+            NSString *value = [self getStringFromProperty:properties[property]];
+            [[ADMS_Measurement sharedInstance] setEvar:number toValue:value];
         }
         else {
             SOLog(@"The property %@ is not yet mapped to an Omniture eVarN in your integration page settings. Here are the existing eVar mappings: %@", property, eVarMap);
@@ -134,7 +136,8 @@
     NSDictionary *eventMap = [self.settings objectForKey:@"events"];
     NSString *eventMapped = [eventMap objectForKey:event];
     if (eventMapped != nil) {
-        [[ADMS_Measurement sharedInstance] trackEvents:eventMapped withContextData:properties];
+        NSDictionary *stringified = [self getDictionaryOfStrings:properties];
+        [[ADMS_Measurement sharedInstance] trackEvents:eventMapped withContextData:stringified];
     }
     else {
         SOLog(@"The event %@ is not yet mapped to Adobe (Omniture) eventN in your integration page settings. Here are the existing mappings: %@", event, eventMap);
@@ -146,10 +149,25 @@
     [[ADMS_Measurement sharedInstance] trackAppState:screenTitle withContextData:properties];
 }
 
+
 - (NSUInteger) getNumberForSetting:(NSString *)setting
 {
     NSString *numberPart = [setting substringFromIndex:4];
     return (NSUInteger)[numberPart integerValue];
+}
+
+- (NSDictionary *) getDictionaryOfStrings:(NSDictionary *)dictionary
+{
+    NSMutableDictionary *stringDict = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+    for (id key in dictionary) {
+        stringDict[key] = [self getStringFromProperty:dictionary[key]];
+    }
+    return stringDict;
+}
+
+- (NSString *) getStringFromProperty:(id)property
+{
+    return [NSString stringWithFormat:@"%@", property];
 }
 
 @end
