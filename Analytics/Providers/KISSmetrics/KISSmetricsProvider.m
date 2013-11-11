@@ -43,21 +43,21 @@
 #pragma mark - Analytics API
 
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     [[KISSMetricsAPI sharedAPI] identify:userId];
     [[KISSMetricsAPI sharedAPI] setProperties:traits];
 }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     [[KISSMetricsAPI sharedAPI] recordEvent:event withProperties:properties];
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     // No explicit support for screens, so we'll track an event instead.
-    [self track:screenTitle properties:properties context:context];
+    [self track:screenTitle properties:properties options:options];
 }
 
 @end

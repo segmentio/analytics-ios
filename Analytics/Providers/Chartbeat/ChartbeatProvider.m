@@ -50,17 +50,17 @@
 #pragma mark - Analytics API
 
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     // Chartbeat has no support for identity information.
 }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     // Chartbeat has no support for event tracking.
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     [[CBTracker sharedTracker] trackView:nil viewId:screenTitle title:screenTitle];
 }

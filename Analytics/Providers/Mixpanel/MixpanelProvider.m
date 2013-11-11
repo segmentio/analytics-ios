@@ -42,7 +42,7 @@
 
 #pragma mark - Analytics API
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context {
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
     [[Mixpanel sharedInstance] identify:userId];
 
     // Map the traits to special mixpanel keywords.
@@ -63,7 +63,7 @@
     }
 }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context {
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
     // Track the raw event.
     [[Mixpanel sharedInstance] track:event properties:properties];
 
@@ -74,9 +74,9 @@
     }
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context {
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
     // Track the screen view as an event.
-    [self track:screenTitle properties:properties context:context];
+    [self track:screenTitle properties:properties options:options];
 }
 
 - (void)registerPushDeviceToken:(NSData *)deviceToken {

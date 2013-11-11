@@ -45,7 +45,7 @@
 
 #pragma mark - Analytics API
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     // User ID
     [Bugsnag instance].userId = userId;
@@ -56,12 +56,12 @@
     }
 }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     // There's no event tracking with Bugsnag.
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)optionsoptions
 {
     [Bugsnag instance].context = screenTitle;
 }

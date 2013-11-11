@@ -45,12 +45,12 @@
 #pragma mark - Analytics API
 
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     // Countly has no support for identity information.
 }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     // Countly doesn't accept nested properties, so remove them (with warning).
     NSDictionary *notNestedProperties = [self ensureNotNested:properties];
@@ -64,10 +64,10 @@
     }
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     // Screens just get tracked as events here.
-    [self track:screenTitle properties:properties context:context];
+    [self track:screenTitle properties:properties options:options];
 }
 
 - (NSDictionary *)ensureNotNested:(NSDictionary *)dictionary

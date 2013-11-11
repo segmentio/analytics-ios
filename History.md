@@ -1,3 +1,8 @@
+0.7.5 / 2013-11-10
+==================
+* Adds support for Omniture eVars and props
+* Changes "context" to "options"
+
 0.7.4 / 2013-11-8
 =================
 * Adds support for Mixpanel Surveys

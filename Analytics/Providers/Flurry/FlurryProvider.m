@@ -43,7 +43,7 @@
 
 #pragma mark - Analytics API
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     [Flurry setUserID:userId];
 
@@ -60,12 +60,12 @@
     }
 }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     [Flurry logEvent:event withParameters:properties];
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     // Flurry just counts the number of page views
     // http://stackoverflow.com/questions/5404513/tracking-page-views-with-the-help-of-flurry-sdk

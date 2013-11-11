@@ -45,8 +45,8 @@ describe(@"Analytics", ^{
     it(@"Should identify", ^{
         NSString *userId = @"smile@wrinkledhippo.com";
         NSDictionary *traits = @{@"Filter": @"Tilt-shift", @"HasFriends": @YES, @"FriendCount" : @233 };
-        NSDictionary *context = @{@"providers": @{@"Salesforce": @YES, @"HubSpot": @NO}};
-        [analytics identify:userId traits:traits context:context];
+        NSDictionary *options = @{@"providers": @{@"Salesforce": @YES, @"HubSpot": @NO}};
+        [analytics identify:userId traits:traits options:options];
         
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
@@ -71,7 +71,7 @@ describe(@"Analytics", ^{
     });
     
     it(@"Should gracefully handle nil userId", ^{
-        [analytics identify:nil traits:nil context:nil];
+        [analytics identify:nil traits:nil options:nil];
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         NSDictionary *queuedIdentify = (segmentio.queue)[0];
         [[queuedIdentify[@"action"] should] equal:@"identify"];
@@ -92,8 +92,8 @@ describe(@"Analytics", ^{
             @"value": @"50.0",
             @"label": @"gooooga"
         };
-        NSDictionary *context = @{@"providers": @{@"Salesforce": @YES, @"HubSpot": @NO}};
-        [analytics track:eventName properties:properties context:context];
+        NSDictionary *options = @{@"providers": @{@"Salesforce": @YES, @"HubSpot": @NO}};
+        [analytics track:eventName properties:properties options:options];
         
         // The analytics thread does things slightly async, just need to
         // create a tiny amount of space for it to get it into the queue.

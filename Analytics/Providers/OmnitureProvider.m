@@ -87,13 +87,13 @@
 #pragma mark - Analytics API
 
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     // TODO: keep traits in a local store and merge them onto event/screen properties when they're sent?
     // set eVars and props
 }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     NSDictionary *eventMap = [self.settings objectForKey:@"events"];
     NSString *eventMapped = [eventMap objectForKey:event];
@@ -107,7 +107,7 @@
     // TODO evars and props
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     [[ADMS_Measurement sharedInstance] trackAppState:screenTitle withContextData:properties];
 }

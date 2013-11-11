@@ -58,9 +58,9 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     return self;
 }
 
-- (BOOL)isProvider:(id<AnalyticsProvider>)provider enabledInContext:(NSDictionary *)context {
-    // checks if context.providers is enabling this provider
-    NSDictionary *providers = context[@"providers"];
+- (BOOL)isProvider:(id<AnalyticsProvider>)provider enabledInOptions:(NSDictionary *)options {
+    // checks if options.providers is enabling this provider
+    NSDictionary *providers = options[@"providers"];
     if (providers[provider.name]) {
         return [providers[provider.name] boolValue];
     } else if (providers[@"All"]) {
@@ -71,7 +71,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     return YES;
 }
 
-- (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments context:(NSDictionary *)context {
+- (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
     NSMethodSignature *methodSignature = [AnalyticsProvider instanceMethodSignatureForSelector:selector];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
     invocation.selector = selector;
@@ -81,31 +81,31 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     }
     for (id<AnalyticsProvider> provider in self.providers.allValues) {
         if (provider.ready && [provider respondsToSelector:selector]
-            && [self isProvider:provider enabledInContext:context]) {
+            && [self isProvider:provider enabledInOptions:options]) {
             [invocation invokeWithTarget:provider];
         }
     }
 }
 
-- (void)queueSelector:(SEL)selector arguments:(NSArray *)arguments context:(NSDictionary *)context {
-    [_messageQueue addObject:@[NSStringFromSelector(selector), arguments ?: @[], context ?: @{}]];
+- (void)queueSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
+    [_messageQueue addObject:@[NSStringFromSelector(selector), arguments ?: @[], options ?: @{}]];
 }
 
 - (void)flushMessageQueue {
     if (_messageQueue.count) {
         for (NSArray *arr in _messageQueue)
-            [self forwardSelector:NSSelectorFromString(arr[0]) arguments:arr[1] context:arr[2]];
+            [self forwardSelector:NSSelectorFromString(arr[0]) arguments:arr[1] options:arr[2]];
         [_messageQueue removeAllObjects];
     }
 }
 
-- (void)callProvidersWithSelector:(SEL)selector arguments:(NSArray *)arguments context:(NSDictionary *)context  {
+- (void)callProvidersWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options  {
     dispatch_specific_async(_serialQueue, ^{
         if (!self.cachedSettings.count) {
-            [self queueSelector:selector arguments:arguments context:context];
+            [self queueSelector:selector arguments:arguments options:options];
         } else {
             [self flushMessageQueue];
-            [self forwardSelector:selector arguments:arguments context:context];
+            [self forwardSelector:selector arguments:arguments options:options];
         }
     });
 }
@@ -132,7 +132,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     });
     SEL selector = NSSelectorFromString(selectorMapping[note.name]);
     if (selector)
-        [self callProvidersWithSelector:selector arguments:nil context:nil];
+        [self callProvidersWithSelector:selector arguments:nil options:nil];
 }
 
 #pragma mark - Public API
@@ -144,54 +144,54 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 #pragma mark - Analytics API
 
 - (void)identify:(NSString *)userId {
-    [self identify:userId traits:nil context:nil];
+    [self identify:userId traits:nil options:nil];
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits {
-    [self identify:userId traits:traits context:nil];
+    [self identify:userId traits:traits options:nil];
 }
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context {
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
     [self callProvidersWithSelector:_cmd
-                          arguments:@[userId ?: [NSNull null], CoerceDictionary(traits), CoerceDictionary(context)]
-                            context:context];
+                          arguments:@[userId ?: [NSNull null], CoerceDictionary(traits), CoerceDictionary(options)]
+                            options:options];
 }
 
 - (void)track:(NSString *)event {
-    [self track:event properties:nil context:nil];
+    [self track:event properties:nil options:nil];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties {
-    [self track:event properties:properties context:nil];
+    [self track:event properties:properties options:nil];
 }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context {
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
     NSParameterAssert(event);
     [self callProvidersWithSelector:_cmd
-                          arguments:@[event, CoerceDictionary(properties), CoerceDictionary(context)]
-                            context:context];
+                          arguments:@[event, CoerceDictionary(properties), CoerceDictionary(options)]
+                            options:options];
 }
 
 - (void)screen:(NSString *)screenTitle {
-    [self screen:screenTitle properties:nil context:nil];
+    [self screen:screenTitle properties:nil options:nil];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties {
-    [self screen:screenTitle properties:properties context:nil];
+    [self screen:screenTitle properties:properties options:nil];
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context {
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
     NSParameterAssert(screenTitle);
     [self callProvidersWithSelector:_cmd
-                          arguments:@[screenTitle, CoerceDictionary(properties), CoerceDictionary(context)]
-                            context:context];
+                          arguments:@[screenTitle, CoerceDictionary(properties), CoerceDictionary(options)]
+                            options:options];
 }
 
 - (void)registerPushDeviceToken:(NSData *)deviceToken {
     NSParameterAssert(deviceToken);
     [self callProvidersWithSelector:_cmd
                           arguments:@[deviceToken]
-                            context:nil];
+                            options:nil];
 }
 
 #pragma mark - Analytics Settings

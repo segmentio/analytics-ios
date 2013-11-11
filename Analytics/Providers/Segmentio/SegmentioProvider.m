@@ -195,7 +195,7 @@ static NSString *GetSessionID(BOOL reset) {
 
 #pragma mark - Analytics API
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context {
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
     [self dispatchBackground:^{
         self.userId = userId;
         [self addTraits:traits];
@@ -204,20 +204,20 @@ static NSString *GetSessionID(BOOL reset) {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:traits forKey:@"traits"];
 
-    [self enqueueAction:@"identify" dictionary:dictionary context:context];
+    [self enqueueAction:@"identify" dictionary:dictionary options:options];
 }
 
- - (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context {
+ - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
     NSAssert(event.length, @"%@ track requires an event name.", self);
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:event forKey:@"event"];
     [dictionary setValue:properties forKey:@"properties"];
     
-    [self enqueueAction:@"track" dictionary:dictionary context:context];
+    [self enqueueAction:@"track" dictionary:dictionary options:options];
 }
 
-- (void)alias:(NSString *)from to:(NSString *)to context:(NSDictionary *)context {
+- (void)alias:(NSString *)from to:(NSString *)to options:(NSDictionary *)options {
     NSAssert(from.length, @"%@ alias requires a from id.", self);
     NSAssert(to.length, @"%@ alias requires a to id.", self);
 
@@ -225,29 +225,29 @@ static NSString *GetSessionID(BOOL reset) {
     [dictionary setValue:from forKey:@"from"];
     [dictionary setValue:to forKey:@"to"];
     
-    [self enqueueAction:@"alias" dictionary:dictionary context:context];
+    [self enqueueAction:@"alias" dictionary:dictionary options:options];
 }
 
 #pragma mark - Queueing
 
-- (NSDictionary *)serverContextForContext:(NSDictionary *)context {
-    NSMutableDictionary *serverContext = [context ?: @{} mutableCopy];
-    NSMutableDictionary *providersDict = [context[@"providers"] ?: @{} mutableCopy];
+- (NSDictionary *)serverOptionsForOptions:(NSDictionary *)options {
+    NSMutableDictionary *serverOptions = [options ?: @{} mutableCopy];
+    NSMutableDictionary *providersDict = [options[@"providers"] ?: @{} mutableCopy];
     for (AnalyticsProvider *provider in self.analytics.providers.allValues)
         if (![provider isKindOfClass:[SegmentioProvider class]])
             providersDict[provider.name] = @NO;
-    serverContext[@"providers"] = providersDict;
-    serverContext[@"library"] = @"analytics-ios";
-    serverContext[@"library-version"] = NSStringize(ANALYTICS_VERSION);
-    serverContext[@"traits"] = _traits;
+    serverOptions[@"providers"] = providersDict;
+    serverOptions[@"library"] = @"analytics-ios";
+    serverOptions[@"library-version"] = NSStringize(ANALYTICS_VERSION);
+    serverOptions[@"traits"] = _traits;
     for(id key in _deviceInformation) {
-        serverContext[key] = [_deviceInformation objectForKey:key];
+        serverOptions[key] = [_deviceInformation objectForKey:key];
     }
-    return serverContext;
+    return serverOptions;
     
 }
 
-- (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)dictionary context:(NSDictionary *)context {
+- (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)dictionary options:(NSDictionary *)options {
     // attach these parts of the payload outside since they are all synchronous
     // and the timestamp will be more accurate.
     NSMutableDictionary *payload = [NSMutableDictionary dictionaryWithDictionary:dictionary];
@@ -259,7 +259,8 @@ static NSString *GetSessionID(BOOL reset) {
         // they've changed (see identify function)
         [payload setValue:self.userId forKey:@"userId"];
         [payload setValue:self.sessionId forKey:@"sessionId"];
-        [payload setValue:[self serverContextForContext:context] forKey:@"context"];
+        // TODO change context to options when server-side is ready
+        [payload setValue:[self serverOptionsForOptions:options] forKey:@"context"];
         
         SOLog(@"%@ Enqueueing action: %@", self, payload);
         

@@ -49,7 +49,7 @@
 
 #pragma mark - Analytics API
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits context:(NSDictionary *)context
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     if (userId) {
         [[LocalyticsSession sharedLocalyticsSession] setCustomerId:userId];
@@ -78,14 +78,14 @@
     }
 }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     // TODO add support for dimensions
     // TODO add support for value
     [[LocalyticsSession sharedLocalyticsSession] tagEvent:event attributes:properties];
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties context:(NSDictionary *)context
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     // For enterprise only...
     [[LocalyticsSession sharedLocalyticsSession] tagScreen:screenTitle];
