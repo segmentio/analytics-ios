@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="13A538g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <development version="4600" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -13,9 +15,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3DE-qP-YF8">
+                                <rect key="frame" x="122" y="141" width="77" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Track">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -26,9 +29,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3C-Vg-CdQ">
+                                <rect key="frame" x="122" y="219" width="77" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Screen">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -39,9 +43,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ve-LM-TMt">
+                                <rect key="frame" x="122" y="64" width="77" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Identify">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -52,9 +57,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A71-uo-baS">
+                                <rect key="frame" x="122" y="298" width="77" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Flush">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -64,18 +70,35 @@
                                     <action selector="flush:" destination="2" eventType="touchUpInside" id="3fl-Lj-wdx"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0J-pi-Dpz">
+                                <rect key="frame" x="122" y="375" width="77" height="44"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Crash">
+                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="crash:" destination="2" eventType="touchUpInside" id="WPD-b3-uUE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="T3C-Vg-CdQ" firstAttribute="trailing" secondItem="3DE-qP-YF8" secondAttribute="trailing" type="default" id="07R-s5-s5b"/>
+                            <constraint firstAttribute="bottom" secondItem="J0J-pi-Dpz" secondAttribute="bottom" constant="130" id="1UK-Zi-ab9"/>
                             <constraint firstItem="3DE-qP-YF8" firstAttribute="leading" secondItem="2ve-LM-TMt" secondAttribute="leading" type="default" id="2wK-rf-7Mt"/>
-                            <constraint firstItem="T3C-Vg-CdQ" firstAttribute="top" secondItem="3" secondAttribute="top" constant="219" type="user" id="4l0-67-k8o"/>
+                            <constraint firstAttribute="bottom" secondItem="A71-uo-baS" secondAttribute="bottom" constant="207" id="3ZM-bF-u3l"/>
                             <constraint firstItem="A71-uo-baS" firstAttribute="trailing" secondItem="T3C-Vg-CdQ" secondAttribute="trailing" type="default" id="8Vz-9A-jG9"/>
                             <constraint firstItem="A71-uo-baS" firstAttribute="leading" secondItem="T3C-Vg-CdQ" secondAttribute="leading" type="default" id="HAL-M7-BDG"/>
-                            <constraint firstItem="A71-uo-baS" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="NhH-qc-2bJ"/>
-                            <constraint firstItem="A71-uo-baS" firstAttribute="top" secondItem="T3C-Vg-CdQ" secondAttribute="bottom" constant="42" type="user" id="VE5-AP-yzd"/>
+                            <constraint firstItem="J0J-pi-Dpz" firstAttribute="leading" secondItem="A71-uo-baS" secondAttribute="leading" type="default" id="KgX-sb-jvr"/>
                             <constraint firstItem="2ve-LM-TMt" firstAttribute="trailing" secondItem="3DE-qP-YF8" secondAttribute="trailing" type="default" id="XKs-Wg-938"/>
+                            <constraint firstItem="T3C-Vg-CdQ" firstAttribute="top" secondItem="3" secondAttribute="top" constant="219" id="ZJt-Cm-z1C"/>
+                            <constraint firstItem="J0J-pi-Dpz" firstAttribute="trailing" secondItem="A71-uo-baS" secondAttribute="trailing" type="default" id="eGW-f0-SjE"/>
                             <constraint firstItem="3DE-qP-YF8" firstAttribute="top" secondItem="3" secondAttribute="top" constant="141" id="gYX-J2-0tL"/>
+                            <constraint firstItem="T3C-Vg-CdQ" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="lON-30-Ohc"/>
                             <constraint firstItem="2ve-LM-TMt" firstAttribute="top" secondItem="3" secondAttribute="top" constant="64" id="nxt-W1-Z6f"/>
                             <constraint firstItem="T3C-Vg-CdQ" firstAttribute="leading" secondItem="3DE-qP-YF8" secondAttribute="leading" type="default" id="vqi-am-AcW"/>
                         </constraints>
@@ -85,20 +108,6 @@
             </objects>
         </scene>
     </scenes>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="flush:"/>
-                <relationship kind="action" name="identify:"/>
-                <relationship kind="action" name="screen:"/>
-                <relationship kind="action" name="track:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

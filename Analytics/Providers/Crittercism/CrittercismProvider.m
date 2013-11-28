@@ -45,8 +45,10 @@
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     // Username
-    [Crittercism setUsername:userId];
-
+    if (userId) {
+        [Crittercism setUsername:userId];
+    }
+    
     // Other traits. Iterate over all the traits and set them.
     for (NSString *key in traits) {
         [Crittercism setValue:[traits objectForKey:key] forKey:key];

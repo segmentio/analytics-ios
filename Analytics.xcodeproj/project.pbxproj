@@ -28,6 +28,7 @@
 		D328C8E91846EF0A00E4355A /* OmnitureProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = D328C8E71846EF0A00E4355A /* OmnitureProvider.h */; };
 		D369201D181604CD009F24C0 /* libFlurry_4.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */; };
 		D36ABA64182F09F3001EB84B /* admsAppLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D36ABA63182F09F3001EB84B /* admsAppLibrary.a */; };
+		D39E12301846F816009F64E7 /* libCrittercism_v4_1_2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D39E122F1846F816009F64E7 /* libCrittercism_v4_1_2.a */; };
 		D3ABF6291846F54F00FAAB2B /* OmnitureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D328C8E81846EF0A00E4355A /* OmnitureProvider.m */; };
 		D3ABF62F1846F6E000FAAB2B /* CrittercismProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = D3ABF62D1846F6E000FAAB2B /* CrittercismProvider.h */; };
 		D3ABF6301846F6E000FAAB2B /* CrittercismProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D3ABF62E1846F6E000FAAB2B /* CrittercismProvider.m */; };
@@ -104,6 +105,7 @@
 		D328C8E81846EF0A00E4355A /* OmnitureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OmnitureProvider.m; sourceTree = "<group>"; };
 		D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.4.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.2.4.a; sourceTree = "<group>"; };
 		D36ABA63182F09F3001EB84B /* admsAppLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = admsAppLibrary.a; path = Pods/Omniture/admsAppLibrary.a; sourceTree = "<group>"; };
+		D39E122F1846F816009F64E7 /* libCrittercism_v4_1_2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrittercism_v4_1_2.a; path = Pods/CrittercismSDK/CrittercismSDK/libCrittercism_v4_1_2.a; sourceTree = "<group>"; };
 		D3ABF62D1846F6E000FAAB2B /* CrittercismProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismProvider.h; sourceTree = "<group>"; };
 		D3ABF62E1846F6E000FAAB2B /* CrittercismProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrittercismProvider.m; sourceTree = "<group>"; };
 		EA14A25217FB1E9400870901 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = settings.json; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D39E12301846F816009F64E7 /* libCrittercism_v4_1_2.a in Frameworks */,
 				D36ABA64182F09F3001EB84B /* admsAppLibrary.a in Frameworks */,
 				D369201D181604CD009F24C0 /* libFlurry_4.2.4.a in Frameworks */,
 				F78D29FA1765B382000B937E /* UIKit.framework in Frameworks */,
@@ -372,6 +375,7 @@
 		F7200B7517659B2F003F3138 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D39E122F1846F816009F64E7 /* libCrittercism_v4_1_2.a */,
 				D36ABA63182F09F3001EB84B /* admsAppLibrary.a */,
 				D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */,
 				F78D29F91765B382000B937E /* UIKit.framework */,
@@ -837,6 +841,7 @@
 					"/Users/reinpk/dev/segmentio-project/analytics-ios",
 					"/Users/reinpk/dev/segmentio-project/analytics-ios/Pods/FlurrySDK/Flurry",
 					"/Users/reinpk/dev/segmentio-project/analytics-ios/Pods/Omniture",
+					"/Users/reinpk/dev/segmentio-project/analytics-ios/Pods/CrittercismSDK/CrittercismSDK",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -863,6 +868,7 @@
 					"/Users/reinpk/dev/segmentio-project/analytics-ios",
 					"/Users/reinpk/dev/segmentio-project/analytics-ios/Pods/FlurrySDK/Flurry",
 					"/Users/reinpk/dev/segmentio-project/analytics-ios/Pods/Omniture",
+					"/Users/reinpk/dev/segmentio-project/analytics-ios/Pods/CrittercismSDK/CrittercismSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
