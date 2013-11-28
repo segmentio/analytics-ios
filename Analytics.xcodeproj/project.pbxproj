@@ -25,9 +25,10 @@
 		2822D5FF17E26C9E005B2B7F /* NSContainer+Subscripting.h in Headers */ = {isa = PBXBuildFile; fileRef = 2822D5FD17E26C9E005B2B7F /* NSContainer+Subscripting.h */; };
 		2822D60017E26C9E005B2B7F /* NSContainer+Subscripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2822D5FE17E26C9E005B2B7F /* NSContainer+Subscripting.m */; };
 		B8A1B15E08994855871D1685 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B38155D048462482A91850 /* libPods.a */; };
+		D328C8E91846EF0A00E4355A /* OmnitureProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = D328C8E71846EF0A00E4355A /* OmnitureProvider.h */; };
+		D328C8EA1846EF0A00E4355A /* OmnitureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D328C8E81846EF0A00E4355A /* OmnitureProvider.m */; };
+		D328C8EB1846EF0A00E4355A /* OmnitureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D328C8E81846EF0A00E4355A /* OmnitureProvider.m */; };
 		D369201D181604CD009F24C0 /* libFlurry_4.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */; };
-		D36ABA5B182D9B42001EB84B /* OmnitureProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = D36ABA59182D9B42001EB84B /* OmnitureProvider.h */; };
-		D36ABA5C182D9B42001EB84B /* OmnitureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D36ABA5A182D9B42001EB84B /* OmnitureProvider.m */; };
 		D36ABA64182F09F3001EB84B /* admsAppLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D36ABA63182F09F3001EB84B /* admsAppLibrary.a */; };
 		EA14A25317FB1E9400870901 /* settings.json in Resources */ = {isa = PBXBuildFile; fileRef = EA14A25217FB1E9400870901 /* settings.json */; };
 		EA25892317C6979D000CEF61 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200B7B17659B2F003F3138 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -98,9 +99,9 @@
 		2822D5FE17E26C9E005B2B7F /* NSContainer+Subscripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSContainer+Subscripting.m"; sourceTree = "<group>"; };
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		D328C8E71846EF0A00E4355A /* OmnitureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OmnitureProvider.h; sourceTree = "<group>"; };
+		D328C8E81846EF0A00E4355A /* OmnitureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OmnitureProvider.m; sourceTree = "<group>"; };
 		D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.4.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.2.4.a; sourceTree = "<group>"; };
-		D36ABA59182D9B42001EB84B /* OmnitureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OmnitureProvider.h; sourceTree = "<group>"; };
-		D36ABA5A182D9B42001EB84B /* OmnitureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OmnitureProvider.m; sourceTree = "<group>"; };
 		D36ABA63182F09F3001EB84B /* admsAppLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = admsAppLibrary.a; path = Pods/Omniture/admsAppLibrary.a; sourceTree = "<group>"; };
 		EA14A25217FB1E9400870901 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = settings.json; sourceTree = "<group>"; };
 		EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioTests.m; sourceTree = "<group>"; };
@@ -196,13 +197,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D36ABA58182D9B26001EB84B /* Omniture */ = {
+		D328C8E61846EF0A00E4355A /* Omniture */ = {
 			isa = PBXGroup;
 			children = (
-				D36ABA59182D9B42001EB84B /* OmnitureProvider.h */,
-				D36ABA5A182D9B42001EB84B /* OmnitureProvider.m */,
+				D328C8E71846EF0A00E4355A /* OmnitureProvider.h */,
+				D328C8E81846EF0A00E4355A /* OmnitureProvider.m */,
 			);
-			name = Omniture;
+			path = Omniture;
 			sourceTree = "<group>";
 		};
 		EA722AF617C87BB00016E8B0 /* AnalyticsTests */ = {
@@ -229,7 +230,7 @@
 		EACB4DAD17C0BB3100624129 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				D36ABA58182D9B26001EB84B /* Omniture */,
+				D328C8E61846EF0A00E4355A /* Omniture */,
 				EACB4DAE17C0BB3100624129 /* Amplitude */,
 				EACB4DB317C0BB3100624129 /* Bugsnag */,
 				EACB4DB617C0BB3100624129 /* Chartbeat */,
@@ -421,7 +422,7 @@
 				EACB4DD217C0BB3100624129 /* AmplitudeProvider.h in Headers */,
 				EACB4DD617C0BB3100624129 /* BugsnagProvider.h in Headers */,
 				EACB4DD817C0BB3100624129 /* ChartbeatProvider.h in Headers */,
-				D36ABA5B182D9B42001EB84B /* OmnitureProvider.h in Headers */,
+				D328C8E91846EF0A00E4355A /* OmnitureProvider.h in Headers */,
 				EACB4DDA17C0BB3100624129 /* CountlyProvider.h in Headers */,
 				EACB4DDC17C0BB3100624129 /* FlurryProvider.h in Headers */,
 				EACB4DDE17C0BB3100624129 /* GoogleAnalyticsProvider.h in Headers */,
@@ -661,6 +662,7 @@
 				EA722AFE17C87BB00016E8B0 /* AnalyticsTests.m in Sources */,
 				EABE4F4117C88A6D00A1081B /* AnalyticsUtilsTests.m in Sources */,
 				EA3B4CC717C8900A00233EA9 /* SegmentioTests.m in Sources */,
+				D328C8EB1846EF0A00E4355A /* OmnitureProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,7 +681,7 @@
 				EACB4DE117C0BB3100624129 /* KISSmetricsProvider.m in Sources */,
 				EACB4DE317C0BB3100624129 /* LocalyticsProvider.m in Sources */,
 				EACB4DE517C0BB3100624129 /* MixpanelProvider.m in Sources */,
-				D36ABA5C182D9B42001EB84B /* OmnitureProvider.m in Sources */,
+				D328C8EA1846EF0A00E4355A /* OmnitureProvider.m in Sources */,
 				EACB4DE717C0BB3100624129 /* SegmentioProvider.m in Sources */,
 				EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */,
 				EAA604CA17C28C7C00911919 /* AnalyticsRequest.m in Sources */,
