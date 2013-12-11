@@ -9,6 +9,7 @@
 #import "SegmentioProvider.h"
 #import "AnalyticsUtils.h"
 #import "KWNotificationMatcher.h"
+#import "Reachability.h"
 
 @interface SegmentioProvider (Private)
 @property (nonatomic, readonly) NSMutableArray *queue;
@@ -25,6 +26,9 @@ describe(@"Analytics", ^{
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     __block SegmentioProvider *segmentio = nil;
     __block Analytics *analytics = nil;
+    
+    [Reachability reachabilityWithHostname:@"www.google.com"];
+    
     beforeEach(^{
         analytics = [[Analytics alloc] initWithSecret:@"k5l6rrye0hsv566zwuk7"];
         analytics.cachedSettings = $jsonLoadsData([NSData dataWithContentsOfURL:
