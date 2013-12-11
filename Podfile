@@ -1,7 +1,7 @@
 
 link_with 'Analytics'
 
-pod 'Bugsnag', '3.1.0'
+pod 'Bugsnag', '3.1.0.fork'
 pod 'FlurrySDK', '~> 4.2.4'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.0.2'
 pod 'Amplitude-iOS', '~> 1.0.2'
