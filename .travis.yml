@@ -24,8 +24,8 @@ before_install:
 
 script:
   - xctool -workspace Analytics.xcworkspace -scheme Analytics -sdk iphoneos -configuration Release ONLY_ACTIVE_ARCH=NO
+  - xctool test -workspace Analytics.xcworkspace -scheme Analytics -sdk iphonesimulator -configuration Release ONLY_ACTIVE_ARCH=NO
   - xctool -workspace Analytics.xcworkspace -scheme Analytics.framework -sdk iphoneos -configuration Release ONLY_ACTIVE_ARCH=NO
-  - xctool test -workspace Analytics.xcworkspace -scheme AnalyticsTests -sdk iphonesimulator -configuration Release ONLY_ACTIVE_ARCH=NO
 
 # deploy:
 #   provider: s3
