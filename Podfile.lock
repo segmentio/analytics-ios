@@ -2,7 +2,7 @@ PODS:
   - Amplitude-iOS (1.0.2)
   - BlocksKit (1.8.3):
     - libffi
-  - Bugsnag (3.1.0):
+  - Bugsnag (3.1.0.fork):
     - Reachability
   - Chartbeat (0.0.1)
   - CLToolkit/Core (0.0.5):
@@ -56,7 +56,7 @@ PODS:
 DEPENDENCIES:
   - Amplitude-iOS (~> 1.0.2)
   - BlocksKit (~> 1.8.3)
-  - Bugsnag (= 3.1.0)
+  - Bugsnag (= 3.1.0.fork)
   - Chartbeat (~> 0.0.1)
   - CLToolkit/Testing (= 0.0.5)
   - Countly (~> 1.0.0)
@@ -73,7 +73,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Amplitude-iOS: ca8f975af2294cd808b4914fa507c01222501bea
   BlocksKit: 27257f9cbbec0ea98c80ba83cc2ea7111ae62eb2
-  Bugsnag: 7a61040b4be9fa2b51a34e87e1da2007b6640637
+  Bugsnag: 948f0df653f83487bbd92f55b7abf1113b707d92
   Chartbeat: f761731e00b10d05b337163d72a10d257d9ad217
   CLToolkit: bce707420abb7577b852d6a34096951ea3077d9e
   ConciseKit: 1e086a66d098ba160ca5faa86458a0431b280b30
