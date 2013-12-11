@@ -19,16 +19,16 @@ NSURL *AnalyticsURLForFilename(NSString *filename) {
 // Async Utils
 dispatch_queue_t dispatch_queue_create_specific(const char *label, dispatch_queue_attr_t attr) {
     dispatch_queue_t queue = dispatch_queue_create(label, attr);
-    dispatch_queue_set_specific(queue, queue, queue, NULL);
+    dispatch_queue_set_specific(queue, (__bridge const void *)queue, (__bridge void *)queue, NULL);
     return queue;
 }
 
 BOOL dispatch_is_on_specific_queue(dispatch_queue_t queue) {
-    return dispatch_get_specific(queue) != NULL;
+    return dispatch_get_specific((__bridge const void *)queue) != NULL;
 }
 
 void dispatch_specific(dispatch_queue_t queue, dispatch_block_t block, BOOL waitForCompletion) {
-    if (dispatch_get_specific(queue)) {
+    if (dispatch_get_specific((__bridge const void *)queue)) {
         block();
     } else if (waitForCompletion) {
         dispatch_sync(queue, block);
