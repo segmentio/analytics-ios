@@ -8,6 +8,11 @@ env:
     - SYMROOT=$PWD/build
     - ONLY_ACTIVE_ARCH=NO 
     - CODE_SIGNING_REQUIRED=NO
+  matrix:
+    - TEST_SDK=6.0
+    - TEST_SDK=6.1
+    - TEST_SDK=7.0
+    - TEST_SDK=7.0.3
 
 branches:
   only:
@@ -37,7 +42,6 @@ script:
 #   upload-dir: ios
 
 notifications:
-  # hipchat: {hipchat_key}
   email:
     recipients:
       - peter@segment.io
