@@ -8,6 +8,8 @@
 
 @implementation CountlyProvider
 
+#define COUNTLY_DEBUG 1
+
 #pragma mark - Initialization
 
 + (void)load {
@@ -58,8 +60,10 @@
     // Record the event! Track any revenue.
     NSNumber *revenue = [AnalyticsProvider extractRevenue:properties];
     if (revenue) {
+        SOLog(@"Calling Countly with event:%@, segmentation:%@, sum:%@", event, notNestedProperties, revenue);
         [[Countly sharedInstance] recordEvent:event segmentation:notNestedProperties count:1 sum:revenue.longValue];
     } else {
+        SOLog(@"Calling Countly with event:%@, segmentation:%@", event, notNestedProperties);
         [[Countly sharedInstance] recordEvent:event segmentation:notNestedProperties count:1];
     }
 }

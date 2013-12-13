@@ -42,10 +42,9 @@
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options { }
-
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options { }
-
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options { }
+- (void)alias:(NSString *)newUserId options:(NSDictionary *)options { }
 
 
 - (void)applicationDidEnterBackground { }
