@@ -21,6 +21,7 @@
 
 - (IBAction)identify:(id)sender {
     NSLog(@"test identify");
+    NSLog(@"can access Mixpanel SDK? Here's the distinctId %@", [Mixpanel sharedInstance].distinctId);
     [[Analytics sharedAnalytics] identify:@"Khan"];
 }
 
