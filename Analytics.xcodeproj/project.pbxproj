@@ -76,8 +76,6 @@
 		EACB4DDD17C0BB3100624129 /* FlurryProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DBE17C0BB3100624129 /* FlurryProvider.m */; };
 		EACB4DDE17C0BB3100624129 /* GoogleAnalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DC017C0BB3100624129 /* GoogleAnalyticsProvider.h */; };
 		EACB4DDF17C0BB3100624129 /* GoogleAnalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DC117C0BB3100624129 /* GoogleAnalyticsProvider.m */; };
-		EACB4DE017C0BB3100624129 /* KISSmetricsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DC317C0BB3100624129 /* KISSmetricsProvider.h */; };
-		EACB4DE117C0BB3100624129 /* KISSmetricsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DC417C0BB3100624129 /* KISSmetricsProvider.m */; };
 		EACB4DE217C0BB3100624129 /* LocalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DC617C0BB3100624129 /* LocalyticsProvider.h */; };
 		EACB4DE317C0BB3100624129 /* LocalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DC717C0BB3100624129 /* LocalyticsProvider.m */; };
 		EACB4DE417C0BB3100624129 /* MixpanelProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DC917C0BB3100624129 /* MixpanelProvider.h */; };
@@ -160,8 +158,6 @@
 		EACB4DBE17C0BB3100624129 /* FlurryProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryProvider.m; sourceTree = "<group>"; };
 		EACB4DC017C0BB3100624129 /* GoogleAnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalyticsProvider.h; sourceTree = "<group>"; };
 		EACB4DC117C0BB3100624129 /* GoogleAnalyticsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsProvider.m; sourceTree = "<group>"; };
-		EACB4DC317C0BB3100624129 /* KISSmetricsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KISSmetricsProvider.h; sourceTree = "<group>"; };
-		EACB4DC417C0BB3100624129 /* KISSmetricsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KISSmetricsProvider.m; sourceTree = "<group>"; };
 		EACB4DC617C0BB3100624129 /* LocalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsProvider.h; sourceTree = "<group>"; };
 		EACB4DC717C0BB3100624129 /* LocalyticsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsProvider.m; sourceTree = "<group>"; };
 		EACB4DC917C0BB3100624129 /* MixpanelProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixpanelProvider.h; sourceTree = "<group>"; };
@@ -263,17 +259,16 @@
 		EACB4DAD17C0BB3100624129 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				D3ABF62C1846F6E000FAAB2B /* Crittercism */,
-				D328C8E61846EF0A00E4355A /* Omniture */,
 				EACB4DAE17C0BB3100624129 /* Amplitude */,
 				EACB4DB317C0BB3100624129 /* Bugsnag */,
 				EACB4DB617C0BB3100624129 /* Chartbeat */,
 				EACB4DB917C0BB3100624129 /* Countly */,
+				D3ABF62C1846F6E000FAAB2B /* Crittercism */,
 				EACB4DBC17C0BB3100624129 /* Flurry */,
 				EACB4DBF17C0BB3100624129 /* GoogleAnalytics */,
-				EACB4DC217C0BB3100624129 /* KISSmetrics */,
 				EACB4DC517C0BB3100624129 /* Localytics */,
 				EACB4DC817C0BB3100624129 /* Mixpanel */,
+				D328C8E61846EF0A00E4355A /* Omniture */,
 				EACB4DCB17C0BB3100624129 /* Segmentio */,
 			);
 			path = Providers;
@@ -331,15 +326,6 @@
 				EACB4DC117C0BB3100624129 /* GoogleAnalyticsProvider.m */,
 			);
 			path = GoogleAnalytics;
-			sourceTree = "<group>";
-		};
-		EACB4DC217C0BB3100624129 /* KISSmetrics */ = {
-			isa = PBXGroup;
-			children = (
-				EACB4DC317C0BB3100624129 /* KISSmetricsProvider.h */,
-				EACB4DC417C0BB3100624129 /* KISSmetricsProvider.m */,
-			);
-			path = KISSmetrics;
 			sourceTree = "<group>";
 		};
 		EACB4DC517C0BB3100624129 /* Localytics */ = {
@@ -475,7 +461,6 @@
 				EACB4DDC17C0BB3100624129 /* FlurryProvider.h in Headers */,
 				EACB4DDE17C0BB3100624129 /* GoogleAnalyticsProvider.h in Headers */,
 				2822D5FF17E26C9E005B2B7F /* NSContainer+Subscripting.h in Headers */,
-				EACB4DE017C0BB3100624129 /* KISSmetricsProvider.h in Headers */,
 				EACB4DE217C0BB3100624129 /* LocalyticsProvider.h in Headers */,
 				EACB4DE417C0BB3100624129 /* MixpanelProvider.h in Headers */,
 				EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */,
@@ -726,7 +711,6 @@
 				EACB4DDB17C0BB3100624129 /* CountlyProvider.m in Sources */,
 				EACB4DDD17C0BB3100624129 /* FlurryProvider.m in Sources */,
 				EACB4DDF17C0BB3100624129 /* GoogleAnalyticsProvider.m in Sources */,
-				EACB4DE117C0BB3100624129 /* KISSmetricsProvider.m in Sources */,
 				EACB4DE317C0BB3100624129 /* LocalyticsProvider.m in Sources */,
 				EACB4DE517C0BB3100624129 /* MixpanelProvider.m in Sources */,
 				D3ABF6291846F54F00FAAB2B /* OmnitureProvider.m in Sources */,

@@ -79,6 +79,15 @@
     [self track:screenTitle properties:properties options:options];
 }
 
+- (void)alias:(NSString *)from to:(NSString *)to options:(NSDictionary *)options {
+    // If necessary, get the old distinctId
+    NSString *distinctId = from;
+    if (!distinctId) {
+        distinctId = [Mixpanel sharedInstance].distinctId;
+    }
+    [[Mixpanel sharedInstance] createAlias:to forDistinctID:distinctId];
+}
+
 - (void)registerPushDeviceToken:(NSData *)deviceToken {
     [[[Mixpanel sharedInstance] people] addPushDeviceToken:deviceToken];
 }
