@@ -38,11 +38,11 @@ describe(@"Analytics", ^{
         segmentio.flushAt = 2;
     });
     
-    it(@"has a secret, cached settings and 10 providers, including Segment.io", ^{
+    it(@"has a secret, cached settings and 11 providers, including Segment.io", ^{
         [[analytics.cachedSettings shouldNot] beEmpty];
         [[analytics.secret should] equal:@"k5l6rrye0hsv566zwuk7"];
         [[segmentio.secret should] equal:@"k5l6rrye0hsv566zwuk7"];
-        [[[analytics should] have:12] providers];
+        [[[analytics should] have:11] providers];
         [segmentio shouldNotBeNil];
     });
     
@@ -119,6 +119,12 @@ describe(@"Analytics", ^{
         // wait for 200 from servers
         [segmentio flush];
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
+    });
+    
+    it(@"Should alias", ^{
+        [[segmentio.queue should] beEmpty];
+        NSString *to = @"hello@gmail.com";
+        [analytics alias:to];
     });
     
 });
