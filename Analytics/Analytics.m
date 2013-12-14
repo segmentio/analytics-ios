@@ -198,6 +198,9 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 }
 - (void)alias:(NSString *)from to:(NSString *)to options:(NSDictionary *)options {
     NSParameterAssert(to);
+    if (!from) {
+        from = @"";
+    }
     [self callProvidersWithSelector:_cmd
                           arguments:@[from, to, CoerceDictionary(options)]
                             options:options];

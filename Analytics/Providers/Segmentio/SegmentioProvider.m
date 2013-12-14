@@ -218,8 +218,10 @@ static NSString *GetSessionID(BOOL reset) {
 }
 
 - (void)alias:(NSString *)from to:(NSString *)to options:(NSDictionary *)options {
-    NSAssert(from.length, @"%@ alias requires a from id.", self);
     NSAssert(to.length, @"%@ alias requires a to id.", self);
+    if (!from) {
+        from = _sessionId;
+    }
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:from forKey:@"from"];
