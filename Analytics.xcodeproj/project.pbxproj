@@ -332,7 +332,6 @@
 		EACB4DAD17C0BB3100624129 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
-				D331BD101860EA83007CB22F /* Tapstream */,
 				EACB4DAE17C0BB3100624129 /* Amplitude */,
 				EACB4DB317C0BB3100624129 /* Bugsnag */,
 				EACB4DB617C0BB3100624129 /* Chartbeat */,
@@ -343,6 +342,7 @@
 				EACB4DC517C0BB3100624129 /* Localytics */,
 				EACB4DC817C0BB3100624129 /* Mixpanel */,
 				D328C8E61846EF0A00E4355A /* Omniture */,
+				D331BD101860EA83007CB22F /* Tapstream */,
 				EACB4DCB17C0BB3100624129 /* Segmentio */,
 			);
 			path = Providers;

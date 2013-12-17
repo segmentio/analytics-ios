@@ -44,11 +44,11 @@
     }
     
     NSString *accountName = [self.settings objectForKey:@"accountName"];
-    NSString *developerSecret = [self.settings objectForKey:@"developerSecret"];
+    NSString *sdkSecret = [self.settings objectForKey:@"sdkSecret"];
     
-    [TSTapstream createWithAccountName:accountName developerSecret:developerSecret config:config];
+    [TSTapstream createWithAccountName:accountName developerSecret:sdkSecret config:config];
     
-    SOLog(@"TapstreamProvider initialized with accountName %@ and developerSecret", accountName, developerSecret);
+    SOLog(@"TapstreamProvider initialized with accountName %@ and developerSecret %@", accountName, sdkSecret);
 }
 
 
@@ -57,8 +57,8 @@
 - (void)validate
 {
     BOOL hasAccountName = [self.settings objectForKey:@"accountName"] != nil;
-    BOOL hasDeveloperSecret = [self.settings objectForKey:@"developerSecret"] != nil;
-    self.valid = hasAccountName && hasDeveloperSecret;
+    BOOL hasSDKSecret = [self.settings objectForKey:@"sdkSecret"] != nil;
+    self.valid = hasAccountName && hasSDKSecret;
 }
 
 
