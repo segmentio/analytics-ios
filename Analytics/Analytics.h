@@ -170,25 +170,6 @@
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties;
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options;
 
-/*!
- @method
- 
- @abstract
- Alias two userId's together into a single user.
- 
- @param from    [optional] The old userId.
- 
- @param to      [optional] The new userId.
- 
- @discussion
- When a user signs up inside your app or logs in for the first time, you'll probably want to call alias just before you call identify so that the pre-login and post-login information is merged together.
- 
- */
-- (void)alias:(NSString *)to;
-- (void)alias:(NSString *)to options:(NSDictionary *)options;
-- (void)alias:(NSString *)from to:(NSString *)to;
-- (void)alias:(NSString *)from to:(NSString *)to options:(NSDictionary *)options;
-
 
 /*!
  @method
