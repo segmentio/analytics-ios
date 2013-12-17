@@ -29,6 +29,7 @@
     NSLog(@"can access Crittercism SDK?");
     [Crittercism setUsername:@"asdfasdf"];
     NSLog(@"can access Chartbeat SDK? %@", [CBTracker sharedTracker]);
+    NSLog(@"can access Tapstream SDK? %@", [TSTapstream instance]);
     [[Analytics sharedAnalytics] identify:@"Khan"];
 }
 
