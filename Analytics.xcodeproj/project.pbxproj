@@ -39,8 +39,26 @@
 		D331BD09185FDDEA007CB22F /* BugsnagLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD03185FDDEA007CB22F /* BugsnagLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD04185FDDEA007CB22F /* BugsnagMetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D331BD131860EA9A007CB22F /* TapstreamProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD111860EA9A007CB22F /* TapstreamProvider.h */; };
+		D331BD131860EA9A007CB22F /* TapstreamProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD111860EA9A007CB22F /* TapstreamProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD141860EA9A007CB22F /* TapstreamProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D331BD121860EA9A007CB22F /* TapstreamProvider.m */; };
+		D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD151860F5D4007CB22F /* TSAppEventSourceImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD161860F5D4007CB22F /* TSCoreListenerImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD1B1860F5D4007CB22F /* TSPlatformImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD171860F5D4007CB22F /* TSPlatformImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD1C1860F5D4007CB22F /* TSTapstream.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD181860F5D4007CB22F /* TSTapstream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD2B1860F5F0007CB22F /* TSApi.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD1D1860F5F0007CB22F /* TSApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD2C1860F5F0007CB22F /* TSAppEventSource.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD1E1860F5F0007CB22F /* TSAppEventSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD2D1860F5F0007CB22F /* TSConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD1F1860F5F0007CB22F /* TSConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD2E1860F5F0007CB22F /* TSCore.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD201860F5F0007CB22F /* TSCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD2F1860F5F0007CB22F /* TSCoreListener.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD211860F5F0007CB22F /* TSCoreListener.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD301860F5F0007CB22F /* TSDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD221860F5F0007CB22F /* TSDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD311860F5F0007CB22F /* TSEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD231860F5F0007CB22F /* TSEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD321860F5F0007CB22F /* TSHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD241860F5F0007CB22F /* TSHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD331860F5F0007CB22F /* TSHit.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD251860F5F0007CB22F /* TSHit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD341860F5F0007CB22F /* TSLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD261860F5F0007CB22F /* TSLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD351860F5F0007CB22F /* TSLogLevel.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD271860F5F0007CB22F /* TSLogLevel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD361860F5F0007CB22F /* TSPlatform.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD281860F5F0007CB22F /* TSPlatform.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD371860F5F0007CB22F /* TSResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD291860F5F0007CB22F /* TSResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD381860F5F0007CB22F /* TSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD2A1860F5F0007CB22F /* TSUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D350D6131859340700F8A7FA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D350D6121859340700F8A7FA /* Reachability.m */; };
 		D369201D181604CD009F24C0 /* libFlurry_4.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */; };
 		D36ABA64182F09F3001EB84B /* admsAppLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D36ABA63182F09F3001EB84B /* admsAppLibrary.a */; };
@@ -137,6 +155,24 @@
 		D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagNotifier.h; path = Pods/Bugsnag/bugsnag/BugsnagNotifier.h; sourceTree = "<group>"; };
 		D331BD111860EA9A007CB22F /* TapstreamProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapstreamProvider.h; sourceTree = "<group>"; };
 		D331BD121860EA9A007CB22F /* TapstreamProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapstreamProvider.m; sourceTree = "<group>"; };
+		D331BD151860F5D4007CB22F /* TSAppEventSourceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSAppEventSourceImpl.h; path = Pods/Tapstream/objc/Tapstream/TSAppEventSourceImpl.h; sourceTree = "<group>"; };
+		D331BD161860F5D4007CB22F /* TSCoreListenerImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSCoreListenerImpl.h; path = Pods/Tapstream/objc/Tapstream/TSCoreListenerImpl.h; sourceTree = "<group>"; };
+		D331BD171860F5D4007CB22F /* TSPlatformImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSPlatformImpl.h; path = Pods/Tapstream/objc/Tapstream/TSPlatformImpl.h; sourceTree = "<group>"; };
+		D331BD181860F5D4007CB22F /* TSTapstream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSTapstream.h; path = Pods/Tapstream/objc/Tapstream/TSTapstream.h; sourceTree = "<group>"; };
+		D331BD1D1860F5F0007CB22F /* TSApi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSApi.h; path = Pods/Tapstream/objc/Core/TSApi.h; sourceTree = "<group>"; };
+		D331BD1E1860F5F0007CB22F /* TSAppEventSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSAppEventSource.h; path = Pods/Tapstream/objc/Core/TSAppEventSource.h; sourceTree = "<group>"; };
+		D331BD1F1860F5F0007CB22F /* TSConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSConfig.h; path = Pods/Tapstream/objc/Core/TSConfig.h; sourceTree = "<group>"; };
+		D331BD201860F5F0007CB22F /* TSCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSCore.h; path = Pods/Tapstream/objc/Core/TSCore.h; sourceTree = "<group>"; };
+		D331BD211860F5F0007CB22F /* TSCoreListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSCoreListener.h; path = Pods/Tapstream/objc/Core/TSCoreListener.h; sourceTree = "<group>"; };
+		D331BD221860F5F0007CB22F /* TSDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSDelegate.h; path = Pods/Tapstream/objc/Core/TSDelegate.h; sourceTree = "<group>"; };
+		D331BD231860F5F0007CB22F /* TSEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSEvent.h; path = Pods/Tapstream/objc/Core/TSEvent.h; sourceTree = "<group>"; };
+		D331BD241860F5F0007CB22F /* TSHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSHelpers.h; path = Pods/Tapstream/objc/Core/TSHelpers.h; sourceTree = "<group>"; };
+		D331BD251860F5F0007CB22F /* TSHit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSHit.h; path = Pods/Tapstream/objc/Core/TSHit.h; sourceTree = "<group>"; };
+		D331BD261860F5F0007CB22F /* TSLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSLogging.h; path = Pods/Tapstream/objc/Core/TSLogging.h; sourceTree = "<group>"; };
+		D331BD271860F5F0007CB22F /* TSLogLevel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSLogLevel.h; path = Pods/Tapstream/objc/Core/TSLogLevel.h; sourceTree = "<group>"; };
+		D331BD281860F5F0007CB22F /* TSPlatform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSPlatform.h; path = Pods/Tapstream/objc/Core/TSPlatform.h; sourceTree = "<group>"; };
+		D331BD291860F5F0007CB22F /* TSResponse.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSResponse.h; path = Pods/Tapstream/objc/Core/TSResponse.h; sourceTree = "<group>"; };
+		D331BD2A1860F5F0007CB22F /* TSUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSUtils.h; path = Pods/Tapstream/objc/Core/TSUtils.h; sourceTree = "<group>"; };
 		D350D6111859340700F8A7FA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D350D6121859340700F8A7FA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.4.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.2.4.a; sourceTree = "<group>"; };
@@ -396,6 +432,24 @@
 		F7200B6A17659B2F003F3138 = {
 			isa = PBXGroup;
 			children = (
+				D331BD1D1860F5F0007CB22F /* TSApi.h */,
+				D331BD1E1860F5F0007CB22F /* TSAppEventSource.h */,
+				D331BD1F1860F5F0007CB22F /* TSConfig.h */,
+				D331BD201860F5F0007CB22F /* TSCore.h */,
+				D331BD211860F5F0007CB22F /* TSCoreListener.h */,
+				D331BD221860F5F0007CB22F /* TSDelegate.h */,
+				D331BD231860F5F0007CB22F /* TSEvent.h */,
+				D331BD241860F5F0007CB22F /* TSHelpers.h */,
+				D331BD251860F5F0007CB22F /* TSHit.h */,
+				D331BD261860F5F0007CB22F /* TSLogging.h */,
+				D331BD271860F5F0007CB22F /* TSLogLevel.h */,
+				D331BD281860F5F0007CB22F /* TSPlatform.h */,
+				D331BD291860F5F0007CB22F /* TSResponse.h */,
+				D331BD2A1860F5F0007CB22F /* TSUtils.h */,
+				D331BD151860F5D4007CB22F /* TSAppEventSourceImpl.h */,
+				D331BD161860F5D4007CB22F /* TSCoreListenerImpl.h */,
+				D331BD171860F5D4007CB22F /* TSPlatformImpl.h */,
+				D331BD181860F5D4007CB22F /* TSTapstream.h */,
 				D331BD00185FDDEA007CB22F /* BugsnagConfiguration.h */,
 				D331BD01185FDDEA007CB22F /* BugsnagDictionary.h */,
 				D331BD02185FDDEA007CB22F /* BugsnagEvent.h */,
@@ -499,7 +553,6 @@
 				D371F32E185942BB0053337D /* Crittercism.h in Headers */,
 				D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */,
 				D331BCF3185BFF4A007CB22F /* CrittercismDelegate.h in Headers */,
-				D331BD131860EA9A007CB22F /* TapstreamProvider.h in Headers */,
 				D371F330185942C90053337D /* Flurry.h in Headers */,
 				D371F332185942DE0053337D /* GAI.h in Headers */,
 				D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */,
@@ -511,6 +564,25 @@
 				D331BD07185FDDEA007CB22F /* BugsnagDictionary.h in Headers */,
 				D331BD08185FDDEA007CB22F /* BugsnagEvent.h in Headers */,
 				D331BD09185FDDEA007CB22F /* BugsnagLogger.h in Headers */,
+				D331BD131860EA9A007CB22F /* TapstreamProvider.h in Headers */,
+				D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */,
+				D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */,
+				D331BD1B1860F5D4007CB22F /* TSPlatformImpl.h in Headers */,
+				D331BD1C1860F5D4007CB22F /* TSTapstream.h in Headers */,
+				D331BD2B1860F5F0007CB22F /* TSApi.h in Headers */,
+				D331BD2C1860F5F0007CB22F /* TSAppEventSource.h in Headers */,
+				D331BD2D1860F5F0007CB22F /* TSConfig.h in Headers */,
+				D331BD2E1860F5F0007CB22F /* TSCore.h in Headers */,
+				D331BD2F1860F5F0007CB22F /* TSCoreListener.h in Headers */,
+				D331BD301860F5F0007CB22F /* TSDelegate.h in Headers */,
+				D331BD311860F5F0007CB22F /* TSEvent.h in Headers */,
+				D331BD321860F5F0007CB22F /* TSHelpers.h in Headers */,
+				D331BD331860F5F0007CB22F /* TSHit.h in Headers */,
+				D331BD341860F5F0007CB22F /* TSLogging.h in Headers */,
+				D331BD351860F5F0007CB22F /* TSLogLevel.h in Headers */,
+				D331BD361860F5F0007CB22F /* TSPlatform.h in Headers */,
+				D331BD371860F5F0007CB22F /* TSResponse.h in Headers */,
+				D331BD381860F5F0007CB22F /* TSUtils.h in Headers */,
 				D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */,
 				D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */,
 				EACB4DE617C0BB3100624129 /* SegmentioProvider.h in Headers */,

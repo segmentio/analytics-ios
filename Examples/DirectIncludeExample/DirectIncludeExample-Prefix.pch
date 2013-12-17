@@ -20,4 +20,5 @@
 #import <Analytics/Flurry.h>
 #import <Analytics/GAI.h>
 #import <Analytics/Mixpanel.h>
+#import <Analytics/TSTapstream.h>
 #import <Analytics/Private/SegmentioProvider.h>
