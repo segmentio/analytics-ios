@@ -185,59 +185,6 @@ describe(@"Segment.io", ^{
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
-    it(@"Should alias", ^{
-        NSString *from = [segmentio getSessionId];
-        NSString *to = @"wallowinghippo@wahoooo.net";
-        [segmentio alias:from to:to options:nil];
-        
-        [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
-        
-        NSDictionary *queuedTrack = segmentio.queue[0];
-        
-        [[queuedTrack[@"action"] should] equal:@"alias"];
-        [queuedTrack[@"timestamp"] shouldNotBeNil];
-        [[queuedTrack[@"from"] should] equal:from];
-        [[queuedTrack[@"to"] should] equal:to];
-        
-        // test for context object and default properties there
-        [queuedTrack[@"context"] shouldNotBeNil];
-        [queuedTrack[@"context"][@"library"] shouldNotBeNil];
-        
-        // send a second event, wait for 200 from servers
-        [segmentio alias:from to:to options:nil];
-        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
-    });
-    
-    it(@"Should alias with context", ^{
-        NSString *from = [segmentio getSessionId];
-        NSString *to = @"wallowinghippo@wahoooo.net";
-        NSDictionary *options = @{@"providers": @{@"Salesforce": @"true", @"Mixpanel": @"false"}};
-        [segmentio alias:from to:to options:options];
-        
-        [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
-        
-        
-        NSDictionary *queuedTrack = segmentio.queue[0];
-        
-        [[queuedTrack[@"action"] should] equal:@"alias"];
-        [queuedTrack[@"timestamp"] shouldNotBeNil];
-        [[queuedTrack[@"from"] should] equal:from];
-        [[queuedTrack[@"to"] should] equal:to];
-        
-        // test for context object and default properties there
-        [queuedTrack[@"context"] shouldNotBeNil];
-        [queuedTrack[@"context"][@"library"] shouldNotBeNil];
-        
-        [queuedTrack[@"context"][@"providers"] shouldNotBeNil];
-        [[queuedTrack[@"context"][@"providers"][@"Salesforce"] should] equal:@"true"];
-        [[queuedTrack[@"context"][@"providers"][@"Mixpanel"] should] equal:@"false"];
-        [queuedTrack[@"context"][@"providers"][@"KISSmetrics"] shouldBeNil];
-        
-        // send a second event, wait for 200 from servers
-        [segmentio alias:from to:to options:nil];
-        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
-    });
-    
     it(@"Should queue when not full", ^{
         [[segmentio.queue should] beEmpty];
         [segmentio.userId shouldBeNil];
