@@ -49,6 +49,7 @@ PODS:
     - libextobjc/EXTScope (~> 0.3.0)
   - ReactiveCocoa/RACExtensions (1.9.7):
     - ReactiveCocoa/Core
+  - Tapstream (2.5)
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 1.0.2)
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - Mixpanel (~> 2.2.1)
   - Omniture (~> 0.0.1)
   - ReactiveCocoa (~> 1.9.7)
+  - Tapstream (~> 2.5)
 
 SPEC CHECKSUMS:
   Amplitude-iOS: ca8f975af2294cd808b4914fa507c01222501bea
@@ -87,5 +89,6 @@ SPEC CHECKSUMS:
   NSLogger: 4567fef08d0db18a89cce91b2053823fc0950738
   Omniture: ff82cfc315ca22d3c2f3030d8b14fb79a20e25b4
   ReactiveCocoa: 86033375e366207afad5a5067f2dd10a1f2d8f32
+  Tapstream: 4405b6bf2cd335b3791ca00ad5a3053b3f8434be
 
 COCOAPODS: 0.28.0

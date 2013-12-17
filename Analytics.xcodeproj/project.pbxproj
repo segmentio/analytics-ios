@@ -39,6 +39,8 @@
 		D331BD09185FDDEA007CB22F /* BugsnagLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD03185FDDEA007CB22F /* BugsnagLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD04185FDDEA007CB22F /* BugsnagMetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD131860EA9A007CB22F /* TapstreamProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD111860EA9A007CB22F /* TapstreamProvider.h */; };
+		D331BD141860EA9A007CB22F /* TapstreamProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D331BD121860EA9A007CB22F /* TapstreamProvider.m */; };
 		D350D6131859340700F8A7FA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D350D6121859340700F8A7FA /* Reachability.m */; };
 		D369201D181604CD009F24C0 /* libFlurry_4.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */; };
 		D36ABA64182F09F3001EB84B /* admsAppLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D36ABA63182F09F3001EB84B /* admsAppLibrary.a */; };
@@ -133,6 +135,8 @@
 		D331BD03185FDDEA007CB22F /* BugsnagLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagLogger.h; path = Pods/Bugsnag/bugsnag/BugsnagLogger.h; sourceTree = "<group>"; };
 		D331BD04185FDDEA007CB22F /* BugsnagMetaData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagMetaData.h; path = Pods/Bugsnag/bugsnag/BugsnagMetaData.h; sourceTree = "<group>"; };
 		D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagNotifier.h; path = Pods/Bugsnag/bugsnag/BugsnagNotifier.h; sourceTree = "<group>"; };
+		D331BD111860EA9A007CB22F /* TapstreamProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapstreamProvider.h; sourceTree = "<group>"; };
+		D331BD121860EA9A007CB22F /* TapstreamProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapstreamProvider.m; sourceTree = "<group>"; };
 		D350D6111859340700F8A7FA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D350D6121859340700F8A7FA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.4.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.2.4.a; sourceTree = "<group>"; };
@@ -248,6 +252,15 @@
 			path = Omniture;
 			sourceTree = "<group>";
 		};
+		D331BD101860EA83007CB22F /* Tapstream */ = {
+			isa = PBXGroup;
+			children = (
+				D331BD111860EA9A007CB22F /* TapstreamProvider.h */,
+				D331BD121860EA9A007CB22F /* TapstreamProvider.m */,
+			);
+			name = Tapstream;
+			sourceTree = "<group>";
+		};
 		D3ABF62C1846F6E000FAAB2B /* Crittercism */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +296,7 @@
 		EACB4DAD17C0BB3100624129 /* Providers */ = {
 			isa = PBXGroup;
 			children = (
+				D331BD101860EA83007CB22F /* Tapstream */,
 				EACB4DAE17C0BB3100624129 /* Amplitude */,
 				EACB4DB317C0BB3100624129 /* Bugsnag */,
 				EACB4DB617C0BB3100624129 /* Chartbeat */,
@@ -485,6 +499,7 @@
 				D371F32E185942BB0053337D /* Crittercism.h in Headers */,
 				D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */,
 				D331BCF3185BFF4A007CB22F /* CrittercismDelegate.h in Headers */,
+				D331BD131860EA9A007CB22F /* TapstreamProvider.h in Headers */,
 				D371F330185942C90053337D /* Flurry.h in Headers */,
 				D371F332185942DE0053337D /* GAI.h in Headers */,
 				D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */,
@@ -776,6 +791,7 @@
 				EACB4DDD17C0BB3100624129 /* FlurryProvider.m in Sources */,
 				EACB4DDF17C0BB3100624129 /* GoogleAnalyticsProvider.m in Sources */,
 				EACB4DE317C0BB3100624129 /* LocalyticsProvider.m in Sources */,
+				D331BD141860EA9A007CB22F /* TapstreamProvider.m in Sources */,
 				EACB4DE517C0BB3100624129 /* MixpanelProvider.m in Sources */,
 				D3ABF6291846F54F00FAAB2B /* OmnitureProvider.m in Sources */,
 				EACB4DE717C0BB3100624129 /* SegmentioProvider.m in Sources */,
