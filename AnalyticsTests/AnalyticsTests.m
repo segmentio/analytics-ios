@@ -121,12 +121,6 @@ describe(@"Analytics", ^{
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
-    it(@"Should alias", ^{
-        [[segmentio.queue should] beEmpty];
-        NSString *to = @"hello@gmail.com";
-        [analytics alias:to];
-    });
-    
 });
 
 SPEC_END
