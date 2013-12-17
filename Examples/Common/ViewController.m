@@ -9,6 +9,8 @@
 
 #import "ViewController.h"
 #import "Reachability.h"
+#import "Analytics/TSTapstream.h"
+#import "Analytics/Private/SegmentioProvider.h"
 
 @implementation ViewController
 
