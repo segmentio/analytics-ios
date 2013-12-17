@@ -215,19 +215,17 @@ static NSString *GetSessionID(BOOL reset) {
     [dictionary setValue:properties forKey:@"properties"];
     
     [self enqueueAction:@"track" dictionary:dictionary options:options];
-}
+ }
 
-- (void)alias:(NSString *)from to:(NSString *)to options:(NSDictionary *)options {
-    NSAssert(to.length, @"%@ alias requires a to id.", self);
-    if (!from) {
-        from = _sessionId;
-    }
-
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:from forKey:@"from"];
-    [dictionary setValue:to forKey:@"to"];
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
+    NSAssert(screenTitle.length, @"%@ screen requires a screen title.", self);
     
-    [self enqueueAction:@"alias" dictionary:dictionary options:options];
+    // TODO: move to new "screen" REST API when available @calvinfo
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:screenTitle forKey:@"event"]; // TODO should be "screen"
+    [dictionary setValue:properties forKey:@"properties"];
+    
+    [self enqueueAction:@"track" dictionary:dictionary options:options]; // TODO should be "screen"
 }
 
 #pragma mark - Queueing
