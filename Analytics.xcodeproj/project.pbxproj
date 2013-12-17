@@ -33,6 +33,12 @@
 		D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF8185C2DC4007CB22F /* GAILogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF9185C2DC4007CB22F /* GAITrackedViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCFD185C2DC4007CB22F /* GAITracker.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCFA185C2DC4007CB22F /* GAITracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD06185FDDEA007CB22F /* BugsnagConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD00185FDDEA007CB22F /* BugsnagConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD07185FDDEA007CB22F /* BugsnagDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD01185FDDEA007CB22F /* BugsnagDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD08185FDDEA007CB22F /* BugsnagEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD02185FDDEA007CB22F /* BugsnagEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD09185FDDEA007CB22F /* BugsnagLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD03185FDDEA007CB22F /* BugsnagLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD04185FDDEA007CB22F /* BugsnagMetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D350D6131859340700F8A7FA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D350D6121859340700F8A7FA /* Reachability.m */; };
 		D369201D181604CD009F24C0 /* libFlurry_4.2.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */; };
 		D36ABA64182F09F3001EB84B /* admsAppLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D36ABA63182F09F3001EB84B /* admsAppLibrary.a */; };
@@ -121,6 +127,12 @@
 		D331BCF8185C2DC4007CB22F /* GAILogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAILogger.h"; sourceTree = "<group>"; };
 		D331BCF9185C2DC4007CB22F /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAITrackedViewController.h"; sourceTree = "<group>"; };
 		D331BCFA185C2DC4007CB22F /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAITracker.h"; sourceTree = "<group>"; };
+		D331BD00185FDDEA007CB22F /* BugsnagConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagConfiguration.h; path = Pods/Bugsnag/bugsnag/BugsnagConfiguration.h; sourceTree = "<group>"; };
+		D331BD01185FDDEA007CB22F /* BugsnagDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagDictionary.h; path = Pods/Bugsnag/bugsnag/BugsnagDictionary.h; sourceTree = "<group>"; };
+		D331BD02185FDDEA007CB22F /* BugsnagEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagEvent.h; path = Pods/Bugsnag/bugsnag/BugsnagEvent.h; sourceTree = "<group>"; };
+		D331BD03185FDDEA007CB22F /* BugsnagLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagLogger.h; path = Pods/Bugsnag/bugsnag/BugsnagLogger.h; sourceTree = "<group>"; };
+		D331BD04185FDDEA007CB22F /* BugsnagMetaData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagMetaData.h; path = Pods/Bugsnag/bugsnag/BugsnagMetaData.h; sourceTree = "<group>"; };
+		D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagNotifier.h; path = Pods/Bugsnag/bugsnag/BugsnagNotifier.h; sourceTree = "<group>"; };
 		D350D6111859340700F8A7FA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D350D6121859340700F8A7FA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.4.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.2.4.a; sourceTree = "<group>"; };
@@ -370,6 +382,12 @@
 		F7200B6A17659B2F003F3138 = {
 			isa = PBXGroup;
 			children = (
+				D331BD00185FDDEA007CB22F /* BugsnagConfiguration.h */,
+				D331BD01185FDDEA007CB22F /* BugsnagDictionary.h */,
+				D331BD02185FDDEA007CB22F /* BugsnagEvent.h */,
+				D331BD03185FDDEA007CB22F /* BugsnagLogger.h */,
+				D331BD04185FDDEA007CB22F /* BugsnagMetaData.h */,
+				D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */,
 				D331BCF8185C2DC4007CB22F /* GAILogger.h */,
 				D331BCF9185C2DC4007CB22F /* GAITrackedViewController.h */,
 				D331BCFA185C2DC4007CB22F /* GAITracker.h */,
@@ -474,6 +492,12 @@
 				D331BCFD185C2DC4007CB22F /* GAITracker.h in Headers */,
 				D371F334185943170053337D /* Mixpanel.h in Headers */,
 				D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */,
+				D331BD06185FDDEA007CB22F /* BugsnagConfiguration.h in Headers */,
+				D331BD07185FDDEA007CB22F /* BugsnagDictionary.h in Headers */,
+				D331BD08185FDDEA007CB22F /* BugsnagEvent.h in Headers */,
+				D331BD09185FDDEA007CB22F /* BugsnagLogger.h in Headers */,
+				D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */,
+				D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */,
 				EACB4DE617C0BB3100624129 /* SegmentioProvider.h in Headers */,
 				EA65F96617C2ABA600389A1A /* AnalyticsProvider.h in Headers */,
 				EACB4DD217C0BB3100624129 /* AmplitudeProvider.h in Headers */,

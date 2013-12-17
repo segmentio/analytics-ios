@@ -21,7 +21,14 @@
 
 - (IBAction)identify:(id)sender {
     NSLog(@"test identify");
+    NSLog(@"can access BugSnag SDK? Here's the userId %@", [Bugsnag instance].userId);
+    NSLog(@"can access Google Analytics SDK? %@", [[GAI sharedInstance] defaultTracker]);
     NSLog(@"can access Mixpanel SDK? Here's the distinctId %@", [Mixpanel sharedInstance].distinctId);
+    NSLog(@"can access Flurry SDK?");
+    [Flurry setUserID:@"asdfasdf"];
+    NSLog(@"can access Crittercism SDK?");
+    [Crittercism setUsername:@"asdfasdf"];
+    NSLog(@"can access Chartbeat SDK? %@", [CBTracker sharedTracker]);
     [[Analytics sharedAnalytics] identify:@"Khan"];
 }
 
