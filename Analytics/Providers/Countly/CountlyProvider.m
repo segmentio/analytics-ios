@@ -8,8 +8,6 @@
 
 @implementation CountlyProvider
 
-#define COUNTLY_DEBUG 1
-
 #pragma mark - Initialization
 
 + (void)load {
@@ -84,6 +82,10 @@
         id value = [dict objectForKey:key];
         if ([value isKindOfClass:[NSDictionary class]] || [value isKindOfClass:[NSArray class]]) {
             NSLog(@"WARNING: Removing nested [analytics track] property %@ for Countly (not supported by Countly).", key);
+            [dict removeObjectForKey:key];
+        }
+        else if ([value isKindOfClass:[NSNumber class]]) {
+            NSLog(@"WARNING: Removing number segmentation [analytics track] property %@ for Countly (not supported by Countly).", key);
             [dict removeObjectForKey:key];
         }
     }
