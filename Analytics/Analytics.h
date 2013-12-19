@@ -1,6 +1,6 @@
 // Analytics.h
 // Copyright 2013 Segment.io
-// Version 0.8.0 (Do not change this line. It is automatically modified by the build process)
+// Version 0.9.0 (Do not change this line. It is automatically modified by the build process)
 
 #import <Foundation/Foundation.h>
 
@@ -169,7 +169,6 @@
 - (void)screen:(NSString *)screenTitle;
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties;
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options;
-
 
 
 /*!

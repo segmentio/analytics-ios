@@ -22,7 +22,6 @@
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options;
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options;
 
-
 @optional;
 
 - (void)registerPushDeviceToken:(NSData *)deviceToken;
