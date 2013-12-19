@@ -259,13 +259,11 @@ static NSString *GetSessionID(BOOL reset) {
         // they've changed (see identify function)
         [payload setValue:self.userId forKey:@"userId"];
         [payload setValue:self.sessionId forKey:@"sessionId"];
-        // TODO change context to options when server-side is ready
-        [payload setValue:[self serverOptionsForOptions:options] forKey:@"context"];
-        
         SOLog(@"%@ Enqueueing action: %@", self, payload);
         
+        // TODO change context to options when server-side is ready
+        [payload setValue:[self serverOptionsForOptions:options] forKey:@"context"];
         [self.queue addObject:payload];
-        
         [self flushQueueByLength];
     }];
 }
