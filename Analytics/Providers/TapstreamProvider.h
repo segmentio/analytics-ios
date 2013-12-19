@@ -1,11 +1,11 @@
-// KISSmetricsProvider.h
+// TapstreamProvider.h
 // Copyright 2013 Segment.io
 
 #import <Foundation/Foundation.h>
 #import "AnalyticsProvider.h"
 
 
-@interface KISSmetricsProvider : AnalyticsProvider
+@interface TapstreamProvider : AnalyticsProvider
 
 @property(nonatomic, strong) NSString *name;
 @property(nonatomic, assign) BOOL valid;
@@ -13,3 +13,4 @@
 @property(nonatomic, strong) NSDictionary *settings;
 
 @end
+

@@ -17,7 +17,8 @@
     "Flurry": {
         "apiKey": "VN8HXZ28MWPB7JPBYNZD",
         "useHttps": false,
-        "captureUncaughtExceptions": false
+        "captureUncaughtExceptions": false,
+        "sessionContinueSeconds": 15
     },
     "Google Analytics": {
         "classic": true,
@@ -49,6 +50,13 @@
         "pageview": false,
         "token": "89f86c4aa2ce5b74cb47eb5ec95ad1f9",
         "initialPageview": false
+    },
+    "Tapstream": {
+        "accountName": "segmentio-test",
+        "sdkSecret": "Rq8qqm3KQ_iDeqyOa55aqQ",
+        "trackAllPages": 1,
+        "trackCategorizedPages": 1,
+        "trackNamedPages": 1
     },
     "Webhooks": {
         "globalHook": "http://requestb.in/1gc2atw1"

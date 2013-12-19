@@ -1,3 +1,19 @@
+0.9.0
+==================
+* Setting up Travis-CI testing
+* Adding Tapstream support
+* Updating Mixpanel to 2.2.1
+* Updating Bugsnag to 3.1.0
+* Adding Reachability test case to prevent regressions
+* Updating minimum iOS version to 6 since only 4% of devices are using older
+* Adding support for alias
+
+
+0.8.0 / 2013-11-27
+==================
+* Adding Crittercism support
+* Fixing Omniture file references in build system
+
 0.7.5 / 2013-11-10
 ==================
 * Adds support for Omniture eVars and props

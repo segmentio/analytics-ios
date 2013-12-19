@@ -215,17 +215,17 @@ static NSString *GetSessionID(BOOL reset) {
     [dictionary setValue:properties forKey:@"properties"];
     
     [self enqueueAction:@"track" dictionary:dictionary options:options];
-}
+ }
 
-- (void)alias:(NSString *)from to:(NSString *)to options:(NSDictionary *)options {
-    NSAssert(from.length, @"%@ alias requires a from id.", self);
-    NSAssert(to.length, @"%@ alias requires a to id.", self);
-
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:from forKey:@"from"];
-    [dictionary setValue:to forKey:@"to"];
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
+    NSAssert(screenTitle.length, @"%@ screen requires a screen title.", self);
     
-    [self enqueueAction:@"alias" dictionary:dictionary options:options];
+    // TODO: move to new "screen" REST API when available @calvinfo
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:screenTitle forKey:@"event"]; // TODO should be "screen"
+    [dictionary setValue:properties forKey:@"properties"];
+    
+    [self enqueueAction:@"track" dictionary:dictionary options:options]; // TODO should be "screen"
 }
 
 #pragma mark - Queueing
@@ -259,13 +259,11 @@ static NSString *GetSessionID(BOOL reset) {
         // they've changed (see identify function)
         [payload setValue:self.userId forKey:@"userId"];
         [payload setValue:self.sessionId forKey:@"sessionId"];
-        // TODO change context to options when server-side is ready
-        [payload setValue:[self serverOptionsForOptions:options] forKey:@"context"];
-        
         SOLog(@"%@ Enqueueing action: %@", self, payload);
         
+        // TODO change context to options when server-side is ready
+        [payload setValue:[self serverOptionsForOptions:options] forKey:@"context"];
         [self.queue addObject:payload];
-        
         [self flushQueueByLength];
     }];
 }
@@ -342,8 +340,7 @@ static NSString *GetSessionID(BOOL reset) {
     [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [urlRequest setHTTPMethod:@"POST"];
     [urlRequest setHTTPBody:data];
-    SOLog(@"%@ Sending batch API request: %@", self,
-          [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    SOLog(@"%@ Sending batch API request.", self);
     self.request = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
         [self dispatchBackground:^{
             if (self.request.error) {
@@ -351,8 +348,6 @@ static NSString *GetSessionID(BOOL reset) {
                 [self notifyForName:SegmentioRequestDidFailNotification userInfo:self.batch];
             } else {
                 SOLog(@"%@ API request success 200", self);
-                // TODO
-                // Currently we don't actively retry sending any of batched calls
                 [self.queue removeObjectsInArray:self.batch];
                 [self notifyForName:SegmentioRequestDidSucceedNotification userInfo:self.batch];
             }

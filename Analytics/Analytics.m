@@ -248,7 +248,7 @@ static NSMutableDictionary *RegisteredProviders = nil;
     dispatch_once(&onceToken, ^{
         RegisteredProviders = [[NSMutableDictionary alloc] init];
     });
-    NSAssert([NSThread isMainThread], @"%s must ce called fro main thread", __func__);
+    NSAssert([NSThread isMainThread], @"%s must be called from the main thread", __func__);
     NSAssert(SharedInstance == nil, @"%s can only be called before Analytics initialization", __func__);
     NSAssert(identifer.length > 0, @"Provider must have a valid identifier;");
     RegisteredProviders[identifer] = providerClass;

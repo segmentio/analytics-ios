@@ -37,7 +37,6 @@ script:
 #   upload-dir: ios
 
 notifications:
-  # hipchat: {hipchat_key}
   email:
     recipients:
       - peter@segment.io
