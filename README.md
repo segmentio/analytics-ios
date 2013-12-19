@@ -1,4 +1,4 @@
-analytics-ios [![Build Status](https://travis-ci.org/segmentio/analytics-ios.png?branch=master)](https://travis-ci.org/segmentio/analytics-ios)
+analytics-ios
 =================
 
 analytics-ios is an iOS client for [Segment.io](https://segment.io)
