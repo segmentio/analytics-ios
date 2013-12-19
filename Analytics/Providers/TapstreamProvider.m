@@ -103,28 +103,7 @@
         else if([value isKindOfClass:[NSNumber class]])
         {
             NSNumber *number = (NSNumber *)value;
-            
-            if(strcmp([number objCType], @encode(int)) == 0)
-            {
-                [e addIntegerValue:[number intValue] forKey:key];
-            }
-            else if(strcmp([number objCType], @encode(uint)) == 0)
-            {
-                [e addUnsignedIntegerValue:[number unsignedIntValue] forKey:key];
-            }
-            else if(strcmp([number objCType], @encode(double)) == 0 ||
-                    strcmp([number objCType], @encode(float)) == 0)
-            {
-                [e addDoubleValue:[number doubleValue] forKey:key];
-            }
-            else if(strcmp([number objCType], @encode(BOOL)) == 0)
-            {
-                [e addBooleanValue:[number boolValue] forKey:key];
-            }
-            else
-            {
-                SOLog(@"Tapstream Event cannot accept an NSNumber param holding this type, skipping param");
-            }
+            [e addValue:(NSString *)number forKey:(NSString *)key];
         }
         else
         {
