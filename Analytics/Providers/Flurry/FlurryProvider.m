@@ -25,7 +25,13 @@
 
 - (void)start
 {
-    // Initialization
+    // Session settings
+    NSNumber *sessionContinueSeconds = [self.settings objectForKey:@"sessionContinueSeconds"];
+    if (sessionContinueSeconds) {
+        [Flurry setSessionContinueSeconds:[sessionContinueSeconds integerValue]];
+    }
+    
+    // Start the session
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [Flurry startSession:apiKey];
     SOLog(@"FlurryProvider initialized.");
