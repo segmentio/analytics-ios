@@ -1,9 +1,9 @@
 0.9.1 / 2013-12-29
 ==================
-* Updating Countly to latest version of SDK
+* Fixing issue with Countly threading
 * Adding UUID for tracing events in Segment.io
 * Adding timestamp for future time-correction in Segment.io
-* Include Mixpanel survey assets
+* Cleaning up docs in Analytics.h
 
 0.9.0 / 2013-12-18
 ==================
