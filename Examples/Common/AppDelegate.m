@@ -11,9 +11,6 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //[Analytics withSecret:@"k5l6rrye0hsv566zwuk7"];
-    //[[Analytics sharedAnalytics] debug:YES];
-    //[[Analytics sharedAnalytics] reset];
     [Analytics debug:YES];
     [Analytics initializeWithSecret:@"k5l6rrye0hsv566zwuk7"];
     //[[Analytics sharedAnalytics] identify:nil];
