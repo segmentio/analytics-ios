@@ -22,6 +22,13 @@ NSString *const SegmentioDidSendRequestNotification = @"SegmentioDidSendRequest"
 NSString *const SegmentioRequestDidSucceedNotification = @"SegmentioRequestDidSucceed";
 NSString *const SegmentioRequestDidFailNotification = @"SegmentioRequestDidFail";
 
+static NSString *GenerateUUIDString() {
+    CFUUIDRef theUUID = CFUUIDCreate(NULL);
+    NSString *UUIDString = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, theUUID);
+    CFRelease(theUUID);
+    return UUIDString;
+}
+
 static NSString *GetSessionID(BOOL reset) {
     // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
     // identifierForVendor (iOS6 and later, can't be changed on logout),
@@ -29,9 +36,7 @@ static NSString *GetSessionID(BOOL reset) {
     NSURL *url = DISK_SESSION_ID_URL;
     NSString *sessionID = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
     if (!sessionID || reset) {
-        CFUUIDRef theUUID = CFUUIDCreate(NULL);
-        sessionID = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, theUUID);
-        CFRelease(theUUID);
+        sessionID = GenerateUUIDString();
         SOLog(@"New SessionID: %@", sessionID);
         [sessionID writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:NULL];
     }
@@ -253,6 +258,7 @@ static NSString *GetSessionID(BOOL reset) {
     NSMutableDictionary *payload = [NSMutableDictionary dictionaryWithDictionary:dictionary];
     payload[@"action"] = action;
     payload[@"timestamp"] = [[NSDate date] description];
+    payload[@"requestId"] = GenerateUUIDString();
 
     [self dispatchBackground:^{
         // attach userId and sessionId inside the dispatch_async in case
@@ -291,6 +297,7 @@ static NSString *GetSessionID(BOOL reset) {
         
         NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
         [payloadDictionary setObject:self.secret forKey:@"secret"];
+        [payloadDictionary setObject:[[NSDate date] description] forKey:@"requestTimestamp"];
         [payloadDictionary setObject:self.batch forKey:@"batch"];
         
         NSData *payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary
