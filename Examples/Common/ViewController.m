@@ -9,21 +9,22 @@
 
 #import "ViewController.h"
 #import "Reachability.h"
-#import "Analytics/TSTapstream.h"
+/*#import "Analytics/TSTapstream.h"
 #import "Analytics/Private/SegmentioProvider.h"
+#import <Analytics/Flurry.h>*/
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[Analytics sharedAnalytics] track:@"Test View Load Event"];
+    [[Analytics sharedAnalytics] track:@"Test ViewController Load"];
     Reachability* reach = [Reachability reachabilityWithHostname:@"www.google.com"];
     reach.reachableOnWWAN = NO;
 }
 
 - (IBAction)identify:(id)sender {
     NSLog(@"test identify");
-    NSLog(@"can access BugSnag SDK? Here's the userId %@", [Bugsnag instance].userId);
+    /*NSLog(@"can access BugSnag SDK? Here's the userId %@", [Bugsnag instance].userId);
     NSLog(@"can access Google Analytics SDK? %@", [[GAI sharedInstance] defaultTracker]);
     NSLog(@"can access Mixpanel SDK? Here's the distinctId %@", [Mixpanel sharedInstance].distinctId);
     NSLog(@"can access Flurry SDK?");
@@ -31,7 +32,7 @@
     NSLog(@"can access Crittercism SDK?");
     [Crittercism setUsername:@"asdfasdf"];
     NSLog(@"can access Chartbeat SDK? %@", [CBTracker sharedTracker]);
-    NSLog(@"can access Tapstream SDK? %@", [TSTapstream instance]);
+    NSLog(@"can access Tapstream SDK? %@", [TSTapstream instance]);*/
     [[Analytics sharedAnalytics] identify:@"Khan"];
 }
 
@@ -47,8 +48,8 @@
 }
 
 - (IBAction)flush:(id)sender {
-    SegmentioProvider *segmentio = [[Analytics sharedAnalytics] providers][@"Segment.io"];
-    [segmentio flush];
+    /*SegmentioProvider *segmentio = [[Analytics sharedAnalytics] providers][@"Segment.io"];
+    [segmentio flush];*/
 }
 
 - (IBAction)crash:(id)sender {
