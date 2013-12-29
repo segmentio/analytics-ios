@@ -1,7 +1,6 @@
 0.9.1 / 2013-12-29
 ==================
 * Updating Countly to latest version of SDK
-* Creating podspec for Countly
 * Adding UUID for tracing events in Segment.io
 * Adding timestamp for future time-correction in Segment.io
 * Include Mixpanel survey assets
