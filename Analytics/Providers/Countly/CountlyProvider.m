@@ -27,8 +27,12 @@
 {
     NSString *appKey = [self.settings objectForKey:@"appKey"];
     NSString *serverUrl = [self.settings objectForKey:@"serverUrl"];
-    [[Countly sharedInstance] start:appKey withHost:serverUrl];
-    SOLog(@"CountlyProvider initialized with appKey %@ and serverUrl %@", appKey, serverUrl);
+    
+    // Countly's SDK will silently fail to send data if it's not initialized on the main thread.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[Countly sharedInstance] start:appKey withHost:serverUrl];
+        SOLog(@"CountlyProvider initialized with appKey %@ and serverUrl %@", appKey, serverUrl);
+    });
 }
 
 
@@ -52,6 +56,7 @@
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
+    // Countly's SDK will silently fail to send data if it's not sent on the main thread.
     // Countly doesn't accept nested properties, so remove them (with warning).
     NSDictionary *notNestedProperties = [self ensureNotNested:properties];
     
@@ -60,7 +65,8 @@
     if (revenue) {
         SOLog(@"Calling Countly with event:%@, segmentation:%@, sum:%@", event, notNestedProperties, revenue);
         [[Countly sharedInstance] recordEvent:event segmentation:notNestedProperties count:1 sum:revenue.longValue];
-    } else {
+    }
+    else {
         SOLog(@"Calling Countly with event:%@, segmentation:%@", event, notNestedProperties);
         [[Countly sharedInstance] recordEvent:event segmentation:notNestedProperties count:1];
     }
@@ -82,10 +88,6 @@
         id value = [dict objectForKey:key];
         if ([value isKindOfClass:[NSDictionary class]] || [value isKindOfClass:[NSArray class]]) {
             NSLog(@"WARNING: Removing nested [analytics track] property %@ for Countly (not supported by Countly).", key);
-            [dict removeObjectForKey:key];
-        }
-        else if ([value isKindOfClass:[NSNumber class]]) {
-            NSLog(@"WARNING: Removing number segmentation [analytics track] property %@ for Countly (not supported by Countly).", key);
             [dict removeObjectForKey:key];
         }
     }

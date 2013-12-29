@@ -88,7 +88,7 @@ describe(@"Analytics", ^{
     
     it(@"Should track", ^{
         [[segmentio.queue should] beEmpty];
-        NSString *eventName = @"Purchased an iPad 5";
+        NSString *eventName = @"Purchased an iMac";
         NSDictionary *properties = @{
             @"Filter": @"Tilt-shift",
             @"category": @"Mobile",

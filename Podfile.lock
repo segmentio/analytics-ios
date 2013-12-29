@@ -14,7 +14,7 @@ PODS:
     - CLToolkit/Core
     - Kiwi
   - ConciseKit (0.1.2)
-  - Countly (1.1.0)
+  - Countly (1.0.0)
   - CrittercismSDK (4.1.2)
   - FlurrySDK (4.2.4)
   - GoogleAnalytics-iOS-SDK (3.0.2)
@@ -57,7 +57,7 @@ DEPENDENCIES:
   - Bugsnag (= 3.1.0.fork)
   - Chartbeat (~> 0.0.1)
   - CLToolkit/Testing (= 0.0.5)
-  - Countly (~> 1.1.0)
+  - Countly (~> 1.0.0)
   - CrittercismSDK (~> 4.1.2)
   - FlurrySDK (~> 4.2.4)
   - GoogleAnalytics-iOS-SDK (~> 3.0.2)
@@ -75,7 +75,7 @@ SPEC CHECKSUMS:
   Chartbeat: f761731e00b10d05b337163d72a10d257d9ad217
   CLToolkit: bce707420abb7577b852d6a34096951ea3077d9e
   ConciseKit: 1e086a66d098ba160ca5faa86458a0431b280b30
-  Countly: a8cf13cad0573b62229a1b946a62eb7ae3514ea6
+  Countly: c9728abbbeffc3250d1ab8ba17b417938119d218
   CrittercismSDK: 6182966dc89b633611b1acb87201952d84224120
   FlurrySDK: 2c1e7070d0d76dd597de7b0d09cbbdd4193f1622
   GoogleAnalytics-iOS-SDK: 86393b99f7328ae8d8e975fcaa8632a39dafafe8
