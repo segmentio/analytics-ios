@@ -11,18 +11,19 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [Analytics debug:YES];
+    //[Analytics debug:YES];
     [Analytics initializeWithSecret:@"k5l6rrye0hsv566zwuk7"];
     //[[Analytics sharedAnalytics] reset];
     //[[Analytics sharedAnalytics] identify:nil];
-    [[Analytics sharedAnalytics] track:@"First Anonymous Event"];
+    [[Analytics sharedAnalytics] debug:YES];
+    [[Analytics sharedAnalytics] track:@"Anonymous Event"];
     [[Analytics sharedAnalytics] identify:@"Test User"];
-    [[Analytics sharedAnalytics] track:@"First Logged In Event"];
+    [[Analytics sharedAnalytics] track:@"Logged In Event"];
     return YES;
 }
     
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    //[[Analytics sharedAnalytics] track:@"Background Event"];
+    [[Analytics sharedAnalytics] track:@"Background Event"];
 }
 
 @end
