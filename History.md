@@ -1,3 +1,7 @@
+0.9.2 / 2014-1-10
+=================
+* Saving userId to disk for persistence between app launches
+
 0.9.1 / 2013-12-29
 ==================
 * Fixing issue with Countly threading
