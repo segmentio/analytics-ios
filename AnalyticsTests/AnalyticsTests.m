@@ -121,6 +121,20 @@ describe(@"Analytics", ^{
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
+    it(@"Should track according to providers options", ^{
+        [[segmentio.queue should] beEmpty];
+        NSString *eventName = @"Purchased an iMac but not Mixpanel";
+        NSDictionary *properties = @{
+                                     @"Filter": @"Tilt-shift",
+                                     @"category": @"Mobile",
+                                     @"revenue": @"70.0",
+                                     @"value": @"50.0",
+                                     @"label": @"gooooga"
+                                     };
+        NSDictionary *options = @{@"providers": @{@"Mixpanel": @NO}};
+        [analytics track:eventName properties:properties options:options];
+    });
+    
 });
 
 SPEC_END
