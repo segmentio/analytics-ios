@@ -15,6 +15,7 @@
 #define SEGMENTIO_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
 #define SEGMENTIO_MAX_BATCH_SIZE 100
 #define DISK_SESSION_ID_URL AnalyticsURLForFilename(@"segmentio.sessionID")
+#define DISK_USER_ID_URL AnalyticsURLForFilename(@"segmentio.userID")
 #define DISK_QUEUE_URL AnalyticsURLForFilename(@"segmentio.queue.plist")
 #define DISK_TRAITS_URL AnalyticsURLForFilename(@"segmentio.traits.plist")
 
@@ -78,6 +79,7 @@ static NSString *GetSessionID(BOOL reset) {
         _flushAfter = flushAfter;
         _secret = secret;
         _sessionId = GetSessionID(NO);
+        _userId = [NSString stringWithContentsOfURL:DISK_USER_ID_URL encoding:NSUTF8StringEncoding error:NULL];
         _queue = [NSMutableArray arrayWithContentsOfURL:DISK_QUEUE_URL];
         if (!_queue)
             _queue = [[NSMutableArray alloc] init];
@@ -191,6 +193,13 @@ static NSString *GetSessionID(BOOL reset) {
     return [NSString stringWithFormat:@"<SegmentioProvider secret:%@>", self.secret];
 }
 
+- (void)saveUserId:(NSString *)userId {
+    [self dispatchBackground:^{
+        self.userId = userId;
+        [_userId writeToURL:DISK_USER_ID_URL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+    }];
+}
+
 - (void)addTraits:(NSDictionary *)traits {
     [self dispatchBackground:^{
         [_traits addEntriesFromDictionary:traits];
@@ -202,7 +211,7 @@ static NSString *GetSessionID(BOOL reset) {
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
     [self dispatchBackground:^{
-        self.userId = userId;
+        [self saveUserId:userId];
         [self addTraits:traits];
     }];
 
@@ -325,6 +334,7 @@ static NSString *GetSessionID(BOOL reset) {
                                                       repeats:YES];
     [self dispatchBackgroundAndWait:^{
         [[NSFileManager defaultManager] removeItemAtURL:DISK_SESSION_ID_URL error:NULL];
+        [[NSFileManager defaultManager] removeItemAtURL:DISK_USER_ID_URL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:DISK_TRAITS_URL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:DISK_QUEUE_URL error:NULL];
         self.userId = nil;

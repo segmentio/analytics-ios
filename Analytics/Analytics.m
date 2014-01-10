@@ -80,9 +80,13 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
         [invocation setArgument:&argument atIndex:i+2];
     }
     for (id<AnalyticsProvider> provider in self.providers.allValues) {
-        if (provider.ready && [provider respondsToSelector:selector]
-            && [self isProvider:provider enabledInOptions:options]) {
-            [invocation invokeWithTarget:provider];
+        if (provider.ready && [provider respondsToSelector:selector]) {
+            if([self isProvider:provider enabledInOptions:options]) {
+                [invocation invokeWithTarget:provider];
+            }
+            else {
+                SOLog(@"Not sending call to %@ because it is disabled in options.providers", provider.name);
+            }
         }
     }
 }

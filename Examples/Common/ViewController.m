@@ -9,9 +9,9 @@
 
 #import "ViewController.h"
 #import "Reachability.h"
-/*#import "Analytics/TSTapstream.h"
+#import "Analytics/TSTapstream.h"
 #import "Analytics/Private/SegmentioProvider.h"
-#import <Analytics/Flurry.h>*/
+#import <Analytics/Flurry.h>
 
 @implementation ViewController
 
@@ -24,15 +24,16 @@
 
 - (IBAction)identify:(id)sender {
     NSLog(@"test identify");
-    /*NSLog(@"can access BugSnag SDK? Here's the userId %@", [Bugsnag instance].userId);
+    NSLog(@"can access BugSnag SDK? Here's the userId %@", [Bugsnag instance].userId);
     NSLog(@"can access Google Analytics SDK? %@", [[GAI sharedInstance] defaultTracker]);
     NSLog(@"can access Mixpanel SDK? Here's the distinctId %@", [Mixpanel sharedInstance].distinctId);
+    [[Mixpanel sharedInstance].people increment:@"point count" by:@500];
     NSLog(@"can access Flurry SDK?");
     [Flurry setUserID:@"asdfasdf"];
     NSLog(@"can access Crittercism SDK?");
     [Crittercism setUsername:@"asdfasdf"];
     NSLog(@"can access Chartbeat SDK? %@", [CBTracker sharedTracker]);
-    NSLog(@"can access Tapstream SDK? %@", [TSTapstream instance]);*/
+    NSLog(@"can access Tapstream SDK? %@", [TSTapstream instance]);
     [[Analytics sharedAnalytics] identify:@"Khan"];
 }
 
