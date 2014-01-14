@@ -1,3 +1,7 @@
+0.9.3 / 2014-1-14
+=================
+* Fixing background event handling for Localytics
+
 0.9.2 / 2014-1-10
 =================
 * Saving userId to disk for persistence between app launches
