@@ -105,9 +105,12 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 - (void)callProvidersWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options  {
     dispatch_specific_async(_serialQueue, ^{
+        // No cached settings, queue the API call
         if (!self.cachedSettings.count) {
             [self queueSelector:selector arguments:arguments options:options];
-        } else {
+        }
+        // Settings cached, flush message queue & new API call
+        else {
             [self flushMessageQueue];
             [self forwardSelector:selector arguments:arguments options:options];
         }

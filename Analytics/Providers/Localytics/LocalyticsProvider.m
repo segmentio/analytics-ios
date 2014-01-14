@@ -34,6 +34,11 @@
 {
     NSString *appKey = [self.settings objectForKey:@"appKey"];
     [[LocalyticsSession sharedLocalyticsSession] startSession:appKey];
+    
+    NSNumber *sessionTimeoutInterval = [self.settings objectForKey:@"sessionTimeoutInterval"];
+    if (sessionTimeoutInterval != nil && [sessionTimeoutInterval floatValue] > 0) {
+        [LocalyticsSession sharedLocalyticsSession].sessionTimeoutInterval = [sessionTimeoutInterval floatValue];
+    }
     SOLog(@"LocalyticsProvider initialized.");
 }
 
@@ -82,7 +87,19 @@
 {
     // TODO add support for dimensions
     // TODO add support for value
+    
+    // Backgrounded? Restart the session to add this event.
+    BOOL isBackgrounded = [[UIApplication sharedApplication] applicationState] != UIApplicationStateActive;
+    if (isBackgrounded) {
+        [[LocalyticsSession sharedLocalyticsSession] resume];
+    }
+    
     [[LocalyticsSession sharedLocalyticsSession] tagEvent:event attributes:properties];
+    
+    // Backgrounded? Close the session again after the event.
+    if (isBackgrounded) {
+        [[LocalyticsSession sharedLocalyticsSession] close];
+    }
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
