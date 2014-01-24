@@ -25,6 +25,8 @@
 		18E86AF9AC7C4CB494AEA208 /* libPods-AnalyticsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */; };
 		2822D5FF17E26C9E005B2B7F /* NSContainer+Subscripting.h in Headers */ = {isa = PBXBuildFile; fileRef = 2822D5FD17E26C9E005B2B7F /* NSContainer+Subscripting.h */; };
 		2822D60017E26C9E005B2B7F /* NSContainer+Subscripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2822D5FE17E26C9E005B2B7F /* NSContainer+Subscripting.m */; };
+		7E94C0EA18932846004BD132 /* KWNotificationMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E94C0E918932846004BD132 /* KWNotificationMatcher.m */; };
+		7E94C0F018932A5B004BD132 /* KWBlockMatchEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */; };
 		B8A1B15E08994855871D1685 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B38155D048462482A91850 /* libPods.a */; };
 		D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCEC185BFAA1007CB22F /* MPSurvey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF0185BFF49007CB22F /* CRFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -131,6 +133,10 @@
 		2822D5FD17E26C9E005B2B7F /* NSContainer+Subscripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSContainer+Subscripting.h"; sourceTree = "<group>"; };
 		2822D5FE17E26C9E005B2B7F /* NSContainer+Subscripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSContainer+Subscripting.m"; sourceTree = "<group>"; };
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E94C0E818932846004BD132 /* KWNotificationMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KWNotificationMatcher.h; path = ../../../../Desktop/KWNotificationMatcher.h; sourceTree = "<group>"; };
+		7E94C0E918932846004BD132 /* KWNotificationMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KWNotificationMatcher.m; path = ../../../../Desktop/KWNotificationMatcher.m; sourceTree = "<group>"; };
+		7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBlockMatchEvaluator.h; sourceTree = "<group>"; };
+		7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockMatchEvaluator.m; sourceTree = "<group>"; };
 		8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		D331BCEC185BFAA1007CB22F /* MPSurvey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPSurvey.h; path = Pods/Mixpanel/Mixpanel/MPSurvey.h; sourceTree = "<group>"; };
 		D331BCF0185BFF49007CB22F /* CRFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CRFilter.h; path = Pods/CrittercismSDK/CrittercismSDK/CRFilter.h; sourceTree = "<group>"; };
@@ -338,6 +344,10 @@
 				EA722AF717C87BB00016E8B0 /* Supporting Files */,
 				D350D6111859340700F8A7FA /* Reachability.h */,
 				D350D6121859340700F8A7FA /* Reachability.m */,
+				7E94C0E818932846004BD132 /* KWNotificationMatcher.h */,
+				7E94C0E918932846004BD132 /* KWNotificationMatcher.m */,
+				7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */,
+				7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */,
 			);
 			path = AnalyticsTests;
 			sourceTree = "<group>";
@@ -821,7 +831,9 @@
 				EA722AFE17C87BB00016E8B0 /* AnalyticsTests.m in Sources */,
 				EABE4F4117C88A6D00A1081B /* AnalyticsUtilsTests.m in Sources */,
 				D350D6131859340700F8A7FA /* Reachability.m in Sources */,
+				7E94C0EA18932846004BD132 /* KWNotificationMatcher.m in Sources */,
 				EA3B4CC717C8900A00233EA9 /* SegmentioTests.m in Sources */,
+				7E94C0F018932A5B004BD132 /* KWBlockMatchEvaluator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
