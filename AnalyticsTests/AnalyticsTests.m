@@ -38,11 +38,11 @@ describe(@"Analytics", ^{
         segmentio.flushAt = 2;
     });
     
-    it(@"has a secret, cached settings and 12 providers, including Segment.io", ^{
+    it(@"has a secret, cached settings and 10 providers, including Segment.io", ^{
         [[analytics.cachedSettings shouldNot] beEmpty];
         [[analytics.secret should] equal:@"k5l6rrye0hsv566zwuk7"];
         [[segmentio.secret should] equal:@"k5l6rrye0hsv566zwuk7"];
-        [[[analytics should] have:12] providers];
+        [[[analytics should] have:10] providers];
         [segmentio shouldNotBeNil];
     });
     
