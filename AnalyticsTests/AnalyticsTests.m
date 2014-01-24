@@ -31,9 +31,9 @@ describe(@"Analytics", ^{
     
     beforeEach(^{
         analytics = [[Analytics alloc] initWithSecret:@"k5l6rrye0hsv566zwuk7"];
-        analytics.cachedSettings = $jsonLoadsData([NSData dataWithContentsOfURL:
+        analytics.cachedSettings = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:
                                                    [[NSBundle bundleForClass:[self class]]
-                                                    URLForResource:@"settings" withExtension:@"json"]]);
+                                                    URLForResource:@"settings" withExtension:@"json"]] options:NSJSONReadingMutableContainers error:NULL];
         segmentio = analytics.providers[@"Segment.io"];
         segmentio.flushAt = 2;
     });

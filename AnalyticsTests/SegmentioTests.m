@@ -6,9 +6,10 @@
 //  Copyright (c) 2013 Segment.io. All rights reserved.
 //
 
-#import <CLToolkit/Testing.h>
+#import <Kiwi/Kiwi.h>
 #import "AnalyticsUtils.h"
 #import "SegmentioProvider.h"
+#import "KWNotificationMatcher.h"
 
 @interface SegmentioProvider (Private)
 @property (nonatomic, readonly) NSMutableArray *queue;
