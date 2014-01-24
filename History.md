@@ -1,3 +1,10 @@
+0.9.4 / 2014-1-23
+=================
+* Updating Localytics, Crittercism, Flurry, Google Analytics, Mixpanel and TapStream SDKs
+* Removing support for Chartbeat since their lib doesn't have an arm64 slice
+* Moving support for Omniture to server-side
+* Adding arm64 slice to the fat lib to fully support iOS 7
+
 0.9.3 / 2014-1-14
 =================
 * Fixing background event handling for Localytics
