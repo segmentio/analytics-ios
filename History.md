@@ -1,3 +1,7 @@
+0.9.5 / 2014-1-25
+=================
+* Fixing Pods arm64 build issue to fix support for 64-bit
+
 0.9.4 / 2014-1-23
 =================
 * Updating Localytics, Crittercism, Flurry, Google Analytics, Mixpanel and TapStream SDKs
