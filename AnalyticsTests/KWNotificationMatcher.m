@@ -8,6 +8,7 @@
 
 #import <Kiwi/KWMessageTracker.h>
 #import "KWNotificationMatcher.h"
+#import "KWBlockMatchEvaluator.h"
 
 @implementation KWNotificationMatcher {
     KWMessageTracker *_messageTracker;
@@ -74,16 +75,16 @@
 #pragma mark - KWMatcher Requirements
 
 - (NSString *)failureMessageForShould {
-    return $str(@"expected subject to send notification -%@ %@, but received it %@",
+    return [NSString stringWithFormat:@"expected subject to send notification -%@ %@, but received it %@",
                 [_messageTracker expectedCountPhrase],
                 _notificationName,
-                [_messageTracker receivedCountPhrase]);
+                [_messageTracker receivedCountPhrase]];
 }
 
 - (NSString *)failureMessageForShouldNot {
-    return $str(@"expected subject not to send notification -%@, but received it %@",
+    return [NSString stringWithFormat:@"expected subject not to send notification -%@, but received it %@",
                 _notificationName,
-                [_messageTracker receivedCountPhrase]);
+                [_messageTracker receivedCountPhrase]];
 }
 
 - (BOOL)evaluate {
