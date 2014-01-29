@@ -1,4 +1,3 @@
-
 link_with 'Analytics'
 
 pod 'Amplitude-iOS', '~> 1.0.2'
@@ -14,8 +13,4 @@ pod 'Tapstream', '~> 2.6'
 target :AnalyticsTests, :exclusive => true do
     link_with 'AnalyticsTests'
     pod 'Kiwi', '~> 2.2.3'
-    pod 'ReactiveCocoa', '~> 1.9.7'
-    pod 'BlocksKit', '~> 1.8.3'
-    pod 'CLToolkit/Testing', '0.0.5'
-#    pod 'CLToolkit/Testing', :path => '~/Code/Collections/CLToolkit'p
 end

@@ -1,24 +1,10 @@
 PODS:
   - Amplitude-iOS (1.0.2)
-  - BlocksKit (1.8.3):
-    - libffi
   - Bugsnag (3.1.0.fork)
-  - CLToolkit/Core (0.0.5):
-    - BlocksKit
-    - ConciseKit
-    - ISO8601DateFormatter
-    - NSLogger
-    - ReactiveCocoa
-  - CLToolkit/Testing (0.0.5):
-    - CLToolkit/Core
-    - Kiwi
-  - ConciseKit (0.1.2)
   - Countly (1.0.0)
   - CrittercismSDK (4.3.1)
   - FlurrySDK (4.3.0)
   - GoogleAnalytics-iOS-SDK (3.0.3)
-  - ISO8601DateFormatter (0.7)
-  - JRSwizzle (1.0)
   - Kiwi (2.2.3):
     - Kiwi/SenTestingKit
   - Kiwi/ARC (2.2.3)
@@ -26,34 +12,13 @@ PODS:
   - Kiwi/SenTestingKit (2.2.3):
     - Kiwi/ARC
     - Kiwi/NonARC
-  - libextobjc/EXTConcreteProtocol (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTKeyPathCoding (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/EXTScope (0.3):
-    - libextobjc/RuntimeExtensions
-  - libextobjc/RuntimeExtensions (0.3)
-  - libffi (3.0.13)
   - Localytics-iOS-Client (2.21.0)
   - Mixpanel (2.3.0)
-  - NSLogger (1.1)
-  - ReactiveCocoa (1.9.7):
-    - ReactiveCocoa/Core
-    - ReactiveCocoa/RACExtensions
-  - ReactiveCocoa/Core (1.9.7):
-    - JRSwizzle (~> 1.0)
-    - libextobjc/EXTConcreteProtocol (~> 0.3.0)
-    - libextobjc/EXTKeyPathCoding (~> 0.3.0)
-    - libextobjc/EXTScope (~> 0.3.0)
-  - ReactiveCocoa/RACExtensions (1.9.7):
-    - ReactiveCocoa/Core
   - Tapstream (2.6)
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 1.0.2)
-  - BlocksKit (~> 1.8.3)
   - Bugsnag (= 3.1.0.fork)
-  - CLToolkit/Testing (= 0.0.5)
   - Countly (~> 1.0.0)
   - CrittercismSDK (~> 4.3.1)
   - FlurrySDK (~> 4.3.0)
@@ -61,28 +26,18 @@ DEPENDENCIES:
   - Kiwi (~> 2.2.3)
   - Localytics-iOS-Client (~> 2.21.0)
   - Mixpanel (~> 2.3.0)
-  - ReactiveCocoa (~> 1.9.7)
   - Tapstream (~> 2.6)
 
 SPEC CHECKSUMS:
   Amplitude-iOS: ca8f975af2294cd808b4914fa507c01222501bea
-  BlocksKit: 27257f9cbbec0ea98c80ba83cc2ea7111ae62eb2
   Bugsnag: 5e48f3fcd219a685c22eb1eb2b088f3ccc0d621a
-  CLToolkit: bce707420abb7577b852d6a34096951ea3077d9e
-  ConciseKit: 1e086a66d098ba160ca5faa86458a0431b280b30
   Countly: c9728abbbeffc3250d1ab8ba17b417938119d218
   CrittercismSDK: 3b4eefdb985e08702836e2a0d234e4d117e3116c
   FlurrySDK: 7d91ccc3b3591fd8eb8919f2b90e271e2b0acabe
   GoogleAnalytics-iOS-SDK: 7b0e55cfe5e70d60478a7b105f15ac71e8bc373e
-  ISO8601DateFormatter: 00944e437ea647f4244454ce8809d313861d08de
-  JRSwizzle: 6242ff38485d870fc2636899048ee1ab883ae587
   Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
-  libextobjc: 820a79dbbbc498611e04fffd07d2d52a5588e7ac
-  libffi: 64ef39353e747bb2b25e1026afd96a157bf9231c
   Localytics-iOS-Client: b3fa8102a426aab2421c13cd184d82c5c1a03e00
   Mixpanel: a3536b6bf7f88bd8a6113392f91e9dc689c58434
-  NSLogger: 4567fef08d0db18a89cce91b2053823fc0950738
-  ReactiveCocoa: 86033375e366207afad5a5067f2dd10a1f2d8f32
   Tapstream: 00dd14461e648b5cfc682c79be5be085cf18631b
 
 COCOAPODS: 0.29.0
