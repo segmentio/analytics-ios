@@ -50,12 +50,12 @@ describe(@"Specific dispatch_queue", ^{
         [[foo2[0] should] equal:@"a"];
         [[foo2[1] should] equal:@"b"];
         [[foo2[2] should] equal:@"c"];
-        [[[NSNumber numberWithInt:[foo2 count]] should] equal:@3];
+        [[[NSNumber numberWithUnsignedInteger:[foo2 count]] should] equal:@3];
         foo2[0] = @"z";
         [[foo2[0] should] equal:@"z"];
         [[foo2[1] should] equal:@"b"];
         [[foo2[2] should] equal:@"c"];
-        [[[NSNumber numberWithInt:[foo2 count]] should] equal:@3];
+        [[[NSNumber numberWithUnsignedInteger:[foo2 count]] should] equal:@3];
     });
     
     it(@"Should never result in deadlock", ^{
