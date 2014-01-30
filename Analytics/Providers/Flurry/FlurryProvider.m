@@ -28,7 +28,7 @@
     // Session settings
     NSNumber *sessionContinueSeconds = [self.settings objectForKey:@"sessionContinueSeconds"];
     if (sessionContinueSeconds) {
-        [Flurry setSessionContinueSeconds:[sessionContinueSeconds integerValue]];
+        [Flurry setSessionContinueSeconds:[sessionContinueSeconds intValue]];
     }
     
     // Start the session
@@ -62,7 +62,7 @@
     // Age
     NSString *age = [traits objectForKey:@"age"];
     if (age) {
-        [Flurry setAge:[age integerValue]];
+        [Flurry setAge:[age intValue]];
     }
 }
 

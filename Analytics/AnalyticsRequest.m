@@ -55,7 +55,7 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    int statusCode = self.response.statusCode;
+    NSInteger statusCode = self.response.statusCode;
     if (statusCode >= 200 && statusCode < 300) {
         NSError *error = nil;
         self.responseJSON = [NSJSONSerialization JSONObjectWithData:self.responseData
@@ -66,7 +66,7 @@
         self.error = [NSError errorWithDomain:@"HTTP"
                                          code:statusCode
                                      userInfo:@{NSLocalizedDescriptionKey:
-                        [NSString stringWithFormat:@"HTTP Error %d", statusCode]}];
+                        [NSString stringWithFormat:@"HTTP Error %ld", (long)statusCode]}];
 
     }
     [self finish];

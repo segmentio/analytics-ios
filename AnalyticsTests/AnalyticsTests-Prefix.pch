@@ -8,5 +8,4 @@
 #endif
 
 #import <Kiwi/Kiwi.h>
-#import <CLToolkit/Testing.h>
 #import "Analytics.h"
