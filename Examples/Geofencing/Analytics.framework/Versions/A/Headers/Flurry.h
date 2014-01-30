@@ -19,20 +19,20 @@
  *  For information on how to use Flurry's Ads SDK to
  *  attract high-quality users and monetize your user base see <a href="http://support.flurry.com/index.php?title=Publishers">Support Center - Publishers</a>.
  *  
- *  @author 2009 - 2012 Flurry, Inc. All Rights Reserved.
- *  @version 4.2.4
+ *  @author 2009 - 2013 Flurry, Inc. All Rights Reserved.
+ *  @version 4.3.0
  * 
  */
 
 /*!
  *  @brief Enum for setting up log output level.
- *  @since 4.2.2
+ *  @since 4.2.0
  *
  */
 typedef enum {
     FlurryLogLevelNone = 0,         //No output
-    FlurryLogLevelCriticalOnly,     //Default, outputs only crytical log events
-    FlurryLogLevelDebug,            //Debug level, outputs crytical and main log events
+    FlurryLogLevelCriticalOnly,     //Default, outputs only critical log events
+    FlurryLogLevelDebug,            //Debug level, outputs critical and main log events
     FlurryLogLevelAll               //Highest level, outputs all log events
 } FlurryLogLevel;
 
