@@ -22,6 +22,7 @@
 		0AAC998515F58B45003D1420 /* WalkToMilleniumPark.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 0AAC997F15F58B45003D1420 /* WalkToMilleniumPark.gpx */; };
 		0AAC998A15F58B7D003D1420 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AAC998915F58B7D003D1420 /* Icon.png */; };
 		0AAC998C15F58B89003D1420 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AAC998B15F58B89003D1420 /* Icon@2x.png */; };
+		D36782C4189ADCCC00195D5B /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36782C3189ADCCC00195D5B /* Analytics.framework */; };
 		D3D7E71B1883158800378AE7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3D7E71A1883158800378AE7 /* CoreData.framework */; };
 		D3D7E71D1883158E00378AE7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3D7E71C1883158E00378AE7 /* Security.framework */; };
 		D3D7E71F1883159500378AE7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3D7E71E1883159500378AE7 /* SystemConfiguration.framework */; };
@@ -30,7 +31,6 @@
 		D3D7E725188315AC00378AE7 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3D7E724188315AC00378AE7 /* AdSupport.framework */; };
 		D3D7E727188315B300378AE7 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3D7E726188315B300378AE7 /* libsqlite3.dylib */; };
 		D3D7E729188315B700378AE7 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D3D7E728188315B700378AE7 /* libz.dylib */; };
-		D3E37D241885083F003308A3 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3E37D231885083F003308A3 /* Analytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +58,7 @@
 		0AAC998D15F58C13003D1420 /* ChicagoTheater.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ChicagoTheater.gpx; sourceTree = "<group>"; };
 		0AAC998E15F590B3003D1420 /* WillisTower.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = WillisTower.gpx; sourceTree = "<group>"; };
 		0AAC998F15F59107003D1420 /* LincolnParkZoo.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LincolnParkZoo.gpx; sourceTree = "<group>"; };
+		D36782C3189ADCCC00195D5B /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Analytics.framework; sourceTree = "<group>"; };
 		D3D7E71A1883158800378AE7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D3D7E71C1883158E00378AE7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D3D7E71E1883159500378AE7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -66,7 +67,6 @@
 		D3D7E724188315AC00378AE7 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		D3D7E726188315B300378AE7 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D3D7E728188315B700378AE7 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		D3E37D231885083F003308A3 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Analytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +77,7 @@
 				D3D7E729188315B700378AE7 /* libz.dylib in Frameworks */,
 				D3D7E727188315B300378AE7 /* libsqlite3.dylib in Frameworks */,
 				D3D7E725188315AC00378AE7 /* AdSupport.framework in Frameworks */,
-				D3E37D241885083F003308A3 /* Analytics.framework in Frameworks */,
+				D36782C4189ADCCC00195D5B /* Analytics.framework in Frameworks */,
 				D3D7E723188315A700378AE7 /* QuartzCore.framework in Frameworks */,
 				0A7CE6C515F550C900E7A553 /* UIKit.framework in Frameworks */,
 				D3D7E7211883159D00378AE7 /* CoreTelephony.framework in Frameworks */,
@@ -116,7 +116,7 @@
 		0A7CE6C315F550C900E7A553 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D3E37D231885083F003308A3 /* Analytics.framework */,
+				D36782C3189ADCCC00195D5B /* Analytics.framework */,
 				D3D7E728188315B700378AE7 /* libz.dylib */,
 				D3D7E726188315B300378AE7 /* libsqlite3.dylib */,
 				D3D7E724188315AC00378AE7 /* AdSupport.framework */,
@@ -324,6 +324,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/reinpk/dev/segmentio-project/analytics-ios/Examples/Geofencing",
+					"/Users/reinpk/dev/segmentio/analytics-ios/Examples/Geofencing",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "geofencedemo/geofencedemo-Prefix.pch";
@@ -340,6 +341,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/reinpk/dev/segmentio-project/analytics-ios/Examples/Geofencing",
+					"/Users/reinpk/dev/segmentio/analytics-ios/Examples/Geofencing",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "geofencedemo/geofencedemo-Prefix.pch";

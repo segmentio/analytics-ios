@@ -15,3 +15,4 @@
 - (id)initWithStatus:(int)status message:(NSString *)message data:(NSData *)data;
 
 @end
+

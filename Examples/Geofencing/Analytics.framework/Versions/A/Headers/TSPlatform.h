@@ -16,4 +16,5 @@
 - (NSString *)getAppVersion;
 - (NSString *)getPackageName;
 - (TSResponse *)request:(NSString *)url data:(NSString *)data method:(NSString *)method;
+- (NSSet *)getProcessSet;
 @end

@@ -1,6 +1,14 @@
+0.9.7 / 2014-1-30
+=================
+* Ensuring that no "touchdown" references are in the SDK
+
+0.9.6 / 2014-1-27
+=================
+* Fixing Pods arm64 build issue to fix support for 64-bit devices
+
 0.9.5 / 2014-1-25
 =================
-* Fixing Pods arm64 build issue to fix support for 64-bit
+* Fixing Pods x86_64 build issue to fix support for 64-bit simulators
 
 0.9.4 / 2014-1-23
 =================

@@ -1,25 +1,5 @@
-//
-// Mixpanel.h
-// Mixpanel
-//
-// Copyright 2012 Mixpanel
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
-#import "MPSurvey.h"
 
 @class    MixpanelPeople;
 @protocol MixpanelDelegate;
@@ -168,6 +148,32 @@
  @property
 
  @abstract
+ Controls whether to automatically check for notifications for the
+ currently identified user when the application becomes active.
+
+ @discussion
+ Defaults to YES. Will fire a network request on
+ <code>applicationDidBecomeActive</code> to retrieve a list of valid notifications
+ for the currently identified user.
+ */
+@property (atomic) BOOL checkForNotificationsOnActive;
+
+/*!
+ @property
+
+ @abstract
+ Controls whether to automatically check for and show in-app notifications
+ for the currently identified user when the application becomes active.
+
+ @discussion
+ Defaults to YES.
+ */
+@property (atomic) BOOL showNotificationOnActive;
+
+/*!
+ @property
+
+ @abstract
  The a MixpanelDelegate object that can be used to assert fine-grain control
  over Mixpanel network activity.
 
@@ -244,8 +250,8 @@
  only available in iOS 6 and later. If you do not want to use the IFA, you can
  define the <code>MIXPANEL_NO_IFA</code> preprocessor flag in your build settings and we will
  use the <code>identifierForVendor</code> property on <code>UIDevice</code> instead.
- 
- If we are unable to get an IFA or identifierForVendor, we will fall back to 
+
+ If we are unable to get an IFA or identifierForVendor, we will fall back to
  generating a persistent UUID.
 
  For tracking events, you do not need to call <code>identify:</code> if you
@@ -444,6 +450,42 @@
  */
 - (void)showSurvey;
 
+
+/*!
+ @method
+
+ @abstract
+ Shows the notification of the given id.
+
+ @discussion
+ You do not need to call this method on the main thread.
+ */
+- (void)showNotificationWithID:(NSUInteger)ID;
+
+
+/*!
+ @method
+
+ @abstract
+ Shows a notification with the given type if one is available.
+
+ @discussion
+ You do not need to call this method on the main thread.
+
+ @param type The type of notification to show, either @"mini", or @"takeover"
+ */
+- (void)showNotificationWithType:(NSString *)type;
+
+/*!
+ @method
+
+ @abstract
+ Shows a notification if one is available.
+
+ @discussion
+ You do not need to call this method on the main thread.
+ */
+- (void)showNotification;
 
 - (void)createAlias:(NSString *)alias forDistinctID:(NSString *)distinctID;
 
