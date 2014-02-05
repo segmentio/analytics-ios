@@ -19,5 +19,7 @@
 #import <Analytics/Flurry.h>
 #import <Analytics/GAI.h>
 #import <Analytics/Mixpanel.h>
+#import <Analytics/MPSurvey.h>
+#import <Analytics/MPNotification.h>
 #import <Analytics/TSTapstream.h>
 #import <Analytics/Private/SegmentioProvider.h>
