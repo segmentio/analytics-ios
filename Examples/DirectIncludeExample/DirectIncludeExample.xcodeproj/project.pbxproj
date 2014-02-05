@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D309DBF718A2C73100BA9F31 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D309DBF618A2C73100BA9F31 /* Analytics.framework */; };
+		D309DBF818A2C84F00BA9F31 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADE817C77076000A8337 /* AdSupport.framework */; };
 		D3290162186244740047B686 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D30286A017E40B38005E58B9 /* Reachability.m */; };
-		D3A24528189ADF810089D3FB /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A24527189ADF810089D3FB /* Analytics.framework */; };
 		EACAADA817C76EE4000A8337 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADA717C76EE4000A8337 /* UIKit.framework */; };
 		EACAADAA17C76EE4000A8337 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADA917C76EE4000A8337 /* Foundation.framework */; };
 		EACAADAC17C76EE4000A8337 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADAB17C76EE4000A8337 /* CoreGraphics.framework */; };
 		EACAADEC17C770A9000A8337 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADE017C77052000A8337 /* CoreData.framework */; };
 		EACAADED17C770AF000A8337 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADEA17C7707C000A8337 /* CoreTelephony.framework */; };
-		EACAADEE17C770AF000A8337 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADE817C77076000A8337 /* AdSupport.framework */; };
 		EACAADEF17C770AF000A8337 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADE617C77067000A8337 /* CFNetwork.framework */; };
 		EACAADF017C770AF000A8337 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADE417C77062000A8337 /* QuartzCore.framework */; };
 		EACAADF117C770AF000A8337 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADE217C7705A000A8337 /* SystemConfiguration.framework */; };
@@ -34,7 +34,7 @@
 /* Begin PBXFileReference section */
 		D302869F17E40B38005E58B9 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Common/Reachability.h; sourceTree = "<group>"; };
 		D30286A017E40B38005E58B9 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Common/Reachability.m; sourceTree = "<group>"; };
-		D3A24527189ADF810089D3FB /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Analytics.framework; sourceTree = "<group>"; };
+		D309DBF618A2C73100BA9F31 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Analytics.framework; sourceTree = "<group>"; };
 		EACAADA417C76EE4000A8337 /* DirectIncludeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DirectIncludeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EACAADA717C76EE4000A8337 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EACAADA917C76EE4000A8337 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -67,12 +67,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D309DBF818A2C84F00BA9F31 /* AdSupport.framework in Frameworks */,
 				EACAADA817C76EE4000A8337 /* UIKit.framework in Frameworks */,
 				EACAADAA17C76EE4000A8337 /* Foundation.framework in Frameworks */,
 				EACAADAC17C76EE4000A8337 /* CoreGraphics.framework in Frameworks */,
-				D3A24528189ADF810089D3FB /* Analytics.framework in Frameworks */,
+				D309DBF718A2C73100BA9F31 /* Analytics.framework in Frameworks */,
 				EACAADED17C770AF000A8337 /* CoreTelephony.framework in Frameworks */,
-				EACAADEE17C770AF000A8337 /* AdSupport.framework in Frameworks */,
 				EACAADEF17C770AF000A8337 /* CFNetwork.framework in Frameworks */,
 				EACAADF017C770AF000A8337 /* QuartzCore.framework in Frameworks */,
 				EACAADF117C770AF000A8337 /* SystemConfiguration.framework in Frameworks */,
@@ -106,7 +106,7 @@
 		EACAADA617C76EE4000A8337 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D3A24527189ADF810089D3FB /* Analytics.framework */,
+				D309DBF618A2C73100BA9F31 /* Analytics.framework */,
 				EACAADF617C770D0000A8337 /* libz.dylib */,
 				EACAADF417C770C8000A8337 /* libsqlite3.dylib */,
 				EACAADE017C77052000A8337 /* CoreData.framework */,
@@ -310,7 +310,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					"/Users/reinpk/dev/segmentio-project/analytics-ios/Examples/DirectIncludeExample",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Examples/DirectIncludeExample",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -329,7 +328,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
-					"/Users/reinpk/dev/segmentio-project/analytics-ios/Examples/DirectIncludeExample",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Examples/DirectIncludeExample",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

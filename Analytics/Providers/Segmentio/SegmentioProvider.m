@@ -4,7 +4,6 @@
 #include <sys/sysctl.h>
 
 #import <UIKit/UIKit.h>
-#import <AdSupport/ASIdentifierManager.h>
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import "Analytics.h"
@@ -131,7 +130,7 @@ static NSString *GetSessionID(BOOL reset) {
     
     // ID for Advertiser (IFA)
     if (NSClassFromString(@"ASIdentifierManager")) {
-        [deviceInfo setValue:[[ASIdentifierManager sharedManager].advertisingIdentifier UUIDString] forKey:@"idForAdvertiser"];
+        [deviceInfo setValue:[self getIdForAdvertiser] forKey:@"idForAdvertiser"];
     }
     
     // Screen size
@@ -140,6 +139,20 @@ static NSString *GetSessionID(BOOL reset) {
     [deviceInfo setValue:[NSNumber numberWithInt:(int)screenSize.height] forKey:@"screenHeight"];
     
     return deviceInfo;
+}
+
+- (NSString *)getIdForAdvertiser
+{
+    NSString* idForAdvertiser = nil;
+    Class ASIdentifierManagerClass = NSClassFromString(@"ASIdentifierManager");
+    if (ASIdentifierManagerClass) {
+        SEL sharedManagerSelector = NSSelectorFromString(@"sharedManager");
+        id sharedManager = ((id (*)(id, SEL))[ASIdentifierManagerClass methodForSelector:sharedManagerSelector])(ASIdentifierManagerClass, sharedManagerSelector);
+        SEL advertisingIdentifierSelector = NSSelectorFromString(@"advertisingIdentifier");
+        NSUUID *uuid = ((NSUUID* (*)(id, SEL))[sharedManager methodForSelector:advertisingIdentifierSelector])(sharedManager, advertisingIdentifierSelector);
+        idForAdvertiser = [uuid UUIDString];
+    }
+    return idForAdvertiser;
 }
 
 - (NSString *)deviceModel
