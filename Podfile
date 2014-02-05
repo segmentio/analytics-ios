@@ -7,7 +7,7 @@ pod 'CrittercismSDK', '~> 4.3.1'
 pod 'FlurrySDK', '~> 4.3.0'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.0.3'
 pod 'Localytics-iOS-Client', '~> 2.21.0'
-pod 'Mixpanel', '~> 2.3.0'
+pod 'Mixpanel', '~> 2.3.1'
 pod 'Tapstream', '~> 2.6'
 
 target :AnalyticsTests, :exclusive => true do
