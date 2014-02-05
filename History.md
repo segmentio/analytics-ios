@@ -1,6 +1,7 @@
 0.9.8 / 2014-2-5
 ================
 * Updating Mixpanel to 2.3.1 and Flurry to 4.3.1
+* Adding MPNotification.h
 
 0.9.7 / 2014-1-30
 =================
