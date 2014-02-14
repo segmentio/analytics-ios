@@ -13,6 +13,7 @@
 			buildPhases = (
 				EA25892217C693DD000CEF61 /* Build Framework */,
 				D3C07FDE185A892F00649011 /* Run Script */,
+				9F1CFBA518ADC8FC00266C07 /* CopyFiles */,
 			);
 			dependencies = (
 			);
@@ -27,8 +28,23 @@
 		2822D60017E26C9E005B2B7F /* NSContainer+Subscripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2822D5FE17E26C9E005B2B7F /* NSContainer+Subscripting.m */; };
 		7E94C0F018932A5B004BD132 /* KWBlockMatchEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */; };
 		7EA1CA851898033000DC8637 /* KWNotificationMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA1CA841898033000DC8637 /* KWNotificationMatcher.m */; };
+		9F1CFBAA18AE1FC000266C07 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F1CFBA918AE1FC000266C07 /* libFlurry_4.3.2.a */; };
+		9F1CFBB118AE208400266C07 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F1CFBB018AE208400266C07 /* CoreFoundation.framework */; };
+		9F1CFBCA18AE223C00266C07 /* MPArrowLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBBC18AE223C00266C07 /* MPArrowLeft.png */; };
+		9F1CFBCB18AE223C00266C07 /* MPArrowLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBBD18AE223C00266C07 /* MPArrowLeft@2x.png */; };
+		9F1CFBCC18AE223C00266C07 /* MPArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBBE18AE223C00266C07 /* MPArrowRight.png */; };
+		9F1CFBCD18AE223C00266C07 /* MPArrowRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBBF18AE223C00266C07 /* MPArrowRight@2x.png */; };
+		9F1CFBCE18AE223C00266C07 /* MPCheckmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBC018AE223C00266C07 /* MPCheckmark.png */; };
+		9F1CFBCF18AE223C00266C07 /* MPCheckmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBC118AE223C00266C07 /* MPCheckmark@2x.png */; };
+		9F1CFBD018AE223C00266C07 /* MPCloseBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBC218AE223C00266C07 /* MPCloseBtn.png */; };
+		9F1CFBD118AE223C00266C07 /* MPCloseBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBC318AE223C00266C07 /* MPCloseBtn@2x.png */; };
+		9F1CFBD218AE223C00266C07 /* MPDismissKeyboard.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBC418AE223C00266C07 /* MPDismissKeyboard.png */; };
+		9F1CFBD318AE223C00266C07 /* MPDismissKeyboard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBC518AE223C00266C07 /* MPDismissKeyboard@2x.png */; };
+		9F1CFBD418AE223C00266C07 /* MPLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBC618AE223C00266C07 /* MPLogo.png */; };
+		9F1CFBD518AE223C00266C07 /* MPLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBC718AE223C00266C07 /* MPLogo@2x.png */; };
+		9F1CFBD618AE223C00266C07 /* MPNotification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBC818AE223C00266C07 /* MPNotification.storyboard */; };
+		9F1CFBD718AE223C00266C07 /* MPSurvey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1CFBC918AE223C00266C07 /* MPSurvey.storyboard */; };
 		B8A1B15E08994855871D1685 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B38155D048462482A91850 /* libPods.a */; };
-		D309DBF318A2BD2900BA9F31 /* libFlurry_4.3.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D309DBF218A2BD2900BA9F31 /* libFlurry_4.3.1.a */; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCEC185BFAA1007CB22F /* MPSurvey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF0185BFF49007CB22F /* CRFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -128,6 +144,18 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9F1CFBA518ADC8FC00266C07 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1292362745B3499F9F8849DB /* Pods-AnalyticsTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTests.xcconfig"; path = "Pods/Pods-AnalyticsTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnalyticsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +167,27 @@
 		7EA1CA831898033000DC8637 /* KWNotificationMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWNotificationMatcher.h; sourceTree = "<group>"; };
 		7EA1CA841898033000DC8637 /* KWNotificationMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWNotificationMatcher.m; sourceTree = "<group>"; };
 		8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		9F1CFBA718AE1FA600266C07 /* libPods-FlurrySDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-FlurrySDK.a"; path = "Pods/build/Debug-iphoneos/libPods-FlurrySDK.a"; sourceTree = "<group>"; };
+		9F1CFBA918AE1FC000266C07 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.2.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.2.a; sourceTree = "<group>"; };
+		9F1CFBAF18AE208400266C07 /* Analytics.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Analytics.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F1CFBB018AE208400266C07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		9F1CFBB418AE208400266C07 /* AnalyticsResources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnalyticsResources-Info.plist"; sourceTree = "<group>"; };
+		9F1CFBB618AE208400266C07 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9F1CFBB818AE208400266C07 /* AnalyticsResources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnalyticsResources-Prefix.pch"; sourceTree = "<group>"; };
+		9F1CFBBC18AE223C00266C07 /* MPArrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MPArrowLeft.png; path = Pods/Mixpanel/Mixpanel/MPArrowLeft.png; sourceTree = "<group>"; };
+		9F1CFBBD18AE223C00266C07 /* MPArrowLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MPArrowLeft@2x.png"; path = "Pods/Mixpanel/Mixpanel/MPArrowLeft@2x.png"; sourceTree = "<group>"; };
+		9F1CFBBE18AE223C00266C07 /* MPArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MPArrowRight.png; path = Pods/Mixpanel/Mixpanel/MPArrowRight.png; sourceTree = "<group>"; };
+		9F1CFBBF18AE223C00266C07 /* MPArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MPArrowRight@2x.png"; path = "Pods/Mixpanel/Mixpanel/MPArrowRight@2x.png"; sourceTree = "<group>"; };
+		9F1CFBC018AE223C00266C07 /* MPCheckmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MPCheckmark.png; path = Pods/Mixpanel/Mixpanel/MPCheckmark.png; sourceTree = "<group>"; };
+		9F1CFBC118AE223C00266C07 /* MPCheckmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MPCheckmark@2x.png"; path = "Pods/Mixpanel/Mixpanel/MPCheckmark@2x.png"; sourceTree = "<group>"; };
+		9F1CFBC218AE223C00266C07 /* MPCloseBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MPCloseBtn.png; path = Pods/Mixpanel/Mixpanel/MPCloseBtn.png; sourceTree = "<group>"; };
+		9F1CFBC318AE223C00266C07 /* MPCloseBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MPCloseBtn@2x.png"; path = "Pods/Mixpanel/Mixpanel/MPCloseBtn@2x.png"; sourceTree = "<group>"; };
+		9F1CFBC418AE223C00266C07 /* MPDismissKeyboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MPDismissKeyboard.png; path = Pods/Mixpanel/Mixpanel/MPDismissKeyboard.png; sourceTree = "<group>"; };
+		9F1CFBC518AE223C00266C07 /* MPDismissKeyboard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MPDismissKeyboard@2x.png"; path = "Pods/Mixpanel/Mixpanel/MPDismissKeyboard@2x.png"; sourceTree = "<group>"; };
+		9F1CFBC618AE223C00266C07 /* MPLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MPLogo.png; path = Pods/Mixpanel/Mixpanel/MPLogo.png; sourceTree = "<group>"; };
+		9F1CFBC718AE223C00266C07 /* MPLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MPLogo@2x.png"; path = "Pods/Mixpanel/Mixpanel/MPLogo@2x.png"; sourceTree = "<group>"; };
+		9F1CFBC818AE223C00266C07 /* MPNotification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = MPNotification.storyboard; path = Pods/Mixpanel/Mixpanel/MPNotification.storyboard; sourceTree = "<group>"; };
+		9F1CFBC918AE223C00266C07 /* MPSurvey.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = MPSurvey.storyboard; path = Pods/Mixpanel/Mixpanel/MPSurvey.storyboard; sourceTree = "<group>"; };
 		D309DBF218A2BD2900BA9F31 /* libFlurry_4.3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.1.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.1.a; sourceTree = "<group>"; };
 		D31C8F7D18A2D83700DA22A6 /* MPNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPNotification.h; path = Pods/Mixpanel/Mixpanel/MPNotification.h; sourceTree = "<group>"; };
 		D331BCEC185BFAA1007CB22F /* MPSurvey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPSurvey.h; path = Pods/Mixpanel/Mixpanel/MPSurvey.h; sourceTree = "<group>"; };
@@ -238,6 +287,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9F1CFBAC18AE208400266C07 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F1CFBB118AE208400266C07 /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA722AED17C87BB00016E8B0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -264,7 +321,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D309DBF318A2BD2900BA9F31 /* libFlurry_4.3.1.a in Frameworks */,
+				9F1CFBAA18AE1FC000266C07 /* libFlurry_4.3.2.a in Frameworks */,
 				D37F756D189237360037E851 /* libCrittercism_v4_3_1.a in Frameworks */,
 				F78D29FA1765B382000B937E /* UIKit.framework in Frameworks */,
 				F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */,
@@ -276,6 +333,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F1CFBB218AE208400266C07 /* AnalyticsResources */ = {
+			isa = PBXGroup;
+			children = (
+				9F1CFBD818AE225300266C07 /* External */,
+				9F1CFBB318AE208400266C07 /* Supporting Files */,
+			);
+			path = AnalyticsResources;
+			sourceTree = "<group>";
+		};
+		9F1CFBB318AE208400266C07 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9F1CFBB418AE208400266C07 /* AnalyticsResources-Info.plist */,
+				9F1CFBB518AE208400266C07 /* InfoPlist.strings */,
+				9F1CFBB818AE208400266C07 /* AnalyticsResources-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9F1CFBD818AE225300266C07 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				9F1CFBBC18AE223C00266C07 /* MPArrowLeft.png */,
+				9F1CFBBD18AE223C00266C07 /* MPArrowLeft@2x.png */,
+				9F1CFBBE18AE223C00266C07 /* MPArrowRight.png */,
+				9F1CFBBF18AE223C00266C07 /* MPArrowRight@2x.png */,
+				9F1CFBC018AE223C00266C07 /* MPCheckmark.png */,
+				9F1CFBC118AE223C00266C07 /* MPCheckmark@2x.png */,
+				9F1CFBC218AE223C00266C07 /* MPCloseBtn.png */,
+				9F1CFBC318AE223C00266C07 /* MPCloseBtn@2x.png */,
+				9F1CFBC418AE223C00266C07 /* MPDismissKeyboard.png */,
+				9F1CFBC518AE223C00266C07 /* MPDismissKeyboard@2x.png */,
+				9F1CFBC618AE223C00266C07 /* MPLogo.png */,
+				9F1CFBC718AE223C00266C07 /* MPLogo@2x.png */,
+				9F1CFBC818AE223C00266C07 /* MPNotification.storyboard */,
+				9F1CFBC918AE223C00266C07 /* MPSurvey.storyboard */,
+			);
+			name = External;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		D331BD101860EA83007CB22F /* Tapstream */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,6 +557,7 @@
 				D3D35174186242B4005586E7 /* Headers */,
 				F7200B7817659B2F003F3138 /* Analytics */,
 				EA722AF617C87BB00016E8B0 /* AnalyticsTests */,
+				9F1CFBB218AE208400266C07 /* AnalyticsResources */,
 				F7200B7517659B2F003F3138 /* Frameworks */,
 				F7200B7417659B2F003F3138 /* Products */,
 				8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */,
@@ -471,6 +570,7 @@
 			children = (
 				F7200B7317659B2F003F3138 /* libAnalytics.a */,
 				EA722AF117C87BB00016E8B0 /* AnalyticsTests.octest */,
+				9F1CFBAF18AE208400266C07 /* Analytics.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -478,6 +578,8 @@
 		F7200B7517659B2F003F3138 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9F1CFBA918AE1FC000266C07 /* libFlurry_4.3.2.a */,
+				9F1CFBA718AE1FA600266C07 /* libPods-FlurrySDK.a */,
 				D309DBF218A2BD2900BA9F31 /* libFlurry_4.3.1.a */,
 				D37F756E189237430037E851 /* libFlurry_4.3.0.a */,
 				D37F756C189237360037E851 /* libCrittercism_v4_3_1.a */,
@@ -501,6 +603,7 @@
 				EABE4F3217C887E400A1081B /* libsqlite3.dylib */,
 				EA722AF217C87BB00016E8B0 /* SenTestingKit.framework */,
 				23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */,
+				9F1CFBB018AE208400266C07 /* CoreFoundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -596,6 +699,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		9F1CFBAE18AE208400266C07 /* AnalyticsResources */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F1CFBB918AE208400266C07 /* Build configuration list for PBXNativeTarget "AnalyticsResources" */;
+			buildPhases = (
+				9F1CFBAB18AE208400266C07 /* Sources */,
+				9F1CFBAC18AE208400266C07 /* Frameworks */,
+				9F1CFBAD18AE208400266C07 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AnalyticsResources;
+			productName = AnalyticsResources;
+			productReference = 9F1CFBAF18AE208400266C07 /* Analytics.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 		EA722AF017C87BB00016E8B0 /* AnalyticsTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA722B0017C87BB00016E8B0 /* Build configuration list for PBXNativeTarget "AnalyticsTests" */;
@@ -663,11 +783,33 @@
 				F7200B7217659B2F003F3138 /* Analytics */,
 				EA722AF017C87BB00016E8B0 /* AnalyticsTests */,
 				EA25891E17C693C2000CEF61 /* Analytics.framework */,
+				9F1CFBAE18AE208400266C07 /* AnalyticsResources */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		9F1CFBAD18AE208400266C07 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F1CFBCA18AE223C00266C07 /* MPArrowLeft.png in Resources */,
+				9F1CFBCB18AE223C00266C07 /* MPArrowLeft@2x.png in Resources */,
+				9F1CFBCC18AE223C00266C07 /* MPArrowRight.png in Resources */,
+				9F1CFBCD18AE223C00266C07 /* MPArrowRight@2x.png in Resources */,
+				9F1CFBCE18AE223C00266C07 /* MPCheckmark.png in Resources */,
+				9F1CFBCF18AE223C00266C07 /* MPCheckmark@2x.png in Resources */,
+				9F1CFBD018AE223C00266C07 /* MPCloseBtn.png in Resources */,
+				9F1CFBD118AE223C00266C07 /* MPCloseBtn@2x.png in Resources */,
+				9F1CFBD218AE223C00266C07 /* MPDismissKeyboard.png in Resources */,
+				9F1CFBD318AE223C00266C07 /* MPDismissKeyboard@2x.png in Resources */,
+				9F1CFBD418AE223C00266C07 /* MPLogo.png in Resources */,
+				9F1CFBD518AE223C00266C07 /* MPLogo@2x.png in Resources */,
+				9F1CFBD618AE223C00266C07 /* MPNotification.storyboard in Resources */,
+				9F1CFBD718AE223C00266C07 /* MPSurvey.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA722AEE17C87BB00016E8B0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -796,7 +938,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nPRODUCT_PATH=\"${SYMROOT}/Release/Analytics.framework\"\n\n## Prepare the framework Folder Structure\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Headers\"\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${PRODUCT_PATH}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${PRODUCT_PATH}/Headers\"\n/bin/ln -sfh Versions/Current/Analytics \"${PRODUCT_PATH}/Analytics\"\n\n## Compile for both iPhone (armv7, armv7s, arm64) and iPhone Simulator (i386)\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphonesimulator\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphoneos\n\n## Combine the two separate libAnalytics.a into a single fat binary containing all 3 architectures\nlipo -output \"${SYMROOT}/Release/libAnalytics.a\" -create \\\n    \"${SYMROOT}/Release-iphoneos/libAnalytics.a\" \\\n    \"${SYMROOT}/Release-iphonesimulator/libAnalytics.a\"\n\n## Strip out Pods-dummy objects to prevent duplicate symbol when used by CocoaPods\nfor ARCH in i386 armv7 armv7s arm64 x86_64\ndo\n    lipo \"${SYMROOT}/Release/libAnalytics.a\" -thin $ARCH -output \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\"\n    DUMMY_OBJECTS=`ar -t ${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a | grep ^Pods.*-dummy.o$ | tr '\\n' ' '`\n    if [ \"$DUMMY_OBJECTS\" != \"\" ]\n    then\n        ar -sd \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\" $DUMMY_OBJECTS\n    fi\ndone\n\n## Create a fat lib from the now cleaned up thin libs and place inside framework\nlipo -output \"${PRODUCT_PATH}/Versions/A/Analytics\" -create \\\n    \"${SYMROOT}/Release/libAnalytics-i386-clean.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-armv7-clean.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-armv7s-clean.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-arm64-clean.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-x86_64-clean.a\"\n\n## Copy headers into the framework\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${SYMROOT}/Release-iphoneos/AnalyticsHeaders/\" \"${PRODUCT_PATH}/Versions/A/Headers/\"\n\n# Zip up the framework and license for distribution, and open products folder\ncd \"${SYMROOT}/Release\"\ncp \"${PROJECT_DIR}/License.md\" .\nzip --symlinks -r Analytics-${ANALYTICS_VERSION}.zip Analytics.framework License.md\nopen .\n";
+			shellScript = "set -e\n\nPRODUCT_PATH=\"${SYMROOT}/Release/Analytics.framework\"\n\n## Prepare the framework Folder Structure\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Headers\"\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Resources\"\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${PRODUCT_PATH}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${PRODUCT_PATH}/Headers\"\n/bin/ln -sfh Versions/Current/Analytics \"${PRODUCT_PATH}/Analytics\"\n/bin/ln -sfh Versions/Current/Resources \"${PRODUCT_PATH}/Resources\"\n\n## Compile for both iPhone (armv7, armv7s, arm64) and iPhone Simulator (i386)\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphonesimulator\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphoneos\nxcodebuild -workspace Analytics.xcworkspace -scheme AnalyticsResources -configuration Release -sdk iphoneos\n\n## Combine the two separate libAnalytics.a into a single fat binary containing all 3 architectures\nlipo -output \"${SYMROOT}/Release/libAnalytics.a\" -create \\\n    \"${SYMROOT}/Release-iphoneos/libAnalytics.a\" \\\n    \"${SYMROOT}/Release-iphonesimulator/libAnalytics.a\"\n\n## Strip out Pods-dummy objects to prevent duplicate symbol when used by CocoaPods\n# NOTE(ted) - I can't build x86 version\n#for ARCH in i386 armv7 armv7s arm64 x86_64\nfor ARCH in i386 armv7 armv7s arm64\ndo\n    lipo \"${SYMROOT}/Release/libAnalytics.a\" -thin $ARCH -output \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\"\n    DUMMY_OBJECTS=`ar -t ${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a | grep ^Pods.*-dummy.o$ | tr '\\n' ' '`\n    if [ \"$DUMMY_OBJECTS\" != \"\" ]\n    then\n        ar -sd \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\" $DUMMY_OBJECTS\n    fi\ndone\n\n## Create a fat lib from the now cleaned up thin libs and place inside framework\nlipo -output \"${PRODUCT_PATH}/Versions/A/Analytics\" -create \\\n    \"${SYMROOT}/Release/libAnalytics-i386-clean.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-armv7-clean.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-armv7s-clean.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-arm64-clean.a\"\n#NOTE(ted) - I can't build x86 version\n#\"${SYMROOT}/Release/libAnalytics-x86_64-clean.a\"\n\n## Copy headers into the framework\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${SYMROOT}/Release-iphoneos/AnalyticsHeaders/\" \"${PRODUCT_PATH}/Versions/A/Headers/\"\n\n# Copy bundle into framework\n/bin/cp -a \"${SYMROOT}/Release-iphoneos/Analytics.bundle\" \"${PRODUCT_PATH}/Versions/A/Resources/Analytics.bundle\"\n# also copy original resources for include by users\nreadonly all_resources=$(/bin/cat <<EOF\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPArrowLeft.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPArrowLeft.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPArrowLeft@2x.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPArrowRight.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPArrowRight@2x.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPCheckmark.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPCheckmark@2x.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPCloseBtn.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPCloseBtn@2x.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPDismissKeyboard.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPDismissKeyboard@2x.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPLogo.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPLogo@2x.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPNotification.storyboard\n${SRCROOT}/Pods/Mixpanel/Mixpanel/MPSurvey.storyboard\nEOF\n)\n\nfor resource in $all_resources\ndo\n    /bin/cp -a \"${resource}\" \"${PRODUCT_PATH}/Versions/A/Resources/\"\ndone\n\n# Zip up the framework and license for distribution, and open products folder\ncd \"${SYMROOT}/Release\"\ncp \"${PROJECT_DIR}/License.md\" .\nzip --symlinks -r Analytics-${ANALYTICS_VERSION}.zip Analytics.framework License.md\nopen .\n";
 		};
 		EA722AEF17C87BB00016E8B0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -828,6 +970,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9F1CFBAB18AE208400266C07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EA722AEC17C87BB00016E8B0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -873,7 +1022,70 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		9F1CFBB518AE208400266C07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F1CFBB618AE208400266C07 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		9F1CFBBA18AE208400266C07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AnalyticsResources/AnalyticsResources-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "AnalyticsResources/AnalyticsResources-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = Analytics;
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		9F1CFBBB18AE208400266C07 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "AnalyticsResources/AnalyticsResources-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "AnalyticsResources/AnalyticsResources-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = Analytics;
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 		EA25891F17C693C2000CEF61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -999,6 +1211,7 @@
 					"$(inherited)",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/CrittercismSDK/CrittercismSDK",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/FlurrySDK/Flurry",
+					"/Users/ted/Desktop/Analytics-0.9.8/analytics-ios/Pods/FlurrySDK/Flurry",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1025,6 +1238,7 @@
 					"$(inherited)",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/CrittercismSDK/CrittercismSDK",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/FlurrySDK/Flurry",
+					"/Users/ted/Desktop/Analytics-0.9.8/analytics-ios/Pods/FlurrySDK/Flurry",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
@@ -1038,6 +1252,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9F1CFBB918AE208400266C07 /* Build configuration list for PBXNativeTarget "AnalyticsResources" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F1CFBBA18AE208400266C07 /* Debug */,
+				9F1CFBBB18AE208400266C07 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EA25892117C693C2000CEF61 /* Build configuration list for PBXAggregateTarget "Analytics.framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
