@@ -10,6 +10,8 @@
 		D309DBF818A2C84F00BA9F31 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADE817C77076000A8337 /* AdSupport.framework */; };
 		D31C8F8218A2D91D00DA22A6 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31C8F8118A2D91D00DA22A6 /* Analytics.framework */; };
 		D3290162186244740047B686 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D30286A017E40B38005E58B9 /* Reachability.m */; };
+		D393593B18AD5C6900AFE36C /* MPNotification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D393593918AD5C6900AFE36C /* MPNotification.storyboard */; };
+		D393593C18AD5C6900AFE36C /* MPSurvey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D393593A18AD5C6900AFE36C /* MPSurvey.storyboard */; };
 		EACAADA817C76EE4000A8337 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADA717C76EE4000A8337 /* UIKit.framework */; };
 		EACAADAA17C76EE4000A8337 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADA917C76EE4000A8337 /* Foundation.framework */; };
 		EACAADAC17C76EE4000A8337 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADAB17C76EE4000A8337 /* CoreGraphics.framework */; };
@@ -35,6 +37,8 @@
 		D302869F17E40B38005E58B9 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Common/Reachability.h; sourceTree = "<group>"; };
 		D30286A017E40B38005E58B9 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Common/Reachability.m; sourceTree = "<group>"; };
 		D31C8F8118A2D91D00DA22A6 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Analytics.framework; sourceTree = "<group>"; };
+		D393593918AD5C6900AFE36C /* MPNotification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MPNotification.storyboard; sourceTree = "<group>"; };
+		D393593A18AD5C6900AFE36C /* MPSurvey.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MPSurvey.storyboard; sourceTree = "<group>"; };
 		EACAADA417C76EE4000A8337 /* DirectIncludeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DirectIncludeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EACAADA717C76EE4000A8337 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EACAADA917C76EE4000A8337 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -141,6 +145,8 @@
 		EACAADAE17C76EE4000A8337 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D393593918AD5C6900AFE36C /* MPNotification.storyboard */,
+				D393593A18AD5C6900AFE36C /* MPSurvey.storyboard */,
 				EACAADAF17C76EE4000A8337 /* DirectIncludeExample-Info.plist */,
 				EACAADB517C76EE4000A8337 /* DirectIncludeExample-Prefix.pch */,
 				EACAAE0717C77260000A8337 /* InfoPlist.strings */,
@@ -205,7 +211,9 @@
 			files = (
 				EACAAE0017C77255000A8337 /* MainStoryboard.storyboard in Resources */,
 				EACAAE0417C7725B000A8337 /* Default-568h@2x.png in Resources */,
+				D393593B18AD5C6900AFE36C /* MPNotification.storyboard in Resources */,
 				EACAAE0517C7725B000A8337 /* Default.png in Resources */,
+				D393593C18AD5C6900AFE36C /* MPSurvey.storyboard in Resources */,
 				EACAAE0617C7725B000A8337 /* Default@2x.png in Resources */,
 				EACAAE0917C77260000A8337 /* InfoPlist.strings in Resources */,
 			);

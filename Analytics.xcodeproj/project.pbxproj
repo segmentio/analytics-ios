@@ -997,10 +997,6 @@
 				GCC_PREFIX_HEADER = "Analytics/Analytics-Prefix.pch";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/reinpk/dev/segmentio-project/analytics-ios",
-					"/Users/reinpk/dev/segmentio-project/analytics-ios/Pods/FlurrySDK/Flurry",
-					"/Users/reinpk/dev/segmentio-project/analytics-ios/Pods/Omniture",
-					"/Users/reinpk/dev/segmentio-project/analytics-ios/Pods/CrittercismSDK/CrittercismSDK",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/CrittercismSDK/CrittercismSDK",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/FlurrySDK/Flurry",
 				);
@@ -1027,10 +1023,6 @@
 				GCC_PREFIX_HEADER = "Analytics/Analytics-Prefix.pch";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/reinpk/dev/segmentio-project/analytics-ios",
-					"/Users/reinpk/dev/segmentio-project/analytics-ios/Pods/FlurrySDK/Flurry",
-					"/Users/reinpk/dev/segmentio-project/analytics-ios/Pods/Omniture",
-					"/Users/reinpk/dev/segmentio-project/analytics-ios/Pods/CrittercismSDK/CrittercismSDK",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/CrittercismSDK/CrittercismSDK",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/FlurrySDK/Flurry",
 				);
