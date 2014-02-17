@@ -225,7 +225,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 - (void)refreshSettings {
     if (!_settingsRequest) {
-        NSString *urlString = [NSString stringWithFormat:@"http://api.segment.io/project/%@/settings", self.secret];
+        NSString *urlString = [NSString stringWithFormat:@"https://api.segment.io/project/%@/settings", self.secret];
         NSURL *url = [NSURL URLWithString:urlString];
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
         [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
