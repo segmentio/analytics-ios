@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D309DBF818A2C84F00BA9F31 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADE817C77076000A8337 /* AdSupport.framework */; };
-		D31C8F8218A2D91D00DA22A6 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D31C8F8118A2D91D00DA22A6 /* Analytics.framework */; };
 		D3290162186244740047B686 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D30286A017E40B38005E58B9 /* Reachability.m */; };
-		D393593B18AD5C6900AFE36C /* MPNotification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D393593918AD5C6900AFE36C /* MPNotification.storyboard */; };
-		D393593C18AD5C6900AFE36C /* MPSurvey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D393593A18AD5C6900AFE36C /* MPSurvey.storyboard */; };
+		D3A6A2CD18B2EF1C00C4B510 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A6A2CC18B2EF1C00C4B510 /* Analytics.framework */; };
 		EACAADA817C76EE4000A8337 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADA717C76EE4000A8337 /* UIKit.framework */; };
 		EACAADAA17C76EE4000A8337 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADA917C76EE4000A8337 /* Foundation.framework */; };
 		EACAADAC17C76EE4000A8337 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADAB17C76EE4000A8337 /* CoreGraphics.framework */; };
@@ -36,9 +34,21 @@
 /* Begin PBXFileReference section */
 		D302869F17E40B38005E58B9 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Common/Reachability.h; sourceTree = "<group>"; };
 		D30286A017E40B38005E58B9 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Common/Reachability.m; sourceTree = "<group>"; };
-		D31C8F8118A2D91D00DA22A6 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Analytics.framework; sourceTree = "<group>"; };
-		D393593918AD5C6900AFE36C /* MPNotification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MPNotification.storyboard; sourceTree = "<group>"; };
-		D393593A18AD5C6900AFE36C /* MPSurvey.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MPSurvey.storyboard; sourceTree = "<group>"; };
+		D3A6A2CC18B2EF1C00C4B510 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Analytics.framework; sourceTree = "<group>"; };
+		D3A6A2CF18B2F1D700C4B510 /* MPArrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MPArrowLeft.png; sourceTree = "<group>"; };
+		D3A6A2D018B2F1D700C4B510 /* MPArrowLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPArrowLeft@2x.png"; sourceTree = "<group>"; };
+		D3A6A2D118B2F1D700C4B510 /* MPArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MPArrowRight.png; sourceTree = "<group>"; };
+		D3A6A2D218B2F1D700C4B510 /* MPArrowRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPArrowRight@2x.png"; sourceTree = "<group>"; };
+		D3A6A2D318B2F1D700C4B510 /* MPCheckmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MPCheckmark.png; sourceTree = "<group>"; };
+		D3A6A2D418B2F1D700C4B510 /* MPCheckmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPCheckmark@2x.png"; sourceTree = "<group>"; };
+		D3A6A2D518B2F1D700C4B510 /* MPCloseBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MPCloseBtn.png; sourceTree = "<group>"; };
+		D3A6A2D618B2F1D700C4B510 /* MPCloseBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPCloseBtn@2x.png"; sourceTree = "<group>"; };
+		D3A6A2D718B2F1D700C4B510 /* MPDismissKeyboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MPDismissKeyboard.png; sourceTree = "<group>"; };
+		D3A6A2D818B2F1D700C4B510 /* MPDismissKeyboard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPDismissKeyboard@2x.png"; sourceTree = "<group>"; };
+		D3A6A2D918B2F1D700C4B510 /* MPLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MPLogo.png; sourceTree = "<group>"; };
+		D3A6A2DA18B2F1D700C4B510 /* MPLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPLogo@2x.png"; sourceTree = "<group>"; };
+		D3A6A2DB18B2F1D700C4B510 /* MPNotification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MPNotification.storyboard; sourceTree = "<group>"; };
+		D3A6A2DC18B2F1D700C4B510 /* MPSurvey.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MPSurvey.storyboard; sourceTree = "<group>"; };
 		EACAADA417C76EE4000A8337 /* DirectIncludeExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DirectIncludeExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EACAADA717C76EE4000A8337 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EACAADA917C76EE4000A8337 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -74,7 +84,7 @@
 				D309DBF818A2C84F00BA9F31 /* AdSupport.framework in Frameworks */,
 				EACAADA817C76EE4000A8337 /* UIKit.framework in Frameworks */,
 				EACAADAA17C76EE4000A8337 /* Foundation.framework in Frameworks */,
-				D31C8F8218A2D91D00DA22A6 /* Analytics.framework in Frameworks */,
+				D3A6A2CD18B2EF1C00C4B510 /* Analytics.framework in Frameworks */,
 				EACAADAC17C76EE4000A8337 /* CoreGraphics.framework in Frameworks */,
 				EACAADED17C770AF000A8337 /* CoreTelephony.framework in Frameworks */,
 				EACAADEF17C770AF000A8337 /* CFNetwork.framework in Frameworks */,
@@ -90,9 +100,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D3A6A2CE18B2F1D700C4B510 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D3A6A2CF18B2F1D700C4B510 /* MPArrowLeft.png */,
+				D3A6A2D018B2F1D700C4B510 /* MPArrowLeft@2x.png */,
+				D3A6A2D118B2F1D700C4B510 /* MPArrowRight.png */,
+				D3A6A2D218B2F1D700C4B510 /* MPArrowRight@2x.png */,
+				D3A6A2D318B2F1D700C4B510 /* MPCheckmark.png */,
+				D3A6A2D418B2F1D700C4B510 /* MPCheckmark@2x.png */,
+				D3A6A2D518B2F1D700C4B510 /* MPCloseBtn.png */,
+				D3A6A2D618B2F1D700C4B510 /* MPCloseBtn@2x.png */,
+				D3A6A2D718B2F1D700C4B510 /* MPDismissKeyboard.png */,
+				D3A6A2D818B2F1D700C4B510 /* MPDismissKeyboard@2x.png */,
+				D3A6A2D918B2F1D700C4B510 /* MPLogo.png */,
+				D3A6A2DA18B2F1D700C4B510 /* MPLogo@2x.png */,
+				D3A6A2DB18B2F1D700C4B510 /* MPNotification.storyboard */,
+				D3A6A2DC18B2F1D700C4B510 /* MPSurvey.storyboard */,
+			);
+			name = Resources;
+			path = Analytics.framework/Versions/A/Resources;
+			sourceTree = "<group>";
+		};
 		EACAAD9B17C76EE4000A8337 = {
 			isa = PBXGroup;
 			children = (
+				D3A6A2CE18B2F1D700C4B510 /* Resources */,
 				EACAADAD17C76EE4000A8337 /* DirectIncludeExample */,
 				EACAADA617C76EE4000A8337 /* Frameworks */,
 				EACAADA517C76EE4000A8337 /* Products */,
@@ -110,7 +143,7 @@
 		EACAADA617C76EE4000A8337 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D31C8F8118A2D91D00DA22A6 /* Analytics.framework */,
+				D3A6A2CC18B2EF1C00C4B510 /* Analytics.framework */,
 				EACAADF617C770D0000A8337 /* libz.dylib */,
 				EACAADF417C770C8000A8337 /* libsqlite3.dylib */,
 				EACAADE017C77052000A8337 /* CoreData.framework */,
@@ -145,8 +178,6 @@
 		EACAADAE17C76EE4000A8337 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				D393593918AD5C6900AFE36C /* MPNotification.storyboard */,
-				D393593A18AD5C6900AFE36C /* MPSurvey.storyboard */,
 				EACAADAF17C76EE4000A8337 /* DirectIncludeExample-Info.plist */,
 				EACAADB517C76EE4000A8337 /* DirectIncludeExample-Prefix.pch */,
 				EACAAE0717C77260000A8337 /* InfoPlist.strings */,
@@ -211,9 +242,7 @@
 			files = (
 				EACAAE0017C77255000A8337 /* MainStoryboard.storyboard in Resources */,
 				EACAAE0417C7725B000A8337 /* Default-568h@2x.png in Resources */,
-				D393593B18AD5C6900AFE36C /* MPNotification.storyboard in Resources */,
 				EACAAE0517C7725B000A8337 /* Default.png in Resources */,
-				D393593C18AD5C6900AFE36C /* MPSurvey.storyboard in Resources */,
 				EACAAE0617C7725B000A8337 /* Default@2x.png in Resources */,
 				EACAAE0917C77260000A8337 /* InfoPlist.strings in Resources */,
 			);
