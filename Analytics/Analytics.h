@@ -75,8 +75,8 @@
 
 
 
-// Step 2: Accessing the Shared Instance
-// -------------------------------------
+// Step 2: Accessing the Shared Analtyics Instance
+// -----------------------------------------------
 
 /*!
  @method
@@ -87,11 +87,11 @@
  @discussion
  Once you initialize the shared Analytics instance via [Analytics initializeWithSecret:...] you can get the instance at any time like this:
 
- [Analytics sharedInstance]
+ [Analytics sharedAnalytics]
 
  This lets you call any of analytics API methods like this:
 
- [[Analytics sharedInstance] track:@"Bought a Shirt"];
+ [[Analytics sharedAnalytics] track:@"Bought a Shirt"];
 
 */
 + (instancetype)sharedAnalytics;
@@ -180,6 +180,44 @@
  @param deviceToken     device token as returned <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>
  */
 - (void)registerPushDeviceToken:(NSData *)deviceToken;
+
+
+/*!
+ @method
+ 
+ @abstract
+ Reset any user state that is cached on the device.
+ 
+ @discussion
+ This is useful when a user logs out and you want to clear the identity. It will clear any
+ traits or userId's cached on the device.
+ */
+- (void)reset;
+
+
+/*!
+ @method
+ 
+ @abstract
+ Enable the sending of analytics data. Enabled by default.
+ 
+ @discussion
+ Occasionally used in conjunction with disable user opt-out handling.
+ */
+- (void)enable;
+
+
+/*!
+ @method
+ 
+ @abstract
+ Completely disable the sending of any analytics data.
+ 
+ @discussion
+ If have a way for users to actively or passively (sometimes based on location) opt-out of 
+ analytics data collection, you can use this method to turn off all data collection.
+ */
+- (void)disable;
 
 
 // Advanced

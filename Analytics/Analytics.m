@@ -8,7 +8,6 @@
 #import "Analytics.h"
 
 #define SETTING_CACHE_URL AnalyticsURLForFilename(@"analytics.settings.plist")
-static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 
 @interface Analytics ()
 
@@ -21,7 +20,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     dispatch_queue_t _serialQueue;
     NSMutableArray *_messageQueue;
     AnalyticsRequest *_settingsRequest;
-    NSTimer *_settingsTimer;
+    BOOL _enabled;
 }
 
 @synthesize cachedSettings = _cachedSettings;
@@ -30,6 +29,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     NSParameterAssert(secret.length);
     if (self = [self init]) {
         _secret = secret;
+        _enabled = YES;
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         _messageQueue = [[NSMutableArray alloc] init];
         _providers = [[NSMutableDictionary alloc] init];
@@ -37,21 +37,22 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
                 ^(NSString *identifier, Class providerClass, BOOL *stop) {
              ((NSMutableDictionary *)_providers)[identifier] = [[providerClass alloc] initWithAnalytics:self];
         }];
+        
         // Update settings on each provider immediately
         [self refreshSettings];
-        _settingsTimer = [NSTimer scheduledTimerWithTimeInterval:AnalyticsSettingsUpdateInterval
-                                                          target:self
-                                                        selector:@selector(refreshSettings)
-                                                        userInfo:nil
-                                                         repeats:YES];
         
         // Attach to application state change hooks
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        
+        // Update settings on foreground
+        [nc addObserver:self selector:@selector(refreshSettings:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        
+        // Pass through for application state change events
         for (NSString *name in @[UIApplicationDidEnterBackgroundNotification,
                                  UIApplicationWillEnterForegroundNotification,
                                  UIApplicationWillTerminateNotification,
                                  UIApplicationWillResignActiveNotification,
                                  UIApplicationDidBecomeActiveNotification]) {
-            NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
             [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:nil];
         }
     }
@@ -72,6 +73,10 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
 }
 
 - (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
+    if (!_enabled) {
+        return;
+    }
+    
     NSMethodSignature *methodSignature = [AnalyticsProvider instanceMethodSignatureForSelector:selector];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
     invocation.selector = selector;
@@ -79,6 +84,7 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
         id argument = (arguments[i] == [NSNull null]) ? nil : arguments[i];
         [invocation setArgument:&argument atIndex:i+2];
     }
+    
     for (id<AnalyticsProvider> provider in self.providers.allValues) {
         if (provider.ready && [provider respondsToSelector:selector]) {
             if([self isProvider:provider enabledInOptions:options]) {
@@ -199,6 +205,20 @@ static NSInteger const AnalyticsSettingsUpdateInterval = 3600;
     [self callProvidersWithSelector:_cmd
                           arguments:@[deviceToken]
                             options:nil];
+}
+
+- (void)reset {
+    [self callProvidersWithSelector:_cmd
+                          arguments:nil
+                            options:nil];
+}
+
+- (void)enable {
+    _enabled = YES;
+}
+
+- (void)disable {
+    _enabled = NO;
 }
 
 #pragma mark - Analytics Settings

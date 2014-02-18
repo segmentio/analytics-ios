@@ -83,4 +83,8 @@
     [[[Mixpanel sharedInstance] people] addPushDeviceToken:deviceToken];
 }
 
+- (void)reset {
+    [[Mixpanel sharedInstance] reset];
+}
+
 @end
