@@ -108,6 +108,10 @@
     [[LocalyticsSession sharedLocalyticsSession] tagScreen:screenTitle];
 }
 
+- (void)registerPushDeviceToken:(NSData *)deviceToken {
+    [[LocalyticsSession sharedLocalyticsSession] setPushToken:deviceToken];
+}
+
 
 #pragma mark - Callbacks for app state changes
 

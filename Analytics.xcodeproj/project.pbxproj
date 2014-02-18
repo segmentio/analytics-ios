@@ -877,7 +877,7 @@
 		EA25891F17C693C2000CEF61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ANALYTICS_VERSION = 0.9.8;
+				ANALYTICS_VERSION = 0.9.9;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -886,7 +886,7 @@
 		EA25892017C693C2000CEF61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ANALYTICS_VERSION = 0.9.8;
+				ANALYTICS_VERSION = 0.9.9;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -989,7 +989,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
-				ANALYTICS_VERSION = 0.9.8;
+				ANALYTICS_VERSION = 0.9.9;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Analytics.dst;
@@ -997,8 +997,8 @@
 				GCC_PREFIX_HEADER = "Analytics/Analytics-Prefix.pch";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/CrittercismSDK/CrittercismSDK",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/FlurrySDK/Flurry",
+					"${PODS_ROOT}/CrittercismSDK/CrittercismSDK",
+					"${PODS_ROOT}/FlurrySDK/Flurry",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1014,7 +1014,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
-				ANALYTICS_VERSION = 0.9.8;
+				ANALYTICS_VERSION = 0.9.9;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
@@ -1023,8 +1023,8 @@
 				GCC_PREFIX_HEADER = "Analytics/Analytics-Prefix.pch";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/CrittercismSDK/CrittercismSDK",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/FlurrySDK/Flurry",
+					"${PODS_ROOT}/CrittercismSDK/CrittercismSDK",
+					"${PODS_ROOT}/FlurrySDK/Flurry",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
