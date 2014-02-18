@@ -4,7 +4,6 @@
 * Adding disable/enable methods for handling optout
 * Adding reset method for handling user logout
 * Updating Flurry, Google Analytics SDKs
-* Finally dropping requirement for AdSupport, wahoo!
 * Updated settings url to be https
 * Changing settings request to update on app foreground rather than timer
 
