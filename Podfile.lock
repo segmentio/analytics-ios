@@ -3,7 +3,7 @@ PODS:
   - Bugsnag (3.1.0.fork)
   - Countly (1.0.0)
   - CrittercismSDK (4.3.1)
-  - FlurrySDK (4.3.1)
+  - FlurrySDK (4.3.2)
   - GoogleAnalytics-iOS-SDK (3.0.3)
   - Kiwi (2.2.3):
     - Kiwi/SenTestingKit
@@ -12,7 +12,7 @@ PODS:
   - Kiwi/SenTestingKit (2.2.3):
     - Kiwi/ARC
     - Kiwi/NonARC
-  - Localytics-iOS-Client (2.21.0)
+  - Localytics-iOS-Client (2.21.1)
   - Mixpanel (2.3.1)
   - Tapstream (2.6)
 
@@ -21,10 +21,10 @@ DEPENDENCIES:
   - Bugsnag (= 3.1.0.fork)
   - Countly (~> 1.0.0)
   - CrittercismSDK (~> 4.3.1)
-  - FlurrySDK (~> 4.3.0)
-  - GoogleAnalytics-iOS-SDK (~> 3.0.3)
+  - FlurrySDK (~> 4.3.2)
+  - GoogleAnalytics-iOS-SDK (~> 3.0.3a)
   - Kiwi (~> 2.2.3)
-  - Localytics-iOS-Client (~> 2.21.0)
+  - Localytics-iOS-Client (~> 2.21.1)
   - Mixpanel (~> 2.3.1)
   - Tapstream (~> 2.6)
 
@@ -33,10 +33,10 @@ SPEC CHECKSUMS:
   Bugsnag: 5e48f3fcd219a685c22eb1eb2b088f3ccc0d621a
   Countly: c9728abbbeffc3250d1ab8ba17b417938119d218
   CrittercismSDK: 3b4eefdb985e08702836e2a0d234e4d117e3116c
-  FlurrySDK: 0e8c271b4a9785e390314d45cb27cbc891a94af4
+  FlurrySDK: 508afbd655fe2ff935d3e9543cb1c8aa432794de
   GoogleAnalytics-iOS-SDK: 7b0e55cfe5e70d60478a7b105f15ac71e8bc373e
   Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
-  Localytics-iOS-Client: b3fa8102a426aab2421c13cd184d82c5c1a03e00
+  Localytics-iOS-Client: 72b2909ae837cf43f9dcace0efcc01fac3b37d1e
   Mixpanel: 8d189c58bcaac429de9cb4f18a54621df99b7e38
   Tapstream: 00dd14461e648b5cfc682c79be5be085cf18631b
 
