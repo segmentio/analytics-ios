@@ -47,9 +47,19 @@
     [[Analytics sharedAnalytics] screen:@"Initial Screen"];
 }
 
-- (IBAction)flush:(id)sender {
-    /*SegmentioProvider *segmentio = [[Analytics sharedAnalytics] providers][@"Segment.io"];
-    [segmentio flush];*/
+- (IBAction)reset:(id)sender {
+    NSLog(@"test reset");
+    [[Analytics sharedAnalytics] reset];
+}
+
+- (IBAction)disable:(id)sender {
+    NSLog(@"test disable");
+    [[Analytics sharedAnalytics] disable];
+}
+
+- (IBAction)enable:(id)sender {
+    NSLog(@"test enable");
+    [[Analytics sharedAnalytics] enable];
 }
 
 - (IBAction)crash:(id)sender {
