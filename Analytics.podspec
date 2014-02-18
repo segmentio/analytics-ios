@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.source_files    = 'Analytics.framework/**/*.h'
   s.resources       = ['Analytics.framework/Versions/A/Resources/*']
   s.frameworks      = 'Analytics', 'Foundation', 'UIKit', 'CoreData', 'SystemConfiguration', 
-                      'QuartzCore', 'CFNetwork', 'AdSupport', 'CoreTelephony', 'Security', 'CoreGraphics'
+                      'QuartzCore', 'CFNetwork', 'CoreTelephony', 'Security', 'CoreGraphics'
   s.libraries       = 'sqlite3', 'z'
   s.xcconfig        = { 'OTHER_LDFLAGS' => '-ObjC', 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Analytics"' }
 end

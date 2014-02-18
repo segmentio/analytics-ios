@@ -1,3 +1,13 @@
+0.9.9 / 2014-2-17
+=================
+* Bundling resources for Mixpanel 
+* Adding disable/enable methods for handling optout
+* Adding reset method for handling user logout
+* Updating Flurry, Google Analytics SDKs
+* Finally dropping requirement for AdSupport, wahoo!
+* Updated settings url to be https
+* Changing settings request to update on app foreground rather than timer
+
 0.9.8 / 2014-2-5
 ================
 * Updating Mixpanel to 2.3.1 and Flurry to 4.3.1
