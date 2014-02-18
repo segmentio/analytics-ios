@@ -68,6 +68,7 @@
 		D371F334185943170053337D /* Mixpanel.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F333185943170053337D /* Mixpanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D37F756D189237360037E851 /* libCrittercism_v4_3_1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D37F756C189237360037E851 /* libCrittercism_v4_3_1.a */; };
 		D3A6A2E018B305E200C4B510 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A6A2DF18B305E200C4B510 /* libFlurry_4.3.2.a */; };
+		D3A6A2E518B308F000C4B510 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */; };
 		D3ABF62F1846F6E000FAAB2B /* CrittercismProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = D3ABF62D1846F6E000FAAB2B /* CrittercismProvider.h */; };
 		D3ABF6301846F6E000FAAB2B /* CrittercismProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D3ABF62E1846F6E000FAAB2B /* CrittercismProvider.m */; };
 		D3C07FBF185954D000649011 /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C07FBE185954D000649011 /* Bugsnag.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -93,7 +94,6 @@
 		EABE4F3E17C8883A00A1081B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3417C887E800A1081B /* libz.dylib */; };
 		EABE4F3F17C8883A00A1081B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3217C887E400A1081B /* libsqlite3.dylib */; };
 		EABE4F4117C88A6D00A1081B /* AnalyticsUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EABE4F4017C88A6D00A1081B /* AnalyticsUtilsTests.m */; };
-		EACAAD6817C75FE5000A8337 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */; };
 		EACB4DD217C0BB3100624129 /* AmplitudeProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DAF17C0BB3100624129 /* AmplitudeProvider.h */; };
 		EACB4DD317C0BB3100624129 /* AmplitudeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DB017C0BB3100624129 /* AmplitudeProvider.m */; };
 		EACB4DD617C0BB3100624129 /* BugsnagProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DB417C0BB3100624129 /* BugsnagProvider.h */; };
@@ -265,12 +265,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3A6A2E518B308F000C4B510 /* libGoogleAnalyticsServices.a in Frameworks */,
 				D3A6A2E018B305E200C4B510 /* libFlurry_4.3.2.a in Frameworks */,
 				D37F756D189237360037E851 /* libCrittercism_v4_3_1.a in Frameworks */,
 				F78D29FA1765B382000B937E /* UIKit.framework in Frameworks */,
 				F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */,
 				B8A1B15E08994855871D1685 /* libPods.a in Frameworks */,
-				EACAAD6817C75FE5000A8337 /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,7 +630,7 @@
 				F7200B7017659B2F003F3138 /* Frameworks */,
 				F7200B8517659B83003F3138 /* Headers */,
 				BB672FCD0430415AB87EF64C /* Copy Pods Resources */,
-				7739C0ADA9C84AB390D7F617 /* Upload Bugsnag dSYM */,
+				B523C5DD1F0A40F9BC1E8705 /* Upload Bugsnag dSYM */,
 			);
 			buildRules = (
 			);
@@ -741,7 +741,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		7739C0ADA9C84AB390D7F617 /* Upload Bugsnag dSYM */ = {
+		B523C5DD1F0A40F9BC1E8705 /* Upload Bugsnag dSYM */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1002,6 +1002,7 @@
 					"${PODS_ROOT}/CrittercismSDK/CrittercismSDK",
 					"${PODS_ROOT}/FlurrySDK/Flurry",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/FlurrySDK/Flurry",
+					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/GoogleAnalytics-iOS-SDK",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1029,6 +1030,7 @@
 					"${PODS_ROOT}/CrittercismSDK/CrittercismSDK",
 					"${PODS_ROOT}/FlurrySDK/Flurry",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/FlurrySDK/Flurry",
+					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/GoogleAnalytics-iOS-SDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
