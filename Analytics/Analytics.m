@@ -45,7 +45,7 @@
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
         
         // Update settings on foreground
-        [nc addObserver:self selector:@selector(refreshSettings:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
         
         // Pass through for application state change events
         for (NSString *name in @[UIApplicationDidEnterBackgroundNotification,
@@ -124,6 +124,11 @@
 }
 
 #pragma mark - NSNotificationCenter Callback
+
+
+- (void)onAppForeground:(NSNotification *)note {
+    [self refreshSettings];
+}
 
 - (void)handleAppStateNotification:(NSNotification *)note {
     SOLog(@"Application state change notification: %@", note.name);
