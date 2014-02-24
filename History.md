@@ -1,3 +1,10 @@
+0.9.10 / 2014-2-23
+==================
+* Updating Google Analytics SDK to 3.0.3c
+* Updating Localytics SDK to AMP 2.22.0
+* Updating Mixpanel SDK to 2.3.2
+* Removing dependency on AdSupport
+
 0.9.9 / 2014-2-17
 =================
 * Bundling resources for Mixpanel 
