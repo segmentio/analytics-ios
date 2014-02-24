@@ -1,4 +1,4 @@
-0.9.10 / 2014-2-23
+0.10.0 / 2014-2-23
 ==================
 * Updating Google Analytics SDK to 3.0.3c
 * Updating Localytics SDK to AMP 2.22.0
