@@ -4,7 +4,7 @@ PODS:
   - Countly (1.0.0)
   - CrittercismSDK (4.3.1)
   - FlurrySDK (4.3.2)
-  - GoogleAnalytics-iOS-SDK (3.0.3a)
+  - GoogleAnalytics-iOS-SDK (3.0.3c)
   - Kiwi (2.2.3):
     - Kiwi/SenTestingKit
   - Kiwi/ARC (2.2.3)
@@ -22,7 +22,7 @@ DEPENDENCIES:
   - Countly (~> 1.0.0)
   - CrittercismSDK (~> 4.3.1)
   - FlurrySDK (~> 4.3.2)
-  - GoogleAnalytics-iOS-SDK (= 3.0.3a)
+  - GoogleAnalytics-iOS-SDK (= 3.0.3c)
   - Kiwi (~> 2.2.3)
   - Localytics-iOS-Client (~> 2.21.1)
   - Mixpanel (~> 2.3.1)
@@ -34,7 +34,7 @@ SPEC CHECKSUMS:
   Countly: c9728abbbeffc3250d1ab8ba17b417938119d218
   CrittercismSDK: 3b4eefdb985e08702836e2a0d234e4d117e3116c
   FlurrySDK: 508afbd655fe2ff935d3e9543cb1c8aa432794de
-  GoogleAnalytics-iOS-SDK: c2474e13171dc7f7a3bf6b5618799466527993f3
+  GoogleAnalytics-iOS-SDK: a1dc8c700de9edf41f57c0abe54a7eb2182a1820
   Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
   Localytics-iOS-Client: 72b2909ae837cf43f9dcace0efcc01fac3b37d1e
   Mixpanel: 8d189c58bcaac429de9cb4f18a54621df99b7e38
