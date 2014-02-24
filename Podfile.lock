@@ -12,7 +12,7 @@ PODS:
   - Kiwi/SenTestingKit (2.2.3):
     - Kiwi/ARC
     - Kiwi/NonARC
-  - Localytics-AMP (2.21.0)
+  - Localytics (2.21.0)
   - Mixpanel (2.3.2)
   - Tapstream (2.6)
 
@@ -24,7 +24,7 @@ DEPENDENCIES:
   - FlurrySDK (~> 4.3.2)
   - GoogleAnalytics-iOS-SDK (= 3.0.3c)
   - Kiwi (~> 2.2.3)
-  - Localytics-AMP (= 2.21.0)
+  - Localytics (= 2.21.0.fork)
   - Mixpanel (~> 2.3.2)
   - Tapstream (~> 2.6)
 
@@ -36,7 +36,7 @@ SPEC CHECKSUMS:
   FlurrySDK: 508afbd655fe2ff935d3e9543cb1c8aa432794de
   GoogleAnalytics-iOS-SDK: a1dc8c700de9edf41f57c0abe54a7eb2182a1820
   Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
-  Localytics-AMP: c76fea5b058270fca9e2a4ac62c028cc54cf3356
+  Localytics: 33eebb32a61de5f0d582b8c6310b4589d89de762
   Mixpanel: ddd79df92245a14d2b3064544d1e9ff037d8ac3a
   Tapstream: 00dd14461e648b5cfc682c79be5be085cf18631b
 
