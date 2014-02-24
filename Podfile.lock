@@ -13,7 +13,7 @@ PODS:
     - Kiwi/ARC
     - Kiwi/NonARC
   - Localytics-iOS-Client (2.21.1)
-  - Mixpanel (2.3.1)
+  - Mixpanel (2.3.2)
   - Tapstream (2.6)
 
 DEPENDENCIES:
@@ -24,7 +24,7 @@ DEPENDENCIES:
   - FlurrySDK (~> 4.3.2)
   - GoogleAnalytics-iOS-SDK (= 3.0.3c)
   - Kiwi (~> 2.2.3)
-  - Localytics-iOS-Client (~> 2.21.1)
+  - Localytics-iOS-Client (~> 2.21.0)
   - Mixpanel (~> 2.3.1)
   - Tapstream (~> 2.6)
 
@@ -37,7 +37,7 @@ SPEC CHECKSUMS:
   GoogleAnalytics-iOS-SDK: a1dc8c700de9edf41f57c0abe54a7eb2182a1820
   Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
   Localytics-iOS-Client: 72b2909ae837cf43f9dcace0efcc01fac3b37d1e
-  Mixpanel: 8d189c58bcaac429de9cb4f18a54621df99b7e38
+  Mixpanel: ddd79df92245a14d2b3064544d1e9ff037d8ac3a
   Tapstream: 00dd14461e648b5cfc682c79be5be085cf18631b
 
 COCOAPODS: 0.29.0
