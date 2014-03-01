@@ -84,6 +84,7 @@
 }
 
 - (void)reset {
+    [[Mixpanel sharedInstance] flush];
     [[Mixpanel sharedInstance] reset];
 }
 
