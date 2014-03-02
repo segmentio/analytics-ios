@@ -127,7 +127,9 @@ static NSString *GetSessionID(BOOL reset) {
     NSString *deviceModel = [self deviceModel];
     context[@"device"] = @{
         @"manufacturer": @"Apple",
-        @"model": deviceModel
+        @"model": deviceModel,
+        @"idfv": [[device identifierForVendor] UUIDString],
+        @"idfa": [self getIdForAdvertiser]
     };
     
     // OS
@@ -152,14 +154,6 @@ static NSString *GetSessionID(BOOL reset) {
         @"height": [NSNumber numberWithInt:(int)screenSize.height]
     };
     
-    // IDFA and IDFV
-    // TODO https://github.com/segmentio/spec/issues/31
-    /*
-    if (NSClassFromString(@"ASIdentifierManager")) {
-        [deviceInfo setValue:[self getIdForAdvertiser] forKey:@"idForAdvertiser"];
-    }
-    */
-    
     return context;
 }
 
@@ -175,16 +169,21 @@ static NSString *GetSessionID(BOOL reset) {
 
 - (NSString *)getIdForAdvertiser
 {
-    NSString* idForAdvertiser = nil;
-    Class ASIdentifierManagerClass = NSClassFromString(@"ASIdentifierManager");
-    if (ASIdentifierManagerClass) {
-        SEL sharedManagerSelector = NSSelectorFromString(@"sharedManager");
-        id sharedManager = ((id (*)(id, SEL))[ASIdentifierManagerClass methodForSelector:sharedManagerSelector])(ASIdentifierManagerClass, sharedManagerSelector);
-        SEL advertisingIdentifierSelector = NSSelectorFromString(@"advertisingIdentifier");
-        NSUUID *uuid = ((NSUUID* (*)(id, SEL))[sharedManager methodForSelector:advertisingIdentifierSelector])(sharedManager, advertisingIdentifierSelector);
-        idForAdvertiser = [uuid UUIDString];
+    if (NSClassFromString(@"ASIdentifierManager")) {
+        NSString* idForAdvertiser = nil;
+        Class ASIdentifierManagerClass = NSClassFromString(@"ASIdentifierManager");
+        if (ASIdentifierManagerClass) {
+            SEL sharedManagerSelector = NSSelectorFromString(@"sharedManager");
+            id sharedManager = ((id (*)(id, SEL))[ASIdentifierManagerClass methodForSelector:sharedManagerSelector])(ASIdentifierManagerClass, sharedManagerSelector);
+            SEL advertisingIdentifierSelector = NSSelectorFromString(@"advertisingIdentifier");
+            NSUUID *uuid = ((NSUUID* (*)(id, SEL))[sharedManager methodForSelector:advertisingIdentifierSelector])(sharedManager, advertisingIdentifierSelector);
+            idForAdvertiser = [uuid UUIDString];
+        }
+        return idForAdvertiser;
     }
-    return idForAdvertiser;
+    else {
+        return nil;
+    }
 }
 
 - (NSString *)deviceModel
