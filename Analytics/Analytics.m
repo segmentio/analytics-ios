@@ -85,13 +85,21 @@
     }
     
     for (id<AnalyticsIntegration> integration in self.integrations.allValues) {
-        if (integration.ready && [integration respondsToSelector:selector]) {
-            if([self isIntegration:integration enabledInOptions:options]) {
-                [invocation invokeWithTarget:integration];
+        if (integration.ready) {
+            if ([integration respondsToSelector:selector]) {
+                if([self isIntegration:integration enabledInOptions:options]) {
+                    [invocation invokeWithTarget:integration];
+                }
+                else {
+                    SOLog(@"Not sending call to %@ because it is disabled in options.", integration.name);
+                }
             }
             else {
-                SOLog(@"Not sending call to %@ because it is disabled in options", integration.name);
+                SOLog(@"Not sending call to %@ because it doesn't respond to %@.", integration.name, selector);
             }
+        }
+        else {
+            SOLog(@"Not sending call to %@ because it isn't ready.", integration.name);
         }
     }
 }
