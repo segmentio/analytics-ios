@@ -247,12 +247,11 @@ static NSString *GetSessionID(BOOL reset) {
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
     NSAssert(screenTitle.length, @"%@ screen requires a screen title.", self);
     
-    // TODO: move to new "screen" REST API when available @calvinfo
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:screenTitle forKey:@"event"]; // TODO should be "screen"
+    [dictionary setValue:screenTitle forKey:@"name"];
     [dictionary setValue:properties forKey:@"properties"];
     
-    [self enqueueAction:@"track" dictionary:dictionary options:options]; // TODO should be "screen"
+    [self enqueueAction:@"screen" dictionary:dictionary options:options];
 }
 
 #pragma mark - Queueing
