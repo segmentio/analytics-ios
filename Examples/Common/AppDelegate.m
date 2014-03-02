@@ -7,12 +7,13 @@
 //
 
 #import "AppDelegate.h"
+#import <Analytics/Analytics.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Analytics debug:YES];
-    [Analytics initializeWithSecret:@"k5l6rrye0hsv566zwuk7"];
+    [Analytics initializeWithWriteKey:@"k5l6rrye0hsv566zwuk7"];
     //[[Analytics sharedAnalytics] identify:nil];
     [[Analytics sharedAnalytics] track:@"Anonymous Event"];
     [[Analytics sharedAnalytics] identify:@"Test User"];
