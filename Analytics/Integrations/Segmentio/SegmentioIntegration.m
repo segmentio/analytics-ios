@@ -374,8 +374,8 @@ static NSMutableDictionary *BuildStaticContext() {
         NSError *error = nil;
         NSData *payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary
                                                           options:0 error:&error];
-        if (!payload) {
-            SOLog(@"%@ Error serializing JSON to send to Segmentio: %@", self, error);
+        if (error) {
+            SOLog(@"%@ Error serializing JSON: %@", self, error);
         }
         
         [self sendData:payload];
@@ -416,6 +416,7 @@ static NSMutableDictionary *BuildStaticContext() {
     [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setHTTPBody:data];
     SOLog(@"%@ Sending batch API request.", self);
     self.request = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
         [self dispatchBackground:^{
