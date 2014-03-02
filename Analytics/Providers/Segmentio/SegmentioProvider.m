@@ -313,7 +313,6 @@ static NSString *GetSessionID(BOOL reset) {
         [payload setValue:self.sessionId forKey:@"anonymousId"];
         SOLog(@"%@ Enqueueing action: %@", self, payload);
         
-        // TODO change context to options when server-side is ready
         [payload setValue:[self integrationsDictionary:options] forKey:@"integrations"];
         [payload setValue:[self updatedContext] forKey:@"context"];
         [self.queue addObject:payload];
