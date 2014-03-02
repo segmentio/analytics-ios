@@ -13,8 +13,8 @@
 
 #define SEGMENTIO_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
 #define SEGMENTIO_MAX_BATCH_SIZE 100
-#define DISK_SESSION_ID_URL AnalyticsURLForFilename(@"segmentio.sessionID")
-#define DISK_USER_ID_URL AnalyticsURLForFilename(@"segmentio.userID")
+#define DISK_ANONYMOUS_ID_URL AnalyticsURLForFilename(@"segmentio.anonymousId")
+#define DISK_USER_ID_URL AnalyticsURLForFilename(@"segmentio.userId")
 #define DISK_QUEUE_URL AnalyticsURLForFilename(@"segmentio.queue.plist")
 #define DISK_TRAITS_URL AnalyticsURLForFilename(@"segmentio.traits.plist")
 
@@ -29,18 +29,18 @@ static NSString *GenerateUUIDString() {
     return UUIDString;
 }
 
-static NSString *GetSessionID(BOOL reset) {
+static NSString *GetAnonymousId(BOOL reset) {
     // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
     // identifierForVendor (iOS6 and later, can't be changed on logout),
     // or MAC address (blocked in iOS 7). For more info see https://segment.io/libraries/ios#ids
-    NSURL *url = DISK_SESSION_ID_URL;
-    NSString *sessionID = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
-    if (!sessionID || reset) {
-        sessionID = GenerateUUIDString();
-        SOLog(@"New SessionID: %@", sessionID);
-        [sessionID writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+    NSURL *url = DISK_ANONYMOUS_ID_URL;
+    NSString *anonymousId = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
+    if (!anonymousId || reset) {
+        anonymousId = GenerateUUIDString();
+        SOLog(@"New anonymousId: %@", anonymousId);
+        [anonymousId writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:NULL];
     }
-    return sessionID;
+    return anonymousId;
 }
 
 @interface SegmentioProvider ()
@@ -77,7 +77,7 @@ static NSString *GetSessionID(BOOL reset) {
         _flushAt = flushAt;
         _flushAfter = flushAfter;
         _writeKey = writeKey;
-        _sessionId = GetSessionID(NO);
+        _anonymousId = GetAnonymousId(NO);
         _userId = [NSString stringWithContentsOfURL:DISK_USER_ID_URL encoding:NSUTF8StringEncoding error:NULL];
         _queue = [NSMutableArray arrayWithContentsOfURL:DISK_QUEUE_URL];
         if (!_queue)
@@ -157,13 +157,19 @@ static NSString *GetSessionID(BOOL reset) {
     return context;
 }
 
-- (NSMutableDictionary *)updatedContext {
+- (NSMutableDictionary *)liveContext {
+    NSMutableDictionary *context = [NSMutableDictionary dictionary];
+    
     // Network
     // TODO https://github.com/segmentio/spec/issues/30
     
     // Traits
     // TODO https://github.com/segmentio/spec/issues/29
     
+    return context;
+}
+
+- (NSMutableDictionary *)staticContext {
     return _context;
 }
 
@@ -225,8 +231,8 @@ static NSString *GetSessionID(BOOL reset) {
     self.valid = hasWriteKey;
 }
 
-- (NSString *)getSessionId {
-    return self.sessionId;
+- (NSString *)getAnonymousId {
+    return self.anonymousId;
 }
 
 - (NSString *)description {
@@ -327,14 +333,14 @@ static NSString *GetSessionID(BOOL reset) {
     payload[@"requestId"] = GenerateUUIDString();
 
     [self dispatchBackground:^{
-        // attach userId and sessionId inside the dispatch_async in case
+        // attach userId and anonymousId inside the dispatch_async in case
         // they've changed (see identify function)
         [payload setValue:self.userId forKey:@"userId"];
-        [payload setValue:self.sessionId forKey:@"anonymousId"];
+        [payload setValue:self.anonymousId forKey:@"anonymousId"];
         SOLog(@"%@ Enqueueing action: %@", self, payload);
         
         [payload setValue:[self integrationsDictionary:options] forKey:@"integrations"];
-        [payload setValue:[self updatedContext] forKey:@"context"];
+        [payload setValue:[self liveContext] forKey:@"context"];
         [self.queue addObject:payload];
         [self flushQueueByLength];
     }];
@@ -364,6 +370,7 @@ static NSString *GetSessionID(BOOL reset) {
         NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
         [payloadDictionary setObject:self.writeKey forKey:@"writeKey"];
         [payloadDictionary setObject:[[NSDate date] description] forKey:@"sentAt"];
+        [payloadDictionary setObject:[self staticContext] forKey:@"context"];
         [payloadDictionary setObject:self.batch forKey:@"batch"];
         
         NSData *payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary
@@ -390,7 +397,7 @@ static NSString *GetSessionID(BOOL reset) {
                                                      userInfo:nil
                                                       repeats:YES];
     [self dispatchBackgroundAndWait:^{
-        [[NSFileManager defaultManager] removeItemAtURL:DISK_SESSION_ID_URL error:NULL];
+        [[NSFileManager defaultManager] removeItemAtURL:DISK_ANONYMOUS_ID_URL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:DISK_USER_ID_URL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:DISK_TRAITS_URL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:DISK_QUEUE_URL error:NULL];

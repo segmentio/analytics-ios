@@ -11,8 +11,8 @@ extern NSString *const SegmentioRequestDidFailNotification;
 @interface SegmentioProvider : AnalyticsProvider <AnalyticsProvider>
 
 @property(nonatomic, strong) NSString *writeKey;
+@property(nonatomic, strong) NSString *anonymousId;
 @property(nonatomic, strong) NSString *userId;
-@property(nonatomic, strong) NSString *sessionId;
 @property(nonatomic, assign) NSUInteger flushAt;
 @property(nonatomic, assign) NSUInteger flushAfter;
 
