@@ -18,11 +18,21 @@
     [[Analytics sharedAnalytics] track:@"Anonymous Event"];
     [[Analytics sharedAnalytics] identify:@"Test User"];
     [[Analytics sharedAnalytics] track:@"Logged In Event"];
+    
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+        (UIRemoteNotificationTypeBadge |
+         UIRemoteNotificationTypeSound |
+         UIRemoteNotificationTypeAlert)];
     return YES;
 }
     
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [[Analytics sharedAnalytics] track:@"Background Event"];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [[Analytics sharedAnalytics] registerPushDeviceToken:deviceToken];
 }
 
 @end
