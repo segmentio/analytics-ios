@@ -1,5 +1,5 @@
 // AmplitudeProvider.h
-// Copyright 2013 Segment.io
+// Copyright 2014 Segment.io
 
 #import <Foundation/Foundation.h>
 #import "AnalyticsProvider.h"

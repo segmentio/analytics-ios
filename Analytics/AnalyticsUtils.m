@@ -1,10 +1,5 @@
-//
-//  SOUtils.m
-//  Analytics
-//
-//  Created by Tony Xiao on 8/17/13.
-//  Copyright (c) 2013 Segment.io. All rights reserved.
-//
+// AnalyticsUtils.m
+// Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "AnalyticsUtils.h"
 

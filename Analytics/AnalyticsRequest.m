@@ -1,10 +1,5 @@
-//
-//  AnalyticsRequest.m
-//  Analytics
-//
-//  Created by Tony Xiao on 8/19/13.
-//  Copyright (c) 2013 Segment.io. All rights reserved.
-//
+// AnalyticsRequest.m
+// Copyright (c) 2014 Segment.io. All rights reserved.
 
 #define AssertMainThread() NSAssert([NSThread isMainThread], @"%s must be called form main thread", __func__)
 

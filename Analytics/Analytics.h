@@ -1,5 +1,5 @@
 // Analytics.h
-// Copyright 2013 Segment.io
+// Copyright 2014 Segment.io
 // Version 1.0.0 (Do not change this line. It is automatically modified by the build process)
 
 #import <Foundation/Foundation.h>

@@ -1,5 +1,5 @@
 // GoogleAnalyticsProvider.m
-// Copyright 2013 Segment.io
+// Copyright 2014 Segment.io
 
 
 #import <GoogleAnalytics-iOS-SDK/GAIDictionaryBuilder.h>

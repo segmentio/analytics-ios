@@ -1,5 +1,5 @@
 // FlurryProvider.m
-// Copyright 2013 Segment.io
+// Copyright 2014 Segment.io
 
 #import "FlurryProvider.h"
 #import "Flurry.h"
