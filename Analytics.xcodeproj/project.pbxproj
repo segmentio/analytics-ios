@@ -83,7 +83,7 @@
 		D3EDB66318C315F100A88A7E /* LocalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64C18C315F100A88A7E /* LocalyticsIntegration.m */; };
 		D3EDB66418C315F100A88A7E /* MixpanelIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64E18C315F100A88A7E /* MixpanelIntegration.h */; };
 		D3EDB66518C315F100A88A7E /* MixpanelIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64F18C315F100A88A7E /* MixpanelIntegration.m */; };
-		D3EDB66618C315F100A88A7E /* SegmentioIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65118C315F100A88A7E /* SegmentioIntegration.h */; };
+		D3EDB66618C315F100A88A7E /* SegmentioIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65118C315F100A88A7E /* SegmentioIntegration.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D3EDB66718C315F100A88A7E /* SegmentioIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65218C315F100A88A7E /* SegmentioIntegration.m */; };
 		D3EDB66818C315F100A88A7E /* TapstreamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65418C315F100A88A7E /* TapstreamIntegration.h */; };
 		D3EDB66918C315F100A88A7E /* TapstreamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65518C315F100A88A7E /* TapstreamIntegration.m */; };
@@ -101,7 +101,6 @@
 		EABE4F3617C8883A00A1081B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3017C887E000A1081B /* CoreGraphics.framework */; };
 		EABE4F3717C8883A00A1081B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2E17C887D900A1081B /* Security.framework */; };
 		EABE4F3817C8883A00A1081B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2C17C887D000A1081B /* CoreTelephony.framework */; };
-		EABE4F3917C8883A00A1081B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2A17C887C800A1081B /* AdSupport.framework */; };
 		EABE4F3A17C8883A00A1081B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2817C887C400A1081B /* CFNetwork.framework */; };
 		EABE4F3B17C8883A00A1081B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2617C887BD00A1081B /* QuartzCore.framework */; };
 		EABE4F3C17C8883A00A1081B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2417C887B100A1081B /* SystemConfiguration.framework */; };
@@ -182,6 +181,7 @@
 		D39E122F1846F816009F64E7 /* libCrittercism_v4_1_2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrittercism_v4_1_2.a; path = Pods/CrittercismSDK/CrittercismSDK/libCrittercism_v4_1_2.a; sourceTree = "<group>"; };
 		D3A6A2DF18B305E200C4B510 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.2.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.2.a; sourceTree = "<group>"; };
 		D3C07FBE185954D000649011 /* Bugsnag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bugsnag.h; path = Pods/Bugsnag/bugsnag/Bugsnag.h; sourceTree = "<group>"; };
+		D3D1243E18C31FDA00EE8B82 /* SegmentioIntegration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SegmentioIntegration.h; path = Analytics/Integrations/Segmentio/SegmentioIntegration.h; sourceTree = "<group>"; };
 		D3E9B61B18BADAEA00AB06B0 /* libLocalyticsAMP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLocalyticsAMP.a; path = Pods/Localytics/libLocalyticsAMP.a; sourceTree = "<group>"; };
 		D3EDB63918C315F100A88A7E /* AmplitudeIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmplitudeIntegration.h; sourceTree = "<group>"; };
 		D3EDB63A18C315F100A88A7E /* AmplitudeIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmplitudeIntegration.m; sourceTree = "<group>"; };
@@ -247,7 +247,6 @@
 				EABE4F3617C8883A00A1081B /* CoreGraphics.framework in Frameworks */,
 				EABE4F3717C8883A00A1081B /* Security.framework in Frameworks */,
 				EABE4F3817C8883A00A1081B /* CoreTelephony.framework in Frameworks */,
-				EABE4F3917C8883A00A1081B /* AdSupport.framework in Frameworks */,
 				EABE4F3A17C8883A00A1081B /* CFNetwork.framework in Frameworks */,
 				EABE4F3B17C8883A00A1081B /* QuartzCore.framework in Frameworks */,
 				EABE4F3C17C8883A00A1081B /* SystemConfiguration.framework in Frameworks */,
@@ -280,6 +279,7 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				D3D1243E18C31FDA00EE8B82 /* SegmentioIntegration.h */,
 				D31C8F7D18A2D83700DA22A6 /* MPNotification.h */,
 				D331BD1D1860F5F0007CB22F /* TSApi.h */,
 				D331BD1E1860F5F0007CB22F /* TSAppEventSource.h */,
@@ -552,7 +552,6 @@
 				D371F332185942DE0053337D /* GAI.h in Headers */,
 				D3EDB65E18C315F100A88A7E /* FlurryIntegration.h in Headers */,
 				D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */,
-				D3EDB66618C315F100A88A7E /* SegmentioIntegration.h in Headers */,
 				D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */,
 				D331BCFD185C2DC4007CB22F /* GAITracker.h in Headers */,
 				D371F334185943170053337D /* Mixpanel.h in Headers */,
@@ -579,6 +578,7 @@
 				D331BD321860F5F0007CB22F /* TSHelpers.h in Headers */,
 				D331BD331860F5F0007CB22F /* TSHit.h in Headers */,
 				D331BD341860F5F0007CB22F /* TSLogging.h in Headers */,
+				D3EDB66618C315F100A88A7E /* SegmentioIntegration.h in Headers */,
 				D331BD351860F5F0007CB22F /* TSLogLevel.h in Headers */,
 				D3EDB66218C315F100A88A7E /* LocalyticsIntegration.h in Headers */,
 				D331BD361860F5F0007CB22F /* TSPlatform.h in Headers */,

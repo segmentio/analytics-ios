@@ -21,4 +21,4 @@
 #import <Analytics/MPSurvey.h>
 #import <Analytics/MPNotification.h>
 #import <Analytics/TSTapstream.h>
-#import <Analytics/Private/SegmentioProvider.h>
+#import <Analytics/Private/SegmentioIntegration.h>
