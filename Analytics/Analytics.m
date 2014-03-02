@@ -99,7 +99,7 @@
             }
         }
         else {
-            SOLog(@"Not sending call to %@ because it isn't ready.", integration.name);
+            SOLog(@"Not sending call to %@ because it isn't ready (enabled and initialized).", integration.name);
         }
     }
 }
