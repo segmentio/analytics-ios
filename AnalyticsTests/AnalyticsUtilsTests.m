@@ -2,7 +2,7 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "AnalyticsUtils.h"
-#import "AnalyticsProvider.h"
+#import "AnalyticsIntegration.h"
 
 #define ShouldBeOnSpecificQueue(queue) [[@(dispatch_is_on_specific_queue(queue)) should] beYes]
 #define ShouldNotBeOnSpecificQueue(queue) [[@(dispatch_is_on_specific_queue(queue)) should] beNo]
@@ -106,7 +106,7 @@ describe(@"Specific dispatch_queue", ^{
 });
 
 describe(@"Analytics Utils", ^{
-    it(@"should correctly map provider alias keys", ^{
+    it(@"should correctly map integration alias keys", ^{
         NSDictionary *dictionary = @{
             @"firstName": @"Peter",
             @"lastName": @"Reinhardt",
@@ -117,7 +117,7 @@ describe(@"Analytics Utils", ^{
             @"lastName": @"$last_name",
             @"phone": @"$phone"
         };
-        NSDictionary *mapped = [AnalyticsProvider map:dictionary withMap:map];
+        NSDictionary *mapped = [AnalyticsIntegration map:dictionary withMap:map];
         
         [[mapped[@"$first_name"] should] equal:@"Peter"];
         [[mapped[@"$last_name"] should] equal:@"Reinhardt"];
@@ -134,7 +134,7 @@ describe(@"Analytics Utils", ^{
             @"mobile": @"555 555 5555",
             @"revenue": @34.56
         };
-        NSNumber *revenue = [AnalyticsProvider extractRevenue:dictionary];
+        NSNumber *revenue = [AnalyticsIntegration extractRevenue:dictionary];
         [[revenue should] equal:@34.56];
         
         // String case
@@ -144,7 +144,7 @@ describe(@"Analytics Utils", ^{
             @"mobile": @"555 555 5555",
             @"revenue": @"34.56"
         };
-        revenue = [AnalyticsProvider extractRevenue:dictionary];
+        revenue = [AnalyticsIntegration extractRevenue:dictionary];
         [[revenue should] equal:@34.56];
         
         // Non-number case
@@ -154,7 +154,7 @@ describe(@"Analytics Utils", ^{
             @"mobile": @"555 555 5555",
             @"revenue": @"3asdf4.56"
         };
-        revenue = [AnalyticsProvider extractRevenue:dictionary];
+        revenue = [AnalyticsIntegration extractRevenue:dictionary];
         [revenue shouldBeNil];
     });
 });

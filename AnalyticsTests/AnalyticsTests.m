@@ -1,12 +1,12 @@
 // AnalyticsTests.m
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
-#import "SegmentioProvider.h"
+#import "SegmentioIntegration.h"
 #import "AnalyticsUtils.h"
 #import "KWNotificationMatcher.h"
 #import "Reachability.h"
 
-@interface SegmentioProvider (Private)
+@interface SegmentioIntegration (Private)
 @property (nonatomic, readonly) NSMutableArray *queue;
 @end
 
@@ -19,7 +19,7 @@ SPEC_BEGIN(AnalyticsTests)
 describe(@"Analytics", ^{
     SetShowDebugLogs(YES);
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    __block SegmentioProvider *segmentio = nil;
+    __block SegmentioIntegration *segmentio = nil;
     __block Analytics *analytics = nil;
     
     [Reachability reachabilityWithHostname:@"www.google.com"];
@@ -29,15 +29,15 @@ describe(@"Analytics", ^{
         analytics.cachedSettings = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:
                                                    [[NSBundle bundleForClass:[self class]]
                                                     URLForResource:@"settings" withExtension:@"json"]] options:NSJSONReadingMutableContainers error:NULL];
-        segmentio = analytics.providers[@"Segment.io"];
+        segmentio = analytics.integrations[@"Segment.io"];
         segmentio.flushAt = 2;
     });
     
-    it(@"has a secret, cached settings and 10 providers, including Segment.io", ^{
+    it(@"has a secret, cached settings and 10 integrations, including Segment.io", ^{
         [[analytics.cachedSettings shouldNot] beEmpty];
         [[analytics.writeKey should] equal:@"k5l6rrye0hsv566zwuk7"];
         [[segmentio.writeKey should] equal:@"k5l6rrye0hsv566zwuk7"];
-        [[[analytics should] have:10] providers];
+        [[[analytics should] have:10] integrations];
         [segmentio shouldNotBeNil];
     });
     
@@ -114,7 +114,7 @@ describe(@"Analytics", ^{
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
-    it(@"Should track according to providers options", ^{
+    it(@"Should track according to integration options", ^{
         [[segmentio.queue should] beEmpty];
         NSString *eventName = @"Purchased an iMac but not Mixpanel";
         NSDictionary *properties = @{
