@@ -9,6 +9,7 @@
 
 #import "ViewController.h"
 #import "Reachability.h"
+#import <Analytics/Analytics.h>
 #import "Analytics/TSTapstream.h"
 #import "Analytics/Private/SegmentioProvider.h"
 #import <Analytics/Flurry.h>
@@ -45,6 +46,11 @@
 - (IBAction)screen:(id)sender {
     NSLog(@"test screen");
     [[Analytics sharedAnalytics] screen:@"Initial Screen"];
+}
+
+- (IBAction)group:(id)sender {
+    NSLog(@"test group");
+    [[Analytics sharedAnalytics] group:@"segmentio-inc" traits:@{ @"employees": @11 }];
 }
 
 - (IBAction)reset:(id)sender {
