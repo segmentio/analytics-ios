@@ -1,5 +1,5 @@
 // SegmentioProvider.m
-// Copyright 2013 Segment.io
+// Copyright 2014 Segment.io
 
 #include <sys/sysctl.h>
 
@@ -43,131 +43,16 @@ static NSString *GetAnonymousId(BOOL reset) {
     return anonymousId;
 }
 
-@interface SegmentioProvider ()
-
-@property (nonatomic, weak) Analytics *analytics;
-@property (nonatomic, strong) NSMutableArray *queue;
-@property (nonatomic, strong) NSArray *batch;
-@property (nonatomic, strong) AnalyticsRequest *request;
-@property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
-
-@end
-
-
-@implementation SegmentioProvider {
-    dispatch_queue_t _serialQueue;
-    NSMutableDictionary *_traits;
-    NSMutableDictionary *_context;
+static NSString *GetDeviceModel() {
+    size_t size;
+    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
+    char result[size];
+    sysctlbyname("hw.machine", result, &size, NULL, 0);
+    NSString *results = [NSString stringWithCString:result encoding:NSUTF8StringEncoding];
+    return results;
 }
 
-- (id)initWithAnalytics:(Analytics *)analytics {
-    if (self = [self initWithWriteKey:analytics.writeKey flushAt:20 flushAfter:30]) {
-        self.analytics = analytics;
-    }
-    return self;
-}
-
-- (id)initWithWriteKey:(NSString *)writeKey flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter {
-    NSParameterAssert(writeKey.length);
-    NSParameterAssert(flushAt > 0);
-    NSParameterAssert(flushAfter > 0);
-    
-    if (self = [self init]) {
-        _flushAt = flushAt;
-        _flushAfter = flushAfter;
-        _writeKey = writeKey;
-        _anonymousId = GetAnonymousId(NO);
-        _userId = [NSString stringWithContentsOfURL:DISK_USER_ID_URL encoding:NSUTF8StringEncoding error:NULL];
-        _queue = [NSMutableArray arrayWithContentsOfURL:DISK_QUEUE_URL];
-        if (!_queue)
-            _queue = [[NSMutableArray alloc] init];
-        _traits = [NSMutableDictionary dictionaryWithContentsOfURL:DISK_TRAITS_URL];
-        if (!_traits)
-            _traits = [[NSMutableDictionary alloc] init];
-        _context = [self buildStaticContext];
-        _serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
-        _flushTaskID = UIBackgroundTaskInvalid;
-        
-        self.name = @"Segment.io";
-        self.valid = NO;
-        self.initialized = NO;
-        self.settings = [NSDictionary dictionaryWithObjectsAndKeys:writeKey, @"writeKey", nil];
-        [self validate];
-        self.initialized = YES;
-
-    }
-    return self;
-}
-
-- (NSMutableDictionary *)buildStaticContext
-{
-    NSMutableDictionary *context = [NSMutableDictionary dictionary];
-    
-    // Library
-    context[@"library"] = @{
-        @"name" : @"analytics-ios",
-        @"version" : NSStringize(ANALYTICS_VERSION)
-    };
-    
-    // App
-    context[@"app"] = @{
-        @"name":    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"],
-        @"version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
-        @"build":   [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
-    };
-    
-    // Device
-    UIDevice *device = [UIDevice currentDevice];
-    context[@"device"] = @{
-        @"manufacturer": @"Apple",
-        @"model": [self deviceModel],
-        @"idfv": [[device identifierForVendor] UUIDString],
-        @"idfa": [self getIdForAdvertiser]
-    };
-    
-    // OS
-    context[@"os"] = @{
-        @"name":    [device systemName],
-        @"version": [device systemVersion]
-    };
-    
-    // Telephony
-    CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
-    CTCarrier *carrier = [networkInfo subscriberCellularProvider];
-    if (carrier.carrierName.length) {
-        context[@"telephony"] = @{
-            @"carrier": carrier.carrierName
-        };
-    }
-    
-    // Screen
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
-    context[@"os"] = @{
-        @"width":  [NSNumber numberWithInt:(int)screenSize.width],
-        @"height": [NSNumber numberWithInt:(int)screenSize.height]
-    };
-    
-    return context;
-}
-
-- (NSMutableDictionary *)liveContext {
-    NSMutableDictionary *context = [NSMutableDictionary dictionary];
-    
-    // Network
-    // TODO https://github.com/segmentio/spec/issues/30
-    
-    // Traits
-    // TODO https://github.com/segmentio/spec/issues/29
-    
-    return context;
-}
-
-- (NSMutableDictionary *)staticContext {
-    return _context;
-}
-
-- (NSString *)getIdForAdvertiser
-{
+static NSString *GetIdForAdvertiser() {
     if (NSClassFromString(@"ASIdentifierManager")) {
         NSString* idForAdvertiser = nil;
         Class ASIdentifierManagerClass = NSClassFromString(@"ASIdentifierManager");
@@ -185,14 +70,123 @@ static NSString *GetAnonymousId(BOOL reset) {
     }
 }
 
-- (NSString *)deviceModel
-{
-    size_t size;
-    sysctlbyname("hw.machine", NULL, &size, NULL, 0);
-    char result[size];
-    sysctlbyname("hw.machine", result, &size, NULL, 0);
-    NSString *results = [NSString stringWithCString:result encoding:NSUTF8StringEncoding];
-    return results;
+static NSMutableDictionary *BuildStaticContext() {
+    NSMutableDictionary *context = [NSMutableDictionary dictionary];
+    
+    // Library
+    NSMutableDictionary *library = [NSMutableDictionary dictionary];
+    [library setObject:@"analytics-ios" forKey:@"name"];
+    [library setObject:NSStringize(ANALYTICS_VERSION) forKey:@"version"];
+    [context setObject:library forKey:@"library"];
+    
+    // App
+    NSDictionary *bundle = [[NSBundle mainBundle] infoDictionary];
+    if (bundle.count) {
+        NSMutableDictionary *app = [NSMutableDictionary dictionary];
+        [app setObject:[bundle objectForKey:@"CFBundleDisplayName"] forKey:@"name"];
+        [app setObject:[bundle objectForKey:@"CFBundleShortVersionString"] forKey:@"version"];
+        [app setObject:[bundle objectForKey:@"CFBundleVersion"] forKey:@"build"];
+        [context setObject:app forKey:@"app"];
+    }
+    
+    // Device
+    UIDevice *uiDevice = [UIDevice currentDevice];
+    NSMutableDictionary *device = [NSMutableDictionary dictionary];
+    [device setObject:@"Apple" forKey:@"manufacturer"];
+    [device setObject:GetDeviceModel() forKey:@"model"];
+    [device setObject:[[uiDevice identifierForVendor] UUIDString] forKey:@"idfv"];
+    [device setObject:GetIdForAdvertiser() forKey:@"idfa"];
+    [context setObject:device forKey:@"device"];
+    
+    // OS
+    NSMutableDictionary *os = [NSMutableDictionary dictionary];
+    [os setObject:[uiDevice systemName] forKey:@"name"];
+    [os setObject:[uiDevice systemVersion] forKey:@"version"];
+    [context setObject:os forKey:@"os"];
+    
+    // Telephony
+    CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
+    CTCarrier *carrier = [networkInfo subscriberCellularProvider];
+    if (carrier.carrierName.length) {
+        NSMutableDictionary *telephony = [NSMutableDictionary dictionary];
+        [telephony setObject:carrier.carrierName forKey:@"carrier"];
+        [context setObject:telephony forKey:@"telephony"];
+    }
+    
+    // Screen
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    NSMutableDictionary *screen = [NSMutableDictionary dictionary];
+    [screen setObject:[NSNumber numberWithInt:(int)screenSize.width] forKey:@"width"];
+    [screen setObject:[NSNumber numberWithInt:(int)screenSize.height] forKey:@"height"];
+    [context setObject:screen forKey:@"screen"];
+    
+    return context;
+}
+
+@interface SegmentioProvider ()
+
+@property (nonatomic, weak) Analytics *analytics;
+@property (nonatomic, strong) NSMutableArray *queue;
+@property (nonatomic, strong) NSMutableDictionary *context;
+@property (nonatomic, strong) NSArray *batch;
+@property (nonatomic, strong) AnalyticsRequest *request;
+@property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
+
+@end
+
+
+@implementation SegmentioProvider {
+    dispatch_queue_t _serialQueue;
+    NSMutableDictionary *_traits;
+}
+
+- (id)initWithAnalytics:(Analytics *)analytics {
+    if (self = [self initWithWriteKey:analytics.writeKey flushAt:20]) {
+        self.analytics = analytics;
+    }
+    return self;
+}
+
+- (id)initWithWriteKey:(NSString *)writeKey flushAt:(NSUInteger)flushAt {
+    NSParameterAssert(writeKey.length);
+    NSParameterAssert(flushAt > 0);
+    
+    if (self = [self init]) {
+        _flushAt = flushAt;
+        _writeKey = writeKey;
+        _anonymousId = GetAnonymousId(NO);
+        _userId = [NSString stringWithContentsOfURL:DISK_USER_ID_URL encoding:NSUTF8StringEncoding error:NULL];
+        _queue = [NSMutableArray arrayWithContentsOfURL:DISK_QUEUE_URL];
+        if (!_queue)
+            _queue = [[NSMutableArray alloc] init];
+        _traits = [NSMutableDictionary dictionaryWithContentsOfURL:DISK_TRAITS_URL];
+        if (!_traits)
+            _traits = [[NSMutableDictionary alloc] init];
+        _context = BuildStaticContext();
+        _serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
+        _flushTaskID = UIBackgroundTaskInvalid;
+        
+        self.name = @"Segment.io";
+        self.valid = NO;
+        self.initialized = NO;
+        self.settings = [NSDictionary dictionaryWithObjectsAndKeys:writeKey, @"writeKey", nil];
+        [self validate];
+        self.initialized = YES;
+
+    }
+    return self;
+}
+
+- (NSMutableDictionary *)liveContext {
+    NSMutableDictionary *context = [NSMutableDictionary dictionary];
+    
+    // Network
+    // TODO https://github.com/segmentio/spec/issues/30
+    
+    // Traits
+    // TODO https://github.com/segmentio/spec/issues/29
+    
+    return context;
 }
 
 - (void)dispatchBackground:(void(^)(void))block {
@@ -301,6 +295,7 @@ static NSString *GetAnonymousId(BOOL reset) {
     for (NSUInteger i = 0; i < deviceToken.length; i++) {
         [hexadecimal appendString:[NSString stringWithFormat:@"%02lx", (unsigned long)buffer[i]]];
     }
+    // TODO make this safer
     _context[@"device"][@"token"] = [NSString stringWithString:hexadecimal];
     
 }
@@ -363,7 +358,7 @@ static NSString *GetAnonymousId(BOOL reset) {
         NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
         [payloadDictionary setObject:self.writeKey forKey:@"writeKey"];
         [payloadDictionary setObject:[[NSDate date] description] forKey:@"sentAt"];
-        [payloadDictionary setObject:[self staticContext] forKey:@"context"];
+        [payloadDictionary setObject:self.context forKey:@"context"];
         [payloadDictionary setObject:self.batch forKey:@"batch"];
         
         NSData *payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary
