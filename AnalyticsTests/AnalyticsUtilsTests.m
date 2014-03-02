@@ -2,8 +2,7 @@
 //  AnalyticsUtilsTests.m
 //  Analytics
 //
-//  Created by Tony Xiao on 8/23/13.
-//  Copyright (c) 2013 Segment.io. All rights reserved.
+//  Copyright (c) 2014 Segment.io. All rights reserved.
 //
 
 #import "AnalyticsUtils.h"

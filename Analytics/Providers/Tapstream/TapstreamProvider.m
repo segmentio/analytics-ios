@@ -1,10 +1,5 @@
-//
-//  TapstreamProvider.m
-//  Analytics
-//
-//  Created by Peter Reinhardt on 12/17/13.
-//  Copyright (c) 2013 Segment.io. All rights reserved.
-//
+// TapstreamProvider.m
+// Copyright 2014 Segment.io
 
 #import "TapstreamProvider.h"
 #import "TSTapstream.h"
