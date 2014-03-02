@@ -1,0 +1,91 @@
+// MixpanelIntegration.m
+// Copyright (c) 2014 Segment.io. All rights reserved.
+
+#import "MixpanelIntegration.h"
+#import "Mixpanel.h"
+#import "AnalyticsUtils.h"
+#import "Analytics.h"
+
+@implementation MixpanelIntegration
+
+#pragma mark - Initialization
+
++ (void)load {
+    [Analytics registerIntegration:self withIdentifier:@"Mixpanel"];
+}
+
+- (id)init {
+    if (self = [super init]) {
+        self.name = @"Mixpanel";
+        self.valid = NO;
+        self.initialized = NO;
+    }
+    return self;
+}
+
+- (void)start
+{
+    NSString *token = [self.settings objectForKey:@"token"];
+    [Mixpanel sharedInstanceWithToken:token];
+    SOLog(@"MixpanelIntegration initialized.");
+}
+
+
+#pragma mark - Settings
+
+- (void)validate
+{
+    BOOL hasToken = [self.settings objectForKey:@"token"] != nil;
+    self.valid = hasToken;
+}
+
+
+#pragma mark - Analytics API
+
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
+    [[Mixpanel sharedInstance] identify:userId];
+
+    // Map the traits to special mixpanel keywords.
+    NSDictionary *map = [NSDictionary dictionaryWithObjectsAndKeys:
+        @"$first_name", @"firstName",
+        @"$last_name",  @"lastName",
+        @"$created",    @"created",
+        @"$last_seen",  @"lastSeen",
+        @"$email",      @"email",
+        @"$name",       @"name",
+        @"$username",   @"username",
+        @"$phone",      @"phone",  nil];
+    NSDictionary *mappedTraits = [AnalyticsIntegration map:traits withMap:map];
+    [[Mixpanel sharedInstance] registerSuperProperties:mappedTraits];
+
+    if ([self.settings objectForKey:@"people"]) {
+        [[Mixpanel sharedInstance].people set:mappedTraits];
+    }
+}
+
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
+    // Track the raw event.
+    [[Mixpanel sharedInstance] track:event properties:properties];
+
+    // If revenue is included and People is enabled, trackCharge to Mixpanel.
+    NSNumber *revenue = [AnalyticsIntegration extractRevenue:properties];
+    if (revenue && [self.settings objectForKey:@"people"]) {
+        [[Mixpanel sharedInstance].people trackCharge:revenue];
+    }
+}
+
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
+    // Track the screen view as an event.
+    [self track:screenTitle properties:properties options:options];
+}
+
+- (void)registerPushDeviceToken:(NSData *)deviceToken {
+    [[[Mixpanel sharedInstance] people] addPushDeviceToken:deviceToken];
+}
+
+- (void)reset {
+    [[Mixpanel sharedInstance] flush];
+    [[Mixpanel sharedInstance] reset];
+}
+
+@end

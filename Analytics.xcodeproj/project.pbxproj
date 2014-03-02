@@ -58,8 +58,6 @@
 		D331BD371860F5F0007CB22F /* TSResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD291860F5F0007CB22F /* TSResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD381860F5F0007CB22F /* TSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD2A1860F5F0007CB22F /* TSUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D350D6131859340700F8A7FA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D350D6121859340700F8A7FA /* Reachability.m */; };
-		D354F6FB18C2D12200A14547 /* TapstreamProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = D354F6F918C2D12200A14547 /* TapstreamProvider.h */; };
-		D354F6FC18C2D12200A14547 /* TapstreamProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D354F6FA18C2D12200A14547 /* TapstreamProvider.m */; };
 		D36E2D7B18C27CA2008536A3 /* libLocalyticsAMP_x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E2D7A18C27CA2008536A3 /* libLocalyticsAMP_x64.a */; };
 		D371F32E185942BB0053337D /* Crittercism.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F32D185942BB0053337D /* Crittercism.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F330185942C90053337D /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F32F185942C90053337D /* Flurry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -68,14 +66,32 @@
 		D37F756D189237360037E851 /* libCrittercism_v4_3_1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D37F756C189237360037E851 /* libCrittercism_v4_3_1.a */; };
 		D3A6A2E018B305E200C4B510 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A6A2DF18B305E200C4B510 /* libFlurry_4.3.2.a */; };
 		D3A6A2E518B308F000C4B510 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */; };
-		D3ABF62F1846F6E000FAAB2B /* CrittercismProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = D3ABF62D1846F6E000FAAB2B /* CrittercismProvider.h */; };
-		D3ABF6301846F6E000FAAB2B /* CrittercismProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D3ABF62E1846F6E000FAAB2B /* CrittercismProvider.m */; };
 		D3C07FBF185954D000649011 /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C07FBE185954D000649011 /* Bugsnag.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3EDB65618C315F100A88A7E /* AmplitudeIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63918C315F100A88A7E /* AmplitudeIntegration.h */; };
+		D3EDB65718C315F100A88A7E /* AmplitudeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63A18C315F100A88A7E /* AmplitudeIntegration.m */; };
+		D3EDB65818C315F100A88A7E /* BugsnagIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63C18C315F100A88A7E /* BugsnagIntegration.h */; };
+		D3EDB65918C315F100A88A7E /* BugsnagIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63D18C315F100A88A7E /* BugsnagIntegration.m */; };
+		D3EDB65A18C315F100A88A7E /* CountlyIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63F18C315F100A88A7E /* CountlyIntegration.h */; };
+		D3EDB65B18C315F100A88A7E /* CountlyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64018C315F100A88A7E /* CountlyIntegration.m */; };
+		D3EDB65C18C315F100A88A7E /* CrittercismIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64218C315F100A88A7E /* CrittercismIntegration.h */; };
+		D3EDB65D18C315F100A88A7E /* CrittercismIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64318C315F100A88A7E /* CrittercismIntegration.m */; };
+		D3EDB65E18C315F100A88A7E /* FlurryIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64518C315F100A88A7E /* FlurryIntegration.h */; };
+		D3EDB65F18C315F100A88A7E /* FlurryIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64618C315F100A88A7E /* FlurryIntegration.m */; };
+		D3EDB66018C315F100A88A7E /* GoogleAnalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64818C315F100A88A7E /* GoogleAnalyticsIntegration.h */; };
+		D3EDB66118C315F100A88A7E /* GoogleAnalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64918C315F100A88A7E /* GoogleAnalyticsIntegration.m */; };
+		D3EDB66218C315F100A88A7E /* LocalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64B18C315F100A88A7E /* LocalyticsIntegration.h */; };
+		D3EDB66318C315F100A88A7E /* LocalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64C18C315F100A88A7E /* LocalyticsIntegration.m */; };
+		D3EDB66418C315F100A88A7E /* MixpanelIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64E18C315F100A88A7E /* MixpanelIntegration.h */; };
+		D3EDB66518C315F100A88A7E /* MixpanelIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64F18C315F100A88A7E /* MixpanelIntegration.m */; };
+		D3EDB66618C315F100A88A7E /* SegmentioIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65118C315F100A88A7E /* SegmentioIntegration.h */; };
+		D3EDB66718C315F100A88A7E /* SegmentioIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65218C315F100A88A7E /* SegmentioIntegration.m */; };
+		D3EDB66818C315F100A88A7E /* TapstreamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65418C315F100A88A7E /* TapstreamIntegration.h */; };
+		D3EDB66918C315F100A88A7E /* TapstreamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65518C315F100A88A7E /* TapstreamIntegration.m */; };
 		EA14A25317FB1E9400870901 /* settings.json in Resources */ = {isa = PBXBuildFile; fileRef = EA14A25217FB1E9400870901 /* settings.json */; };
 		EA25892317C6979D000CEF61 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200B7B17659B2F003F3138 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3B4CC717C8900A00233EA9 /* SegmentioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */; };
-		EA65F96617C2ABA600389A1A /* AnalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* AnalyticsProvider.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EA65F96717C2ABA600389A1A /* AnalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* AnalyticsProvider.m */; };
+		EA65F96617C2ABA600389A1A /* AnalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* AnalyticsIntegration.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EA65F96717C2ABA600389A1A /* AnalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* AnalyticsIntegration.m */; };
 		EA722AF417C87BB00016E8B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
 		EA722AF517C87BB00016E8B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		EA722AFE17C87BB00016E8B0 /* AnalyticsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA722AFD17C87BB00016E8B0 /* AnalyticsTests.m */; };
@@ -93,22 +109,6 @@
 		EABE4F3E17C8883A00A1081B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3417C887E800A1081B /* libz.dylib */; };
 		EABE4F3F17C8883A00A1081B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3217C887E400A1081B /* libsqlite3.dylib */; };
 		EABE4F4117C88A6D00A1081B /* AnalyticsUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EABE4F4017C88A6D00A1081B /* AnalyticsUtilsTests.m */; };
-		EACB4DD217C0BB3100624129 /* AmplitudeProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DAF17C0BB3100624129 /* AmplitudeProvider.h */; };
-		EACB4DD317C0BB3100624129 /* AmplitudeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DB017C0BB3100624129 /* AmplitudeProvider.m */; };
-		EACB4DD617C0BB3100624129 /* BugsnagProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DB417C0BB3100624129 /* BugsnagProvider.h */; };
-		EACB4DD717C0BB3100624129 /* BugsnagProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DB517C0BB3100624129 /* BugsnagProvider.m */; };
-		EACB4DDA17C0BB3100624129 /* CountlyProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DBA17C0BB3100624129 /* CountlyProvider.h */; };
-		EACB4DDB17C0BB3100624129 /* CountlyProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DBB17C0BB3100624129 /* CountlyProvider.m */; };
-		EACB4DDC17C0BB3100624129 /* FlurryProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DBD17C0BB3100624129 /* FlurryProvider.h */; };
-		EACB4DDD17C0BB3100624129 /* FlurryProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DBE17C0BB3100624129 /* FlurryProvider.m */; };
-		EACB4DDE17C0BB3100624129 /* GoogleAnalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DC017C0BB3100624129 /* GoogleAnalyticsProvider.h */; };
-		EACB4DDF17C0BB3100624129 /* GoogleAnalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DC117C0BB3100624129 /* GoogleAnalyticsProvider.m */; };
-		EACB4DE217C0BB3100624129 /* LocalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DC617C0BB3100624129 /* LocalyticsProvider.h */; };
-		EACB4DE317C0BB3100624129 /* LocalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DC717C0BB3100624129 /* LocalyticsProvider.m */; };
-		EACB4DE417C0BB3100624129 /* MixpanelProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DC917C0BB3100624129 /* MixpanelProvider.h */; };
-		EACB4DE517C0BB3100624129 /* MixpanelProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DCA17C0BB3100624129 /* MixpanelProvider.m */; };
-		EACB4DE617C0BB3100624129 /* SegmentioProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DCC17C0BB3100624129 /* SegmentioProvider.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EACB4DE717C0BB3100624129 /* SegmentioProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DCD17C0BB3100624129 /* SegmentioProvider.m */; };
 		EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DD017C0BB3100624129 /* AnalyticsUtils.h */; };
 		EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DD117C0BB3100624129 /* AnalyticsUtils.m */; };
 		EAD415C717C9B72D00EB0490 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA722AF217C87BB00016E8B0 /* SenTestingKit.framework */; };
@@ -170,8 +170,6 @@
 		D331BD2A1860F5F0007CB22F /* TSUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSUtils.h; path = Pods/Tapstream/objc/Core/TSUtils.h; sourceTree = "<group>"; };
 		D350D6111859340700F8A7FA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D350D6121859340700F8A7FA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		D354F6F918C2D12200A14547 /* TapstreamProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TapstreamProvider.h; path = Tapstream/TapstreamProvider.h; sourceTree = "<group>"; };
-		D354F6FA18C2D12200A14547 /* TapstreamProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TapstreamProvider.m; path = Tapstream/TapstreamProvider.m; sourceTree = "<group>"; };
 		D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.4.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.2.4.a; sourceTree = "<group>"; };
 		D36ABA63182F09F3001EB84B /* admsAppLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = admsAppLibrary.a; path = Pods/Omniture/admsAppLibrary.a; sourceTree = "<group>"; };
 		D36E2D7A18C27CA2008536A3 /* libLocalyticsAMP_x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLocalyticsAMP_x64.a; path = Pods/Localytics/libLocalyticsAMP_x64.a; sourceTree = "<group>"; };
@@ -183,14 +181,32 @@
 		D37F756E189237430037E851 /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.0.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.0.a; sourceTree = "<group>"; };
 		D39E122F1846F816009F64E7 /* libCrittercism_v4_1_2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrittercism_v4_1_2.a; path = Pods/CrittercismSDK/CrittercismSDK/libCrittercism_v4_1_2.a; sourceTree = "<group>"; };
 		D3A6A2DF18B305E200C4B510 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.2.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.2.a; sourceTree = "<group>"; };
-		D3ABF62D1846F6E000FAAB2B /* CrittercismProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismProvider.h; sourceTree = "<group>"; };
-		D3ABF62E1846F6E000FAAB2B /* CrittercismProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrittercismProvider.m; sourceTree = "<group>"; };
 		D3C07FBE185954D000649011 /* Bugsnag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bugsnag.h; path = Pods/Bugsnag/bugsnag/Bugsnag.h; sourceTree = "<group>"; };
 		D3E9B61B18BADAEA00AB06B0 /* libLocalyticsAMP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLocalyticsAMP.a; path = Pods/Localytics/libLocalyticsAMP.a; sourceTree = "<group>"; };
+		D3EDB63918C315F100A88A7E /* AmplitudeIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmplitudeIntegration.h; sourceTree = "<group>"; };
+		D3EDB63A18C315F100A88A7E /* AmplitudeIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmplitudeIntegration.m; sourceTree = "<group>"; };
+		D3EDB63C18C315F100A88A7E /* BugsnagIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsnagIntegration.h; sourceTree = "<group>"; };
+		D3EDB63D18C315F100A88A7E /* BugsnagIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugsnagIntegration.m; sourceTree = "<group>"; };
+		D3EDB63F18C315F100A88A7E /* CountlyIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountlyIntegration.h; sourceTree = "<group>"; };
+		D3EDB64018C315F100A88A7E /* CountlyIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountlyIntegration.m; sourceTree = "<group>"; };
+		D3EDB64218C315F100A88A7E /* CrittercismIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismIntegration.h; sourceTree = "<group>"; };
+		D3EDB64318C315F100A88A7E /* CrittercismIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrittercismIntegration.m; sourceTree = "<group>"; };
+		D3EDB64518C315F100A88A7E /* FlurryIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryIntegration.h; sourceTree = "<group>"; };
+		D3EDB64618C315F100A88A7E /* FlurryIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryIntegration.m; sourceTree = "<group>"; };
+		D3EDB64818C315F100A88A7E /* GoogleAnalyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalyticsIntegration.h; sourceTree = "<group>"; };
+		D3EDB64918C315F100A88A7E /* GoogleAnalyticsIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsIntegration.m; sourceTree = "<group>"; };
+		D3EDB64B18C315F100A88A7E /* LocalyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsIntegration.h; sourceTree = "<group>"; };
+		D3EDB64C18C315F100A88A7E /* LocalyticsIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsIntegration.m; sourceTree = "<group>"; };
+		D3EDB64E18C315F100A88A7E /* MixpanelIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixpanelIntegration.h; sourceTree = "<group>"; };
+		D3EDB64F18C315F100A88A7E /* MixpanelIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelIntegration.m; sourceTree = "<group>"; };
+		D3EDB65118C315F100A88A7E /* SegmentioIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentioIntegration.h; sourceTree = "<group>"; };
+		D3EDB65218C315F100A88A7E /* SegmentioIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioIntegration.m; sourceTree = "<group>"; };
+		D3EDB65418C315F100A88A7E /* TapstreamIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapstreamIntegration.h; sourceTree = "<group>"; };
+		D3EDB65518C315F100A88A7E /* TapstreamIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapstreamIntegration.m; sourceTree = "<group>"; };
 		EA14A25217FB1E9400870901 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = settings.json; sourceTree = "<group>"; };
 		EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioTests.m; sourceTree = "<group>"; };
-		EA65F96417C2ABA600389A1A /* AnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsProvider.h; sourceTree = "<group>"; };
-		EA65F96517C2ABA600389A1A /* AnalyticsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsProvider.m; sourceTree = "<group>"; };
+		EA65F96417C2ABA600389A1A /* AnalyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsIntegration.h; sourceTree = "<group>"; };
+		EA65F96517C2ABA600389A1A /* AnalyticsIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsIntegration.m; sourceTree = "<group>"; };
 		EA722AF117C87BB00016E8B0 /* AnalyticsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA722AF217C87BB00016E8B0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		EA722AF817C87BB00016E8B0 /* AnalyticsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnalyticsTests-Info.plist"; sourceTree = "<group>"; };
@@ -211,22 +227,6 @@
 		EABE4F4017C88A6D00A1081B /* AnalyticsUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsUtilsTests.m; sourceTree = "<group>"; };
 		EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = "Pods/GoogleAnalytics-iOS-SDK/libGoogleAnalyticsServices.a"; sourceTree = "<group>"; };
 		EACAAD6B17C7601C000A8337 /* libChartbeat-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libChartbeat-iOS-SDK.a"; path = "Pods/Chartbeat/libChartbeat-iOS-SDK.a"; sourceTree = "<group>"; };
-		EACB4DAF17C0BB3100624129 /* AmplitudeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmplitudeProvider.h; sourceTree = "<group>"; };
-		EACB4DB017C0BB3100624129 /* AmplitudeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmplitudeProvider.m; sourceTree = "<group>"; };
-		EACB4DB417C0BB3100624129 /* BugsnagProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsnagProvider.h; sourceTree = "<group>"; };
-		EACB4DB517C0BB3100624129 /* BugsnagProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugsnagProvider.m; sourceTree = "<group>"; };
-		EACB4DBA17C0BB3100624129 /* CountlyProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountlyProvider.h; sourceTree = "<group>"; };
-		EACB4DBB17C0BB3100624129 /* CountlyProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountlyProvider.m; sourceTree = "<group>"; };
-		EACB4DBD17C0BB3100624129 /* FlurryProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryProvider.h; sourceTree = "<group>"; };
-		EACB4DBE17C0BB3100624129 /* FlurryProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryProvider.m; sourceTree = "<group>"; };
-		EACB4DC017C0BB3100624129 /* GoogleAnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalyticsProvider.h; sourceTree = "<group>"; };
-		EACB4DC117C0BB3100624129 /* GoogleAnalyticsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsProvider.m; sourceTree = "<group>"; };
-		EACB4DC617C0BB3100624129 /* LocalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsProvider.h; sourceTree = "<group>"; };
-		EACB4DC717C0BB3100624129 /* LocalyticsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsProvider.m; sourceTree = "<group>"; };
-		EACB4DC917C0BB3100624129 /* MixpanelProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixpanelProvider.h; sourceTree = "<group>"; };
-		EACB4DCA17C0BB3100624129 /* MixpanelProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelProvider.m; sourceTree = "<group>"; };
-		EACB4DCC17C0BB3100624129 /* SegmentioProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentioProvider.h; sourceTree = "<group>"; };
-		EACB4DCD17C0BB3100624129 /* SegmentioProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioProvider.m; sourceTree = "<group>"; };
 		EACB4DD017C0BB3100624129 /* AnalyticsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsUtils.h; sourceTree = "<group>"; };
 		EACB4DD117C0BB3100624129 /* AnalyticsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsUtils.m; sourceTree = "<group>"; };
 		F7200B7317659B2F003F3138 /* libAnalytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAnalytics.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -277,24 +277,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D354F6F818C2D0CA00A14547 /* Tapstream */ = {
-			isa = PBXGroup;
-			children = (
-				D354F6F918C2D12200A14547 /* TapstreamProvider.h */,
-				D354F6FA18C2D12200A14547 /* TapstreamProvider.m */,
-			);
-			name = Tapstream;
-			sourceTree = "<group>";
-		};
-		D3ABF62C1846F6E000FAAB2B /* Crittercism */ = {
-			isa = PBXGroup;
-			children = (
-				D3ABF62D1846F6E000FAAB2B /* CrittercismProvider.h */,
-				D3ABF62E1846F6E000FAAB2B /* CrittercismProvider.m */,
-			);
-			path = Crittercism;
-			sourceTree = "<group>";
-		};
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +320,113 @@
 			name = Headers;
 			sourceTree = "<group>";
 		};
+		D3EDB63718C315F100A88A7E /* Integrations */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDB63818C315F100A88A7E /* Amplitude */,
+				D3EDB63B18C315F100A88A7E /* Bugsnag */,
+				D3EDB63E18C315F100A88A7E /* Countly */,
+				D3EDB64118C315F100A88A7E /* Crittercism */,
+				D3EDB64418C315F100A88A7E /* Flurry */,
+				D3EDB64718C315F100A88A7E /* GoogleAnalytics */,
+				D3EDB64A18C315F100A88A7E /* Localytics */,
+				D3EDB64D18C315F100A88A7E /* Mixpanel */,
+				D3EDB65018C315F100A88A7E /* Segmentio */,
+				D3EDB65318C315F100A88A7E /* Tapstream */,
+			);
+			path = Integrations;
+			sourceTree = "<group>";
+		};
+		D3EDB63818C315F100A88A7E /* Amplitude */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDB63918C315F100A88A7E /* AmplitudeIntegration.h */,
+				D3EDB63A18C315F100A88A7E /* AmplitudeIntegration.m */,
+			);
+			path = Amplitude;
+			sourceTree = "<group>";
+		};
+		D3EDB63B18C315F100A88A7E /* Bugsnag */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDB63C18C315F100A88A7E /* BugsnagIntegration.h */,
+				D3EDB63D18C315F100A88A7E /* BugsnagIntegration.m */,
+			);
+			path = Bugsnag;
+			sourceTree = "<group>";
+		};
+		D3EDB63E18C315F100A88A7E /* Countly */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDB63F18C315F100A88A7E /* CountlyIntegration.h */,
+				D3EDB64018C315F100A88A7E /* CountlyIntegration.m */,
+			);
+			path = Countly;
+			sourceTree = "<group>";
+		};
+		D3EDB64118C315F100A88A7E /* Crittercism */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDB64218C315F100A88A7E /* CrittercismIntegration.h */,
+				D3EDB64318C315F100A88A7E /* CrittercismIntegration.m */,
+			);
+			path = Crittercism;
+			sourceTree = "<group>";
+		};
+		D3EDB64418C315F100A88A7E /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDB64518C315F100A88A7E /* FlurryIntegration.h */,
+				D3EDB64618C315F100A88A7E /* FlurryIntegration.m */,
+			);
+			path = Flurry;
+			sourceTree = "<group>";
+		};
+		D3EDB64718C315F100A88A7E /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDB64818C315F100A88A7E /* GoogleAnalyticsIntegration.h */,
+				D3EDB64918C315F100A88A7E /* GoogleAnalyticsIntegration.m */,
+			);
+			path = GoogleAnalytics;
+			sourceTree = "<group>";
+		};
+		D3EDB64A18C315F100A88A7E /* Localytics */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDB64B18C315F100A88A7E /* LocalyticsIntegration.h */,
+				D3EDB64C18C315F100A88A7E /* LocalyticsIntegration.m */,
+			);
+			path = Localytics;
+			sourceTree = "<group>";
+		};
+		D3EDB64D18C315F100A88A7E /* Mixpanel */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDB64E18C315F100A88A7E /* MixpanelIntegration.h */,
+				D3EDB64F18C315F100A88A7E /* MixpanelIntegration.m */,
+			);
+			path = Mixpanel;
+			sourceTree = "<group>";
+		};
+		D3EDB65018C315F100A88A7E /* Segmentio */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDB65118C315F100A88A7E /* SegmentioIntegration.h */,
+				D3EDB65218C315F100A88A7E /* SegmentioIntegration.m */,
+			);
+			path = Segmentio;
+			sourceTree = "<group>";
+		};
+		D3EDB65318C315F100A88A7E /* Tapstream */ = {
+			isa = PBXGroup;
+			children = (
+				D3EDB65418C315F100A88A7E /* TapstreamIntegration.h */,
+				D3EDB65518C315F100A88A7E /* TapstreamIntegration.m */,
+			);
+			path = Tapstream;
+			sourceTree = "<group>";
+		};
 		EA722AF617C87BB00016E8B0 /* AnalyticsTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,95 +452,6 @@
 				EA722AFF17C87BB00016E8B0 /* AnalyticsTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		EACB4DAD17C0BB3100624129 /* Providers */ = {
-			isa = PBXGroup;
-			children = (
-				EACB4DAE17C0BB3100624129 /* Amplitude */,
-				EACB4DB317C0BB3100624129 /* Bugsnag */,
-				EACB4DB917C0BB3100624129 /* Countly */,
-				D3ABF62C1846F6E000FAAB2B /* Crittercism */,
-				EACB4DBC17C0BB3100624129 /* Flurry */,
-				EACB4DBF17C0BB3100624129 /* GoogleAnalytics */,
-				EACB4DC517C0BB3100624129 /* Localytics */,
-				EACB4DC817C0BB3100624129 /* Mixpanel */,
-				EACB4DCB17C0BB3100624129 /* Segmentio */,
-				D354F6F818C2D0CA00A14547 /* Tapstream */,
-			);
-			path = Providers;
-			sourceTree = "<group>";
-		};
-		EACB4DAE17C0BB3100624129 /* Amplitude */ = {
-			isa = PBXGroup;
-			children = (
-				EACB4DAF17C0BB3100624129 /* AmplitudeProvider.h */,
-				EACB4DB017C0BB3100624129 /* AmplitudeProvider.m */,
-			);
-			path = Amplitude;
-			sourceTree = "<group>";
-		};
-		EACB4DB317C0BB3100624129 /* Bugsnag */ = {
-			isa = PBXGroup;
-			children = (
-				EACB4DB417C0BB3100624129 /* BugsnagProvider.h */,
-				EACB4DB517C0BB3100624129 /* BugsnagProvider.m */,
-			);
-			path = Bugsnag;
-			sourceTree = "<group>";
-		};
-		EACB4DB917C0BB3100624129 /* Countly */ = {
-			isa = PBXGroup;
-			children = (
-				EACB4DBA17C0BB3100624129 /* CountlyProvider.h */,
-				EACB4DBB17C0BB3100624129 /* CountlyProvider.m */,
-			);
-			path = Countly;
-			sourceTree = "<group>";
-		};
-		EACB4DBC17C0BB3100624129 /* Flurry */ = {
-			isa = PBXGroup;
-			children = (
-				EACB4DBD17C0BB3100624129 /* FlurryProvider.h */,
-				EACB4DBE17C0BB3100624129 /* FlurryProvider.m */,
-			);
-			path = Flurry;
-			sourceTree = "<group>";
-		};
-		EACB4DBF17C0BB3100624129 /* GoogleAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				EACB4DC017C0BB3100624129 /* GoogleAnalyticsProvider.h */,
-				EACB4DC117C0BB3100624129 /* GoogleAnalyticsProvider.m */,
-			);
-			path = GoogleAnalytics;
-			sourceTree = "<group>";
-		};
-		EACB4DC517C0BB3100624129 /* Localytics */ = {
-			isa = PBXGroup;
-			children = (
-				EACB4DC617C0BB3100624129 /* LocalyticsProvider.h */,
-				EACB4DC717C0BB3100624129 /* LocalyticsProvider.m */,
-			);
-			path = Localytics;
-			sourceTree = "<group>";
-		};
-		EACB4DC817C0BB3100624129 /* Mixpanel */ = {
-			isa = PBXGroup;
-			children = (
-				EACB4DC917C0BB3100624129 /* MixpanelProvider.h */,
-				EACB4DCA17C0BB3100624129 /* MixpanelProvider.m */,
-			);
-			path = Mixpanel;
-			sourceTree = "<group>";
-		};
-		EACB4DCB17C0BB3100624129 /* Segmentio */ = {
-			isa = PBXGroup;
-			children = (
-				EACB4DCC17C0BB3100624129 /* SegmentioProvider.h */,
-				EACB4DCD17C0BB3100624129 /* SegmentioProvider.m */,
-			);
-			path = Segmentio;
 			sourceTree = "<group>";
 		};
 		F7200B6A17659B2F003F3138 = {
@@ -514,13 +514,13 @@
 			children = (
 				F7200B7B17659B2F003F3138 /* Analytics.h */,
 				F7200B7D17659B2F003F3138 /* Analytics.m */,
-				EA65F96417C2ABA600389A1A /* AnalyticsProvider.h */,
-				EA65F96517C2ABA600389A1A /* AnalyticsProvider.m */,
+				EA65F96417C2ABA600389A1A /* AnalyticsIntegration.h */,
+				EA65F96517C2ABA600389A1A /* AnalyticsIntegration.m */,
 				EAA604C717C28C7C00911919 /* AnalyticsRequest.h */,
 				EAA604C817C28C7C00911919 /* AnalyticsRequest.m */,
 				EACB4DD017C0BB3100624129 /* AnalyticsUtils.h */,
 				EACB4DD117C0BB3100624129 /* AnalyticsUtils.m */,
-				EACB4DAD17C0BB3100624129 /* Providers */,
+				D3EDB63718C315F100A88A7E /* Integrations */,
 				F7200B7917659B2F003F3138 /* Supporting Files */,
 			);
 			path = Analytics;
@@ -544,17 +544,22 @@
 				EA25892317C6979D000CEF61 /* Analytics.h in Headers */,
 				D3C07FBF185954D000649011 /* Bugsnag.h in Headers */,
 				D371F32E185942BB0053337D /* Crittercism.h in Headers */,
+				D3EDB65A18C315F100A88A7E /* CountlyIntegration.h in Headers */,
 				D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */,
 				D331BCF3185BFF4A007CB22F /* CrittercismDelegate.h in Headers */,
+				D3EDB65818C315F100A88A7E /* BugsnagIntegration.h in Headers */,
 				D371F330185942C90053337D /* Flurry.h in Headers */,
 				D371F332185942DE0053337D /* GAI.h in Headers */,
+				D3EDB65E18C315F100A88A7E /* FlurryIntegration.h in Headers */,
 				D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */,
+				D3EDB66618C315F100A88A7E /* SegmentioIntegration.h in Headers */,
 				D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */,
 				D331BCFD185C2DC4007CB22F /* GAITracker.h in Headers */,
 				D371F334185943170053337D /* Mixpanel.h in Headers */,
 				D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */,
 				D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */,
 				D331BD06185FDDEA007CB22F /* BugsnagConfiguration.h in Headers */,
+				D3EDB66418C315F100A88A7E /* MixpanelIntegration.h in Headers */,
 				D331BD07185FDDEA007CB22F /* BugsnagDictionary.h in Headers */,
 				D331BD08185FDDEA007CB22F /* BugsnagEvent.h in Headers */,
 				D331BD09185FDDEA007CB22F /* BugsnagLogger.h in Headers */,
@@ -565,30 +570,25 @@
 				D331BD2B1860F5F0007CB22F /* TSApi.h in Headers */,
 				D331BD2C1860F5F0007CB22F /* TSAppEventSource.h in Headers */,
 				D331BD2D1860F5F0007CB22F /* TSConfig.h in Headers */,
+				D3EDB66018C315F100A88A7E /* GoogleAnalyticsIntegration.h in Headers */,
 				D331BD2E1860F5F0007CB22F /* TSCore.h in Headers */,
+				D3EDB66818C315F100A88A7E /* TapstreamIntegration.h in Headers */,
 				D331BD2F1860F5F0007CB22F /* TSCoreListener.h in Headers */,
 				D331BD301860F5F0007CB22F /* TSDelegate.h in Headers */,
 				D331BD311860F5F0007CB22F /* TSEvent.h in Headers */,
 				D331BD321860F5F0007CB22F /* TSHelpers.h in Headers */,
 				D331BD331860F5F0007CB22F /* TSHit.h in Headers */,
 				D331BD341860F5F0007CB22F /* TSLogging.h in Headers */,
-				D354F6FB18C2D12200A14547 /* TapstreamProvider.h in Headers */,
 				D331BD351860F5F0007CB22F /* TSLogLevel.h in Headers */,
+				D3EDB66218C315F100A88A7E /* LocalyticsIntegration.h in Headers */,
 				D331BD361860F5F0007CB22F /* TSPlatform.h in Headers */,
+				D3EDB65C18C315F100A88A7E /* CrittercismIntegration.h in Headers */,
+				D3EDB65618C315F100A88A7E /* AmplitudeIntegration.h in Headers */,
 				D331BD371860F5F0007CB22F /* TSResponse.h in Headers */,
 				D331BD381860F5F0007CB22F /* TSUtils.h in Headers */,
 				D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */,
 				D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */,
-				EACB4DE617C0BB3100624129 /* SegmentioProvider.h in Headers */,
-				EA65F96617C2ABA600389A1A /* AnalyticsProvider.h in Headers */,
-				EACB4DD217C0BB3100624129 /* AmplitudeProvider.h in Headers */,
-				EACB4DD617C0BB3100624129 /* BugsnagProvider.h in Headers */,
-				EACB4DDA17C0BB3100624129 /* CountlyProvider.h in Headers */,
-				D3ABF62F1846F6E000FAAB2B /* CrittercismProvider.h in Headers */,
-				EACB4DDC17C0BB3100624129 /* FlurryProvider.h in Headers */,
-				EACB4DDE17C0BB3100624129 /* GoogleAnalyticsProvider.h in Headers */,
-				EACB4DE217C0BB3100624129 /* LocalyticsProvider.h in Headers */,
-				EACB4DE417C0BB3100624129 /* MixpanelProvider.h in Headers */,
+				EA65F96617C2ABA600389A1A /* AnalyticsIntegration.h in Headers */,
 				EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */,
 				EAA604C917C28C7C00911919 /* AnalyticsRequest.h in Headers */,
 			);
@@ -830,20 +830,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D354F6FC18C2D12200A14547 /* TapstreamProvider.m in Sources */,
+				D3EDB66918C315F100A88A7E /* TapstreamIntegration.m in Sources */,
+				D3EDB66118C315F100A88A7E /* GoogleAnalyticsIntegration.m in Sources */,
+				D3EDB65718C315F100A88A7E /* AmplitudeIntegration.m in Sources */,
 				F7200B7E17659B2F003F3138 /* Analytics.m in Sources */,
-				EACB4DD317C0BB3100624129 /* AmplitudeProvider.m in Sources */,
-				EACB4DD717C0BB3100624129 /* BugsnagProvider.m in Sources */,
-				D3ABF6301846F6E000FAAB2B /* CrittercismProvider.m in Sources */,
-				EACB4DDB17C0BB3100624129 /* CountlyProvider.m in Sources */,
-				EACB4DDD17C0BB3100624129 /* FlurryProvider.m in Sources */,
-				EACB4DDF17C0BB3100624129 /* GoogleAnalyticsProvider.m in Sources */,
-				EACB4DE317C0BB3100624129 /* LocalyticsProvider.m in Sources */,
-				EACB4DE517C0BB3100624129 /* MixpanelProvider.m in Sources */,
-				EACB4DE717C0BB3100624129 /* SegmentioProvider.m in Sources */,
+				D3EDB65918C315F100A88A7E /* BugsnagIntegration.m in Sources */,
 				EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */,
+				D3EDB65F18C315F100A88A7E /* FlurryIntegration.m in Sources */,
+				D3EDB66518C315F100A88A7E /* MixpanelIntegration.m in Sources */,
+				D3EDB66718C315F100A88A7E /* SegmentioIntegration.m in Sources */,
+				D3EDB65D18C315F100A88A7E /* CrittercismIntegration.m in Sources */,
 				EAA604CA17C28C7C00911919 /* AnalyticsRequest.m in Sources */,
-				EA65F96717C2ABA600389A1A /* AnalyticsProvider.m in Sources */,
+				EA65F96717C2ABA600389A1A /* AnalyticsIntegration.m in Sources */,
+				D3EDB66318C315F100A88A7E /* LocalyticsIntegration.m in Sources */,
+				D3EDB65B18C315F100A88A7E /* CountlyIntegration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
