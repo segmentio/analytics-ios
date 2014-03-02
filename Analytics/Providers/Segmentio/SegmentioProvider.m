@@ -1,5 +1,5 @@
 // SegmentioProvider.m
-// Copyright 2014 Segment.io
+// Copyright (c) 2014 Segment.io. All rights reserved.
 
 #include <sys/sysctl.h>
 

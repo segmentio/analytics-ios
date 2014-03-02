@@ -1,5 +1,5 @@
 // BugsnagProvider.m
-// Copyright 2014 Segment.io
+// Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "BugsnagProvider.h"
 #import "Bugsnag.h"

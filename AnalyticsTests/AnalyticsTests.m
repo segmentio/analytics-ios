@@ -1,9 +1,5 @@
-//
-//  AnalyticsTests.m
-//  AnalyticsTests
-//
-//  Copyright (c) 2014 Segment.io. All rights reserved.
-//
+// AnalyticsTests.m
+// Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "SegmentioProvider.h"
 #import "AnalyticsUtils.h"

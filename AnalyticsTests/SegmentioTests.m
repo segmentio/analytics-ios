@@ -1,9 +1,5 @@
-//
-//  SegmentioTests.m
-//  Analytics
-//
-//  Copyright (c) 2014 Segment.io. All rights reserved.
-//
+// SegmentioTests.m
+// Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import <Kiwi/Kiwi.h>
 #import "AnalyticsUtils.h"
