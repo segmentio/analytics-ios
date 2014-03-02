@@ -223,14 +223,8 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (void)validate {
-    NSString *writeKey = [self.settings objectForKey:@"writeKey"];
-    // legacy check
-    if (writeKey == nil) {
-        writeKey = [self.settings objectForKey:@"apiKey"];
-    }
-    BOOL hasWriteKey = writeKey != nil;
     BOOL isOff = [[self.settings objectForKey:@"off"] boolValue];
-    self.valid = hasWriteKey && !isOff;
+    self.valid = !isOff;
 }
 
 - (NSString *)getAnonymousId {
