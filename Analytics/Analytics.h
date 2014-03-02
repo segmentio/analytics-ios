@@ -1,6 +1,6 @@
 // Analytics.h
 // Copyright 2013 Segment.io
-// Version 0.10.1 (Do not change this line. It is automatically modified by the build process)
+// Version 1.0.0 (Do not change this line. It is automatically modified by the build process)
 
 #import <Foundation/Foundation.h>
 
@@ -170,16 +170,16 @@
  @abstract
  Associate a user with a group, organization, company, project, or w/e *you* call them.
  
- @param groupId          A database ID for this group.
- @param properties        A dictionary of properties you know about the group. Things like: name, employees, etc.
+ @param groupId       A database ID for this group.
+ @param traits        A dictionary of traits you know about the group. Things like: name, employees, etc.
  
  @discussion
  When you learn more about who the group is, you can record that information with group.
  
  */
 - (void)group:(NSString *)groupId;
-- (void)group:(NSString *)groupId properties:(NSDictionary *)properties;
-- (void)group:(NSString *)groupId properties:(NSDictionary *)properties options:(NSDictionary *)options;
+- (void)group:(NSString *)groupId traits:(NSDictionary *)traits;
+- (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options;
 
 
 /*!
