@@ -10,7 +10,7 @@ extern NSString *const SegmentioRequestDidFailNotification;
 
 @interface SegmentioProvider : AnalyticsProvider <AnalyticsProvider>
 
-@property(nonatomic, strong) NSString *secret;
+@property(nonatomic, strong) NSString *writeKey;
 @property(nonatomic, strong) NSString *userId;
 @property(nonatomic, strong) NSString *sessionId;
 @property(nonatomic, assign) NSUInteger flushAt;
@@ -35,6 +35,6 @@ extern NSString *const SegmentioRequestDidFailNotification;
 // Initialization
 // --------------
 
-- (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
+- (id)initWithWriteKey:(NSString *)writeKey flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter;
 
 @end

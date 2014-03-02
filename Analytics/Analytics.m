@@ -25,10 +25,10 @@
 
 @synthesize cachedSettings = _cachedSettings;
 
-- (id)initWithSecret:(NSString *)secret {
-    NSParameterAssert(secret.length);
+- (id)initWithWriteKey:(NSString *)writeKey {
+    NSParameterAssert(writeKey.length);
     if (self = [self init]) {
-        _secret = secret;
+        _writeKey = writeKey;
         _enabled = YES;
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         _messageQueue = [[NSMutableArray alloc] init];
@@ -156,7 +156,7 @@
 #pragma mark - Public API
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<Analytics secret:%@>", self.secret];
+    return [NSString stringWithFormat:@"<Analytics writeKey:%@>", self.writeKey];
 }
 
 #pragma mark - Analytics API
@@ -253,7 +253,7 @@
         [self updateProvidersWithSettings:self.cachedSettings];
     }
     if (!_settingsRequest) {
-        NSString *urlString = [NSString stringWithFormat:@"https://api.segment.io/project/%@/settings", self.secret];
+        NSString *urlString = [NSString stringWithFormat:@"https://api.segment.io/project/%@/settings", self.writeKey];
         NSURL *url = [NSURL URLWithString:urlString];
         NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
         [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
@@ -291,17 +291,17 @@ static NSMutableDictionary *RegisteredProviders = nil;
 
 static Analytics *SharedInstance = nil;
 
-+ (void)initializeWithSecret:(NSString *)secret {
-    NSParameterAssert(secret.length > 0);
++ (void)initializeWithWriteKey:(NSString *)writeKey {
+    NSParameterAssert(writeKey.length > 0);
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        SharedInstance = [[self alloc] initWithSecret:secret];
+        SharedInstance = [[self alloc] initWithWriteKey:writeKey];
     });
 }
 
 + (instancetype)sharedAnalytics {
-    NSAssert(SharedInstance, @"%@ sharedInstance called before withSecret", self);
+    NSAssert(SharedInstance, @"%@ sharedInstance called before initWithWriteKey", self);
     return SharedInstance;
 }
 
