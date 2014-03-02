@@ -1,5 +1,5 @@
 // MixpanelProvider.m
-// Copyright 2014 Segment.io
+// Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "MixpanelProvider.h"
 #import "Mixpanel.h"
