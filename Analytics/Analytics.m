@@ -3,7 +3,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AnalyticsUtils.h"
-#import "AnalyticsProvider.h"
+#import "AnalyticsIntegration.h"
 #import "AnalyticsRequest.h"
 #import "Analytics.h"
 
@@ -11,7 +11,7 @@
 
 @interface Analytics ()
 
-@property (nonatomic, strong) NSDictionary *providers;
+@property (nonatomic, strong) NSDictionary *integrations;
 @property (nonatomic, strong) NSDictionary *cachedSettings;
 
 @end
@@ -32,13 +32,13 @@
         _enabled = YES;
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         _messageQueue = [[NSMutableArray alloc] init];
-        _providers = [[NSMutableDictionary alloc] init];
-        [[[self class] registeredProviders] enumerateKeysAndObjectsUsingBlock:
-                ^(NSString *identifier, Class providerClass, BOOL *stop) {
-             ((NSMutableDictionary *)_providers)[identifier] = [[providerClass alloc] initWithAnalytics:self];
+        _integrations = [[NSMutableDictionary alloc] init];
+        [[[self class] registeredIntegrations] enumerateKeysAndObjectsUsingBlock:
+                ^(NSString *identifier, Class integrationClass, BOOL *stop) {
+             ((NSMutableDictionary *)_integrations)[identifier] = [[integrationClass alloc] initWithAnalytics:self];
         }];
         
-        // Update settings on each provider immediately
+        // Update settings on each integration immediately
         [self refreshSettings];
         
         // Attach to application state change hooks
@@ -59,15 +59,14 @@
     return self;
 }
 
-- (BOOL)isProvider:(id<AnalyticsProvider>)provider enabledInOptions:(NSDictionary *)options {
-    // checks if options.providers is enabling this provider
-    NSDictionary *providers = options[@"providers"];
-    if (providers[provider.name]) {
-        return [providers[provider.name] boolValue];
-    } else if (providers[@"All"]) {
-        return [providers[@"All"] boolValue];
-    } else if (providers[@"all"]) {
-        return [providers[@"all"] boolValue];
+- (BOOL)isIntegration:(id<AnalyticsIntegration>)integration enabledInOptions:(NSDictionary *)options {
+    // checks if options is enabling this integration
+    if (options[integration.name]) {
+        return [options[integration.name] boolValue];
+    } else if (options[@"All"]) {
+        return [options[@"All"] boolValue];
+    } else if (options[@"all"]) {
+        return [options[@"all"] boolValue];
     }
     return YES;
 }
@@ -77,7 +76,7 @@
         return;
     }
     
-    NSMethodSignature *methodSignature = [AnalyticsProvider instanceMethodSignatureForSelector:selector];
+    NSMethodSignature *methodSignature = [AnalyticsIntegration instanceMethodSignatureForSelector:selector];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
     invocation.selector = selector;
     for (int i=0; i<arguments.count; i++) {
@@ -85,13 +84,13 @@
         [invocation setArgument:&argument atIndex:i+2];
     }
     
-    for (id<AnalyticsProvider> provider in self.providers.allValues) {
-        if (provider.ready && [provider respondsToSelector:selector]) {
-            if([self isProvider:provider enabledInOptions:options]) {
-                [invocation invokeWithTarget:provider];
+    for (id<AnalyticsIntegration> integration in self.integrations.allValues) {
+        if (integration.ready && [integration respondsToSelector:selector]) {
+            if([self isIntegration:integration enabledInOptions:options]) {
+                [invocation invokeWithTarget:integration];
             }
             else {
-                SOLog(@"Not sending call to %@ because it is disabled in options.providers", provider.name);
+                SOLog(@"Not sending call to %@ because it is disabled in options", integration.name);
             }
         }
     }
@@ -109,7 +108,7 @@
     }
 }
 
-- (void)callProvidersWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options  {
+- (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options  {
     dispatch_specific_async(_serialQueue, ^{
         // No cached settings, queue the API call
         if (!self.cachedSettings.count) {
@@ -150,7 +149,7 @@
     });
     SEL selector = NSSelectorFromString(selectorMapping[note.name]);
     if (selector)
-        [self callProvidersWithSelector:selector arguments:nil options:nil];
+        [self callIntegrationsWithSelector:selector arguments:nil options:nil];
 }
 
 #pragma mark - Public API
@@ -170,7 +169,7 @@
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
-    [self callProvidersWithSelector:_cmd
+    [self callIntegrationsWithSelector:_cmd
                           arguments:@[userId ?: [NSNull null], CoerceDictionary(traits), CoerceDictionary(options)]
                             options:options];
 }
@@ -185,7 +184,7 @@
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
     NSParameterAssert(event);
-    [self callProvidersWithSelector:_cmd
+    [self callIntegrationsWithSelector:_cmd
                           arguments:@[event, CoerceDictionary(properties), CoerceDictionary(options)]
                             options:options];
 }
@@ -200,7 +199,7 @@
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
     NSParameterAssert(screenTitle);
-    [self callProvidersWithSelector:_cmd
+    [self callIntegrationsWithSelector:_cmd
                           arguments:@[screenTitle, CoerceDictionary(properties), CoerceDictionary(options)]
                             options:options];
 }
@@ -214,20 +213,20 @@
 }
 
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options {
-    [self callProvidersWithSelector:_cmd
+    [self callIntegrationsWithSelector:_cmd
                           arguments:@[groupId ?: [NSNull null], CoerceDictionary(traits), CoerceDictionary(options)]
                             options:options];
 }
 
 - (void)registerPushDeviceToken:(NSData *)deviceToken {
     NSParameterAssert(deviceToken);
-    [self callProvidersWithSelector:_cmd
+    [self callIntegrationsWithSelector:_cmd
                           arguments:@[deviceToken]
                             options:nil];
 }
 
 - (void)reset {
-    [self callProvidersWithSelector:_cmd
+    [self callIntegrationsWithSelector:_cmd
                           arguments:nil
                             options:nil];
 }
@@ -251,12 +250,12 @@
 - (void)setCachedSettings:(NSDictionary *)settings {
     _cachedSettings = settings;
     [_cachedSettings ?: @{} writeToURL:SETTING_CACHE_URL atomically:YES];
-    [self updateProvidersWithSettings:settings];
+    [self updateIntegrationsWithSettings:settings];
 }
 
-- (void)updateProvidersWithSettings:(NSDictionary *)settings {
-    for (id<AnalyticsProvider> provider in self.providers.allValues)
-        [provider updateSettings:settings[provider.name]];
+- (void)updateIntegrationsWithSettings:(NSDictionary *)settings {
+    for (id<AnalyticsIntegration> integration in self.integrations.allValues)
+        [integration updateSettings:settings[integration.name]];
     dispatch_specific_async(_serialQueue, ^{
         [self flushMessageQueue];
     });
@@ -264,7 +263,7 @@
 
 - (void)refreshSettings {
     if (self.cachedSettings) {
-        [self updateProvidersWithSettings:self.cachedSettings];
+        [self updateIntegrationsWithSettings:self.cachedSettings];
     }
     if (!_settingsRequest) {
         NSString *urlString = [NSString stringWithFormat:@"https://api.segment.io/project/%@/settings", self.writeKey];
@@ -288,19 +287,19 @@
 
 #pragma mark - Class Methods
 
-static NSMutableDictionary *RegisteredProviders = nil;
+static NSMutableDictionary *RegisteredIntegrations = nil;
 
-+ (NSDictionary *)registeredProviders { return [RegisteredProviders copy]; }
++ (NSDictionary *)registeredIntegrations { return [RegisteredIntegrations copy]; }
 
-+ (void)registerProvider:(Class)providerClass withIdentifier:(NSString *)identifer {
++ (void)registerIntegration:(Class)integrationClass withIdentifier:(NSString *)identifer {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        RegisteredProviders = [[NSMutableDictionary alloc] init];
+        RegisteredIntegrations = [[NSMutableDictionary alloc] init];
     });
     NSAssert([NSThread isMainThread], @"%s must be called from the main thread", __func__);
     NSAssert(SharedInstance == nil, @"%s can only be called before Analytics initialization", __func__);
-    NSAssert(identifer.length > 0, @"Provider must have a valid identifier;");
-    RegisteredProviders[identifer] = providerClass;
+    NSAssert(identifer.length > 0, @"Integration must have a valid identifier;");
+    RegisteredIntegrations[identifer] = integrationClass;
 }
 
 static Analytics *SharedInstance = nil;

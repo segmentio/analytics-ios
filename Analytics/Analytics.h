@@ -7,7 +7,7 @@
 @interface Analytics : NSObject
 
 @property(nonatomic, strong) NSString *writeKey;
-@property(nonatomic, readonly) NSDictionary *providers;
+@property(nonatomic, readonly) NSDictionary *integrations;
 
 
 // Step 1: Initialization
@@ -186,11 +186,11 @@
  @method
  
  @abstract
- Register the given device to receive push notifications from applicable providers.
+ Register the given device to receive push notifications from applicable integrations.
  
  @discussion
- Some providers (such as Mixpanel) are capable of sending push notification to users based on 
- their traits and actions. This will associate the device token with the current user in providers
+ Some integrations (such as Mixpanel) are capable of sending push notification to users based on
+ their traits and actions. This will associate the device token with the current user in integrations
  that have this capability. You should call this method with the <code>NSData</code> token passed to
  <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>.
  
@@ -249,9 +249,9 @@
 - (id)initWithWriteKey:(NSString *)writeKey;
 + (NSString *)version;
 
-// Must be called before initializing Analytics in order to successfully register provider
-+ (NSDictionary *)registeredProviders;
-+ (void)registerProvider:(Class)providerClass withIdentifier:(NSString *)identifer;
+// Must be called before initializing Analytics in order to successfully register integration
++ (NSDictionary *)registeredIntegrations;
++ (void)registerIntegration:(Class)integrationClass withIdentifier:(NSString *)identifer;
 
 
 @end
