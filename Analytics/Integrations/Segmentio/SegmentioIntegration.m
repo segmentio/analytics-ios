@@ -78,6 +78,7 @@ static NSMutableDictionary *BuildStaticContext() {
     [library setObject:@"analytics-ios" forKey:@"name"];
     [library setObject:NSStringize(ANALYTICS_VERSION) forKey:@"version"];
     [context setObject:library forKey:@"library"];
+    SOLog(@"Adding info to context: library = %@", library);
     
     // App
     NSDictionary *bundle = [[NSBundle mainBundle] infoDictionary];
@@ -87,6 +88,7 @@ static NSMutableDictionary *BuildStaticContext() {
         [app setObject:[bundle objectForKey:@"CFBundleShortVersionString"] forKey:@"version"];
         [app setObject:[bundle objectForKey:@"CFBundleVersion"] forKey:@"build"];
         [context setObject:app forKey:@"app"];
+        SOLog(@"Adding info to context: app = %@", app);
     }
     
     // Device
@@ -95,14 +97,19 @@ static NSMutableDictionary *BuildStaticContext() {
     [device setObject:@"Apple" forKey:@"manufacturer"];
     [device setObject:GetDeviceModel() forKey:@"model"];
     [device setObject:[[uiDevice identifierForVendor] UUIDString] forKey:@"idfv"];
-    [device setObject:GetIdForAdvertiser() forKey:@"idfa"];
+    NSString *idfa = GetIdForAdvertiser();
+    if (idfa.length) {
+        [device setObject:idfa forKey:@"idfa"];
+    }
     [context setObject:device forKey:@"device"];
+    SOLog(@"Adding info to context: device = %@", device);
     
     // OS
     NSMutableDictionary *os = [NSMutableDictionary dictionary];
     [os setObject:[uiDevice systemName] forKey:@"name"];
     [os setObject:[uiDevice systemVersion] forKey:@"version"];
     [context setObject:os forKey:@"os"];
+    SOLog(@"Adding info to context: os = %@", os);
     
     // Telephony
     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
@@ -111,6 +118,7 @@ static NSMutableDictionary *BuildStaticContext() {
         NSMutableDictionary *telephony = [NSMutableDictionary dictionary];
         [telephony setObject:carrier.carrierName forKey:@"carrier"];
         [context setObject:telephony forKey:@"telephony"];
+        SOLog(@"Adding info to context: telephony = %@", telephony);
     }
     
     // Screen
@@ -119,6 +127,7 @@ static NSMutableDictionary *BuildStaticContext() {
     [screen setObject:[NSNumber numberWithInt:(int)screenSize.width] forKey:@"width"];
     [screen setObject:[NSNumber numberWithInt:(int)screenSize.height] forKey:@"height"];
     [context setObject:screen forKey:@"screen"];
+    SOLog(@"Adding info to context: screen = %@", screen);
     
     return context;
 }
@@ -214,8 +223,14 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (void)validate {
-    BOOL hasWriteKey = [self.settings objectForKey:@"writeKey"] != nil;
-    self.valid = hasWriteKey;
+    NSString *writeKey = [self.settings objectForKey:@"writeKey"];
+    // legacy check
+    if (writeKey == nil) {
+        writeKey = [self.settings objectForKey:@"apiKey"];
+    }
+    BOOL hasWriteKey = writeKey != nil;
+    BOOL isOff = [[self.settings objectForKey:@"off"] boolValue];
+    self.valid = hasWriteKey && !isOff;
 }
 
 - (NSString *)getAnonymousId {
@@ -295,9 +310,8 @@ static NSMutableDictionary *BuildStaticContext() {
     for (NSUInteger i = 0; i < deviceToken.length; i++) {
         [hexadecimal appendString:[NSString stringWithFormat:@"%02lx", (unsigned long)buffer[i]]];
     }
-    // TODO make this safer
-    _context[@"device"][@"token"] = [NSString stringWithString:hexadecimal];
-    
+    NSString *token = [NSString stringWithString:hexadecimal];
+    [self.context[@"device"] setObject:token forKey:@"token"];
 }
 
 #pragma mark - Queueing
@@ -436,7 +450,7 @@ static NSMutableDictionary *BuildStaticContext() {
     }];
 }
 
-#pragma mark - Class Methods
+#pragma mark - Initialization
 
 + (void)load {
     [Analytics registerIntegration:self withIdentifier:@"Segment.io"];
