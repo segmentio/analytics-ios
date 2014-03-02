@@ -11,7 +11,7 @@
 #import "AnalyticsRequest.h"
 #import "SegmentioIntegration.h"
 
-#define SEGMENTIO_API_URL [NSURL URLWithString:@"https://api.segment.io/v1/import"]
+#define SEGMENTIO_API_URL [NSURL URLWithString:@"http://api.segment.io/v1/import"]
 #define SEGMENTIO_MAX_BATCH_SIZE 100
 #define DISK_ANONYMOUS_ID_URL AnalyticsURLForFilename(@"segmentio.anonymousId")
 #define DISK_USER_ID_URL AnalyticsURLForFilename(@"segmentio.userId")
@@ -369,8 +369,15 @@ static NSMutableDictionary *BuildStaticContext() {
         [payloadDictionary setObject:self.context forKey:@"context"];
         [payloadDictionary setObject:self.batch forKey:@"batch"];
         
+        SOLog(@"Flushing payload %@", payloadDictionary);
+        
+        NSError *error = nil;
         NSData *payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary
-                                                          options:0 error:NULL];
+                                                          options:0 error:&error];
+        if (!payload) {
+            SOLog(@"%@ Error serializing JSON to send to Segmentio: %@", self, error);
+        }
+        
         [self sendData:payload];
     }];
 }
@@ -409,7 +416,6 @@ static NSMutableDictionary *BuildStaticContext() {
     [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:data];
     SOLog(@"%@ Sending batch API request.", self);
     self.request = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
         [self dispatchBackground:^{
