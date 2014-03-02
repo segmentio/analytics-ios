@@ -46,7 +46,6 @@ static NSString *GetAnonymousId(BOOL reset) {
 @interface SegmentioProvider ()
 
 @property (nonatomic, weak) Analytics *analytics;
-@property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, strong) NSArray *batch;
 @property (nonatomic, strong) AnalyticsRequest *request;
@@ -85,12 +84,7 @@ static NSString *GetAnonymousId(BOOL reset) {
         _traits = [NSMutableDictionary dictionaryWithContentsOfURL:DISK_TRAITS_URL];
         if (!_traits)
             _traits = [[NSMutableDictionary alloc] init];
-        _context = [self buildContextDictionary];
-        _flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.flushAfter
-                                                       target:self
-                                                     selector:@selector(flush)
-                                                     userInfo:nil
-                                                      repeats:YES];
+        _context = [self buildStaticContext];
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         _flushTaskID = UIBackgroundTaskInvalid;
         
@@ -105,7 +99,7 @@ static NSString *GetAnonymousId(BOOL reset) {
     return self;
 }
 
-- (NSMutableDictionary *)buildContextDictionary
+- (NSMutableDictionary *)buildStaticContext
 {
     NSMutableDictionary *context = [NSMutableDictionary dictionary];
     
@@ -124,17 +118,16 @@ static NSString *GetAnonymousId(BOOL reset) {
     
     // Device
     UIDevice *device = [UIDevice currentDevice];
-    NSString *deviceModel = [self deviceModel];
     context[@"device"] = @{
         @"manufacturer": @"Apple",
-        @"model": deviceModel,
+        @"model": [self deviceModel],
         @"idfv": [[device identifierForVendor] UUIDString],
         @"idfa": [self getIdForAdvertiser]
     };
     
     // OS
     context[@"os"] = @{
-        @"name": [device systemName],
+        @"name":    [device systemName],
         @"version": [device systemVersion]
     };
     
@@ -389,13 +382,6 @@ static NSString *GetAnonymousId(BOOL reset) {
 }
 
 - (void)reset {
-    [self.flushTimer invalidate];
-    self.flushTimer = nil;
-    self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.flushAfter
-                                                       target:self
-                                                     selector:@selector(flush)
-                                                     userInfo:nil
-                                                      repeats:YES];
     [self dispatchBackgroundAndWait:^{
         [[NSFileManager defaultManager] removeItemAtURL:DISK_ANONYMOUS_ID_URL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:DISK_USER_ID_URL error:NULL];

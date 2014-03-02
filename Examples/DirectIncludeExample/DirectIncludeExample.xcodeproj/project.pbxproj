@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D3290162186244740047B686 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D30286A017E40B38005E58B9 /* Reachability.m */; };
-		D354F6FE18C2D29000A14547 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D354F6FD18C2D29000A14547 /* Analytics.framework */; };
+		D354F70418C2E78100A14547 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D354F70318C2E78100A14547 /* Analytics.framework */; };
 		EACAADA817C76EE4000A8337 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADA717C76EE4000A8337 /* UIKit.framework */; };
 		EACAADAA17C76EE4000A8337 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADA917C76EE4000A8337 /* Foundation.framework */; };
 		EACAADAC17C76EE4000A8337 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAADAB17C76EE4000A8337 /* CoreGraphics.framework */; };
@@ -33,7 +33,7 @@
 /* Begin PBXFileReference section */
 		D302869F17E40B38005E58B9 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../Common/Reachability.h; sourceTree = "<group>"; };
 		D30286A017E40B38005E58B9 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../Common/Reachability.m; sourceTree = "<group>"; };
-		D354F6FD18C2D29000A14547 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Analytics.framework; sourceTree = "<group>"; };
+		D354F70318C2E78100A14547 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Analytics.framework; sourceTree = "<group>"; };
 		D3A6A2CF18B2F1D700C4B510 /* MPArrowLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MPArrowLeft.png; sourceTree = "<group>"; };
 		D3A6A2D018B2F1D700C4B510 /* MPArrowLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MPArrowLeft@2x.png"; sourceTree = "<group>"; };
 		D3A6A2D118B2F1D700C4B510 /* MPArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MPArrowRight.png; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 				EACAADF317C770C1000A8337 /* Security.framework in Frameworks */,
 				EACAADF717C770D0000A8337 /* libz.dylib in Frameworks */,
 				EACAADF517C770C8000A8337 /* libsqlite3.dylib in Frameworks */,
-				D354F6FE18C2D29000A14547 /* Analytics.framework in Frameworks */,
+				D354F70418C2E78100A14547 /* Analytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +140,7 @@
 		EACAADA617C76EE4000A8337 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D354F6FD18C2D29000A14547 /* Analytics.framework */,
+				D354F70318C2E78100A14547 /* Analytics.framework */,
 				EACAADF617C770D0000A8337 /* libz.dylib */,
 				EACAADF417C770C8000A8337 /* libsqlite3.dylib */,
 				EACAADE017C77052000A8337 /* CoreData.framework */,

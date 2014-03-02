@@ -31,7 +31,7 @@ extern NSString *const SegmentioRequestDidFailNotification;
 // Utilities
 // ---------
 
-- (NSString *)getSessionId;
+- (NSString *)getAnonymousId;
 - (void)flush;
 - (void)reset;
 
