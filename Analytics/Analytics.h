@@ -6,7 +6,7 @@
 
 @interface Analytics : NSObject
 
-@property(nonatomic, strong) NSString *secret;
+@property(nonatomic, strong) NSString *writeKey;
 @property(nonatomic, readonly) NSDictionary *providers;
 
 
@@ -19,7 +19,7 @@
  @abstract
  Creates the shared Analytics instance and initializes it with your Segment.io write key.
 
- @param secret        Your Segment.io write key from the setup guide at https://segment.io
+ @param writeKey        Your Segment.io write key from the setup guide at https://segment.io
 
  @discussion
  While developing, we recommend you turn on debug logging before you initialize the Analytics instance with your write key:
@@ -30,7 +30,7 @@
     [Analytics debug:YES];
  
     // Initialize the Analytics instance
-    [Analytics initializeWithSecret:@"YOUR SEGMENT.IO WRITE KEY FROM HTTPS://SEGMENT.IO/LIBRARIES/IOS"];
+    [Analytics initializeWithWriteKey:@"YOUR SEGMENT.IO WRITE KEY FROM HTTPS://SEGMENT.IO/LIBRARIES/IOS"];
  
     // YOUR OTHER APP LAUNCH CODE HERE....
 
@@ -38,7 +38,7 @@
 }
 
 */
-+ (void)initializeWithSecret:(NSString *)secret;
++ (void)initializeWithWriteKey:(NSString *)writeKey;
 
 /*!
  @method
@@ -59,7 +59,7 @@
     [Analytics debug:YES];
  
     // Initialize the Analytics instance
-    [Analytics initializeWithSecret:@"YOUR SEGMENT.IO WRITE KEY FROM HTTPS://SEGMENT.IO/LIBRARIES/IOS"];
+    [Analytics initializeWithWriteKey:@"YOUR SEGMENT.IO WRITE KEY FROM HTTPS://SEGMENT.IO/LIBRARIES/IOS"];
  
     // YOUR OTHER APP LAUNCH CODE HERE....
  
@@ -85,7 +85,7 @@
  Gets the shared Analytics instance.
 
  @discussion
- Once you initialize the shared Analytics instance via [Analytics initializeWithSecret:...] you can get the instance at any time like this:
+ Once you initialize the shared Analytics instance via [Analytics initializeWithWriteKey:...] you can get the instance at any time like this:
 
  [Analytics sharedAnalytics]
 
@@ -229,7 +229,7 @@
  @abstract
  Used internally to create an Analytics instance.
 */
-- (id)initWithSecret:(NSString *)secret;
+- (id)initWithWriteKey:(NSString *)writeKey;
 + (NSString *)version;
 
 // Must be called before initializing Analytics in order to successfully register provider

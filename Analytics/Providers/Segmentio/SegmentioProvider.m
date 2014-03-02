@@ -58,25 +58,25 @@ static NSString *GetSessionID(BOOL reset) {
 @implementation SegmentioProvider {
     dispatch_queue_t _serialQueue;
     NSMutableDictionary *_traits;
-    NSMutableDictionary *_deviceInformation;
+    NSMutableDictionary *_context;
 }
 
 - (id)initWithAnalytics:(Analytics *)analytics {
-    if (self = [self initWithSecret:analytics.secret flushAt:20 flushAfter:30]) {
+    if (self = [self initWithWriteKey:analytics.writeKey flushAt:20 flushAfter:30]) {
         self.analytics = analytics;
     }
     return self;
 }
 
-- (id)initWithSecret:(NSString *)secret flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter {
-    NSParameterAssert(secret.length);
+- (id)initWithWriteKey:(NSString *)writeKey flushAt:(NSUInteger)flushAt flushAfter:(NSUInteger)flushAfter {
+    NSParameterAssert(writeKey.length);
     NSParameterAssert(flushAt > 0);
     NSParameterAssert(flushAfter > 0);
     
     if (self = [self init]) {
         _flushAt = flushAt;
         _flushAfter = flushAfter;
-        _secret = secret;
+        _writeKey = writeKey;
         _sessionId = GetSessionID(NO);
         _userId = [NSString stringWithContentsOfURL:DISK_USER_ID_URL encoding:NSUTF8StringEncoding error:NULL];
         _queue = [NSMutableArray arrayWithContentsOfURL:DISK_QUEUE_URL];
@@ -85,7 +85,7 @@ static NSString *GetSessionID(BOOL reset) {
         _traits = [NSMutableDictionary dictionaryWithContentsOfURL:DISK_TRAITS_URL];
         if (!_traits)
             _traits = [[NSMutableDictionary alloc] init];
-        _deviceInformation = [self getDeviceInformation];
+        _context = [self buildContextDictionary];
         _flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.flushAfter
                                                        target:self
                                                      selector:@selector(flush)
@@ -97,7 +97,7 @@ static NSString *GetSessionID(BOOL reset) {
         self.name = @"Segment.io";
         self.valid = NO;
         self.initialized = NO;
-        self.settings = [NSDictionary dictionaryWithObjectsAndKeys:secret, @"secret", nil];
+        self.settings = [NSDictionary dictionaryWithObjectsAndKeys:writeKey, @"writeKey", nil];
         [self validate];
         self.initialized = YES;
 
@@ -105,40 +105,72 @@ static NSString *GetSessionID(BOOL reset) {
     return self;
 }
 
-- (NSMutableDictionary *)getDeviceInformation
+- (NSMutableDictionary *)buildContextDictionary
 {
-    NSMutableDictionary *deviceInfo = [NSMutableDictionary dictionary];
+    NSMutableDictionary *context = [NSMutableDictionary dictionary];
     
-    // Application information
-    [deviceInfo setValue:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"appVersion"];
-    [deviceInfo setValue:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"] forKey:@"appReleaseVersion"];
+    // Library
+    context[@"library"] = @{
+        @"name" : @"analytics-ios",
+        @"version" : NSStringize(ANALYTICS_VERSION)
+    };
     
-    // Device information
+    // App
+    context[@"app"] = @{
+        @"name":    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"],
+        @"version": [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
+        @"build":   [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+    };
+    
+    // Device
     UIDevice *device = [UIDevice currentDevice];
     NSString *deviceModel = [self deviceModel];
-    [deviceInfo setValue:@"Apple" forKey:@"deviceManufacturer"];
-    [deviceInfo setValue:deviceModel forKey:@"deviceModel"];
-    [deviceInfo setValue:[device systemName] forKey:@"os"];
-    [deviceInfo setValue:[device systemVersion] forKey:@"osVersion"];
+    context[@"device"] = @{
+        @"manufacturer": @"Apple",
+        @"model": deviceModel
+    };
     
-    // Network Carrier
+    // OS
+    context[@"os"] = @{
+        @"name": [device systemName],
+        @"version": [device systemVersion]
+    };
+    
+    // Telephony
     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *carrier = [networkInfo subscriberCellularProvider];
     if (carrier.carrierName.length) {
-        [deviceInfo setValue:carrier.carrierName forKey:@"carrier"];
+        context[@"telephony"] = @{
+            @"carrier": carrier.carrierName
+        };
     }
     
-    // ID for Advertiser (IFA)
+    // Screen
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    context[@"os"] = @{
+        @"width":  [NSNumber numberWithInt:(int)screenSize.width],
+        @"height": [NSNumber numberWithInt:(int)screenSize.height]
+    };
+    
+    // IDFA and IDFV
+    // TODO https://github.com/segmentio/spec/issues/31
+    /*
     if (NSClassFromString(@"ASIdentifierManager")) {
         [deviceInfo setValue:[self getIdForAdvertiser] forKey:@"idForAdvertiser"];
     }
+    */
     
-    // Screen size
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
-    [deviceInfo setValue:[NSNumber numberWithInt:(int)screenSize.width] forKey:@"screenWidth"];
-    [deviceInfo setValue:[NSNumber numberWithInt:(int)screenSize.height] forKey:@"screenHeight"];
+    return context;
+}
+
+- (NSMutableDictionary *)updatedContext {
+    // Network
+    // TODO https://github.com/segmentio/spec/issues/30
     
-    return deviceInfo;
+    // Traits
+    // TODO https://github.com/segmentio/spec/issues/29
+    
+    return _context;
 }
 
 - (NSString *)getIdForAdvertiser
@@ -194,8 +226,8 @@ static NSString *GetSessionID(BOOL reset) {
 }
 
 - (void)validate {
-    BOOL hasSecret = [self.settings objectForKey:@"secret"] != nil;
-    self.valid = hasSecret;
+    BOOL hasWriteKey = [self.settings objectForKey:@"writeKey"] != nil;
+    self.valid = hasWriteKey;
 }
 
 - (NSString *)getSessionId {
@@ -203,7 +235,7 @@ static NSString *GetSessionID(BOOL reset) {
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<SegmentioProvider secret:%@>", self.secret];
+    return [NSString stringWithFormat:@"<SegmentioProvider writeKey:%@>", self.writeKey];
 }
 
 - (void)saveUserId:(NSString *)userId {
@@ -256,21 +288,14 @@ static NSString *GetSessionID(BOOL reset) {
 
 #pragma mark - Queueing
 
-- (NSDictionary *)serverOptionsForOptions:(NSDictionary *)options {
-    NSMutableDictionary *serverOptions = [options ?: @{} mutableCopy];
-    NSMutableDictionary *providersDict = [options[@"providers"] ?: @{} mutableCopy];
-    for (AnalyticsProvider *provider in self.analytics.providers.allValues)
-        if (![provider isKindOfClass:[SegmentioProvider class]])
-            providersDict[provider.name] = @NO;
-    serverOptions[@"providers"] = providersDict;
-    serverOptions[@"library"] = @"analytics-ios";
-    serverOptions[@"library-version"] = NSStringize(ANALYTICS_VERSION);
-    serverOptions[@"traits"] = _traits;
-    for(id key in _deviceInformation) {
-        serverOptions[key] = [_deviceInformation objectForKey:key];
+- (NSDictionary *)integrationsDictionary:(NSDictionary *)options {
+    NSMutableDictionary *integrations = [options ?: @{} mutableCopy];
+    for (AnalyticsProvider *provider in self.analytics.providers.allValues) {
+        if (![provider isKindOfClass:[SegmentioProvider class]]) {
+            integrations[provider.name] = @NO;
+        }
     }
-    return serverOptions;
-    
+    return integrations;
 }
 
 - (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)dictionary options:(NSDictionary *)options {
@@ -285,11 +310,12 @@ static NSString *GetSessionID(BOOL reset) {
         // attach userId and sessionId inside the dispatch_async in case
         // they've changed (see identify function)
         [payload setValue:self.userId forKey:@"userId"];
-        [payload setValue:self.sessionId forKey:@"sessionId"];
+        [payload setValue:self.sessionId forKey:@"anonymousId"];
         SOLog(@"%@ Enqueueing action: %@", self, payload);
         
         // TODO change context to options when server-side is ready
-        [payload setValue:[self serverOptionsForOptions:options] forKey:@"context"];
+        [payload setValue:[self integrationsDictionary:options] forKey:@"integrations"];
+        [payload setValue:[self updatedContext] forKey:@"context"];
         [self.queue addObject:payload];
         [self flushQueueByLength];
     }];
@@ -317,8 +343,8 @@ static NSString *GetSessionID(BOOL reset) {
         SOLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)self.batch.count, (unsigned long)self.queue.count);
         
         NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
-        [payloadDictionary setObject:self.secret forKey:@"secret"];
-        [payloadDictionary setObject:[[NSDate date] description] forKey:@"requestTimestamp"];
+        [payloadDictionary setObject:self.writeKey forKey:@"writeKey"];
+        [payloadDictionary setObject:[[NSDate date] description] forKey:@"sentAt"];
         [payloadDictionary setObject:self.batch forKey:@"batch"];
         
         NSData *payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary
