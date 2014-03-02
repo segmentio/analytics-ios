@@ -220,10 +220,6 @@ static NSString *GetSessionID(BOOL reset) {
     }];
 }
 
-- (void)updateSettings:(NSDictionary *)settings {
-    
-}
-
 - (void)validate {
     BOOL hasWriteKey = [self.settings objectForKey:@"writeKey"] != nil;
     self.valid = hasWriteKey;
@@ -293,6 +289,21 @@ static NSString *GetSessionID(BOOL reset) {
     [dictionary setValue:traits forKey:@"traits"];
     
     [self enqueueAction:@"group" dictionary:dictionary options:options];
+}
+
+- (void)registerPushDeviceToken:(NSData *)deviceToken {
+    NSAssert(deviceToken, @"%@ registerPushDeviceToken requires a deviceToken", self);
+    
+    const unsigned char *buffer = (const unsigned char *)[deviceToken bytes];
+    if (!buffer) {
+        return;
+    }
+    NSMutableString *hexadecimal = [NSMutableString stringWithCapacity:(deviceToken.length * 2)];
+    for (NSUInteger i = 0; i < deviceToken.length; i++) {
+        [hexadecimal appendString:[NSString stringWithFormat:@"%02lx", (unsigned long)buffer[i]]];
+    }
+    _context[@"device"][@"token"] = [NSString stringWithString:hexadecimal];
+    
 }
 
 #pragma mark - Queueing
