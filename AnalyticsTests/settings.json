@@ -62,6 +62,6 @@
         "globalHook": "http://requestb.in/1gc2atw1"
     },
     "Segment.io": {
-        "apiKey": "y42nxqnuh7"
+        "writeKey": "y42nxqnuh7"
     }
 }
