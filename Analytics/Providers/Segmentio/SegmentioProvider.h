@@ -25,13 +25,15 @@ extern NSString *const SegmentioRequestDidFailNotification;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options;
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options;
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options;
-- (void)reset;
+
+- (void)registerPushDeviceToken:(NSData *)deviceToken;
 
 // Utilities
 // ---------
 
 - (NSString *)getSessionId;
 - (void)flush;
+- (void)reset;
 
 // Initialization
 // --------------
