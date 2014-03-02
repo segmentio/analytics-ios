@@ -1,5 +1,5 @@
-// Provider.m
-// Copyright 2013 Segment.io
+// AnalyticsProvider.m
+// Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "AnalyticsProvider.h"
 

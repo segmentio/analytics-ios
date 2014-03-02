@@ -1,5 +1,5 @@
-// Provider.h
-// Copyright 2013 Segment.io
+// AnalyticsProvider.h
+// Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import <Foundation/Foundation.h>
 
