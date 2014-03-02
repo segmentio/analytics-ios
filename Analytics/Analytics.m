@@ -205,6 +205,20 @@
                             options:options];
 }
 
+- (void)group:(NSString *)groupId {
+    [self group:groupId properties:nil options:nil];
+}
+
+- (void)group:(NSString *)groupId properties:(NSDictionary *)properties {
+    [self group:groupId properties:properties options:nil];
+}
+
+- (void)group:(NSString *)groupId properties:(NSDictionary *)properties options:(NSDictionary *)options {
+    [self callProvidersWithSelector:_cmd
+                          arguments:@[groupId ?: [NSNull null], CoerceDictionary(properties), CoerceDictionary(options)]
+                            options:options];
+}
+
 - (void)registerPushDeviceToken:(NSData *)deviceToken {
     NSParameterAssert(deviceToken);
     [self callProvidersWithSelector:_cmd

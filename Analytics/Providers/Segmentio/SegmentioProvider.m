@@ -286,6 +286,16 @@ static NSString *GetSessionID(BOOL reset) {
     [self enqueueAction:@"screen" dictionary:dictionary options:options];
 }
 
+- (void)group:(NSString *)groupId properties:(NSDictionary *)properties options:(NSDictionary *)options {
+    NSAssert(groupId.length, @"%@ group requires a groupId.", self);
+    
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:groupId forKey:@"groupId"];
+    [dictionary setValue:properties forKey:@"properties"];
+    
+    [self enqueueAction:@"group" dictionary:dictionary options:options];
+}
+
 #pragma mark - Queueing
 
 - (NSDictionary *)integrationsDictionary:(NSDictionary *)options {

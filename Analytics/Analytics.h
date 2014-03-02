@@ -109,12 +109,12 @@
  @abstract
  Associate a user with their unique ID and record traits about them.
 
- @param userId        A database ID (or email address) for this user. If you don't have a userId
+ @param userId        A database ID for this user. If you don't have a userId
                       but want to record traits, you should pass nil. We will automatically generate
                       a UUID to let you identify "anonymous" users. For more information on how we 
                       generate the UUID and Apple's policies on IDs, see https://segment.io/libraries/ios#ids
 
- @param traits        A dictionary of traits you know about the user. Things like: email, name, subscriptionPlan, etc.
+ @param traits        A dictionary of traits you know about the user. Things like: email, name, plan, etc.
 
  @discussion
  When you learn more about who your user is, you can record that information with identify.
@@ -163,6 +163,23 @@
 - (void)screen:(NSString *)screenTitle;
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties;
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options;
+
+/*!
+ @method
+ 
+ @abstract
+ Associate a user with a group, organization, company, project, or w/e *you* call them.
+ 
+ @param groupId          A database ID for this group.
+ @param properties        A dictionary of properties you know about the group. Things like: name, employees, etc.
+ 
+ @discussion
+ When you learn more about who the group is, you can record that information with group.
+ 
+ */
+- (void)group:(NSString *)groupId;
+- (void)group:(NSString *)groupId properties:(NSDictionary *)properties;
+- (void)group:(NSString *)groupId properties:(NSDictionary *)properties options:(NSDictionary *)options;
 
 
 /*!
