@@ -3,10 +3,10 @@
 
 #import <Kiwi/Kiwi.h>
 #import "AnalyticsUtils.h"
-#import "SegmentioProvider.h"
+#import "SegmentioIntegration.h"
 #import "KWNotificationMatcher.h"
 
-@interface SegmentioProvider (Private)
+@interface SegmentioIntegration (Private)
 @property (nonatomic, readonly) NSMutableArray *queue;
 @property (nonatomic, readonly) NSMutableDictionary *context;
 @end
@@ -16,9 +16,9 @@ SPEC_BEGIN(SegmentioTests)
 describe(@"Segment.io", ^{
     SetShowDebugLogs(YES);
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    __block SegmentioProvider *segmentio = nil;
+    __block SegmentioIntegration *segmentio = nil;
     beforeAll(^{
-        segmentio = [[SegmentioProvider alloc] initWithWriteKey:@"testWriteKey" flushAt:2];
+        segmentio = [[SegmentioIntegration alloc] initWithWriteKey:@"testWriteKey" flushAt:2];
     });
     beforeEach(^{
         [segmentio reset];
