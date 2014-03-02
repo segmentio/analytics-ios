@@ -58,6 +58,8 @@
 		D331BD371860F5F0007CB22F /* TSResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD291860F5F0007CB22F /* TSResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD381860F5F0007CB22F /* TSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD2A1860F5F0007CB22F /* TSUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D350D6131859340700F8A7FA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D350D6121859340700F8A7FA /* Reachability.m */; };
+		D354F6FB18C2D12200A14547 /* TapstreamProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = D354F6F918C2D12200A14547 /* TapstreamProvider.h */; };
+		D354F6FC18C2D12200A14547 /* TapstreamProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D354F6FA18C2D12200A14547 /* TapstreamProvider.m */; };
 		D36E2D7B18C27CA2008536A3 /* libLocalyticsAMP_x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E2D7A18C27CA2008536A3 /* libLocalyticsAMP_x64.a */; };
 		D371F32E185942BB0053337D /* Crittercism.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F32D185942BB0053337D /* Crittercism.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F330185942C90053337D /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F32F185942C90053337D /* Flurry.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -71,8 +73,6 @@
 		D3C07FBF185954D000649011 /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C07FBE185954D000649011 /* Bugsnag.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA14A25317FB1E9400870901 /* settings.json in Resources */ = {isa = PBXBuildFile; fileRef = EA14A25217FB1E9400870901 /* settings.json */; };
 		EA25892317C6979D000CEF61 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200B7B17659B2F003F3138 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA316D0A18B9472B008C0BC9 /* TapstreamProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA316D0818B9472B008C0BC9 /* TapstreamProvider.h */; };
-		EA316D0B18B9472B008C0BC9 /* TapstreamProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA316D0918B9472B008C0BC9 /* TapstreamProvider.m */; };
 		EA3B4CC717C8900A00233EA9 /* SegmentioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */; };
 		EA65F96617C2ABA600389A1A /* AnalyticsProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* AnalyticsProvider.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA65F96717C2ABA600389A1A /* AnalyticsProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* AnalyticsProvider.m */; };
@@ -170,6 +170,8 @@
 		D331BD2A1860F5F0007CB22F /* TSUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSUtils.h; path = Pods/Tapstream/objc/Core/TSUtils.h; sourceTree = "<group>"; };
 		D350D6111859340700F8A7FA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		D350D6121859340700F8A7FA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		D354F6F918C2D12200A14547 /* TapstreamProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TapstreamProvider.h; path = Tapstream/TapstreamProvider.h; sourceTree = "<group>"; };
+		D354F6FA18C2D12200A14547 /* TapstreamProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TapstreamProvider.m; path = Tapstream/TapstreamProvider.m; sourceTree = "<group>"; };
 		D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.4.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.2.4.a; sourceTree = "<group>"; };
 		D36ABA63182F09F3001EB84B /* admsAppLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = admsAppLibrary.a; path = Pods/Omniture/admsAppLibrary.a; sourceTree = "<group>"; };
 		D36E2D7A18C27CA2008536A3 /* libLocalyticsAMP_x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLocalyticsAMP_x64.a; path = Pods/Localytics/libLocalyticsAMP_x64.a; sourceTree = "<group>"; };
@@ -186,8 +188,6 @@
 		D3C07FBE185954D000649011 /* Bugsnag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bugsnag.h; path = Pods/Bugsnag/bugsnag/Bugsnag.h; sourceTree = "<group>"; };
 		D3E9B61B18BADAEA00AB06B0 /* libLocalyticsAMP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLocalyticsAMP.a; path = Pods/Localytics/libLocalyticsAMP.a; sourceTree = "<group>"; };
 		EA14A25217FB1E9400870901 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = settings.json; sourceTree = "<group>"; };
-		EA316D0818B9472B008C0BC9 /* TapstreamProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapstreamProvider.h; sourceTree = "<group>"; };
-		EA316D0918B9472B008C0BC9 /* TapstreamProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapstreamProvider.m; sourceTree = "<group>"; };
 		EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioTests.m; sourceTree = "<group>"; };
 		EA65F96417C2ABA600389A1A /* AnalyticsProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsProvider.h; sourceTree = "<group>"; };
 		EA65F96517C2ABA600389A1A /* AnalyticsProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsProvider.m; sourceTree = "<group>"; };
@@ -277,6 +277,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D354F6F818C2D0CA00A14547 /* Tapstream */ = {
+			isa = PBXGroup;
+			children = (
+				D354F6F918C2D12200A14547 /* TapstreamProvider.h */,
+				D354F6FA18C2D12200A14547 /* TapstreamProvider.m */,
+			);
+			name = Tapstream;
+			sourceTree = "<group>";
+		};
 		D3ABF62C1846F6E000FAAB2B /* Crittercism */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,15 +338,6 @@
 			name = Headers;
 			sourceTree = "<group>";
 		};
-		EA316D0718B9472B008C0BC9 /* Tapstream */ = {
-			isa = PBXGroup;
-			children = (
-				EA316D0818B9472B008C0BC9 /* TapstreamProvider.h */,
-				EA316D0918B9472B008C0BC9 /* TapstreamProvider.m */,
-			);
-			path = Tapstream;
-			sourceTree = "<group>";
-		};
 		EA722AF617C87BB00016E8B0 /* AnalyticsTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -377,7 +377,7 @@
 				EACB4DC517C0BB3100624129 /* Localytics */,
 				EACB4DC817C0BB3100624129 /* Mixpanel */,
 				EACB4DCB17C0BB3100624129 /* Segmentio */,
-				EA316D0718B9472B008C0BC9 /* Tapstream */,
+				D354F6F818C2D0CA00A14547 /* Tapstream */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -572,7 +572,7 @@
 				D331BD321860F5F0007CB22F /* TSHelpers.h in Headers */,
 				D331BD331860F5F0007CB22F /* TSHit.h in Headers */,
 				D331BD341860F5F0007CB22F /* TSLogging.h in Headers */,
-				EA316D0A18B9472B008C0BC9 /* TapstreamProvider.h in Headers */,
+				D354F6FB18C2D12200A14547 /* TapstreamProvider.h in Headers */,
 				D331BD351860F5F0007CB22F /* TSLogLevel.h in Headers */,
 				D331BD361860F5F0007CB22F /* TSPlatform.h in Headers */,
 				D331BD371860F5F0007CB22F /* TSResponse.h in Headers */,
@@ -846,7 +846,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA316D0B18B9472B008C0BC9 /* TapstreamProvider.m in Sources */,
+				D354F6FC18C2D12200A14547 /* TapstreamProvider.m in Sources */,
 				F7200B7E17659B2F003F3138 /* Analytics.m in Sources */,
 				EACB4DD317C0BB3100624129 /* AmplitudeProvider.m in Sources */,
 				EACB4DD717C0BB3100624129 /* BugsnagProvider.m in Sources */,
@@ -877,7 +877,7 @@
 		EA25891F17C693C2000CEF61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ANALYTICS_VERSION = 0.10.1;
+				ANALYTICS_VERSION = 1.0.0;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -886,7 +886,7 @@
 		EA25892017C693C2000CEF61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ANALYTICS_VERSION = 0.10.1;
+				ANALYTICS_VERSION = 1.0.0;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -989,7 +989,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
-				ANALYTICS_VERSION = 0.10.1;
+				ANALYTICS_VERSION = 1.0.0;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Analytics.dst;
@@ -1017,7 +1017,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
-				ANALYTICS_VERSION = 0.10.1;
+				ANALYTICS_VERSION = 1.0.0;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;

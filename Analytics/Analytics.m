@@ -206,16 +206,16 @@
 }
 
 - (void)group:(NSString *)groupId {
-    [self group:groupId properties:nil options:nil];
+    [self group:groupId traits:nil options:nil];
 }
 
-- (void)group:(NSString *)groupId properties:(NSDictionary *)properties {
-    [self group:groupId properties:properties options:nil];
+- (void)group:(NSString *)groupId traits:(NSDictionary *)traits {
+    [self group:groupId traits:traits options:nil];
 }
 
-- (void)group:(NSString *)groupId properties:(NSDictionary *)properties options:(NSDictionary *)options {
+- (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options {
     [self callProvidersWithSelector:_cmd
-                          arguments:@[groupId ?: [NSNull null], CoerceDictionary(properties), CoerceDictionary(options)]
+                          arguments:@[groupId ?: [NSNull null], CoerceDictionary(traits), CoerceDictionary(options)]
                             options:options];
 }
 
