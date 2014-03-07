@@ -1,5 +1,5 @@
 PODS:
-  - Amplitude-iOS (1.0.2)
+  - Amplitude-iOS (2.0.0)
   - Bugsnag (3.1.0.fork)
   - Countly (1.0.0)
   - CrittercismSDK (4.3.1)
@@ -17,7 +17,7 @@ PODS:
   - Tapstream (2.6)
 
 DEPENDENCIES:
-  - Amplitude-iOS (~> 1.0.2)
+  - Amplitude-iOS (~> 2.0.0)
   - Bugsnag (= 3.1.0.fork)
   - Countly (~> 1.0.0)
   - CrittercismSDK (~> 4.3.1)
