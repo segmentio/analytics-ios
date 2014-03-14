@@ -1,3 +1,12 @@
+0.10.2 / 2014-3-14
+==================
+* Updating Amplitude to new 2.0
+
+0.10.1 / 2014-3-1
+=================
+* Fixing Localytics to arm64 build
+* Fixing Mixpanel flush before reset
+
 0.10.0 / 2014-2-23
 ==================
 * Updating Google Analytics SDK to 3.0.3c

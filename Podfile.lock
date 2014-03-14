@@ -3,7 +3,9 @@ PODS:
   - Bugsnag (3.1.0.fork)
   - Countly (1.0.0)
   - CrittercismSDK (4.3.1)
-  - FlurrySDK (4.3.2)
+  - FlurrySDK (4.3.2):
+    - FlurrySDK/FlurrySDK
+  - FlurrySDK/FlurrySDK (4.3.2)
   - GoogleAnalytics-iOS-SDK (3.0.3c)
   - Kiwi (2.2.3):
     - Kiwi/SenTestingKit
@@ -29,11 +31,11 @@ DEPENDENCIES:
   - Tapstream (~> 2.6)
 
 SPEC CHECKSUMS:
-  Amplitude-iOS: ca8f975af2294cd808b4914fa507c01222501bea
-  Bugsnag: 5e48f3fcd219a685c22eb1eb2b088f3ccc0d621a
+  Amplitude-iOS: bb94407b136a0bca02a1116aeab47da400b2170c
+  Bugsnag: d59f4f572b671913b87cc41229e51e91482a239e
   Countly: c9728abbbeffc3250d1ab8ba17b417938119d218
   CrittercismSDK: 3b4eefdb985e08702836e2a0d234e4d117e3116c
-  FlurrySDK: 508afbd655fe2ff935d3e9543cb1c8aa432794de
+  FlurrySDK: 0ba42379fd272d69246ae06386a2c5688516ffd8
   GoogleAnalytics-iOS-SDK: a1dc8c700de9edf41f57c0abe54a7eb2182a1820
   Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
   Localytics: f5daff8b142b7943385a15080f2b09b0a3e7730f
