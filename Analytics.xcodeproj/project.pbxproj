@@ -999,9 +999,9 @@
 					"$(inherited)",
 					"${PODS_ROOT}/CrittercismSDK/CrittercismSDK",
 					"${PODS_ROOT}/FlurrySDK/Flurry",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/FlurrySDK/Flurry",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/GoogleAnalytics-iOS-SDK",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/Localytics",
+					"${SRCROOT}/Pods/FlurrySDK/Flurry",
+					"${SRCROOT}/Pods/GoogleAnalytics-iOS-SDK",
+					"${SRCROOT}/Pods/Localytics",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1028,9 +1028,9 @@
 					"$(inherited)",
 					"${PODS_ROOT}/CrittercismSDK/CrittercismSDK",
 					"${PODS_ROOT}/FlurrySDK/Flurry",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/FlurrySDK/Flurry",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/GoogleAnalytics-iOS-SDK",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/Localytics",
+					"${SRCROOT}/Pods/FlurrySDK/Flurry",
+					"${SRCROOT}/Pods/GoogleAnalytics-iOS-SDK",
+					"${SRCROOT}/Pods/Localytics",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
