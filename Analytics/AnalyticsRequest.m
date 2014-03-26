@@ -58,10 +58,12 @@
     NSInteger statusCode = self.response.statusCode;
     if (statusCode >= 200 && statusCode < 300) {
         NSError *error = nil;
-        self.responseJSON = [NSJSONSerialization JSONObjectWithData:self.responseData
-                                                            options:0
-                                                              error:&error];
-        self.error = error;
+        if (self.responseData.length > 0) {
+            self.responseJSON = [NSJSONSerialization JSONObjectWithData:self.responseData
+                                                                options:0
+                                                                  error:&error];
+            self.error = error;
+        }
     } else {
         self.error = [NSError errorWithDomain:@"HTTP"
                                          code:statusCode
