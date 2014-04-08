@@ -266,7 +266,7 @@ static NSString *GetSessionID(BOOL reset) {
     serverOptions[@"providers"] = providersDict;
     serverOptions[@"library"] = @"analytics-ios";
     serverOptions[@"library-version"] = NSStringize(ANALYTICS_VERSION);
-    serverOptions[@"traits"] = _traits;
+    serverOptions[@"traits"] = [_traits copy];
     for(id key in _deviceInformation) {
         serverOptions[key] = [_deviceInformation objectForKey:key];
     }
