@@ -66,7 +66,11 @@
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    // Not allowed to attach the userId in GA because it's prohibited in their terms of service.
+    // Optionally send the userId if they have that enabled
+    BOOL sendUserId = [self.settings objectForKey:@"sendUserId"];
+    if (sendUserId) {
+        [[[GAI sharedInstance] defaultTracker] set:@"&uid" value:userId];
+    }
 
     // We can set traits though. Iterate over all the traits and set them.
     for (NSString *key in traits) {
