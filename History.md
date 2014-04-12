@@ -1,3 +1,7 @@
+0.10.5 / 2014-4-12
+==================
+* Added support for Mixpanel increment
+
 0.10.4 / 2014-4-12
 ==================
 * Updated Mixpanel from 2.3.2 to 2.3.4
