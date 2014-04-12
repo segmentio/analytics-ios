@@ -1,3 +1,13 @@
+0.10.4 / 2014-4-12
+==================
+* Updated Mixpanel from 2.3.2 to 2.3.4
+* Updated Crittercism from 4.3.1 to 4.3.3
+* Updated Flurry from 4.3.2 to 4.4.0
+* Updated Google Analytics from 3.0.3c to 3.0.6
+* Exposed remaining Google Analytics headers
+* Added support for Google Analytics userId
+* Fixes traits to copy, thanks @realf!
+
 0.10.2 / 2014-3-14
 ==================
 * Updating Amplitude to new 2.0
