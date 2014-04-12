@@ -2,11 +2,11 @@ PODS:
   - Amplitude-iOS (2.0.0)
   - Bugsnag (3.1.0.fork)
   - Countly (1.0.0)
-  - CrittercismSDK (4.3.1)
-  - FlurrySDK (4.3.2):
+  - CrittercismSDK (4.3.3)
+  - FlurrySDK (4.4.0):
     - FlurrySDK/FlurrySDK
-  - FlurrySDK/FlurrySDK (4.3.2)
-  - GoogleAnalytics-iOS-SDK (3.0.3c)
+  - FlurrySDK/FlurrySDK (4.4.0)
+  - GoogleAnalytics-iOS-SDK (3.0.6)
   - Kiwi (2.2.3):
     - Kiwi/SenTestingKit
   - Kiwi/ARC (2.2.3)
@@ -15,31 +15,31 @@ PODS:
     - Kiwi/ARC
     - Kiwi/NonARC
   - Localytics (2.21.0.fork)
-  - Mixpanel (2.3.2)
+  - Mixpanel (2.3.4)
   - Tapstream (2.6)
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 2.0.0)
   - Bugsnag (= 3.1.0.fork)
   - Countly (~> 1.0.0)
-  - CrittercismSDK (~> 4.3.1)
-  - FlurrySDK (~> 4.3.2)
-  - GoogleAnalytics-iOS-SDK (= 3.0.3c)
+  - CrittercismSDK (~> 4.3.3)
+  - FlurrySDK (~> 4.4.0)
+  - GoogleAnalytics-iOS-SDK (= 3.0.6)
   - Kiwi (~> 2.2.3)
   - Localytics (= 2.21.0.fork)
-  - Mixpanel (~> 2.3.2)
+  - Mixpanel (~> 2.3.4)
   - Tapstream (~> 2.6)
 
 SPEC CHECKSUMS:
-  Amplitude-iOS: bb94407b136a0bca02a1116aeab47da400b2170c
+  Amplitude-iOS: 88d27d819a5ad9aa7bdbd700b03b1db8ff5e1fd8
   Bugsnag: d59f4f572b671913b87cc41229e51e91482a239e
   Countly: c9728abbbeffc3250d1ab8ba17b417938119d218
-  CrittercismSDK: 3b4eefdb985e08702836e2a0d234e4d117e3116c
-  FlurrySDK: 0ba42379fd272d69246ae06386a2c5688516ffd8
-  GoogleAnalytics-iOS-SDK: a1dc8c700de9edf41f57c0abe54a7eb2182a1820
+  CrittercismSDK: 2dd7d834502e4b12a2c2e4873c11580bec3778c1
+  FlurrySDK: 2cd8f2ce2383ca152c5d96fa34cb9ef29706feda
+  GoogleAnalytics-iOS-SDK: 16dfcc0c4491148bf372edc85a8470cc405ffb72
   Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
   Localytics: f5daff8b142b7943385a15080f2b09b0a3e7730f
-  Mixpanel: ddd79df92245a14d2b3064544d1e9ff037d8ac3a
+  Mixpanel: 16e6f1d5f8aeb9282ee864e169557de0bd9549df
   Tapstream: 00dd14461e648b5cfc682c79be5be085cf18631b
 
 COCOAPODS: 0.29.0
