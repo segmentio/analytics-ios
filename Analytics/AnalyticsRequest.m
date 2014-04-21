@@ -10,12 +10,14 @@
 
 #import "AnalyticsRequest.h"
 
-@interface AnalyticsRequest () <NSURLConnectionDataDelegate>
+@interface AnalyticsRequest () <NSURLConnectionDataDelegate> {
+    NSMutableData *_responseData;
+}
 
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSURLRequest *urlRequest;
 @property (nonatomic, strong) NSHTTPURLResponse *response;
-@property (nonatomic, strong) NSMutableData *responseData;
+@property (nonatomic, strong) NSData *responseData;
 @property (nonatomic, strong) id responseJSON;
 @property (nonatomic, strong) NSError *error;
 @property (nonatomic, strong) NSIndexSet *acceptableStatusCodes;
@@ -48,11 +50,11 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     self.response = (NSHTTPURLResponse *)response;
-    self.responseData = [[NSMutableData alloc] init];
+    _responseData = [[NSMutableData alloc] init];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.responseData appendData:data];
+    [_responseData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
