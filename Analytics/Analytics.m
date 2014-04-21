@@ -11,8 +11,8 @@
 
 @interface Analytics ()
 
-@property (nonatomic, strong) NSDictionary *providers;
-@property (nonatomic, strong) NSDictionary *cachedSettings;
+@property (nonatomic, copy) NSDictionary *providers;
+@property (nonatomic, copy) NSDictionary *cachedSettings;
 
 @end
 
@@ -21,6 +21,7 @@
     NSMutableArray *_messageQueue;
     AnalyticsRequest *_settingsRequest;
     BOOL _enabled;
+    NSMutableDictionary *_providers;
 }
 
 @synthesize cachedSettings = _cachedSettings;
@@ -28,25 +29,24 @@
 - (id)initWithSecret:(NSString *)secret {
     NSParameterAssert(secret.length);
     if (self = [self init]) {
-        _secret = secret;
+        _secret = [secret copy];
         _enabled = YES;
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         _messageQueue = [[NSMutableArray alloc] init];
         _providers = [[NSMutableDictionary alloc] init];
-        [[[self class] registeredProviders] enumerateKeysAndObjectsUsingBlock:
-                ^(NSString *identifier, Class providerClass, BOOL *stop) {
-             ((NSMutableDictionary *)_providers)[identifier] = [[providerClass alloc] initWithAnalytics:self];
+        [[[self class] registeredProviders] enumerateKeysAndObjectsUsingBlock:^(NSString *identifier, Class providerClass, BOOL *stop) {
+             _providers[identifier] = [[providerClass alloc] initWithAnalytics:self];
         }];
-        
+
         // Update settings on each provider immediately
         [self refreshSettings];
-        
+
         // Attach to application state change hooks
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        
+
         // Update settings on foreground
         [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
-        
+
         // Pass through for application state change events
         for (NSString *name in @[UIApplicationDidEnterBackgroundNotification,
                                  UIApplicationWillEnterForegroundNotification,
@@ -76,7 +76,7 @@
     if (!_enabled) {
         return;
     }
-    
+
     NSMethodSignature *methodSignature = [AnalyticsProvider instanceMethodSignatureForSelector:selector];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
     invocation.selector = selector;
@@ -84,7 +84,7 @@
         id argument = (arguments[i] == [NSNull null]) ? nil : arguments[i];
         [invocation setArgument:&argument atIndex:i+2];
     }
-    
+
     for (id<AnalyticsProvider> provider in self.providers.allValues) {
         if (provider.ready && [provider respondsToSelector:selector]) {
             if([self isProvider:provider enabledInOptions:options]) {
@@ -237,7 +237,7 @@
 }
 
 - (void)setCachedSettings:(NSDictionary *)settings {
-    _cachedSettings = settings;
+    _cachedSettings = [settings copy];
     [_cachedSettings ?: @{} writeToURL:SETTING_CACHE_URL atomically:YES];
     [self updateProvidersWithSettings:settings];
 }
@@ -258,7 +258,7 @@
         [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
         [urlRequest setHTTPMethod:@"GET"];
         SOLog(@"%@ Sending API settings request: %@", self, urlRequest);
-        
+
         _settingsRequest = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
             dispatch_specific_async(_serialQueue, ^{
                 SOLog(@"%@ Received API settings response: %@", self, _settingsRequest.responseJSON);
@@ -292,7 +292,7 @@ static Analytics *SharedInstance = nil;
 
 + (void)initializeWithSecret:(NSString *)secret {
     NSParameterAssert(secret.length > 0);
-    
+
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         SharedInstance = [[self alloc] initWithSecret:secret];
