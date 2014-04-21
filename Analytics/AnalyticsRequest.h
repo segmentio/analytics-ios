@@ -10,7 +10,7 @@ typedef void (^AnalyticsRequestCompletionBlock)(void);
 @property (nonatomic, copy) AnalyticsRequestCompletionBlock completion;
 @property (nonatomic, readonly) NSURLRequest *urlRequest;
 @property (nonatomic, readonly) NSHTTPURLResponse *response;
-@property (nonatomic, readonly) NSMutableData *responseData;
+@property (nonatomic, readonly) NSData *responseData;
 @property (nonatomic, readonly) id responseJSON;
 @property (nonatomic, readonly) NSError *error;
 

@@ -10,7 +10,6 @@ Then download https://s3.amazonaws.com/segmentio/releases/ios/Analytics-latest-s
 * SystemConfiguration
 * QuartzCore
 * CFNetwork
-* AdSupport
 * CoreTelephony
 * Security
 

@@ -46,12 +46,12 @@
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     [Amplitude setUserId:userId];
-    [Amplitude setGlobalUserProperties:traits];
+    [Amplitude setUserProperties:traits];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    [Amplitude logEvent:event withCustomProperties:properties];
+    [Amplitude logEvent:event withEventProperties:properties];
 
     // Track any revenue.
     NSNumber *revenue = [AnalyticsIntegration extractRevenue:properties];

@@ -344,6 +344,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Examples/DirectIncludeExample",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DirectIncludeExample-Prefix.pch";
@@ -362,6 +363,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"/Users/reinpk/dev/segmentio/analytics-ios/Examples/DirectIncludeExample",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DirectIncludeExample-Prefix.pch";

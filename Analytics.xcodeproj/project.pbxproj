@@ -67,8 +67,6 @@
 		D371F330185942C90053337D /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F32F185942C90053337D /* Flurry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F332185942DE0053337D /* GAI.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F331185942DE0053337D /* GAI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F334185943170053337D /* Mixpanel.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F333185943170053337D /* Mixpanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D37F756D189237360037E851 /* libCrittercism_v4_3_1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D37F756C189237360037E851 /* libCrittercism_v4_3_1.a */; };
-		D3A6A2E018B305E200C4B510 /* libFlurry_4.3.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A6A2DF18B305E200C4B510 /* libFlurry_4.3.2.a */; };
 		D3A6A2E518B308F000C4B510 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */; };
 		D3C07FBF185954D000649011 /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C07FBE185954D000649011 /* Bugsnag.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3EDB65618C315F100A88A7E /* AmplitudeIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63918C315F100A88A7E /* AmplitudeIntegration.h */; };
@@ -271,10 +269,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3C0385318F9E92A0048158C /* libCrittercism_v4_3_3.a in Frameworks */,
+				D3C0385118F9E9220048158C /* libFlurry_4.4.0.a in Frameworks */,
 				D36E2D7B18C27CA2008536A3 /* libLocalyticsAMP_x64.a in Frameworks */,
 				D3A6A2E518B308F000C4B510 /* libGoogleAnalyticsServices.a in Frameworks */,
-				D3A6A2E018B305E200C4B510 /* libFlurry_4.3.2.a in Frameworks */,
-				D37F756D189237360037E851 /* libCrittercism_v4_3_1.a in Frameworks */,
 				F78D29FA1765B382000B937E /* UIKit.framework in Frameworks */,
 				F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */,
 				B8A1B15E08994855871D1685 /* libPods.a in Frameworks */,
@@ -306,6 +304,8 @@
 			isa = PBXGroup;
 			children = (
 				D3D1243E18C31FDA00EE8B82 /* SegmentioIntegration.h */,
+				D3C0384C18F9DE420048158C /* GAIDictionaryBuilder.h */,
+				D3C0384D18F9DE420048158C /* GAIFields.h */,
 				D31C8F7D18A2D83700DA22A6 /* MPNotification.h */,
 				D331BD1D1860F5F0007CB22F /* TSApi.h */,
 				D331BD1E1860F5F0007CB22F /* TSAppEventSource.h */,
@@ -346,7 +346,6 @@
 			name = Headers;
 			sourceTree = "<group>";
 		};
-<<<<<<< HEAD
 		D3EDB63718C315F100A88A7E /* Integrations */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,9 +373,6 @@
 			sourceTree = "<group>";
 		};
 		D3EDB63B18C315F100A88A7E /* Bugsnag */ = {
-=======
-		EA722AF617C87BB00016E8B0 /* AnalyticsTests */ = {
->>>>>>> parent of 1efc1be... Removing NSContainer-Subscripting since dropping iOS 5 support
 			isa = PBXGroup;
 			children = (
 				D3EDB63C18C315F100A88A7E /* BugsnagIntegration.h */,
@@ -397,25 +393,10 @@
 		D3EDB64118C315F100A88A7E /* Crittercism */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				D3EDB64218C315F100A88A7E /* CrittercismIntegration.h */,
 				D3EDB64318C315F100A88A7E /* CrittercismIntegration.m */,
 			);
 			path = Crittercism;
-=======
-				EACB4DAE17C0BB3100624129 /* Amplitude */,
-				EACB4DB317C0BB3100624129 /* Bugsnag */,
-				EACB4DB917C0BB3100624129 /* Countly */,
-				D3ABF62C1846F6E000FAAB2B /* Crittercism */,
-				EACB4DBC17C0BB3100624129 /* Flurry */,
-				EACB4DBF17C0BB3100624129 /* GoogleAnalytics */,
-				EACB4DC517C0BB3100624129 /* Localytics */,
-				EACB4DC817C0BB3100624129 /* Mixpanel */,
-				D331BD101860EA83007CB22F /* Tapstream */,
-				EACB4DCB17C0BB3100624129 /* Segmentio */,
-			);
-			path = Providers;
->>>>>>> parent of 1efc1be... Removing NSContainer-Subscripting since dropping iOS 5 support
 			sourceTree = "<group>";
 		};
 		D3EDB64418C315F100A88A7E /* Flurry */ = {
@@ -524,6 +505,8 @@
 		F7200B7517659B2F003F3138 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3C0385218F9E92A0048158C /* libCrittercism_v4_3_3.a */,
+				D3C0385018F9E9220048158C /* libFlurry_4.4.0.a */,
 				D36E2D7A18C27CA2008536A3 /* libLocalyticsAMP_x64.a */,
 				D3E9B61B18BADAEA00AB06B0 /* libLocalyticsAMP.a */,
 				D3A6A2DF18B305E200C4B510 /* libFlurry_4.3.2.a */,
@@ -598,6 +581,8 @@
 				D371F330185942C90053337D /* Flurry.h in Headers */,
 				D371F332185942DE0053337D /* GAI.h in Headers */,
 				D3EDB65E18C315F100A88A7E /* FlurryIntegration.h in Headers */,
+				D3C0384E18F9DE420048158C /* GAIDictionaryBuilder.h in Headers */,
+				D3C0384F18F9DE420048158C /* GAIFields.h in Headers */,
 				D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */,
 				D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */,
 				D331BCFD185C2DC4007CB22F /* GAITracker.h in Headers */,
@@ -626,10 +611,7 @@
 				D331BD321860F5F0007CB22F /* TSHelpers.h in Headers */,
 				D331BD331860F5F0007CB22F /* TSHit.h in Headers */,
 				D331BD341860F5F0007CB22F /* TSLogging.h in Headers */,
-<<<<<<< HEAD
 				D3EDB66618C315F100A88A7E /* SegmentioIntegration.h in Headers */,
-=======
->>>>>>> parent of 1efc1be... Removing NSContainer-Subscripting since dropping iOS 5 support
 				D331BD351860F5F0007CB22F /* TSLogLevel.h in Headers */,
 				D3EDB66218C315F100A88A7E /* LocalyticsIntegration.h in Headers */,
 				D331BD361860F5F0007CB22F /* TSPlatform.h in Headers */,
@@ -639,9 +621,7 @@
 				D331BD381860F5F0007CB22F /* TSUtils.h in Headers */,
 				D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */,
 				D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */,
-<<<<<<< HEAD
 				EA65F96617C2ABA600389A1A /* AnalyticsIntegration.h in Headers */,
-=======
 				EACB4DE617C0BB3100624129 /* SegmentioProvider.h in Headers */,
 				EA65F96617C2ABA600389A1A /* AnalyticsProvider.h in Headers */,
 				EACB4DD217C0BB3100624129 /* AmplitudeProvider.h in Headers */,
@@ -653,7 +633,6 @@
 				2822D5FF17E26C9E005B2B7F /* NSContainer+Subscripting.h in Headers */,
 				EACB4DE217C0BB3100624129 /* LocalyticsProvider.h in Headers */,
 				EACB4DE417C0BB3100624129 /* MixpanelProvider.h in Headers */,
->>>>>>> parent of 1efc1be... Removing NSContainer-Subscripting since dropping iOS 5 support
 				EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */,
 				EAA604C917C28C7C00911919 /* AnalyticsRequest.h in Headers */,
 			);
@@ -895,26 +874,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				D3EDB66918C315F100A88A7E /* TapstreamIntegration.m in Sources */,
 				D3EDB66118C315F100A88A7E /* GoogleAnalyticsIntegration.m in Sources */,
 				D3EDB65718C315F100A88A7E /* AmplitudeIntegration.m in Sources */,
 				F7200B7E17659B2F003F3138 /* Analytics.m in Sources */,
 				D3EDB65918C315F100A88A7E /* BugsnagIntegration.m in Sources */,
-=======
-				F7200B7E17659B2F003F3138 /* Analytics.m in Sources */,
-				EACB4DD317C0BB3100624129 /* AmplitudeProvider.m in Sources */,
-				EACB4DD717C0BB3100624129 /* BugsnagProvider.m in Sources */,
-				D3ABF6301846F6E000FAAB2B /* CrittercismProvider.m in Sources */,
-				2822D60017E26C9E005B2B7F /* NSContainer+Subscripting.m in Sources */,
-				EACB4DDB17C0BB3100624129 /* CountlyProvider.m in Sources */,
-				EACB4DDD17C0BB3100624129 /* FlurryProvider.m in Sources */,
-				EACB4DDF17C0BB3100624129 /* GoogleAnalyticsProvider.m in Sources */,
-				EACB4DE317C0BB3100624129 /* LocalyticsProvider.m in Sources */,
-				D331BD141860EA9A007CB22F /* TapstreamProvider.m in Sources */,
-				EACB4DE517C0BB3100624129 /* MixpanelProvider.m in Sources */,
-				EACB4DE717C0BB3100624129 /* SegmentioProvider.m in Sources */,
->>>>>>> parent of 1efc1be... Removing NSContainer-Subscripting since dropping iOS 5 support
 				EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */,
 				D3EDB65F18C315F100A88A7E /* FlurryIntegration.m in Sources */,
 				D3EDB66518C315F100A88A7E /* MixpanelIntegration.m in Sources */,
@@ -1063,9 +1027,11 @@
 					"$(inherited)",
 					"${PODS_ROOT}/CrittercismSDK/CrittercismSDK",
 					"${PODS_ROOT}/FlurrySDK/Flurry",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/FlurrySDK/Flurry",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/GoogleAnalytics-iOS-SDK",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/Localytics",
+					"${SRCROOT}/Pods/FlurrySDK/Flurry",
+					"${SRCROOT}/Pods/GoogleAnalytics-iOS-SDK",
+					"${SRCROOT}/Pods/Localytics",
+					"$(PROJECT_DIR)/Pods/FlurrySDK/Flurry",
+					"$(PROJECT_DIR)/Pods/CrittercismSDK/CrittercismSDK",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -1092,9 +1058,11 @@
 					"$(inherited)",
 					"${PODS_ROOT}/CrittercismSDK/CrittercismSDK",
 					"${PODS_ROOT}/FlurrySDK/Flurry",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/FlurrySDK/Flurry",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/GoogleAnalytics-iOS-SDK",
-					"/Users/reinpk/dev/segmentio/analytics-ios/Pods/Localytics",
+					"${SRCROOT}/Pods/FlurrySDK/Flurry",
+					"${SRCROOT}/Pods/GoogleAnalytics-iOS-SDK",
+					"${SRCROOT}/Pods/Localytics",
+					"$(PROJECT_DIR)/Pods/FlurrySDK/Flurry",
+					"$(PROJECT_DIR)/Pods/CrittercismSDK/CrittercismSDK",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
