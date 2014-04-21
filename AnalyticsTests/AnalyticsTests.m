@@ -74,8 +74,8 @@ describe(@"Analytics", ^{
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
     });
     
-    it(@"Should gracefully handle nil userId", ^{
-        [analytics identify:nil traits:nil options:nil];
+    it(@"Should handle nil userId with traits", ^{
+        [analytics identify:nil traits:@{} options:nil];
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         NSDictionary *queuedIdentify = (segmentio.queue)[0];
         [[queuedIdentify[@"action"] should] equal:@"identify"];
@@ -84,6 +84,12 @@ describe(@"Analytics", ^{
         [segmentio flush];
         
         [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
+    });
+    
+    it(@"should do nothing when identifying without traits", ^{
+        [analytics identify:nil];
+        [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@0];
+        [segmentio flush];
     });
     
     it(@"Should track", ^{

@@ -170,6 +170,8 @@
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
+    if (!userId && !traits)
+        return;
     [self callProvidersWithSelector:_cmd
                           arguments:@[userId ?: [NSNull null], CoerceDictionary(traits), CoerceDictionary(options)]
                             options:options];
