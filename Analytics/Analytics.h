@@ -28,10 +28,10 @@
 {
     // If you want to see debug logs from inside the SDK.
     [Analytics debug:YES];
- 
+
     // Initialize the Analytics instance
     [Analytics initializeWithWriteKey:@"YOUR SEGMENT.IO WRITE KEY FROM HTTPS://SEGMENT.IO/LIBRARIES/IOS"];
- 
+
     // YOUR OTHER APP LAUNCH CODE HERE....
 
     return YES;
@@ -42,30 +42,30 @@
 
 /*!
  @method
- 
+
  @abstract
  Enables/disables additional debug logging to help you track down any analytics issues.
- 
+
  @param showDebugLogs        YES to enable debug logging, NO to disable debug logging.
- 
+
  @discussion
  By default, the SDK will not log anything to the Xcode output console. If you want to track down an issue affecting your analytics code, or just see that analytics requests are indeed going out, you can enable debug logging with this method.
- 
+
  While developing, we recommend you reset the settings and turn on debug logging before after you initialize the Analytics instance with your write key:
- 
+
  - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
  {
     // If you want to see debug logs from inside the SDK.
     [Analytics debug:YES];
- 
+
     // Initialize the Analytics instance
     [Analytics initializeWithWriteKey:@"YOUR SEGMENT.IO WRITE KEY FROM HTTPS://SEGMENT.IO/LIBRARIES/IOS"];
- 
+
     // YOUR OTHER APP LAUNCH CODE HERE....
- 
+
     return YES;
  }
- 
+
  */
 + (void)debug:(BOOL)showDebugLogs;
 
@@ -100,7 +100,7 @@
 
 
 
-// Step 3: Implementing the Analytics API 
+// Step 3: Implementing the Analytics API
 // --------------------------------------
 
 /*!
@@ -111,14 +111,14 @@
 
  @param userId        A database ID for this user. If you don't have a userId
                       but want to record traits, you should pass nil. We will automatically generate
-                      a UUID to let you identify "anonymous" users. For more information on how we 
+                      a UUID to let you identify "anonymous" users. For more information on how we
                       generate the UUID and Apple's policies on IDs, see https://segment.io/libraries/ios#ids
 
  @param traits        A dictionary of traits you know about the user. Things like: email, name, plan, etc.
 
  @discussion
  When you learn more about who your user is, you can record that information with identify.
- 
+
 */
 - (void)identify:(NSString *)userId;
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits;
@@ -130,7 +130,7 @@
  @abstract
  Record the actions your users perform.
 
- @param event         The name of the event you're tracking. We recommend using human-readable names 
+ @param event         The name of the event you're tracking. We recommend using human-readable names
                       like `Played a Song` or `Updated Status`.
 
  @param properties    A dictionary of properties for the event. If the event was 'Added to Shopping Cart', it might
@@ -138,7 +138,7 @@
 
  @discussion
  When a user performs an action in your app, you'll want to track that action for later analysis. Use the event name to say what the user did, and properties to specify any interesting details of the action.
- 
+
 */
 - (void)track:(NSString *)event;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties;
@@ -158,7 +158,7 @@
 
  @discussion
  When a user views a screen in your app, you'll want to record that here. For some tools like Google Analytics and Flurry, screen views are treated specially, and are different from "events" kind of like "page views" on the web. For services that don't treat "screen views" specially, we map "screen" straight to "track" with the same parameters. For example, Mixpanel doesn't treat "screen views" any differently. So a call to "screen" will be tracked as a normal event in Mixpanel, but get sent to Google Analytics and Flurry as a "screen".
- 
+
 */
 - (void)screen:(NSString *)screenTitle;
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties;
@@ -184,7 +184,7 @@
 
 /*!
  @method
- 
+
  @abstract
  Register the given device to receive push notifications from applicable integrations.
  
@@ -193,7 +193,7 @@
  their traits and actions. This will associate the device token with the current user in integrations
  that have this capability. You should call this method with the <code>NSData</code> token passed to
  <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>.
- 
+
  @param deviceToken     device token as returned <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>
  */
 - (void)registerPushDeviceToken:(NSData *)deviceToken;
@@ -201,10 +201,10 @@
 
 /*!
  @method
- 
+
  @abstract
  Reset any user state that is cached on the device.
- 
+
  @discussion
  This is useful when a user logs out and you want to clear the identity. It will clear any
  traits or userId's cached on the device.
@@ -214,10 +214,10 @@
 
 /*!
  @method
- 
+
  @abstract
  Enable the sending of analytics data. Enabled by default.
- 
+
  @discussion
  Occasionally used in conjunction with disable user opt-out handling.
  */
@@ -226,12 +226,12 @@
 
 /*!
  @method
- 
+
  @abstract
  Completely disable the sending of any analytics data.
- 
+
  @discussion
- If have a way for users to actively or passively (sometimes based on location) opt-out of 
+ If have a way for users to actively or passively (sometimes based on location) opt-out of
  analytics data collection, you can use this method to turn off all data collection.
  */
 - (void)disable;

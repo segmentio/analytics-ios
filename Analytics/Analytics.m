@@ -21,6 +21,7 @@
     NSMutableArray *_messageQueue;
     AnalyticsRequest *_settingsRequest;
     BOOL _enabled;
+    NSMutableDictionary *_providers;
 }
 
 @synthesize cachedSettings = _cachedSettings;
@@ -40,13 +41,13 @@
         
         // Update settings on each integration immediately
         [self refreshSettings];
-        
+
         // Attach to application state change hooks
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        
+
         // Update settings on foreground
         [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
-        
+
         // Pass through for application state change events
         for (NSString *name in @[UIApplicationDidEnterBackgroundNotification,
                                  UIApplicationWillEnterForegroundNotification,
@@ -83,7 +84,7 @@
         id argument = (arguments[i] == [NSNull null]) ? nil : arguments[i];
         [invocation setArgument:&argument atIndex:i+2];
     }
-    
+
     for (id<AnalyticsIntegration> integration in self.integrations.allValues) {
         if (integration.ready) {
             if ([integration respondsToSelector:selector]) {
@@ -177,6 +178,8 @@
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
+    if (!userId && !traits)
+        return;
     [self callIntegrationsWithSelector:_cmd
                           arguments:@[userId ?: [NSNull null], CoerceDictionary(traits), CoerceDictionary(options)]
                             options:options];
@@ -256,7 +259,7 @@
 }
 
 - (void)setCachedSettings:(NSDictionary *)settings {
-    _cachedSettings = settings;
+    _cachedSettings = [settings copy];
     [_cachedSettings ?: @{} writeToURL:SETTING_CACHE_URL atomically:YES];
     [self updateIntegrationsWithSettings:settings];
 }
@@ -277,7 +280,7 @@
         [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
         [urlRequest setHTTPMethod:@"GET"];
         SOLog(@"%@ Sending API settings request: %@", self, urlRequest);
-        
+
         _settingsRequest = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
             dispatch_specific_async(_serialQueue, ^{
                 SOLog(@"%@ Received API settings response: %@", self, _settingsRequest.responseJSON);
@@ -311,7 +314,6 @@ static Analytics *SharedInstance = nil;
 
 + (void)initializeWithWriteKey:(NSString *)writeKey {
     NSParameterAssert(writeKey.length > 0);
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         SharedInstance = [[self alloc] initWithWriteKey:writeKey];

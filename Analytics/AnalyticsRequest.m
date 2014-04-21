@@ -5,14 +5,17 @@
 
 #import "AnalyticsRequest.h"
 
-@interface AnalyticsRequest () <NSURLConnectionDataDelegate>
+@interface AnalyticsRequest () <NSURLConnectionDataDelegate> {
+    NSMutableData *_responseData;
+}
 
 @property (nonatomic, strong) NSURLConnection *connection;
 @property (nonatomic, strong) NSURLRequest *urlRequest;
 @property (nonatomic, strong) NSHTTPURLResponse *response;
-@property (nonatomic, strong) NSMutableData *responseData;
+@property (nonatomic, strong) NSData *responseData;
 @property (nonatomic, strong) id responseJSON;
 @property (nonatomic, strong) NSError *error;
+@property (nonatomic, strong) NSIndexSet *acceptableStatusCodes;
 
 @end
 
@@ -42,21 +45,23 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     self.response = (NSHTTPURLResponse *)response;
-    self.responseData = [[NSMutableData alloc] init];
+    _responseData = [[NSMutableData alloc] init];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    [self.responseData appendData:data];
+    [_responseData appendData:data];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSInteger statusCode = self.response.statusCode;
-    if (statusCode >= 200 && statusCode < 300) {
+    if ([self.acceptableStatusCodes containsIndex:statusCode]) {
         NSError *error = nil;
-        self.responseJSON = [NSJSONSerialization JSONObjectWithData:self.responseData
-                                                            options:0
-                                                              error:&error];
-        self.error = error;
+        if (self.responseData.length > 0) {
+            self.responseJSON = [NSJSONSerialization JSONObjectWithData:self.responseData
+                                                                options:0
+                                                                  error:&error];
+            self.error = error;
+        }
     } else {
         self.error = [NSError errorWithDomain:@"HTTP"
                                          code:statusCode
@@ -72,7 +77,7 @@
     [self finish];
 }
 
-#pragma mark Class Methods
+#pragma mark - Class Methods
 
 + (instancetype)startWithURLRequest:(NSURLRequest *)urlRequest
                          completion:(AnalyticsRequestCompletionBlock)completion {
@@ -89,6 +94,15 @@
         networkQueue = [[NSOperationQueue alloc] init];
     });
     return networkQueue;
+}
+
+#pragma mark - Private
+
+- (NSIndexSet *)acceptableStatusCodes {
+    if (!_acceptableStatusCodes) {
+        _acceptableStatusCodes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(200, 100)];
+    }
+    return _acceptableStatusCodes;
 }
 
 @end

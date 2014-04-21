@@ -64,13 +64,23 @@
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
-    // Track the raw event.
-    [[Mixpanel sharedInstance] track:event properties:properties];
-
-    // If revenue is included and People is enabled, trackCharge to Mixpanel.
-    NSNumber *revenue = [AnalyticsIntegration extractRevenue:properties];
-    if (revenue && [self.settings objectForKey:@"people"]) {
-        [[Mixpanel sharedInstance].people trackCharge:revenue];
+    // Only track the event if it isn't blocked
+    if (![self eventIsBlocked:event]) {
+        // Track the raw event.
+        [[Mixpanel sharedInstance] track:event properties:properties];
+        
+        // If revenue is included and People is enabled, trackCharge to Mixpanel.
+        NSNumber *revenue = [AnalyticsProvider extractRevenue:properties];
+        if (revenue && [self.settings objectForKey:@"people"]) {
+            [[Mixpanel sharedInstance].people trackCharge:revenue];
+        }
+    }
+    
+    // If people is enabled we may want to increment this event in people
+    if ([self eventShouldIncrement:event]) {
+        [[Mixpanel sharedInstance].people increment:event by:@1];
+        NSString *lastEvent = [NSString stringWithFormat:@"Last %@", event];
+        [[Mixpanel sharedInstance].people set:lastEvent to:[NSDate date]];
     }
 }
 
@@ -81,6 +91,26 @@
 
 - (void)registerPushDeviceToken:(NSData *)deviceToken {
     [[[Mixpanel sharedInstance] people] addPushDeviceToken:deviceToken];
+}
+
+- (BOOL)eventShouldIncrement:(NSString *)event {
+    NSArray *increments = [self.settings objectForKey:@"increments"];
+    for (NSString *increment in increments) {
+        if ([event caseInsensitiveCompare:increment]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)eventIsBlocked:(NSString *)event {
+    NSArray *blocked = [self.settings objectForKey:@"blockedEvents"];
+    for (NSString *block in blocked) {
+        if ([event caseInsensitiveCompare:block]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (void)reset {
