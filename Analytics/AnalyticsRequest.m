@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSMutableData *responseData;
 @property (nonatomic, strong) id responseJSON;
 @property (nonatomic, strong) NSError *error;
+@property (nonatomic, strong) NSIndexSet *acceptableStatusCodes;
 
 @end
 
@@ -56,7 +57,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSInteger statusCode = self.response.statusCode;
-    if (statusCode >= 200 && statusCode < 300) {
+    if ([self.acceptableStatusCodes containsIndex:statusCode]) {
         NSError *error = nil;
         if (self.responseData.length > 0) {
             self.responseJSON = [NSJSONSerialization JSONObjectWithData:self.responseData
@@ -79,7 +80,7 @@
     [self finish];
 }
 
-#pragma mark Class Methods
+#pragma mark - Class Methods
 
 + (instancetype)startWithURLRequest:(NSURLRequest *)urlRequest
                          completion:(AnalyticsRequestCompletionBlock)completion {
@@ -96,6 +97,15 @@
         networkQueue = [[NSOperationQueue alloc] init];
     });
     return networkQueue;
+}
+
+#pragma mark - Private
+
+- (NSIndexSet *)acceptableStatusCodes {
+    if (!_acceptableStatusCodes) {
+        _acceptableStatusCodes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(200, 100)];
+    }
+    return _acceptableStatusCodes;
 }
 
 @end
