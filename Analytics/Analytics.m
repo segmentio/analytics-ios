@@ -270,9 +270,6 @@
 }
 
 - (void)refreshSettings {
-    if (self.cachedSettings) {
-        [self updateIntegrationsWithSettings:self.cachedSettings];
-    }
     if (!_settingsRequest) {
         NSString *urlString = [NSString stringWithFormat:@"https://api.segment.io/project/%@/settings", self.writeKey];
         NSURL *url = [NSURL URLWithString:urlString];
