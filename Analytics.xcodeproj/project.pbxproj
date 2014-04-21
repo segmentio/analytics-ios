@@ -889,7 +889,7 @@
 		EA25891F17C693C2000CEF61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ANALYTICS_VERSION = 0.10.5;
+				ANALYTICS_VERSION = 0.10.6;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -898,7 +898,7 @@
 		EA25892017C693C2000CEF61 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ANALYTICS_VERSION = 0.10.5;
+				ANALYTICS_VERSION = 0.10.6;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1001,7 +1001,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
-				ANALYTICS_VERSION = 0.10.5;
+				ANALYTICS_VERSION = 0.10.6;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Analytics.dst;
@@ -1031,7 +1031,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
-				ANALYTICS_VERSION = 0.10.5;
+				ANALYTICS_VERSION = 0.10.6;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
