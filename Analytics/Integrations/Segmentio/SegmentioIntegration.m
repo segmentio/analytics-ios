@@ -72,14 +72,14 @@ static NSString *GetIdForAdvertiser() {
 
 static NSMutableDictionary *BuildStaticContext() {
     NSMutableDictionary *context = [NSMutableDictionary dictionary];
-    
+
     // Library
     NSMutableDictionary *library = [NSMutableDictionary dictionary];
     [library setObject:@"analytics-ios" forKey:@"name"];
     [library setObject:NSStringize(ANALYTICS_VERSION) forKey:@"version"];
     [context setObject:library forKey:@"library"];
     SOLog(@"Adding info to context: library = %@", library);
-    
+
     // App
     NSDictionary *bundle = [[NSBundle mainBundle] infoDictionary];
     if (bundle.count) {
@@ -90,7 +90,7 @@ static NSMutableDictionary *BuildStaticContext() {
         [context setObject:app forKey:@"app"];
         SOLog(@"Adding info to context: app = %@", app);
     }
-    
+
     // Device
     UIDevice *uiDevice = [UIDevice currentDevice];
     NSMutableDictionary *device = [NSMutableDictionary dictionary];
@@ -103,14 +103,14 @@ static NSMutableDictionary *BuildStaticContext() {
     }
     [context setObject:device forKey:@"device"];
     SOLog(@"Adding info to context: device = %@", device);
-    
+
     // OS
     NSMutableDictionary *os = [NSMutableDictionary dictionary];
     [os setObject:[uiDevice systemName] forKey:@"name"];
     [os setObject:[uiDevice systemVersion] forKey:@"version"];
     [context setObject:os forKey:@"os"];
     SOLog(@"Adding info to context: os = %@", os);
-    
+
     // Telephony
     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *carrier = [networkInfo subscriberCellularProvider];
@@ -120,7 +120,7 @@ static NSMutableDictionary *BuildStaticContext() {
         [context setObject:telephony forKey:@"telephony"];
         SOLog(@"Adding info to context: telephony = %@", telephony);
     }
-    
+
     // Screen
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     NSMutableDictionary *screen = [NSMutableDictionary dictionary];
@@ -128,7 +128,7 @@ static NSMutableDictionary *BuildStaticContext() {
     [screen setObject:[NSNumber numberWithInt:(int)screenSize.height] forKey:@"height"];
     [context setObject:screen forKey:@"screen"];
     SOLog(@"Adding info to context: screen = %@", screen);
-    
+
     return context;
 }
 
@@ -159,7 +159,7 @@ static NSMutableDictionary *BuildStaticContext() {
 - (id)initWithWriteKey:(NSString *)writeKey flushAt:(NSUInteger)flushAt {
     NSParameterAssert(writeKey.length);
     NSParameterAssert(flushAt > 0);
-    
+
     if (self = [self init]) {
         _flushAt = flushAt;
         _writeKey = writeKey;
@@ -174,7 +174,7 @@ static NSMutableDictionary *BuildStaticContext() {
         _context = BuildStaticContext();
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         _flushTaskID = UIBackgroundTaskInvalid;
-        
+
         self.name = @"Segment.io";
         self.valid = NO;
         self.initialized = NO;
@@ -188,13 +188,13 @@ static NSMutableDictionary *BuildStaticContext() {
 
 - (NSMutableDictionary *)liveContext {
     NSMutableDictionary *context = [NSMutableDictionary dictionary];
-    
+
     // Network
     // TODO https://github.com/segmentio/spec/issues/30
-    
+
     // Traits
     // TODO https://github.com/segmentio/spec/issues/29
-    
+
     return context;
 }
 
@@ -225,10 +225,6 @@ static NSMutableDictionary *BuildStaticContext() {
 - (void)validate {
     BOOL isOff = [[self.settings objectForKey:@"off"] boolValue];
     self.valid = !isOff;
-}
-
-- (NSString *)getAnonymousId {
-    return self.anonymousId;
 }
 
 - (NSString *)description {
@@ -269,33 +265,33 @@ static NSMutableDictionary *BuildStaticContext() {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:event forKey:@"event"];
     [dictionary setValue:properties forKey:@"properties"];
-    
+
     [self enqueueAction:@"track" dictionary:dictionary options:options];
  }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
     NSAssert(screenTitle.length, @"%@ screen requires a screen title.", self);
-    
+
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:screenTitle forKey:@"name"];
     [dictionary setValue:properties forKey:@"properties"];
-    
+
     [self enqueueAction:@"screen" dictionary:dictionary options:options];
 }
 
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options {
     NSAssert(groupId.length, @"%@ group requires a groupId.", self);
-    
+
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:groupId forKey:@"groupId"];
     [dictionary setValue:traits forKey:@"traits"];
-    
+
     [self enqueueAction:@"group" dictionary:dictionary options:options];
 }
 
 - (void)registerPushDeviceToken:(NSData *)deviceToken {
     NSAssert(deviceToken, @"%@ registerPushDeviceToken requires a deviceToken", self);
-    
+
     const unsigned char *buffer = (const unsigned char *)[deviceToken bytes];
     if (!buffer) {
         return;
@@ -334,7 +330,7 @@ static NSMutableDictionary *BuildStaticContext() {
         [payload setValue:self.userId forKey:@"userId"];
         [payload setValue:self.anonymousId forKey:@"anonymousId"];
         SOLog(@"%@ Enqueueing action: %@", self, payload);
-        
+
         [payload setValue:[self integrationsDictionary:options] forKey:@"integrations"];
         [payload setValue:[self liveContext] forKey:@"context"];
         [self.queue addObject:payload];
@@ -360,24 +356,24 @@ static NSMutableDictionary *BuildStaticContext() {
         } else {
             self.batch = [NSArray arrayWithArray:self.queue];
         }
-        
+
         SOLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)self.batch.count, (unsigned long)self.queue.count);
-        
+
         NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
         [payloadDictionary setObject:self.writeKey forKey:@"writeKey"];
         [payloadDictionary setObject:[[NSDate date] description] forKey:@"sentAt"];
         [payloadDictionary setObject:self.context forKey:@"context"];
         [payloadDictionary setObject:self.batch forKey:@"batch"];
-        
+
         SOLog(@"Flushing payload %@", payloadDictionary);
-        
+
         NSError *error = nil;
         NSData *payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary
                                                           options:0 error:&error];
         if (error) {
             SOLog(@"%@ Error serializing JSON: %@", self, error);
         }
-        
+
         [self sendData:payload];
     }];
 }
@@ -428,7 +424,7 @@ static NSMutableDictionary *BuildStaticContext() {
                 [self.queue removeObjectsInArray:self.batch];
                 [self notifyForName:SegmentioRequestDidSucceedNotification userInfo:self.batch];
             }
-            
+
             self.batch = nil;
             self.request = nil;
             [self endBackgroundTask];
