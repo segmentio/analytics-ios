@@ -15,7 +15,6 @@ extern NSString *const SegmentioRequestDidFailNotification;
 @property(nonatomic, strong) NSString *userId;
 @property(nonatomic, assign) NSUInteger flushAt;
 
-- (NSString *)getAnonymousId;
 - (void)flush;
 
 - (id)initWithWriteKey:(NSString *)writeKey flushAt:(NSUInteger)flushAt;
