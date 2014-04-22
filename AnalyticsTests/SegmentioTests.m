@@ -189,11 +189,14 @@ describe(@"Segment.io", ^{
         NSString *eventName = @"Purchased an iPad 5";
         NSDictionary *properties = @{@"Filter": @"Tilt-shift", @"category": @"Mobile", @"revenue": @"70.0", @"value": @"50.0", @"label": @"gooooga"};
         NSDictionary *options = @{@"Salesforce": @YES, @"HubSpot": @NO};
+        NSString *anonymousId = segmentio.anonymousId;
         
         [segmentio track:eventName properties:properties options:options];
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         [segmentio reset];
+        
         [[segmentio.queue should] beEmpty];
+        [[segmentio.anonymousId shouldNot] equal:anonymousId];
         [[SegmentioDidSendRequestNotification shouldNotEventually] bePosted];
     });
 });
