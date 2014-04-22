@@ -21,7 +21,7 @@
     NSMutableArray *_messageQueue;
     AnalyticsRequest *_settingsRequest;
     BOOL _enabled;
-    NSMutableDictionary *_providers;
+    NSMutableDictionary *_integrations;
 }
 
 @synthesize cachedSettings = _cachedSettings;
@@ -36,9 +36,9 @@
         _integrations = [[NSMutableDictionary alloc] init];
         [[[self class] registeredIntegrations] enumerateKeysAndObjectsUsingBlock:
                 ^(NSString *identifier, Class integrationClass, BOOL *stop) {
-             ((NSMutableDictionary *)_integrations)[identifier] = [[integrationClass alloc] initWithAnalytics:self];
+             _integrations[identifier] = [[integrationClass alloc] initWithAnalytics:self];
         }];
-        
+
         // Update settings on each integration immediately
         [self refreshSettings];
 
@@ -76,7 +76,7 @@
     if (!_enabled) {
         return;
     }
-    
+
     NSMethodSignature *methodSignature = [AnalyticsIntegration instanceMethodSignatureForSelector:selector];
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
     invocation.selector = selector;
