@@ -10,9 +10,9 @@ extern NSString *const SegmentioRequestDidFailNotification;
 
 @interface SegmentioIntegration : AnalyticsIntegration
 
-@property(nonatomic, strong) NSString *writeKey;
-@property(nonatomic, strong) NSString *anonymousId;
-@property(nonatomic, strong) NSString *userId;
+@property(nonatomic, copy) NSString *writeKey;
+@property(nonatomic, copy) NSString *anonymousId;
+@property(nonatomic, copy) NSString *userId;
 @property(nonatomic, assign) NSUInteger flushAt;
 
 - (void)flush;
