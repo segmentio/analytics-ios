@@ -18,7 +18,7 @@ SPEC_BEGIN(AnalyticsTests)
 
 describe(@"Analytics", ^{
     SetShowDebugLogs(YES);
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+
     __block SegmentioIntegration *segmentio = nil;
     __block Analytics *analytics = nil;
     
