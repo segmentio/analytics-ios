@@ -24,9 +24,7 @@
 /* Begin PBXBuildFile section */
 		18E86AF9AC7C4CB494AEA208 /* libPods-AnalyticsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */; };
 		2822D5FF17E26C9E005B2B7F /* NSContainer+Subscripting.h in Headers */ = {isa = PBXBuildFile; fileRef = 2822D5FD17E26C9E005B2B7F /* NSContainer+Subscripting.h */; };
-		2822D60017E26C9E005B2B7F /* NSContainer+Subscripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 2822D5FE17E26C9E005B2B7F /* NSContainer+Subscripting.m */; };
 		7E94C0F018932A5B004BD132 /* KWBlockMatchEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */; };
-		7EA1CA851898033000DC8637 /* KWNotificationMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA1CA841898033000DC8637 /* KWNotificationMatcher.m */; };
 		B8A1B15E08994855871D1685 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B38155D048462482A91850 /* libPods.a */; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCEC185BFAA1007CB22F /* MPSurvey.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -41,8 +39,6 @@
 		D331BD09185FDDEA007CB22F /* BugsnagLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD03185FDDEA007CB22F /* BugsnagLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD04185FDDEA007CB22F /* BugsnagMetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D331BD131860EA9A007CB22F /* TapstreamProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD111860EA9A007CB22F /* TapstreamProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D331BD141860EA9A007CB22F /* TapstreamProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D331BD121860EA9A007CB22F /* TapstreamProvider.m */; };
 		D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD151860F5D4007CB22F /* TSAppEventSourceImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD161860F5D4007CB22F /* TSCoreListenerImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD1B1860F5D4007CB22F /* TSPlatformImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD171860F5D4007CB22F /* TSPlatformImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -136,8 +132,6 @@
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBlockMatchEvaluator.h; sourceTree = "<group>"; };
 		7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockMatchEvaluator.m; sourceTree = "<group>"; };
-		7EA1CA831898033000DC8637 /* KWNotificationMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWNotificationMatcher.h; sourceTree = "<group>"; };
-		7EA1CA841898033000DC8637 /* KWNotificationMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWNotificationMatcher.m; sourceTree = "<group>"; };
 		8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		D309DBF218A2BD2900BA9F31 /* libFlurry_4.3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.1.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.1.a; sourceTree = "<group>"; };
 		D31C8F7D18A2D83700DA22A6 /* MPNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPNotification.h; path = Pods/Mixpanel/Mixpanel/MPNotification.h; sourceTree = "<group>"; };
@@ -153,8 +147,6 @@
 		D331BD03185FDDEA007CB22F /* BugsnagLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagLogger.h; path = Pods/Bugsnag/bugsnag/BugsnagLogger.h; sourceTree = "<group>"; };
 		D331BD04185FDDEA007CB22F /* BugsnagMetaData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagMetaData.h; path = Pods/Bugsnag/bugsnag/BugsnagMetaData.h; sourceTree = "<group>"; };
 		D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagNotifier.h; path = Pods/Bugsnag/bugsnag/BugsnagNotifier.h; sourceTree = "<group>"; };
-		D331BD111860EA9A007CB22F /* TapstreamProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapstreamProvider.h; sourceTree = "<group>"; };
-		D331BD121860EA9A007CB22F /* TapstreamProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapstreamProvider.m; sourceTree = "<group>"; };
 		D331BD151860F5D4007CB22F /* TSAppEventSourceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSAppEventSourceImpl.h; path = Pods/Tapstream/objc/Tapstream/TSAppEventSourceImpl.h; sourceTree = "<group>"; };
 		D331BD161860F5D4007CB22F /* TSCoreListenerImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSCoreListenerImpl.h; path = Pods/Tapstream/objc/Tapstream/TSCoreListenerImpl.h; sourceTree = "<group>"; };
 		D331BD171860F5D4007CB22F /* TSPlatformImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSPlatformImpl.h; path = Pods/Tapstream/objc/Tapstream/TSPlatformImpl.h; sourceTree = "<group>"; };
@@ -269,8 +261,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3C0385318F9E92A0048158C /* libCrittercism_v4_3_3.a in Frameworks */,
-				D3C0385118F9E9220048158C /* libFlurry_4.4.0.a in Frameworks */,
 				D36E2D7B18C27CA2008536A3 /* libLocalyticsAMP_x64.a in Frameworks */,
 				D3A6A2E518B308F000C4B510 /* libGoogleAnalyticsServices.a in Frameworks */,
 				F78D29FA1765B382000B937E /* UIKit.framework in Frameworks */,
@@ -282,30 +272,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D331BD101860EA83007CB22F /* Tapstream */ = {
-			isa = PBXGroup;
-			children = (
-				D331BD111860EA9A007CB22F /* TapstreamProvider.h */,
-				D331BD121860EA9A007CB22F /* TapstreamProvider.m */,
-			);
-			name = Tapstream;
-			sourceTree = "<group>";
-		};
-		D3ABF62C1846F6E000FAAB2B /* Crittercism */ = {
-			isa = PBXGroup;
-			children = (
-				D3ABF62D1846F6E000FAAB2B /* CrittercismProvider.h */,
-				D3ABF62E1846F6E000FAAB2B /* CrittercismProvider.m */,
-			);
-			path = Crittercism;
-			sourceTree = "<group>";
-		};
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
 				D3D1243E18C31FDA00EE8B82 /* SegmentioIntegration.h */,
-				D3C0384C18F9DE420048158C /* GAIDictionaryBuilder.h */,
-				D3C0384D18F9DE420048158C /* GAIFields.h */,
 				D31C8F7D18A2D83700DA22A6 /* MPNotification.h */,
 				D331BD1D1860F5F0007CB22F /* TSApi.h */,
 				D331BD1E1860F5F0007CB22F /* TSAppEventSource.h */,
@@ -462,8 +432,6 @@
 				EA722AF717C87BB00016E8B0 /* Supporting Files */,
 				D350D6111859340700F8A7FA /* Reachability.h */,
 				D350D6121859340700F8A7FA /* Reachability.m */,
-				7EA1CA831898033000DC8637 /* KWNotificationMatcher.h */,
-				7EA1CA841898033000DC8637 /* KWNotificationMatcher.m */,
 				7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */,
 				7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */,
 			);
@@ -505,8 +473,6 @@
 		F7200B7517659B2F003F3138 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D3C0385218F9E92A0048158C /* libCrittercism_v4_3_3.a */,
-				D3C0385018F9E9220048158C /* libFlurry_4.4.0.a */,
 				D36E2D7A18C27CA2008536A3 /* libLocalyticsAMP_x64.a */,
 				D3E9B61B18BADAEA00AB06B0 /* libLocalyticsAMP.a */,
 				D3A6A2DF18B305E200C4B510 /* libFlurry_4.3.2.a */,
@@ -581,8 +547,6 @@
 				D371F330185942C90053337D /* Flurry.h in Headers */,
 				D371F332185942DE0053337D /* GAI.h in Headers */,
 				D3EDB65E18C315F100A88A7E /* FlurryIntegration.h in Headers */,
-				D3C0384E18F9DE420048158C /* GAIDictionaryBuilder.h in Headers */,
-				D3C0384F18F9DE420048158C /* GAIFields.h in Headers */,
 				D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */,
 				D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */,
 				D331BCFD185C2DC4007CB22F /* GAITracker.h in Headers */,
@@ -594,7 +558,6 @@
 				D331BD07185FDDEA007CB22F /* BugsnagDictionary.h in Headers */,
 				D331BD08185FDDEA007CB22F /* BugsnagEvent.h in Headers */,
 				D331BD09185FDDEA007CB22F /* BugsnagLogger.h in Headers */,
-				D331BD131860EA9A007CB22F /* TapstreamProvider.h in Headers */,
 				D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */,
 				D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */,
 				D331BD1B1860F5D4007CB22F /* TSPlatformImpl.h in Headers */,
@@ -622,17 +585,8 @@
 				D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */,
 				D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */,
 				EA65F96617C2ABA600389A1A /* AnalyticsIntegration.h in Headers */,
-				EACB4DE617C0BB3100624129 /* SegmentioProvider.h in Headers */,
-				EA65F96617C2ABA600389A1A /* AnalyticsProvider.h in Headers */,
-				EACB4DD217C0BB3100624129 /* AmplitudeProvider.h in Headers */,
-				EACB4DD617C0BB3100624129 /* BugsnagProvider.h in Headers */,
-				EACB4DDA17C0BB3100624129 /* CountlyProvider.h in Headers */,
-				D3ABF62F1846F6E000FAAB2B /* CrittercismProvider.h in Headers */,
-				EACB4DDC17C0BB3100624129 /* FlurryProvider.h in Headers */,
-				EACB4DDE17C0BB3100624129 /* GoogleAnalyticsProvider.h in Headers */,
+				EA65F96617C2ABA600389A1A /* AnalyticsIntegration.h in Headers */,
 				2822D5FF17E26C9E005B2B7F /* NSContainer+Subscripting.h in Headers */,
-				EACB4DE217C0BB3100624129 /* LocalyticsProvider.h in Headers */,
-				EACB4DE417C0BB3100624129 /* MixpanelProvider.h in Headers */,
 				EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */,
 				EAA604C917C28C7C00911919 /* AnalyticsRequest.h in Headers */,
 			);
@@ -864,7 +818,6 @@
 				EA722AFE17C87BB00016E8B0 /* AnalyticsTests.m in Sources */,
 				EABE4F4117C88A6D00A1081B /* AnalyticsUtilsTests.m in Sources */,
 				D350D6131859340700F8A7FA /* Reachability.m in Sources */,
-				7EA1CA851898033000DC8637 /* KWNotificationMatcher.m in Sources */,
 				EA3B4CC717C8900A00233EA9 /* SegmentioTests.m in Sources */,
 				7E94C0F018932A5B004BD132 /* KWBlockMatchEvaluator.m in Sources */,
 			);

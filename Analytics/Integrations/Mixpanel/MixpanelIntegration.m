@@ -70,7 +70,7 @@
         [[Mixpanel sharedInstance] track:event properties:properties];
         
         // If revenue is included and People is enabled, trackCharge to Mixpanel.
-        NSNumber *revenue = [AnalyticsProvider extractRevenue:properties];
+        NSNumber *revenue = [AnalyticsIntegration extractRevenue:properties];
         if (revenue && [self.settings objectForKey:@"people"]) {
             [[Mixpanel sharedInstance].people trackCharge:revenue];
         }
