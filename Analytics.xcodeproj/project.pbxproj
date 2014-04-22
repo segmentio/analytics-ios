@@ -22,10 +22,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		18E86AF9AC7C4CB494AEA208 /* libPods-AnalyticsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */; };
 		2822D5FF17E26C9E005B2B7F /* NSContainer+Subscripting.h in Headers */ = {isa = PBXBuildFile; fileRef = 2822D5FD17E26C9E005B2B7F /* NSContainer+Subscripting.h */; };
+		32F9E6B71907320700ED295B /* libPods-AnalyticsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F9E6B61907320700ED295B /* libPods-AnalyticsTests.a */; };
+		32F9E6B81907322700ED295B /* libAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7317659B2F003F3138 /* libAnalytics.a */; };
 		7E94C0F018932A5B004BD132 /* KWBlockMatchEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */; };
-		B8A1B15E08994855871D1685 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B38155D048462482A91850 /* libPods.a */; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCEC185BFAA1007CB22F /* MPSurvey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF0185BFF49007CB22F /* CRFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -58,12 +58,10 @@
 		D331BD371860F5F0007CB22F /* TSResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD291860F5F0007CB22F /* TSResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD381860F5F0007CB22F /* TSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD2A1860F5F0007CB22F /* TSUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D350D6131859340700F8A7FA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D350D6121859340700F8A7FA /* Reachability.m */; };
-		D36E2D7B18C27CA2008536A3 /* libLocalyticsAMP_x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E2D7A18C27CA2008536A3 /* libLocalyticsAMP_x64.a */; };
 		D371F32E185942BB0053337D /* Crittercism.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F32D185942BB0053337D /* Crittercism.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F330185942C90053337D /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F32F185942C90053337D /* Flurry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F332185942DE0053337D /* GAI.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F331185942DE0053337D /* GAI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F334185943170053337D /* Mixpanel.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F333185943170053337D /* Mixpanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D3A6A2E518B308F000C4B510 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */; };
 		D3C07FBF185954D000649011 /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C07FBE185954D000649011 /* Bugsnag.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3EDB65618C315F100A88A7E /* AmplitudeIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63918C315F100A88A7E /* AmplitudeIntegration.h */; };
 		D3EDB65718C315F100A88A7E /* AmplitudeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63A18C315F100A88A7E /* AmplitudeIntegration.m */; };
@@ -93,7 +91,6 @@
 		EA722AF417C87BB00016E8B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
 		EA722AF517C87BB00016E8B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		EA722AFE17C87BB00016E8B0 /* AnalyticsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA722AFD17C87BB00016E8B0 /* AnalyticsTests.m */; };
-		EA722B0317C883C00016E8B0 /* libAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7317659B2F003F3138 /* libAnalytics.a */; };
 		EAA604C917C28C7C00911919 /* AnalyticsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA604C717C28C7C00911919 /* AnalyticsRequest.h */; };
 		EAA604CA17C28C7C00911919 /* AnalyticsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA604C817C28C7C00911919 /* AnalyticsRequest.m */; };
 		EABE4F3617C8883A00A1081B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3017C887E000A1081B /* CoreGraphics.framework */; };
@@ -129,6 +126,11 @@
 		23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnalyticsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2822D5FD17E26C9E005B2B7F /* NSContainer+Subscripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSContainer+Subscripting.h"; sourceTree = "<group>"; };
 		2822D5FE17E26C9E005B2B7F /* NSContainer+Subscripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSContainer+Subscripting.m"; sourceTree = "<group>"; };
+		288314B9A18241B284C25C5B /* Pods-Analytics.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics.xcconfig"; path = "Pods/Pods-Analytics.xcconfig"; sourceTree = "<group>"; };
+		32CC25E119072C6B0090DD06 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
+		32F9E6B31907300300ED295B /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
+		32F9E6B61907320700ED295B /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
+		32F9E6B91907323900ED295B /* libPods-Analytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Analytics.a"; path = "Pods/build/Debug-iphoneos/libPods-Analytics.a"; sourceTree = "<group>"; };
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBlockMatchEvaluator.h; sourceTree = "<group>"; };
 		7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockMatchEvaluator.m; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		D3EDB65218C315F100A88A7E /* SegmentioIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioIntegration.m; sourceTree = "<group>"; };
 		D3EDB65418C315F100A88A7E /* TapstreamIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapstreamIntegration.h; sourceTree = "<group>"; };
 		D3EDB65518C315F100A88A7E /* TapstreamIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapstreamIntegration.m; sourceTree = "<group>"; };
+		E83F0FBE9BA94A03A4883160 /* libPods-Analytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Analytics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA14A25217FB1E9400870901 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = settings.json; sourceTree = "<group>"; };
 		EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioTests.m; sourceTree = "<group>"; };
 		EA65F96417C2ABA600389A1A /* AnalyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsIntegration.h; sourceTree = "<group>"; };
@@ -252,8 +255,8 @@
 				EABE4F3E17C8883A00A1081B /* libz.dylib in Frameworks */,
 				EABE4F3F17C8883A00A1081B /* libsqlite3.dylib in Frameworks */,
 				EAD415C717C9B72D00EB0490 /* SenTestingKit.framework in Frameworks */,
-				18E86AF9AC7C4CB494AEA208 /* libPods-AnalyticsTests.a in Frameworks */,
-				EA722B0317C883C00016E8B0 /* libAnalytics.a in Frameworks */,
+				32F9E6B81907322700ED295B /* libAnalytics.a in Frameworks */,
+				32F9E6B71907320700ED295B /* libPods-AnalyticsTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,11 +264,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D36E2D7B18C27CA2008536A3 /* libLocalyticsAMP_x64.a in Frameworks */,
-				D3A6A2E518B308F000C4B510 /* libGoogleAnalyticsServices.a in Frameworks */,
 				F78D29FA1765B382000B937E /* UIKit.framework in Frameworks */,
 				F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */,
-				B8A1B15E08994855871D1685 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +458,7 @@
 				F7200B7417659B2F003F3138 /* Products */,
 				8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */,
 				1292362745B3499F9F8849DB /* Pods-AnalyticsTests.xcconfig */,
+				288314B9A18241B284C25C5B /* Pods-Analytics.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -473,6 +474,10 @@
 		F7200B7517659B2F003F3138 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32F9E6B91907323900ED295B /* libPods-Analytics.a */,
+				32F9E6B61907320700ED295B /* libPods-AnalyticsTests.a */,
+				32F9E6B31907300300ED295B /* libPods-AnalyticsTests.a */,
+				32CC25E119072C6B0090DD06 /* libPods-AnalyticsTests.a */,
 				D36E2D7A18C27CA2008536A3 /* libLocalyticsAMP_x64.a */,
 				D3E9B61B18BADAEA00AB06B0 /* libLocalyticsAMP.a */,
 				D3A6A2DF18B305E200C4B510 /* libFlurry_4.3.2.a */,
@@ -499,6 +504,7 @@
 				EABE4F3217C887E400A1081B /* libsqlite3.dylib */,
 				EA722AF217C87BB00016E8B0 /* SenTestingKit.framework */,
 				23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */,
+				E83F0FBE9BA94A03A4883160 /* libPods-Analytics.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -689,7 +695,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-AnalyticsTests-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		380BF1B2A860431EA9D5604F /* Check Pods Manifest.lock */ = {
@@ -749,7 +755,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Pods-Analytics-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D3C07FDE185A892F00649011 /* Run Script */ = {
@@ -875,7 +881,7 @@
 		};
 		EA722B0117C87BB00016E8B0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1292362745B3499F9F8849DB /* Pods-AnalyticsTests.xcconfig */;
+			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
 				ANALYTICS_VERSION = 1.0.0;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -886,6 +892,10 @@
 				GCC_PREFIX_HEADER = "AnalyticsTests/AnalyticsTests-Prefix.pch";
 				INFOPLIST_FILE = "AnalyticsTests/AnalyticsTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -893,7 +903,7 @@
 		};
 		EA722B0217C87BB00016E8B0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1292362745B3499F9F8849DB /* Pods-AnalyticsTests.xcconfig */;
+			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
 			buildSettings = {
 				ANALYTICS_VERSION = 1.0.0;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -904,6 +914,10 @@
 				GCC_PREFIX_HEADER = "AnalyticsTests/AnalyticsTests-Prefix.pch";
 				INFOPLIST_FILE = "AnalyticsTests/AnalyticsTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -968,7 +982,7 @@
 		};
 		F7200B8217659B2F003F3138 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
+			baseConfigurationReference = 288314B9A18241B284C25C5B /* Pods-Analytics.xcconfig */;
 			buildSettings = {
 				ANALYTICS_VERSION = 1.0.0;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
@@ -985,6 +999,7 @@
 					"${SRCROOT}/Pods/Localytics",
 					"$(PROJECT_DIR)/Pods/FlurrySDK/Flurry",
 					"$(PROJECT_DIR)/Pods/CrittercismSDK/CrittercismSDK",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
@@ -998,7 +1013,7 @@
 		};
 		F7200B8317659B2F003F3138 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
+			baseConfigurationReference = 288314B9A18241B284C25C5B /* Pods-Analytics.xcconfig */;
 			buildSettings = {
 				ANALYTICS_VERSION = 1.0.0;
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
@@ -1016,6 +1031,7 @@
 					"${SRCROOT}/Pods/Localytics",
 					"$(PROJECT_DIR)/Pods/FlurrySDK/Flurry",
 					"$(PROJECT_DIR)/Pods/CrittercismSDK/CrittercismSDK",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
