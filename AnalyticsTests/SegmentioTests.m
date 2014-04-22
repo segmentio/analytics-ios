@@ -15,7 +15,7 @@ SPEC_BEGIN(SegmentioTests)
 
 describe(@"Segment.io", ^{
     SetShowDebugLogs(YES);
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+
     __block SegmentioIntegration *segmentio = nil;
     beforeAll(^{
         segmentio = [[SegmentioIntegration alloc] initWithWriteKey:@"testWriteKey" flushAt:2];
