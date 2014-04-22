@@ -1,4 +1,4 @@
-link_with 'Analytics'
+link_with ['Analytics', 'AnalyticsTests']
 
 pod 'Amplitude-iOS', '~> 2.0.0'
 pod 'Bugsnag', '3.1.0.fork'
@@ -10,7 +10,7 @@ pod 'Localytics', '2.21.0.fork'
 pod 'Mixpanel', '~> 2.3.4'
 pod 'Tapstream', '~> 2.6'
 
-target :AnalyticsTests, :exclusive => true do
-    link_with 'AnalyticsTests'
-    pod 'Kiwi', '~> 2.2.3'
+target 'AnalyticsTests' do
+  pod 'Kiwi', '~> 2.2.3'
 end
+
