@@ -389,12 +389,12 @@ static NSMutableDictionary *BuildStaticContext() {
 
 - (void)reset {
     [self dispatchBackgroundAndWait:^{
-        [[NSFileManager defaultManager] removeItemAtURL:DISK_ANONYMOUS_ID_URL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:DISK_USER_ID_URL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:DISK_TRAITS_URL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:DISK_QUEUE_URL error:NULL];
         self.userId = nil;
         self.queue = [NSMutableArray array];
+        self.anonymousId = GetAnonymousId(YES);
         self.request.completion = nil;
         self.request = nil;
     }];
