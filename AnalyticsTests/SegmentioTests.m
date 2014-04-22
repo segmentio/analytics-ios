@@ -58,7 +58,7 @@ describe(@"Segment.io", ^{
         
         // send a second event, wait for 200 from servers
         [segmentio track:eventName properties:nil options:nil];
-        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
+        [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
     });
     
     it(@"Should track with properties", ^{
@@ -77,7 +77,7 @@ describe(@"Segment.io", ^{
         
         // send a second event, wait for 200 from servers
         [segmentio track:eventName properties:properties options:nil];
-        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
+        [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
     });
     
     it(@"Should track with context", ^{
@@ -103,7 +103,7 @@ describe(@"Segment.io", ^{
         
         // send a second event, wait for 200 from servers
         [segmentio track:eventName properties:properties options:nil];
-        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
+        [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
     });
     
     it(@"Should identify", ^{
@@ -120,7 +120,7 @@ describe(@"Segment.io", ^{
         [queuedTrack[@"timestamp"] shouldNotBeNil];
         
         [segmentio identify:userId traits:nil options:nil];
-        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
+        [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
     });
     
     it(@"Should identify with traits", ^{
@@ -137,7 +137,7 @@ describe(@"Segment.io", ^{
         [queuedTrack[@"timestamp"] shouldNotBeNil];
         
         [segmentio identify:nil traits:traits options:nil];
-        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
+        [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
     });
     
     it(@"Should identify with context", ^{
@@ -162,7 +162,7 @@ describe(@"Segment.io", ^{
         
         // send a second event, wait for 200 from servers
         [segmentio identify:nil traits:traits options:nil];
-        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
+        [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
     });
     
     it(@"Should queue when not full", ^{
@@ -172,7 +172,7 @@ describe(@"Segment.io", ^{
         [segmentio identify:userId traits:nil options:nil];
         [[segmentio.userId shouldEventually] beNonNil];
         [[segmentio.queue shouldEventually] have:1];
-        [[nc shouldNotEventually] receiveNotification:SegmentioDidSendRequestNotification];
+        [[SegmentioDidSendRequestNotification shouldNotEventually] bePosted];
     });
     
     it(@"Should flush when full", ^{
@@ -182,7 +182,7 @@ describe(@"Segment.io", ^{
         [segmentio track:eventName properties:properties options:nil];
         [[segmentio.queue should] beEmpty];
         [[segmentio.queue shouldEventually] have:2];
-        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
+        [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
     });
     
     it(@"Should reset", ^{
@@ -194,7 +194,7 @@ describe(@"Segment.io", ^{
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         [segmentio reset];
         [[segmentio.queue should] beEmpty];
-        [[nc shouldNotEventually] receiveNotification:SegmentioDidSendRequestNotification];
+        [[SegmentioDidSendRequestNotification shouldNotEventually] bePosted];
     });
 });
 

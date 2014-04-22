@@ -64,7 +64,7 @@ describe(@"Analytics", ^{
 
         [segmentio flush];
 
-        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
+        [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
     });
     
     it(@"Should handle nil userId with traits", ^{
@@ -76,7 +76,7 @@ describe(@"Analytics", ^{
         [queuedIdentify[@"anonymousId"] shouldNotBeNil];
         [segmentio flush];
         
-        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
+        [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
     });
     
     it(@"should do nothing when identifying without traits", ^{
@@ -116,7 +116,7 @@ describe(@"Analytics", ^{
         
         // wait for 200 from servers
         [segmentio flush];
-        [[nc shouldEventually] receiveNotification:SegmentioDidSendRequestNotification];
+        [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
     });
     
     it(@"Should track according to integration options", ^{
