@@ -9,10 +9,10 @@
 #import "SIOBluetooth.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface SIOBluetooth ()
+@interface SIOBluetooth () <CBCentralManagerDelegate>
 
 @property (nonatomic, strong) CBCentralManager *manager;
-@property (nonatomic, assign) dispatch_queue_t queue;
+@property (nonatomic, strong) dispatch_queue_t queue;
 
 @end
 
@@ -34,6 +34,10 @@
 
 - (BOOL)isEnabled {
     return _manager.state == CBCentralManagerStatePoweredOn;
+}
+
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
+    // nop
 }
 
 @end
