@@ -28,7 +28,7 @@
     return self;
 }
 
-- (BOOL)isStateKnown {
+- (BOOL)hasKnownState {
     return _manager && _manager.state != CBCentralManagerStateUnknown;
 }
 
