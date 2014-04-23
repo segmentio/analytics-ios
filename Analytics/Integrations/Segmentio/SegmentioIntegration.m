@@ -165,12 +165,6 @@ static NSMutableDictionary *BuildStaticContext() {
         _writeKey = writeKey;
         _anonymousId = GetAnonymousId(NO);
         _userId = [NSString stringWithContentsOfURL:DISK_USER_ID_URL encoding:NSUTF8StringEncoding error:NULL];
-        _queue = [NSMutableArray arrayWithContentsOfURL:DISK_QUEUE_URL];
-        if (!_queue)
-            _queue = [[NSMutableArray alloc] init];
-        _traits = [NSMutableDictionary dictionaryWithContentsOfURL:DISK_TRAITS_URL];
-        if (!_traits)
-            _traits = [[NSMutableDictionary alloc] init];
         _context = BuildStaticContext();
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         _flushTaskID = UIBackgroundTaskInvalid;
@@ -187,7 +181,7 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (NSMutableDictionary *)liveContext {
-    NSMutableDictionary *context = [NSMutableDictionary dictionary];
+    NSMutableDictionary *context = [[NSMutableDictionary alloc] init];
 
     // Network
     // TODO https://github.com/segmentio/spec/issues/30
@@ -451,6 +445,22 @@ static NSMutableDictionary *BuildStaticContext() {
 
 + (void)load {
     [Analytics registerIntegration:self withIdentifier:@"Segment.io"];
+}
+
+#pragma mark - Private
+
+- (NSMutableArray *)queue {
+    if (!_queue) {
+        _queue = [NSMutableArray arrayWithContentsOfURL:DISK_QUEUE_URL] ?: [[NSMutableArray alloc] init];
+    }
+    return _queue;
+}
+
+- (NSMutableDictionary *)traits {
+    if (!_traits) {
+        _traits = [NSMutableDictionary dictionaryWithContentsOfURL:DISK_TRAITS_URL] ?: [[NSMutableDictionary alloc] init];
+    }
+    return _traits;
 }
 
 @end
