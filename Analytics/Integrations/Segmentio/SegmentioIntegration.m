@@ -115,10 +115,10 @@ static NSMutableDictionary *BuildStaticContext() {
     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
     CTCarrier *carrier = [networkInfo subscriberCellularProvider];
     if (carrier.carrierName.length) {
-        NSMutableDictionary *telephony = [NSMutableDictionary dictionary];
-        [telephony setObject:carrier.carrierName forKey:@"carrier"];
-        [context setObject:telephony forKey:@"telephony"];
-        SOLog(@"Adding info to context: telephony = %@", telephony);
+        NSMutableDictionary *network = [NSMutableDictionary dictionary];
+        [network setObject:carrier.carrierName forKey:@"carrier"];
+        [context setObject:network forKey:@"network"];
+        SOLog(@"Adding info to context: network = %@", network);
     }
 
     // Screen
