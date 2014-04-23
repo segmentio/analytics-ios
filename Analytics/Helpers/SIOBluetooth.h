@@ -10,7 +10,7 @@
 
 @interface SIOBluetooth : NSObject
 
-- (BOOL)isStateKnown;
+- (BOOL)hasKnownState;
 - (BOOL)isEnabled;
 
 @end
