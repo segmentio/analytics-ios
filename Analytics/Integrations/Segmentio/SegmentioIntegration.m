@@ -11,6 +11,7 @@
 #import "AnalyticsRequest.h"
 #import "SegmentioIntegration.h"
 #import "SIOBluetooth.h"
+#import "Reachability.h"
 
 #define SEGMENTIO_API_URL [NSURL URLWithString:@"http://api.segment.io/v1/import"]
 #define SEGMENTIO_MAX_BATCH_SIZE 100
@@ -142,6 +143,7 @@ static NSMutableDictionary *BuildStaticContext() {
 @property (nonatomic, strong) AnalyticsRequest *request;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
 @property (nonatomic, strong) SIOBluetooth *bluetooth;
+@property (nonatomic, strong) Reachability *reachability;
 
 @end
 
@@ -168,7 +170,7 @@ static NSMutableDictionary *BuildStaticContext() {
         _anonymousId = GetAnonymousId(NO);
         _userId = [NSString stringWithContentsOfURL:DISK_USER_ID_URL encoding:NSUTF8StringEncoding error:NULL];
         _bluetooth = [[SIOBluetooth alloc] init];
-
+        _reachability = [Reachability reachabilityWithHostname:@"http://google.com"];
         _context = BuildStaticContext();
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         _flushTaskID = UIBackgroundTaskInvalid;
@@ -189,11 +191,18 @@ static NSMutableDictionary *BuildStaticContext() {
 
     // Network
     // TODO https://github.com/segmentio/spec/issues/30
-
-    NSMutableDictionary *network = [[NSMutableDictionary alloc] init];
-    if (self.bluetooth.hasKnownState)
-        network[@"bluetooth"] = @(self.bluetooth.isEnabled);
-    context[@"network"] = network;
+    
+    context[@"network"] = ({
+        NSMutableDictionary *network = [[NSMutableDictionary alloc] init];
+       
+        if (self.bluetooth.hasKnownState)
+            network[@"bluetooth"] = @(self.bluetooth.isEnabled);
+        
+        if (self.reachability.isReachable)
+            network[@"wifi"] = @(self.reachability.isReachableViaWiFi);
+        
+        network;
+    });
 
     // Traits
     // TODO https://github.com/segmentio/spec/issues/29
