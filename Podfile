@@ -15,7 +15,6 @@ target 'Analytics', :exclusive => true do
 end
 
 target 'AnalyticsTests', :exclusive => true do
-  import_pods
   pod 'Kiwi', '~> 2.2.3'
 end
 
