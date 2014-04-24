@@ -332,7 +332,7 @@ static NSMutableDictionary *BuildStaticContext() {
     // attach these parts of the payload outside since they are all synchronous
     // and the timestamp will be more accurate.
     NSMutableDictionary *payload = [NSMutableDictionary dictionaryWithDictionary:dictionary];
-    payload[@"action"] = action;
+    payload[@"type"] = action;
     payload[@"timestamp"] = [[NSDate date] description];
     payload[@"requestId"] = GenerateUUIDString();
 

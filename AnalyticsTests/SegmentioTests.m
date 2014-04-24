@@ -51,7 +51,7 @@ describe(@"Segment.io", ^{
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
 
         NSDictionary *queuedTrack = segmentio.queue[0];
-        [[queuedTrack[@"action"] should] equal:@"track"];
+        [[queuedTrack[@"type"] should] equal:@"track"];
         [[queuedTrack[@"event"] should] equal:eventName];
         [queuedTrack[@"timestamp"] shouldNotBeNil];
         [queuedTrack[@"properties"] shouldBeNil];
@@ -69,7 +69,7 @@ describe(@"Segment.io", ^{
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
         NSDictionary *queuedTrack = segmentio.queue[0];
-        [[queuedTrack[@"action"] should] equal:@"track"];
+        [[queuedTrack[@"type"] should] equal:@"track"];
         [[queuedTrack[@"event"] should] equal:eventName];
         [queuedTrack[@"timestamp"] shouldNotBeNil];
         
@@ -90,7 +90,7 @@ describe(@"Segment.io", ^{
         
         NSDictionary *queuedTrack = segmentio.queue[0];
         
-        [[queuedTrack[@"action"] should] equal:@"track"];
+        [[queuedTrack[@"type"] should] equal:@"track"];
         [[queuedTrack[@"event"] should] equal:eventName];
         [[queuedTrack[@"properties"] should] equal:properties];
         [queuedTrack[@"timestamp"] shouldNotBeNil];
@@ -113,7 +113,7 @@ describe(@"Segment.io", ^{
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
         NSDictionary *queuedTrack = segmentio.queue[0];
-        [[queuedTrack[@"action"] should] equal:@"identify"];
+        [[queuedTrack[@"type"] should] equal:@"identify"];
         [[queuedTrack[@"userId"] should] equal:userId];
         [queuedTrack[@"anonymousId"] shouldNotBeNil];
         [queuedTrack[@"traits"] shouldBeNil];
@@ -130,7 +130,7 @@ describe(@"Segment.io", ^{
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
         NSDictionary *queuedTrack = segmentio.queue[0];
-        [[queuedTrack[@"action"] should] equal:@"identify"];
+        [[queuedTrack[@"type"] should] equal:@"identify"];
         [queuedTrack[@"userId"] shouldBeNil];
         [queuedTrack[@"anonymousId"] shouldNotBeNil];
         [[queuedTrack[@"traits"] should] equal:traits];
@@ -148,7 +148,7 @@ describe(@"Segment.io", ^{
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
         NSDictionary *queuedAction = segmentio.queue[0];
-        [[queuedAction[@"action"] should] equal:@"identify"];
+        [[queuedAction[@"type"] should] equal:@"identify"];
         [queuedAction[@"userId"] shouldBeNil];
         [queuedAction[@"anonymousId"] shouldNotBeNil];
         [[queuedAction[@"traits"] should] equal:traits];

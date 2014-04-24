@@ -47,7 +47,7 @@ describe(@"Analytics", ^{
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
         NSDictionary *queuedAction = (segmentio.queue)[0];
-        [[queuedAction[@"action"] should] equal:@"identify"];
+        [[queuedAction[@"type"] should] equal:@"identify"];
         [queuedAction[@"timestamp"] shouldNotBeNil];
         [queuedAction[@"anonymousId"] shouldNotBeNil];
         [[queuedAction[@"userId"] should] equal:userId];
@@ -68,7 +68,7 @@ describe(@"Analytics", ^{
         [analytics identify:nil traits:@{} options:nil];
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         NSDictionary *queuedIdentify = (segmentio.queue)[0];
-        [[queuedIdentify[@"action"] should] equal:@"identify"];
+        [[queuedIdentify[@"type"] should] equal:@"identify"];
         [queuedIdentify[@"timestamp"] shouldNotBeNil];
         [queuedIdentify[@"anonymousId"] shouldNotBeNil];
         [segmentio flush];
@@ -100,7 +100,7 @@ describe(@"Analytics", ^{
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
         
         NSDictionary *queuedAction = segmentio.queue[0];
-        [[queuedAction[@"action"] should] equal:@"track"];
+        [[queuedAction[@"type"] should] equal:@"track"];
         [[queuedAction[@"event"] should] equal:eventName];
         [queuedAction[@"timestamp"] shouldNotBeNil];
         [[queuedAction[@"properties"] should] equal:properties];
