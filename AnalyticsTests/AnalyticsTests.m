@@ -4,7 +4,6 @@
 #import "SegmentioIntegration.h"
 #import "AnalyticsUtils.h"
 #import "KWNotificationMatcher.h"
-#import "Reachability.h"
 
 @interface SegmentioIntegration (Private)
 @property (nonatomic, readonly) NSMutableArray *queue;
@@ -21,8 +20,6 @@ describe(@"Analytics", ^{
 
     __block SegmentioIntegration *segmentio = nil;
     __block Analytics *analytics = nil;
-    
-    [Reachability reachabilityWithHostname:@"www.google.com"];
     
     beforeEach(^{
         analytics = [[Analytics alloc] initWithWriteKey:@"k5l6rrye0hsv566zwuk7"];

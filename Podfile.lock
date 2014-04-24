@@ -16,6 +16,7 @@ PODS:
     - Kiwi/NonARC
   - Localytics (2.21.0.fork)
   - Mixpanel (2.3.5)
+  - Reachability (3.1.1)
   - Tapstream (2.6.3)
 
 DEPENDENCIES:
@@ -28,6 +29,7 @@ DEPENDENCIES:
   - Kiwi (~> 2.2.3)
   - Localytics (= 2.21.0.fork)
   - Mixpanel (~> 2.3.4)
+  - Reachability (= 3.1.1)
   - Tapstream (~> 2.6)
 
 SPEC CHECKSUMS:
@@ -40,6 +42,7 @@ SPEC CHECKSUMS:
   Kiwi: d60d7498b640a16f58b01925fc3c8d7c4d809f66
   Localytics: 1cb82c7e344936913d4a701fd85c58b4d6b0ba5d
   Mixpanel: 79ff289920b67399475b93057ac11e48637585d7
+  Reachability: be4883bb93f31e38266ae3365e5600a317aae735
   Tapstream: 1b161739d853cc23c64b86d6f6d2833e66ad5aec
 
 COCOAPODS: 0.32.1
