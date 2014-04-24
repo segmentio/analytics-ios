@@ -1,4 +1,4 @@
-def import_pods
+def import_integrations
   pod 'Amplitude-iOS', '~> 2.0.0'
   pod 'Bugsnag', '3.1.0.fork'
   pod 'Countly', '~> 1.0.0'
@@ -8,6 +8,11 @@ def import_pods
   pod 'Localytics', '2.21.0.fork'
   pod 'Mixpanel', '~> 2.3.4'
   pod 'Tapstream', '~> 2.6'
+end
+
+def import_pods
+  import_integrations
+  pod 'Reachability', '3.1.1'
 end
 
 target 'Analytics', :exclusive => true do

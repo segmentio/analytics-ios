@@ -11,7 +11,7 @@
 #import "AnalyticsRequest.h"
 #import "SegmentioIntegration.h"
 #import "SIOBluetooth.h"
-#import "Reachability.h"
+#import <Reachability/Reachability.h>
 
 #define SEGMENTIO_API_URL [NSURL URLWithString:@"http://api.segment.io/v1/import"]
 #define SEGMENTIO_MAX_BATCH_SIZE 100
