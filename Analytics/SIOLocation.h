@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SIOAddress : NSObject
+@interface SIOLocation : NSObject
 
 @property (nonatomic, copy, readonly) NSString *city;
 @property (nonatomic, copy, readonly) NSString *country;
