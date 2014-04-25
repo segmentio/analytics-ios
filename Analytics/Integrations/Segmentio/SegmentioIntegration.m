@@ -12,6 +12,7 @@
 #import "SegmentioIntegration.h"
 #import "SIOBluetooth.h"
 #import <Reachability/Reachability.h>
+#import "SIOLocation.h"
 
 #define SEGMENTIO_API_URL [NSURL URLWithString:@"http://api.segment.io/v1/import"]
 #define SEGMENTIO_MAX_BATCH_SIZE 100
@@ -144,6 +145,7 @@ static NSMutableDictionary *BuildStaticContext() {
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
 @property (nonatomic, strong) SIOBluetooth *bluetooth;
 @property (nonatomic, strong) Reachability *reachability;
+@property (nonatomic, strong) SIOLocation *location;
 
 @end
 
@@ -203,6 +205,8 @@ static NSMutableDictionary *BuildStaticContext() {
         
         network;
     });
+    
+    context[@"location"] = self.location.hasKnownLocation ? self.location.locationDictionary : nil;
 
     // Traits
     // TODO https://github.com/segmentio/spec/issues/29

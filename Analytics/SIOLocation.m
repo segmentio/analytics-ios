@@ -68,7 +68,6 @@
     return @(self.currentPlacemark.location.speed);
 }
 
-
 - (NSDictionary *)locationDictionary {
     return [self dictionaryWithValuesForKeys:@[ @"city", @"country", @"latitude", @"longitude", @"speed" ]];
 }
