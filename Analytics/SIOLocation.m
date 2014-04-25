@@ -11,14 +11,11 @@
 #import <CoreLocation/CoreLocation.h>
 #import <objc/runtime.h>
 
-@interface SIOLocation () <CLLocationManagerDelegate> {
-    NSMutableDictionary *_dictionary;
-}
+@interface SIOLocation () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLPlacemark *currentPlacemark;
 @property (nonatomic, strong) CLGeocoder *geocoder;
-@property (nonatomic, copy, readwrite) NSDictionary *dictionary;
 
 @end
 
@@ -69,6 +66,15 @@
 
 - (NSNumber *)speed {
     return @(self.currentPlacemark.location.speed);
+}
+
+
+- (NSDictionary *)locationDictionary {
+    return [self dictionaryWithValuesForKeys:@[ @"city", @"country", @"latitude", @"longitude", @"speed" ]];
+}
+
+- (NSDictionary *)addressDictionary {
+    return [self dictionaryWithValuesForKeys:@[ @"city", @"country", @"postalCode", @"state", @"street" ]];
 }
 
 - (NSDictionary *)dictionary {
