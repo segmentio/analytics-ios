@@ -77,23 +77,6 @@
     return [self dictionaryWithValuesForKeys:@[ @"city", @"country", @"postalCode", @"state", @"street" ]];
 }
 
-- (NSDictionary *)dictionary {
-    if (!_dictionary) {
-        unsigned int count;
-        objc_property_t *properties = class_copyPropertyList(self.class, &count);
-        _dictionary = [[NSMutableDictionary alloc] initWithCapacity:count];
-        for (int i = 0; i < count; i++) {
-            objc_property_t property = properties[i];
-            NSString *propertyName = [[NSString alloc] initWithCString:property_getName(property) encoding:NSUTF8StringEncoding];
-            id propertyValue = [self valueForKey:propertyName];
-            if ([propertyValue isKindOfClass:[NSString class]] || [propertyValue isKindOfClass:[NSNumber class]]) {
-                _dictionary[propertyName] = propertyValue;
-            }
-        }
-    }
-    return _dictionary;
-}
-
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -102,7 +85,6 @@
     __weak typeof(self) weakSelf = self;
     [self.geocoder reverseGeocodeLocation:locations.firstObject completionHandler:^(NSArray *placemarks, NSError *error) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
-        strongSelf.dictionary = nil;
         strongSelf.currentPlacemark = placemarks.firstObject;
     }];
 }
