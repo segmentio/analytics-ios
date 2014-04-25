@@ -64,6 +64,10 @@
     return @(self.currentPlacemark.location.coordinate.longitude);
 }
 
+- (NSNumber *)speed {
+    return @(self.currentPlacemark.location.speed);
+}
+
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {

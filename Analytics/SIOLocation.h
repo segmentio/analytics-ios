@@ -17,6 +17,7 @@
 @property (nonatomic, copy, readonly) NSString *street;
 @property (nonatomic, strong, readonly) NSNumber *longitude;
 @property (nonatomic, strong, readonly) NSNumber *latitude;
+@property (nonatomic, strong, readonly) NSNumber *speed;
 
 @property (nonatomic, assign, readonly) BOOL hasKnownLocation;
 
