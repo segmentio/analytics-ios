@@ -206,10 +206,20 @@ static NSMutableDictionary *BuildStaticContext() {
         network;
     });
     
-    context[@"location"] = self.location.hasKnownLocation ? self.location.locationDictionary : nil;
+    if (self.location.hasKnownLocation)
+        context[@"location"] = self.location.locationDictionary;
 
     // Traits
     // TODO https://github.com/segmentio/spec/issues/29
+
+    context[@"traits"] = ({
+        NSMutableDictionary *traits = [[NSMutableDictionary alloc] init];
+        
+        if (self.location.hasKnownLocation)
+            traits[@"address"] = self.location.addressDictionary;
+        
+        traits;
+    });
 
     return context;
 }
