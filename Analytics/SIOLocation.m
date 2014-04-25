@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Segment.io. All rights reserved.
 //
 
-#import "SIOAddress.h"
+#import "SIOLocation.h"
 
 #import <CoreLocation/CoreLocation.h>
 
 
-@interface SIOAddress () <CLLocationManagerDelegate>
+@interface SIOLocation () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLPlacemark *currentPlacemark;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation SIOAddress
+@implementation SIOLocation
 
 - (id)init {
     if (self = [super init]) {
