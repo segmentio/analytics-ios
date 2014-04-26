@@ -23,6 +23,8 @@
 
 /* Begin PBXBuildFile section */
 		18E86AF9AC7C4CB494AEA208 /* libPods-AnalyticsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */; };
+		32031D1A190C4D77008F7DA8 /* QuantcastProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 32031D18190C4D77008F7DA8 /* QuantcastProvider.h */; };
+		32031D1B190C4D77008F7DA8 /* QuantcastProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 32031D19190C4D77008F7DA8 /* QuantcastProvider.m */; };
 		7E94C0F018932A5B004BD132 /* KWBlockMatchEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */; };
 		7EA1CA851898033000DC8637 /* KWNotificationMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EA1CA841898033000DC8637 /* KWNotificationMatcher.m */; };
 		B8A1B15E08994855871D1685 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70B38155D048462482A91850 /* libPods.a */; };
@@ -132,6 +134,8 @@
 /* Begin PBXFileReference section */
 		1292362745B3499F9F8849DB /* Pods-AnalyticsTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTests.xcconfig"; path = "Pods/Pods-AnalyticsTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnalyticsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		32031D18190C4D77008F7DA8 /* QuantcastProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QuantcastProvider.h; path = Quantcast/QuantcastProvider.h; sourceTree = "<group>"; };
+		32031D19190C4D77008F7DA8 /* QuantcastProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = QuantcastProvider.m; path = Quantcast/QuantcastProvider.m; sourceTree = "<group>"; };
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBlockMatchEvaluator.h; sourceTree = "<group>"; };
 		7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockMatchEvaluator.m; sourceTree = "<group>"; };
@@ -283,6 +287,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32031D17190C4D5B008F7DA8 /* Quantcast */ = {
+			isa = PBXGroup;
+			children = (
+				32031D18190C4D77008F7DA8 /* QuantcastProvider.h */,
+				32031D19190C4D77008F7DA8 /* QuantcastProvider.m */,
+			);
+			name = Quantcast;
+			sourceTree = "<group>";
+		};
 		D331BD101860EA83007CB22F /* Tapstream */ = {
 			isa = PBXGroup;
 			children = (
@@ -384,6 +397,7 @@
 				EACB4DBF17C0BB3100624129 /* GoogleAnalytics */,
 				EACB4DC517C0BB3100624129 /* Localytics */,
 				EACB4DC817C0BB3100624129 /* Mixpanel */,
+				32031D17190C4D5B008F7DA8 /* Quantcast */,
 				D331BD101860EA83007CB22F /* Tapstream */,
 				EACB4DCB17C0BB3100624129 /* Segmentio */,
 			);
@@ -582,6 +596,7 @@
 				D331BD2F1860F5F0007CB22F /* TSCoreListener.h in Headers */,
 				D331BD301860F5F0007CB22F /* TSDelegate.h in Headers */,
 				D331BD311860F5F0007CB22F /* TSEvent.h in Headers */,
+				32031D1A190C4D77008F7DA8 /* QuantcastProvider.h in Headers */,
 				D331BD321860F5F0007CB22F /* TSHelpers.h in Headers */,
 				D331BD331860F5F0007CB22F /* TSHit.h in Headers */,
 				D331BD341860F5F0007CB22F /* TSLogging.h in Headers */,
@@ -870,6 +885,7 @@
 				EACB4DE517C0BB3100624129 /* MixpanelProvider.m in Sources */,
 				EACB4DE717C0BB3100624129 /* SegmentioProvider.m in Sources */,
 				EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */,
+				32031D1B190C4D77008F7DA8 /* QuantcastProvider.m in Sources */,
 				EAA604CA17C28C7C00911919 /* AnalyticsRequest.m in Sources */,
 				EA65F96717C2ABA600389A1A /* AnalyticsProvider.m in Sources */,
 			);
