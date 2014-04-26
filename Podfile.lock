@@ -16,6 +16,9 @@ PODS:
     - Kiwi/NonARC
   - Localytics (2.21.0.fork)
   - Mixpanel (2.3.4)
+  - Quantcast-Measure (1.4.2):
+    - Quantcast-Measure/Core
+  - Quantcast-Measure/Core (1.4.2)
   - Tapstream (2.6)
 
 DEPENDENCIES:
@@ -28,6 +31,7 @@ DEPENDENCIES:
   - Kiwi (~> 2.2.3)
   - Localytics (= 2.21.0.fork)
   - Mixpanel (~> 2.3.4)
+  - Quantcast-Measure (~> 1.4.2)
   - Tapstream (~> 2.6)
 
 SPEC CHECKSUMS:
@@ -40,6 +44,7 @@ SPEC CHECKSUMS:
   Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
   Localytics: 1cb82c7e344936913d4a701fd85c58b4d6b0ba5d
   Mixpanel: 16e6f1d5f8aeb9282ee864e169557de0bd9549df
+  Quantcast-Measure: 523ef161a9ee9fe85f599daf754d6ae7597d9f1f
   Tapstream: 00dd14461e648b5cfc682c79be5be085cf18631b
 
 COCOAPODS: 0.32.1
