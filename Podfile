@@ -9,6 +9,7 @@ pod 'GoogleAnalytics-iOS-SDK', '3.0.6'
 pod 'Localytics', '2.21.0.fork'
 pod 'Mixpanel', '~> 2.3.4'
 pod 'Tapstream', '~> 2.6'
+pod 'Quantcast-Measure', '1.4.2-fork'
 
 target :AnalyticsTests, :exclusive => true do
     link_with 'AnalyticsTests'

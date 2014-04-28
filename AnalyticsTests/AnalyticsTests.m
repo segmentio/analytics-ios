@@ -42,7 +42,7 @@ describe(@"Analytics", ^{
         [[analytics.cachedSettings shouldNot] beEmpty];
         [[analytics.secret should] equal:@"k5l6rrye0hsv566zwuk7"];
         [[segmentio.secret should] equal:@"k5l6rrye0hsv566zwuk7"];
-        [[[analytics should] have:10] providers];
+        [[[analytics should] have:11] providers];
         [segmentio shouldNotBeNil];
     });
     

@@ -30,6 +30,7 @@
 // Callbacks for app state changes
 // -------------------------------
 
+- (void)applicationDidFinishLaunching;
 - (void)applicationDidEnterBackground;
 - (void)applicationWillEnterForeground;
 - (void)applicationWillTerminate;

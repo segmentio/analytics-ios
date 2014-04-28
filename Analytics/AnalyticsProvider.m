@@ -51,6 +51,7 @@
 - (void)applicationWillTerminate { }
 - (void)applicationWillResignActive { }
 - (void)applicationDidBecomeActive { }
+- (void)applicationDidFinishLaunching {}
 
 #pragma mark Class Methods
 
