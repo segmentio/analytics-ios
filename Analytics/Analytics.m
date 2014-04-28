@@ -49,6 +49,7 @@
 
         // Pass through for application state change events
         for (NSString *name in @[UIApplicationDidEnterBackgroundNotification,
+                                 UIApplicationDidFinishLaunchingNotification,
                                  UIApplicationWillEnterForegroundNotification,
                                  UIApplicationWillTerminateNotification,
                                  UIApplicationWillResignActiveNotification,
@@ -136,6 +137,8 @@
     static dispatch_once_t selectorMappingOnce;
     dispatch_once(&selectorMappingOnce, ^{
         selectorMapping = @{
+            UIApplicationDidFinishLaunchingNotification:
+                NSStringFromSelector(@selector(applicationDidFinishLaunching)),
             UIApplicationDidEnterBackgroundNotification:
                 NSStringFromSelector(@selector(applicationDidEnterBackground)),
             UIApplicationWillEnterForegroundNotification:
