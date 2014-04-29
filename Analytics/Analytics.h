@@ -110,8 +110,7 @@
  Associate a user with their unique ID and record traits about them.
 
  @param userId        A database ID (or email address) for this user. If you don't have a userId
-                      but want to record traits, you should pass nil. We will automatically generate
-                      a UUID to let you identify "anonymous" users. For more information on how we
+                      but want to record traits, you should pass nil. For more information on how we
                       generate the UUID and Apple's policies on IDs, see https://segment.io/libraries/ios#ids
 
  @param traits        A dictionary of traits you know about the user. Things like: email, name, subscriptionPlan, etc.
