@@ -6,7 +6,7 @@ def import_integrations
   pod 'FlurrySDK', '~> 4.4.0'
   pod 'GoogleAnalytics-iOS-SDK', '3.0.6'
   pod 'Localytics', '2.21.0.fork'
-  pod 'Mixpanel', '~> 2.3.4'
+  pod 'Mixpanel', '2.3.4'
   pod 'Tapstream', '~> 2.6'
 end
 
