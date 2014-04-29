@@ -211,7 +211,7 @@
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
     NSParameterAssert(screenTitle);
     [self callIntegrationsWithSelector:_cmd
-                          arguments:@[[@"Viewed " stringByAppendingString:screenTitle], CoerceDictionary(properties), CoerceDictionary(options)]
+                          arguments:@[[NSString stringWithFormat:@"Viewed %@ Screen", screenTitle], CoerceDictionary(properties), CoerceDictionary(options)]
                             options:options];
 }
 
