@@ -28,19 +28,19 @@
 }
 
 - (void)start {
-    [[QuantcastMeasurement sharedInstance] setupMeasurementSessionWithAPIKey:self.settings[@"apiKey"] userIdentifier:nil labels:nil];
+    [[QuantcastMeasurement sharedInstance] setupMeasurementSessionWithAPIKey:self.settings[@"apiKey"] userIdentifier:self.settings[@"userIdentifier"] labels:self.settings[@"labels"]];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
-    [[QuantcastMeasurement sharedInstance] logEvent:event withLabels:options[@"labels"]];
+    [[QuantcastMeasurement sharedInstance] logEvent:event withLabels:self.settings[@"labels"]];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
-    [[QuantcastMeasurement sharedInstance] logEvent:screenTitle withLabels:options[@"labels"]];
+    [[QuantcastMeasurement sharedInstance] logEvent:screenTitle withLabels:self.settings[@"labels"]];
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
-    [[QuantcastMeasurement sharedInstance] recordUserIdentifier:userId withLabels:options[@"labels"]];
+    [[QuantcastMeasurement sharedInstance] recordUserIdentifier:userId withLabels:self.settings[@"labels"]];
 }
 
 - (void)applicationDidFinishLaunching {
