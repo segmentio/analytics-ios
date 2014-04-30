@@ -1,3 +1,5 @@
+inhibit_all_warnings!
+
 def import_integrations
   pod 'Amplitude-iOS', '~> 2.0.0'
   pod 'Bugsnag', '3.1.0.fork'
@@ -11,9 +13,14 @@ def import_integrations
   pod 'Quantcast-Measure', '1.4.2-fork'
 end
 
+def import_utilities
+  pod 'Reachability', '3.1.1'
+  pod 'TRVSDeviceInfo', :path => '~/dev/TRVSDeviceInfo'
+end
+
 def import_pods
   import_integrations
-  pod 'Reachability', '3.1.1'
+  import_utilities
 end
 
 target 'Analytics', :exclusive => true do

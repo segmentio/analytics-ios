@@ -21,6 +21,7 @@ PODS:
   - Quantcast-Measure/Core (1.4.2)
   - Reachability (3.1.1)
   - Tapstream (2.7)
+  - TRVSDeviceInfo (0.0.1)
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 2.0.0)
@@ -35,6 +36,11 @@ DEPENDENCIES:
   - Quantcast-Measure (= 1.4.2-fork)
   - Reachability (= 3.1.1)
   - Tapstream (~> 2.6)
+  - TRVSDeviceInfo (from `~/dev/TRVSDeviceInfo`)
+
+EXTERNAL SOURCES:
+  TRVSDeviceInfo:
+    :path: ~/dev/TRVSDeviceInfo
 
 SPEC CHECKSUMS:
   Amplitude-iOS: 88d27d819a5ad9aa7bdbd700b03b1db8ff5e1fd8
@@ -49,5 +55,6 @@ SPEC CHECKSUMS:
   Quantcast-Measure: 51a1d2cfd5e99013e5897c5641d55eb2de3cd375
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
   Tapstream: 0353dd88680c53361605886fd8f327c57980b937
+  TRVSDeviceInfo: a23402ec024f98f7d560e7185b483d8bcac250cc
 
 COCOAPODS: 0.32.1

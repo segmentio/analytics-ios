@@ -13,6 +13,7 @@
 #import "SIOBluetooth.h"
 #import <Reachability/Reachability.h>
 #import "SIOLocation.h"
+#import <TRVSDeviceInfo/TRVSDeviceInfo.h>
 
 #define SEGMENTIO_API_URL [NSURL URLWithString:@"http://api.segment.io/v1/import"]
 #define SEGMENTIO_MAX_BATCH_SIZE 100
@@ -106,6 +107,8 @@ static NSMutableDictionary *BuildStaticContext() {
     }
     [context setObject:device forKey:@"device"];
     SOLog(@"Adding info to context: device = %@", device);
+    
+    context[@"ip address"] = [TRVSDeviceInfo IPAddress];
 
     // OS
     NSMutableDictionary *os = [NSMutableDictionary dictionary];
