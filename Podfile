@@ -15,7 +15,6 @@ end
 
 def import_utilities
   pod 'Reachability', '3.1.1'
-  pod 'TRVSDeviceInfo', :path => '~/dev/TRVSDeviceInfo'
 end
 
 def import_pods
