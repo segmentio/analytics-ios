@@ -16,8 +16,11 @@ PODS:
     - Kiwi/NonARC
   - Localytics (2.21.0.fork)
   - Mixpanel (2.3.4)
+  - Quantcast-Measure (1.4.2):
+    - Quantcast-Measure/Core
+  - Quantcast-Measure/Core (1.4.2)
   - Reachability (3.1.1)
-  - Tapstream (2.6.3)
+  - Tapstream (2.7)
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 2.0.0)
@@ -29,6 +32,7 @@ DEPENDENCIES:
   - Kiwi (~> 2.2.3)
   - Localytics (= 2.21.0.fork)
   - Mixpanel (= 2.3.4)
+  - Quantcast-Measure (= 1.4.2-fork)
   - Reachability (= 3.1.1)
   - Tapstream (~> 2.6)
 
@@ -42,7 +46,8 @@ SPEC CHECKSUMS:
   Kiwi: d60d7498b640a16f58b01925fc3c8d7c4d809f66
   Localytics: 1cb82c7e344936913d4a701fd85c58b4d6b0ba5d
   Mixpanel: 16e6f1d5f8aeb9282ee864e169557de0bd9549df
+  Quantcast-Measure: 51a1d2cfd5e99013e5897c5641d55eb2de3cd375
   Reachability: be4883bb93f31e38266ae3365e5600a317aae735
-  Tapstream: 1b161739d853cc23c64b86d6f6d2833e66ad5aec
+  Tapstream: 0353dd88680c53361605886fd8f327c57980b937
 
 COCOAPODS: 0.32.1

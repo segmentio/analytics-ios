@@ -23,6 +23,8 @@
 
 /* Begin PBXBuildFile section */
 		2822D5FF17E26C9E005B2B7F /* NSContainer+Subscripting.h in Headers */ = {isa = PBXBuildFile; fileRef = 2822D5FD17E26C9E005B2B7F /* NSContainer+Subscripting.h */; };
+		32A8C60719107DBD00173AE5 /* QuantcastIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A8C60519107DBD00173AE5 /* QuantcastIntegration.h */; };
+		32A8C60819107DBD00173AE5 /* QuantcastIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A8C60619107DBD00173AE5 /* QuantcastIntegration.m */; };
 		32DB49AC190AC2A800689C41 /* SIOLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DB49AA190AC2A800689C41 /* SIOLocation.h */; };
 		32DB49AD190AC2A800689C41 /* SIOLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB49AB190AC2A800689C41 /* SIOLocation.m */; };
 		32E113231908AC85006D9788 /* libPods-Analytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E113221908AC85006D9788 /* libPods-Analytics.a */; };
@@ -132,6 +134,8 @@
 		2822D5FD17E26C9E005B2B7F /* NSContainer+Subscripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSContainer+Subscripting.h"; sourceTree = "<group>"; };
 		2822D5FE17E26C9E005B2B7F /* NSContainer+Subscripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSContainer+Subscripting.m"; sourceTree = "<group>"; };
 		288314B9A18241B284C25C5B /* Pods-Analytics.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics.xcconfig"; path = "Pods/Pods-Analytics.xcconfig"; sourceTree = "<group>"; };
+		32A8C60519107DBD00173AE5 /* QuantcastIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuantcastIntegration.h; sourceTree = "<group>"; };
+		32A8C60619107DBD00173AE5 /* QuantcastIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuantcastIntegration.m; sourceTree = "<group>"; };
 		32CC25E119072C6B0090DD06 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32DB49AA190AC2A800689C41 /* SIOLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIOLocation.h; sourceTree = "<group>"; };
 		32DB49AB190AC2A800689C41 /* SIOLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIOLocation.m; sourceTree = "<group>"; };
@@ -284,6 +288,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32A8C60419107DBD00173AE5 /* Quantcast */ = {
+			isa = PBXGroup;
+			children = (
+				32A8C60519107DBD00173AE5 /* QuantcastIntegration.h */,
+				32A8C60619107DBD00173AE5 /* QuantcastIntegration.m */,
+			);
+			path = Quantcast;
+			sourceTree = "<group>";
+		};
 		32E281211908421100FB48D7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +363,7 @@
 				D3EDB64718C315F100A88A7E /* GoogleAnalytics */,
 				D3EDB64A18C315F100A88A7E /* Localytics */,
 				D3EDB64D18C315F100A88A7E /* Mixpanel */,
+				32A8C60419107DBD00173AE5 /* Quantcast */,
 				D3EDB65018C315F100A88A7E /* Segmentio */,
 				D3EDB65318C315F100A88A7E /* Tapstream */,
 			);
@@ -620,6 +634,7 @@
 				EA65F96617C2ABA600389A1A /* AnalyticsIntegration.h in Headers */,
 				EA65F96617C2ABA600389A1A /* AnalyticsIntegration.h in Headers */,
 				2822D5FF17E26C9E005B2B7F /* NSContainer+Subscripting.h in Headers */,
+				32A8C60719107DBD00173AE5 /* QuantcastIntegration.h in Headers */,
 				EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */,
 				EAA604C917C28C7C00911919 /* AnalyticsRequest.h in Headers */,
 			);
@@ -866,6 +881,7 @@
 				32DB49AD190AC2A800689C41 /* SIOLocation.m in Sources */,
 				D3EDB65918C315F100A88A7E /* BugsnagIntegration.m in Sources */,
 				EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */,
+				32A8C60819107DBD00173AE5 /* QuantcastIntegration.m in Sources */,
 				D3EDB65F18C315F100A88A7E /* FlurryIntegration.m in Sources */,
 				D3EDB66518C315F100A88A7E /* MixpanelIntegration.m in Sources */,
 				D3EDB66718C315F100A88A7E /* SegmentioIntegration.m in Sources */,

@@ -109,9 +109,8 @@
  @abstract
  Associate a user with their unique ID and record traits about them.
 
- @param userId        A database ID for this user. If you don't have a userId
-                      but want to record traits, you should pass nil. We will automatically generate
-                      a UUID to let you identify "anonymous" users. For more information on how we
+ @param userId        A database ID (or email address) for this user. If you don't have a userId
+                      but want to record traits, you should pass nil. For more information on how we
                       generate the UUID and Apple's policies on IDs, see https://segment.io/libraries/ios#ids
 
  @param traits        A dictionary of traits you know about the user. Things like: email, name, plan, etc.
@@ -166,16 +165,16 @@
 
 /*!
  @method
- 
+
  @abstract
  Associate a user with a group, organization, company, project, or w/e *you* call them.
- 
+
  @param groupId       A database ID for this group.
  @param traits        A dictionary of traits you know about the group. Things like: name, employees, etc.
- 
+
  @discussion
  When you learn more about who the group is, you can record that information with group.
- 
+
  */
 - (void)group:(NSString *)groupId;
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits;
@@ -187,7 +186,7 @@
 
  @abstract
  Register the given device to receive push notifications from applicable integrations.
- 
+
  @discussion
  Some integrations (such as Mixpanel) are capable of sending push notification to users based on
  their traits and actions. This will associate the device token with the current user in integrations

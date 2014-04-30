@@ -18,6 +18,9 @@ cache:
   directories:
     - Pods
 
+before_script:
+  - export LANG=en_US.UTF-8
+
 before_install:
   - pod repo add Segmentio-Podspecs https://github.com/segmentio/Podspecs.git
   - pod repo add Collections-Podspecs https://github.com/collections/Podspecs.git
