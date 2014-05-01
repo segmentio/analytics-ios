@@ -11,6 +11,21 @@
 @property (nonatomic, readonly) NSMutableDictionary *context;
 @end
 
+@interface SegmentioIntegrationDevelopment : SegmentioIntegration
+
+@end
+
+@implementation SegmentioIntegrationDevelopment
+
+- (id)initWithWriteKey:(NSString *)writeKey flushAt:(NSUInteger)flushAt {
+    if (self = [super initWithWriteKey:writeKey flushAt:flushAt]) {
+        self.apiURL = [NSURL URLWithString:@"http://localhost:7001/v1/import"];
+    }
+    return self;
+}
+
+@end
+
 SPEC_BEGIN(SegmentioTests)
 
 describe(@"Segment.io", ^{
@@ -18,7 +33,10 @@ describe(@"Segment.io", ^{
 
     __block SegmentioIntegration *segmentio = nil;
     beforeAll(^{
-        segmentio = [[SegmentioIntegration alloc] initWithWriteKey:@"testWriteKey" flushAt:2];
+        if ([[[NSProcessInfo processInfo] environment] objectForKey:@"CI"])
+            segmentio = [[SegmentioIntegration alloc] initWithWriteKey:@"testWriteKey" flushAt:2];
+        else
+            segmentio = [[SegmentioIntegrationDevelopment alloc] initWithWriteKey:@"suy5xxbtst" flushAt:2];
     });
     beforeEach(^{
         [segmentio reset];
