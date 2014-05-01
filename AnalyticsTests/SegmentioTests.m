@@ -58,7 +58,9 @@ describe(@"Segment.io", ^{
         
         // send a second event, wait for 200 from servers
         [segmentio track:eventName properties:nil options:nil];
+        
         [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
+        [[SegmentioRequestDidSucceedNotification shouldEventually] bePosted];
     });
     
     it(@"Should track with properties", ^{
@@ -78,6 +80,7 @@ describe(@"Segment.io", ^{
         // send a second event, wait for 200 from servers
         [segmentio track:eventName properties:properties options:nil];
         [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
+        [[SegmentioRequestDidSucceedNotification shouldEventually] bePosted];
     });
     
     it(@"Should track with context", ^{
@@ -104,6 +107,7 @@ describe(@"Segment.io", ^{
         // send a second event, wait for 200 from servers
         [segmentio track:eventName properties:properties options:nil];
         [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
+        [[SegmentioRequestDidSucceedNotification shouldEventually] bePosted];
     });
     
     it(@"Should identify", ^{
@@ -121,6 +125,7 @@ describe(@"Segment.io", ^{
         
         [segmentio identify:userId traits:nil options:nil];
         [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
+        [[SegmentioRequestDidSucceedNotification shouldEventually] bePosted];
     });
     
     it(@"Should identify with traits", ^{
@@ -138,6 +143,7 @@ describe(@"Segment.io", ^{
         
         [segmentio identify:nil traits:traits options:nil];
         [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
+        [[SegmentioRequestDidSucceedNotification shouldEventually] bePosted];
     });
     
     it(@"Should identify with context", ^{
@@ -163,6 +169,7 @@ describe(@"Segment.io", ^{
         // send a second event, wait for 200 from servers
         [segmentio identify:nil traits:traits options:nil];
         [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
+        [[SegmentioRequestDidSucceedNotification shouldEventually] bePosted];
     });
     
     it(@"Should queue when not full", ^{
@@ -183,6 +190,7 @@ describe(@"Segment.io", ^{
         [[segmentio.queue should] beEmpty];
         [[segmentio.queue shouldEventually] have:2];
         [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
+        [[SegmentioRequestDidSucceedNotification shouldEventually] bePosted];
     });
     
     it(@"Should reset", ^{
@@ -197,7 +205,7 @@ describe(@"Segment.io", ^{
         
         [[segmentio.queue should] beEmpty];
         [[segmentio.anonymousId shouldNot] equal:anonymousId];
-        [[SegmentioDidSendRequestNotification shouldNotEventually] bePosted];
+        [[SegmentioDidSendRequestNotification shouldNotEventually] bePosted];        
     });
 });
 
