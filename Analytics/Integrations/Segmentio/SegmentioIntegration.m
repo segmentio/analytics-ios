@@ -14,7 +14,6 @@
 #import <Reachability/Reachability.h>
 #import "SIOLocation.h"
 
-#define SEGMENTIO_API_URL [NSURL URLWithString:@"http://api.segment.io/v1/import"]
 #define SEGMENTIO_MAX_BATCH_SIZE 100
 #define DISK_ANONYMOUS_ID_URL AnalyticsURLForFilename(@"segmentio.anonymousId")
 #define DISK_USER_ID_URL AnalyticsURLForFilename(@"segmentio.userId")
@@ -168,7 +167,8 @@ static NSMutableDictionary *BuildStaticContext() {
 
     if (self = [self init]) {
         _flushAt = flushAt;
-        _writeKey = writeKey;
+        _writeKey = [writeKey copy];
+        _apiURL = [NSURL URLWithString:@"http://api.segment.io/v1/import"];
         _anonymousId = GetAnonymousId(NO);
         _userId = [NSString stringWithContentsOfURL:DISK_USER_ID_URL encoding:NSUTF8StringEncoding error:NULL];
         _bluetooth = [[SIOBluetooth alloc] init];
@@ -434,7 +434,7 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (void)sendData:(NSData *)data {
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:SEGMENTIO_API_URL];
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:self.apiURL];
     [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [urlRequest setHTTPMethod:@"POST"];
