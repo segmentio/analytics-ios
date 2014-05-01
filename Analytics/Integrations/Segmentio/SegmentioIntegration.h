@@ -14,6 +14,7 @@ extern NSString *const SegmentioRequestDidFailNotification;
 @property(nonatomic, copy) NSString *anonymousId;
 @property(nonatomic, copy) NSString *userId;
 @property(nonatomic, assign) NSUInteger flushAt;
+@property (nonatomic, strong) NSURL *apiURL;
 
 - (void)flush;
 
