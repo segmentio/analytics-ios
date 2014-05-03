@@ -6,17 +6,17 @@
 //  Copyright (c) 2014 Segment.io. All rights reserved.
 //
 
-#import "SIOBluetooth.h"
+#import "SGTBluetooth.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface SIOBluetooth () <CBCentralManagerDelegate>
+@interface SGTBluetooth () <CBCentralManagerDelegate>
 
 @property (nonatomic, strong) CBCentralManager *manager;
 @property (nonatomic, strong) dispatch_queue_t queue;
 
 @end
 
-@implementation SIOBluetooth
+@implementation SGTBluetooth
 
 - (id)init {
     if (self = [super init]) {
