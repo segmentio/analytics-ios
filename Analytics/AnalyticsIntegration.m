@@ -5,8 +5,8 @@
 
 @implementation AnalyticsIntegration
 
-- (void)start { }
-- (void)stop { }
+- (void)start {}
+- (void)stop {}
 
 - (void)validate {
     self.valid = NO;
@@ -41,17 +41,17 @@
     }
 }
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options { }
-- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options { }
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options { }
-- (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options { }
-- (void)reset { }
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {}
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {}
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {}
+- (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options {}
+- (void)reset {}
 
-- (void)applicationDidEnterBackground { }
-- (void)applicationWillEnterForeground { }
-- (void)applicationWillTerminate { }
-- (void)applicationWillResignActive { }
-- (void)applicationDidBecomeActive { }
+- (void)applicationDidEnterBackground {}
+- (void)applicationWillEnterForeground {}
+- (void)applicationWillTerminate {}
+- (void)applicationWillResignActive {}
+- (void)applicationDidBecomeActive {}
 - (void)applicationDidFinishLaunching {}
 
 #pragma mark Class Methods

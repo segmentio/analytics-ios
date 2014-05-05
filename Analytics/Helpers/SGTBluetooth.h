@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SIOBluetooth : NSObject
+@interface SGTBluetooth : NSObject
 
 - (BOOL)hasKnownState;
 - (BOOL)isEnabled;

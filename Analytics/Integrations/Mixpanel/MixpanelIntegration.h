@@ -4,7 +4,6 @@
 #import <Foundation/Foundation.h>
 #import "AnalyticsIntegration.h"
 
-
 @interface MixpanelIntegration : AnalyticsIntegration
 
 @property(nonatomic, copy) NSString *name;

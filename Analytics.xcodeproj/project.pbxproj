@@ -22,16 +22,16 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		2822D5FF17E26C9E005B2B7F /* NSContainer+Subscripting.h in Headers */ = {isa = PBXBuildFile; fileRef = 2822D5FD17E26C9E005B2B7F /* NSContainer+Subscripting.h */; };
+		32430A761914186C004EFF59 /* SGTLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A741914186C004EFF59 /* SGTLocation.h */; };
+		32430A771914186C004EFF59 /* SGTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32430A751914186C004EFF59 /* SGTLocation.m */; };
+		32430A7919145DA8004EFF59 /* AnalyticsIntegrations.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A7819145DA8004EFF59 /* AnalyticsIntegrations.h */; };
 		32A8C60719107DBD00173AE5 /* QuantcastIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A8C60519107DBD00173AE5 /* QuantcastIntegration.h */; };
 		32A8C60819107DBD00173AE5 /* QuantcastIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A8C60619107DBD00173AE5 /* QuantcastIntegration.m */; };
-		32DB49AC190AC2A800689C41 /* SIOLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DB49AA190AC2A800689C41 /* SIOLocation.h */; };
-		32DB49AD190AC2A800689C41 /* SIOLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DB49AB190AC2A800689C41 /* SIOLocation.m */; };
 		32E113231908AC85006D9788 /* libPods-Analytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E113221908AC85006D9788 /* libPods-Analytics.a */; };
 		32E113241908ACAF006D9788 /* libAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7317659B2F003F3138 /* libAnalytics.a */; };
 		32E113261908AD1C006D9788 /* libPods-AnalyticsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E113251908AD1C006D9788 /* libPods-AnalyticsTests.a */; };
-		32E2811E1908420D00FB48D7 /* SIOBluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E2811C1908420D00FB48D7 /* SIOBluetooth.h */; };
-		32E2811F1908420D00FB48D7 /* SIOBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2811D1908420D00FB48D7 /* SIOBluetooth.m */; };
+		32E2811E1908420D00FB48D7 /* SGTBluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E2811C1908420D00FB48D7 /* SGTBluetooth.h */; };
+		32E2811F1908420D00FB48D7 /* SGTBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2811D1908420D00FB48D7 /* SGTBluetooth.m */; };
 		32E281231908651300FB48D7 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E281221908651300FB48D7 /* CoreBluetooth.framework */; };
 		7E94C0F018932A5B004BD132 /* KWBlockMatchEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -131,18 +131,17 @@
 /* Begin PBXFileReference section */
 		1292362745B3499F9F8849DB /* Pods-AnalyticsTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTests.xcconfig"; path = "Pods/Pods-AnalyticsTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnalyticsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2822D5FD17E26C9E005B2B7F /* NSContainer+Subscripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSContainer+Subscripting.h"; sourceTree = "<group>"; };
-		2822D5FE17E26C9E005B2B7F /* NSContainer+Subscripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSContainer+Subscripting.m"; sourceTree = "<group>"; };
 		288314B9A18241B284C25C5B /* Pods-Analytics.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics.xcconfig"; path = "Pods/Pods-Analytics.xcconfig"; sourceTree = "<group>"; };
+		32430A741914186C004EFF59 /* SGTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTLocation.h; path = Helpers/SGTLocation.h; sourceTree = "<group>"; };
+		32430A751914186C004EFF59 /* SGTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTLocation.m; path = Helpers/SGTLocation.m; sourceTree = "<group>"; };
+		32430A7819145DA8004EFF59 /* AnalyticsIntegrations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsIntegrations.h; sourceTree = "<group>"; };
 		32A8C60519107DBD00173AE5 /* QuantcastIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuantcastIntegration.h; sourceTree = "<group>"; };
 		32A8C60619107DBD00173AE5 /* QuantcastIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuantcastIntegration.m; sourceTree = "<group>"; };
 		32CC25E119072C6B0090DD06 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
-		32DB49AA190AC2A800689C41 /* SIOLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIOLocation.h; sourceTree = "<group>"; };
-		32DB49AB190AC2A800689C41 /* SIOLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIOLocation.m; sourceTree = "<group>"; };
 		32E113221908AC85006D9788 /* libPods-Analytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Analytics.a"; path = "Pods/build/Debug-iphoneos/libPods-Analytics.a"; sourceTree = "<group>"; };
 		32E113251908AD1C006D9788 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
-		32E2811C1908420D00FB48D7 /* SIOBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIOBluetooth.h; path = Helpers/SIOBluetooth.h; sourceTree = "<group>"; };
-		32E2811D1908420D00FB48D7 /* SIOBluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIOBluetooth.m; path = Helpers/SIOBluetooth.m; sourceTree = "<group>"; };
+		32E2811C1908420D00FB48D7 /* SGTBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTBluetooth.h; path = Helpers/SGTBluetooth.h; sourceTree = "<group>"; };
+		32E2811D1908420D00FB48D7 /* SGTBluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTBluetooth.m; path = Helpers/SGTBluetooth.m; sourceTree = "<group>"; };
 		32E281221908651300FB48D7 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		32F9E6B31907300300ED295B /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32F9E6B61907320700ED295B /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
@@ -300,10 +299,10 @@
 		32E281211908421100FB48D7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				32E2811C1908420D00FB48D7 /* SIOBluetooth.h */,
-				32E2811D1908420D00FB48D7 /* SIOBluetooth.m */,
-				32DB49AA190AC2A800689C41 /* SIOLocation.h */,
-				32DB49AB190AC2A800689C41 /* SIOLocation.m */,
+				32430A741914186C004EFF59 /* SGTLocation.h */,
+				32430A751914186C004EFF59 /* SGTLocation.m */,
+				32E2811C1908420D00FB48D7 /* SGTBluetooth.h */,
+				32E2811D1908420D00FB48D7 /* SGTBluetooth.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -355,6 +354,7 @@
 		D3EDB63718C315F100A88A7E /* Integrations */ = {
 			isa = PBXGroup;
 			children = (
+				32430A7819145DA8004EFF59 /* AnalyticsIntegrations.h */,
 				D3EDB63818C315F100A88A7E /* Amplitude */,
 				D3EDB63B18C315F100A88A7E /* Bugsnag */,
 				D3EDB63E18C315F100A88A7E /* Countly */,
@@ -568,8 +568,6 @@
 		F7200B7917659B2F003F3138 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2822D5FD17E26C9E005B2B7F /* NSContainer+Subscripting.h */,
-				2822D5FE17E26C9E005B2B7F /* NSContainer+Subscripting.m */,
 				F7200B7A17659B2F003F3138 /* Analytics-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -591,7 +589,6 @@
 				D3EDB65818C315F100A88A7E /* BugsnagIntegration.h in Headers */,
 				D371F330185942C90053337D /* Flurry.h in Headers */,
 				D371F332185942DE0053337D /* GAI.h in Headers */,
-				32DB49AC190AC2A800689C41 /* SIOLocation.h in Headers */,
 				D3EDB65E18C315F100A88A7E /* FlurryIntegration.h in Headers */,
 				D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */,
 				D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */,
@@ -607,13 +604,14 @@
 				D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */,
 				D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */,
 				D331BD1B1860F5D4007CB22F /* TSPlatformImpl.h in Headers */,
-				32E2811E1908420D00FB48D7 /* SIOBluetooth.h in Headers */,
+				32E2811E1908420D00FB48D7 /* SGTBluetooth.h in Headers */,
 				D331BD1C1860F5D4007CB22F /* TSTapstream.h in Headers */,
 				D331BD2B1860F5F0007CB22F /* TSApi.h in Headers */,
 				D331BD2C1860F5F0007CB22F /* TSAppEventSource.h in Headers */,
 				D331BD2D1860F5F0007CB22F /* TSConfig.h in Headers */,
 				D3EDB66018C315F100A88A7E /* GoogleAnalyticsIntegration.h in Headers */,
 				D331BD2E1860F5F0007CB22F /* TSCore.h in Headers */,
+				32430A7919145DA8004EFF59 /* AnalyticsIntegrations.h in Headers */,
 				D3EDB66818C315F100A88A7E /* TapstreamIntegration.h in Headers */,
 				D331BD2F1860F5F0007CB22F /* TSCoreListener.h in Headers */,
 				D331BD301860F5F0007CB22F /* TSDelegate.h in Headers */,
@@ -622,6 +620,7 @@
 				D331BD331860F5F0007CB22F /* TSHit.h in Headers */,
 				D331BD341860F5F0007CB22F /* TSLogging.h in Headers */,
 				D3EDB66618C315F100A88A7E /* SegmentioIntegration.h in Headers */,
+				32430A761914186C004EFF59 /* SGTLocation.h in Headers */,
 				D331BD351860F5F0007CB22F /* TSLogLevel.h in Headers */,
 				D3EDB66218C315F100A88A7E /* LocalyticsIntegration.h in Headers */,
 				D331BD361860F5F0007CB22F /* TSPlatform.h in Headers */,
@@ -633,7 +632,6 @@
 				D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */,
 				EA65F96617C2ABA600389A1A /* AnalyticsIntegration.h in Headers */,
 				EA65F96617C2ABA600389A1A /* AnalyticsIntegration.h in Headers */,
-				2822D5FF17E26C9E005B2B7F /* NSContainer+Subscripting.h in Headers */,
 				32A8C60719107DBD00173AE5 /* QuantcastIntegration.h in Headers */,
 				EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */,
 				EAA604C917C28C7C00911919 /* AnalyticsRequest.h in Headers */,
@@ -878,7 +876,7 @@
 				D3EDB66118C315F100A88A7E /* GoogleAnalyticsIntegration.m in Sources */,
 				D3EDB65718C315F100A88A7E /* AmplitudeIntegration.m in Sources */,
 				F7200B7E17659B2F003F3138 /* Analytics.m in Sources */,
-				32DB49AD190AC2A800689C41 /* SIOLocation.m in Sources */,
+				32430A771914186C004EFF59 /* SGTLocation.m in Sources */,
 				D3EDB65918C315F100A88A7E /* BugsnagIntegration.m in Sources */,
 				EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */,
 				32A8C60819107DBD00173AE5 /* QuantcastIntegration.m in Sources */,
@@ -886,7 +884,7 @@
 				D3EDB66518C315F100A88A7E /* MixpanelIntegration.m in Sources */,
 				D3EDB66718C315F100A88A7E /* SegmentioIntegration.m in Sources */,
 				D3EDB65D18C315F100A88A7E /* CrittercismIntegration.m in Sources */,
-				32E2811F1908420D00FB48D7 /* SIOBluetooth.m in Sources */,
+				32E2811F1908420D00FB48D7 /* SGTBluetooth.m in Sources */,
 				EAA604CA17C28C7C00911919 /* AnalyticsRequest.m in Sources */,
 				EA65F96717C2ABA600389A1A /* AnalyticsIntegration.m in Sources */,
 				D3EDB66318C315F100A88A7E /* LocalyticsIntegration.m in Sources */,

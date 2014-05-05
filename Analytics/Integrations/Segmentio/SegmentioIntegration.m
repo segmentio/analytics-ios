@@ -10,9 +10,9 @@
 #import "AnalyticsUtils.h"
 #import "AnalyticsRequest.h"
 #import "SegmentioIntegration.h"
-#import "SIOBluetooth.h"
+#import "SGTBluetooth.h"
 #import <Reachability/Reachability.h>
-#import "SIOLocation.h"
+#import "SGTLocation.h"
 
 #define SEGMENTIO_MAX_BATCH_SIZE 100
 #define DISK_ANONYMOUS_ID_URL AnalyticsURLForFilename(@"segmentio.anonymousId")
@@ -142,9 +142,9 @@ static NSMutableDictionary *BuildStaticContext() {
 @property (nonatomic, strong) NSArray *batch;
 @property (nonatomic, strong) AnalyticsRequest *request;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
-@property (nonatomic, strong) SIOBluetooth *bluetooth;
+@property (nonatomic, strong) SGTBluetooth *bluetooth;
 @property (nonatomic, strong) Reachability *reachability;
-@property (nonatomic, strong) SIOLocation *location;
+@property (nonatomic, strong) SGTLocation *location;
 
 @end
 
@@ -171,7 +171,7 @@ static NSMutableDictionary *BuildStaticContext() {
         _apiURL = [NSURL URLWithString:@"http://api.segment.io/v1/import"];
         _anonymousId = GetAnonymousId(NO);
         _userId = [NSString stringWithContentsOfURL:DISK_USER_ID_URL encoding:NSUTF8StringEncoding error:NULL];
-        _bluetooth = [[SIOBluetooth alloc] init];
+        _bluetooth = [[SGTBluetooth alloc] init];
         _reachability = [Reachability reachabilityWithHostname:@"http://google.com"];
         _context = BuildStaticContext();
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
