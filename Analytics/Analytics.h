@@ -6,8 +6,8 @@
 
 @interface Analytics : NSObject
 
-@property(nonatomic, strong) NSString *writeKey;
-@property(nonatomic, readonly) NSDictionary *integrations;
+@property (nonatomic, copy, readonly) NSString *writeKey;
+@property (nonatomic, copy, readonly) NSDictionary *integrations;
 
 
 // Step 1: Initialization

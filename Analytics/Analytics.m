@@ -6,12 +6,12 @@
 #import "AnalyticsIntegration.h"
 #import "AnalyticsRequest.h"
 #import "Analytics.h"
+#import "AnalyticsIntegrations.h"
 
 #define SETTING_CACHE_URL AnalyticsURLForFilename(@"analytics.settings.plist")
 
 @interface Analytics ()
 
-@property (nonatomic, strong) NSDictionary *integrations;
 @property (nonatomic, strong) NSDictionary *cachedSettings;
 
 @end
@@ -28,12 +28,14 @@
 
 - (id)initWithWriteKey:(NSString *)writeKey {
     NSParameterAssert(writeKey.length);
+    
     if (self = [self init]) {
-        _writeKey = writeKey;
+        _writeKey = [writeKey copy];
         _enabled = YES;
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         _messageQueue = [[NSMutableArray alloc] init];
         _integrations = [[NSMutableDictionary alloc] init];
+        
         [[[self class] registeredIntegrations] enumerateKeysAndObjectsUsingBlock:
                 ^(NSString *identifier, Class integrationClass, BOOL *stop) {
              _integrations[identifier] = [[integrationClass alloc] initWithAnalytics:self];
@@ -87,6 +89,7 @@
     }
 
     for (id<AnalyticsIntegration> integration in self.integrations.allValues) {
+        
         if (integration.ready) {
             if ([integration respondsToSelector:selector]) {
                 if([self isIntegration:integration enabledInOptions:options]) {
@@ -268,6 +271,7 @@
 }
 
 - (void)updateIntegrationsWithSettings:(NSDictionary *)settings {
+    
     for (id<AnalyticsIntegration> integration in self.integrations.allValues)
         [integration updateSettings:settings[integration.name]];
     dispatch_specific_async(_serialQueue, ^{
@@ -287,7 +291,8 @@
         _settingsRequest = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
             dispatch_specific_async(_serialQueue, ^{
                 SOLog(@"%@ Received API settings response: %@", self, _settingsRequest.responseJSON);
-                if (!_settingsRequest.error) {
+                
+                if (!_settingsRequest.error) {                    
                     [self setCachedSettings:_settingsRequest.responseJSON];
                 }
                 _settingsRequest = nil;
@@ -298,34 +303,36 @@
 
 #pragma mark - Class Methods
 
-static NSMutableDictionary *RegisteredIntegrations = nil;
+static NSMutableDictionary *__registeredIntegrations = nil;
 
-+ (NSDictionary *)registeredIntegrations { return [RegisteredIntegrations copy]; }
++ (NSDictionary *)registeredIntegrations {
+    return [__registeredIntegrations copy];
+}
 
 + (void)registerIntegration:(Class)integrationClass withIdentifier:(NSString *)identifer {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        RegisteredIntegrations = [[NSMutableDictionary alloc] init];
+        __registeredIntegrations = [[NSMutableDictionary alloc] init];
     });
     NSAssert([NSThread isMainThread], @"%s must be called from the main thread", __func__);
-    NSAssert(SharedInstance == nil, @"%s can only be called before Analytics initialization", __func__);
+    NSAssert(__sharedInstance == nil, @"%s can only be called before Analytics initialization", __func__);
     NSAssert(identifer.length > 0, @"Integration must have a valid identifier;");
-    RegisteredIntegrations[identifer] = integrationClass;
+    __registeredIntegrations[identifer] = integrationClass;
 }
 
-static Analytics *SharedInstance = nil;
+static Analytics *__sharedInstance = nil;
 
 + (void)initializeWithWriteKey:(NSString *)writeKey {
     NSParameterAssert(writeKey.length > 0);
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        SharedInstance = [[self alloc] initWithWriteKey:writeKey];
+        __sharedInstance = [[self alloc] initWithWriteKey:writeKey];
     });
 }
 
 + (instancetype)sharedAnalytics {
-    NSAssert(SharedInstance, @"%@ sharedInstance called before initWithWriteKey", self);
-    return SharedInstance;
+    NSAssert(__sharedInstance, @"%@ sharedInstance called before initWithWriteKey", self);
+    return __sharedInstance;
 }
 
 + (void)debug:(BOOL)showDebugLogs {

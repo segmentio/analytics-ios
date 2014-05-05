@@ -4,6 +4,7 @@
 #import <Foundation/Foundation.h>
 
 @class Analytics;
+
 @protocol AnalyticsIntegration <NSObject>
 
 - (id)initWithAnalytics:(Analytics *)analytics;
@@ -46,7 +47,6 @@
 @property(nonatomic, assign) BOOL valid;
 @property(nonatomic, assign) BOOL initialized;
 @property(nonatomic, copy) NSDictionary *settings;
-
 
 - (void)validate;
 - (void)start;
