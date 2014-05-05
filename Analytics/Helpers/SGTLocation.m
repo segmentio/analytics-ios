@@ -22,6 +22,8 @@
 @implementation SGTLocation
 
 - (id)init {
+    if (![CLLocationManager locationServicesEnabled]) return nil;
+
     if (self = [super init]) {
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.delegate = self;
@@ -80,7 +82,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     if (!locations.count) return;
-    
+
     __weak typeof(self) weakSelf = self;
     [self.geocoder reverseGeocodeLocation:locations.firstObject completionHandler:^(NSArray *placemarks, NSError *error) {
         __strong typeof(weakSelf) strongSelf = weakSelf;
