@@ -166,6 +166,7 @@ static NSMutableDictionary *BuildStaticContext() {
         _anonymousId = GetAnonymousId(NO);
         _userId = [NSString stringWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
         _bluetooth = [[SEGBluetooth alloc] init];
+        _location = [SEGLocation new];
         _reachability = [Reachability reachabilityWithHostname:@"http://google.com"];
         _context = BuildStaticContext();
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
