@@ -82,7 +82,7 @@ static id CoerceJSONObject(id obj) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         for (NSString *key in obj) {
             if (![key isKindOfClass:[NSString class]])
-                NSLog(@"warning: dictionary keys should be strings. got: %@. coercing to: %@", [key class], [key description]);
+                SOLog(@"warning: dictionary keys should be strings. got: %@. coercing to: %@", [key class], [key description]);
             dict[key.description] = CoerceJSONObject(obj[key]);
         }
         return dict;
@@ -96,7 +96,7 @@ static id CoerceJSONObject(id obj) {
         return [obj absoluteString];
     
     // default to sending the object's description
-    NSLog(@"warning: dictionary values should be valid json types. got: %@. coercing to: %@", [obj class], [obj description]);
+    SOLog(@"warning: dictionary values should be valid json types. got: %@. coercing to: %@", [obj class], [obj description]);
     return [obj description];
 }
 
