@@ -370,7 +370,6 @@ static NSMutableDictionary *BuildStaticContext() {
             return;
         } else if (self.request != nil) {
             SEGLog(@"%@ API request already in progress, not flushing again.", self);
-            NSLog(@"%@ %@", self.batch, self.request);
             return;
         } else if ([self.queue count] >= maxBatchSize) {
             self.batch = [self.queue subarrayWithRange:NSMakeRange(0, maxBatchSize)];
@@ -424,7 +423,7 @@ static NSMutableDictionary *BuildStaticContext() {
 - (void)notifyForName:(NSString *)name userInfo:(id)userInfo {
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:name object:self];
-        NSLog(@"sent notification %@", name);
+        SEGLog(@"sent notification %@", name);
     });
 }
 
