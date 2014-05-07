@@ -9,7 +9,6 @@
 #import "SEGLocation.h"
 
 #import <CoreLocation/CoreLocation.h>
-#import <objc/runtime.h>
 
 @interface SEGLocation () <CLLocationManagerDelegate>
 
@@ -21,15 +20,15 @@
 
 @implementation SEGLocation
 
-- (id)init {
+- (id)init {    
     if (![CLLocationManager locationServicesEnabled]) return nil;
 
     if (self = [super init]) {
+        _geocoder = [[CLGeocoder alloc] init];
         _locationManager = [[CLLocationManager alloc] init];
         _locationManager.delegate = self;
         _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;
-        _geocoder = [[CLGeocoder alloc] init];
-        // need to start updating location at some point
+        [_locationManager startUpdatingLocation];
     }
     return self;
 }

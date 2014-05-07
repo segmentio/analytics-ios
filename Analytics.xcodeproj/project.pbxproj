@@ -554,8 +554,8 @@
 		F7200B7817659B2F003F3138 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				F7200B7B17659B2F003F3138 /* SEGAnalytics.h */,
 				32CCD99B1919A4F4007B63BA /* Analytics.h */,
+				F7200B7B17659B2F003F3138 /* SEGAnalytics.h */,
 				F7200B7D17659B2F003F3138 /* SEGAnalytics.m */,
 				EAA604C717C28C7C00911919 /* SEGAnalyticsRequest.h */,
 				EAA604C817C28C7C00911919 /* SEGAnalyticsRequest.m */,
