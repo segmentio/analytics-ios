@@ -22,16 +22,17 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		32430A761914186C004EFF59 /* SGTLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A741914186C004EFF59 /* SGTLocation.h */; };
-		32430A771914186C004EFF59 /* SGTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32430A751914186C004EFF59 /* SGTLocation.m */; };
-		32430A7919145DA8004EFF59 /* AnalyticsIntegrations.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A7819145DA8004EFF59 /* AnalyticsIntegrations.h */; };
-		32A8C60719107DBD00173AE5 /* QuantcastIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A8C60519107DBD00173AE5 /* QuantcastIntegration.h */; };
-		32A8C60819107DBD00173AE5 /* QuantcastIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A8C60619107DBD00173AE5 /* QuantcastIntegration.m */; };
+		32430A761914186C004EFF59 /* SEGLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A741914186C004EFF59 /* SEGLocation.h */; };
+		32430A771914186C004EFF59 /* SEGLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32430A751914186C004EFF59 /* SEGLocation.m */; };
+		32430A7919145DA8004EFF59 /* SEGAnalyticsIntegrations.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A7819145DA8004EFF59 /* SEGAnalyticsIntegrations.h */; };
+		32A8C60719107DBD00173AE5 /* SEGQuantcastIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */; };
+		32A8C60819107DBD00173AE5 /* SEGQuantcastIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A8C60619107DBD00173AE5 /* SEGQuantcastIntegration.m */; };
+		32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCD99B1919A4F4007B63BA /* Analytics.h */; };
 		32E113231908AC85006D9788 /* libPods-Analytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E113221908AC85006D9788 /* libPods-Analytics.a */; };
 		32E113241908ACAF006D9788 /* libAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7317659B2F003F3138 /* libAnalytics.a */; };
 		32E113261908AD1C006D9788 /* libPods-AnalyticsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E113251908AD1C006D9788 /* libPods-AnalyticsTests.a */; };
-		32E2811E1908420D00FB48D7 /* SGTBluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E2811C1908420D00FB48D7 /* SGTBluetooth.h */; };
-		32E2811F1908420D00FB48D7 /* SGTBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2811D1908420D00FB48D7 /* SGTBluetooth.m */; };
+		32E2811E1908420D00FB48D7 /* SEGBluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E2811C1908420D00FB48D7 /* SEGBluetooth.h */; };
+		32E2811F1908420D00FB48D7 /* SEGBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2811D1908420D00FB48D7 /* SEGBluetooth.m */; };
 		32E281231908651300FB48D7 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E281221908651300FB48D7 /* CoreBluetooth.framework */; };
 		7E94C0F018932A5B004BD132 /* KWBlockMatchEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -70,36 +71,36 @@
 		D371F332185942DE0053337D /* GAI.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F331185942DE0053337D /* GAI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F334185943170053337D /* Mixpanel.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F333185943170053337D /* Mixpanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3C07FBF185954D000649011 /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C07FBE185954D000649011 /* Bugsnag.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D3EDB65618C315F100A88A7E /* AmplitudeIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63918C315F100A88A7E /* AmplitudeIntegration.h */; };
-		D3EDB65718C315F100A88A7E /* AmplitudeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63A18C315F100A88A7E /* AmplitudeIntegration.m */; };
-		D3EDB65818C315F100A88A7E /* BugsnagIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63C18C315F100A88A7E /* BugsnagIntegration.h */; };
-		D3EDB65918C315F100A88A7E /* BugsnagIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63D18C315F100A88A7E /* BugsnagIntegration.m */; };
-		D3EDB65A18C315F100A88A7E /* CountlyIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63F18C315F100A88A7E /* CountlyIntegration.h */; };
-		D3EDB65B18C315F100A88A7E /* CountlyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64018C315F100A88A7E /* CountlyIntegration.m */; };
-		D3EDB65C18C315F100A88A7E /* CrittercismIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64218C315F100A88A7E /* CrittercismIntegration.h */; };
-		D3EDB65D18C315F100A88A7E /* CrittercismIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64318C315F100A88A7E /* CrittercismIntegration.m */; };
-		D3EDB65E18C315F100A88A7E /* FlurryIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64518C315F100A88A7E /* FlurryIntegration.h */; };
-		D3EDB65F18C315F100A88A7E /* FlurryIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64618C315F100A88A7E /* FlurryIntegration.m */; };
-		D3EDB66018C315F100A88A7E /* GoogleAnalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64818C315F100A88A7E /* GoogleAnalyticsIntegration.h */; };
-		D3EDB66118C315F100A88A7E /* GoogleAnalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64918C315F100A88A7E /* GoogleAnalyticsIntegration.m */; };
-		D3EDB66218C315F100A88A7E /* LocalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64B18C315F100A88A7E /* LocalyticsIntegration.h */; };
-		D3EDB66318C315F100A88A7E /* LocalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64C18C315F100A88A7E /* LocalyticsIntegration.m */; };
-		D3EDB66418C315F100A88A7E /* MixpanelIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64E18C315F100A88A7E /* MixpanelIntegration.h */; };
-		D3EDB66518C315F100A88A7E /* MixpanelIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64F18C315F100A88A7E /* MixpanelIntegration.m */; };
-		D3EDB66618C315F100A88A7E /* SegmentioIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65118C315F100A88A7E /* SegmentioIntegration.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		D3EDB66718C315F100A88A7E /* SegmentioIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65218C315F100A88A7E /* SegmentioIntegration.m */; };
-		D3EDB66818C315F100A88A7E /* TapstreamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65418C315F100A88A7E /* TapstreamIntegration.h */; };
-		D3EDB66918C315F100A88A7E /* TapstreamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65518C315F100A88A7E /* TapstreamIntegration.m */; };
+		D3EDB65618C315F100A88A7E /* SEGAmplitudeIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63918C315F100A88A7E /* SEGAmplitudeIntegration.h */; };
+		D3EDB65718C315F100A88A7E /* SEGAmplitudeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63A18C315F100A88A7E /* SEGAmplitudeIntegration.m */; };
+		D3EDB65818C315F100A88A7E /* SEGBugsnagIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63C18C315F100A88A7E /* SEGBugsnagIntegration.h */; };
+		D3EDB65918C315F100A88A7E /* SEGBugsnagIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63D18C315F100A88A7E /* SEGBugsnagIntegration.m */; };
+		D3EDB65A18C315F100A88A7E /* SEGCountlyIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63F18C315F100A88A7E /* SEGCountlyIntegration.h */; };
+		D3EDB65B18C315F100A88A7E /* SEGCountlyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64018C315F100A88A7E /* SEGCountlyIntegration.m */; };
+		D3EDB65C18C315F100A88A7E /* SEGCrittercismIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64218C315F100A88A7E /* SEGCrittercismIntegration.h */; };
+		D3EDB65D18C315F100A88A7E /* SEGCrittercismIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64318C315F100A88A7E /* SEGCrittercismIntegration.m */; };
+		D3EDB65E18C315F100A88A7E /* SEGFlurryIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64518C315F100A88A7E /* SEGFlurryIntegration.h */; };
+		D3EDB65F18C315F100A88A7E /* SEGFlurryIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64618C315F100A88A7E /* SEGFlurryIntegration.m */; };
+		D3EDB66018C315F100A88A7E /* SEGGoogleAnalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64818C315F100A88A7E /* SEGGoogleAnalyticsIntegration.h */; };
+		D3EDB66118C315F100A88A7E /* SEGGoogleAnalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64918C315F100A88A7E /* SEGGoogleAnalyticsIntegration.m */; };
+		D3EDB66218C315F100A88A7E /* SEGLocalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64B18C315F100A88A7E /* SEGLocalyticsIntegration.h */; };
+		D3EDB66318C315F100A88A7E /* SEGLocalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64C18C315F100A88A7E /* SEGLocalyticsIntegration.m */; };
+		D3EDB66418C315F100A88A7E /* SEGMixpanelIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64E18C315F100A88A7E /* SEGMixpanelIntegration.h */; };
+		D3EDB66518C315F100A88A7E /* SEGMixpanelIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64F18C315F100A88A7E /* SEGMixpanelIntegration.m */; };
+		D3EDB66618C315F100A88A7E /* SEGSegmentioIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65118C315F100A88A7E /* SEGSegmentioIntegration.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		D3EDB66718C315F100A88A7E /* SEGSegmentioIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65218C315F100A88A7E /* SEGSegmentioIntegration.m */; };
+		D3EDB66818C315F100A88A7E /* SEGTapstreamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65418C315F100A88A7E /* SEGTapstreamIntegration.h */; };
+		D3EDB66918C315F100A88A7E /* SEGTapstreamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65518C315F100A88A7E /* SEGTapstreamIntegration.m */; };
 		EA14A25317FB1E9400870901 /* settings.json in Resources */ = {isa = PBXBuildFile; fileRef = EA14A25217FB1E9400870901 /* settings.json */; };
-		EA25892317C6979D000CEF61 /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200B7B17659B2F003F3138 /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200B7B17659B2F003F3138 /* SEGAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA3B4CC717C8900A00233EA9 /* SegmentioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */; };
-		EA65F96617C2ABA600389A1A /* AnalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* AnalyticsIntegration.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EA65F96717C2ABA600389A1A /* AnalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* AnalyticsIntegration.m */; };
+		EA65F96617C2ABA600389A1A /* SEGAnalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EA65F96717C2ABA600389A1A /* SEGAnalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */; };
 		EA722AF417C87BB00016E8B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
 		EA722AF517C87BB00016E8B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		EA722AFE17C87BB00016E8B0 /* AnalyticsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA722AFD17C87BB00016E8B0 /* AnalyticsTests.m */; };
-		EAA604C917C28C7C00911919 /* AnalyticsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA604C717C28C7C00911919 /* AnalyticsRequest.h */; };
-		EAA604CA17C28C7C00911919 /* AnalyticsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA604C817C28C7C00911919 /* AnalyticsRequest.m */; };
+		EAA604C917C28C7C00911919 /* SEGAnalyticsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA604C717C28C7C00911919 /* SEGAnalyticsRequest.h */; };
+		EAA604CA17C28C7C00911919 /* SEGAnalyticsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA604C817C28C7C00911919 /* SEGAnalyticsRequest.m */; };
 		EABE4F3617C8883A00A1081B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3017C887E000A1081B /* CoreGraphics.framework */; };
 		EABE4F3717C8883A00A1081B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2E17C887D900A1081B /* Security.framework */; };
 		EABE4F3817C8883A00A1081B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2C17C887D000A1081B /* CoreTelephony.framework */; };
@@ -110,11 +111,11 @@
 		EABE4F3E17C8883A00A1081B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3417C887E800A1081B /* libz.dylib */; };
 		EABE4F3F17C8883A00A1081B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3217C887E400A1081B /* libsqlite3.dylib */; };
 		EABE4F4117C88A6D00A1081B /* AnalyticsUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EABE4F4017C88A6D00A1081B /* AnalyticsUtilsTests.m */; };
-		EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DD017C0BB3100624129 /* AnalyticsUtils.h */; };
-		EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DD117C0BB3100624129 /* AnalyticsUtils.m */; };
+		EACB4DEA17C0BB3100624129 /* SEGAnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DD017C0BB3100624129 /* SEGAnalyticsUtils.h */; };
+		EACB4DEB17C0BB3100624129 /* SEGAnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DD117C0BB3100624129 /* SEGAnalyticsUtils.m */; };
 		EAD415C717C9B72D00EB0490 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA722AF217C87BB00016E8B0 /* SenTestingKit.framework */; };
 		F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
-		F7200B7E17659B2F003F3138 /* Analytics.m in Sources */ = {isa = PBXBuildFile; fileRef = F7200B7D17659B2F003F3138 /* Analytics.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		F7200B7E17659B2F003F3138 /* SEGAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = F7200B7D17659B2F003F3138 /* SEGAnalytics.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		F78D29FA1765B382000B937E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -132,16 +133,17 @@
 		1292362745B3499F9F8849DB /* Pods-AnalyticsTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTests.xcconfig"; path = "Pods/Pods-AnalyticsTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnalyticsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		288314B9A18241B284C25C5B /* Pods-Analytics.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics.xcconfig"; path = "Pods/Pods-Analytics.xcconfig"; sourceTree = "<group>"; };
-		32430A741914186C004EFF59 /* SGTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTLocation.h; path = Helpers/SGTLocation.h; sourceTree = "<group>"; };
-		32430A751914186C004EFF59 /* SGTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTLocation.m; path = Helpers/SGTLocation.m; sourceTree = "<group>"; };
-		32430A7819145DA8004EFF59 /* AnalyticsIntegrations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsIntegrations.h; sourceTree = "<group>"; };
-		32A8C60519107DBD00173AE5 /* QuantcastIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuantcastIntegration.h; sourceTree = "<group>"; };
-		32A8C60619107DBD00173AE5 /* QuantcastIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuantcastIntegration.m; sourceTree = "<group>"; };
+		32430A741914186C004EFF59 /* SEGLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGLocation.h; path = Helpers/SEGLocation.h; sourceTree = "<group>"; };
+		32430A751914186C004EFF59 /* SEGLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGLocation.m; path = Helpers/SEGLocation.m; sourceTree = "<group>"; };
+		32430A7819145DA8004EFF59 /* SEGAnalyticsIntegrations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAnalyticsIntegrations.h; sourceTree = "<group>"; };
+		32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGQuantcastIntegration.h; sourceTree = "<group>"; };
+		32A8C60619107DBD00173AE5 /* SEGQuantcastIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGQuantcastIntegration.m; sourceTree = "<group>"; };
 		32CC25E119072C6B0090DD06 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
+		32CCD99B1919A4F4007B63BA /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		32E113221908AC85006D9788 /* libPods-Analytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Analytics.a"; path = "Pods/build/Debug-iphoneos/libPods-Analytics.a"; sourceTree = "<group>"; };
 		32E113251908AD1C006D9788 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
-		32E2811C1908420D00FB48D7 /* SGTBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGTBluetooth.h; path = Helpers/SGTBluetooth.h; sourceTree = "<group>"; };
-		32E2811D1908420D00FB48D7 /* SGTBluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SGTBluetooth.m; path = Helpers/SGTBluetooth.m; sourceTree = "<group>"; };
+		32E2811C1908420D00FB48D7 /* SEGBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGBluetooth.h; path = Helpers/SEGBluetooth.h; sourceTree = "<group>"; };
+		32E2811D1908420D00FB48D7 /* SEGBluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGBluetooth.m; path = Helpers/SEGBluetooth.m; sourceTree = "<group>"; };
 		32E281221908651300FB48D7 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		32F9E6B31907300300ED295B /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32F9E6B61907320700ED295B /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
@@ -194,40 +196,40 @@
 		D39E122F1846F816009F64E7 /* libCrittercism_v4_1_2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrittercism_v4_1_2.a; path = Pods/CrittercismSDK/CrittercismSDK/libCrittercism_v4_1_2.a; sourceTree = "<group>"; };
 		D3A6A2DF18B305E200C4B510 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.2.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.2.a; sourceTree = "<group>"; };
 		D3C07FBE185954D000649011 /* Bugsnag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bugsnag.h; path = Pods/Bugsnag/bugsnag/Bugsnag.h; sourceTree = "<group>"; };
-		D3D1243E18C31FDA00EE8B82 /* SegmentioIntegration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SegmentioIntegration.h; path = Analytics/Integrations/Segmentio/SegmentioIntegration.h; sourceTree = "<group>"; };
+		D3D1243E18C31FDA00EE8B82 /* SEGSegmentioIntegration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SEGSegmentioIntegration.h; path = Analytics/Integrations/Segmentio/SEGSegmentioIntegration.h; sourceTree = "<group>"; };
 		D3E9B61B18BADAEA00AB06B0 /* libLocalyticsAMP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLocalyticsAMP.a; path = Pods/Localytics/libLocalyticsAMP.a; sourceTree = "<group>"; };
-		D3EDB63918C315F100A88A7E /* AmplitudeIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmplitudeIntegration.h; sourceTree = "<group>"; };
-		D3EDB63A18C315F100A88A7E /* AmplitudeIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmplitudeIntegration.m; sourceTree = "<group>"; };
-		D3EDB63C18C315F100A88A7E /* BugsnagIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BugsnagIntegration.h; sourceTree = "<group>"; };
-		D3EDB63D18C315F100A88A7E /* BugsnagIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BugsnagIntegration.m; sourceTree = "<group>"; };
-		D3EDB63F18C315F100A88A7E /* CountlyIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountlyIntegration.h; sourceTree = "<group>"; };
-		D3EDB64018C315F100A88A7E /* CountlyIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountlyIntegration.m; sourceTree = "<group>"; };
-		D3EDB64218C315F100A88A7E /* CrittercismIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrittercismIntegration.h; sourceTree = "<group>"; };
-		D3EDB64318C315F100A88A7E /* CrittercismIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrittercismIntegration.m; sourceTree = "<group>"; };
-		D3EDB64518C315F100A88A7E /* FlurryIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryIntegration.h; sourceTree = "<group>"; };
-		D3EDB64618C315F100A88A7E /* FlurryIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlurryIntegration.m; sourceTree = "<group>"; };
-		D3EDB64818C315F100A88A7E /* GoogleAnalyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleAnalyticsIntegration.h; sourceTree = "<group>"; };
-		D3EDB64918C315F100A88A7E /* GoogleAnalyticsIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleAnalyticsIntegration.m; sourceTree = "<group>"; };
-		D3EDB64B18C315F100A88A7E /* LocalyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalyticsIntegration.h; sourceTree = "<group>"; };
-		D3EDB64C18C315F100A88A7E /* LocalyticsIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalyticsIntegration.m; sourceTree = "<group>"; };
-		D3EDB64E18C315F100A88A7E /* MixpanelIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixpanelIntegration.h; sourceTree = "<group>"; };
-		D3EDB64F18C315F100A88A7E /* MixpanelIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelIntegration.m; sourceTree = "<group>"; };
-		D3EDB65118C315F100A88A7E /* SegmentioIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentioIntegration.h; sourceTree = "<group>"; };
-		D3EDB65218C315F100A88A7E /* SegmentioIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioIntegration.m; sourceTree = "<group>"; };
-		D3EDB65418C315F100A88A7E /* TapstreamIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TapstreamIntegration.h; sourceTree = "<group>"; };
-		D3EDB65518C315F100A88A7E /* TapstreamIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TapstreamIntegration.m; sourceTree = "<group>"; };
+		D3EDB63918C315F100A88A7E /* SEGAmplitudeIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAmplitudeIntegration.h; sourceTree = "<group>"; };
+		D3EDB63A18C315F100A88A7E /* SEGAmplitudeIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGAmplitudeIntegration.m; sourceTree = "<group>"; };
+		D3EDB63C18C315F100A88A7E /* SEGBugsnagIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGBugsnagIntegration.h; sourceTree = "<group>"; };
+		D3EDB63D18C315F100A88A7E /* SEGBugsnagIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGBugsnagIntegration.m; sourceTree = "<group>"; };
+		D3EDB63F18C315F100A88A7E /* SEGCountlyIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGCountlyIntegration.h; sourceTree = "<group>"; };
+		D3EDB64018C315F100A88A7E /* SEGCountlyIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGCountlyIntegration.m; sourceTree = "<group>"; };
+		D3EDB64218C315F100A88A7E /* SEGCrittercismIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGCrittercismIntegration.h; sourceTree = "<group>"; };
+		D3EDB64318C315F100A88A7E /* SEGCrittercismIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGCrittercismIntegration.m; sourceTree = "<group>"; };
+		D3EDB64518C315F100A88A7E /* SEGFlurryIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGFlurryIntegration.h; sourceTree = "<group>"; };
+		D3EDB64618C315F100A88A7E /* SEGFlurryIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGFlurryIntegration.m; sourceTree = "<group>"; };
+		D3EDB64818C315F100A88A7E /* SEGGoogleAnalyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGGoogleAnalyticsIntegration.h; sourceTree = "<group>"; };
+		D3EDB64918C315F100A88A7E /* SEGGoogleAnalyticsIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGGoogleAnalyticsIntegration.m; sourceTree = "<group>"; };
+		D3EDB64B18C315F100A88A7E /* SEGLocalyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGLocalyticsIntegration.h; sourceTree = "<group>"; };
+		D3EDB64C18C315F100A88A7E /* SEGLocalyticsIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGLocalyticsIntegration.m; sourceTree = "<group>"; };
+		D3EDB64E18C315F100A88A7E /* SEGMixpanelIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGMixpanelIntegration.h; sourceTree = "<group>"; };
+		D3EDB64F18C315F100A88A7E /* SEGMixpanelIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGMixpanelIntegration.m; sourceTree = "<group>"; };
+		D3EDB65118C315F100A88A7E /* SEGSegmentioIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGSegmentioIntegration.h; sourceTree = "<group>"; };
+		D3EDB65218C315F100A88A7E /* SEGSegmentioIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGSegmentioIntegration.m; sourceTree = "<group>"; };
+		D3EDB65418C315F100A88A7E /* SEGTapstreamIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGTapstreamIntegration.h; sourceTree = "<group>"; };
+		D3EDB65518C315F100A88A7E /* SEGTapstreamIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGTapstreamIntegration.m; sourceTree = "<group>"; };
 		E83F0FBE9BA94A03A4883160 /* libPods-Analytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Analytics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA14A25217FB1E9400870901 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = settings.json; sourceTree = "<group>"; };
 		EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioTests.m; sourceTree = "<group>"; };
-		EA65F96417C2ABA600389A1A /* AnalyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsIntegration.h; sourceTree = "<group>"; };
-		EA65F96517C2ABA600389A1A /* AnalyticsIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsIntegration.m; sourceTree = "<group>"; };
+		EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGAnalyticsIntegration.h; path = ../SEGAnalyticsIntegration.h; sourceTree = "<group>"; };
+		EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGAnalyticsIntegration.m; path = ../SEGAnalyticsIntegration.m; sourceTree = "<group>"; };
 		EA722AF117C87BB00016E8B0 /* AnalyticsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA722AF217C87BB00016E8B0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		EA722AF817C87BB00016E8B0 /* AnalyticsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnalyticsTests-Info.plist"; sourceTree = "<group>"; };
 		EA722AFD17C87BB00016E8B0 /* AnalyticsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyticsTests.m; sourceTree = "<group>"; };
 		EA722AFF17C87BB00016E8B0 /* AnalyticsTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnalyticsTests-Prefix.pch"; sourceTree = "<group>"; };
-		EAA604C717C28C7C00911919 /* AnalyticsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsRequest.h; sourceTree = "<group>"; };
-		EAA604C817C28C7C00911919 /* AnalyticsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsRequest.m; sourceTree = "<group>"; };
+		EAA604C717C28C7C00911919 /* SEGAnalyticsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAnalyticsRequest.h; sourceTree = "<group>"; };
+		EAA604C817C28C7C00911919 /* SEGAnalyticsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGAnalyticsRequest.m; sourceTree = "<group>"; };
 		EABE4F2217C887A500A1081B /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EABE4F2417C887B100A1081B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		EABE4F2617C887BD00A1081B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -241,13 +243,13 @@
 		EABE4F4017C88A6D00A1081B /* AnalyticsUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsUtilsTests.m; sourceTree = "<group>"; };
 		EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = "Pods/GoogleAnalytics-iOS-SDK/libGoogleAnalyticsServices.a"; sourceTree = "<group>"; };
 		EACAAD6B17C7601C000A8337 /* libChartbeat-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libChartbeat-iOS-SDK.a"; path = "Pods/Chartbeat/libChartbeat-iOS-SDK.a"; sourceTree = "<group>"; };
-		EACB4DD017C0BB3100624129 /* AnalyticsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyticsUtils.h; sourceTree = "<group>"; };
-		EACB4DD117C0BB3100624129 /* AnalyticsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsUtils.m; sourceTree = "<group>"; };
+		EACB4DD017C0BB3100624129 /* SEGAnalyticsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAnalyticsUtils.h; sourceTree = "<group>"; };
+		EACB4DD117C0BB3100624129 /* SEGAnalyticsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGAnalyticsUtils.m; sourceTree = "<group>"; };
 		F7200B7317659B2F003F3138 /* libAnalytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAnalytics.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7200B7617659B2F003F3138 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		F7200B7A17659B2F003F3138 /* Analytics-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Analytics-Prefix.pch"; sourceTree = "<group>"; };
-		F7200B7B17659B2F003F3138 /* Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
-		F7200B7D17659B2F003F3138 /* Analytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Analytics.m; sourceTree = "<group>"; };
+		F7200B7B17659B2F003F3138 /* SEGAnalytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGAnalytics.h; sourceTree = "<group>"; };
+		F7200B7D17659B2F003F3138 /* SEGAnalytics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEGAnalytics.m; sourceTree = "<group>"; };
 		F78D29F91765B382000B937E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -290,8 +292,8 @@
 		32A8C60419107DBD00173AE5 /* Quantcast */ = {
 			isa = PBXGroup;
 			children = (
-				32A8C60519107DBD00173AE5 /* QuantcastIntegration.h */,
-				32A8C60619107DBD00173AE5 /* QuantcastIntegration.m */,
+				32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */,
+				32A8C60619107DBD00173AE5 /* SEGQuantcastIntegration.m */,
 			);
 			path = Quantcast;
 			sourceTree = "<group>";
@@ -299,10 +301,10 @@
 		32E281211908421100FB48D7 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				32430A741914186C004EFF59 /* SGTLocation.h */,
-				32430A751914186C004EFF59 /* SGTLocation.m */,
-				32E2811C1908420D00FB48D7 /* SGTBluetooth.h */,
-				32E2811D1908420D00FB48D7 /* SGTBluetooth.m */,
+				32430A741914186C004EFF59 /* SEGLocation.h */,
+				32430A751914186C004EFF59 /* SEGLocation.m */,
+				32E2811C1908420D00FB48D7 /* SEGBluetooth.h */,
+				32E2811D1908420D00FB48D7 /* SEGBluetooth.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -310,7 +312,7 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				D3D1243E18C31FDA00EE8B82 /* SegmentioIntegration.h */,
+				D3D1243E18C31FDA00EE8B82 /* SEGSegmentioIntegration.h */,
 				D31C8F7D18A2D83700DA22A6 /* MPNotification.h */,
 				D331BD1D1860F5F0007CB22F /* TSApi.h */,
 				D331BD1E1860F5F0007CB22F /* TSAppEventSource.h */,
@@ -354,7 +356,9 @@
 		D3EDB63718C315F100A88A7E /* Integrations */ = {
 			isa = PBXGroup;
 			children = (
-				32430A7819145DA8004EFF59 /* AnalyticsIntegrations.h */,
+				32430A7819145DA8004EFF59 /* SEGAnalyticsIntegrations.h */,
+				EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */,
+				EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */,
 				D3EDB63818C315F100A88A7E /* Amplitude */,
 				D3EDB63B18C315F100A88A7E /* Bugsnag */,
 				D3EDB63E18C315F100A88A7E /* Countly */,
@@ -373,8 +377,8 @@
 		D3EDB63818C315F100A88A7E /* Amplitude */ = {
 			isa = PBXGroup;
 			children = (
-				D3EDB63918C315F100A88A7E /* AmplitudeIntegration.h */,
-				D3EDB63A18C315F100A88A7E /* AmplitudeIntegration.m */,
+				D3EDB63918C315F100A88A7E /* SEGAmplitudeIntegration.h */,
+				D3EDB63A18C315F100A88A7E /* SEGAmplitudeIntegration.m */,
 			);
 			path = Amplitude;
 			sourceTree = "<group>";
@@ -382,8 +386,8 @@
 		D3EDB63B18C315F100A88A7E /* Bugsnag */ = {
 			isa = PBXGroup;
 			children = (
-				D3EDB63C18C315F100A88A7E /* BugsnagIntegration.h */,
-				D3EDB63D18C315F100A88A7E /* BugsnagIntegration.m */,
+				D3EDB63C18C315F100A88A7E /* SEGBugsnagIntegration.h */,
+				D3EDB63D18C315F100A88A7E /* SEGBugsnagIntegration.m */,
 			);
 			path = Bugsnag;
 			sourceTree = "<group>";
@@ -391,8 +395,8 @@
 		D3EDB63E18C315F100A88A7E /* Countly */ = {
 			isa = PBXGroup;
 			children = (
-				D3EDB63F18C315F100A88A7E /* CountlyIntegration.h */,
-				D3EDB64018C315F100A88A7E /* CountlyIntegration.m */,
+				D3EDB63F18C315F100A88A7E /* SEGCountlyIntegration.h */,
+				D3EDB64018C315F100A88A7E /* SEGCountlyIntegration.m */,
 			);
 			path = Countly;
 			sourceTree = "<group>";
@@ -400,8 +404,8 @@
 		D3EDB64118C315F100A88A7E /* Crittercism */ = {
 			isa = PBXGroup;
 			children = (
-				D3EDB64218C315F100A88A7E /* CrittercismIntegration.h */,
-				D3EDB64318C315F100A88A7E /* CrittercismIntegration.m */,
+				D3EDB64218C315F100A88A7E /* SEGCrittercismIntegration.h */,
+				D3EDB64318C315F100A88A7E /* SEGCrittercismIntegration.m */,
 			);
 			path = Crittercism;
 			sourceTree = "<group>";
@@ -409,8 +413,8 @@
 		D3EDB64418C315F100A88A7E /* Flurry */ = {
 			isa = PBXGroup;
 			children = (
-				D3EDB64518C315F100A88A7E /* FlurryIntegration.h */,
-				D3EDB64618C315F100A88A7E /* FlurryIntegration.m */,
+				D3EDB64518C315F100A88A7E /* SEGFlurryIntegration.h */,
+				D3EDB64618C315F100A88A7E /* SEGFlurryIntegration.m */,
 			);
 			path = Flurry;
 			sourceTree = "<group>";
@@ -418,8 +422,8 @@
 		D3EDB64718C315F100A88A7E /* GoogleAnalytics */ = {
 			isa = PBXGroup;
 			children = (
-				D3EDB64818C315F100A88A7E /* GoogleAnalyticsIntegration.h */,
-				D3EDB64918C315F100A88A7E /* GoogleAnalyticsIntegration.m */,
+				D3EDB64818C315F100A88A7E /* SEGGoogleAnalyticsIntegration.h */,
+				D3EDB64918C315F100A88A7E /* SEGGoogleAnalyticsIntegration.m */,
 			);
 			path = GoogleAnalytics;
 			sourceTree = "<group>";
@@ -427,8 +431,8 @@
 		D3EDB64A18C315F100A88A7E /* Localytics */ = {
 			isa = PBXGroup;
 			children = (
-				D3EDB64B18C315F100A88A7E /* LocalyticsIntegration.h */,
-				D3EDB64C18C315F100A88A7E /* LocalyticsIntegration.m */,
+				D3EDB64B18C315F100A88A7E /* SEGLocalyticsIntegration.h */,
+				D3EDB64C18C315F100A88A7E /* SEGLocalyticsIntegration.m */,
 			);
 			path = Localytics;
 			sourceTree = "<group>";
@@ -436,8 +440,8 @@
 		D3EDB64D18C315F100A88A7E /* Mixpanel */ = {
 			isa = PBXGroup;
 			children = (
-				D3EDB64E18C315F100A88A7E /* MixpanelIntegration.h */,
-				D3EDB64F18C315F100A88A7E /* MixpanelIntegration.m */,
+				D3EDB64E18C315F100A88A7E /* SEGMixpanelIntegration.h */,
+				D3EDB64F18C315F100A88A7E /* SEGMixpanelIntegration.m */,
 			);
 			path = Mixpanel;
 			sourceTree = "<group>";
@@ -445,8 +449,8 @@
 		D3EDB65018C315F100A88A7E /* Segmentio */ = {
 			isa = PBXGroup;
 			children = (
-				D3EDB65118C315F100A88A7E /* SegmentioIntegration.h */,
-				D3EDB65218C315F100A88A7E /* SegmentioIntegration.m */,
+				D3EDB65118C315F100A88A7E /* SEGSegmentioIntegration.h */,
+				D3EDB65218C315F100A88A7E /* SEGSegmentioIntegration.m */,
 			);
 			path = Segmentio;
 			sourceTree = "<group>";
@@ -454,8 +458,8 @@
 		D3EDB65318C315F100A88A7E /* Tapstream */ = {
 			isa = PBXGroup;
 			children = (
-				D3EDB65418C315F100A88A7E /* TapstreamIntegration.h */,
-				D3EDB65518C315F100A88A7E /* TapstreamIntegration.m */,
+				D3EDB65418C315F100A88A7E /* SEGTapstreamIntegration.h */,
+				D3EDB65518C315F100A88A7E /* SEGTapstreamIntegration.m */,
 			);
 			path = Tapstream;
 			sourceTree = "<group>";
@@ -550,14 +554,13 @@
 		F7200B7817659B2F003F3138 /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				F7200B7B17659B2F003F3138 /* Analytics.h */,
-				F7200B7D17659B2F003F3138 /* Analytics.m */,
-				EA65F96417C2ABA600389A1A /* AnalyticsIntegration.h */,
-				EA65F96517C2ABA600389A1A /* AnalyticsIntegration.m */,
-				EAA604C717C28C7C00911919 /* AnalyticsRequest.h */,
-				EAA604C817C28C7C00911919 /* AnalyticsRequest.m */,
-				EACB4DD017C0BB3100624129 /* AnalyticsUtils.h */,
-				EACB4DD117C0BB3100624129 /* AnalyticsUtils.m */,
+				F7200B7B17659B2F003F3138 /* SEGAnalytics.h */,
+				32CCD99B1919A4F4007B63BA /* Analytics.h */,
+				F7200B7D17659B2F003F3138 /* SEGAnalytics.m */,
+				EAA604C717C28C7C00911919 /* SEGAnalyticsRequest.h */,
+				EAA604C817C28C7C00911919 /* SEGAnalyticsRequest.m */,
+				EACB4DD017C0BB3100624129 /* SEGAnalyticsUtils.h */,
+				EACB4DD117C0BB3100624129 /* SEGAnalyticsUtils.m */,
 				32E281211908421100FB48D7 /* Helpers */,
 				D3EDB63718C315F100A88A7E /* Integrations */,
 				F7200B7917659B2F003F3138 /* Supporting Files */,
@@ -580,16 +583,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA25892317C6979D000CEF61 /* Analytics.h in Headers */,
+				EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */,
 				D3C07FBF185954D000649011 /* Bugsnag.h in Headers */,
 				D371F32E185942BB0053337D /* Crittercism.h in Headers */,
-				D3EDB65A18C315F100A88A7E /* CountlyIntegration.h in Headers */,
+				D3EDB65A18C315F100A88A7E /* SEGCountlyIntegration.h in Headers */,
 				D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */,
 				D331BCF3185BFF4A007CB22F /* CrittercismDelegate.h in Headers */,
-				D3EDB65818C315F100A88A7E /* BugsnagIntegration.h in Headers */,
+				D3EDB65818C315F100A88A7E /* SEGBugsnagIntegration.h in Headers */,
 				D371F330185942C90053337D /* Flurry.h in Headers */,
 				D371F332185942DE0053337D /* GAI.h in Headers */,
-				D3EDB65E18C315F100A88A7E /* FlurryIntegration.h in Headers */,
+				D3EDB65E18C315F100A88A7E /* SEGFlurryIntegration.h in Headers */,
 				D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */,
 				D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */,
 				D331BCFD185C2DC4007CB22F /* GAITracker.h in Headers */,
@@ -597,44 +600,45 @@
 				D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */,
 				D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */,
 				D331BD06185FDDEA007CB22F /* BugsnagConfiguration.h in Headers */,
-				D3EDB66418C315F100A88A7E /* MixpanelIntegration.h in Headers */,
+				D3EDB66418C315F100A88A7E /* SEGMixpanelIntegration.h in Headers */,
 				D331BD07185FDDEA007CB22F /* BugsnagDictionary.h in Headers */,
 				D331BD08185FDDEA007CB22F /* BugsnagEvent.h in Headers */,
 				D331BD09185FDDEA007CB22F /* BugsnagLogger.h in Headers */,
 				D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */,
 				D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */,
 				D331BD1B1860F5D4007CB22F /* TSPlatformImpl.h in Headers */,
-				32E2811E1908420D00FB48D7 /* SGTBluetooth.h in Headers */,
+				32E2811E1908420D00FB48D7 /* SEGBluetooth.h in Headers */,
 				D331BD1C1860F5D4007CB22F /* TSTapstream.h in Headers */,
 				D331BD2B1860F5F0007CB22F /* TSApi.h in Headers */,
 				D331BD2C1860F5F0007CB22F /* TSAppEventSource.h in Headers */,
 				D331BD2D1860F5F0007CB22F /* TSConfig.h in Headers */,
-				D3EDB66018C315F100A88A7E /* GoogleAnalyticsIntegration.h in Headers */,
+				D3EDB66018C315F100A88A7E /* SEGGoogleAnalyticsIntegration.h in Headers */,
 				D331BD2E1860F5F0007CB22F /* TSCore.h in Headers */,
-				32430A7919145DA8004EFF59 /* AnalyticsIntegrations.h in Headers */,
-				D3EDB66818C315F100A88A7E /* TapstreamIntegration.h in Headers */,
+				32430A7919145DA8004EFF59 /* SEGAnalyticsIntegrations.h in Headers */,
+				D3EDB66818C315F100A88A7E /* SEGTapstreamIntegration.h in Headers */,
+				32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */,
 				D331BD2F1860F5F0007CB22F /* TSCoreListener.h in Headers */,
 				D331BD301860F5F0007CB22F /* TSDelegate.h in Headers */,
 				D331BD311860F5F0007CB22F /* TSEvent.h in Headers */,
 				D331BD321860F5F0007CB22F /* TSHelpers.h in Headers */,
 				D331BD331860F5F0007CB22F /* TSHit.h in Headers */,
 				D331BD341860F5F0007CB22F /* TSLogging.h in Headers */,
-				D3EDB66618C315F100A88A7E /* SegmentioIntegration.h in Headers */,
-				32430A761914186C004EFF59 /* SGTLocation.h in Headers */,
+				D3EDB66618C315F100A88A7E /* SEGSegmentioIntegration.h in Headers */,
+				32430A761914186C004EFF59 /* SEGLocation.h in Headers */,
 				D331BD351860F5F0007CB22F /* TSLogLevel.h in Headers */,
-				D3EDB66218C315F100A88A7E /* LocalyticsIntegration.h in Headers */,
+				D3EDB66218C315F100A88A7E /* SEGLocalyticsIntegration.h in Headers */,
 				D331BD361860F5F0007CB22F /* TSPlatform.h in Headers */,
-				D3EDB65C18C315F100A88A7E /* CrittercismIntegration.h in Headers */,
-				D3EDB65618C315F100A88A7E /* AmplitudeIntegration.h in Headers */,
+				D3EDB65C18C315F100A88A7E /* SEGCrittercismIntegration.h in Headers */,
+				D3EDB65618C315F100A88A7E /* SEGAmplitudeIntegration.h in Headers */,
 				D331BD371860F5F0007CB22F /* TSResponse.h in Headers */,
 				D331BD381860F5F0007CB22F /* TSUtils.h in Headers */,
 				D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */,
 				D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */,
-				EA65F96617C2ABA600389A1A /* AnalyticsIntegration.h in Headers */,
-				EA65F96617C2ABA600389A1A /* AnalyticsIntegration.h in Headers */,
-				32A8C60719107DBD00173AE5 /* QuantcastIntegration.h in Headers */,
-				EACB4DEA17C0BB3100624129 /* AnalyticsUtils.h in Headers */,
-				EAA604C917C28C7C00911919 /* AnalyticsRequest.h in Headers */,
+				EA65F96617C2ABA600389A1A /* SEGAnalyticsIntegration.h in Headers */,
+				EA65F96617C2ABA600389A1A /* SEGAnalyticsIntegration.h in Headers */,
+				32A8C60719107DBD00173AE5 /* SEGQuantcastIntegration.h in Headers */,
+				EACB4DEA17C0BB3100624129 /* SEGAnalyticsUtils.h in Headers */,
+				EAA604C917C28C7C00911919 /* SEGAnalyticsRequest.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -872,23 +876,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3EDB66918C315F100A88A7E /* TapstreamIntegration.m in Sources */,
-				D3EDB66118C315F100A88A7E /* GoogleAnalyticsIntegration.m in Sources */,
-				D3EDB65718C315F100A88A7E /* AmplitudeIntegration.m in Sources */,
-				F7200B7E17659B2F003F3138 /* Analytics.m in Sources */,
-				32430A771914186C004EFF59 /* SGTLocation.m in Sources */,
-				D3EDB65918C315F100A88A7E /* BugsnagIntegration.m in Sources */,
-				EACB4DEB17C0BB3100624129 /* AnalyticsUtils.m in Sources */,
-				32A8C60819107DBD00173AE5 /* QuantcastIntegration.m in Sources */,
-				D3EDB65F18C315F100A88A7E /* FlurryIntegration.m in Sources */,
-				D3EDB66518C315F100A88A7E /* MixpanelIntegration.m in Sources */,
-				D3EDB66718C315F100A88A7E /* SegmentioIntegration.m in Sources */,
-				D3EDB65D18C315F100A88A7E /* CrittercismIntegration.m in Sources */,
-				32E2811F1908420D00FB48D7 /* SGTBluetooth.m in Sources */,
-				EAA604CA17C28C7C00911919 /* AnalyticsRequest.m in Sources */,
-				EA65F96717C2ABA600389A1A /* AnalyticsIntegration.m in Sources */,
-				D3EDB66318C315F100A88A7E /* LocalyticsIntegration.m in Sources */,
-				D3EDB65B18C315F100A88A7E /* CountlyIntegration.m in Sources */,
+				D3EDB66918C315F100A88A7E /* SEGTapstreamIntegration.m in Sources */,
+				D3EDB66118C315F100A88A7E /* SEGGoogleAnalyticsIntegration.m in Sources */,
+				D3EDB65718C315F100A88A7E /* SEGAmplitudeIntegration.m in Sources */,
+				F7200B7E17659B2F003F3138 /* SEGAnalytics.m in Sources */,
+				32430A771914186C004EFF59 /* SEGLocation.m in Sources */,
+				D3EDB65918C315F100A88A7E /* SEGBugsnagIntegration.m in Sources */,
+				EACB4DEB17C0BB3100624129 /* SEGAnalyticsUtils.m in Sources */,
+				32A8C60819107DBD00173AE5 /* SEGQuantcastIntegration.m in Sources */,
+				D3EDB65F18C315F100A88A7E /* SEGFlurryIntegration.m in Sources */,
+				D3EDB66518C315F100A88A7E /* SEGMixpanelIntegration.m in Sources */,
+				D3EDB66718C315F100A88A7E /* SEGSegmentioIntegration.m in Sources */,
+				D3EDB65D18C315F100A88A7E /* SEGCrittercismIntegration.m in Sources */,
+				32E2811F1908420D00FB48D7 /* SEGBluetooth.m in Sources */,
+				EAA604CA17C28C7C00911919 /* SEGAnalyticsRequest.m in Sources */,
+				EA65F96717C2ABA600389A1A /* SEGAnalyticsIntegration.m in Sources */,
+				D3EDB66318C315F100A88A7E /* SEGLocalyticsIntegration.m in Sources */,
+				D3EDB65B18C315F100A88A7E /* SEGCountlyIntegration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

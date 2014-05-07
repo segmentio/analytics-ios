@@ -1,28 +1,28 @@
 // AnalyticsTests.m
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
-#import "SegmentioIntegration.h"
-#import "AnalyticsUtils.h"
+#import "SEGSegmentioIntegration.h"
+#import "SEGAnalyticsUtils.h"
 #import "KWNotificationMatcher.h"
 
-@interface SegmentioIntegration (Private)
+@interface SEGSegmentioIntegration (Private)
 @property (nonatomic, readonly) NSMutableArray *queue;
 @end
 
-@interface Analytics (Private)
+@interface SEGAnalytics (Private)
 @property (nonatomic, strong) NSDictionary *cachedSettings;
 @end
 
 SPEC_BEGIN(AnalyticsTests)
 
 describe(@"Analytics", ^{
-    SetShowDebugLogs(YES);
+    SEGSetShowDebugLogs(YES);
 
-    __block SegmentioIntegration *segmentio = nil;
-    __block Analytics *analytics = nil;
+    __block SEGSegmentioIntegration *segmentio = nil;
+    __block SEGAnalytics *analytics = nil;
 
     beforeEach(^{
-        analytics = [[Analytics alloc] initWithWriteKey:@"k5l6rrye0hsv566zwuk7"];
+        analytics = [[SEGAnalytics alloc] initWithWriteKey:@"k5l6rrye0hsv566zwuk7"];
         analytics.cachedSettings = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:
                                                    [[NSBundle bundleForClass:[self class]]
                                                     URLForResource:@"settings" withExtension:@"json"]] options:NSJSONReadingMutableContainers error:NULL];
@@ -63,7 +63,7 @@ describe(@"Analytics", ^{
 
         [segmentio flush];
 
-        [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
+        [[SEGSegmentioDidSendRequestNotification shouldEventually] bePosted];
     });
 
     it(@"Should handle nil userId with traits", ^{
@@ -75,7 +75,7 @@ describe(@"Analytics", ^{
         [queuedIdentify[@"anonymousId"] shouldNotBeNil];
         [segmentio flush];
 
-        [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
+        [[SEGSegmentioDidSendRequestNotification shouldEventually] bePosted];
     });
 
     it(@"should do nothing when identifying without traits", ^{
@@ -115,7 +115,7 @@ describe(@"Analytics", ^{
 
         // wait for 200 from servers
         [segmentio flush];
-        [[SegmentioDidSendRequestNotification shouldEventually] bePosted];
+        [[SEGSegmentioDidSendRequestNotification shouldEventually] bePosted];
     });
 
     it(@"Should track according to integration options", ^{
