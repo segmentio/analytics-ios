@@ -87,7 +87,7 @@
     for (id key in dictionary) {
         id value = [dict objectForKey:key];
         if ([value isKindOfClass:[NSDictionary class]] || [value isKindOfClass:[NSArray class]]) {
-            NSLog(@"WARNING: Removing nested [analytics track] property %@ for Countly (not supported by Countly).", key);
+            SOLog(@"WARNING: Removing nested [analytics track] property %@ for Countly (not supported by Countly).", key);
             [dict removeObjectForKey:key];
         }
     }
