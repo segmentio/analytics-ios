@@ -28,3 +28,5 @@ void SOLog(NSString *format, ...);
 // JSON Utils
 
 NSDictionary *CoerceDictionary(NSDictionary *dict);
+
+NSString *SEGIDFA();
