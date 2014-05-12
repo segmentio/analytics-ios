@@ -42,6 +42,9 @@
             [config setValue:[self.settings objectForKey:key] forKey:key];
         }
     }
+
+    if (SEGIDFA())
+        [config setValue:SEGIDFA() forKey:@"idfa"];
     
     NSString *accountName = [self.settings objectForKey:@"accountName"];
     NSString *sdkSecret = [self.settings objectForKey:@"sdkSecret"];

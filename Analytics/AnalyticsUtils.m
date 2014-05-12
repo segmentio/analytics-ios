@@ -7,6 +7,7 @@
 //
 
 #import "AnalyticsUtils.h"
+#import <AdSupport/ASIdentifierManager.h>
 
 static BOOL kAnalyticsLoggerShowLogs = NO;
 
@@ -51,7 +52,7 @@ void SetShowDebugLogs(BOOL showDebugLogs) {
     kAnalyticsLoggerShowLogs = showDebugLogs;
 }
 
-void SOLog(NSString *format, ...) {   
+void SOLog(NSString *format, ...) {
     if (kAnalyticsLoggerShowLogs) {
         va_list args;
         va_start(args, format);
@@ -91,7 +92,7 @@ static id CoerceJSONObject(id obj) {
     // NSDate description is already a valid ISO8061 string
     if ([obj isKindOfClass:[NSDate class]])
         return [obj description];
-
+    
     if ([obj isKindOfClass:[NSURL class]])
         return [obj absoluteString];
     
@@ -125,3 +126,10 @@ NSDictionary *CoerceDictionary(NSDictionary *dict) {
     return CoerceJSONObject(dict);
 }
 
+NSString *SEGIDFA() {
+    if (NSClassFromString(@"ASIdentifierManager") && [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
+        return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    } else {
+        return nil;
+    }
+}
