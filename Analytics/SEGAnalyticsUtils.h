@@ -23,3 +23,5 @@ void SEGLog(NSString *format, ...);
 // JSON Utils
 
 NSDictionary *SEGCoerceDictionary(NSDictionary *dict);
+
+NSString *SEGIDFA();
