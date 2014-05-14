@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
     s.subspec a[:name] do |ss|
       ss.prefix_header_contents = "#define USE_ANALYTICS_#{a[:name].upcase} 1"
       ss.public_header_files = 'Analytics/Integrations/*'
-      ss.ios.source_files = "Analytics/Integrations/#{a[:name]}/#{a[:name]}Integration.{h,m}"
+      ss.ios.source_files = "Analytics/Integrations/#{a[:name]}/SEG#{a[:name]}Integration.{h,m}"
       ss.platforms = [:ios]
       ss.dependency 'Analytics/Core-iOS'
 
