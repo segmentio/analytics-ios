@@ -2,6 +2,7 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "SEGAnalyticsUtils.h"
+#import <AdSupport/ASIdentifierManager.h>
 
 static BOOL kAnalyticsLoggerShowLogs = NO;
 
@@ -86,7 +87,7 @@ static id CoerceJSONObject(id obj) {
     // NSDate description is already a valid ISO8061 string
     if ([obj isKindOfClass:[NSDate class]])
         return [obj description];
-
+    
     if ([obj isKindOfClass:[NSURL class]])
         return [obj absoluteString];
 
@@ -120,3 +121,10 @@ NSDictionary *SEGCoerceDictionary(NSDictionary *dict) {
     return CoerceJSONObject(dict);
 }
 
+NSString *SEGIDFA() {
+    if (NSClassFromString(@"ASIdentifierManager") && [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
+        return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+    } else {
+        return nil;
+    }
+}
