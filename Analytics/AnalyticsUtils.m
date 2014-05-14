@@ -127,9 +127,10 @@ NSDictionary *CoerceDictionary(NSDictionary *dict) {
 }
 
 NSString *SEGIDFA() {
-    if (NSClassFromString(@"ASIdentifierManager") && [[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]) {
-        return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-    } else {
-        return nil;
-    }
+  id identifierManagerClass = NSClassFromString(@"ASIdentifierManager");
+  if (identifierManagerClass && [[identifierManagerClass sharedManager] isAdvertisingTrackingEnabled]) {
+    return [[[identifierManagerClass sharedManager] advertisingIdentifier] UUIDString];
+  } else {
+    return nil;
+  }
 }
