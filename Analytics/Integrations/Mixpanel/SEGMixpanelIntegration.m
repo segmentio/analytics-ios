@@ -96,7 +96,7 @@
 - (BOOL)eventShouldIncrement:(NSString *)event {
     NSArray *increments = [self.settings objectForKey:@"increments"];
     for (NSString *increment in increments) {
-        if ([event caseInsensitiveCompare:increment]) {
+        if ([event caseInsensitiveCompare:increment] == NSOrderedSame) {
             return YES;
         }
     }
@@ -106,7 +106,7 @@
 - (BOOL)eventIsBlocked:(NSString *)event {
     NSArray *blocked = [self.settings objectForKey:@"blockedEvents"];
     for (NSString *block in blocked) {
-        if ([event caseInsensitiveCompare:block]) {
+        if ([event caseInsensitiveCompare:block] == NSOrderedSame) {
             return YES;
         }
     }
