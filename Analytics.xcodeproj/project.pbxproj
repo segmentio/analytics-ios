@@ -13,6 +13,7 @@
 			buildPhases = (
 				EA25892217C693DD000CEF61 /* Build Framework */,
 				D3C07FDE185A892F00649011 /* Run Script */,
+				323E966919296EFC0045A2C5 /* Upload Bugsnag dSYM */,
 			);
 			dependencies = (
 			);
@@ -649,13 +650,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA722B0017C87BB00016E8B0 /* Build configuration list for PBXNativeTarget "AnalyticsTests" */;
 			buildPhases = (
-				6CD29E69AA864B8BB2C719DF /* Check Pods Manifest.lock */,
 				EA722AEC17C87BB00016E8B0 /* Sources */,
 				EA722AED17C87BB00016E8B0 /* Frameworks */,
 				EA722AEE17C87BB00016E8B0 /* Resources */,
-				EA722AEF17C87BB00016E8B0 /* ShellScript */,
 				14458D73464944C0ACCBDE28 /* Copy Pods Resources */,
-				531D6AA25D31422B9D1EC3B5 /* Upload Bugsnag dSYM */,
 			);
 			buildRules = (
 			);
@@ -739,25 +737,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Pods-AnalyticsTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		380BF1B2A860431EA9D5604F /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		531D6AA25D31422B9D1EC3B5 /* Upload Bugsnag dSYM */ = {
+		323E966919296EFC0045A2C5 /* Upload Bugsnag dSYM */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -768,11 +751,10 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /usr/bin/ruby;
-			shellScript = "\nif ENV[\"DEBUG_INFORMATION_FORMAT\"] != \"dwarf-with-dsym\" or ENV[\"PLATFORM_NAME\"] == \"iphonesimulator\"\n  exit\nend\n\nfork do\n  Process.setsid\n  STDIN.reopen(\"/dev/null\")\n  STDOUT.reopen(\"/dev/null\", \"a\")\n  STDERR.reopen(\"/dev/null\", \"a\")\n\n  require 'shellwords'\n\n  Dir[\"#{ENV[\"DWARF_DSYM_FOLDER_PATH\"]}/#{ENV[\"DWARF_DSYM_FILE_NAME\"]}/Contents/Resources/DWARF/*\"].each do |dsym|\n    system(\"curl -F dsym=@#{Shellwords.escape(dsym)} -F projectRoot=#{Shellwords.escape(ENV[\"PROJECT_DIR\"])} https://upload.bugsnag.com/\")\n  end\nend\n";
-			showEnvVarsInLog = 0;
+			shellPath = /bin/sh;
+			shellScript = "\nif ENV[\"DEBUG_INFORMATION_FORMAT\"] != \"dwarf-with-dsym\" or ENV[\"PLATFORM_NAME\"] == \"iphonesimulator\"\nexit\nend\n\nfork do\nProcess.setsid\nSTDIN.reopen(\"/dev/null\")\nSTDOUT.reopen(\"/dev/null\", \"a\")\nSTDERR.reopen(\"/dev/null\", \"a\")\n\nrequire 'shellwords'\n\nDir[\"#{ENV[\"DWARF_DSYM_FOLDER_PATH\"]}/#{ENV[\"DWARF_DSYM_FILE_NAME\"]}/Contents/Resources/DWARF/*\"].each do |dsym|\nsystem(\"curl -F dsym=@#{Shellwords.escape(dsym)} -F projectRoot=#{Shellwords.escape(ENV[\"PROJECT_DIR\"])} https://upload.bugsnag.com/\")\nend\nend\n";
 		};
-		6CD29E69AA864B8BB2C719DF /* Check Pods Manifest.lock */ = {
+		380BF1B2A860431EA9D5604F /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -830,19 +812,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nPRODUCT_PATH=\"${SYMROOT}/Release/Analytics.framework\"\n\n## Prepare the framework Folder Structure\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Headers\"\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Resources\"\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${PRODUCT_PATH}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${PRODUCT_PATH}/Headers\"\n/bin/ln -sfh Versions/Current/Analytics \"${PRODUCT_PATH}/Analytics\"\n/bin/ln -sfh Versions/Current/Resources \"${PRODUCT_PATH}/Resources\"\n\n## Compile for both iPhone (armv7, armv7s, arm64) and iPhone Simulator (i386)\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphonesimulator\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphoneos\n\n## Combine the two separate libAnalytics.a into a single fat binary containing all 3 architectures\nlipo -output \"${SYMROOT}/Release/libAnalytics.a\" -create \\\n    \"${SYMROOT}/Release-iphoneos/libAnalytics.a\" \\\n    \"${SYMROOT}/Release-iphonesimulator/libAnalytics.a\"\n\n## Strip out Pods-dummy objects to prevent duplicate symbol when used by CocoaPods\nfor ARCH in i386 armv7 armv7s arm64 x86_64\ndo\n    lipo \"${SYMROOT}/Release/libAnalytics.a\" -thin $ARCH -output \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\"\n    DUMMY_OBJECTS=`ar -t ${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a | grep ^Pods.*-dummy.o$ | tr '\\n' ' '`\n    if [ \"$DUMMY_OBJECTS\" != \"\" ]\n    then\n        ar -sd \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\" $DUMMY_OBJECTS\n    fi\ndone\n\n## Create a fat lib from the now cleaned up thin libs and place inside framework\nlipo -output \"${PRODUCT_PATH}/Versions/A/Analytics\" -create \\\n    \"${SYMROOT}/Release/libAnalytics-i386-clean.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-armv7-clean.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-armv7s-clean.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-arm64-clean.a\" \\\n    \"${SYMROOT}/Release/libAnalytics-x86_64-clean.a\"\n\n## Copy headers into the framework\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${SYMROOT}/Release-iphoneos/AnalyticsHeaders/\" \"${PRODUCT_PATH}/Versions/A/Headers/\"\n\n# also copy original resources for include by users\nreadonly all_resources=$(/bin/cat <<EOF\n${SRCROOT}/Pods/Mixpanel/Mixpanel/*.png\n${SRCROOT}/Pods/Mixpanel/Mixpanel/*.storyboard\nEOF\n)\n\nfor resource in $all_resources\ndo\n/bin/cp -a \"${resource}\" \"${PRODUCT_PATH}/Versions/A/Resources/\" || true\ndone\n\n# Zip up the framework and license for distribution, and open products folder\ncd \"${SYMROOT}/Release\"\ncp \"${PROJECT_DIR}/License.md\" .\nzip --symlinks -r Analytics-${ANALYTICS_VERSION}.zip Analytics.framework License.md\nopen .\n";
-		};
-		EA722AEF17C87BB00016E8B0 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		EA8758AB17D7B77200833FB1 /* Sync Version Number References with ANALYTICS_VERSION */ = {
 			isa = PBXShellScriptBuildPhase;
