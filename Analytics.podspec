@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license         = { :type => "MIT", :file => "License.md" }
   s.author          = { "Segment.io" => "friends@segment.io" }
 
-  s.source          = { :git => "https://gitub.com/segmentio/analytics-ios.git", :tag => s.version.to_s }
+  s.source          = { :git => "https://github.com/segmentio/analytics-ios.git", :tag => s.version.to_s }
   s.ios.deployment_target = '6.0'
   s.requires_arc    = true
 
