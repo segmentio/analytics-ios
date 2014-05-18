@@ -58,7 +58,7 @@ void SEGLog(NSString *format, ...) {
 
 // JSON Utils
 
-static id CoerceJSONObject(id obj) {
+static id SEGCoerceJSONObject(id obj) {
     // if the object is a NSString, NSNumber or NSNull
     // then we're good
     if ([obj isKindOfClass:[NSString class]] ||
@@ -70,7 +70,7 @@ static id CoerceJSONObject(id obj) {
     if ([obj isKindOfClass:[NSArray class]]) {
         NSMutableArray *array = [NSMutableArray array];
         for (id i in obj)
-            [array addObject:CoerceJSONObject(i)];
+            [array addObject:SEGCoerceJSONObject(i)];
         return array;
     }
 
@@ -79,7 +79,7 @@ static id CoerceJSONObject(id obj) {
         for (NSString *key in obj) {
             if (![key isKindOfClass:[NSString class]])
                 SEGLog(@"warning: dictionary keys should be strings. got: %@. coercing to: %@", [key class], [key description]);
-            dict[key.description] = CoerceJSONObject(obj[key]);
+            dict[key.description] = SEGCoerceJSONObject(obj[key]);
         }
         return dict;
     }
@@ -87,7 +87,7 @@ static id CoerceJSONObject(id obj) {
     // NSDate description is already a valid ISO8061 string
     if ([obj isKindOfClass:[NSDate class]])
         return [obj description];
-    
+
     if ([obj isKindOfClass:[NSURL class]])
         return [obj absoluteString];
 
@@ -118,13 +118,13 @@ NSDictionary *SEGCoerceDictionary(NSDictionary *dict) {
     // assert that the proper types are in the dictionary
     AssertDictionaryTypes(dict);
     // coerce urls, and dates to the proper format
-    return CoerceJSONObject(dict);
+    return SEGCoerceJSONObject(dict);
 }
 
 NSString *SEGIDFA() {
-  id identifierManagerClass = NSClassFromString(@"ASIdentifierManager");
-  if (identifierManagerClass && [[identifierManagerClass sharedManager] isAdvertisingTrackingEnabled]) {
-    return [[[identifierManagerClass sharedManager] advertisingIdentifier] UUIDString];
+  id identifierManager = NSClassFromString(@"ASIdentifierManager");
+  if (identifierManager && [[identifierManager sharedManager] isAdvertisingTrackingEnabled]) {
+    return [[[identifierManager sharedManager] advertisingIdentifier] UUIDString];
   } else {
     return nil;
   }
