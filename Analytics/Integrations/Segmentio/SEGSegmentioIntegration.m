@@ -322,7 +322,7 @@ static NSMutableDictionary *BuildStaticContext() {
   NSMutableDictionary *payload = [NSMutableDictionary dictionaryWithDictionary:dictionary];
   payload[@"type"] = action;
   payload[@"timestamp"] = [[NSDate date] description];
-  payload[@"id"] = GenerateUUIDString();
+  payload[@"messageId"] = GenerateUUIDString();
 
   [self dispatchBackground:^{
     // attach userId and anonymousId inside the dispatch_async in case
