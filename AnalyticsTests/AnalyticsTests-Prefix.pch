@@ -8,4 +8,4 @@
 #endif
 
 #import <Kiwi/Kiwi.h>
-#import "Analytics.h"
+#import "SEGAnalytics.h"

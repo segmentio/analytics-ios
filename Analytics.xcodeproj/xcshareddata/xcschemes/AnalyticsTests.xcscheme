@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0500"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EA25891E17C693C2000CEF61"
-               BuildableName = "Analytics.framework"
-               BlueprintName = "Analytics.framework"
+               BlueprintIdentifier = "EA722AF017C87BB00016E8B0"
+               BuildableName = "AnalyticsTests.octest"
+               BlueprintName = "AnalyticsTests"
                ReferencedContainer = "container:Analytics.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
