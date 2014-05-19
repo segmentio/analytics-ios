@@ -13,7 +13,6 @@
     #import <Foundation/Foundation.h>
 #endif
 
-#import <Analytics/Analytics.h>
 #import <Analytics/Bugsnag.h>
 #import <Analytics/Crittercism.h>
 #import <Analytics/Flurry.h>
@@ -22,4 +21,4 @@
 #import <Analytics/MPSurvey.h>
 #import <Analytics/MPNotification.h>
 #import <Analytics/TSTapstream.h>
-#import <Analytics/Private/SegmentioProvider.h>
+#import <Analytics/Private/SegmentioIntegration.h>

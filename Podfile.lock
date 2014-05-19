@@ -7,11 +7,11 @@ PODS:
     - FlurrySDK/FlurrySDK
   - FlurrySDK/FlurrySDK (4.4.0)
   - GoogleAnalytics-iOS-SDK (3.0.6)
-  - Kiwi (2.2.3):
+  - Kiwi (2.2.4):
     - Kiwi/SenTestingKit
-  - Kiwi/ARC (2.2.3)
-  - Kiwi/NonARC (2.2.3)
-  - Kiwi/SenTestingKit (2.2.3):
+  - Kiwi/ARC (2.2.4)
+  - Kiwi/NonARC (2.2.4)
+  - Kiwi/SenTestingKit (2.2.4):
     - Kiwi/ARC
     - Kiwi/NonARC
   - Localytics (2.21.0.fork)
@@ -19,7 +19,8 @@ PODS:
   - Quantcast-Measure (1.4.2):
     - Quantcast-Measure/Core
   - Quantcast-Measure/Core (1.4.2)
-  - Tapstream (2.6)
+  - Reachability (3.1.1)
+  - Tapstream (2.7)
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 2.0.0)
@@ -30,8 +31,9 @@ DEPENDENCIES:
   - GoogleAnalytics-iOS-SDK (= 3.0.6)
   - Kiwi (~> 2.2.3)
   - Localytics (= 2.21.0.fork)
-  - Mixpanel (~> 2.3.4)
+  - Mixpanel (= 2.3.4)
   - Quantcast-Measure (= 1.4.2-fork)
+  - Reachability (= 3.1.1)
   - Tapstream (~> 2.6)
 
 SPEC CHECKSUMS:
@@ -41,10 +43,11 @@ SPEC CHECKSUMS:
   CrittercismSDK: 2dd7d834502e4b12a2c2e4873c11580bec3778c1
   FlurrySDK: 2cd8f2ce2383ca152c5d96fa34cb9ef29706feda
   GoogleAnalytics-iOS-SDK: 16dfcc0c4491148bf372edc85a8470cc405ffb72
-  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
+  Kiwi: d60d7498b640a16f58b01925fc3c8d7c4d809f66
   Localytics: 1cb82c7e344936913d4a701fd85c58b4d6b0ba5d
   Mixpanel: 16e6f1d5f8aeb9282ee864e169557de0bd9549df
   Quantcast-Measure: 51a1d2cfd5e99013e5897c5641d55eb2de3cd375
-  Tapstream: 00dd14461e648b5cfc682c79be5be085cf18631b
+  Reachability: be4883bb93f31e38266ae3365e5600a317aae735
+  Tapstream: 0353dd88680c53361605886fd8f327c57980b937
 
 COCOAPODS: 0.32.1

@@ -14,34 +14,23 @@ branches:
     - master
     - dev
 
-cache:
-  directories:
-    - Pods
-
 before_script:
   - export LANG=en_US.UTF-8
 
 before_install:
+  - gem install cocoapods -v '0.32.1'
+  - brew update
+  - brew upgrade xctool
   - pod repo add Segmentio-Podspecs https://github.com/segmentio/Podspecs.git
   - pod repo add Collections-Podspecs https://github.com/collections/Podspecs.git
 
 script:
-  - xctool -workspace Analytics.xcworkspace -scheme Analytics -sdk iphoneos -configuration Release ONLY_ACTIVE_ARCH=NO
-  - xctool test -workspace Analytics.xcworkspace -scheme Analytics -sdk iphonesimulator -configuration Release ONLY_ACTIVE_ARCH=NO
-  - xctool -workspace Analytics.xcworkspace -scheme Analytics.framework -sdk iphoneos -configuration Release ONLY_ACTIVE_ARCH=NO
-
-# deploy:
-#   provider: s3
-#   access_key_id: {access_key_id}
-#   secret_access_key: {secret_access_key}
-#   bucket: segmentio-public-builds
-#   skip_cleanup: true
-#   local-dir: build
-#   upload-dir: ios
+  - xctool -workspace Analytics.xcworkspace -scheme Analytics -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+  - xctool test -workspace Analytics.xcworkspace -scheme AnalyticsTests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
 
 notifications:
   email:
     recipients:
-      - peter@segment.io
+      - travis@segment.io
     on_success: change
     on_failure: always
