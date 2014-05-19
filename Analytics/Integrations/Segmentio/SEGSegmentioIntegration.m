@@ -306,14 +306,14 @@ static NSMutableDictionary *BuildStaticContext() {
 
 #pragma mark - Queueing
 
-- (NSDictionary *)integrationsDictionary:(NSDictionary *)options {
-  NSMutableDictionary *integrations = [options ?: @{} mutableCopy];
+- (NSDictionary *)integrationsDictionary:(NSDictionary *)integrations {
+  NSMutableDictionary *dict = [integrations ?: @{} mutableCopy];
   for (SEGAnalyticsIntegration *integration in self.analytics.integrations.allValues) {
     if (![integration isKindOfClass:[SEGSegmentioIntegration class]]) {
-      integrations[integration.name] = @NO;
+      dict[integration.name] = @NO;
     }
   }
-  return integrations;
+  return dict;
 }
 
 - (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)dictionary options:(NSDictionary *)options {
@@ -331,7 +331,7 @@ static NSMutableDictionary *BuildStaticContext() {
     [payload setValue:self.anonymousId forKey:@"anonymousId"];
     SEGLog(@"%@ Enqueueing action: %@", self, payload);
 
-    [payload setValue:[self integrationsDictionary:options] forKey:@"integrations"];
+    [payload setValue:[self integrationsDictionary:options[@"integrations"]] forKey:@"integrations"];
     [payload setValue:[self liveContext] forKey:@"context"];
     [self.queue addObject:payload];
     [self flushQueueByLength];
