@@ -10,12 +10,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '6.0'
   s.requires_arc    = true
 
-  s.subspec 'Core-iOS' do |ss|
-    ss.public_header_files = 'Analytics/*'
-    ss.source_files = ['Analytics/*.{h,m}', 'Analytics/Helpers/*.{h,m}', 'Analytics/Integrations/AnalyticsIntegrations.h']
-    ss.platforms = [:ios]
-  end
-
   amplitude = { :name => 'Amplitude', :dependencies => [{ :pod => 'Amplitude-iOS' }]}
   bugsnag = { :name => 'Bugsnag', :dependencies => [{ :pod => 'Bugsnag' }]}
   countly = { :name => 'Countly', :dependencies => [{ :pod => 'Countly' }]}
@@ -29,6 +23,13 @@ Pod::Spec.new do |s|
   segmentio = { :name => 'Segmentio', :dependencies => [{ :pod => 'Reachability', :version => '3.1.1' }]}
 
   analytics = [segmentio, amplitude, bugsnag, countly, crittercism, flurry, google, localytics, mixpanel, tapstream, quantcast]
+
+  s.subspec 'Core-iOS' do |ss|
+    ss.public_header_files = 'Analytics/*'
+    ss.source_files = ['Analytics/*.{h,m}', 'Analytics/Helpers/*.{h,m}', 'Analytics/Integrations/AnalyticsIntegrations.h']
+    ss.platforms = [:ios]
+    ss.dependency "Analytics/#{segmentio[:name]}"
+  end
 
   analytics.each do |a|
     s.subspec a[:name] do |ss|
