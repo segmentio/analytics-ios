@@ -104,7 +104,7 @@ describe(@"Segment.io", ^{
     it(@"Should track with context", ^{
         NSString *eventName = @"Purchased an iPad 5";
         NSDictionary *properties = @{@"Filter": @"Tilt-shift"};
-        NSDictionary *options = @{@"Salesforce": @"true", @"Mixpanel": @"false"};
+        NSDictionary *options = @{ @"integrations": @{ @"Salesforce": @"false", @"Mixpanel": @"true" } };
         [segmentio track:eventName properties:properties options:options];
         
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
@@ -117,9 +117,10 @@ describe(@"Segment.io", ^{
         [queuedTrack[@"timestamp"] shouldNotBeNil];
         
         // test for integrations options object
+        
         [queuedTrack[@"integrations"] shouldNotBeNil];
-        [[queuedTrack[@"integrations"][@"Salesforce"] should] equal:@"true"];
-        [[queuedTrack[@"integrations"][@"Mixpanel"] should] equal:@"false"];
+        [[queuedTrack[@"integrations"][@"Salesforce"] should] equal:@"false"];
+        [[queuedTrack[@"integrations"][@"Mixpanel"] should] equal:@"true"];
         [queuedTrack[@"integrations"][@"KISSmetrics"] shouldBeNil];
         
         // send a second event, wait for 200 from servers
@@ -166,7 +167,7 @@ describe(@"Segment.io", ^{
     
     it(@"Should identify with context", ^{
         NSDictionary *traits = @{@"Filter": @"Tilt-shift"};
-        NSDictionary *options = @{@"Salesforce": @"true", @"Mixpanel": @"false"};
+        NSDictionary *options = @{ @"integrations": @{ @"Salesforce": @"true", @"Mixpanel": @"false" }};
         [segmentio identify:nil traits:traits options:options];
         
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
@@ -203,18 +204,17 @@ describe(@"Segment.io", ^{
     it(@"Should flush when full", ^{
         NSString *eventName = @"Purchased an iPad 5";
         NSDictionary *properties = @{@"Filter": @"Tilt-shift"};
-        [segmentio track:eventName properties:properties options:nil];
-        [segmentio track:eventName properties:properties options:nil];
-        [[segmentio.queue should] beEmpty];
         [[segmentio.queue shouldEventually] have:2];
         [[SEGSegmentioDidSendRequestNotification shouldEventually] bePosted];
         [[SEGSegmentioRequestDidSucceedNotification shouldEventually] bePosted];
+        [segmentio track:eventName properties:properties options:nil];
+        [segmentio track:eventName properties:properties options:nil];
     });
     
     it(@"Should reset", ^{
         NSString *eventName = @"Purchased an iPad 5";
         NSDictionary *properties = @{@"Filter": @"Tilt-shift", @"category": @"Mobile", @"revenue": @"70.0", @"value": @"50.0", @"label": @"gooooga"};
-        NSDictionary *options = @{@"Salesforce": @YES, @"HubSpot": @NO};
+        NSDictionary *options = @{ @"integrations": @{ @"Salesforce": @YES, @"HubSpot": @NO } };
         NSString *anonymousId = segmentio.anonymousId;
         
         [segmentio track:eventName properties:properties options:options];

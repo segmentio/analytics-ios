@@ -43,7 +43,7 @@ describe(@"Analytics", ^{
     it(@"Should identify", ^{
         NSString *userId = @"smile@wrinkledhippo.com";
         NSDictionary *traits = @{@"Filter": @"Tilt-shift", @"HasFriends": @YES, @"FriendCount" : @233 };
-        NSDictionary *options = @{@"Salesforce": @YES, @"HubSpot": @NO};
+        NSDictionary *options = @{ @"integrations": @{ @"Salesforce": @YES, @"HubSpot": @NO } };
         [analytics identify:userId traits:traits options:options];
 
         [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
@@ -94,7 +94,7 @@ describe(@"Analytics", ^{
             @"value": @"50.0",
             @"label": @"gooooga"
         };
-        NSDictionary *options = @{@"Salesforce": @YES, @"HubSpot": @NO};
+        NSDictionary *options = @{ @"integrations": @{ @"Salesforce": @YES, @"HubSpot": @NO } };
         [analytics track:eventName properties:properties options:options];
 
         // The analytics thread does things slightly async, just need to
@@ -114,8 +114,8 @@ describe(@"Analytics", ^{
         [[queuedAction[@"integrations"][@"HubSpot"] should] equal:@NO];
 
         // wait for 200 from servers
-        [segmentio flush];
         [[SEGSegmentioDidSendRequestNotification shouldEventually] bePosted];
+        [segmentio flush];
     });
 
     it(@"Should track according to integration options", ^{
