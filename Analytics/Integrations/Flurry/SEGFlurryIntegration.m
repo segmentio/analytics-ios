@@ -78,7 +78,7 @@
     [Flurry logPageView];
 }
 
-- (void)registerPushDeviceToken:(NSData *)deviceToken {
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Why oh why does Flurry require an NSString?! NSData was good enough for everyone else lol
     // http://stackoverflow.com/a/9372848/1426850
     const unsigned *tokenBytes = [deviceToken bytes];

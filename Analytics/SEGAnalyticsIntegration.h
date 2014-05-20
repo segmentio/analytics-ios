@@ -27,7 +27,7 @@
 
 @optional;
 
-- (void)registerPushDeviceToken:(NSData *)deviceToken;
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
 
 // Callbacks for app state changes
 // -------------------------------

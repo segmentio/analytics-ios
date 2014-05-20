@@ -134,7 +134,7 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (id)initWithAnalytics:(SEGAnalytics *)analytics {
-  if (self = [self initWithWriteKey:analytics.writeKey flushAt:20]) {
+  if (self = [self initWithWriteKey:analytics.writeKey flushAt:2]) {
     self.analytics = analytics;
   }
   return self;
@@ -289,7 +289,7 @@ static NSMutableDictionary *BuildStaticContext() {
   [self enqueueAction:@"group" dictionary:dictionary options:options];
 }
 
-- (void)registerPushDeviceToken:(NSData *)deviceToken {
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
   NSAssert(deviceToken, @"%@ registerPushDeviceToken requires a deviceToken", self);
 
   const unsigned char *buffer = (const unsigned char *)[deviceToken bytes];

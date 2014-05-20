@@ -235,7 +235,7 @@
                             options:options];
 }
 
-- (void)registerPushDeviceToken:(NSData *)deviceToken {
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSParameterAssert(deviceToken);
     [self callIntegrationsWithSelector:_cmd
                           arguments:@[deviceToken]
