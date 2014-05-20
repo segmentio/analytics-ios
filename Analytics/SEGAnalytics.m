@@ -27,7 +27,7 @@
 @synthesize cachedSettings = _cachedSettings;
 
 - (id)initWithWriteKey:(NSString *)writeKey {
-    NSParameterAssert(writeKey.length);
+    NSCParameterAssert(writeKey.length);
 
     if (self = [self init]) {
         _writeKey = [writeKey copy];
@@ -216,6 +216,7 @@
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
     NSParameterAssert(screenTitle);
+
     [self callIntegrationsWithSelector:_cmd
                           arguments:@[[NSString stringWithFormat:@"Viewed %@ Screen", screenTitle], SEGCoerceDictionary(properties), SEGCoerceDictionary(options)]
                             options:options];
@@ -315,14 +316,14 @@ static SEGAnalytics *__sharedInstance = nil;
     dispatch_once(&onceToken, ^{
         __registeredIntegrations = [[NSMutableDictionary alloc] init];
     });
-    NSAssert([NSThread isMainThread], @"%s must be called from the main thread", __func__);
-    NSAssert(__sharedInstance == nil, @"%s can only be called before Analytics initialization", __func__);
-    NSAssert(identifer.length > 0, @"Integration must have a valid identifier;");
+    NSCParameterAssert([NSThread isMainThread]);
+    NSCParameterAssert(__sharedInstance == nil);
+    NSCParameterAssert(identifer.length > 0);
     __registeredIntegrations[identifer] = integrationClass;
 }
 
 + (void)initializeWithWriteKey:(NSString *)writeKey {
-    NSParameterAssert(writeKey.length > 0);
+    NSCParameterAssert(writeKey.length > 0);
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         __sharedInstance = [[self alloc] initWithWriteKey:writeKey];
@@ -330,7 +331,7 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 + (instancetype)sharedAnalytics {
-    NSAssert(__sharedInstance, @"%@ sharedInstance called before initWithWriteKey", self);
+    NSCParameterAssert(__sharedInstance);
     return __sharedInstance;
 }
 

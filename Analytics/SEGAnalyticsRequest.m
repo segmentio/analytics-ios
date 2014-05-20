@@ -1,7 +1,7 @@
 // AnalyticsRequest.m
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
-#define AssertMainThread() NSAssert([NSThread isMainThread], @"%s must be called form main thread", __func__)
+#define AssertMainThread() NSCParameterAssert([NSThread isMainThread])
 
 #import "SEGAnalyticsRequest.h"
 
