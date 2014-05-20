@@ -141,8 +141,8 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (id)initWithWriteKey:(NSString *)writeKey flushAt:(NSUInteger)flushAt {
-  NSParameterAssert(writeKey.length);
-  NSParameterAssert(flushAt > 0);
+  NSCParameterAssert(writeKey.length);
+  NSCParameterAssert(flushAt > 0);
 
   if (self = [self init]) {
     _flushAt = flushAt;
@@ -260,7 +260,7 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
-  NSAssert(event.length, @"%@ track requires an event name.", self);
+  NSCParameterAssert(event.length);
 
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setValue:event forKey:@"event"];
@@ -270,7 +270,7 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
-  NSAssert(screenTitle.length, @"%@ screen requires a screen title.", self);
+  NSCParameterAssert(screenTitle.length);
 
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setValue:screenTitle forKey:@"name"];
@@ -280,7 +280,7 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options {
-  NSAssert(groupId.length, @"%@ group requires a groupId.", self);
+  NSCParameterAssert(groupId.length);
 
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setValue:groupId forKey:@"groupId"];
@@ -290,7 +290,7 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-  NSAssert(deviceToken, @"%@ registerPushDeviceToken requires a deviceToken", self);
+  NSCParameterAssert(deviceToken != nil);
 
   const unsigned char *buffer = (const unsigned char *)[deviceToken bytes];
   if (!buffer) {
