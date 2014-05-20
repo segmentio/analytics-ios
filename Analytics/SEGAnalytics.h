@@ -195,7 +195,8 @@
 
  @param deviceToken     device token as returned <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>
  */
-- (void)registerPushDeviceToken:(NSData *)deviceToken;
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
+- (void)registerPushDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registerForRemoteNotificationsWithDeviceToken: instead")));
 
 
 /*!

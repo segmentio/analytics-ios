@@ -108,7 +108,7 @@
     [[LocalyticsSession sharedLocalyticsSession] tagScreen:screenTitle];
 }
 
-- (void)registerPushDeviceToken:(NSData *)deviceToken {
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [[LocalyticsSession sharedLocalyticsSession] setPushToken:deviceToken];
 }
 

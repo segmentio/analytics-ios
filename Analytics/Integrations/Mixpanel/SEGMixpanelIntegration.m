@@ -89,7 +89,7 @@
     [self track:screenTitle properties:properties options:options];
 }
 
-- (void)registerPushDeviceToken:(NSData *)deviceToken {
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [[[Mixpanel sharedInstance] people] addPushDeviceToken:deviceToken];
 }
 
