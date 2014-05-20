@@ -243,6 +243,10 @@
                             options:nil];
 }
 
+- (void)registerPushDeviceToken:(NSData *)deviceToken {
+    [self registerForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
 - (void)reset {
     [self callIntegrationsWithSelector:_cmd
                           arguments:nil
