@@ -2,7 +2,7 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "SEGFlurryIntegration.h"
-#import "Flurry.h"
+#import <Flurry.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 
