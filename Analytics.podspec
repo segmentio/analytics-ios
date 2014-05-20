@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core-iOS' do |ss|
     ss.public_header_files = 'Analytics/*'
-    ss.source_files = ['Analytics/*.{h,m}', 'Analytics/Helpers/*.{h,m}', 'Analytics/Integrations/AnalyticsIntegrations.h']
+    ss.source_files = ['Analytics/*.{h,m}', 'Analytics/Helpers/*.{h,m}', 'Analytics/Integrations/SEGAnalyticsIntegrations.h']
     ss.platforms = [:ios]
     ss.dependency "Analytics/#{segmentio[:name]}"
   end
