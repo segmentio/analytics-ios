@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   bugsnag = { :name => 'Bugsnag', :dependencies => [{ :pod => 'Bugsnag' }]}
   countly = { :name => 'Countly', :dependencies => [{ :pod => 'Countly' }]}
   crittercism = { :name => 'Crittercism', :dependencies => [{ :pod => 'CrittercismSDK' }]}
-  flurry = { :name => 'Flurry', :dependencies => [{ :pod => 'FlurrySDK' }]}
+  flurry = { :name => 'Flurry', :dependencies => [{ :pod => 'FlurrySDK', :version => '~> 5.0.0' }]}
   google = { :name => 'GoogleAnalytics', :dependencies => [{ :pod => 'GoogleAnalytics-iOS-SDK' }]}
   localytics = { :name => 'Localytics', :dependencies => [{ :pod => 'Localytics', :version => '2.21.0.fork' }]}
   mixpanel = { :name => 'Mixpanel', :dependencies => [{ :pod => 'Mixpanel' }]}
