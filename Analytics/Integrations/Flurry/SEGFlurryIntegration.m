@@ -3,17 +3,9 @@
 
 #import "SEGFlurryIntegration.h"
 #import <Flurry.h>
+#import <objc/message.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
-
-// cocoapod's validation can't find +[Flurry setPushToken:]
-@interface SEGFlurry : Flurry
-+ (void)setPushToken:(NSString *)pushToken;
-@end
-
-@implementation SEGFlurry
-+ (void)setPushToken:(NSString *)pushToken { [super setPushToken:pushToken]; }
-@end
 
 @implementation SEGFlurryIntegration
 
@@ -95,7 +87,8 @@
                           ntohl(tokenBytes[0]), ntohl(tokenBytes[1]), ntohl(tokenBytes[2]),
                           ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
                           ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
-    [SEGFlurry setPushToken:hexToken];
+    // cocoapods validation cant find +[Flurry setPushToken:]
+    objc_msgSend(Flurry.class, NSSelectorFromString(@"setPushToken:"), hexToken);
 }
 
 @end
