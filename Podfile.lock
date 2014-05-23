@@ -37,17 +37,17 @@ DEPENDENCIES:
   - Tapstream (~> 2.6)
 
 SPEC CHECKSUMS:
-  Amplitude-iOS: 88d27d819a5ad9aa7bdbd700b03b1db8ff5e1fd8
+  Amplitude-iOS: 44212943f8cf9275a68c1f0a38e93625c5c86b05
   Bugsnag: d59f4f572b671913b87cc41229e51e91482a239e
-  Countly: c9728abbbeffc3250d1ab8ba17b417938119d218
-  CrittercismSDK: 2dd7d834502e4b12a2c2e4873c11580bec3778c1
-  FlurrySDK: 2cd8f2ce2383ca152c5d96fa34cb9ef29706feda
-  GoogleAnalytics-iOS-SDK: 16dfcc0c4491148bf372edc85a8470cc405ffb72
-  Kiwi: d60d7498b640a16f58b01925fc3c8d7c4d809f66
+  Countly: f26a3483a660b5790b2c76e1f91dea4f276b3c33
+  CrittercismSDK: 9f19db3a1f0c16b35d8c29c69406852d184a7650
+  FlurrySDK: abaedafc350afa41b004236b67ae14f7d3748b68
+  GoogleAnalytics-iOS-SDK: 4577fb25381a71c5beac455b18ebb288fc4f44e9
+  Kiwi: c73667f2b84cbf36f1a3830267c5a4ae8dcbd8ba
   Localytics: 1cb82c7e344936913d4a701fd85c58b4d6b0ba5d
-  Mixpanel: 16e6f1d5f8aeb9282ee864e169557de0bd9549df
+  Mixpanel: f80261f894ae0a71231da2a7eed67ce9ba1d5a26
   Quantcast-Measure: 51a1d2cfd5e99013e5897c5641d55eb2de3cd375
-  Reachability: be4883bb93f31e38266ae3365e5600a317aae735
-  Tapstream: 0353dd88680c53361605886fd8f327c57980b937
+  Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
+  Tapstream: 1c945ae1e9d25af25915c96e5d506485b26f52f0
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1
