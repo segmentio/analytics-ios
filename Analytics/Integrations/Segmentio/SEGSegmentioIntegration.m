@@ -134,7 +134,7 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (id)initWithAnalytics:(SEGAnalytics *)analytics {
-  if (self = [self initWithWriteKey:analytics.writeKey flushAt:2]) {
+  if (self = [self initWithWriteKey:analytics.writeKey flushAt:20]) {
     self.analytics = analytics;
   }
   return self;
