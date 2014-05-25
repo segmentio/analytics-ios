@@ -141,7 +141,7 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (id)initWithWriteKey:(NSString *)writeKey flushAt:(NSUInteger)flushAt {
-  NSCParameterAssert(writeKey.length);
+  NSCParameterAssert(writeKey.length > 0);
   NSCParameterAssert(flushAt > 0);
 
   if (self = [self init]) {
@@ -260,7 +260,7 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
-  NSCParameterAssert(event.length);
+  NSCParameterAssert(event.length > 0);
 
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setValue:event forKey:@"event"];
@@ -270,7 +270,7 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
-  NSCParameterAssert(screenTitle.length);
+  NSCParameterAssert(screenTitle.length > 0);
 
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setValue:screenTitle forKey:@"name"];
@@ -280,7 +280,7 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options {
-  NSCParameterAssert(groupId.length);
+  NSCParameterAssert(groupId.length > 0);
 
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setValue:groupId forKey:@"groupId"];
