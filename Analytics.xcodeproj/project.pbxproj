@@ -114,7 +114,6 @@
 		EABE4F4117C88A6D00A1081B /* AnalyticsUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EABE4F4017C88A6D00A1081B /* AnalyticsUtilsTests.m */; };
 		EACB4DEA17C0BB3100624129 /* SEGAnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DD017C0BB3100624129 /* SEGAnalyticsUtils.h */; };
 		EACB4DEB17C0BB3100624129 /* SEGAnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DD117C0BB3100624129 /* SEGAnalyticsUtils.m */; };
-		EAD415C717C9B72D00EB0490 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA722AF217C87BB00016E8B0 /* SenTestingKit.framework */; };
 		F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		F7200B7E17659B2F003F3138 /* SEGAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = F7200B7D17659B2F003F3138 /* SEGAnalytics.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		F78D29FA1765B382000B937E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
@@ -224,8 +223,7 @@
 		EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioTests.m; sourceTree = "<group>"; };
 		EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGAnalyticsIntegration.h; path = ../SEGAnalyticsIntegration.h; sourceTree = "<group>"; };
 		EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGAnalyticsIntegration.m; path = ../SEGAnalyticsIntegration.m; sourceTree = "<group>"; };
-		EA722AF117C87BB00016E8B0 /* AnalyticsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA722AF217C87BB00016E8B0 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		EA722AF117C87BB00016E8B0 /* AnalyticsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA722AF817C87BB00016E8B0 /* AnalyticsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnalyticsTests-Info.plist"; sourceTree = "<group>"; };
 		EA722AFD17C87BB00016E8B0 /* AnalyticsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyticsTests.m; sourceTree = "<group>"; };
 		EA722AFF17C87BB00016E8B0 /* AnalyticsTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnalyticsTests-Prefix.pch"; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 				EABE4F3D17C8883A00A1081B /* CoreData.framework in Frameworks */,
 				EABE4F3E17C8883A00A1081B /* libz.dylib in Frameworks */,
 				EABE4F3F17C8883A00A1081B /* libsqlite3.dylib in Frameworks */,
-				EAD415C717C9B72D00EB0490 /* SenTestingKit.framework in Frameworks */,
 				32E113241908ACAF006D9788 /* libAnalytics.a in Frameworks */,
 				32E113261908AD1C006D9788 /* libPods-AnalyticsTests.a in Frameworks */,
 			);
@@ -506,7 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				F7200B7317659B2F003F3138 /* libAnalytics.a */,
-				EA722AF117C87BB00016E8B0 /* AnalyticsTests.octest */,
+				EA722AF117C87BB00016E8B0 /* AnalyticsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -545,7 +542,6 @@
 				EABE4F2217C887A500A1081B /* CoreData.framework */,
 				EABE4F3417C887E800A1081B /* libz.dylib */,
 				EABE4F3217C887E400A1081B /* libsqlite3.dylib */,
-				EA722AF217C87BB00016E8B0 /* SenTestingKit.framework */,
 				23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */,
 				E83F0FBE9BA94A03A4883160 /* libPods-Analytics.a */,
 			);
@@ -662,8 +658,8 @@
 			);
 			name = AnalyticsTests;
 			productName = AnalyticsTests;
-			productReference = EA722AF117C87BB00016E8B0 /* AnalyticsTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = EA722AF117C87BB00016E8B0 /* AnalyticsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		F7200B7217659B2F003F3138 /* Analytics */ = {
 			isa = PBXNativeTarget;
@@ -691,6 +687,7 @@
 		F7200B6B17659B2F003F3138 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastTestingUpgradeCheck = 0510;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Segment.io;
 			};
@@ -901,7 +898,7 @@
 				ANALYTICS_VERSION = 1.0.0;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnalyticsTests/AnalyticsTests-Prefix.pch";
@@ -912,7 +909,6 @@
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -923,7 +919,7 @@
 				ANALYTICS_VERSION = 1.0.0;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AnalyticsTests/AnalyticsTests-Prefix.pch";
@@ -934,7 +930,6 @@
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};

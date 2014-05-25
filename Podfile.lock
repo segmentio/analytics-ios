@@ -7,11 +7,9 @@ PODS:
     - FlurrySDK/FlurrySDK
   - FlurrySDK/FlurrySDK (4.4.0)
   - GoogleAnalytics-iOS-SDK (3.0.6)
-  - Kiwi (2.2.4):
-    - Kiwi/SenTestingKit
   - Kiwi/ARC (2.2.4)
   - Kiwi/NonARC (2.2.4)
-  - Kiwi/SenTestingKit (2.2.4):
+  - Kiwi/XCTest (2.2.4):
     - Kiwi/ARC
     - Kiwi/NonARC
   - Localytics (2.21.0.fork)
@@ -29,7 +27,7 @@ DEPENDENCIES:
   - CrittercismSDK (~> 4.3.3)
   - FlurrySDK (~> 4.4.0)
   - GoogleAnalytics-iOS-SDK (= 3.0.6)
-  - Kiwi (~> 2.2.3)
+  - Kiwi/XCTest (~> 2.2.3)
   - Localytics (= 2.21.0.fork)
   - Mixpanel (= 2.3.4)
   - Quantcast-Measure (= 1.4.2-fork)
