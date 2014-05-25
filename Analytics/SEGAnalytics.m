@@ -200,7 +200,7 @@
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
-    NSParameterAssert(event);
+    NSCParameterAssert(event.length > 0);
     [self callIntegrationsWithSelector:_cmd
                           arguments:@[event, SEGCoerceDictionary(properties), SEGCoerceDictionary(options)]
                             options:options];
@@ -215,7 +215,7 @@
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
-    NSParameterAssert(screenTitle);
+    NSCParameterAssert(screenTitle.length > 0);
 
     [self callIntegrationsWithSelector:_cmd
                           arguments:@[[NSString stringWithFormat:@"Viewed %@ Screen", screenTitle], SEGCoerceDictionary(properties), SEGCoerceDictionary(options)]
@@ -237,7 +237,7 @@
 }
 
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    NSParameterAssert(deviceToken);
+    NSParameterAssert(deviceToken != nil);
     [self callIntegrationsWithSelector:_cmd
                           arguments:@[deviceToken]
                             options:nil];
