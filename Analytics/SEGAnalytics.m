@@ -27,7 +27,7 @@
 @synthesize cachedSettings = _cachedSettings;
 
 - (id)initWithWriteKey:(NSString *)writeKey {
-    NSCParameterAssert(writeKey.length);
+    NSCParameterAssert(writeKey.length > 0);
 
     if (self = [self init]) {
         _writeKey = [writeKey copy];
@@ -335,7 +335,7 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 + (instancetype)sharedAnalytics {
-    NSCParameterAssert(__sharedInstance);
+    NSCParameterAssert(__sharedInstance != nil);
     return __sharedInstance;
 }
 
@@ -354,4 +354,3 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 @end
-
