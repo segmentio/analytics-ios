@@ -63,78 +63,6 @@
     return self;
 }
 
-- (BOOL)isIntegration:(id<SEGAnalyticsIntegration>)integration enabledInOptions:(NSDictionary *)options {
-    // checks if options is enabling this integration
-    if (options[integration.name]) {
-        return [options[integration.name] boolValue];
-    } else if (options[@"All"]) {
-        return [options[@"All"] boolValue];
-    } else if (options[@"all"]) {
-        return [options[@"all"] boolValue];
-    }
-    return YES;
-}
-
-- (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
-    if (!_enabled) {
-        return;
-    }
-
-    NSMethodSignature *methodSignature = [SEGAnalyticsIntegration instanceMethodSignatureForSelector:selector];
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];
-    invocation.selector = selector;
-    for (int i=0; i<arguments.count; i++) {
-        id argument = (arguments[i] == [NSNull null]) ? nil : arguments[i];
-        [invocation setArgument:&argument atIndex:i+2];
-    }
-
-    for (id<SEGAnalyticsIntegration> integration in self.integrations.allValues) {
-
-        if (integration.ready) {
-            if ([integration respondsToSelector:selector]) {
-                if([self isIntegration:integration enabledInOptions:options]) {
-                    [invocation invokeWithTarget:integration];
-                }
-                else {
-                    SEGLog(@"Not sending call to %@ because it is disabled in options.", integration.name);
-                }
-            }
-            else {
-                SEGLog(@"Not sending call to %@ because it doesn't respond to %@.", integration.name, selector);
-            }
-        }
-        else {
-            SEGLog(@"Not sending call to %@ because it isn't ready (enabled and initialized).", integration.name);
-        }
-    }
-}
-
-- (void)queueSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
-    [_messageQueue addObject:@[NSStringFromSelector(selector), arguments ?: @[], options ?: @{}]];
-}
-
-- (void)flushMessageQueue {
-    if (_messageQueue.count) {
-        for (NSArray *arr in _messageQueue)
-            [self forwardSelector:NSSelectorFromString(arr[0]) arguments:arr[1] options:arr[2]];
-        [_messageQueue removeAllObjects];
-    }
-}
-
-- (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options  {
-    dispatch_specific_async(_serialQueue, ^{
-        // No cached settings, queue the API call
-        if (!self.cachedSettings.count) {
-            [self queueSelector:selector arguments:arguments options:options];
-        }
-        // Settings cached, flush message queue & new API call
-        else {
-            [self flushMessageQueue];
-            [self forwardSelector:selector arguments:arguments options:options];
-        }
-    });
-}
-
 #pragma mark - NSNotificationCenter Callback
 
 
@@ -201,6 +129,7 @@
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
     NSCParameterAssert(event.length > 0);
+
     [self callIntegrationsWithSelector:_cmd
                           arguments:@[event, SEGCoerceDictionary(properties), SEGCoerceDictionary(options)]
                             options:options];
@@ -276,34 +205,33 @@
 }
 
 - (void)updateIntegrationsWithSettings:(NSDictionary *)settings {
-
     for (id<SEGAnalyticsIntegration> integration in self.integrations.allValues)
         [integration updateSettings:settings[integration.name]];
+
     dispatch_specific_async(_serialQueue, ^{
         [self flushMessageQueue];
     });
 }
 
 - (void)refreshSettings {
-    if (!_settingsRequest) {
-        NSString *urlString = [NSString stringWithFormat:@"https://api.segment.io/project/%@/settings", self.writeKey];
-        NSURL *url = [NSURL URLWithString:urlString];
-        NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
-        [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-        [urlRequest setHTTPMethod:@"GET"];
-        SEGLog(@"%@ Sending API settings request: %@", self, urlRequest);
+    if (_settingsRequest)
+        return;
 
-        _settingsRequest = [SEGAnalyticsRequest startWithURLRequest:urlRequest completion:^{
-          dispatch_specific_async(_serialQueue, ^{
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.segment.io/project/%@/settings", self.writeKey]]];
+    [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [urlRequest setHTTPMethod:@"GET"];
+    SEGLog(@"%@ Sending API settings request: %@", self, urlRequest);
+
+    _settingsRequest = [SEGAnalyticsRequest startWithURLRequest:urlRequest completion:^{
+        dispatch_specific_async(_serialQueue, ^{
             SEGLog(@"%@ Received API settings response: %@", self, _settingsRequest.responseJSON);
 
             if (!_settingsRequest.error) {
-              [self setCachedSettings:_settingsRequest.responseJSON];
+                [self setCachedSettings:_settingsRequest.responseJSON];
             }
             _settingsRequest = nil;
-          });
-        }];
-    }
+        });
+    }];
 }
 
 #pragma mark - Class Methods
@@ -316,13 +244,14 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 + (void)registerIntegration:(Class)integrationClass withIdentifier:(NSString *)identifer {
+    NSCParameterAssert([NSThread isMainThread]);
+    NSCParameterAssert(__sharedInstance == nil);
+    NSCParameterAssert(identifer.length > 0);
+
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         __registeredIntegrations = [[NSMutableDictionary alloc] init];
     });
-    NSCParameterAssert([NSThread isMainThread]);
-    NSCParameterAssert(__sharedInstance == nil);
-    NSCParameterAssert(identifer.length > 0);
     __registeredIntegrations[identifer] = integrationClass;
 }
 
@@ -348,6 +277,81 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 #pragma mark - Private
+
+- (BOOL)isIntegration:(id<SEGAnalyticsIntegration>)integration enabledInOptions:(NSDictionary *)options {
+    // checks if options is enabling this integration
+    if (options[integration.name]) {
+        return [options[integration.name] boolValue];
+    } else if (options[@"All"]) {
+        return [options[@"All"] boolValue];
+    } else if (options[@"all"]) {
+        return [options[@"all"] boolValue];
+    }
+    return YES;
+}
+
+- (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
+    if (!_enabled)
+        return;
+
+    for (id<SEGAnalyticsIntegration> integration in self.integrations.allValues)
+        [self invokeIntegration:integration selector:selector arguments:arguments options:options];
+}
+
+- (void)invokeIntegration:(id <SEGAnalyticsIntegration>)integration selector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
+    if (!integration.ready) {
+        SEGLog(@"Not sending call to %@ because it isn't ready (enabled and initialized).", integration.name);
+        return;
+    }
+
+    if (![integration respondsToSelector:selector]) {
+        SEGLog(@"Not sending call to %@ because it doesn't respond to %@.", integration.name, selector);
+        return;
+    }
+
+    if(![self isIntegration:integration enabledInOptions:options]) {
+        SEGLog(@"Not sending call to %@ because it is disabled in options.", integration.name);
+        return;
+    }
+
+    [[self invocationForSelector:selector arguments:arguments] invokeWithTarget:integration];
+}
+
+- (NSInvocation *)invocationForSelector:(SEL)selector arguments:(NSArray *)arguments {
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[SEGAnalyticsIntegration instanceMethodSignatureForSelector:selector]];
+    invocation.selector = selector;
+    for (int i=0; i < arguments.count; i++) {
+        id argument = (arguments[i] == [NSNull null]) ? nil : arguments[i];
+        [invocation setArgument:&argument atIndex:i+2];
+    }
+    return invocation;
+}
+
+- (void)queueSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
+    [_messageQueue addObject:@[NSStringFromSelector(selector), arguments ?: @[], options ?: @{}]];
+}
+
+- (void)flushMessageQueue {
+    if (_messageQueue.count) {
+        for (NSArray *arr in _messageQueue)
+            [self forwardSelector:NSSelectorFromString(arr[0]) arguments:arr[1] options:arr[2]];
+        [_messageQueue removeAllObjects];
+    }
+}
+
+- (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options  {
+    dispatch_specific_async(_serialQueue, ^{
+        // No cached settings, queue the API call
+        if (!self.cachedSettings.count) {
+            [self queueSelector:selector arguments:arguments options:options];
+        }
+            // Settings cached, flush message queue & new API call
+        else {
+            [self flushMessageQueue];
+            [self forwardSelector:selector arguments:arguments options:options];
+        }
+    });
+}
 
 - (NSURL *)settingsURL {
     return SEGAnalyticsURLForFilename(@"analytics.settings.plist");
