@@ -112,7 +112,7 @@
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
-    if (!userId && !traits)
+    if (userId.length <= 0 && traits.count <= 0)
         return;
     [self callIntegrationsWithSelector:_cmd
                           arguments:@[userId ?: [NSNull null], SEGCoerceDictionary(traits), SEGCoerceDictionary(options)]
@@ -342,6 +342,7 @@ static SEGAnalytics *__sharedInstance = nil;
 - (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options  {
     dispatch_specific_async(_serialQueue, ^{
         // No cached settings, queue the API call
+      
         if (!self.cachedSettings.count) {
             [self queueSelector:selector arguments:arguments options:options];
         }

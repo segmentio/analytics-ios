@@ -7,5 +7,7 @@
     #import <Foundation/Foundation.h>
 #endif
 
-#import <Kiwi/Kiwi.h>
+#import <XCTest/XCTest.h>
 #import "SEGAnalytics.h"
+
+#define EXP_SHORTHAND 1

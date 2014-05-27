@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EA722AF017C87BB00016E8B0"
-               BuildableName = "AnalyticsTests.octest"
+               BuildableName = "AnalyticsTests.xctest"
                BlueprintName = "AnalyticsTests"
                ReferencedContainer = "container:Analytics.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EA722AF017C87BB00016E8B0"
-               BuildableName = "AnalyticsTests.octest"
+               BuildableName = "AnalyticsTests.xctest"
                BlueprintName = "AnalyticsTests"
                ReferencedContainer = "container:Analytics.xcodeproj">
             </BuildableReference>
