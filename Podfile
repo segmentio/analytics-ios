@@ -10,7 +10,7 @@ def import_integrations
   pod 'Localytics', '2.21.0.fork'
   pod 'Mixpanel', '2.3.4'
   pod 'Tapstream', '~> 2.6'
-  pod 'Quantcast-Measure', '1.4.2-fork'
+  pod 'Quantcast-Measure', '1.4.4'
 end
 
 def import_utilities
