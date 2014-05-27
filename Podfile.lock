@@ -3,49 +3,56 @@ PODS:
   - Bugsnag (3.1.0.fork)
   - Countly (1.0.0)
   - CrittercismSDK (4.3.3)
+  - Expecta (0.3.0)
   - FlurrySDK (4.4.0):
     - FlurrySDK/FlurrySDK
   - FlurrySDK/FlurrySDK (4.4.0)
   - GoogleAnalytics-iOS-SDK (3.0.6)
-  - Kiwi/ARC (2.2.4)
-  - Kiwi/NonARC (2.2.4)
-  - Kiwi/XCTest (2.2.4):
-    - Kiwi/ARC
-    - Kiwi/NonARC
   - Localytics (2.21.0.fork)
   - Mixpanel (2.3.4)
+  - OCMock (2.2.4)
   - Quantcast-Measure (1.4.2):
     - Quantcast-Measure/Core
   - Quantcast-Measure/Core (1.4.2)
   - Reachability (3.1.1)
   - Tapstream (2.7)
+  - TRVSKit/TRVSAssertions (0.0.8):
+    - Expecta (~> 0.3.0)
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 2.0.0)
   - Bugsnag (= 3.1.0.fork)
   - Countly (~> 1.0.0)
   - CrittercismSDK (~> 4.3.3)
+  - Expecta (~> 0.3.0)
   - FlurrySDK (~> 4.4.0)
   - GoogleAnalytics-iOS-SDK (= 3.0.6)
-  - Kiwi/XCTest (~> 2.2.3)
   - Localytics (= 2.21.0.fork)
   - Mixpanel (= 2.3.4)
+  - OCMock (~> 2.2.4)
   - Quantcast-Measure (= 1.4.2-fork)
   - Reachability (= 3.1.1)
   - Tapstream (~> 2.6)
+  - TRVSKit/TRVSAssertions (from `~/dev/TRVSKit`)
+
+EXTERNAL SOURCES:
+  TRVSKit:
+    :path: ~/dev/TRVSKit
 
 SPEC CHECKSUMS:
   Amplitude-iOS: 44212943f8cf9275a68c1f0a38e93625c5c86b05
   Bugsnag: d59f4f572b671913b87cc41229e51e91482a239e
   Countly: f26a3483a660b5790b2c76e1f91dea4f276b3c33
   CrittercismSDK: 9f19db3a1f0c16b35d8c29c69406852d184a7650
+  Expecta: ce8a51b9fad15a2cd573b291cb2909aaed865350
   FlurrySDK: abaedafc350afa41b004236b67ae14f7d3748b68
   GoogleAnalytics-iOS-SDK: 4577fb25381a71c5beac455b18ebb288fc4f44e9
-  Kiwi: c73667f2b84cbf36f1a3830267c5a4ae8dcbd8ba
   Localytics: 1cb82c7e344936913d4a701fd85c58b4d6b0ba5d
   Mixpanel: f80261f894ae0a71231da2a7eed67ce9ba1d5a26
+  OCMock: 6db79185520e24f9f299548f2b8b07e41d881bd5
   Quantcast-Measure: 51a1d2cfd5e99013e5897c5641d55eb2de3cd375
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
   Tapstream: 1c945ae1e9d25af25915c96e5d506485b26f52f0
+  TRVSKit: 06ba1d41f8a64007a8d575f812d257fe420952fd
 
 COCOAPODS: 0.33.1

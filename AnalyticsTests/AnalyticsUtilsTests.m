@@ -3,113 +3,56 @@
 
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalyticsIntegration.h"
+#import <Expecta/Expecta.h>
 
-#define ShouldBeOnSpecificQueue(queue) [[@(dispatch_is_on_specific_queue(queue)) should] beYes]
-#define ShouldNotBeOnSpecificQueue(queue) [[@(dispatch_is_on_specific_queue(queue)) should] beNo]
-#define MarkerBlock ^{ blockRan = YES; }
+@interface SEGUtilsTests : XCTestCase
 
-SPEC_BEGIN(AnalyticsUtilsTests)
+@property (nonatomic, strong) dispatch_queue_t queue;
 
-describe(@"Specific dispatch_queue", ^{
-    __block dispatch_queue_t queue = nil;
-    beforeEach(^{
-        queue = dispatch_queue_create_specific("io.segment.test.queue", DISPATCH_QUEUE_SERIAL);
-    });
+@end
+
+@implementation SEGUtilsTests
+
+- (void)setUp {
+    [super setUp];
     
-    it(@"Should have specific value set to self and detect if already running on queue", ^{
-        /*[[@(dispatch_get_specific((__bridge const void *)queue) != NULL) should] beNo];
-        [[@(dispatch_is_on_specific_queue(queue)) should] beNo];
-        dispatch_sync(queue, ^{
-            [[@(dispatch_get_specific((__bridge const void *)queue) != NULL) should] beYes];
-            [[@(dispatch_is_on_specific_queue(queue)) should] beYes];
-        });*/
-    });
-    
-    it(@"Should have properly functioning arrays", ^{
-        NSMutableArray *foo1 = [NSMutableArray array];
-        foo1[0] = @"a";
-        foo1[1] = @"b";
-        foo1[2] = @"c";
-        [[foo1[0] should] equal:@"a"];
-        [[foo1[1] should] equal:@"b"];
-        [[foo1[2] should] equal:@"c"];
-        foo1[0] = @"z";
-        [[foo1[0] should] equal:@"z"];
-        [[foo1[1] should] equal:@"b"];
-        [[foo1[2] should] equal:@"c"];
-        
-        NSMutableArray *foo2 = [NSMutableArray array];
-        [foo2 addObject:@"a"];
-        [foo2 addObject:@"b"];
-        [foo2 addObject:@"c"];
-        [[foo2[0] should] equal:@"a"];
-        [[foo2[1] should] equal:@"b"];
-        [[foo2[2] should] equal:@"c"];
-        [[[NSNumber numberWithUnsignedInteger:[foo2 count]] should] equal:@3];
-        foo2[0] = @"z";
-        [[foo2[0] should] equal:@"z"];
-        [[foo2[1] should] equal:@"b"];
-        [[foo2[2] should] equal:@"c"];
-        [[[NSNumber numberWithUnsignedInteger:[foo2 count]] should] equal:@3];
-    });
-    
-    it(@"Should never result in deadlock", ^{
-        __block BOOL deadlock = YES;
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            ShouldNotBeOnSpecificQueue(queue);
-            dispatch_specific_sync(queue, ^{
-                ShouldBeOnSpecificQueue(queue);
-                dispatch_specific_async(queue, ^{
-                    ShouldBeOnSpecificQueue(queue);
-                    dispatch_specific_sync(queue, ^{
-                        ShouldBeOnSpecificQueue(queue);
-                        deadlock = NO;
-                    });
-                });
-            });
-        });
-        [[expectFutureValue(@(deadlock)) shouldEventually] beNo];
-    });
-    
-    it(@"Should always run block synchronously if already on queue", ^{
-        dispatch_sync(queue, ^{
-            ShouldBeOnSpecificQueue(queue);
-            // Sanity check assumptions with dispatch_async
+    self.queue = dispatch_queue_create_specific("io.segment.test.queue", DISPATCH_QUEUE_SERIAL);
+}
+
+- (void)tearDown {
+    [super tearDown];
+}
+
+- (void)testRunsSyncWhenDispatchingFromQueue {
+        dispatch_sync(self.queue, ^{
             __block BOOL blockRan = NO;
-            dispatch_async(queue, MarkerBlock);
-            [[@(blockRan) should] beNo];
+            
+            dispatch_specific_sync(self.queue, ^{ blockRan = YES; });
+            XCTAssertTrue(blockRan);
             
             blockRan = NO;
-            dispatch_specific_sync(queue, MarkerBlock);
-            [[@(blockRan) should] beYes];
-            
-            blockRan = NO;
-            dispatch_specific_async(queue, MarkerBlock);
-            [[@(blockRan) should] beYes];
+            dispatch_specific_async(self.queue, ^{ blockRan = YES; });
+            XCTAssertTrue(blockRan);
         });
-    });
-    
-    it(@"Should dispatch_async if not on queue and async desired", ^{
-        [[@(dispatch_is_on_specific_queue(queue)) should] beNo];
-        __block BOOL blockRan = NO;
-        dispatch_specific_async(queue, MarkerBlock);
-        [[@(blockRan) should] beNo];
-        [[expectFutureValue(@(blockRan)) shouldEventually] beYes];
-    });
-    
-    it(@"Should dispatch_sync if not on queue and sync desired", ^{
-        [[@(dispatch_is_on_specific_queue(queue)) should] beNo];
-        __block BOOL blockRan = NO;
-        dispatch_specific_sync(queue, MarkerBlock);
-        [[@(blockRan) should] beYes];
-    });
-});
+}
 
-describe(@"Analytics Utils", ^{
-    it(@"should correctly map integration alias keys", ^{
+- (void)testCanRunAsyncWhenDispatchingElsewhereThanQueue {
+    __block BOOL blockRan = NO;
+    dispatch_specific_async(self.queue, ^{ blockRan = YES; });
+    XCTAssertFalse(blockRan);
+    expect(blockRan).will.beTruthy();
+}
+
+- (void)testCanSyncWhenDispatchingElsewhereThanQueue {
+    __block BOOL blockRan = NO;
+    dispatch_specific_sync(self.queue, ^{ blockRan = YES; });
+    XCTAssertTrue(blockRan);
+}
+
+- (void)testMappingKeys {
         NSDictionary *dictionary = @{
-            @"firstName": @"Peter",
-            @"lastName": @"Reinhardt",
+            @"firstName": @"travis",
+            @"lastName": @"jeffery",
             @"mobile": @"555 555 5555"
         };
         NSDictionary *map = @{
@@ -118,45 +61,43 @@ describe(@"Analytics Utils", ^{
             @"phone": @"$phone"
         };
         NSDictionary *mapped = [SEGAnalyticsIntegration map:dictionary withMap:map];
-        
-        [[mapped[@"$first_name"] should] equal:@"Peter"];
-        [[mapped[@"$last_name"] should] equal:@"Reinhardt"];
-        [[mapped[@"mobile"] should] equal:@"555 555 5555"];
-        [mapped[@"$phone"] shouldBeNil];
-        [mapped[@"phone"] shouldBeNil];
-    });
-    
-    it(@"should extract revenue from properties", ^{
-        // Simple case
+
+    XCTAssertEqualObjects(@"travis", mapped[@"$first_name"]);
+    XCTAssertEqualObjects(@"jeffery", mapped[@"$last_name"]);
+    XCTAssertEqualObjects(@"555 555 5555", mapped[@"mobile"]);
+    XCTAssertNil(mapped[@"$phone"]);
+    XCTAssertNil(mapped[@"phone"]);
+}
+
+- (void)testExtractingRevenueNumber {
         NSDictionary *dictionary = @{
             @"firstName":@"Peter",
             @"lastName": @"Reinhardt",
             @"mobile": @"555 555 5555",
             @"revenue": @34.56
         };
-        NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:dictionary];
-        [[revenue should] equal:@34.56];
-        
-        // String case
-        dictionary = @{
+    XCTAssertEqualObjects(@34.56, [SEGAnalyticsIntegration extractRevenue:dictionary]);
+}
+
+- (void)testExtractingRevenueString {
+        NSDictionary *dictionary = @{
             @"firstName":@"Peter",
             @"lastName": @"Reinhardt",
             @"mobile": @"555 555 5555",
             @"revenue": @"34.56"
         };
-        revenue = [SEGAnalyticsIntegration extractRevenue:dictionary];
-        [[revenue should] equal:@34.56];
-        
-        // Non-number case
-        dictionary = @{
+    XCTAssertEqualObjects(@34.56, [SEGAnalyticsIntegration extractRevenue:dictionary]);
+}
+
+- (void)testGracefulFailToExtractRevenue {
+        NSDictionary *dictionary = @{
             @"firstName":@"Peter",
             @"lastName": @"Reinhardt",
             @"mobile": @"555 555 5555",
             @"revenue": @"3asdf4.56"
         };
-        revenue = [SEGAnalyticsIntegration extractRevenue:dictionary];
-        [revenue shouldBeNil];
-    });
-});
+    XCTAssertNil([SEGAnalyticsIntegration extractRevenue:dictionary]);
 
-SPEC_END
+}
+
+@end

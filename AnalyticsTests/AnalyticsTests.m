@@ -1,9 +1,13 @@
 // AnalyticsTests.m
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
+#import <XCTest/XCTest.h>
 #import "SEGSegmentioIntegration.h"
 #import "SEGAnalyticsUtils.h"
-#import "KWNotificationMatcher.h"
+#import <OCMock/OCMock.h>
+#import <Expecta/Expecta.h>
+
+//#import <Kiwi/Kiwi.h>
 
 @interface SEGSegmentioIntegration (Private)
 @property (nonatomic, readonly) NSMutableArray *queue;
@@ -13,125 +17,91 @@
 @property (nonatomic, strong) NSDictionary *cachedSettings;
 @end
 
-SPEC_BEGIN(AnalyticsTests)
 
-describe(@"Analytics", ^{
-    SEGSetShowDebugLogs(YES);
+@interface SEGAnalyticsTests : XCTestCase
 
-    __block SEGSegmentioIntegration *segmentio = nil;
-    __block SEGAnalytics *analytics = nil;
+@property (nonatomic, strong) SEGAnalytics *analytics;
+@property (nonatomic, strong) id mock;
 
-    beforeEach(^{
-        analytics = [[SEGAnalytics alloc] initWithWriteKey:@"k5l6rrye0hsv566zwuk7"];
-        analytics.cachedSettings = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:
-                                                   [[NSBundle bundleForClass:[self class]]
-                                                    URLForResource:@"settings" withExtension:@"json"]] options:NSJSONReadingMutableContainers error:NULL];
-        segmentio = analytics.integrations[@"Segment.io"];
-        segmentio.flushAt = 2;
-    });
+@end
 
-    it(@"has a secret, cached settings and 10 integrations, including Segment.io", ^{
-        [[analytics.cachedSettings shouldNot] beEmpty];
+@implementation SEGAnalyticsTests
 
-        [[analytics.writeKey should] equal:@"k5l6rrye0hsv566zwuk7"];
-        [[segmentio.writeKey should] equal:@"k5l6rrye0hsv566zwuk7"];
-        [[[analytics should] have:11] integrations];
+- (void)setUp {
+  [super setUp];
 
-        [segmentio shouldNotBeNil];
-    });
+  self.analytics = [[SEGAnalytics alloc] initWithWriteKey:@"k5l6rrye0hsv566zwuk7"];
+  self.analytics.cachedSettings = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:
+                                                                           [[NSBundle bundleForClass:[self class]]
+                                                                            URLForResource:@"settings" withExtension:@"json"]] options:NSJSONReadingMutableContainers error:NULL];
+  self.mock = [OCMockObject partialMockForObject:[self.analytics.integrations objectForKey:@"Segment.io"]];
+  [self.analytics.integrations setValue:self.mock forKey:@"Segment.io"];
+}
 
-    it(@"Should identify", ^{
-        NSString *userId = @"smile@wrinkledhippo.com";
-        NSDictionary *traits = @{@"Filter": @"Tilt-shift", @"HasFriends": @YES, @"FriendCount" : @233 };
-        NSDictionary *options = @{ @"integrations": @{ @"Salesforce": @YES, @"HubSpot": @NO } };
-        [analytics identify:userId traits:traits options:options];
+- (void)testHasIntegrations {
+  XCTAssertEqual(11, self.analytics.integrations.count);
+}
 
-        [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
+- (void)testForwardsIdentify {
+  [[self.mock expect] identify:[self identity] traits:[self traits] options:[self options]];
 
-        NSDictionary *queuedAction = (segmentio.queue)[0];
-        [[queuedAction[@"type"] should] equal:@"identify"];
-        [queuedAction[@"timestamp"] shouldNotBeNil];
-        [queuedAction[@"anonymousId"] shouldNotBeNil];
-        [[queuedAction[@"userId"] should] equal:userId];
-        [[queuedAction[@"traits"] should] equal:traits];
+  [self.analytics identify:[self identity] traits:[self traits] options:[self options]];
 
-        // test for integrations options
-        [queuedAction[@"integrations"] shouldNotBeNil];
-        [queuedAction[@"integrations"][@"Olark"] shouldBeNil];
-        [[queuedAction[@"integrations"][@"Salesforce"] should] equal:@YES];
-        [[queuedAction[@"integrations"][@"HubSpot"] should] equal:@NO];
+  [self.mock verifyWithDelay:1];
+}
 
-        [segmentio flush];
+- (void)testDoesntForwardIdentityWithoutUserIdOrTraits {
+  [[self.mock reject] identify:nil traits:nil options:[self options]];
+  [[self.mock reject] identify:nil traits:@{} options:[self options]];
+  [[self.mock reject] identify:@"" traits:@{} options:[self options]];
+  [[self.mock reject] identify:@"" traits:nil options:[self options]];
 
-        [[SEGSegmentioDidSendRequestNotification shouldEventually] bePosted];
-    });
+  [self.analytics identify:nil traits:nil options:[self options]];
+  [self.analytics identify:nil traits:@{} options:[self options]];
+  [self.analytics identify:@"" traits:@{} options:[self options]];
+  [self.analytics identify:@"" traits:nil options:[self options]];
 
-    it(@"Should handle nil userId with traits", ^{
-        [analytics identify:nil traits:@{} options:nil];
-        [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
-        NSDictionary *queuedIdentify = (segmentio.queue)[0];
-        [[queuedIdentify[@"type"] should] equal:@"identify"];
-        [queuedIdentify[@"timestamp"] shouldNotBeNil];
-        [queuedIdentify[@"anonymousId"] shouldNotBeNil];
-        [segmentio flush];
+  [self.mock verifyWithDelay:1];
+}
 
-        [[SEGSegmentioDidSendRequestNotification shouldEventually] bePosted];
-    });
+- (void)testForwardsTrack {
+  [[self.mock expect] track:[self event] properties:[self properties] options:[self options]];
 
-    it(@"should do nothing when identifying without traits", ^{
-        [analytics identify:nil];
-        [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@0];
-        [segmentio flush];
-    });
+  [self.analytics track:[self event] properties:[self properties] options:[self options]];
 
-    it(@"Should track", ^{
-        [[segmentio.queue should] beEmpty];
-        NSString *eventName = @"Purchased an iMac";
-        NSDictionary *properties = @{
-            @"Filter": @"Tilt-shift",
-            @"category": @"Mobile",
-            @"revenue": @"70.0",
-            @"value": @"50.0",
-            @"label": @"gooooga"
-        };
-        NSDictionary *options = @{ @"integrations": @{ @"Salesforce": @YES, @"HubSpot": @NO } };
-        [analytics track:eventName properties:properties options:options];
+  [self.mock verifyWithDelay:1];
+}
 
-        // The analytics thread does things slightly async, just need to
-        // create a tiny amount of space for it to get it into the queue.
-        [[expectFutureValue(@(segmentio.queue.count)) shouldEventually] equal:@1];
+- (void)testDoesntForwardTrackWithoutEvent {
+  [[self.mock reject] track:@"" properties:[self properties] options:[self options]];
+  [[self.mock reject] track:nil properties:[self properties] options:[self options]];
 
-        NSDictionary *queuedAction = segmentio.queue[0];
-        [[queuedAction[@"type"] should] equal:@"track"];
-        [[queuedAction[@"event"] should] equal:eventName];
-        [queuedAction[@"timestamp"] shouldNotBeNil];
-        [[queuedAction[@"properties"] should] equal:properties];
+  expect(^{ [self.analytics track:@"" properties:[self properties] options:[self options]]; }).to.raiseAny();
+  expect(^{ [self.analytics track:nil properties:[self properties] options:[self options]]; }).to.raiseAny();
 
-        // test for context object and default properties there
-        [queuedAction[@"integrations"] shouldNotBeNil];
-        [queuedAction[@"integrations"][@"Olark"] shouldBeNil];
-        [[queuedAction[@"integrations"][@"Salesforce"] should] equal:@YES];
-        [[queuedAction[@"integrations"][@"HubSpot"] should] equal:@NO];
+  [self.mock verifyWithDelay:1];
+}
 
-        // wait for 200 from servers
-        [[SEGSegmentioDidSendRequestNotification shouldEventually] bePosted];
-        [segmentio flush];
-    });
+#pragma mark - Private
 
-    it(@"Should track according to integration options", ^{
-        [[segmentio.queue should] beEmpty];
-        NSString *eventName = @"Purchased an iMac but not Mixpanel";
-        NSDictionary *properties = @{
-                                     @"Filter": @"Tilt-shift",
-                                     @"category": @"Mobile",
-                                     @"revenue": @"70.0",
-                                     @"value": @"50.0",
-                                     @"label": @"gooooga"
-                                     };
-        NSDictionary *options = @{@"Mixpanel": @NO};
-        [analytics track:eventName properties:properties options:options];
-    });
+- (NSString *)event {
+  return @"some event";
+}
 
-});
+- (NSDictionary *)properties {
+  return @{ @"category": @"Mobile" };
+}
 
-SPEC_END
+- (NSString *)identity {
+  return @"some user";
+}
+
+- (NSDictionary *)traits {
+  return @{ @"FriendCount": @223 };
+}
+
+- (NSDictionary *)options {
+  return @{ @"integrations": @{ @"Salesforce": @YES, @"HubSpot": @NO } };
+}
+
+@end

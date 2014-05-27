@@ -170,6 +170,8 @@ static NSMutableDictionary *BuildStaticContext() {
 
 - (NSMutableDictionary *)liveContext {
   NSMutableDictionary *context = [[NSMutableDictionary alloc] init];
+    
+  [context addEntriesFromDictionary:self.context];
 
   context[@"network"] = ({
     NSMutableDictionary *network = [[NSMutableDictionary alloc] init];

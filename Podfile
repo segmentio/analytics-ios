@@ -2,7 +2,7 @@ inhibit_all_warnings!
 
 def import_integrations
   pod 'Amplitude-iOS', '~> 2.0.0'
-  pod 'Bugsnag', '3.1.0.fork'
+  pod 'Bugsnag', '~> 3.1.2'
   pod 'Countly', '~> 1.0.0'
   pod 'CrittercismSDK', '~> 4.3.3'
   pod 'FlurrySDK', '~> 4.4.0'
@@ -27,6 +27,7 @@ target 'Analytics', :exclusive => true do
 end
 
 target 'AnalyticsTests', :exclusive => true do
-  pod 'Kiwi/XCTest', '~> 2.2.3'
+  pod 'TRVSKit/TRVSAssertions', :path => '~/dev/TRVSKit'
+  pod 'OCMock', '~> 2.2.4'
+  pod 'Expecta', '~> 0.3.0'
 end
-
