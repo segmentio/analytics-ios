@@ -7,13 +7,14 @@ Special thanks to [Tony Xiao](https://github.com/tonyxiao), [Lee Hasiuk](https:/
 
 ## Documentation
 
-Documentation is available at [https://segment.io/libraries/ios](https://segment.io/libraries/ios).
+Quickstart tutorial is available at [https://segment.io/docs/tutorials/quickstart-ios/](https://https://segment.io/docs/tutorials/quickstart-ios/).
+Reference documentation is available at [https://segment.io/libraries/ios](https://segment.io/libraries/ios).
 
 ## Development
 
-libAnalytics itself strives to have as few dependencies as possible to create the most compatible and 
+libAnalytics itself strives to have as few dependencies as possible to create the most compatible and
 lightweight Analytics SDK for ObjC developers. However, there is no such restriction during testing time,
-and in order to contribute to the SDK, you will need cocoapods, as well as an additional pod specs repo. 
+and in order to contribute to the SDK, you will need cocoapods, as well as an additional pod specs repo.
 This can be accomplished as follow
 
     [sudo] gem install cocoapods
@@ -48,4 +49,3 @@ THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/segmentio/analytics-ios/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
