@@ -2,7 +2,7 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "SEGTapstreamIntegration.h"
-#import "TSTapstream.h"
+#import <TSTapstream.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 

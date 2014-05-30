@@ -2,7 +2,7 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "SEGCrittercismIntegration.h"
-#import "Crittercism.h"
+#import <Crittercism.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 
