@@ -2,7 +2,7 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "SEGMixpanelIntegration.h"
-#import "Mixpanel.h"
+#import <Mixpanel.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 

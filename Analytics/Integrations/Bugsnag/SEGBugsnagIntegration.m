@@ -2,7 +2,7 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "SEGBugsnagIntegration.h"
-#import "Bugsnag.h"
+#import <Bugsnag.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 
