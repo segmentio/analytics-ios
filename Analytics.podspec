@@ -14,9 +14,9 @@ Pod::Spec.new do |s|
   bugsnag = { :name => 'Bugsnag', :dependencies => [{ :pod => 'Bugsnag', :version => '~> 3.1.2' }]}
   countly = { :name => 'Countly', :dependencies => [{ :pod => 'Countly', :version => '~> 2.0.0' }]}
   crittercism = { :name => 'Crittercism', :dependencies => [{ :pod => 'CrittercismSDK', :version => '~> 4.3.3' }]}
-  flurry = { :name => 'Flurry', :dependencies => [{ :pod => 'FlurrySDK', :version => '~> 5.0.0' }]}
+  flurry = { :name => 'Flurry', :dependencies => [{ :pod => 'FlurrySDK', :version => '~> 4.4.0' }]}
   google = { :name => 'GoogleAnalytics', :dependencies => [{ :pod => 'GoogleAnalytics-iOS-SDK', :version => '3.0.7' }]}
-  localytics = { :name => 'Localytics', :dependencies => [{ :pod => 'Localytics', :version => '2.21.0.fork' }]}
+  localytics = { :name => 'Localytics', :dependencies => [{ :pod => 'Localytics-iOS-Client', :version => '~> 2.23.0' }]}
   mixpanel = { :name => 'Mixpanel', :dependencies => [{ :pod => 'Mixpanel', :version => '~> 2.3.6' }]}
   tapstream = { :name => 'Tapstream', :dependencies => [{ :pod => 'Tapstream', :version => '~> 2.7' }]}
   quantcast = { :name => 'Quantcast', :dependencies => [{ :pod => 'Quantcast-Measure', :version => '~> 1.4.4' }]}
