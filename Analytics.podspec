@@ -10,16 +10,16 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '6.0'
   s.requires_arc    = true
 
-  amplitude = { :name => 'Amplitude', :dependencies => [{ :pod => 'Amplitude-iOS' }]}
-  bugsnag = { :name => 'Bugsnag', :dependencies => [{ :pod => 'Bugsnag' }]}
-  countly = { :name => 'Countly', :dependencies => [{ :pod => 'Countly' }]}
-  crittercism = { :name => 'Crittercism', :dependencies => [{ :pod => 'CrittercismSDK' }]}
+  amplitude = { :name => 'Amplitude', :dependencies => [{ :pod => 'Amplitude-iOS', :version => '~> 2.0.0' }]}
+  bugsnag = { :name => 'Bugsnag', :dependencies => [{ :pod => 'Bugsnag', :version => '~> 3.1.2' }]}
+  countly = { :name => 'Countly', :dependencies => [{ :pod => 'Countly', :version => '~> 2.0.0' }]}
+  crittercism = { :name => 'Crittercism', :dependencies => [{ :pod => 'CrittercismSDK', :version => '~> 4.3.3' }]}
   flurry = { :name => 'Flurry', :dependencies => [{ :pod => 'FlurrySDK', :version => '~> 5.0.0' }]}
-  google = { :name => 'GoogleAnalytics', :dependencies => [{ :pod => 'GoogleAnalytics-iOS-SDK' }]}
+  google = { :name => 'GoogleAnalytics', :dependencies => [{ :pod => 'GoogleAnalytics-iOS-SDK', :version => '3.0.7' }]}
   localytics = { :name => 'Localytics', :dependencies => [{ :pod => 'Localytics', :version => '2.21.0.fork' }]}
-  mixpanel = { :name => 'Mixpanel', :dependencies => [{ :pod => 'Mixpanel' }]}
-  tapstream = { :name => 'Tapstream', :dependencies => [{ :pod => 'Tapstream' }]}
-  quantcast = { :name => 'Quantcast', :dependencies => [{ :pod => 'Quantcast-Measure' }]}
+  mixpanel = { :name => 'Mixpanel', :dependencies => [{ :pod => 'Mixpanel', :version => '~> 2.3.6' }]}
+  tapstream = { :name => 'Tapstream', :dependencies => [{ :pod => 'Tapstream', :version => '~> 2.7' }]}
+  quantcast = { :name => 'Quantcast', :dependencies => [{ :pod => 'Quantcast-Measure', :version => '~> 1.4.4' }]}
   segmentio = { :name => 'Segmentio', :dependencies => [{ :pod => 'Reachability', :version => '3.1.1' }]}
 
   analytics = [segmentio, amplitude, bugsnag, countly, crittercism, flurry, google, localytics, mixpanel, tapstream, quantcast]
