@@ -67,7 +67,7 @@
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     // Optionally send the userId if they have that enabled
-    BOOL sendUserId = [self.settings objectForKey:@"sendUserId"];
+    BOOL sendUserId = [[self.settings objectForKey:@"sendUserId"] boolValue];
     if (sendUserId) {
         [[[GAI sharedInstance] defaultTracker] set:@"&uid" value:userId];
     }
