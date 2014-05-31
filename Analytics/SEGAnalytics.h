@@ -9,6 +9,8 @@
 @property (nonatomic, copy, readonly) NSString *writeKey;
 @property (nonatomic, copy, readonly) NSDictionary *integrations;
 
+@property (nonatomic, assign) BOOL shouldUseLocationServices;
+
 
 // Step 1: Initialization
 // ----------------------
