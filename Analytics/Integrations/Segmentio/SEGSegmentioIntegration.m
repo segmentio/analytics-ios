@@ -151,7 +151,6 @@ static NSMutableDictionary *BuildStaticContext() {
     _anonymousId = GetAnonymousId(NO);
     _userId = [NSString stringWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
     _bluetooth = [[SEGBluetooth alloc] init];
-    _location = [SEGLocation new];
     _reachability = [Reachability reachabilityWithHostname:@"http://google.com"];
     _context = BuildStaticContext();
     _serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
@@ -164,6 +163,7 @@ static NSMutableDictionary *BuildStaticContext() {
     [self validate];
     self.initialized = YES;
 
+    [self setupBindings];
   }
   return self;
 }
@@ -485,6 +485,20 @@ static NSMutableDictionary *BuildStaticContext() {
 
 - (NSURL *)traitsURL {
   return SEGAnalyticsURLForFilename(@"segmentio.traits.plist");
+}
+
+- (void)setupBindings {
+  [self.analytics addObserver:self forKeyPath:@"shouldUseLocationServices" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+#pragma mark - Key value observing
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+  if ([keyPath isEqualToString:@"shouldUseLocationServices"]) {
+    self.location = [object shouldUseLocationServices] ? [SEGLocation new] : nil;
+  } else {
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+  }
 }
 
 @end
