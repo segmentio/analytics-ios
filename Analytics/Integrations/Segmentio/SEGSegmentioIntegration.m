@@ -124,53 +124,35 @@ static NSMutableDictionary *BuildStaticContext() {
 @property (nonatomic, strong) SEGBluetooth *bluetooth;
 @property (nonatomic, strong) Reachability *reachability;
 @property (nonatomic, strong) SEGLocation *location;
+@property (nonatomic, strong) dispatch_queue_t serialQueue;
+@property (nonatomic, strong) NSMutableDictionary *traits;
 
 @end
 
+@implementation SEGSegmentioIntegration
 
-@implementation SEGSegmentioIntegration {
-  dispatch_queue_t _serialQueue;
-  NSMutableDictionary *_traits;
-}
-
-- (id)initWithAnalytics:(SEGAnalytics *)analytics {
-  if (self = [self initWithWriteKey:analytics.writeKey flushAt:20]) {
-    self.analytics = analytics;
-  }
-  return self;
-}
-
-- (id)initWithWriteKey:(NSString *)writeKey flushAt:(NSUInteger)flushAt {
-  NSCParameterAssert(writeKey.length > 0);
-  NSCParameterAssert(flushAt > 0);
-
-  if (self = [self init]) {
-    _flushAt = flushAt;
-    _writeKey = [writeKey copy];
-    _apiURL = [NSURL URLWithString:@"http://api.segment.io/v1/import"];
-    _anonymousId = GetAnonymousId(NO);
-    _userId = [NSString stringWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
-    _bluetooth = [[SEGBluetooth alloc] init];
-    _location = [SEGLocation new];
-    _reachability = [Reachability reachabilityWithHostname:@"http://google.com"];
-    _context = BuildStaticContext();
-    _serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
-    _flushTaskID = UIBackgroundTaskInvalid;
-
+- (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
+  if (self = [super init]) {
+    self.configuration = configuration;
+    self.apiURL = [NSURL URLWithString:@"http://api.segment.io/v1/import"];
+    self.anonymousId = GetAnonymousId(NO);
+    self.userId = [[NSString alloc] initWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
+    self.bluetooth = [[SEGBluetooth alloc] init];
+    self.reachability = [Reachability reachabilityWithHostname:@"http://google.com"];
+    self.context = BuildStaticContext();
+    self.serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
+    self.flushTaskID = UIBackgroundTaskInvalid;
     self.name = @"Segment.io";
-    self.valid = NO;
-    self.initialized = NO;
-    self.settings = [NSDictionary dictionaryWithObjectsAndKeys:writeKey, @"writeKey", nil];
+    self.settings = @{ @"writeKey": configuration.writeKey };
     [self validate];
     self.initialized = YES;
-
   }
   return self;
 }
 
 - (NSMutableDictionary *)liveContext {
   NSMutableDictionary *context = [[NSMutableDictionary alloc] init];
-    
+
   [context addEntriesFromDictionary:self.context];
 
   context[@"network"] = ({
@@ -210,6 +192,7 @@ static NSMutableDictionary *BuildStaticContext() {
 
 - (void)beginBackgroundTask {
   [self endBackgroundTask];
+
   self.flushTaskID = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
     [self endBackgroundTask];
   }];
@@ -225,12 +208,11 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (void)validate {
-  BOOL isOff = [[self.settings objectForKey:@"off"] boolValue];
-  self.valid = !isOff;
+  self.valid = ![[self.settings objectForKey:@"off"] boolValue];
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"<SegmentioIntegration writeKey:%@>", self.writeKey];
+  return [NSString stringWithFormat:@"<%p:%@, writeKey=%@>", self, self.class, self.configuration.writeKey];
 }
 
 - (void)saveUserId:(NSString *)userId {
@@ -298,19 +280,18 @@ static NSMutableDictionary *BuildStaticContext() {
   if (!buffer) {
     return;
   }
-  NSMutableString *hexadecimal = [NSMutableString stringWithCapacity:(deviceToken.length * 2)];
+  NSMutableString *token = [NSMutableString stringWithCapacity:(deviceToken.length * 2)];
   for (NSUInteger i = 0; i < deviceToken.length; i++) {
-    [hexadecimal appendString:[NSString stringWithFormat:@"%02lx", (unsigned long)buffer[i]]];
+    [token appendString:[NSString stringWithFormat:@"%02lx", (unsigned long)buffer[i]]];
   }
-  NSString *token = [NSString stringWithString:hexadecimal];
-  [self.context[@"device"] setObject:token forKey:@"token"];
+  [self.context[@"device"] setObject:[token copy] forKey:@"token"];
 }
 
 #pragma mark - Queueing
 
 - (NSDictionary *)integrationsDictionary:(NSDictionary *)integrations {
   NSMutableDictionary *dict = [integrations ?: @{} mutableCopy];
-  for (SEGAnalyticsIntegration *integration in self.analytics.integrations.allValues) {
+  for (SEGAnalyticsIntegration *integration in self.configuration.integrations.allValues) {
     if (![integration isKindOfClass:[SEGSegmentioIntegration class]]) {
       dict[integration.name] = @NO;
     }
@@ -361,7 +342,7 @@ static NSMutableDictionary *BuildStaticContext() {
     SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)self.batch.count, (unsigned long)self.queue.count);
 
     NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
-    [payloadDictionary setObject:self.writeKey forKey:@"writeKey"];
+    [payloadDictionary setObject:self.configuration.writeKey forKey:@"writeKey"];
     [payloadDictionary setObject:[[NSDate date] description] forKey:@"sentAt"];
     [payloadDictionary setObject:self.context forKey:@"context"];
     [payloadDictionary setObject:self.batch forKey:@"batch"];
@@ -382,7 +363,7 @@ static NSMutableDictionary *BuildStaticContext() {
 - (void)flushQueueByLength {
   [self dispatchBackground:^{
     SEGLog(@"%@ Length is %lu.", self, (unsigned long)self.queue.count);
-    if (self.request == nil && [self.queue count] >= self.flushAt) {
+    if (self.request == nil && [self.queue count] >= self.configuration.flushAt) {
       [self flush];
     }
   }];
@@ -485,6 +466,25 @@ static NSMutableDictionary *BuildStaticContext() {
 
 - (NSURL *)traitsURL {
   return SEGAnalyticsURLForFilename(@"segmentio.traits.plist");
+}
+
+- (void)setConfiguration:(SEGAnalyticsConfiguration *)configuration {
+  if (self.configuration) {
+    [self.configuration removeObserver:self forKeyPath:@"shouldUseLocationServices"];
+  }
+  
+  [super setConfiguration:configuration];
+  [self.configuration addObserver:self forKeyPath:@"shouldUseLocationServices" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+}
+
+#pragma mark - Key value observing
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+  if ([keyPath isEqualToString:@"shouldUseLocationServices"]) {
+    self.location = [object shouldUseLocationServices] ? [SEGLocation new] : nil;
+  } else {
+    [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+  }
 }
 
 @end

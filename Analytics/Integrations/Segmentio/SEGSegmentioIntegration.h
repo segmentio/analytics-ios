@@ -10,14 +10,10 @@ extern NSString *const SEGSegmentioRequestDidFailNotification;
 
 @interface SEGSegmentioIntegration : SEGAnalyticsIntegration
 
-@property(nonatomic, copy) NSString *writeKey;
-@property(nonatomic, copy) NSString *anonymousId;
-@property(nonatomic, copy) NSString *userId;
-@property(nonatomic, assign) NSUInteger flushAt;
+@property (nonatomic, copy) NSString *anonymousId;
+@property (nonatomic, copy) NSString *userId;
 @property (nonatomic, strong) NSURL *apiURL;
 
 - (void)flush;
-
-- (id)initWithWriteKey:(NSString *)writeKey flushAt:(NSUInteger)flushAt;
 
 @end

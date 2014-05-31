@@ -17,11 +17,11 @@
 
 @implementation SegmentioIntegrationDevelopment
 
-- (id)initWithWriteKey:(NSString *)writeKey flushAt:(NSUInteger)flushAt {
-    if (self = [super initWithWriteKey:writeKey flushAt:flushAt]) {
-        self.apiURL = [NSURL URLWithString:@"http://localhost:7001/v1/import"];
-    }
-    return self;
+- (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
+  if (self = [super initWithConfiguration:configuration]) {
+    self.apiURL = [[NSURL alloc] initWithString:@"http://localhost:7001/v1/import"];
+  }
+  return self;
 }
 
 @end
@@ -35,135 +35,139 @@
 @implementation SEGSegmentioIntegrationTests
 
 - (void)setUp {
-    [super setUp];
+  [super setUp];
 
-    [Expecta setAsynchronousTestTimeout:5.0];
+  [Expecta setAsynchronousTestTimeout:5.0];
 
-    if ([NSProcessInfo.processInfo.environment objectForKey:@"CI"]) {
-        self.integration = [[SEGSegmentioIntegration alloc] initWithWriteKey:@"testWriteKey" flushAt:1];
-    } else {
-        self.integration = [[SegmentioIntegrationDevelopment alloc] initWithWriteKey:@"suy5xxbtst" flushAt:1];
-    }
+  if ([NSProcessInfo.processInfo.environment objectForKey:@"CI"]) {
+    SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"testWriteKey"];
+    configuration.flushAt = 1;
+    self.integration = [[SEGSegmentioIntegration alloc] initWithConfiguration:configuration];
+  } else {
+    SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"suy5xxbtst"];
+    configuration.flushAt = 1;
+    self.integration = [[SegmentioIntegrationDevelopment alloc] initWithConfiguration:configuration];
+  }
 }
 
 - (void)tearDown {
-    [super tearDown];
+  [super tearDown];
 
-    [self.integration reset];
+  [self.integration reset];
 }
 
 - (void)testAnonymousIdIsPresent {
-    XCTAssertNotNil(self.integration.anonymousId);
+  XCTAssertNotNil(self.integration.anonymousId);
 }
 
 - (void)testTrackAddsToQueue {
-    self.integration.flushAt = 2;
+  self.integration.configuration.flushAt = 2;
 
-    [self.integration track:self.event properties:self.properties options:self.options];
+  [self.integration track:self.event properties:self.properties options:self.options];
 
-    expect(self.integration.queue.count).will.equal(1);
+  expect(self.integration.queue.count).will.equal(1);
 }
 
 - (void)testTrackRequestData {
-    self.integration.flushAt = 2;
-    [self.integration track:self.event properties:self.properties options:self.options];
+  self.integration.configuration.flushAt = 2;
+  [self.integration track:self.event properties:self.properties options:self.options];
 
-    expect(self.integration.queue.count).will.equal(1);
-    NSDictionary *msg = self.integration.queue.firstObject;
-    XCTAssertEqualObjects(@"track", msg[@"type"]);
-    XCTAssertEqualObjects(self.event, msg[@"event"]);
-    XCTAssertNotNil(msg[@"timestamp"]);
-    XCTAssertNotNil(msg[@"properties"]);
-    XCTAssertEqualObjects(self.properties, msg[@"properties"]);
-    XCTAssertEqualObjects(self.options[@"integrations"], msg[@"integrations"]);
+  expect(self.integration.queue.count).will.equal(1);
+  NSDictionary *msg = self.integration.queue.firstObject;
+  XCTAssertEqualObjects(@"track", msg[@"type"]);
+  XCTAssertEqualObjects(self.event, msg[@"event"]);
+  XCTAssertNotNil(msg[@"timestamp"]);
+  XCTAssertNotNil(msg[@"properties"]);
+  XCTAssertEqualObjects(self.properties, msg[@"properties"]);
+  XCTAssertEqualObjects(self.options[@"integrations"], msg[@"integrations"]);
 
-    NSDictionary *context = msg[@"context"];
-    XCTAssertNotNil(context[@"library"][@"name"]);
-    XCTAssertNotNil(context[@"library"][@"version"]);
-    XCTAssertNotNil(context[@"device"][@"manufacturer"]);
-    XCTAssertNotNil(context[@"device"][@"model"]);
-    XCTAssertNotNil(context[@"os"][@"name"]);
-    XCTAssertNotNil(context[@"os"][@"version"]);
-    XCTAssertNotNil(context[@"screen"][@"width"]);
+  NSDictionary *context = msg[@"context"];
+  XCTAssertNotNil(context[@"library"][@"name"]);
+  XCTAssertNotNil(context[@"library"][@"version"]);
+  XCTAssertNotNil(context[@"device"][@"manufacturer"]);
+  XCTAssertNotNil(context[@"device"][@"model"]);
+  XCTAssertNotNil(context[@"os"][@"name"]);
+  XCTAssertNotNil(context[@"os"][@"version"]);
+  XCTAssertNotNil(context[@"screen"][@"width"]);
 }
 
 - (void)testTrackPostsRequestNotifications {
-    trvs_assertNotificationsObserved(self, ^{
-        [self.integration track:self.event properties:self.properties options:self.options];
-    }, SEGSegmentioDidSendRequestNotification, SEGSegmentioRequestDidSucceedNotification, nil);
+  trvs_assertNotificationsObserved(self, ^{
+    [self.integration track:self.event properties:self.properties options:self.options];
+  }, SEGSegmentioDidSendRequestNotification, SEGSegmentioRequestDidSucceedNotification, nil);
 }
 
 - (void)testIdentifyAddsToQueue {
-    self.integration.flushAt = 2;
+  self.integration.configuration.flushAt = 2;
 
-    [self.integration identify:self.identity traits:self.traits options:self.options];
+  [self.integration identify:self.identity traits:self.traits options:self.options];
 
-    expect(self.integration.queue.count).will.equal(1);
+  expect(self.integration.queue.count).will.equal(1);
 }
 
 - (void)testIdentifyRequestData {
-    self.integration.flushAt = 2;
-    [self.integration identify:self.identity traits:self.traits options:self.options];
+  self.integration.configuration.flushAt = 2;
+  [self.integration identify:self.identity traits:self.traits options:self.options];
 
-    expect(self.integration.queue.count).will.equal(1);
-    NSDictionary *msg = self.integration.queue.firstObject;
-    XCTAssertEqualObjects(@"identify", msg[@"type"]);
-    XCTAssertEqualObjects(self.identity, msg[@"userId"]);
-    XCTAssertNotNil(msg[@"timestamp"]);
-    XCTAssertNotNil(msg[@"anonymousId"]);
-    XCTAssertEqualObjects(self.traits, msg[@"traits"]);
-    XCTAssertEqualObjects(self.options[@"integrations"], msg[@"integrations"]);
+  expect(self.integration.queue.count).will.equal(1);
+  NSDictionary *msg = self.integration.queue.firstObject;
+  XCTAssertEqualObjects(@"identify", msg[@"type"]);
+  XCTAssertEqualObjects(self.identity, msg[@"userId"]);
+  XCTAssertNotNil(msg[@"timestamp"]);
+  XCTAssertNotNil(msg[@"anonymousId"]);
+  XCTAssertEqualObjects(self.traits, msg[@"traits"]);
+  XCTAssertEqualObjects(self.options[@"integrations"], msg[@"integrations"]);
 
-    NSDictionary *context = msg[@"context"];
-    XCTAssertNotNil(context[@"library"][@"name"]);
-    XCTAssertNotNil(context[@"library"][@"version"]);
-    XCTAssertNotNil(context[@"device"][@"manufacturer"]);
-    XCTAssertNotNil(context[@"device"][@"model"]);
-    XCTAssertNotNil(context[@"os"][@"name"]);
-    XCTAssertNotNil(context[@"os"][@"version"]);
-    XCTAssertNotNil(context[@"screen"][@"width"]);
+  NSDictionary *context = msg[@"context"];
+  XCTAssertNotNil(context[@"library"][@"name"]);
+  XCTAssertNotNil(context[@"library"][@"version"]);
+  XCTAssertNotNil(context[@"device"][@"manufacturer"]);
+  XCTAssertNotNil(context[@"device"][@"model"]);
+  XCTAssertNotNil(context[@"os"][@"name"]);
+  XCTAssertNotNil(context[@"os"][@"version"]);
+  XCTAssertNotNil(context[@"screen"][@"width"]);
 }
 
 - (void)testIdentifyPostsRequestNotifications {
-    trvs_assertNotificationsObserved(self, ^{
-        [self.integration identify:self.identity traits:self.traits options:self.options];
-    }, SEGSegmentioDidSendRequestNotification, SEGSegmentioRequestDidSucceedNotification, nil);
+  trvs_assertNotificationsObserved(self, ^{
+    [self.integration identify:self.identity traits:self.traits options:self.options];
+  }, SEGSegmentioDidSendRequestNotification, SEGSegmentioRequestDidSucceedNotification, nil);
 }
 
 - (void)testReset {
-    self.integration.flushAt = 2;
-    trvs_assertNotificationsNotObserved(self, ^{
-        [self.integration track:self.event properties:self.properties options:self.options];
+  self.integration.configuration.flushAt = 2;
+  trvs_assertNotificationsNotObserved(self, ^{
+    [self.integration track:self.event properties:self.properties options:self.options];
 
-        NSString *anonymousId = self.integration.anonymousId;
+    NSString *anonymousId = self.integration.anonymousId;
 
-        [self.integration reset];
+    [self.integration reset];
 
-        expect(self.integration.queue.count).will.equal(0);
-        XCTAssertNotEqualObjects(anonymousId, self.integration.anonymousId);
-    }, SEGSegmentioRequestDidSucceedNotification, SEGSegmentioDidSendRequestNotification, nil);
+    expect(self.integration.queue.count).will.equal(0);
+    XCTAssertNotEqualObjects(anonymousId, self.integration.anonymousId);
+  }, SEGSegmentioRequestDidSucceedNotification, SEGSegmentioDidSendRequestNotification, nil);
 }
 
 #pragma mark - Private
 
 - (NSString *)event {
-    return @"some event";
+  return @"some event";
 }
 
 - (NSDictionary *)properties {
-    return @{ @"category": @"Mobile" };
+  return @{ @"category": @"Mobile" };
 }
 
 - (NSString *)identity {
-    return @"some user";
+  return @"some user";
 }
 
 - (NSDictionary *)traits {
-    return @{ @"FriendCount": @223 };
+  return @{ @"FriendCount": @223 };
 }
 
 - (NSDictionary *)options {
-    return @{ @"integrations": @{ @"Salesforce": @YES, @"HubSpot": @NO } };
+  return @{ @"integrations": @{ @"Salesforce": @YES, @"HubSpot": @NO } };
 }
 
 @end
