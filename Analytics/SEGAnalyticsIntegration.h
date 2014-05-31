@@ -4,10 +4,9 @@
 #import <Foundation/Foundation.h>
 
 @class SEGAnalytics;
+@class SEGAnalyticsConfiguration;
 
 @protocol SEGAnalyticsIntegration <NSObject>
-
-- (id)initWithAnalytics:(SEGAnalytics *)analytics;
 
 // State
 // -----
@@ -42,6 +41,10 @@
 @end
 
 @interface SEGAnalyticsIntegration : NSObject <SEGAnalyticsIntegration>
+
+- (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
+
+@property (nonatomic, strong) SEGAnalyticsConfiguration *configuration;
 
 @property(nonatomic, copy) NSString *name;
 @property(nonatomic, assign) BOOL valid;
