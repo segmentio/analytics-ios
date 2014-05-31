@@ -26,6 +26,12 @@
 
 @synthesize cachedSettings = _cachedSettings;
 
++ (instancetype)analyticsWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
+  NSCParameterAssert(configuration != nil);
+  
+  return [[self alloc] initWithWriteKey:configuration.writeKey];
+}
+
 - (id)initWithWriteKey:(NSString *)writeKey {
     NSCParameterAssert(writeKey.length > 0);
 

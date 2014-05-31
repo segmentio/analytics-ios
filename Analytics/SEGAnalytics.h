@@ -4,7 +4,19 @@
 
 #import <Foundation/Foundation.h>
 
+@interface SEGAnalyticsConfiguration : NSObject
+
+@property (nonatomic, copy) NSString *writeKey;
+@property (nonatomic, assign) NSUInteger flushAt;
+@property (nonatomic, assign) BOOL shouldUseLocationServices;
+
+@end
+
 @interface SEGAnalytics : NSObject
+
++ (instancetype)analyticsWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
+
+@property (nonatomic, strong, readonly) SEGAnalyticsConfiguration *configuration;
 
 @property (nonatomic, copy, readonly) NSString *writeKey;
 @property (nonatomic, copy, readonly) NSDictionary *integrations;
