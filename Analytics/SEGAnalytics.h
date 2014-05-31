@@ -8,9 +8,10 @@
 
 + (instancetype)configurationWithWriteKey:(NSString *)writeKey;
 
+@property (nonatomic, copy, readonly) NSString *writeKey;
+
 @property (nonatomic, assign) BOOL shouldUseLocationServices;
 @property (nonatomic, assign) NSUInteger flushAt;
-@property (nonatomic, copy, readonly) NSString *writeKey;
 @property (nonatomic, strong) NSMutableDictionary *integrations;
 
 @end
@@ -50,9 +51,12 @@
 
 */
 
++ (void)setupWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
+- (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
+
 + (void)initializeWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use +setupWithConfiguration: instead")));
 - (id)initWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use -initWithConfiguration: instead")));
-- (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
+
 
 /*!
  @method

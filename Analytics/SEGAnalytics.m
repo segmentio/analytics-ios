@@ -54,8 +54,15 @@
 
 @synthesize cachedSettings = _cachedSettings;
 
++ (void)setupWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    __sharedInstance = [[self alloc] initWithConfiguration:configuration];
+  });
+}
+
 + (void)initializeWithWriteKey:(NSString *)writeKey {
-  [[self sharedAnalytics] setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
+  [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
 }
 
 - (id)initWithWriteKey:(NSString *)writeKey {
@@ -132,7 +139,7 @@
 #pragma mark - Public API
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"<%p:%@, configuration=%@>", self, [self class], self.configuration];
+  return [NSString stringWithFormat:@"<%p:%@, %@>", self, [self class], [self dictionaryWithValuesForKeys:@[ @"configuration" ]]];
 }
 
 #pragma mark - Analytics API
@@ -269,13 +276,6 @@
   }];
 }
 
-- (void)setupWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
-  NSCParameterAssert(self.configuration == nil);
-  NSCParameterAssert(configuration != nil);
-
-  self.configuration = configuration;
-}
-
 #pragma mark - Class Methods
 
 static NSMutableDictionary *__registeredIntegrations = nil;
@@ -314,7 +314,6 @@ static SEGAnalytics *__sharedInstance = nil;
 #pragma mark - Private
 
 - (BOOL)isIntegration:(id<SEGAnalyticsIntegration>)integration enabledInOptions:(NSDictionary *)options {
-  // checks if options is enabling this integration
   if (options[integration.name]) {
     return [options[integration.name] boolValue];
   } else if (options[@"All"]) {
