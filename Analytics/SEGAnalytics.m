@@ -10,6 +10,8 @@
 // need to import and load the integrations
 #import "SEGAnalyticsIntegrations.h"
 
+static const NSUInteger SEGFlushAt = 20;
+
 @interface SEGAnalytics ()
 
 @property (nonatomic, strong) NSDictionary *cachedSettings;
@@ -35,6 +37,7 @@
         _serialQueue = dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         _messageQueue = [[NSMutableArray alloc] init];
         _integrations = [[NSMutableDictionary alloc] init];
+        _flushAt = SEGFlushAt;
 
         [[[self class] registeredIntegrations] enumerateKeysAndObjectsUsingBlock:
                 ^(NSString *identifier, Class integrationClass, BOOL *stop) {
@@ -278,6 +281,12 @@ static SEGAnalytics *__sharedInstance = nil;
 
 #pragma mark - Private
 
+- (void)setFlushAt:(NSUInteger)flushAt {
+    NSCParameterAssert(flushAt > 0);
+  
+  _flushAt = flushAt;
+}
+
 - (BOOL)isIntegration:(id<SEGAnalyticsIntegration>)integration enabledInOptions:(NSDictionary *)options {
     // checks if options is enabling this integration
     if (options[integration.name]) {
@@ -357,5 +366,6 @@ static SEGAnalytics *__sharedInstance = nil;
 - (NSURL *)settingsURL {
     return SEGAnalyticsURLForFilename(@"analytics.settings.plist");
 }
+
 
 @end
