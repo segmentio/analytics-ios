@@ -305,7 +305,7 @@ static SEGAnalytics *__sharedInstance = nil;
     }
 
     if (![integration respondsToSelector:selector]) {
-        SEGLog(@"Not sending call to %@ because it doesn't respond to %@.", integration.name, selector);
+        SEGLog(@"Not sending call to %@ because it doesn't respond to %@.", integration.name, NSStringFromSelector(selector));
         return;
     }
 
