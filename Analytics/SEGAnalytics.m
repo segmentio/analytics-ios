@@ -28,7 +28,7 @@
 
 + (instancetype)analyticsWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
   NSCParameterAssert(configuration != nil);
-  
+
   return [[self alloc] initWithWriteKey:configuration.writeKey];
 }
 
@@ -104,7 +104,7 @@
 #pragma mark - Public API
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<Analytics writeKey:%@>", self.writeKey];
+    return [NSString stringWithFormat:@"<%p:%@, writeKey=%@>", self, [self class], [self writeKey]];
 }
 
 #pragma mark - Analytics API
@@ -348,7 +348,7 @@ static SEGAnalytics *__sharedInstance = nil;
 - (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options  {
     dispatch_specific_async(_serialQueue, ^{
         // No cached settings, queue the API call
-      
+
         if (!self.cachedSettings.count) {
             [self queueSelector:selector arguments:arguments options:options];
         }
