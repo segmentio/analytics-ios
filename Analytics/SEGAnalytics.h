@@ -4,13 +4,21 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SEGAnalytics : NSObject
+@interface SEGAnalyticsConfiguration : NSObject
 
-@property (nonatomic, copy, readonly) NSString *writeKey;
-@property (nonatomic, copy, readonly) NSDictionary *integrations;
++ (instancetype)configurationWithWriteKey:(NSString *)writeKey;
 
 @property (nonatomic, assign) BOOL shouldUseLocationServices;
 @property (nonatomic, assign) NSUInteger flushAt;
+@property (nonatomic, copy, readonly) NSString *writeKey;
+@property (nonatomic, strong) NSMutableDictionary *integrations;
+
+@end
+
+
+@interface SEGAnalytics : NSObject
+
+@property (nonatomic, strong, readonly) SEGAnalyticsConfiguration *configuration;
 
 
 // Step 1: Initialization
@@ -41,7 +49,10 @@
 }
 
 */
-+ (void)initializeWithWriteKey:(NSString *)writeKey;
+
++ (void)initializeWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use +setupWithConfiguration: instead")));
+- (id)initWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use -initWithConfiguration: instead")));
+- (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
 
 /*!
  @method
@@ -249,7 +260,6 @@
  @abstract
  Used internally to create an Analytics instance.
 */
-- (id)initWithWriteKey:(NSString *)writeKey;
 + (NSString *)version;
 
 // Must be called before initializing Analytics in order to successfully register integration
