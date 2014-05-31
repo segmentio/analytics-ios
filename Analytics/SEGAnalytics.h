@@ -10,6 +10,7 @@
 @property (nonatomic, copy, readonly) NSDictionary *integrations;
 
 @property (nonatomic, assign) BOOL shouldUseLocationServices;
+@property (nonatomic, assign) NSUInteger flushAt;
 
 
 // Step 1: Initialization

@@ -134,18 +134,16 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (id)initWithAnalytics:(SEGAnalytics *)analytics {
-  if (self = [self initWithWriteKey:analytics.writeKey flushAt:20]) {
+  if (self = [self initWithWriteKey:analytics.writeKey]) {
     self.analytics = analytics;
   }
   return self;
 }
 
-- (id)initWithWriteKey:(NSString *)writeKey flushAt:(NSUInteger)flushAt {
+- (id)initWithWriteKey:(NSString *)writeKey {
   NSCParameterAssert(writeKey.length > 0);
-  NSCParameterAssert(flushAt > 0);
 
   if (self = [self init]) {
-    _flushAt = flushAt;
     _writeKey = [writeKey copy];
     _apiURL = [NSURL URLWithString:@"http://api.segment.io/v1/import"];
     _anonymousId = GetAnonymousId(NO);
@@ -382,7 +380,7 @@ static NSMutableDictionary *BuildStaticContext() {
 - (void)flushQueueByLength {
   [self dispatchBackground:^{
     SEGLog(@"%@ Length is %lu.", self, (unsigned long)self.queue.count);
-    if (self.request == nil && [self.queue count] >= self.flushAt) {
+    if (self.request == nil && [self.queue count] >= self.analytics.flushAt) {
       [self flush];
     }
   }];
