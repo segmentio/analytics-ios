@@ -5,6 +5,10 @@
 
 @implementation SEGAnalyticsIntegration
 
+- (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
+  return [self init];
+}
+
 - (void)start {}
 - (void)stop {}
 
@@ -17,10 +21,6 @@
 }
 
 #pragma mark - Analytics Integration Default Implementation
-
-- (id)initWithAnalytics:(SEGAnalytics *)analytics {
-    return [self init];
-}
 
 - (BOOL)ready {
     return (self.valid && self.initialized);
