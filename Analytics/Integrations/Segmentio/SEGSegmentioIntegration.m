@@ -115,7 +115,6 @@ static NSMutableDictionary *BuildStaticContext() {
 
 @interface SEGSegmentioIntegration ()
 
-@property (nonatomic, weak) SEGAnalytics *analytics;
 @property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, strong) NSMutableDictionary *context;
 @property (nonatomic, strong) NSArray *batch;
@@ -212,7 +211,7 @@ static NSMutableDictionary *BuildStaticContext() {
 }
 
 - (NSString *)description {
-  return [NSString stringWithFormat:@"<%p:%@, writeKey=%@>", self, self.class, self.configuration.writeKey];
+  return [NSString stringWithFormat:@"<%p:%@, %@>", self, self.class, [self.configuration dictionaryWithValuesForKeys:@[ @"writeKey" ]]];
 }
 
 - (void)saveUserId:(NSString *)userId {
@@ -237,10 +236,7 @@ static NSMutableDictionary *BuildStaticContext() {
     [self addTraits:traits];
   }];
 
-  NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-  [dictionary setValue:traits forKey:@"traits"];
-
-  [self enqueueAction:@"identify" dictionary:dictionary options:options];
+  [self enqueueAction:@"identify" dictionary:@{ @"traits": traits } options:options];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
@@ -472,7 +468,7 @@ static NSMutableDictionary *BuildStaticContext() {
   if (self.configuration) {
     [self.configuration removeObserver:self forKeyPath:@"shouldUseLocationServices"];
   }
-  
+
   [super setConfiguration:configuration];
   [self.configuration addObserver:self forKeyPath:@"shouldUseLocationServices" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
 }
