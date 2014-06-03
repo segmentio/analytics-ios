@@ -27,7 +27,7 @@ target 'Analytics', :exclusive => true do
 end
 
 target 'AnalyticsTests', :exclusive => true do
-  pod 'TRVSKit/TRVSAssertions', :path => '~/dev/TRVSKit'
+  pod 'TRVSKit/TRVSAssertions', '~> 0.0.8'
   pod 'OCMock', '~> 2.2.4'
   pod 'Expecta', '~> 0.3.0'
 end
