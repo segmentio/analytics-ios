@@ -18,7 +18,7 @@ SPEC_BEGIN(AnalyticsUtilsTests)
 describe(@"Specific dispatch_queue", ^{
     __block dispatch_queue_t queue = nil;
     beforeEach(^{
-        queue = dispatch_queue_create_specific("io.segment.test.queue", DISPATCH_QUEUE_SERIAL);
+        queue = so_dispatch_queue_create_specific("io.segment.test.queue", DISPATCH_QUEUE_SERIAL);
     });
     
     it(@"Should have specific value set to self and detect if already running on queue", ^{
@@ -62,11 +62,11 @@ describe(@"Specific dispatch_queue", ^{
         __block BOOL deadlock = YES;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
             ShouldNotBeOnSpecificQueue(queue);
-            dispatch_specific_sync(queue, ^{
+            so_dispatch_specific_sync(queue, ^{
                 ShouldBeOnSpecificQueue(queue);
-                dispatch_specific_async(queue, ^{
+                so_dispatch_specific_async(queue, ^{
                     ShouldBeOnSpecificQueue(queue);
-                    dispatch_specific_sync(queue, ^{
+                    so_dispatch_specific_sync(queue, ^{
                         ShouldBeOnSpecificQueue(queue);
                         deadlock = NO;
                     });
@@ -85,27 +85,27 @@ describe(@"Specific dispatch_queue", ^{
             [[@(blockRan) should] beNo];
             
             blockRan = NO;
-            dispatch_specific_sync(queue, MarkerBlock);
+            so_dispatch_specific_sync(queue, MarkerBlock);
             [[@(blockRan) should] beYes];
             
             blockRan = NO;
-            dispatch_specific_async(queue, MarkerBlock);
+            so_dispatch_specific_async(queue, MarkerBlock);
             [[@(blockRan) should] beYes];
         });
     });
     
     it(@"Should dispatch_async if not on queue and async desired", ^{
-        [[@(dispatch_is_on_specific_queue(queue)) should] beNo];
+        [[@(so_dispatch_is_on_specific_queue(queue)) should] beNo];
         __block BOOL blockRan = NO;
-        dispatch_specific_async(queue, MarkerBlock);
+        so_dispatch_specific_async(queue, MarkerBlock);
         [[@(blockRan) should] beNo];
         [[expectFutureValue(@(blockRan)) shouldEventually] beYes];
     });
     
     it(@"Should dispatch_sync if not on queue and sync desired", ^{
-        [[@(dispatch_is_on_specific_queue(queue)) should] beNo];
+        [[@(so_dispatch_is_on_specific_queue(queue)) should] beNo];
         __block BOOL blockRan = NO;
-        dispatch_specific_sync(queue, MarkerBlock);
+        so_dispatch_specific_sync(queue, MarkerBlock);
         [[@(blockRan) should] beYes];
     });
 });

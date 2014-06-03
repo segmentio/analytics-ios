@@ -91,7 +91,7 @@ static NSString *GetSessionID(BOOL reset) {
                                                      selector:@selector(flush)
                                                      userInfo:nil
                                                       repeats:YES];
-        _serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
+        _serialQueue = so_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         _flushTaskID = UIBackgroundTaskInvalid;
         
         self.name = @"Segment.io";
@@ -166,11 +166,11 @@ static NSString *GetSessionID(BOOL reset) {
 }
 
 - (void)dispatchBackground:(void(^)(void))block {
-    dispatch_specific_async(_serialQueue, block);
+    so_dispatch_specific_async(_serialQueue, block);
 }
 
 - (void)dispatchBackgroundAndWait:(void(^)(void))block {
-    dispatch_specific_sync(_serialQueue, block);
+    so_dispatch_specific_sync(_serialQueue, block);
 }
 
 - (void)beginBackgroundTask {

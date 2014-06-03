@@ -30,7 +30,7 @@
     if (self = [self init]) {
         _secret = secret;
         _enabled = YES;
-        _serialQueue = dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
+        _serialQueue = so_dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         _messageQueue = [[NSMutableArray alloc] init];
         _providers = [[NSMutableDictionary alloc] init];
         [[[self class] registeredProviders] enumerateKeysAndObjectsUsingBlock:
@@ -110,7 +110,7 @@
 }
 
 - (void)callProvidersWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options  {
-    dispatch_specific_async(_serialQueue, ^{
+    so_dispatch_specific_async(_serialQueue, ^{
         // No cached settings, queue the API call
         if (!self.cachedSettings.count) {
             [self queueSelector:selector arguments:arguments options:options];
@@ -243,7 +243,7 @@
 - (void)updateProvidersWithSettings:(NSDictionary *)settings {
     for (id<AnalyticsProvider> provider in self.providers.allValues)
         [provider updateSettings:settings[provider.name]];
-    dispatch_specific_async(_serialQueue, ^{
+    so_dispatch_specific_async(_serialQueue, ^{
         [self flushMessageQueue];
     });
 }
@@ -261,7 +261,7 @@
         SOLog(@"%@ Sending API settings request: %@", self, urlRequest);
         
         _settingsRequest = [AnalyticsRequest startWithURLRequest:urlRequest completion:^{
-            dispatch_specific_async(_serialQueue, ^{
+            so_dispatch_specific_async(_serialQueue, ^{
                 SOLog(@"%@ Received API settings response: %@", self, _settingsRequest.responseJSON);
                 if (!_settingsRequest.error) {
                     [self setCachedSettings:_settingsRequest.responseJSON];

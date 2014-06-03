@@ -17,17 +17,17 @@ NSURL *AnalyticsURLForFilename(NSString *filename) {
 }
 
 // Async Utils
-dispatch_queue_t dispatch_queue_create_specific(const char *label, dispatch_queue_attr_t attr) {
+dispatch_queue_t so_dispatch_queue_create_specific(const char *label, dispatch_queue_attr_t attr) {
     dispatch_queue_t queue = dispatch_queue_create(label, attr);
     dispatch_queue_set_specific(queue, (__bridge const void *)queue, (__bridge void *)queue, NULL);
     return queue;
 }
 
-BOOL dispatch_is_on_specific_queue(dispatch_queue_t queue) {
+BOOL so_dispatch_is_on_specific_queue(dispatch_queue_t queue) {
     return dispatch_get_specific((__bridge const void *)queue) != NULL;
 }
 
-void dispatch_specific(dispatch_queue_t queue, dispatch_block_t block, BOOL waitForCompletion) {
+void so_dispatch_specific(dispatch_queue_t queue, dispatch_block_t block, BOOL waitForCompletion) {
     if (dispatch_get_specific((__bridge const void *)queue)) {
         block();
     } else if (waitForCompletion) {
@@ -37,12 +37,12 @@ void dispatch_specific(dispatch_queue_t queue, dispatch_block_t block, BOOL wait
     }
 }
 
-void dispatch_specific_async(dispatch_queue_t queue, dispatch_block_t block) {
-    dispatch_specific(queue, block, NO);
+void so_dispatch_specific_async(dispatch_queue_t queue, dispatch_block_t block) {
+    so_dispatch_specific(queue, block, NO);
 }
 
-void dispatch_specific_sync(dispatch_queue_t queue, dispatch_block_t block) {
-    dispatch_specific(queue, block, YES);
+void so_dispatch_specific_sync(dispatch_queue_t queue, dispatch_block_t block) {
+    so_dispatch_specific(queue, block, YES);
 }
 
 // Logging
