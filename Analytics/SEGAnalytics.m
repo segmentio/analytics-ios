@@ -10,6 +10,15 @@
 // need to import and load the integrations
 #import "SEGAnalyticsIntegrations.h"
 
+static NSMutableDictionary *__registeredIntegrations = nil;
+static SEGAnalytics *__sharedInstance = nil;
+
+@interface SEGAnalyticsConfiguration ()
+
+@property (nonatomic, copy, readwrite) NSString *writeKey;
+
+@end
+
 @implementation SEGAnalyticsConfiguration
 
 + (instancetype)configurationWithWriteKey:(NSString *)writeKey {
@@ -18,16 +27,16 @@
 
 - (id)initWithWriteKey:(NSString *)writeKey {
   if (self = [self init]) {
-    _writeKey = [writeKey copy];
+    self.writeKey = writeKey;
   }
   return self;
 }
 
 - (instancetype)init {
   if (self = [super init]) {
-    _shouldUseLocationServices = NO;
-    _flushAt = 20;
-    _integrations = [NSMutableDictionary new];
+    self.shouldUseLocationServices = NO;
+    self.flushAt = 20;
+    self.integrations = [NSMutableDictionary new];
   }
   return self;
 }
@@ -59,49 +68,6 @@
   dispatch_once(&onceToken, ^{
     __sharedInstance = [[self alloc] initWithConfiguration:configuration];
   });
-}
-
-+ (void)initializeWithWriteKey:(NSString *)writeKey {
-  [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
-}
-
-- (id)initWithWriteKey:(NSString *)writeKey {
-  return [self initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
-}
-
-- (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
-  NSCParameterAssert(configuration != nil);
-
-  if (self = [self init]) {
-    self.configuration = configuration;
-    self.enabled = YES;
-    self.serialQueue = dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
-    self.messageQueue = [[NSMutableArray alloc] init];
-
-    [[[self class] registeredIntegrations] enumerateKeysAndObjectsUsingBlock:^(NSString *identifier, Class integrationClass, BOOL *stop) {
-      self.configuration.integrations[identifier] = [[integrationClass alloc] initWithConfiguration:self.configuration];
-    }];
-
-    // Update settings on each integration immediately
-    [self refreshSettings];
-
-    // Attach to application state change hooks
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-
-    // Update settings on foreground
-    [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
-
-    // Pass through for application state change events
-    for (NSString *name in @[UIApplicationDidEnterBackgroundNotification,
-      UIApplicationDidFinishLaunchingNotification,
-      UIApplicationWillEnterForegroundNotification,
-      UIApplicationWillTerminateNotification,
-      UIApplicationWillResignActiveNotification,
-      UIApplicationDidBecomeActiveNotification]) {
-      [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:nil];
-    }
-  }
-  return self;
 }
 
 #pragma mark - NSNotificationCenter Callback
@@ -213,10 +179,6 @@
                              options:nil];
 }
 
-- (void)registerPushDeviceToken:(NSData *)deviceToken {
-  [self registerForRemoteNotificationsWithDeviceToken:deviceToken];
-}
-
 - (void)reset {
   [self callIntegrationsWithSelector:_cmd
                            arguments:nil
@@ -277,26 +239,6 @@
 }
 
 #pragma mark - Class Methods
-
-static NSMutableDictionary *__registeredIntegrations = nil;
-static SEGAnalytics *__sharedInstance = nil;
-
-+ (NSDictionary *)registeredIntegrations {
-  return [__registeredIntegrations copy];
-}
-
-+ (void)registerIntegration:(Class)integrationClass withIdentifier:(NSString *)identifer {
-  NSCParameterAssert([NSThread isMainThread]);
-  NSCParameterAssert(__sharedInstance == nil);
-  NSCParameterAssert(identifer.length > 0);
-
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    __registeredIntegrations = [[NSMutableDictionary alloc] init];
-  });
-
-  __registeredIntegrations[identifer] = integrationClass;
-}
 
 + (instancetype)sharedAnalytics {
   NSCParameterAssert(__sharedInstance != nil);
@@ -392,5 +334,82 @@ static SEGAnalytics *__sharedInstance = nil;
   return SEGAnalyticsURLForFilename(@"analytics.settings.plist");
 }
 
+@end
+
+@implementation SEGAnalytics (Internal)
+
+- (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
+  NSCParameterAssert(configuration != nil);
+  
+  if (self = [self init]) {
+    self.configuration = configuration;
+    self.enabled = YES;
+    self.serialQueue = dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
+    self.messageQueue = [[NSMutableArray alloc] init];
+    
+    [[[self class] registeredIntegrations] enumerateKeysAndObjectsUsingBlock:^(NSString *identifier, Class integrationClass, BOOL *stop) {
+      self.configuration.integrations[identifier] = [[integrationClass alloc] initWithConfiguration:self.configuration];
+    }];
+    
+    // Update settings on each integration immediately
+    [self refreshSettings];
+    
+    // Attach to application state change hooks
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    
+    // Update settings on foreground
+    [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    
+    // Pass through for application state change events
+    for (NSString *name in @[UIApplicationDidEnterBackgroundNotification,
+                             UIApplicationDidFinishLaunchingNotification,
+                             UIApplicationWillEnterForegroundNotification,
+                             UIApplicationWillTerminateNotification,
+                             UIApplicationWillResignActiveNotification,
+                             UIApplicationDidBecomeActiveNotification]) {
+      [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:nil];
+    }
+  }
+  return self;
+}
+
++ (NSDictionary *)registeredIntegrations {
+  return [__registeredIntegrations copy];
+}
+
++ (void)registerIntegration:(Class)integrationClass withIdentifier:(NSString *)identifer {
+  NSCParameterAssert([NSThread isMainThread]);
+  NSCParameterAssert(__sharedInstance == nil);
+  NSCParameterAssert(identifer.length > 0);
+  
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    __registeredIntegrations = [[NSMutableDictionary alloc] init];
+  });
+  
+  __registeredIntegrations[identifer] = integrationClass;
+}
 
 @end
+
+@implementation SEGAnalytics (Deprecated)
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
+
++ (void)initializeWithWriteKey:(NSString *)writeKey {
+  [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
+}
+
+- (id)initWithWriteKey:(NSString *)writeKey {
+  return [self initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
+}
+
+- (void)registerPushDeviceToken:(NSData *)deviceToken {
+  [self registerForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
+#pragma clang diagnostic pop
+
+@end
+
