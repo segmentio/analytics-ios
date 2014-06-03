@@ -4,122 +4,72 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+* This object provides a set of properties to control various policies of the analytics client. Other than `writeKey`, these properties can be changed at any time.
+*/
 @interface SEGAnalyticsConfiguration : NSObject
 
+/**
+* Creates and returns a configuration with default settings and the given write key.
+*
+* @param writeKey Your project's write key from segment.io.
+*/
 + (instancetype)configurationWithWriteKey:(NSString *)writeKey;
 
+/**
+* Your project's write key from segment.io.
+*
+* @see +configurationWithWriteKey:
+*/
 @property (nonatomic, copy, readonly) NSString *writeKey;
 
+/**
+* Whether the analytics client should use location services. If `YES` and the host app hasn't asked for permission to use location services then the user will be presented with an alert view asking to do so. `NO` by default.
+*/
 @property (nonatomic, assign) BOOL shouldUseLocationServices;
+
+/**
+* The number of queued events that the analytics client should flush at. Setting this to `1` will not queue any events and will use more battery. `20` by default.
+*/
 @property (nonatomic, assign) NSUInteger flushAt;
+
+/**
+* For segment's use only.
+*/
 @property (nonatomic, strong) NSMutableDictionary *integrations;
 
 @end
 
-
+/**
+* This object provides an API for recording analytics.
+*/
 @interface SEGAnalytics : NSObject
 
+/**
+* Used by the analytics client to configure various options.
+*/
 @property (nonatomic, strong, readonly) SEGAnalyticsConfiguration *configuration;
 
-
-// Step 1: Initialization
-// ----------------------
-
-/*!
- @method
-
- @abstract
- Creates the shared Analytics instance and initializes it with your Segment.io write key.
-
- @param writeKey        Your Segment.io write key from the setup guide at https://segment.io
-
- @discussion
- While developing, we recommend you turn on debug logging before you initialize the Analytics instance with your write key:
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    // If you want to see debug logs from inside the SDK.
-    [Analytics debug:YES];
-
-    // Initialize the Analytics instance
-    [Analytics initializeWithWriteKey:@"YOUR SEGMENT.IO WRITE KEY FROM HTTPS://SEGMENT.IO/LIBRARIES/IOS"];
-
-    // YOUR OTHER APP LAUNCH CODE HERE....
-
-    return YES;
-}
-
+/**
+* Setup the analytics client.
+*
+* @param configuration The configuration used to setup the client.
 */
-
 + (void)setupWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
-- (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
 
-+ (void)initializeWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use +setupWithConfiguration: instead")));
-- (id)initWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use -initWithConfiguration: instead")));
-
-
-/*!
- @method
-
- @abstract
- Enables/disables additional debug logging to help you track down any analytics issues.
-
- @param showDebugLogs        YES to enable debug logging, NO to disable debug logging.
-
- @discussion
- By default, the SDK will not log anything to the Xcode output console. If you want to track down an issue affecting your analytics code, or just see that analytics requests are indeed going out, you can enable debug logging with this method.
-
- While developing, we recommend you reset the settings and turn on debug logging before after you initialize the Analytics instance with your write key:
-
- - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
- {
-    // If you want to see debug logs from inside the SDK.
-    [Analytics debug:YES];
-
-    // Initialize the Analytics instance
-    [Analytics initializeWithWriteKey:@"YOUR SEGMENT.IO WRITE KEY FROM HTTPS://SEGMENT.IO/LIBRARIES/IOS"];
-
-    // YOUR OTHER APP LAUNCH CODE HERE....
-
-    return YES;
- }
-
- */
+/**
+* Enabled/disables debug logging to trace your data going through the SDK.
+*
+* @param showDebugLogs `YES` to enable logging, `NO` otherwise. `NO` by default.
+*/
 + (void)debug:(BOOL)showDebugLogs;
 
-
-
-
-
-
-
-// Step 2: Accessing the Shared Analtyics Instance
-// -----------------------------------------------
-
-/*!
- @method
-
- @abstract
- Gets the shared Analytics instance.
-
- @discussion
- Once you initialize the shared Analytics instance via [Analytics initializeWithWriteKey:...] you can get the instance at any time like this:
-
- [Analytics sharedAnalytics]
-
- This lets you call any of analytics API methods like this:
-
- [[Analytics sharedAnalytics] track:@"Bought a Shirt"];
-
+/**
+* Returns the shared analytics client.
+*
+* @see -setupWithConfiguration:
 */
 + (instancetype)sharedAnalytics;
-
-
-
-
-
-// Step 3: Implementing the Analytics API
-// --------------------------------------
 
 /*!
  @method
@@ -137,9 +87,10 @@
  When you learn more about who your user is, you can record that information with identify.
 
 */
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options;
 - (void)identify:(NSString *)userId;
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits;
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options;
+
 
 /*!
  @method
@@ -214,7 +165,6 @@
  @param deviceToken     device token as returned <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>
  */
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
-- (void)registerPushDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registerForRemoteNotificationsWithDeviceToken: instead")));
 
 
 /*!
@@ -255,19 +205,38 @@
 - (void)disable;
 
 
-// Advanced
-// --------
-
-/*!
- @method
-
- @abstract
- Used internally to create an Analytics instance.
+/**
+* Version of the library.
 */
 + (NSString *)version;
 
-// Must be called before initializing Analytics in order to successfully register integration
+@end
+
+@interface SEGAnalytics (Internal)
+
+/**
+ * Integrations registered with the shared instance. For internal SEG use only!
+ */
 + (NSDictionary *)registeredIntegrations;
+
+/**
+ * Used to register integrations with the shared instance. For internal SEG use only!
+ */
 + (void)registerIntegration:(Class)integrationClass withIdentifier:(NSString *)identifer;
+
+/**
+ * Creates and returns an analytics instance. For internal SEG use only!
+ *
+ * @param configuration The configuration used to setup the analyics instance.
+ */
+- (instancetype)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
+
+@end
+
+@interface SEGAnalytics (Deprecated)
+
++ (void)initializeWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use +setupWithConfiguration: instead")));
+- (id)initWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use -initWithConfiguration: instead")));
+- (void)registerPushDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registerForRemoteNotificationsWithDeviceToken: instead")));
 
 @end
