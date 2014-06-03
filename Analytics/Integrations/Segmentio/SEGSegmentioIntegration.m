@@ -478,6 +478,8 @@ static NSMutableDictionary *BuildStaticContext() {
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
   if ([keyPath isEqualToString:@"shouldUseLocationServices"]) {
     self.location = [object shouldUseLocationServices] ? [SEGLocation new] : nil;
+  } else if ([keyPath isEqualToString:@"flushAt"]) {
+    [self flushQueueByLength];
   } else {
     [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
   }
