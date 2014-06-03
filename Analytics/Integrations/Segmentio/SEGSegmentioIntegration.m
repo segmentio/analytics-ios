@@ -295,10 +295,10 @@ static NSMutableDictionary *BuildStaticContext() {
   return dict;
 }
 
-- (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)dictionary options:(NSDictionary *)options {
+- (void)enqueueAction:(NSString *)action dictionary:(NSDictionary *)dictionary options:(NSDictionary *)options {
   // attach these parts of the payload outside since they are all synchronous
   // and the timestamp will be more accurate.
-  NSMutableDictionary *payload = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+  NSMutableDictionary *payload = [dictionary mutableCopy];
   payload[@"type"] = action;
   payload[@"timestamp"] = [[NSDate date] description];
   payload[@"messageId"] = GenerateUUIDString();
