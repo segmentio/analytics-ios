@@ -14,12 +14,9 @@ Reference documentation is available at [https://segment.io/libraries/ios](https
 
 libAnalytics itself strives to have as few dependencies as possible to create the most compatible and
 lightweight Analytics SDK for ObjC developers. However, there is no such restriction during testing time,
-and in order to contribute to the SDK, you will need cocoapods, as well as an additional pod specs repo.
-This can be accomplished as follow
+and in order to contribute to the SDK, you will need cocoapods. This can be accomplished as follows:
 
     [sudo] gem install cocoapods
-    pod repo add Segmentio-Podspecs git@github.com:segmentio/Podspecs.git
-    pod repo add Collections-Podspecs git@github.com:collections/Podspecs.git
     pod install
 
 ## License
