@@ -313,6 +313,7 @@ static NSMutableDictionary *BuildStaticContext() {
     [payload setValue:[self integrationsDictionary:options[@"integrations"]] forKey:@"integrations"];
     [payload setValue:[self liveContext] forKey:@"context"];
     [self.queue addObject:payload];
+    
     [self flushQueueByLength];
   }];
 }
@@ -359,6 +360,7 @@ static NSMutableDictionary *BuildStaticContext() {
 - (void)flushQueueByLength {
   [self dispatchBackground:^{
     SEGLog(@"%@ Length is %lu.", self, (unsigned long)self.queue.count);
+    
     if (self.request == nil && [self.queue count] >= self.configuration.flushAt) {
       [self flush];
     }

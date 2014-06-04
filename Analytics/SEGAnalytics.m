@@ -309,6 +309,7 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)flushMessageQueue {
   if (_messageQueue.count) {
+    
     for (NSArray *arr in _messageQueue)
       [self forwardSelector:NSSelectorFromString(arr[0]) arguments:arr[1] options:arr[2]];
     [_messageQueue removeAllObjects];
