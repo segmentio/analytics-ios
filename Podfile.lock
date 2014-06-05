@@ -15,6 +15,7 @@ PODS:
     - Quantcast-Measure/Core
   - Quantcast-Measure/Core (1.4.5)
   - Reachability (3.1.1)
+  - Taplytics (1.2.50)
   - Tapstream (2.7)
   - TRVSKit/TRVSAssertions (0.0.9):
     - Expecta (~> 0.3.0)
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - OCMock (~> 2.2.4)
   - Quantcast-Measure (~> 1.4.4)
   - Reachability (= 3.1.1)
+  - Taplytics (~> 1.2.50)
   - Tapstream (~> 2.6)
   - TRVSKit/TRVSAssertions (~> 0.0.8)
 
@@ -48,6 +50,7 @@ SPEC CHECKSUMS:
   OCMock: 6db79185520e24f9f299548f2b8b07e41d881bd5
   Quantcast-Measure: d7a364f084dbd25d53ddd57fbe38f8aa6d202825
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
+  Taplytics: 292c7c0a7814914f6a1a3e34fdf96b7233c2425d
   Tapstream: 1c945ae1e9d25af25915c96e5d506485b26f52f0
   TRVSKit: fd946dbfb09de6bb75889e0f73c021a391e7594a
 

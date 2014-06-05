@@ -316,7 +316,7 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)flushMessageQueue {
   if (_messageQueue.count) {
-    
+
     for (NSArray *arr in _messageQueue)
       [self forwardSelector:NSSelectorFromString(arr[0]) arguments:arr[1] options:arr[2]];
     [_messageQueue removeAllObjects];
@@ -348,26 +348,26 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
   NSCParameterAssert(configuration != nil);
-  
+
   if (self = [self init]) {
     self.configuration = configuration;
     self.enabled = YES;
     self.serialQueue = dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
     self.messageQueue = [[NSMutableArray alloc] init];
-    
+
     [[[self class] registeredIntegrations] enumerateKeysAndObjectsUsingBlock:^(NSString *identifier, Class integrationClass, BOOL *stop) {
       self.configuration.integrations[identifier] = [[integrationClass alloc] initWithConfiguration:self.configuration];
     }];
-    
+
     // Update settings on each integration immediately
     [self refreshSettings];
-    
+
     // Attach to application state change hooks
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    
+
     // Update settings on foreground
     [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
-    
+
     // Pass through for application state change events
     for (NSString *name in @[UIApplicationDidEnterBackgroundNotification,
                              UIApplicationDidFinishLaunchingNotification,
@@ -389,12 +389,12 @@ static SEGAnalytics *__sharedInstance = nil;
   NSCParameterAssert([NSThread isMainThread]);
   NSCParameterAssert(__sharedInstance == nil);
   NSCParameterAssert(identifer.length > 0);
-  
+
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     __registeredIntegrations = [[NSMutableDictionary alloc] init];
   });
-  
+
   __registeredIntegrations[identifer] = integrationClass;
 }
 
@@ -420,4 +420,3 @@ static SEGAnalytics *__sharedInstance = nil;
 #pragma clang diagnostic pop
 
 @end
-
