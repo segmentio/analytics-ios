@@ -20,9 +20,10 @@ Pod::Spec.new do |s|
   mixpanel = { :name => 'Mixpanel', :dependencies => [{ :pod => 'Mixpanel', :version => '~> 2.3.6' }]}
   tapstream = { :name => 'Tapstream', :dependencies => [{ :pod => 'Tapstream', :version => '~> 2.7' }]}
   quantcast = { :name => 'Quantcast', :dependencies => [{ :pod => 'Quantcast-Measure', :version => '~> 1.4.4' }]}
+  taplytics = { :name => 'Taplytics', :dependencies => [{ :pod => 'Taplytics', :version => '~> 1.2.50' }]}
   segmentio = { :name => 'Segmentio', :dependencies => [{ :pod => 'Reachability', :version => '3.1.1' }]}
 
-  analytics = [segmentio, amplitude, bugsnag, countly, crittercism, flurry, google, localytics, mixpanel, tapstream, quantcast]
+  analytics = [segmentio, amplitude, bugsnag, countly, crittercism, flurry, google, localytics, mixpanel, taplytics, tapstream, quantcast]
 
   s.subspec 'Core-iOS' do |ss|
     ss.public_header_files = 'Analytics/*'

@@ -23,6 +23,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		320263271940032100C401B5 /* SEGTaplytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 320263251940032100C401B5 /* SEGTaplytics.h */; };
+		320263281940032100C401B5 /* SEGTaplytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 320263261940032100C401B5 /* SEGTaplytics.m */; };
+		320263291940032100C401B5 /* SEGTaplytics.m in Sources */ = {isa = PBXBuildFile; fileRef = 320263261940032100C401B5 /* SEGTaplytics.m */; };
 		32430A761914186C004EFF59 /* SEGLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A741914186C004EFF59 /* SEGLocation.h */; };
 		32430A771914186C004EFF59 /* SEGLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32430A751914186C004EFF59 /* SEGLocation.m */; };
 		32430A7919145DA8004EFF59 /* SEGAnalyticsIntegrations.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A7819145DA8004EFF59 /* SEGAnalyticsIntegrations.h */; };
@@ -134,6 +137,8 @@
 		1292362745B3499F9F8849DB /* Pods-AnalyticsTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTests.xcconfig"; path = "Pods/Pods-AnalyticsTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnalyticsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		288314B9A18241B284C25C5B /* Pods-Analytics.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics.xcconfig"; path = "Pods/Pods-Analytics.xcconfig"; sourceTree = "<group>"; };
+		320263251940032100C401B5 /* SEGTaplytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGTaplytics.h; path = Taplytics/SEGTaplytics.h; sourceTree = "<group>"; };
+		320263261940032100C401B5 /* SEGTaplytics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGTaplytics.m; path = Taplytics/SEGTaplytics.m; sourceTree = "<group>"; };
 		32430A741914186C004EFF59 /* SEGLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGLocation.h; path = Helpers/SEGLocation.h; sourceTree = "<group>"; };
 		32430A751914186C004EFF59 /* SEGLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGLocation.m; path = Helpers/SEGLocation.m; sourceTree = "<group>"; };
 		32430A7819145DA8004EFF59 /* SEGAnalyticsIntegrations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAnalyticsIntegrations.h; sourceTree = "<group>"; };
@@ -290,6 +295,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		320263241940030000C401B5 /* Taplytics */ = {
+			isa = PBXGroup;
+			children = (
+				320263251940032100C401B5 /* SEGTaplytics.h */,
+				320263261940032100C401B5 /* SEGTaplytics.m */,
+			);
+			name = Taplytics;
+			sourceTree = "<group>";
+		};
 		32A8C60419107DBD00173AE5 /* Quantcast */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,6 +384,7 @@
 				D3EDB64D18C315F100A88A7E /* Mixpanel */,
 				32A8C60419107DBD00173AE5 /* Quantcast */,
 				D3EDB65018C315F100A88A7E /* Segmentio */,
+				320263241940030000C401B5 /* Taplytics */,
 				D3EDB65318C315F100A88A7E /* Tapstream */,
 			);
 			path = Integrations;
@@ -586,6 +601,7 @@
 			files = (
 				EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */,
 				D3C07FBF185954D000649011 /* Bugsnag.h in Headers */,
+				320263271940032100C401B5 /* SEGTaplytics.h in Headers */,
 				D371F32E185942BB0053337D /* Crittercism.h in Headers */,
 				D3EDB65A18C315F100A88A7E /* SEGCountlyIntegration.h in Headers */,
 				D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */,
@@ -839,6 +855,7 @@
 				EABE4F4117C88A6D00A1081B /* AnalyticsUtilsTests.m in Sources */,
 				EA3B4CC717C8900A00233EA9 /* SegmentioTests.m in Sources */,
 				7E94C0F018932A5B004BD132 /* KWBlockMatchEvaluator.m in Sources */,
+				320263291940032100C401B5 /* SEGTaplytics.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -855,6 +872,7 @@
 				EACB4DEB17C0BB3100624129 /* SEGAnalyticsUtils.m in Sources */,
 				32A8C60819107DBD00173AE5 /* SEGQuantcastIntegration.m in Sources */,
 				D3EDB65F18C315F100A88A7E /* SEGFlurryIntegration.m in Sources */,
+				320263281940032100C401B5 /* SEGTaplytics.m in Sources */,
 				D3EDB66518C315F100A88A7E /* SEGMixpanelIntegration.m in Sources */,
 				D3EDB66718C315F100A88A7E /* SEGSegmentioIntegration.m in Sources */,
 				D3EDB65D18C315F100A88A7E /* SEGCrittercismIntegration.m in Sources */,
