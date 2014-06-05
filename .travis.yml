@@ -1,36 +1,10 @@
 language: objective-c
-rvm: 1.9.3
-
-env:
-  global:
-    - BUILD_CONFIGURATION=Debug
-    - OBJROOT=$PWD/build
-    - SYMROOT=$PWD/build
-    - ONLY_ACTIVE_ARCH=NO 
-    - CODE_SIGNING_REQUIRED=NO
-
-branches:
-  only:
-    - master
-    - dev
-
-before_script:
-  - export LANG=en_US.UTF-8
-
-before_install:
-  - gem install cocoapods -v '0.32.1'
-  - brew update
-  - brew upgrade xctool
-  - pod repo add Segmentio-Podspecs https://github.com/segmentio/Podspecs.git
-  - pod repo add Collections-Podspecs https://github.com/collections/Podspecs.git
-
-script:
-  - xctool -workspace Analytics.xcworkspace -scheme Analytics -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-  - xctool test -workspace Analytics.xcworkspace -scheme AnalyticsTests -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-
+before_script: export LANG=en_US.UTF-8
+before_install: gem install cocoapods -v '0.32.1'
+script: scripts/cibuild  
 notifications:
   email:
     recipients:
       - travis@segment.io
-    on_success: change
+    on_success: always
     on_failure: always
