@@ -38,6 +38,10 @@
 #import "SEGMixpanelIntegration.h"
 #endif
 
+#ifdef USE_ANALYTICS_TAPLYTICS
+#import "SEGTaplyticsIntegration.h"
+#endif
+
 #ifdef USE_ANALYTICS_TAPSTREAM
 #import "SEGTapstreamIntegration.h"
 #endif
@@ -49,4 +53,3 @@
 #ifdef USE_ANALYTICS_SEGMENTIO
 #import "SEGSegmentioIntegration.h"
 #endif
-
