@@ -6,47 +6,48 @@
 //  Copyright (c) 2014 Segment.io. All rights reserved.
 //
 
-#ifdef USE_ANALYTICS_AMPLITUDE
+#define USE_ANALYTICS_ALL 1
+
+#if defined(USE_ANALYTICS_AMPLITUDE) || defined(USE_ANALYTICS_ALL)
 #import "SEGAmplitudeIntegration.h"
 #endif
 
-#ifdef USE_ANALYTICS_BUGSNAG
+#if defined(USE_ANALYTICS_BUGSNAG) || defined(USE_ANALYTICS_ALL)
 #import "SEGBugsnagIntegration.h"
 #endif
 
-#ifdef USE_ANALYTICS_COUNTLY
+#if defined(USE_ANALYTICS_COUNTLY) || defined(USE_ANALYTICS_ALL)
 #import "SEGCountlyIntegration.h"
 #endif
 
-#ifdef USE_ANALYTICS_CRITTERCISM
+#if defined(USE_ANALYTICS_CRITTERCISM) || defined(USE_ANALYTICS_ALL)
 #import "SEGCrittercismIntegration.h"
 #endif
 
-#ifdef USE_ANALYTICS_FLURRY
+#if defined(USE_ANALYTICS_FLURRY) || defined(USE_ANALYTICS_ALL)
 #import "SEGFlurryIntegration.h"
 #endif
 
-#ifdef USE_ANALYTICS_GOOGLEANALYTICS
+#if defined(USE_ANALYTICS_GOOGLEANALYTICS) || defined(USE_ANALYTICS_ALL)
 #import "SEGGoogleAnalyticsIntegration.h"
 #endif
 
-#ifdef USE_ANALYTICS_LOCALYTICS
+#if defined(USE_ANALYTICS_LOCALYTICS) || defined(USE_ANALYTICS_ALL)
 #import "SEGLocalyticsIntegration.h"
 #endif
 
-#ifdef USE_ANALYTICS_MIXPANEL
+#if defined(USE_ANALYTICS_MIXPANEL) || defined(USE_ANALYTICS_ALL)
 #import "SEGMixpanelIntegration.h"
 #endif
 
-#ifdef USE_ANALYTICS_TAPSTREAM
+#if defined(USE_ANALYTICS_TAPSTREAM) || defined(USE_ANALYTICS_ALL)
 #import "SEGTapstreamIntegration.h"
 #endif
 
-#ifdef USE_ANALYTICS_QUANTCAST
+#if defined(USE_ANALYTICS_QUANTCAST) || defined(USE_ANALYTICS_ALL)
 #import "SEGQuantcastIntegration.h"
 #endif
 
-#ifdef USE_ANALYTICS_SEGMENTIO
+#if defined(USE_ANALYTICS_SEGMENTIO) || defined(USE_ANALYTICS_ALL)
 #import "SEGSegmentioIntegration.h"
 #endif
-
