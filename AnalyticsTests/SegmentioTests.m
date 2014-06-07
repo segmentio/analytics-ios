@@ -44,7 +44,7 @@
     configuration.flushAt = 1;
     self.integration = [[SEGSegmentioIntegration alloc] initWithConfiguration:configuration];
   } else {
-    SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"suy5xxbtst"];
+    SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"bvbqrhaeg4"];
     configuration.flushAt = 1;
     self.integration = [[SegmentioIntegrationDevelopment alloc] initWithConfiguration:configuration];
   }
