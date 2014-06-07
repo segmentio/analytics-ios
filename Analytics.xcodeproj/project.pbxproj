@@ -28,7 +28,7 @@
 		32430A7919145DA8004EFF59 /* SEGAnalyticsIntegrations.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A7819145DA8004EFF59 /* SEGAnalyticsIntegrations.h */; };
 		32A8C60719107DBD00173AE5 /* SEGQuantcastIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */; };
 		32A8C60819107DBD00173AE5 /* SEGQuantcastIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A8C60619107DBD00173AE5 /* SEGQuantcastIntegration.m */; };
-		32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCD99B1919A4F4007B63BA /* Analytics.h */; };
+		32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCD99B1919A4F4007B63BA /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32D045561931FACD00A9F0A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D045551931FACD00A9F0A4 /* XCTest.framework */; };
 		32E113231908AC85006D9788 /* libPods-Analytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E113221908AC85006D9788 /* libPods-Analytics.a */; };
 		32E113241908ACAF006D9788 /* libAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7317659B2F003F3138 /* libAnalytics.a */; };
@@ -584,6 +584,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */,
 				EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */,
 				D3C07FBF185954D000649011 /* Bugsnag.h in Headers */,
 				D371F32E185942BB0053337D /* Crittercism.h in Headers */,
@@ -617,7 +618,6 @@
 				D331BD2E1860F5F0007CB22F /* TSCore.h in Headers */,
 				32430A7919145DA8004EFF59 /* SEGAnalyticsIntegrations.h in Headers */,
 				D3EDB66818C315F100A88A7E /* SEGTapstreamIntegration.h in Headers */,
-				32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */,
 				D331BD2F1860F5F0007CB22F /* TSCoreListener.h in Headers */,
 				D331BD301860F5F0007CB22F /* TSDelegate.h in Headers */,
 				D331BD311860F5F0007CB22F /* TSEvent.h in Headers */,
