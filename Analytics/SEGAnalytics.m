@@ -269,6 +269,9 @@ static SEGAnalytics *__sharedInstance = nil;
 - (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
   if (!_enabled)
     return;
+  
+  if (self.configuration.integrations.count == 0)
+    SEGLog(@"Trying to send event, but no integrations found.");
 
   for (id<SEGAnalyticsIntegration> integration in self.configuration.integrations.allValues)
     [self invokeIntegration:integration selector:selector arguments:arguments options:options];
@@ -290,7 +293,9 @@ static SEGAnalytics *__sharedInstance = nil;
     return;
   }
 
-  [[self invocationForSelector:selector arguments:arguments] invokeWithTarget:integration];
+  NSInvocation *invocation = [self invocationForSelector:selector arguments:arguments];
+  SEGLog(@"Running: %@ on integration: %@", invocation, integration);
+  [invocation invokeWithTarget:integration];
 }
 
 - (NSInvocation *)invocationForSelector:(SEL)selector arguments:(NSArray *)arguments {
@@ -304,7 +309,9 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 - (void)queueSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
-  [_messageQueue addObject:@[NSStringFromSelector(selector), arguments ?: @[], options ?: @{}]];
+  NSArray *obj = @[NSStringFromSelector(selector), arguments ?: @[], options ?: @{}];
+  SEGLog(@"Queueing: %@", obj);
+  [_messageQueue addObject:obj];
 }
 
 - (void)flushMessageQueue {
