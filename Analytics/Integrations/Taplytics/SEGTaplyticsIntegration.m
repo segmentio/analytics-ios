@@ -6,12 +6,13 @@
 //  Copyright (c) 2014 Segment.io. All rights reserved.
 //
 
-#import "SEGTaplytics.h"
+#import "SEGTaplyticsIntegration.h"
+#import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
 
-#import <Taplytics/Taplytics.h>
+#import <Taplytics.h>
 
-@implementation SEGTaplytics
+@implementation SEGTaplyticsIntegration
 
 + (void)load {
   [SEGAnalytics registerIntegration:self withIdentifier:[self identifier]];

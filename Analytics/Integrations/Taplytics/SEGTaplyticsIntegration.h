@@ -8,6 +8,6 @@
 
 #import "SEGAnalyticsIntegration.h"
 
-@interface SEGTaplytics : SEGAnalyticsIntegration
+@interface SEGTaplyticsIntegration : SEGAnalyticsIntegration
 
 @end
