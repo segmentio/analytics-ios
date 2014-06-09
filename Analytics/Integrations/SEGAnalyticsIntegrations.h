@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Segment.io. All rights reserved.
 //
 
-#define USE_ANALYTICS_ALL 1
-
 #if defined(USE_ANALYTICS_AMPLITUDE) || defined(USE_ANALYTICS_ALL)
 #import "SEGAmplitudeIntegration.h"
 #endif
