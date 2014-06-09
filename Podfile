@@ -11,7 +11,7 @@ def import_integrations
   pod 'Mixpanel', '~> 2.3.4'
   pod 'Tapstream', '~> 2.6'
   pod 'Quantcast-Measure', '~> 1.4.4'
-  pod 'Taplytics', '~> 1.2.50'
+  pod 'Taplytics', '~> 1.3.0'
 end
 
 def import_utilities
