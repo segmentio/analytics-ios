@@ -1,7 +1,9 @@
 // SegmentioTests.m
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
+#import <XCTest/XCTest.h>
 #import <Expecta/Expecta.h>
+#import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGSegmentioIntegration.h"
 #import <TRVSKit/TRVSAssertions.h>
@@ -65,14 +67,14 @@
 
   [self.integration track:self.event properties:self.properties options:self.options];
 
-  expect(self.integration.queue.count).will.equal(1);
+  EXP_expect(self.integration.queue.count).will.equal(1);
 }
 
 - (void)testTrackRequestData {
   self.integration.configuration.flushAt = 2;
   [self.integration track:self.event properties:self.properties options:self.options];
 
-  expect(self.integration.queue.count).will.equal(1);
+  EXP_expect(self.integration.queue.count).will.equal(1);
   NSDictionary *msg = self.integration.queue.firstObject;
   XCTAssertEqualObjects(@"track", msg[@"type"]);
   XCTAssertEqualObjects(self.event, msg[@"event"]);
@@ -102,14 +104,14 @@
 
   [self.integration identify:self.identity traits:self.traits options:self.options];
 
-  expect(self.integration.queue.count).will.equal(1);
+  EXP_expect(self.integration.queue.count).will.equal(1);
 }
 
 - (void)testIdentifyRequestData {
   self.integration.configuration.flushAt = 2;
   [self.integration identify:self.identity traits:self.traits options:self.options];
 
-  expect(self.integration.queue.count).will.equal(1);
+  EXP_expect(self.integration.queue.count).will.equal(1);
   NSDictionary *msg = self.integration.queue.firstObject;
   XCTAssertEqualObjects(@"identify", msg[@"type"]);
   XCTAssertEqualObjects(self.identity, msg[@"userId"]);
@@ -143,7 +145,7 @@
 
     [self.integration reset];
 
-    expect(self.integration.queue.count).will.equal(0);
+    EXP_expect(self.integration.queue.count).will.equal(0);
     XCTAssertNotEqualObjects(anonymousId, self.integration.anonymousId);
   }, SEGSegmentioRequestDidSucceedNotification, SEGSegmentioDidSendRequestNotification, nil);
 }

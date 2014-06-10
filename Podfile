@@ -27,7 +27,8 @@ target 'Analytics', :exclusive => true do
   import_pods
 end
 
-target 'AnalyticsTests', :exclusive => true do
+target 'iOS Tests', :exclusive => true do
+  import_pods
   pod 'TRVSKit/TRVSAssertions', '~> 0.0.8'
   pod 'OCMock', '~> 2.2.4'
   pod 'Expecta', '~> 0.3.0'
