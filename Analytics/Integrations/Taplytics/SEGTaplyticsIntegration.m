@@ -10,7 +10,7 @@
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
 
-#import <Taplytics.h>
+#import <Taplytics/Taplytics.h>
 
 @implementation SEGTaplyticsIntegration
 

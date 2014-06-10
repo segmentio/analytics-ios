@@ -23,23 +23,45 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		3242C9991946A3E100FBE441 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D045551931FACD00A9F0A4 /* XCTest.framework */; };
+		3242C99A1946A3E100FBE441 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
+		3242C99B1946A3E100FBE441 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
+		3242C9A11946A3E100FBE441 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3242C99F1946A3E100FBE441 /* InfoPlist.strings */; };
+		3242C9A31946A3E100FBE441 /* iOS_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3242C9A21946A3E100FBE441 /* iOS_Tests.m */; };
+		3242C9AA1946AB4700FBE441 /* AnalyticsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA722AFD17C87BB00016E8B0 /* AnalyticsTests.m */; };
+		3242C9AB1946AB4700FBE441 /* AnalyticsUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EABE4F4017C88A6D00A1081B /* AnalyticsUtilsTests.m */; };
+		3242C9AC1946AB4700FBE441 /* SegmentioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */; };
+		3242C9AD1946AD9600FBE441 /* SEGAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = F7200B7D17659B2F003F3138 /* SEGAnalytics.m */; };
+		3242C9AE1946AD9900FBE441 /* SEGAnalyticsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA604C817C28C7C00911919 /* SEGAnalyticsRequest.m */; };
+		3242C9AF1946AD9B00FBE441 /* SEGAnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DD117C0BB3100624129 /* SEGAnalyticsUtils.m */; };
+		3242C9B01946ADA000FBE441 /* SEGLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32430A751914186C004EFF59 /* SEGLocation.m */; };
+		3242C9B11946ADA200FBE441 /* SEGBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2811D1908420D00FB48D7 /* SEGBluetooth.m */; };
+		3242C9B21946ADA900FBE441 /* SEGAnalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */; };
+		3242C9B31946ADB000FBE441 /* SEGSegmentioIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65218C315F100A88A7E /* SEGSegmentioIntegration.m */; };
+		3242C9B41946AFA100FBE441 /* settings.json in Resources */ = {isa = PBXBuildFile; fileRef = EA14A25217FB1E9400870901 /* settings.json */; };
+		3242C9B51946AFC500FBE441 /* SEGAmplitudeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63A18C315F100A88A7E /* SEGAmplitudeIntegration.m */; };
+		3242C9B61946AFC800FBE441 /* SEGBugsnagIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63D18C315F100A88A7E /* SEGBugsnagIntegration.m */; };
+		3242C9B71946AFCC00FBE441 /* SEGCountlyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64018C315F100A88A7E /* SEGCountlyIntegration.m */; };
+		3242C9B81946AFD100FBE441 /* SEGCrittercismIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64318C315F100A88A7E /* SEGCrittercismIntegration.m */; };
+		3242C9B91946AFD400FBE441 /* SEGFlurryIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64618C315F100A88A7E /* SEGFlurryIntegration.m */; };
+		3242C9BA1946AFD900FBE441 /* SEGGoogleAnalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64918C315F100A88A7E /* SEGGoogleAnalyticsIntegration.m */; };
+		3242C9BB1946AFDD00FBE441 /* SEGLocalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64C18C315F100A88A7E /* SEGLocalyticsIntegration.m */; };
+		3242C9BC1946AFE300FBE441 /* SEGMixpanelIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64F18C315F100A88A7E /* SEGMixpanelIntegration.m */; };
+		3242C9BD1946AFEC00FBE441 /* SEGQuantcastIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A8C60619107DBD00173AE5 /* SEGQuantcastIntegration.m */; };
+		3242C9BE1946AFF200FBE441 /* SEGTaplyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF3279194666DA004098C1 /* SEGTaplyticsIntegration.m */; };
+		3242C9BF1946AFF900FBE441 /* SEGTapstreamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65518C315F100A88A7E /* SEGTapstreamIntegration.m */; };
 		32430A761914186C004EFF59 /* SEGLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A741914186C004EFF59 /* SEGLocation.h */; };
 		32430A771914186C004EFF59 /* SEGLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32430A751914186C004EFF59 /* SEGLocation.m */; };
 		32430A7919145DA8004EFF59 /* SEGAnalyticsIntegrations.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A7819145DA8004EFF59 /* SEGAnalyticsIntegrations.h */; };
 		32A8C60719107DBD00173AE5 /* SEGQuantcastIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */; };
 		32A8C60819107DBD00173AE5 /* SEGQuantcastIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A8C60619107DBD00173AE5 /* SEGQuantcastIntegration.m */; };
 		32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCD99B1919A4F4007B63BA /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32D045561931FACD00A9F0A4 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D045551931FACD00A9F0A4 /* XCTest.framework */; };
 		32DF327A194666DA004098C1 /* SEGTaplyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DF3278194666DA004098C1 /* SEGTaplyticsIntegration.h */; };
 		32DF327B194666DA004098C1 /* SEGTaplyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF3279194666DA004098C1 /* SEGTaplyticsIntegration.m */; };
-		32DF327C194666DA004098C1 /* SEGTaplyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF3279194666DA004098C1 /* SEGTaplyticsIntegration.m */; };
 		32E113231908AC85006D9788 /* libPods-Analytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E113221908AC85006D9788 /* libPods-Analytics.a */; };
-		32E113241908ACAF006D9788 /* libAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7317659B2F003F3138 /* libAnalytics.a */; };
-		32E113261908AD1C006D9788 /* libPods-AnalyticsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E113251908AD1C006D9788 /* libPods-AnalyticsTests.a */; };
 		32E2811E1908420D00FB48D7 /* SEGBluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = 32E2811C1908420D00FB48D7 /* SEGBluetooth.h */; };
 		32E2811F1908420D00FB48D7 /* SEGBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2811D1908420D00FB48D7 /* SEGBluetooth.m */; };
-		32E281231908651300FB48D7 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E281221908651300FB48D7 /* CoreBluetooth.framework */; };
-		7E94C0F018932A5B004BD132 /* KWBlockMatchEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */; };
+		6182B863DB2D44D1B463AE3B /* libPods-iOS Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AE4A015CBF4E95B18D10A7 /* libPods-iOS Tests.a */; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCEC185BFAA1007CB22F /* MPSurvey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF0185BFF49007CB22F /* CRFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -96,26 +118,11 @@
 		D3EDB66718C315F100A88A7E /* SEGSegmentioIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65218C315F100A88A7E /* SEGSegmentioIntegration.m */; };
 		D3EDB66818C315F100A88A7E /* SEGTapstreamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65418C315F100A88A7E /* SEGTapstreamIntegration.h */; };
 		D3EDB66918C315F100A88A7E /* SEGTapstreamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65518C315F100A88A7E /* SEGTapstreamIntegration.m */; };
-		EA14A25317FB1E9400870901 /* settings.json in Resources */ = {isa = PBXBuildFile; fileRef = EA14A25217FB1E9400870901 /* settings.json */; };
 		EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200B7B17659B2F003F3138 /* SEGAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA3B4CC717C8900A00233EA9 /* SegmentioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */; };
 		EA65F96617C2ABA600389A1A /* SEGAnalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EA65F96717C2ABA600389A1A /* SEGAnalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */; };
-		EA722AF417C87BB00016E8B0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
-		EA722AF517C87BB00016E8B0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
-		EA722AFE17C87BB00016E8B0 /* AnalyticsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA722AFD17C87BB00016E8B0 /* AnalyticsTests.m */; };
 		EAA604C917C28C7C00911919 /* SEGAnalyticsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA604C717C28C7C00911919 /* SEGAnalyticsRequest.h */; };
 		EAA604CA17C28C7C00911919 /* SEGAnalyticsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA604C817C28C7C00911919 /* SEGAnalyticsRequest.m */; };
-		EABE4F3617C8883A00A1081B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3017C887E000A1081B /* CoreGraphics.framework */; };
-		EABE4F3717C8883A00A1081B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2E17C887D900A1081B /* Security.framework */; };
-		EABE4F3817C8883A00A1081B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2C17C887D000A1081B /* CoreTelephony.framework */; };
-		EABE4F3A17C8883A00A1081B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2817C887C400A1081B /* CFNetwork.framework */; };
-		EABE4F3B17C8883A00A1081B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2617C887BD00A1081B /* QuartzCore.framework */; };
-		EABE4F3C17C8883A00A1081B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2417C887B100A1081B /* SystemConfiguration.framework */; };
-		EABE4F3D17C8883A00A1081B /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F2217C887A500A1081B /* CoreData.framework */; };
-		EABE4F3E17C8883A00A1081B /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3417C887E800A1081B /* libz.dylib */; };
-		EABE4F3F17C8883A00A1081B /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EABE4F3217C887E400A1081B /* libsqlite3.dylib */; };
-		EABE4F4117C88A6D00A1081B /* AnalyticsUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EABE4F4017C88A6D00A1081B /* AnalyticsUtilsTests.m */; };
 		EACB4DEA17C0BB3100624129 /* SEGAnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EACB4DD017C0BB3100624129 /* SEGAnalyticsUtils.h */; };
 		EACB4DEB17C0BB3100624129 /* SEGAnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EACB4DD117C0BB3100624129 /* SEGAnalyticsUtils.m */; };
 		F7200B7717659B2F003F3138 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
@@ -124,7 +131,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EAE10AFC17C8855400C66882 /* PBXContainerItemProxy */ = {
+		3242C9A51946A3E100FBE441 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F7200B6B17659B2F003F3138 /* Project object */;
 			proxyType = 1;
@@ -136,7 +143,13 @@
 /* Begin PBXFileReference section */
 		1292362745B3499F9F8849DB /* Pods-AnalyticsTests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTests.xcconfig"; path = "Pods/Pods-AnalyticsTests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnalyticsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		24AE4A015CBF4E95B18D10A7 /* libPods-iOS Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOS Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		288314B9A18241B284C25C5B /* Pods-Analytics.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics.xcconfig"; path = "Pods/Pods-Analytics.xcconfig"; sourceTree = "<group>"; };
+		3242C9981946A3E100FBE441 /* iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3242C99E1946A3E100FBE441 /* iOS Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOS Tests-Info.plist"; sourceTree = "<group>"; };
+		3242C9A01946A3E100FBE441 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3242C9A21946A3E100FBE441 /* iOS_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iOS_Tests.m; sourceTree = "<group>"; };
+		3242C9A41946A3E100FBE441 /* iOS Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOS Tests-Prefix.pch"; sourceTree = "<group>"; };
 		32430A741914186C004EFF59 /* SEGLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGLocation.h; path = Helpers/SEGLocation.h; sourceTree = "<group>"; };
 		32430A751914186C004EFF59 /* SEGLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGLocation.m; path = Helpers/SEGLocation.m; sourceTree = "<group>"; };
 		32430A7819145DA8004EFF59 /* SEGAnalyticsIntegrations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAnalyticsIntegrations.h; sourceTree = "<group>"; };
@@ -159,6 +172,7 @@
 		7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBlockMatchEvaluator.h; sourceTree = "<group>"; };
 		7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockMatchEvaluator.m; sourceTree = "<group>"; };
 		8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		A1156BA5BDDB45C69CC4E6E1 /* Pods-iOS Tests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Tests.xcconfig"; path = "Pods/Pods-iOS Tests.xcconfig"; sourceTree = "<group>"; };
 		D309DBF218A2BD2900BA9F31 /* libFlurry_4.3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.1.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.1.a; sourceTree = "<group>"; };
 		D31C8F7D18A2D83700DA22A6 /* MPNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPNotification.h; path = Pods/Mixpanel/Mixpanel/MPNotification.h; sourceTree = "<group>"; };
 		D331BCEC185BFAA1007CB22F /* MPSurvey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPSurvey.h; path = Pods/Mixpanel/Mixpanel/MPSurvey.h; sourceTree = "<group>"; };
@@ -226,13 +240,12 @@
 		D3EDB65418C315F100A88A7E /* SEGTapstreamIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGTapstreamIntegration.h; sourceTree = "<group>"; };
 		D3EDB65518C315F100A88A7E /* SEGTapstreamIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGTapstreamIntegration.m; sourceTree = "<group>"; };
 		E83F0FBE9BA94A03A4883160 /* libPods-Analytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Analytics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA14A25217FB1E9400870901 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = settings.json; sourceTree = "<group>"; };
-		EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentioTests.m; sourceTree = "<group>"; };
+		EA14A25217FB1E9400870901 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = settings.json; path = ../AnalyticsTests/settings.json; sourceTree = "<group>"; };
+		EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SegmentioTests.m; path = ../AnalyticsTests/SegmentioTests.m; sourceTree = "<group>"; };
 		EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGAnalyticsIntegration.h; path = ../SEGAnalyticsIntegration.h; sourceTree = "<group>"; };
 		EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGAnalyticsIntegration.m; path = ../SEGAnalyticsIntegration.m; sourceTree = "<group>"; };
-		EA722AF117C87BB00016E8B0 /* AnalyticsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA722AF817C87BB00016E8B0 /* AnalyticsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AnalyticsTests-Info.plist"; sourceTree = "<group>"; };
-		EA722AFD17C87BB00016E8B0 /* AnalyticsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnalyticsTests.m; sourceTree = "<group>"; };
+		EA722AFD17C87BB00016E8B0 /* AnalyticsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AnalyticsTests.m; path = ../AnalyticsTests/AnalyticsTests.m; sourceTree = "<group>"; };
 		EA722AFF17C87BB00016E8B0 /* AnalyticsTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnalyticsTests-Prefix.pch"; sourceTree = "<group>"; };
 		EAA604C717C28C7C00911919 /* SEGAnalyticsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAnalyticsRequest.h; sourceTree = "<group>"; };
 		EAA604C817C28C7C00911919 /* SEGAnalyticsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGAnalyticsRequest.m; sourceTree = "<group>"; };
@@ -246,7 +259,7 @@
 		EABE4F3017C887E000A1081B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		EABE4F3217C887E400A1081B /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		EABE4F3417C887E800A1081B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		EABE4F4017C88A6D00A1081B /* AnalyticsUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyticsUtilsTests.m; sourceTree = "<group>"; };
+		EABE4F4017C88A6D00A1081B /* AnalyticsUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnalyticsUtilsTests.m; path = ../AnalyticsTests/AnalyticsUtilsTests.m; sourceTree = "<group>"; };
 		EACAAD6717C75FE5000A8337 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = "Pods/GoogleAnalytics-iOS-SDK/libGoogleAnalyticsServices.a"; sourceTree = "<group>"; };
 		EACAAD6B17C7601C000A8337 /* libChartbeat-iOS-SDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libChartbeat-iOS-SDK.a"; path = "Pods/Chartbeat/libChartbeat-iOS-SDK.a"; sourceTree = "<group>"; };
 		EACB4DD017C0BB3100624129 /* SEGAnalyticsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAnalyticsUtils.h; sourceTree = "<group>"; };
@@ -260,25 +273,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EA722AED17C87BB00016E8B0 /* Frameworks */ = {
+		3242C9951946A3E100FBE441 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32D045561931FACD00A9F0A4 /* XCTest.framework in Frameworks */,
-				32E281231908651300FB48D7 /* CoreBluetooth.framework in Frameworks */,
-				EA722AF417C87BB00016E8B0 /* UIKit.framework in Frameworks */,
-				EA722AF517C87BB00016E8B0 /* Foundation.framework in Frameworks */,
-				EABE4F3617C8883A00A1081B /* CoreGraphics.framework in Frameworks */,
-				EABE4F3717C8883A00A1081B /* Security.framework in Frameworks */,
-				EABE4F3817C8883A00A1081B /* CoreTelephony.framework in Frameworks */,
-				EABE4F3A17C8883A00A1081B /* CFNetwork.framework in Frameworks */,
-				EABE4F3B17C8883A00A1081B /* QuartzCore.framework in Frameworks */,
-				EABE4F3C17C8883A00A1081B /* SystemConfiguration.framework in Frameworks */,
-				EABE4F3D17C8883A00A1081B /* CoreData.framework in Frameworks */,
-				EABE4F3E17C8883A00A1081B /* libz.dylib in Frameworks */,
-				EABE4F3F17C8883A00A1081B /* libsqlite3.dylib in Frameworks */,
-				32E113241908ACAF006D9788 /* libAnalytics.a in Frameworks */,
-				32E113261908AD1C006D9788 /* libPods-AnalyticsTests.a in Frameworks */,
+				3242C9991946A3E100FBE441 /* XCTest.framework in Frameworks */,
+				3242C99B1946A3E100FBE441 /* UIKit.framework in Frameworks */,
+				3242C99A1946A3E100FBE441 /* Foundation.framework in Frameworks */,
+				6182B863DB2D44D1B463AE3B /* libPods-iOS Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +297,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3242C99C1946A3E100FBE441 /* iOS Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EA14A25217FB1E9400870901 /* settings.json */,
+				EA722AFD17C87BB00016E8B0 /* AnalyticsTests.m */,
+				EABE4F4017C88A6D00A1081B /* AnalyticsUtilsTests.m */,
+				EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */,
+				3242C9A21946A3E100FBE441 /* iOS_Tests.m */,
+				3242C99D1946A3E100FBE441 /* Supporting Files */,
+			);
+			path = "iOS Tests";
+			sourceTree = "<group>";
+		};
+		3242C99D1946A3E100FBE441 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3242C99E1946A3E100FBE441 /* iOS Tests-Info.plist */,
+				3242C99F1946A3E100FBE441 /* InfoPlist.strings */,
+				3242C9A41946A3E100FBE441 /* iOS Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		32A8C60419107DBD00173AE5 /* Quantcast */ = {
 			isa = PBXGroup;
 			children = (
@@ -483,9 +508,6 @@
 		EA722AF617C87BB00016E8B0 /* AnalyticsTests */ = {
 			isa = PBXGroup;
 			children = (
-				EA722AFD17C87BB00016E8B0 /* AnalyticsTests.m */,
-				EABE4F4017C88A6D00A1081B /* AnalyticsUtilsTests.m */,
-				EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */,
 				EA722AF717C87BB00016E8B0 /* Supporting Files */,
 				7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */,
 				7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */,
@@ -496,7 +518,6 @@
 		EA722AF717C87BB00016E8B0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EA14A25217FB1E9400870901 /* settings.json */,
 				EA722AF817C87BB00016E8B0 /* AnalyticsTests-Info.plist */,
 				EA722AFF17C87BB00016E8B0 /* AnalyticsTests-Prefix.pch */,
 			);
@@ -509,11 +530,13 @@
 				D3D35174186242B4005586E7 /* Headers */,
 				F7200B7817659B2F003F3138 /* Analytics */,
 				EA722AF617C87BB00016E8B0 /* AnalyticsTests */,
+				3242C99C1946A3E100FBE441 /* iOS Tests */,
 				F7200B7517659B2F003F3138 /* Frameworks */,
 				F7200B7417659B2F003F3138 /* Products */,
 				8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */,
 				1292362745B3499F9F8849DB /* Pods-AnalyticsTests.xcconfig */,
 				288314B9A18241B284C25C5B /* Pods-Analytics.xcconfig */,
+				A1156BA5BDDB45C69CC4E6E1 /* Pods-iOS Tests.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -521,7 +544,7 @@
 			isa = PBXGroup;
 			children = (
 				F7200B7317659B2F003F3138 /* libAnalytics.a */,
-				EA722AF117C87BB00016E8B0 /* AnalyticsTests.xctest */,
+				3242C9981946A3E100FBE441 /* iOS Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -563,6 +586,7 @@
 				EABE4F3217C887E400A1081B /* libsqlite3.dylib */,
 				23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */,
 				E83F0FBE9BA94A03A4883160 /* libPods-Analytics.a */,
+				24AE4A015CBF4E95B18D10A7 /* libPods-iOS Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -662,23 +686,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EA722AF017C87BB00016E8B0 /* AnalyticsTests */ = {
+		3242C9971946A3E100FBE441 /* iOS Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA722B0017C87BB00016E8B0 /* Build configuration list for PBXNativeTarget "AnalyticsTests" */;
+			buildConfigurationList = 3242C9A71946A3E100FBE441 /* Build configuration list for PBXNativeTarget "iOS Tests" */;
 			buildPhases = (
-				EA722AEC17C87BB00016E8B0 /* Sources */,
-				EA722AED17C87BB00016E8B0 /* Frameworks */,
-				EA722AEE17C87BB00016E8B0 /* Resources */,
-				14458D73464944C0ACCBDE28 /* Copy Pods Resources */,
+				F7DFF836C131403D8AD86562 /* Check Pods Manifest.lock */,
+				3242C9941946A3E100FBE441 /* Sources */,
+				3242C9951946A3E100FBE441 /* Frameworks */,
+				3242C9961946A3E100FBE441 /* Resources */,
+				60EF4BBE30C0417E9ED651A1 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				EAE10AFD17C8855400C66882 /* PBXTargetDependency */,
+				3242C9A61946A3E100FBE441 /* PBXTargetDependency */,
 			);
-			name = AnalyticsTests;
-			productName = AnalyticsTests;
-			productReference = EA722AF117C87BB00016E8B0 /* AnalyticsTests.xctest */;
+			name = "iOS Tests";
+			productName = "iOS Tests";
+			productReference = 3242C9981946A3E100FBE441 /* iOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		F7200B7217659B2F003F3138 /* Analytics */ = {
@@ -710,6 +735,11 @@
 				LastTestingUpgradeCheck = 0510;
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Segment.io;
+				TargetAttributes = {
+					3242C9971946A3E100FBE441 = {
+						TestTargetID = F7200B7217659B2F003F3138;
+					};
+				};
 			};
 			buildConfigurationList = F7200B6E17659B2F003F3138 /* Build configuration list for PBXProject "Analytics" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -724,39 +754,25 @@
 			projectRoot = "";
 			targets = (
 				F7200B7217659B2F003F3138 /* Analytics */,
-				EA722AF017C87BB00016E8B0 /* AnalyticsTests */,
 				EA25891E17C693C2000CEF61 /* Analytics.framework */,
+				3242C9971946A3E100FBE441 /* iOS Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		EA722AEE17C87BB00016E8B0 /* Resources */ = {
+		3242C9961946A3E100FBE441 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA14A25317FB1E9400870901 /* settings.json in Resources */,
+				3242C9B41946AFA100FBE441 /* settings.json in Resources */,
+				3242C9A11946A3E100FBE441 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		14458D73464944C0ACCBDE28 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-AnalyticsTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		323E966919296EFC0045A2C5 /* Upload Bugsnag dSYM */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -784,6 +800,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		60EF4BBE30C0417E9ED651A1 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-iOS Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BB672FCD0430415AB87EF64C /* Copy Pods Resources */ = {
@@ -844,18 +875,50 @@
 			shellPath = /bin/sh;
 			shellScript = "# Update the version in Analytics.h header\noldVersion=\"\\/\\/ Version .*\"\nnewVersion=\"\\/\\/ Version ${ANALYTICS_VERSION} (Do not change this line. It is automatically modified by the build process)\"\nsed -i '' -e \"s/${oldVersion}/${newVersion}/g\" Analytics/Analytics.h\n\n# Update the version in Analytics.podspec\noldVersion=\"s.version         = .*\"\nnewVersion=\"s.version         = \\\"${ANALYTICS_VERSION}\\\"\"\nsed -i '' -e \"s/${oldVersion}/${newVersion}/g\" Analytics.podspec\n";
 		};
+		F7DFF836C131403D8AD86562 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		EA722AEC17C87BB00016E8B0 /* Sources */ = {
+		3242C9941946A3E100FBE441 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA722AFE17C87BB00016E8B0 /* AnalyticsTests.m in Sources */,
-				EABE4F4117C88A6D00A1081B /* AnalyticsUtilsTests.m in Sources */,
-				32DF327C194666DA004098C1 /* SEGTaplyticsIntegration.m in Sources */,
-				EA3B4CC717C8900A00233EA9 /* SegmentioTests.m in Sources */,
-				7E94C0F018932A5B004BD132 /* KWBlockMatchEvaluator.m in Sources */,
+				3242C9B51946AFC500FBE441 /* SEGAmplitudeIntegration.m in Sources */,
+				3242C9B01946ADA000FBE441 /* SEGLocation.m in Sources */,
+				3242C9AB1946AB4700FBE441 /* AnalyticsUtilsTests.m in Sources */,
+				3242C9AC1946AB4700FBE441 /* SegmentioTests.m in Sources */,
+				3242C9BF1946AFF900FBE441 /* SEGTapstreamIntegration.m in Sources */,
+				3242C9B61946AFC800FBE441 /* SEGBugsnagIntegration.m in Sources */,
+				3242C9BB1946AFDD00FBE441 /* SEGLocalyticsIntegration.m in Sources */,
+				3242C9AA1946AB4700FBE441 /* AnalyticsTests.m in Sources */,
+				3242C9B31946ADB000FBE441 /* SEGSegmentioIntegration.m in Sources */,
+				3242C9B11946ADA200FBE441 /* SEGBluetooth.m in Sources */,
+				3242C9BA1946AFD900FBE441 /* SEGGoogleAnalyticsIntegration.m in Sources */,
+				3242C9B91946AFD400FBE441 /* SEGFlurryIntegration.m in Sources */,
+				3242C9BD1946AFEC00FBE441 /* SEGQuantcastIntegration.m in Sources */,
+				3242C9BC1946AFE300FBE441 /* SEGMixpanelIntegration.m in Sources */,
+				3242C9AD1946AD9600FBE441 /* SEGAnalytics.m in Sources */,
+				3242C9BE1946AFF200FBE441 /* SEGTaplyticsIntegration.m in Sources */,
+				3242C9AF1946AD9B00FBE441 /* SEGAnalyticsUtils.m in Sources */,
+				3242C9AE1946AD9900FBE441 /* SEGAnalyticsRequest.m in Sources */,
+				3242C9B81946AFD100FBE441 /* SEGCrittercismIntegration.m in Sources */,
+				3242C9A31946A3E100FBE441 /* iOS_Tests.m in Sources */,
+				3242C9B21946ADA900FBE441 /* SEGAnalyticsIntegration.m in Sources */,
+				3242C9B71946AFCC00FBE441 /* SEGCountlyIntegration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,14 +950,84 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		EAE10AFD17C8855400C66882 /* PBXTargetDependency */ = {
+		3242C9A61946A3E100FBE441 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F7200B7217659B2F003F3138 /* Analytics */;
-			targetProxy = EAE10AFC17C8855400C66882 /* PBXContainerItemProxy */;
+			targetProxy = 3242C9A51946A3E100FBE441 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		3242C99F1946A3E100FBE441 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3242C9A01946A3E100FBE441 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		3242C9A81946A3E100FBE441 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1156BA5BDDB45C69CC4E6E1 /* Pods-iOS Tests.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOS Tests/iOS Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "iOS Tests/iOS Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		3242C9A91946A3E100FBE441 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1156BA5BDDB45C69CC4E6E1 /* Pods-iOS Tests.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "iOS Tests/iOS Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "iOS Tests/iOS Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		EA25891F17C693C2000CEF61 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -907,112 +1040,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
-		EA722B0117C87BB00016E8B0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AnalyticsTests/AnalyticsTests-Prefix.pch";
-				INFOPLIST_FILE = "AnalyticsTests/AnalyticsTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lCrittercism_v4_3_3",
-					"-lFlurry_4.4.0",
-					"-lGoogleAnalyticsServices",
-					"-lsqlite3",
-					"-lz",
-					"-framework",
-					Accelerate,
-					"-framework",
-					CFNetwork,
-					"-framework",
-					CoreData,
-					"-framework",
-					CoreGraphics,
-					"-framework",
-					CoreTelephony,
-					"-framework",
-					Foundation,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					Security,
-					"-framework",
-					SystemConfiguration,
-					"-framework",
-					UIKit,
-					"-weak_framework",
-					AdSupport,
-					"-weak_framework",
-					CoreTelephony,
-				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		EA722B0217C87BB00016E8B0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AnalyticsTests/AnalyticsTests-Prefix.pch";
-				INFOPLIST_FILE = "AnalyticsTests/AnalyticsTests-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lCrittercism_v4_3_3",
-					"-lFlurry_4.4.0",
-					"-lGoogleAnalyticsServices",
-					"-lsqlite3",
-					"-lz",
-					"-framework",
-					Accelerate,
-					"-framework",
-					CFNetwork,
-					"-framework",
-					CoreData,
-					"-framework",
-					CoreGraphics,
-					"-framework",
-					CoreTelephony,
-					"-framework",
-					Foundation,
-					"-framework",
-					QuartzCore,
-					"-framework",
-					Security,
-					"-framework",
-					SystemConfiguration,
-					"-framework",
-					UIKit,
-					"-weak_framework",
-					AdSupport,
-					"-weak_framework",
-					CoreTelephony,
-				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1137,20 +1164,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3242C9A71946A3E100FBE441 /* Build configuration list for PBXNativeTarget "iOS Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3242C9A81946A3E100FBE441 /* Debug */,
+				3242C9A91946A3E100FBE441 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EA25892117C693C2000CEF61 /* Build configuration list for PBXAggregateTarget "Analytics.framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EA25891F17C693C2000CEF61 /* Debug */,
 				EA25892017C693C2000CEF61 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EA722B0017C87BB00016E8B0 /* Build configuration list for PBXNativeTarget "AnalyticsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EA722B0117C87BB00016E8B0 /* Debug */,
-				EA722B0217C87BB00016E8B0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

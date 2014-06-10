@@ -7,7 +7,7 @@
 //
 
 #import "SEGLocation.h"
-#import <SEGAnalyticsUtils.h>
+#import "SEGAnalyticsUtils.h"
 
 #import <CoreLocation/CoreLocation.h>
 

@@ -2,6 +2,8 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import <XCTest/XCTest.h>
+
+#import "SEGAnalytics.h"
 #import "SEGSegmentioIntegration.h"
 #import "SEGAnalyticsUtils.h"
 #import <OCMock/OCMock.h>
@@ -39,7 +41,7 @@
 }
 
 - (void)testHasIntegrations {
-  XCTAssertEqual(11, self.analytics.configuration.integrations.count);
+  XCTAssertEqual(12, self.analytics.configuration.integrations.count);
 }
 
 - (void)testForwardsIdentify {
@@ -56,10 +58,10 @@
   [[self.mock reject] identify:@"" traits:@{} options:[self options]];
   [[self.mock reject] identify:@"" traits:nil options:[self options]];
 
-  expect(^{ [self.analytics identify:nil traits:nil options:[self options]]; });
-  expect(^{ [self.analytics identify:nil traits:@{} options:[self options]]; });
-  expect(^{ [self.analytics identify:@"" traits:@{} options:[self options]]; });
-  expect(^{ [self.analytics identify:@"" traits:nil options:[self options]]; });
+  EXP_expect(^{ [self.analytics identify:nil traits:nil options:[self options]]; });
+  EXP_expect(^{ [self.analytics identify:nil traits:@{} options:[self options]]; });
+  EXP_expect(^{ [self.analytics identify:@"" traits:@{} options:[self options]]; });
+  EXP_expect(^{ [self.analytics identify:@"" traits:nil options:[self options]]; });
 
   [self.mock verifyWithDelay:1];
 }
@@ -76,8 +78,8 @@
   [[self.mock reject] track:@"" properties:[self properties] options:[self options]];
   [[self.mock reject] track:nil properties:[self properties] options:[self options]];
 
-  expect(^{ [self.analytics track:@"" properties:[self properties] options:[self options]]; }).to.raiseAny();
-  expect(^{ [self.analytics track:nil properties:[self properties] options:[self options]]; }).to.raiseAny();
+  EXP_expect(^{ [self.analytics track:@"" properties:[self properties] options:[self options]]; }).to.raiseAny();
+  EXP_expect(^{ [self.analytics track:nil properties:[self properties] options:[self options]]; }).to.raiseAny();
 
   [self.mock verifyWithDelay:1];
 }

@@ -1,6 +1,7 @@
 // AnalyticsUtilsTests.m
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
+#import <XCTest/XCTest.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalyticsIntegration.h"
 #import <Expecta/Expecta.h>
@@ -40,7 +41,7 @@
     __block BOOL blockRan = NO;
     dispatch_specific_async(self.queue, ^{ blockRan = YES; });
     XCTAssertFalse(blockRan);
-    expect(blockRan).will.beTruthy();
+    EXP_expect(blockRan).will.beTruthy();
 }
 
 - (void)testCanSyncWhenDispatchingElsewhereThanQueue {
