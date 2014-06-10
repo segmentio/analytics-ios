@@ -177,7 +177,6 @@
 }
 
 - (BOOL)isCI {
-  NSLog(@"CI: %@", [NSProcessInfo.processInfo.environment objectForKey:@"CI"]);
   return [NSProcessInfo.processInfo.environment objectForKey:@"CI"];
 }
 
