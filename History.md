@@ -1,3 +1,68 @@
+1.2.0 / 2014-06-10
+==================
+* add: taplytics integration
+* fix: add Analytics.h to public headers
+* fix: ci tests
+
+1.1.0 / 2014-06-03
+==================
+* add: ability to configure the lib with the new SEGAnalyticsConfiguration api
+
+1.0.2 / 2014-05-31
+==================
+* fix: logging errors
+* fix: attempt to flush queue when flushAt is updated
+* fix: log when CLLocationManager errors
+* fix: document SEGAnalyticsConfiguration
+
+1.0.1 / 2014-05-30
+==================
+* fix: localytics subspec to dependend on Localytics-iOS-Client podspec
+* fix: make parameter asserts more informative
+* fix: use xctest
+
+1.0.0 / 2014-05-23
+==================
+* add: ability to build specific integrations
+* fix: using segment's spec
+* fix: compiler error not finding +[Flurry setPushToken:]
+* fix: make parameter asserts more informative
+* fix: use NSCParameterAssert consistently
+
+0.11.5 / 2014-05-14
+==================
+* fix: using adsupport framework optionally
+
+0.11.4 / 2014-05-14
+==================
+* fix: incrementing and blocked events in segment integration
+* fix: using ASIdentifierManager when adsupport framework isn't linked
+
+0.11.3 / 2014-05-12
+==================
+* fix: including idfa to tapstream integration
+
+0.11.2 / 2014-06-10
+==================
+* fix: debug logs to only happen when debug is enabled
+
+0.11.1 / 2014-06-01
+==================
+* fix: including quantcast headers
+
+0.11.0 / 2014-06-10
+==================
+* add: quantcast integration
+* add: wifi, bluetooth, location, address to be sent
+* fix: travisci to use utf-8
+* fix: prefix screen events with Viewed
+* fix: minor fixes to match segment's spec
+* update: localytics depdency
+
+0.10.6 / 2014-06-10
+==================
+* fix: podspec to require arc
+
 0.10.5 / 2014-4-12
 ==================
 * Added support for Mixpanel increment
@@ -30,7 +95,7 @@
 
 0.9.9 / 2014-2-17
 =================
-* Bundling resources for Mixpanel 
+* Bundling resources for Mixpanel
 * Adding disable/enable methods for handling optout
 * Adding reset method for handling user logout
 * Updating Flurry, Google Analytics SDKs
