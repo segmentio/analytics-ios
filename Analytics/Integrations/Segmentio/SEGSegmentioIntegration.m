@@ -133,7 +133,7 @@ static NSMutableDictionary *BuildStaticContext() {
 - (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
   if (self = [super init]) {
     self.configuration = configuration;
-    self.apiURL = [NSURL URLWithString:@"http://api.segment.io/v1/import"];
+    self.apiURL = [NSURL URLWithString:@"https://api.segment.io/v1/import"];
     self.anonymousId = GetAnonymousId(NO);
     self.userId = [[NSString alloc] initWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
     self.bluetooth = [[SEGBluetooth alloc] init];
