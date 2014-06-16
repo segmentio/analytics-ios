@@ -1,5 +1,6 @@
 PODS:
   - Amplitude-iOS (2.0.0)
+  - Apptimize (2.3.1)
   - Bugsnag (3.1.2)
   - Countly (1.0.0)
   - CrittercismSDK (4.3.3)
@@ -22,6 +23,7 @@ PODS:
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 2.0.0)
+  - Apptimize (~> 2.3.1)
   - Bugsnag (~> 3.1.2)
   - Countly (~> 1.0.0)
   - CrittercismSDK (~> 4.3.3)
@@ -39,6 +41,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Amplitude-iOS: 44212943f8cf9275a68c1f0a38e93625c5c86b05
+  Apptimize: 531d3e0e355985302f126f79217b3f2ec721a9d0
   Bugsnag: 74d109dfa41b55d16890c987c7551ca071afd3d2
   Countly: f26a3483a660b5790b2c76e1f91dea4f276b3c33
   CrittercismSDK: 9f19db3a1f0c16b35d8c29c69406852d184a7650
