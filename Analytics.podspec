@@ -11,6 +11,7 @@ Pod::Spec.new do |s|
   s.requires_arc    = true
 
   amplitude = { :name => 'Amplitude', :dependencies => [{ :pod => 'Amplitude-iOS', :version => '~> 2.0.0' }]}
+  apptimize = { :name => 'Apptimize', :dependencies => [{ :pod => 'Apptimize', :version => '~> 2.3.1' }]}
   bugsnag = { :name => 'Bugsnag', :dependencies => [{ :pod => 'Bugsnag', :version => '~> 3.1.2' }]}
   countly = { :name => 'Countly', :dependencies => [{ :pod => 'Countly', :version => '~> 2.0.0' }]}
   crittercism = { :name => 'Crittercism', :dependencies => [{ :pod => 'CrittercismSDK', :version => '~> 4.3.3' }]}
@@ -23,7 +24,7 @@ Pod::Spec.new do |s|
   taplytics = { :name => 'Taplytics', :dependencies => [{ :pod => 'Taplytics', :version => '~> 1.3.0' }]}
   segmentio = { :name => 'Segmentio', :dependencies => [{ :pod => 'Reachability', :version => '3.1.1' }]}
 
-  analytics = [segmentio, amplitude, bugsnag, countly, crittercism, flurry, google, localytics, mixpanel, taplytics, tapstream, quantcast]
+  analytics = [segmentio, amplitude, apptimize, bugsnag, countly, crittercism, flurry, google, localytics, mixpanel, taplytics, tapstream, quantcast]
 
   s.subspec 'Core-iOS' do |ss|
     ss.public_header_files = 'Analytics/*'
