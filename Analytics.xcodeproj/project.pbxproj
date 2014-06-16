@@ -53,6 +53,9 @@
 		32430A761914186C004EFF59 /* SEGLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A741914186C004EFF59 /* SEGLocation.h */; };
 		32430A771914186C004EFF59 /* SEGLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32430A751914186C004EFF59 /* SEGLocation.m */; };
 		32430A7919145DA8004EFF59 /* SEGAnalyticsIntegrations.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A7819145DA8004EFF59 /* SEGAnalyticsIntegrations.h */; };
+		3278F8BA194F7AC2009AD09C /* SEGApptimizeIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3278F8B8194F7AC2009AD09C /* SEGApptimizeIntegration.h */; };
+		3278F8BB194F7AC2009AD09C /* SEGApptimizeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3278F8B9194F7AC2009AD09C /* SEGApptimizeIntegration.m */; };
+		3278F8BC194F7AC2009AD09C /* SEGApptimizeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3278F8B9194F7AC2009AD09C /* SEGApptimizeIntegration.m */; };
 		32A8C60719107DBD00173AE5 /* SEGQuantcastIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */; };
 		32A8C60819107DBD00173AE5 /* SEGQuantcastIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A8C60619107DBD00173AE5 /* SEGQuantcastIntegration.m */; };
 		32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCD99B1919A4F4007B63BA /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -153,6 +156,8 @@
 		32430A741914186C004EFF59 /* SEGLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGLocation.h; path = Helpers/SEGLocation.h; sourceTree = "<group>"; };
 		32430A751914186C004EFF59 /* SEGLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGLocation.m; path = Helpers/SEGLocation.m; sourceTree = "<group>"; };
 		32430A7819145DA8004EFF59 /* SEGAnalyticsIntegrations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAnalyticsIntegrations.h; sourceTree = "<group>"; };
+		3278F8B8194F7AC2009AD09C /* SEGApptimizeIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGApptimizeIntegration.h; path = Apptimize/SEGApptimizeIntegration.h; sourceTree = "<group>"; };
+		3278F8B9194F7AC2009AD09C /* SEGApptimizeIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGApptimizeIntegration.m; path = Apptimize/SEGApptimizeIntegration.m; sourceTree = "<group>"; };
 		32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGQuantcastIntegration.h; sourceTree = "<group>"; };
 		32A8C60619107DBD00173AE5 /* SEGQuantcastIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGQuantcastIntegration.m; sourceTree = "<group>"; };
 		32CC25E119072C6B0090DD06 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
@@ -320,6 +325,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		3278F8B7194F7A4D009AD09C /* Apptimize */ = {
+			isa = PBXGroup;
+			children = (
+				3278F8B8194F7AC2009AD09C /* SEGApptimizeIntegration.h */,
+				3278F8B9194F7AC2009AD09C /* SEGApptimizeIntegration.m */,
+			);
+			name = Apptimize;
+			sourceTree = "<group>";
+		};
 		32A8C60419107DBD00173AE5 /* Quantcast */ = {
 			isa = PBXGroup;
 			children = (
@@ -400,6 +414,7 @@
 				EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */,
 				EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */,
 				D3EDB63818C315F100A88A7E /* Amplitude */,
+				3278F8B7194F7A4D009AD09C /* Apptimize */,
 				D3EDB63B18C315F100A88A7E /* Bugsnag */,
 				D3EDB63E18C315F100A88A7E /* Countly */,
 				D3EDB64118C315F100A88A7E /* Crittercism */,
@@ -632,6 +647,7 @@
 				D331BCF3185BFF4A007CB22F /* CrittercismDelegate.h in Headers */,
 				D3EDB65818C315F100A88A7E /* SEGBugsnagIntegration.h in Headers */,
 				D371F330185942C90053337D /* Flurry.h in Headers */,
+				3278F8BA194F7AC2009AD09C /* SEGApptimizeIntegration.h in Headers */,
 				D371F332185942DE0053337D /* GAI.h in Headers */,
 				D3EDB65E18C315F100A88A7E /* SEGFlurryIntegration.h in Headers */,
 				32DF327A194666DA004098C1 /* SEGTaplyticsIntegration.h in Headers */,
@@ -898,6 +914,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3242C9B51946AFC500FBE441 /* SEGAmplitudeIntegration.m in Sources */,
+				3278F8BC194F7AC2009AD09C /* SEGApptimizeIntegration.m in Sources */,
 				3242C9B01946ADA000FBE441 /* SEGLocation.m in Sources */,
 				3242C9AB1946AB4700FBE441 /* AnalyticsUtilsTests.m in Sources */,
 				3242C9AC1946AB4700FBE441 /* SegmentioTests.m in Sources */,
@@ -944,6 +961,7 @@
 				EA65F96717C2ABA600389A1A /* SEGAnalyticsIntegration.m in Sources */,
 				D3EDB66318C315F100A88A7E /* SEGLocalyticsIntegration.m in Sources */,
 				D3EDB65B18C315F100A88A7E /* SEGCountlyIntegration.m in Sources */,
+				3278F8BB194F7AC2009AD09C /* SEGApptimizeIntegration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
