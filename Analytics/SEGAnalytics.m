@@ -288,7 +288,7 @@ static SEGAnalytics *__sharedInstance = nil;
     return;
   }
 
-  if(![self isIntegration:integration enabledInOptions:options]) {
+  if(![self isIntegration:integration enabledInOptions:options[@"integrations"]]) {
     SEGLog(@"Not sending call to %@ because it is disabled in options.", integration.name);
     return;
   }
