@@ -13,6 +13,7 @@
 #import "SEGBluetooth.h"
 #import <Reachability/Reachability.h>
 #import "SEGLocation.h"
+#import <iAd/ADClient.h>
 
 NSString *const SEGSegmentioDidSendRequestNotification = @"SegmentioDidSendRequest";
 NSString *const SEGSegmentioRequestDidSucceedNotification = @"SegmentioRequestDidSucceed";
@@ -109,6 +110,14 @@ static NSMutableDictionary *BuildStaticContext() {
     @"width": @(screenSize.width),
     @"height": @(screenSize.height)
   };
+  
+  if([ADClient class]) {
+    [[ADClient sharedClient] determineAppInstallationAttributionWithCompletionHandler:^(BOOL appInstallationWasAttributedToiAd) {
+      if(appInstallationWasAttributedToiAd) {
+        context[@"referrer"] = @{ @"type" : @"iad" };
+      }
+    }];
+  }
 
   return context;
 }
