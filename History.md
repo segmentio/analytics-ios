@@ -1,3 +1,16 @@
+1.3.1 / 2014-06-19
+==================
+* fix: enabling/disabling integrations
+
+1.3.0 / 2014-06-16
+==================
+* add: apptimize integration
+
+1.2.1 / 2014-06-19
+==================
+* fix: manual install issue with taplytics
+* fix: build phase error
+
 1.2.0 / 2014-06-10
 ==================
 * add: taplytics integration
