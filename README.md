@@ -7,7 +7,7 @@ Special thanks to [Tony Xiao](https://github.com/tonyxiao), [Lee Hasiuk](https:/
 
 ## Documentation
 
-Quickstart tutorial is available at [https://segment.io/docs/tutorials/quickstart-ios/](https://https://segment.io/docs/tutorials/quickstart-ios/).
+Quickstart tutorial is available at [https://segment.io/docs/tutorials/quickstart-ios/](https://segment.io/docs/tutorials/quickstart-ios/).
 Reference documentation is available at [https://segment.io/libraries/ios](https://segment.io/libraries/ios).
 
 ## Development
