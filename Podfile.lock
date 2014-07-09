@@ -13,8 +13,26 @@ PODS:
   - Mixpanel (2.3.6)
   - OCMock (2.2.4)
   - Quantcast-Measure (1.4.5):
+    - Quantcast-Measure/advertising
+    - Quantcast-Measure/app-networks
+    - Quantcast-Measure/Core
+    - Quantcast-Measure/digital-periodicals
+    - Quantcast-Measure/geo-measurement
+    - Quantcast-Measure/install-attribution
+    - Quantcast-Measure/secure-data
+  - Quantcast-Measure/advertising (1.4.5):
+    - Quantcast-Measure/Core
+  - Quantcast-Measure/app-networks (1.4.5):
     - Quantcast-Measure/Core
   - Quantcast-Measure/Core (1.4.5)
+  - Quantcast-Measure/digital-periodicals (1.4.5):
+    - Quantcast-Measure/Core
+  - Quantcast-Measure/geo-measurement (1.4.5):
+    - Quantcast-Measure/Core
+  - Quantcast-Measure/install-attribution (1.4.5):
+    - Quantcast-Measure/Core
+  - Quantcast-Measure/secure-data (1.4.5):
+    - Quantcast-Measure/Core
   - Reachability (3.1.1)
   - Taplytics (1.3.0)
   - Tapstream (2.7)
@@ -57,4 +75,4 @@ SPEC CHECKSUMS:
   Tapstream: 1c945ae1e9d25af25915c96e5d506485b26f52f0
   TRVSKit: fd946dbfb09de6bb75889e0f73c021a391e7594a
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.32.1
