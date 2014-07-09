@@ -44,7 +44,7 @@
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
     [[Mixpanel sharedInstance] identify:userId];
-
+  
     // Map the traits to special mixpanel keywords.
     NSDictionary *map = [NSDictionary dictionaryWithObjectsAndKeys:
         @"$first_name", @"firstName",
@@ -86,7 +86,7 @@
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
     // Track the screen view as an event.
-    [self track:screenTitle properties:properties options:options];
+    [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
 }
 
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {

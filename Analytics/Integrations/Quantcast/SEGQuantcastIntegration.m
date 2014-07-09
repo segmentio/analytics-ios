@@ -8,6 +8,7 @@
 
 #import "SEGQuantcastIntegration.h"
 #import "SEGAnalytics.h"
+#import "SEGAnalyticsUtils.h"
 #import <Quantcast-Measure/QuantcastMeasurement.h>
 
 @implementation SEGQuantcastIntegration
@@ -36,7 +37,7 @@
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
-    [[QuantcastMeasurement sharedInstance] logEvent:screenTitle withLabels:self.settings[@"labels"]];
+    [[QuantcastMeasurement sharedInstance] logEvent:SEGEventNameForScreenTitle(screenTitle) withLabels:self.settings[@"labels"]];
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {

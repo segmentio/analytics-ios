@@ -129,3 +129,7 @@ NSString *SEGIDFA() {
     return nil;
   }
 }
+
+NSString *SEGEventNameForScreenTitle(NSString *title) {
+  return [[NSString alloc] initWithFormat:@"Viewed %@ Screen", title];
+}

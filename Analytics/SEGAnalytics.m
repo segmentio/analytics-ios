@@ -154,7 +154,7 @@ static SEGAnalytics *__sharedInstance = nil;
   NSCParameterAssert(screenTitle.length > 0);
 
   [self callIntegrationsWithSelector:_cmd
-                           arguments:@[[NSString stringWithFormat:@"Viewed %@ Screen", screenTitle], SEGCoerceDictionary(properties), SEGCoerceDictionary(options)]
+                           arguments:@[screenTitle, SEGCoerceDictionary(properties), SEGCoerceDictionary(options)]
                              options:options];
 }
 

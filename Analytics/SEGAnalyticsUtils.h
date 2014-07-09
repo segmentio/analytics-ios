@@ -25,3 +25,5 @@ void SEGLog(NSString *format, ...);
 NSDictionary *SEGCoerceDictionary(NSDictionary *dict);
 
 NSString *SEGIDFA();
+
+NSString *SEGEventNameForScreenTitle(NSString *title);
