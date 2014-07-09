@@ -62,7 +62,7 @@
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)optionsoptions
 {
-    [Crittercism leaveBreadcrumb:screenTitle];
+    [Crittercism leaveBreadcrumb:SEGEventNameForScreenTitle(screenTitle)];
 }
 
 

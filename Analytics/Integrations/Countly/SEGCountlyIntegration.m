@@ -75,7 +75,7 @@
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     // Screens just get tracked as events here.
-    [self track:screenTitle properties:properties options:options];
+    [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
 }
 
 - (NSDictionary *)ensureNotNested:(NSDictionary *)dictionary

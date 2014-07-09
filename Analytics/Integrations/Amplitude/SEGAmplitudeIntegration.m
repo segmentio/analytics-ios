@@ -63,7 +63,7 @@
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     // No explicit support for screens, so we'll track an event instead.
-    [self track:screenTitle properties:properties options:options];
+    [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
 }
 
 @end
