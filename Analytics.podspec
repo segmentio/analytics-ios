@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '6.0'
   s.requires_arc    = true
 
-  amplitude = { :name => 'Amplitude', :dependencies => [{ :pod => 'Amplitude-iOS', :version => '~> 2.0.0' }]}
+  amplitude = { :name => 'Amplitude', :dependencies => [{ :pod => 'Amplitude-iOS', :version => '~> 2.1.0' }]}
   apptimize = { :name => 'Apptimize', :dependencies => [{ :pod => 'Apptimize', :version => '~> 2.3.1' }]}
   bugsnag = { :name => 'Bugsnag', :dependencies => [{ :pod => 'Bugsnag', :version => '~> 3.1.2' }]}
   countly = { :name => 'Countly', :dependencies => [{ :pod => 'Countly', :version => '~> 2.0.0' }]}
