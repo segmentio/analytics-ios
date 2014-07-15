@@ -56,7 +56,22 @@
     // Track any revenue.
     NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:properties];
     if (revenue) {
-        [Amplitude logRevenue:revenue];
+        id productId = [properties objectForKey:@"productId"];
+        if (!productId || ![productId isKindOfClass:[NSString class]]) {
+            productId = nil;
+        }
+        id quantity = [properties objectForKey:@"quantity"];
+        if (!quantity || ![quantity isKindOfClass:[NSNumber class]]) {
+            quantity = [NSNumber numberWithInt:1];
+        }
+        id receipt = [properties objectForKey:@"receipt"];
+        if (!receipt || ![receipt isKindOfClass:[NSString class]]) {
+            receipt = nil;
+        }
+        [Amplitude logRevenue:productId
+                     quantity:[quantity integerValue]
+                        price:revenue
+                      receipt:receipt];
     }
 }
 
