@@ -1,7 +1,7 @@
 inhibit_all_warnings!
 
 def import_integrations
-  pod 'Amplitude-iOS', '~> 2.0.0'
+  pod 'Amplitude-iOS', '~> 2.1.0'
   pod 'Apptimize', '~> 2.3.1'
   pod 'Bugsnag', '~> 3.1.2'
   pod 'Countly', '~> 1.0.0'
