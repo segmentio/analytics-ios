@@ -19,13 +19,13 @@ Pod::Spec.new do |s|
   google = { :name => 'GoogleAnalytics', :dependencies => [{ :pod => 'GoogleAnalytics-iOS-SDK', :version => '3.0.7' }]}
   localytics = { :name => 'Localytics', :dependencies => [{ :pod => 'Localytics-iOS-Client', :version => '~> 2.23.0' }]}
   mixpanel = { :name => 'Mixpanel', :dependencies => [{ :pod => 'Mixpanel', :version => '~> 2.3.6' }]}
-  optimizely = { :name => 'Optimizely', :dependencies => [{ :pod => 'Optimizely', :version => '~> 0.5.51' }]}
+  optimizely = { :name => 'Optimizely', :dependencies => [{ :pod => 'Optimizely-iOS-SDK', :version => '~> 0.5.51' }]}
   quantcast = { :name => 'Quantcast', :dependencies => [{ :pod => 'Quantcast-Measure', :version => '~> 1.4.4' }]}
   segmentio = { :name => 'Segmentio', :dependencies => [{ :pod => 'Reachability', :version => '3.1.1' }]}
   taplytics = { :name => 'Taplytics', :dependencies => [{ :pod => 'Taplytics', :version => '~> 1.3.0' }]}
   tapstream = { :name => 'Tapstream', :dependencies => [{ :pod => 'Tapstream', :version => '~> 2.7' }]}
 
-  analytics = [segmentio, amplitude, apptimize, bugsnag, countly, crittercism, flurry, google, localytics, mixpanel, taplytics, tapstream, quantcast]
+  analytics = [segmentio, amplitude, apptimize, bugsnag, countly, crittercism, flurry, google, localytics, mixpanel, optimizely, taplytics, tapstream, quantcast]
 
   s.subspec 'Core-iOS' do |ss|
     ss.public_header_files = 'Analytics/*'
