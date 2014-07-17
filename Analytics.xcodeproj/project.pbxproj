@@ -768,7 +768,7 @@
 				ORGANIZATIONNAME = Segment.io;
 				TargetAttributes = {
 					3242C9971946A3E100FBE441 = {
-						TestTargetID = F7200B7217659B2F003F3138;
+						TestTargetID = F7200B7217659B2F003F3138 /* Analytics */;
 					};
 				};
 			};
