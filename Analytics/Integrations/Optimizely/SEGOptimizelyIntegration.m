@@ -6,10 +6,12 @@
 //  Copyright (c) 2014 Segment.io. All rights reserved.
 //
 
-#import "SEGOptmizelyIntegration.h"
-#import <Optimizely/Optimizely.h>
+#import "SEGOptimizelyIntegration.h"
+#import "SEGAnalytics.h"
+#import "SEGAnalyticsUtils.h"
+#import <Optimizely-iOS-SDK/Optimizely.h>
 
-@implementation SEGOptmizelyIntegration
+@implementation SEGOptimizelyIntegration
 
 + (void)load {
   [SEGAnalytics registerIntegration:self withIdentifier:self.identifier];
@@ -25,6 +27,10 @@
 }
 
 - (void)start {
+#ifdef DEBUG
+  [Optimizely enableEditor];
+#endif
+  
   [Optimizely startOptimizelyWithAPIToken:self.apiToken launchOptions:nil];
   SEGLog(@"OptimizelyIntegration initialized.");
 }
