@@ -66,11 +66,19 @@
 }
 
 + (NSNumber *)extractRevenue:(NSDictionary *)dictionary {
-    return [SEGAnalyticsIntegration extractRevenue:dictionary withKey:@"revenue"];
+    return [self extractRevenue:dictionary withKey:@"revenue"];
 }
 
-+ (NSNumber *)extractRevenue:(NSDictionary *)dictionary withKey:(NSString *)key {
-    id revenueProperty = [dictionary objectForKey:key];
++ (NSNumber *)extractRevenue:(NSDictionary *)dictionary withKey:(NSString *)revenueKey {
+    id revenueProperty = nil;
+    
+    for (NSString *key in dictionary.allKeys) {
+        if ([key caseInsensitiveCompare:revenueKey] == NSOrderedSame) {
+            revenueProperty = dictionary[key];
+            break;
+        }
+    }
+
     if (revenueProperty) {
         if ([revenueProperty isKindOfClass:[NSString class]]) {
             // Format the revenue.
