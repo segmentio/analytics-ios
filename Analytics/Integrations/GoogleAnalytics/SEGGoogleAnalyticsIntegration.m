@@ -114,4 +114,23 @@
     [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
+#pragma mark - Ecommerce
+
+- (void)completedOrder:(NSDictionary *)properties {
+  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createTransactionWithId:properties[@"id"]
+                                                                                affiliation:properties[@"affiliation"]
+                                                                                    revenue:properties[@"revenue"]
+                                                                                        tax:properties[@"tax"]
+                                                                                   shipping:properties[@"shipping"]
+                                                                               currencyCode:properties[@"currency"] ?: @"USD"] build]];
+
+  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createItemWithTransactionId:properties[@"id"]
+                                                                                           name:properties[@"name"]
+                                                                                            sku:properties[@"sku"]
+                                                                                       category:properties[@"category"]
+                                                                                          price:properties[@"price"]
+                                                                                       quantity:properties[@"quantity"]
+                                                                                   currencyCode:properties[@"currency"] ?: @"USD"] build]];
+}
+
 @end
