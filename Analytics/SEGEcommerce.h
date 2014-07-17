@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @protocol SEGEcommerce <NSObject>
-
-- (void)viewedProduct;
-- (void)removedProduct;
-- (void)addedProduct;
-- (void)completedOrder;
-
+@optional
+- (void)viewedProduct:(NSDictionary *)properties;
+- (void)removedProduct:(NSDictionary *)properties;
+- (void)addedProduct:(NSDictionary *)properties;
+- (void)completedOrder:(NSDictionary *)properties;
 @end
