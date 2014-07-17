@@ -39,6 +39,10 @@
   self.valid = (self.apiToken != nil);
 }
 
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
+  [Optimizely trackEvent:event];
+}
+
 #pragma mark - Private
 
 - (NSString *)apiToken {
