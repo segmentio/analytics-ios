@@ -38,6 +38,11 @@
 #import "SEGMixpanelIntegration.h"
 #endif
 
+#if defined(USE_ANALYTICS_OPTIMIZELY) || defined(USE_ANALYTICS_ALL)
+#import "SEGOptimizelyIntegration.h"
+#endif
+
+
 #if defined(USE_ANALYTICS_TAPLYTICS) || defined(USE_ANALYTICS_ALL)
 #import "SEGTaplyticsIntegration.h"
 #endif
