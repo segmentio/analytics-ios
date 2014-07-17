@@ -3,9 +3,9 @@
 
 #import <Foundation/Foundation.h>
 #import "SEGAnalyticsIntegration.h"
+#import "SEGEcommerce.h"
 
-
-@interface SEGGoogleAnalyticsIntegration : SEGAnalyticsIntegration
+@interface SEGGoogleAnalyticsIntegration : SEGAnalyticsIntegration <SEGEcommerce>
 
 @property(nonatomic, copy) NSString *name;
 @property(nonatomic, assign) BOOL valid;
