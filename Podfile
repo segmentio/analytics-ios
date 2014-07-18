@@ -9,9 +9,10 @@ def import_integrations
   pod 'GoogleAnalytics-iOS-SDK', '~> 3.0.6'
   pod 'Localytics-iOS-Client', '~> 2.23.0'
   pod 'Mixpanel', '~> 2.3.4'
-  pod 'Tapstream', '~> 2.6'
+  pod 'Optimizely-iOS-SDK', '~> 0.5.51'
   pod 'Quantcast-Measure', '~> 1.4.4'
   pod 'Taplytics', '~> 1.3.0'
+  pod 'Tapstream', '~> 2.6'
 end
 
 def import_utilities
