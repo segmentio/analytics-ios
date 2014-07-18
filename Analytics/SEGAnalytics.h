@@ -165,6 +165,7 @@
  @param deviceToken     device token as returned <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>
  */
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options;
 
 
 /*!

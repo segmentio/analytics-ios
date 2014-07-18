@@ -173,10 +173,15 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+  [self registerForRemoteNotificationsWithDeviceToken:deviceToken options:nil];
+}
+
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options {
   NSParameterAssert(deviceToken != nil);
+
   [self callIntegrationsWithSelector:_cmd
                            arguments:@[deviceToken]
-                             options:nil];
+                             options:options];
 }
 
 - (void)reset {
@@ -269,7 +274,7 @@ static SEGAnalytics *__sharedInstance = nil;
 - (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
   if (!_enabled)
     return;
-  
+
   if (self.configuration.integrations.count == 0)
     SEGLog(@"Trying to send event, but no integrations found.");
 
