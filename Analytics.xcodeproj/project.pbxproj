@@ -55,6 +55,9 @@
 		3278F8BA194F7AC2009AD09C /* SEGApptimizeIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 3278F8B8194F7AC2009AD09C /* SEGApptimizeIntegration.h */; };
 		3278F8BB194F7AC2009AD09C /* SEGApptimizeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3278F8B9194F7AC2009AD09C /* SEGApptimizeIntegration.m */; };
 		3278F8BC194F7AC2009AD09C /* SEGApptimizeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 3278F8B9194F7AC2009AD09C /* SEGApptimizeIntegration.m */; };
+		32A69C221979CF4A00D69943 /* SEGOptimizelyIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A69C201979CF4A00D69943 /* SEGOptimizelyIntegration.h */; };
+		32A69C231979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */; };
+		32A69C241979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */; };
 		32A8C60719107DBD00173AE5 /* SEGQuantcastIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */; };
 		32A8C60819107DBD00173AE5 /* SEGQuantcastIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A8C60619107DBD00173AE5 /* SEGQuantcastIntegration.m */; };
 		32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCD99B1919A4F4007B63BA /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -157,6 +160,8 @@
 		32430A7819145DA8004EFF59 /* SEGAnalyticsIntegrations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAnalyticsIntegrations.h; sourceTree = "<group>"; };
 		3278F8B8194F7AC2009AD09C /* SEGApptimizeIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGApptimizeIntegration.h; path = Apptimize/SEGApptimizeIntegration.h; sourceTree = "<group>"; };
 		3278F8B9194F7AC2009AD09C /* SEGApptimizeIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGApptimizeIntegration.m; path = Apptimize/SEGApptimizeIntegration.m; sourceTree = "<group>"; };
+		32A69C201979CF4A00D69943 /* SEGOptimizelyIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGOptimizelyIntegration.h; sourceTree = "<group>"; };
+		32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGOptimizelyIntegration.m; sourceTree = "<group>"; };
 		32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGQuantcastIntegration.h; sourceTree = "<group>"; };
 		32A8C60619107DBD00173AE5 /* SEGQuantcastIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGQuantcastIntegration.m; sourceTree = "<group>"; };
 		32CC25E119072C6B0090DD06 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
@@ -333,6 +338,15 @@
 			name = Apptimize;
 			sourceTree = "<group>";
 		};
+		32A69C1F1979CF4A00D69943 /* Optimizely */ = {
+			isa = PBXGroup;
+			children = (
+				32A69C201979CF4A00D69943 /* SEGOptimizelyIntegration.h */,
+				32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */,
+			);
+			path = Optimizely;
+			sourceTree = "<group>";
+		};
 		32A8C60419107DBD00173AE5 /* Quantcast */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +435,7 @@
 				D3EDB64718C315F100A88A7E /* GoogleAnalytics */,
 				D3EDB64A18C315F100A88A7E /* Localytics */,
 				D3EDB64D18C315F100A88A7E /* Mixpanel */,
+				32A69C1F1979CF4A00D69943 /* Optimizely */,
 				32A8C60419107DBD00173AE5 /* Quantcast */,
 				D3EDB65018C315F100A88A7E /* Segmentio */,
 				32DF3277194666DA004098C1 /* Taplytics */,
@@ -665,6 +680,7 @@
 				D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */,
 				D331BD1B1860F5D4007CB22F /* TSPlatformImpl.h in Headers */,
 				32E2811E1908420D00FB48D7 /* SEGBluetooth.h in Headers */,
+				32A69C221979CF4A00D69943 /* SEGOptimizelyIntegration.h in Headers */,
 				D331BD1C1860F5D4007CB22F /* TSTapstream.h in Headers */,
 				D331BD2B1860F5F0007CB22F /* TSApi.h in Headers */,
 				D331BD2C1860F5F0007CB22F /* TSAppEventSource.h in Headers */,
@@ -920,6 +936,7 @@
 				3242C9B81946AFD100FBE441 /* SEGCrittercismIntegration.m in Sources */,
 				3242C9A31946A3E100FBE441 /* iOS_Tests.m in Sources */,
 				3242C9B21946ADA900FBE441 /* SEGAnalyticsIntegration.m in Sources */,
+				32A69C241979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */,
 				3242C9B71946AFCC00FBE441 /* SEGCountlyIntegration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -946,6 +963,7 @@
 				EA65F96717C2ABA600389A1A /* SEGAnalyticsIntegration.m in Sources */,
 				D3EDB66318C315F100A88A7E /* SEGLocalyticsIntegration.m in Sources */,
 				D3EDB65B18C315F100A88A7E /* SEGCountlyIntegration.m in Sources */,
+				32A69C231979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */,
 				3278F8BB194F7AC2009AD09C /* SEGApptimizeIntegration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

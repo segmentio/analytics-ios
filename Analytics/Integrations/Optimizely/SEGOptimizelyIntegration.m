@@ -26,17 +26,8 @@
   return self;
 }
 
-- (void)start {
-#ifdef DEBUG
-  [Optimizely enableEditor];
-#endif
-  
-  [Optimizely startOptimizelyWithAPIToken:self.apiToken launchOptions:nil];
-  SEGLog(@"OptimizelyIntegration initialized.");
-}
-
 - (void)validate {
-  self.valid = (self.apiToken != nil);
+  self.valid = (self.settings != nil);
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
@@ -44,10 +35,6 @@
 }
 
 #pragma mark - Private
-
-- (NSString *)apiToken {
-  return self.settings[@"apiToken"];
-}
 
 + (NSString *)identifier {
   return @"Optimizely";
