@@ -20,14 +20,18 @@
 - (id)init {
   if (self = [super init]) {
     self.name = self.class.identifier;
-    self.valid = NO;
+    self.valid = YES;
     self.initialized = NO;
   }
   return self;
 }
 
+- (void)start {
+  SEGLog(@"%@Integration initialized.", self.class.identifier);
+}
+
 - (void)validate {
-  self.valid = (self.settings != nil);
+  self.valid = YES;
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
