@@ -117,20 +117,25 @@
 #pragma mark - Ecommerce
 
 - (void)completedOrder:(NSDictionary *)properties {
-  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createTransactionWithId:properties[@"id"]
+  NSString *orderId = properties[@"id"];
+  NSString *currency = properties[@"currency"] ?: @"USD";
+  
+  SEGLog(@"Tracking completed order to Google Analytics with properties: %@", properties);
+  
+  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createTransactionWithId:orderId
                                                                                 affiliation:properties[@"affiliation"]
-                                                                                    revenue:properties[@"revenue"]
+                                                                                    revenue:[self.class extractRevenue:properties]
                                                                                         tax:properties[@"tax"]
                                                                                    shipping:properties[@"shipping"]
-                                                                               currencyCode:properties[@"currency"] ?: @"USD"] build]];
+                                                                               currencyCode:currency] build]];
 
-  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createItemWithTransactionId:properties[@"id"]
+  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createItemWithTransactionId:orderId
                                                                                            name:properties[@"name"]
                                                                                             sku:properties[@"sku"]
                                                                                        category:properties[@"category"]
                                                                                           price:properties[@"price"]
                                                                                        quantity:properties[@"quantity"]
-                                                                                   currencyCode:properties[@"currency"] ?: @"USD"] build]];
+                                                                                   currencyCode:currency] build]];
 }
 
 @end
