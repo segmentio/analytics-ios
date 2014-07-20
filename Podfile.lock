@@ -54,7 +54,7 @@ SPEC CHECKSUMS:
   Quantcast-Measure: d7a364f084dbd25d53ddd57fbe38f8aa6d202825
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
   Taplytics: fa9c9aa638a3ce8dd2f5458e4540007d27548c74
-  Tapstream: 1c945ae1e9d25af25915c96e5d506485b26f52f0
+  Tapstream: ce06955f17bbf736ee15877d5eb543c09d555583
   TRVSKit: fd946dbfb09de6bb75889e0f73c021a391e7594a
 
 COCOAPODS: 0.33.1
