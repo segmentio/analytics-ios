@@ -1,3 +1,14 @@
+1.5.0 / 2014-07-20
+==================
+
+  * add: optimize
+  * remove: apptimize
+
+1.4.0 / 2014-07-17
+==================
+
+  * add: -registerForRemoteNotificationsWithDeviceToken:options:
+
 1.3.1 / 2014-06-19
 ==================
 * fix: enabling/disabling integrations
