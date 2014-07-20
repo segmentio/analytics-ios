@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Segment.io. All rights reserved.
 //
 
-#import <SEGAnalyticsIntegration.h>
+#import "SEGAnalyticsIntegration.h"
 
 @interface SEGOptimizelyIntegration : SEGAnalyticsIntegration
 
