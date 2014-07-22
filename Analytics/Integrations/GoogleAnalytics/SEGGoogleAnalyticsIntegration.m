@@ -80,6 +80,8 @@
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
+  [super track:event properties:properties options:options];
+  
     // Try to extract a "category" property.
     NSString *category = @"All"; // default
     NSString *categoryProperty = [properties objectForKey:@"category"];
