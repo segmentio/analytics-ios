@@ -13,6 +13,8 @@
 #import "SEGBluetooth.h"
 #import <Reachability/Reachability.h>
 #import "SEGLocation.h"
+#import <iAd/ADClient.h>
+#import <AdSupport/ASIdentifierManager.h>
 
 NSString *const SEGSegmentioDidSendRequestNotification = @"SegmentioDidSendRequest";
 NSString *const SEGSegmentioRequestDidSucceedNotification = @"SegmentioRequestDidSucceed";
@@ -49,19 +51,9 @@ static NSString *GetDeviceModel() {
 }
 
 static NSString *GetIdForAdvertiser() {
-  if (NSClassFromString(@"ASIdentifierManager")) {
-    NSString* idForAdvertiser = nil;
-    Class ASIdentifierManagerClass = NSClassFromString(@"ASIdentifierManager");
-    if (ASIdentifierManagerClass) {
-      SEL sharedManagerSelector = NSSelectorFromString(@"sharedManager");
-      id sharedManager = ((id (*)(id, SEL))[ASIdentifierManagerClass methodForSelector:sharedManagerSelector])(ASIdentifierManagerClass, sharedManagerSelector);
-      SEL advertisingIdentifierSelector = NSSelectorFromString(@"advertisingIdentifier");
-      NSUUID *uuid = ((NSUUID* (*)(id, SEL))[sharedManager methodForSelector:advertisingIdentifierSelector])(sharedManager, advertisingIdentifierSelector);
-      idForAdvertiser = [uuid UUIDString];
-    }
-    return idForAdvertiser;
-  }
-  else {
+  if ([ASIdentifierManager class]) {
+    return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+  } else {
     return nil;
   }
 }
@@ -90,6 +82,8 @@ static NSMutableDictionary *BuildStaticContext() {
     dict[@"manufacturer"] = @"Apple";
     dict[@"model"] = GetDeviceModel();
     dict[@"idfv"] = [[device identifierForVendor] UUIDString];
+    if ([ASIdentifierManager class])
+      dict[@"adTrackingEnabled"] = @([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]);
     NSString *idfa = GetIdForAdvertiser();
     if (idfa.length) dict[@"idfa"] = idfa;
     dict;
@@ -109,6 +103,14 @@ static NSMutableDictionary *BuildStaticContext() {
     @"width": @(screenSize.width),
     @"height": @(screenSize.height)
   };
+  
+  if([ADClient class]) {
+    [[ADClient sharedClient] determineAppInstallationAttributionWithCompletionHandler:^(BOOL appInstallationWasAttributedToiAd) {
+      if(appInstallationWasAttributedToiAd) {
+        context[@"referrer"] = @{ @"type" : @"iad" };
+      }
+    }];
+  }
 
   return context;
 }
