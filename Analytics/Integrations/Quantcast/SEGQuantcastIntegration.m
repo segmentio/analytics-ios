@@ -44,22 +44,6 @@
     [[QuantcastMeasurement sharedInstance] recordUserIdentifier:userId withLabels:self.settings[@"labels"]];
 }
 
-- (void)applicationDidFinishLaunching {
-    [[QuantcastMeasurement sharedInstance] beginMeasurementSessionWithAPIKey:self.settings[@"apiKey"] userIdentifier:self.settings[@"userIdentifier"] labels:self.settings[@"labels"]];
-}
-
-- (void)applicationDidEnterBackground {
-    [[QuantcastMeasurement sharedInstance] pauseSessionWithLabels:self.settings[@"labels"]];
-}
-
-- (void)applicationWillEnterForeground {
-    [[QuantcastMeasurement sharedInstance] resumeSessionWithLabels:self.settings[@"labels"]];
-}
-
-- (void)applicationWillTerminate {
-    [[QuantcastMeasurement sharedInstance] endMeasurementSessionWithLabels:self.settings[@"labels"]];
-}
-
 #pragma mark - Private
 
 + (NSString *)name {
