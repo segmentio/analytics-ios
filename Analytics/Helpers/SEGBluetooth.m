@@ -7,7 +7,7 @@
 //
 
 #import "SEGBluetooth.h"
-#import <CoreBluetooth/CoreBluetooth.h>
+#import <CoreBluetooth/CBCentralManager.h>
 
 @interface SEGBluetooth () <CBCentralManagerDelegate>
 
@@ -19,25 +19,28 @@
 @implementation SEGBluetooth
 
 - (id)init {
-    if (self = [super init]) {
-        if ([CBCentralManager instancesRespondToSelector:@selector(initWithDelegate:queue:options:)]) {
-            _queue = dispatch_queue_create("io.segment.bluetooth.queue", NULL);
-            _manager = [[CBCentralManager alloc] initWithDelegate:self queue:_queue options:@{ CBCentralManagerOptionShowPowerAlertKey: @NO }];
-        }
-    }
-    return self;
+  if (![CBCentralManager class]) return nil;
+  if (!(self = [super init])) return nil;
+
+  _queue = dispatch_queue_create("io.segment.bluetooth.queue", NULL);
+
+  if ([CBCentralManager instancesRespondToSelector:@selector(initWithDelegate:queue:options:)]) {
+    _manager = [[CBCentralManager alloc] initWithDelegate:self queue:_queue options:@{ CBCentralManagerOptionShowPowerAlertKey: @NO }];
+  } else {
+    _manager = [[CBCentralManager alloc] initWithDelegate:self queue:_queue];
+  }
+
+  return self;
 }
 
 - (BOOL)hasKnownState {
-    return _manager && _manager.state != CBCentralManagerStateUnknown;
+    return _manager && (_manager.state != CBCentralManagerStateUnknown);
 }
 
 - (BOOL)isEnabled {
     return _manager.state == CBCentralManagerStatePoweredOn;
 }
 
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
-    // nop
-}
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central {}
 
 @end
