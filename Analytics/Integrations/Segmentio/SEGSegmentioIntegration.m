@@ -104,14 +104,6 @@ static NSMutableDictionary *BuildStaticContext() {
     @"height": @(screenSize.height)
   };
   
-  if([ADClient class]) {
-    [[ADClient sharedClient] determineAppInstallationAttributionWithCompletionHandler:^(BOOL appInstallationWasAttributedToiAd) {
-      if(appInstallationWasAttributedToiAd) {
-        context[@"referrer"] = @{ @"type" : @"iad" };
-      }
-    }];
-  }
-
   return context;
 }
 
@@ -314,10 +306,27 @@ static NSMutableDictionary *BuildStaticContext() {
 
     [payload setValue:[self integrationsDictionary:options[@"integrations"]] forKey:@"integrations"];
     [payload setValue:[self liveContext] forKey:@"context"];
-    [self.queue addObject:payload];
     
-    [self flushQueueByLength];
+#if TARGET_IPHONE_SIMULATOR
+    [self queuePayload:payload];
+#else
+    if([ADClient class]) {
+      [[ADClient sharedClient] determineAppInstallationAttributionWithCompletionHandler:^(BOOL appInstallationWasAttributedToiAd) {
+        if(appInstallationWasAttributedToiAd) {
+          payload[@"context"][@"referrer"] = @{ @"type" : @"iad" };
+        }
+        [self queuePayload:payload];
+      }];
+    } else {
+      [self queuePayload:payload];
+    }
+#endif
   }];
+}
+
+- (void)queuePayload:(NSDictionary *)payload {
+  [self.queue addObject:payload];
+  [self flushQueueByLength];
 }
 
 - (void)flush {
@@ -395,6 +404,7 @@ static NSMutableDictionary *BuildStaticContext() {
   [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
   [urlRequest setHTTPMethod:@"POST"];
   [urlRequest setHTTPBody:data];
+  
   SEGLog(@"%@ Sending batch API request.", self);
   self.request = [SEGAnalyticsRequest startWithURLRequest:urlRequest completion:^{
     [self dispatchBackground:^{
