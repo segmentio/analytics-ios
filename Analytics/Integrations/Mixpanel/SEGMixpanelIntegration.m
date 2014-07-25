@@ -39,7 +39,6 @@
     self.valid = hasToken;
 }
 
-
 #pragma mark - Analytics API
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
@@ -55,9 +54,11 @@
         @"$name",       @"name",
         @"$username",   @"username",
         @"$phone",      @"phone",  nil];
+  
     NSDictionary *mappedTraits = [SEGAnalyticsIntegration map:traits withMap:map];
+  
     [[Mixpanel sharedInstance] registerSuperProperties:mappedTraits];
-
+  
     if ([self.settings objectForKey:@"people"]) {
         [[Mixpanel sharedInstance].people set:mappedTraits];
     }
