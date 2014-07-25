@@ -2,12 +2,12 @@ PODS:
   - Amplitude-iOS (2.1.0)
   - Bugsnag (3.1.2)
   - Countly (1.0.0)
-  - CrittercismSDK (4.3.3)
-  - Expecta (0.3.0)
+  - CrittercismSDK (4.3.4)
+  - Expecta (0.3.1)
   - FlurrySDK (4.4.0):
     - FlurrySDK/FlurrySDK
   - FlurrySDK/FlurrySDK (4.4.0)
-  - GoogleAnalytics-iOS-SDK (3.0.7)
+  - GoogleAnalytics-iOS-SDK (3.0.8)
   - Localytics-iOS-Client (2.23.0)
   - Mixpanel (2.3.6)
   - OCMock (2.2.4)
@@ -16,9 +16,9 @@ PODS:
     - Quantcast-Measure/Core
   - Quantcast-Measure/Core (1.4.5)
   - Reachability (3.1.1)
-  - Taplytics (1.3.0)
-  - Tapstream (2.7)
-  - TRVSDictionaryWithCaseInsensitivity (0.0.1)
+  - Taplytics (1.3.12)
+  - Tapstream (2.7.4)
+  - TRVSDictionaryWithCaseInsensitivity (0.0.2)
   - TRVSKit/TRVSAssertions (0.0.9):
     - Expecta (~> 0.3.0)
 
@@ -38,26 +38,26 @@ DEPENDENCIES:
   - Reachability (= 3.1.1)
   - Taplytics (~> 1.3.0)
   - Tapstream (~> 2.6)
-  - TRVSDictionaryWithCaseInsensitivity (= 0.0.1)
+  - TRVSDictionaryWithCaseInsensitivity (= 0.0.2)
   - TRVSKit/TRVSAssertions (~> 0.0.8)
 
 SPEC CHECKSUMS:
   Amplitude-iOS: f0e9a04e7bb7003a3576f2b0954fa2d1d128adc2
   Bugsnag: 74d109dfa41b55d16890c987c7551ca071afd3d2
   Countly: f26a3483a660b5790b2c76e1f91dea4f276b3c33
-  CrittercismSDK: 9f19db3a1f0c16b35d8c29c69406852d184a7650
-  Expecta: ce8a51b9fad15a2cd573b291cb2909aaed865350
+  CrittercismSDK: d32f9f730158e3e646c445b752d7851710a1fed2
+  Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   FlurrySDK: abaedafc350afa41b004236b67ae14f7d3748b68
-  GoogleAnalytics-iOS-SDK: bb285d8eef15a682f1b82971becd0d22edd0e53b
+  GoogleAnalytics-iOS-SDK: a3206c68ee5f2a014ed67383d1f779072b653988
   Localytics-iOS-Client: 3f878379d40c67945ea5972c1e1bf9762b5e5b9f
   Mixpanel: 9aba38257fc4d2777ab5db1afc55e22bdfd57a4a
   OCMock: 6db79185520e24f9f299548f2b8b07e41d881bd5
   Optimizely-iOS-SDK: 384d92cc6da0cf8cc2780b8cc5885231818d56e7
   Quantcast-Measure: d7a364f084dbd25d53ddd57fbe38f8aa6d202825
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
-  Taplytics: fa9c9aa638a3ce8dd2f5458e4540007d27548c74
-  Tapstream: ce06955f17bbf736ee15877d5eb543c09d555583
-  TRVSDictionaryWithCaseInsensitivity: 8ac77c055fd33ad4ecafbdefc62b2497ad323c22
+  Taplytics: d8f820afa67a73fd1ddccb1bc6144d10f2c3ad61
+  Tapstream: 2daf868cb81834eeb0d317e2be2d3ed63f271889
+  TRVSDictionaryWithCaseInsensitivity: a61daa8469fa079e05b694f6aad5441785c837d1
   TRVSKit: fd946dbfb09de6bb75889e0f73c021a391e7594a
 
 COCOAPODS: 0.33.1

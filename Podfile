@@ -17,7 +17,7 @@ end
 
 def import_utilities
   pod 'Reachability', '3.1.1'
-  pod 'TRVSDictionaryWithCaseInsensitivity', '0.0.1'
+  pod 'TRVSDictionaryWithCaseInsensitivity', '0.0.2'
 end
 
 def import_pods

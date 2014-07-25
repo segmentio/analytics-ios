@@ -38,9 +38,7 @@
 
 - (void)setUp {
   [super setUp];
-
-  [Expecta setAsynchronousTestTimeout:5.0];
-
+  
   if ([self isCI]) {
     SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"testWriteKey"];
     configuration.flushAt = 1;
@@ -177,7 +175,7 @@
 }
 
 - (BOOL)isCI {
-  return [NSProcessInfo.processInfo.environment objectForKey:@"CI"];
+  return [NSProcessInfo.processInfo.environment objectForKey:@"CI"] != nil;
 }
 
 @end
