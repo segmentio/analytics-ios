@@ -31,6 +31,7 @@ Pod::Spec.new do |s|
     ss.source_files = ['Analytics/*.{h,m}', 'Analytics/Helpers/*.{h,m}', 'Analytics/Integrations/SEGAnalyticsIntegrations.h']
     ss.platforms = [:ios]
     ss.dependency "Analytics/#{segmentio[:name]}"
+    ss.dependency 'TRVSDictionaryWithCaseInsensitivity', '0.0.2'
   end
 
   analytics.each do |a|

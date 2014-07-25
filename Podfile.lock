@@ -18,6 +18,7 @@ PODS:
   - Reachability (3.1.1)
   - Taplytics (1.3.0)
   - Tapstream (2.7)
+  - TRVSDictionaryWithCaseInsensitivity (0.0.1)
   - TRVSKit/TRVSAssertions (0.0.9):
     - Expecta (~> 0.3.0)
 
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - Reachability (= 3.1.1)
   - Taplytics (~> 1.3.0)
   - Tapstream (~> 2.6)
+  - TRVSDictionaryWithCaseInsensitivity (= 0.0.1)
   - TRVSKit/TRVSAssertions (~> 0.0.8)
 
 SPEC CHECKSUMS:
@@ -55,6 +57,7 @@ SPEC CHECKSUMS:
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
   Taplytics: fa9c9aa638a3ce8dd2f5458e4540007d27548c74
   Tapstream: ce06955f17bbf736ee15877d5eb543c09d555583
+  TRVSDictionaryWithCaseInsensitivity: 8ac77c055fd33ad4ecafbdefc62b2497ad323c22
   TRVSKit: fd946dbfb09de6bb75889e0f73c021a391e7594a
 
 COCOAPODS: 0.33.1
