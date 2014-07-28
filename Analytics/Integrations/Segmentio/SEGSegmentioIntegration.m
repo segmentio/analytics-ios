@@ -117,6 +117,7 @@ static NSMutableDictionary *BuildStaticContext() {
 @property (nonatomic, strong) SEGBluetooth *bluetooth;
 @property (nonatomic, strong) Reachability *reachability;
 @property (nonatomic, strong) SEGLocation *location;
+@property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 @property (nonatomic, strong) NSMutableDictionary *traits;
 
@@ -133,6 +134,7 @@ static NSMutableDictionary *BuildStaticContext() {
     self.bluetooth = [[SEGBluetooth alloc] init];
     self.reachability = [Reachability reachabilityWithHostname:@"http://google.com"];
     self.context = BuildStaticContext();
+    self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
     self.serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
     self.flushTaskID = UIBackgroundTaskInvalid;
     self.name = @"Segment.io";
