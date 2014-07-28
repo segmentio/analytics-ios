@@ -430,7 +430,7 @@ static NSMutableDictionary *BuildStaticContext() {
   [self beginBackgroundTask];
   // We are gonna try to flush as much as we reasonably can when we enter background
   // since there is a chance that the user will never launch the app again.
-  [self flushWithMaxSize:1000];
+  [self flush];
 }
 
 - (void)applicationWillTerminate {
