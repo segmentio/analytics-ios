@@ -17,7 +17,7 @@ PODS:
   - Quantcast-Measure/Core (1.4.5)
   - Reachability (3.1.1)
   - Taplytics (1.3.12)
-  - Tapstream (2.7.4)
+  - Tapstream (2.8.1)
   - TRVSDictionaryWithCaseInsensitivity (0.0.2)
   - TRVSKit/TRVSAssertions (0.0.9):
     - Expecta (~> 0.3.0)
@@ -56,7 +56,7 @@ SPEC CHECKSUMS:
   Quantcast-Measure: d7a364f084dbd25d53ddd57fbe38f8aa6d202825
   Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
   Taplytics: d8f820afa67a73fd1ddccb1bc6144d10f2c3ad61
-  Tapstream: 2daf868cb81834eeb0d317e2be2d3ed63f271889
+  Tapstream: 87a9dba9b9b0466dcd5fa2a32e897369a234eda2
   TRVSDictionaryWithCaseInsensitivity: a61daa8469fa079e05b694f6aad5441785c837d1
   TRVSKit: fd946dbfb09de6bb75889e0f73c021a391e7594a
 
