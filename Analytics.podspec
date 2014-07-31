@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   google = { :name => 'GoogleAnalytics', :dependencies => [{ :pod => 'GoogleAnalytics-iOS-SDK', :version => '3.0.7' }]}
   localytics = { :name => 'Localytics', :dependencies => [{ :pod => 'Localytics-iOS-Client', :version => '~> 2.23.0' }]}
   mixpanel = { :name => 'Mixpanel', :dependencies => [{ :pod => 'Mixpanel', :version => '~> 2.3.6' }]}
-  optimizely = { :name => 'Optimizely', :dependencies => [{ :pod => 'Optimizely-iOS-SDK', :version => '~> 0.5.51' }]}
+  optimizely = { :name => 'Optimizely', :dependencies => [{ :pod => 'Optimizely-iOS-SDK', :version => '~> 0.6.52' }]}
   quantcast = { :name => 'Quantcast', :dependencies => [{ :pod => 'Quantcast-Measure', :version => '~> 1.4.4' }]}
   segmentio = { :name => 'Segmentio', :dependencies => [{ :pod => 'Reachability', :version => '3.1.1' }]}
   taplytics = { :name => 'Taplytics', :dependencies => [{ :pod => 'Taplytics', :version => '~> 1.3.0' }]}
