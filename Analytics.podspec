@@ -33,6 +33,7 @@ Pod::Spec.new do |s|
     ss.dependency "Analytics/#{segmentio[:name]}"
     ss.weak_frameworks = ['iAd', 'AdSupport', 'CoreBlueTooth']
     ss.dependency 'TRVSDictionaryWithCaseInsensitivity', '0.0.2'
+    s.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => "ANALYTICS_VERSION=#{s.version}" }
   end
 
   analytics.each do |a|
