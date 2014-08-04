@@ -7,7 +7,7 @@
 //
 
 #import "SEGBluetooth.h"
-#import <CoreBluetooth/CBCentralManager.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
 @interface SEGBluetooth () <CBCentralManagerDelegate>
 
