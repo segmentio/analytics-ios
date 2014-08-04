@@ -58,17 +58,21 @@ static NSString *GetIdForAdvertiser() {
   }
 }
 
-static NSMutableDictionary *BuildStaticContext() {
-  NSMutableDictionary *context = [[NSMutableDictionary alloc] init];
+NSMutableDictionary *__context = nil;
 
-  context[@"library"] = @{
+static NSDictionary *BuildStaticContext() {
+  if (__context != nil) return __context;
+  
+  __context = [[NSMutableDictionary alloc] init];
+
+  __context[@"library"] = @{
     @"name": @"analytics-ios",
     @"version": SEGStringize(ANALYTICS_VERSION)
   };
 
   NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
   if (infoDictionary.count) {
-    context[@"app"] = @{
+    __context[@"app"] = @{
       @"name": infoDictionary[@"CFBundleDisplayName"],
       @"version": infoDictionary[@"CFBundleShortVersionString"],
       @"build": infoDictionary[@"CFBundleVersion"]
@@ -77,7 +81,7 @@ static NSMutableDictionary *BuildStaticContext() {
 
   UIDevice *device = [UIDevice currentDevice];
 
-  context[@"device"] = ({
+  __context[@"device"] = ({
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     dict[@"manufacturer"] = @"Apple";
     dict[@"model"] = GetDeviceModel();
@@ -89,28 +93,38 @@ static NSMutableDictionary *BuildStaticContext() {
     dict;
   });
 
-  context[@"os"] = @{
+  __context[@"os"] = @{
     @"name" : device.systemName,
     @"version" : device.systemVersion
   };
 
   CTCarrier *carrier = [[[CTTelephonyNetworkInfo alloc] init] subscriberCellularProvider];
   if (carrier.carrierName.length)
-    context[@"network"] = @{ @"carrier": carrier.carrierName };
+    __context[@"network"] = @{ @"carrier": carrier.carrierName };
 
   CGSize screenSize = [UIScreen mainScreen].bounds.size;
-  context[@"screen"] = @{
+  __context[@"screen"] = @{
     @"width": @(screenSize.width),
     @"height": @(screenSize.height)
   };
   
-  return context;
+#if !(TARGET_IPHONE_SIMULATOR)
+  if([ADClient class]) {
+    [[ADClient sharedClient] determineAppInstallationAttributionWithCompletionHandler:^(BOOL appInstallationWasAttributedToiAd) {
+      if(appInstallationWasAttributedToiAd) {
+        __context[@"referrer"] = @{ @"type": @"iad" };
+      }
+    }];
+  }
+#endif
+  
+   return __context;
 }
 
 @interface SEGSegmentioIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
-@property (nonatomic, strong) NSMutableDictionary *context;
+@property (nonatomic, strong) NSDictionary *context;
 @property (nonatomic, strong) NSArray *batch;
 @property (nonatomic, strong) SEGAnalyticsRequest *request;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
@@ -308,21 +322,8 @@ static NSMutableDictionary *BuildStaticContext() {
 
     [payload setValue:[self integrationsDictionary:options[@"integrations"]] forKey:@"integrations"];
     [payload setValue:[self liveContext] forKey:@"context"];
-    
-#if TARGET_IPHONE_SIMULATOR
+
     [self queuePayload:payload];
-#else
-    if([ADClient class]) {
-      [[ADClient sharedClient] determineAppInstallationAttributionWithCompletionHandler:^(BOOL appInstallationWasAttributedToiAd) {
-        if(appInstallationWasAttributedToiAd) {
-          payload[@"context"][@"referrer"] = @{ @"type" : @"iad" };
-        }
-        [self queuePayload:payload];
-      }];
-    } else {
-      [self queuePayload:payload];
-    }
-#endif
   }];
 }
 
