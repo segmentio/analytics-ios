@@ -13,8 +13,8 @@
 #import "SEGBluetooth.h"
 #import <Reachability/Reachability.h>
 #import "SEGLocation.h"
-#import <iAd/ADClient.h>
-#import <AdSupport/ASIdentifierManager.h>
+#import <iAd/iAd.h>
+#import <AdSupport/AdSupport.h>
 
 NSString *const SEGSegmentioDidSendRequestNotification = @"SegmentioDidSendRequest";
 NSString *const SEGSegmentioRequestDidSucceedNotification = @"SegmentioRequestDidSucceed";
