@@ -164,7 +164,10 @@ static NSDictionary *BuildStaticContext() {
 
   [context addEntriesFromDictionary:self.context];
   
-  context[@"locale"] = [[NSLocale currentLocale] localeIdentifier];
+  context[@"locale"] = [NSString stringWithFormat:
+                        @"%@-%@",
+                        [NSLocale.currentLocale objectForKey:NSLocaleLanguageCode],
+                        [NSLocale.currentLocale objectForKey:NSLocaleCountryCode]];
 
   context[@"network"] = ({
     NSMutableDictionary *network = [[NSMutableDictionary alloc] init];
