@@ -8,14 +8,32 @@
 
 #import "SEGLocation.h"
 #import "SEGAnalyticsUtils.h"
-
 #import <CoreLocation/CoreLocation.h>
+
+#define LOCATION_STRING_PROPERTY(NAME, PLACEMARK_PROPERTY) \
+- (NSString *)NAME { \
+  __block NSString *result = nil; \
+  dispatch_sync(self.syncQueue, ^{ \
+    result = self.currentPlacemark.PLACEMARK_PROPERTY; \
+  }); \
+  return result; \
+}
+
+#define LOCATION_NUMBER_PROPERTY(NAME, PLACEMARK_PROPERTY) \
+- (NSNumber *)NAME { \
+  __block NSNumber *result = nil; \
+  dispatch_sync(self.syncQueue, ^{ \
+    result = @(self.currentPlacemark.PLACEMARK_PROPERTY); \
+  }); \
+  return result; \
+}
 
 @interface SEGLocation () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLPlacemark *currentPlacemark;
 @property (nonatomic, strong) CLGeocoder *geocoder;
+@property (nonatomic, strong) dispatch_queue_t syncQueue;
 
 @end
 
@@ -29,44 +47,24 @@
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.delegate = self;
     [self.locationManager startUpdatingLocation];
+    self.syncQueue = dispatch_queue_create("io.segment.location.syncQueue", NULL);
   }
   return self;
 }
 
-- (NSString *)state {
-  return self.currentPlacemark.administrativeArea;
-}
-
-- (NSString *)country {
-  return self.currentPlacemark.country;
-}
-
-- (NSString *)city {
-  return self.currentPlacemark.locality;
-}
-
-- (NSString *)postalCode {
-  return self.currentPlacemark.postalCode;
-}
-
-- (NSString *)street {
-  return self.currentPlacemark.thoroughfare;
-}
+LOCATION_STRING_PROPERTY(state, administrativeArea);
+LOCATION_STRING_PROPERTY(country, country);
+LOCATION_STRING_PROPERTY(city, locality);
+LOCATION_STRING_PROPERTY(postalCode, postalCode);
+LOCATION_STRING_PROPERTY(street, thoroughfare);
+LOCATION_NUMBER_PROPERTY(latitude, location.coordinate.latitude);
+LOCATION_NUMBER_PROPERTY(longitude, location.coordinate.longitude);
+LOCATION_NUMBER_PROPERTY(speed, location.speed);
 
 - (BOOL)hasKnownLocation {
-  return self.currentPlacemark != nil;
-}
-
-- (NSNumber *)latitude {
-  return @(self.currentPlacemark.location.coordinate.latitude);
-}
-
-- (NSNumber *)longitude {
-  return @(self.currentPlacemark.location.coordinate.longitude);
-}
-
-- (NSNumber *)speed {
-  return @(self.currentPlacemark.location.speed);
+  __block BOOL result = NO;
+  dispatch_sync(self.syncQueue, ^{ result = self.currentPlacemark != nil; });
+  return result;
 }
 
 - (NSDictionary *)locationDictionary {
@@ -85,7 +83,9 @@
   __weak typeof(self) weakSelf = self;
   [self.geocoder reverseGeocodeLocation:locations.firstObject completionHandler:^(NSArray *placemarks, NSError *error) {
     __strong typeof(weakSelf) strongSelf = weakSelf;
-    strongSelf.currentPlacemark = placemarks.firstObject;
+    dispatch_sync(strongSelf.syncQueue, ^{
+      strongSelf.currentPlacemark = placemarks.firstObject;
+    });
   }];
 }
 
