@@ -20,6 +20,8 @@ NSString *const SEGSegmentioDidSendRequestNotification = @"SegmentioDidSendReque
 NSString *const SEGSegmentioRequestDidSucceedNotification = @"SegmentioRequestDidSucceed";
 NSString *const SEGSegmentioRequestDidFailNotification = @"SegmentioRequestDidFail";
 
+NSString *const SEGAdvertisingClassIdentifier = @"ASIdentifierManager";
+
 static NSString *GenerateUUIDString() {
   CFUUIDRef theUUID = CFUUIDCreate(NULL);
   NSString *UUIDString = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, theUUID);
@@ -51,8 +53,9 @@ static NSString *GetDeviceModel() {
 }
 
 static NSString *GetIdForAdvertiser() {
-  if ([ASIdentifierManager class]) {
-    return [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+  Class advertisingClass = NSClassFromString(SEGAdvertisingClassIdentifier);
+  if (advertisingClass) {
+    return [[[advertisingClass sharedManager] advertisingIdentifier] UUIDString];
   } else {
     return nil;
   }
@@ -86,8 +89,10 @@ static NSDictionary *BuildStaticContext() {
     dict[@"manufacturer"] = @"Apple";
     dict[@"model"] = GetDeviceModel();
     dict[@"idfv"] = [[device identifierForVendor] UUIDString];
-    if ([ASIdentifierManager class])
-      dict[@"adTrackingEnabled"] = @([[ASIdentifierManager sharedManager] isAdvertisingTrackingEnabled]);
+    Class advertisingClass = NSClassFromString(SEGAdvertisingClassIdentifier);
+    if (advertisingClass) {
+      dict[@"adTrackingEnabled"] = @([[advertisingClass sharedManager] isAdvertisingTrackingEnabled]);
+    }
     NSString *idfa = GetIdForAdvertiser();
     if (idfa.length) dict[@"idfa"] = idfa;
     dict;
