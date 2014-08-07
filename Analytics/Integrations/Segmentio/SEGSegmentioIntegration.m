@@ -21,6 +21,7 @@ NSString *const SEGSegmentioRequestDidSucceedNotification = @"SegmentioRequestDi
 NSString *const SEGSegmentioRequestDidFailNotification = @"SegmentioRequestDidFail";
 
 NSString *const SEGAdvertisingClassIdentifier = @"ASIdentifierManager";
+NSString *const SEGADClientClass = @"ADClient";
 
 static NSString *GenerateUUIDString() {
   CFUUIDRef theUUID = CFUUIDCreate(NULL);
@@ -114,11 +115,12 @@ static NSDictionary *BuildStaticContext() {
   };
   
 #if !(TARGET_IPHONE_SIMULATOR)
-  if([ADClient class]) {
-    [[ADClient sharedClient] determineAppInstallationAttributionWithCompletionHandler:^(BOOL appInstallationWasAttributedToiAd) {
-      if(appInstallationWasAttributedToiAd) {
-        __context[@"referrer"] = @{ @"type": @"iad" };
-      }
+  Class adClientClass = NSClassFromString(SEGADClientClass);
+  if (adClientClass) {
+    [[adClientClass sharedClient] determineAppInstallationAttributionWithCompletionHandler:^(BOOL appInstallationWasAttributedToiAd) {
+          if(appInstallationWasAttributedToiAd) {
+              __context[@"referrer"] = @{ @"type": @"iad" };
+          }
     }];
   }
 #endif
