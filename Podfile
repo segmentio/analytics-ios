@@ -1,27 +1,15 @@
+require './scripts/build'
+
 inhibit_all_warnings!
 
-def import_integrations
-  pod 'Amplitude-iOS', '~> 2.1.0'
-  pod 'Bugsnag', '~> 3.1.2'
-  pod 'Countly', '~> 1.0.0'
-  pod 'CrittercismSDK', '~> 4.3.3'
-  pod 'FlurrySDK', '~> 4.4.0'
-  pod 'GoogleAnalytics-iOS-SDK', '~> 3.0.6'
-  pod 'Localytics-iOS-Client', '~> 2.23.0'
-  pod 'Mixpanel', '~> 2.3.4'
-  pod 'Optimizely-iOS-SDK', '~> 0.6.52'
-  pod 'Quantcast-Measure', '~> 1.4.4'
-  pod 'Taplytics', '~> 1.3.0'
-  pod 'Tapstream', '~> 2.6'
-end
-
 def import_utilities
-  pod 'Reachability', '3.1.1'
   pod 'TRVSDictionaryWithCaseInsensitivity', '0.0.2'
 end
 
 def import_pods
-  import_integrations
+  Build.all_pods.each do |p|
+    send :pod, p.name, p.version
+  end
   import_utilities
 end
 
