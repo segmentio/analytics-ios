@@ -3,6 +3,9 @@
 
 #import "SEGAnalyticsIntegration.h"
 #import <TRVSDictionaryWithCaseInsensitivity.h>
+#import "SEGAnalyticsUtils.h"
+
+NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.did.start";
 
 @implementation SEGAnalyticsIntegration
 
@@ -10,7 +13,11 @@
   return [self init];
 }
 
-- (void)start {}
+- (void)start {
+  [[NSNotificationCenter defaultCenter] postNotificationName:SEGAnalyticsIntegrationDidStart object:self userInfo:nil];  
+  SEGLog(@"%@ started", NSStringFromClass(self.class));
+}
+
 - (void)stop {}
 
 - (void)validate {
