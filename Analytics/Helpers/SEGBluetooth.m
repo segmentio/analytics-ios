@@ -9,6 +9,8 @@
 #import "SEGBluetooth.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
+const NSString *SEGCentralManagerClass = @"CBCentralManager";
+
 @interface SEGBluetooth () <CBCentralManagerDelegate>
 
 @property (nonatomic, strong) CBCentralManager *manager;
@@ -19,15 +21,17 @@
 @implementation SEGBluetooth
 
 - (id)init {
-  if (![CBCentralManager class]) return nil;
+  Class centralManager = NSClassFromString(@"CBCentralManager");
+
+  if (!centralManager) return nil;
   if (!(self = [super init])) return nil;
 
   _queue = dispatch_queue_create("io.segment.bluetooth.queue", NULL);
 
-  if ([CBCentralManager instancesRespondToSelector:@selector(initWithDelegate:queue:options:)]) {
-    _manager = [[CBCentralManager alloc] initWithDelegate:self queue:_queue options:@{ CBCentralManagerOptionShowPowerAlertKey: @NO }];
+  if (&CBCentralManagerOptionShowPowerAlertKey != NULL) {
+    _manager = [[centralManager alloc] initWithDelegate:self queue:_queue options:@{ CBCentralManagerOptionShowPowerAlertKey: @NO }];
   } else {
-    _manager = [[CBCentralManager alloc] initWithDelegate:self queue:_queue];
+    _manager = [[centralManager alloc] initWithDelegate:self queue:_queue];
   }
 
   return self;
@@ -41,6 +45,6 @@
     return _manager.state == CBCentralManagerStatePoweredOn;
 }
 
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central {}
+- (void)centralManagerDidUpdateState:(id)central {}
 
 @end
