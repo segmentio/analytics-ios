@@ -6,6 +6,8 @@
 @class SEGAnalytics;
 @class SEGAnalyticsConfiguration;
 
+extern NSString *SEGAnalyticsIntegrationDidStart;
+
 @protocol SEGAnalyticsIntegration <NSObject>
 
 // State
