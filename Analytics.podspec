@@ -1,4 +1,6 @@
-require './scripts/build'
+# using full path for when cocoapdos is building a local pod they don't alias
+# the dir, they copy but only the podspec and code files.
+require File.expand_path('~/dev/segmentio/analytics-ios/scripts/build.rb')
 
 Pod::Spec.new do |s|
   s.name            = "Analytics"
@@ -16,7 +18,7 @@ Pod::Spec.new do |s|
     ss.public_header_files = 'Analytics/*'
     ss.source_files = ['Analytics/*.{h,m}', 'Analytics/Helpers/*.{h,m}', 'Analytics/Integrations/SEGAnalyticsIntegrations.h']
     ss.platforms = [:ios]
-    ss.dependency "Analytics/#{segmentio[:name]}"
+    ss.dependency "Analytics/Segmentio"
     ss.weak_frameworks = ['iAd', 'AdSupport', 'CoreBlueTooth']
     ss.dependency 'TRVSDictionaryWithCaseInsensitivity', '0.0.2'
     s.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => "ANALYTICS_VERSION=#{s.version}" }
@@ -24,14 +26,14 @@ Pod::Spec.new do |s|
 
   Build.subspecs.each do |a|
     s.subspec a.name do |ss|
-      ss.prefix_header_contents = "#define USE_ANALYTICS_#{a[:name].upcase} 1"
+      ss.prefix_header_contents = "#define USE_ANALYTICS_#{a.name.upcase} 1"
       ss.public_header_files = 'Analytics/Integrations/*'
-      ss.ios.source_files = "Analytics/Integrations/#{a[:name]}/SEG#{a[:name]}Integration.{h,m}"
+      ss.ios.source_files = "Analytics/Integrations/#{a.name}/SEG#{a.name}Integration.{h,m}"
       ss.platforms = [:ios]
       ss.dependency 'Analytics/Core-iOS'
 
       (a.dependencies || []).each do |d|
-        if d[:version]
+        if d.version
           ss.dependency d.name, d.version
         else
           ss.dependency d.name
