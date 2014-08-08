@@ -14,7 +14,6 @@
 #import <Reachability/Reachability.h>
 #import "SEGLocation.h"
 #import <iAd/iAd.h>
-#import <AdSupport/AdSupport.h>
 
 NSString *const SEGSegmentioDidSendRequestNotification = @"SegmentioDidSendRequest";
 NSString *const SEGSegmentioRequestDidSucceedNotification = @"SegmentioRequestDidSucceed";
@@ -53,13 +52,14 @@ static NSString *GetDeviceModel() {
   return results;
 }
 
-static NSString *GetIdForAdvertiser() {
-  Class advertisingClass = NSClassFromString(SEGAdvertisingClassIdentifier);
-  if (advertisingClass) {
-    return [[[advertisingClass sharedManager] advertisingIdentifier] UUIDString];
-  } else {
-    return nil;
-  }
+static BOOL GetAdTrackingEnabled() {
+  BOOL result = NO;
+  Class advertisingManager = NSClassFromString(SEGAdvertisingClassIdentifier);
+  SEL sharedManagerSelector = NSSelectorFromString(@"sharedManager");
+  id sharedManager = ((id (*)(id, SEL))[advertisingManager methodForSelector:sharedManagerSelector])(advertisingManager, sharedManagerSelector);
+  SEL adTrackingEnabledSEL = NSSelectorFromString(@"isAdvertisingTrackingEnabled");
+  result = ((BOOL (*)(id, SEL))[sharedManager methodForSelector:adTrackingEnabledSEL])(sharedManager, adTrackingEnabledSEL);
+  return result;
 }
 
 NSMutableDictionary *__context = nil;
@@ -68,64 +68,63 @@ static NSDictionary *BuildStaticContext() {
   if (__context != nil) return __context;
   
   __context = [[NSMutableDictionary alloc] init];
-
+  
   __context[@"library"] = @{
-    @"name": @"analytics-ios",
-    @"version": SEGStringize(ANALYTICS_VERSION)
-  };
-
+                            @"name": @"analytics-ios",
+                            @"version": SEGStringize(ANALYTICS_VERSION)
+                            };
+  
   NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
   if (infoDictionary.count) {
     __context[@"app"] = @{
-      @"name": infoDictionary[@"CFBundleDisplayName"],
-      @"version": infoDictionary[@"CFBundleShortVersionString"],
-      @"build": infoDictionary[@"CFBundleVersion"]
-    };
+                          @"name": infoDictionary[@"CFBundleDisplayName"],
+                          @"version": infoDictionary[@"CFBundleShortVersionString"],
+                          @"build": infoDictionary[@"CFBundleVersion"]
+                          };
   }
-
+  
   UIDevice *device = [UIDevice currentDevice];
-
+  
   __context[@"device"] = ({
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     dict[@"manufacturer"] = @"Apple";
     dict[@"model"] = GetDeviceModel();
     dict[@"idfv"] = [[device identifierForVendor] UUIDString];
-    Class advertisingClass = NSClassFromString(SEGAdvertisingClassIdentifier);
-    if (advertisingClass) {
-      dict[@"adTrackingEnabled"] = @([[advertisingClass sharedManager] isAdvertisingTrackingEnabled]);
+    if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
+      dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
     }
-    NSString *idfa = GetIdForAdvertiser();
+    NSString *idfa = SEGIDFA();
     if (idfa.length) dict[@"idfa"] = idfa;
     dict;
   });
-
+  
   __context[@"os"] = @{
-    @"name" : device.systemName,
-    @"version" : device.systemVersion
-  };
-
+                       @"name" : device.systemName,
+                       @"version" : device.systemVersion
+                       };
+  
   CTCarrier *carrier = [[[CTTelephonyNetworkInfo alloc] init] subscriberCellularProvider];
   if (carrier.carrierName.length)
     __context[@"network"] = @{ @"carrier": carrier.carrierName };
-
+  
   CGSize screenSize = [UIScreen mainScreen].bounds.size;
   __context[@"screen"] = @{
-    @"width": @(screenSize.width),
-    @"height": @(screenSize.height)
-  };
+                           @"width": @(screenSize.width),
+                           @"height": @(screenSize.height)
+                           };
   
 #if !(TARGET_IPHONE_SIMULATOR)
   Class adClientClass = NSClassFromString(SEGADClientClass);
   if (adClientClass) {
     [[adClientClass sharedClient] determineAppInstallationAttributionWithCompletionHandler:^(BOOL appInstallationWasAttributedToiAd) {
-          if(appInstallationWasAttributedToiAd) {
-              __context[@"referrer"] = @{ @"type": @"iad" };
-          }
+      if(appInstallationWasAttributedToiAd) {
+        __context[@"referrer"] = @{ @"type": @"iad" };
+      }
     }];
   }
 #endif
   
-   return __context;
+  return __context;
 }
 
 @interface SEGSegmentioIntegration ()
@@ -168,38 +167,38 @@ static NSDictionary *BuildStaticContext() {
 
 - (NSMutableDictionary *)liveContext {
   NSMutableDictionary *context = [[NSMutableDictionary alloc] init];
-
+  
   [context addEntriesFromDictionary:self.context];
   
   context[@"locale"] = [NSString stringWithFormat:
                         @"%@-%@",
                         [NSLocale.currentLocale objectForKey:NSLocaleLanguageCode],
                         [NSLocale.currentLocale objectForKey:NSLocaleCountryCode]];
-
+  
   context[@"network"] = ({
     NSMutableDictionary *network = [[NSMutableDictionary alloc] init];
-
+    
     if (self.bluetooth.hasKnownState)
       network[@"bluetooth"] = @(self.bluetooth.isEnabled);
-
+    
     if (self.reachability.isReachable)
       network[@"wifi"] = @(self.reachability.isReachableViaWiFi);
-
+    
     network;
   });
-
+  
   if (self.location.hasKnownLocation)
     context[@"location"] = self.location.locationDictionary;
-
+  
   context[@"traits"] = ({
     NSMutableDictionary *traits = [[NSMutableDictionary alloc] init];
-
+    
     if (self.location.hasKnownLocation)
       traits[@"address"] = self.location.addressDictionary;
-
+    
     traits;
   });
-
+  
   return context;
 }
 
@@ -213,7 +212,7 @@ static NSDictionary *BuildStaticContext() {
 
 - (void)beginBackgroundTask {
   [self endBackgroundTask];
-
+  
   self.flushTaskID = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
     [self endBackgroundTask];
   }];
@@ -257,43 +256,43 @@ static NSDictionary *BuildStaticContext() {
     [self saveUserId:userId];
     [self addTraits:traits];
   }];
-
+  
   [self enqueueAction:@"identify" dictionary:@{ @"traits": traits } options:options];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
   NSCParameterAssert(event.length > 0);
-
+  
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setValue:event forKey:@"event"];
   [dictionary setValue:properties forKey:@"properties"];
-
+  
   [self enqueueAction:@"track" dictionary:dictionary options:options];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
   NSCParameterAssert(screenTitle.length > 0);
-
+  
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setValue:screenTitle forKey:@"name"];
   [dictionary setValue:properties forKey:@"properties"];
-
+  
   [self enqueueAction:@"screen" dictionary:dictionary options:options];
 }
 
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options {
   NSCParameterAssert(groupId.length > 0);
-
+  
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setValue:groupId forKey:@"groupId"];
   [dictionary setValue:traits forKey:@"traits"];
-
+  
   [self enqueueAction:@"group" dictionary:dictionary options:options];
 }
 
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
   NSCParameterAssert(deviceToken != nil);
-
+  
   const unsigned char *buffer = (const unsigned char *)[deviceToken bytes];
   if (!buffer) {
     return;
@@ -324,17 +323,17 @@ static NSDictionary *BuildStaticContext() {
   payload[@"type"] = action;
   payload[@"timestamp"] = [[NSDate date] description];
   payload[@"messageId"] = GenerateUUIDString();
-
+  
   [self dispatchBackground:^{
     // attach userId and anonymousId inside the dispatch_async in case
     // they've changed (see identify function)
     [payload setValue:self.userId forKey:@"userId"];
     [payload setValue:self.anonymousId forKey:@"anonymousId"];
     SEGLog(@"%@ Enqueueing action: %@", self, payload);
-
+    
     [payload setValue:[self integrationsDictionary:options[@"integrations"]] forKey:@"integrations"];
     [payload setValue:[self liveContext] forKey:@"context"];
-
+    
     [self queuePayload:payload];
   }];
 }
@@ -361,24 +360,24 @@ static NSDictionary *BuildStaticContext() {
     } else {
       self.batch = [NSArray arrayWithArray:self.queue];
     }
-
+    
     SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)self.batch.count, (unsigned long)self.queue.count);
-
+    
     NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
     [payloadDictionary setObject:self.configuration.writeKey forKey:@"writeKey"];
     [payloadDictionary setObject:[[NSDate date] description] forKey:@"sentAt"];
     [payloadDictionary setObject:self.context forKey:@"context"];
     [payloadDictionary setObject:self.batch forKey:@"batch"];
-
+    
     SEGLog(@"Flushing payload %@", payloadDictionary);
-
+    
     NSError *error = nil;
     NSData *payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary
                                                       options:0 error:&error];
     if (error) {
       SEGLog(@"%@ Error serializing JSON: %@", self, error);
     }
-
+    
     [self sendData:payload];
   }];
 }
@@ -432,7 +431,7 @@ static NSDictionary *BuildStaticContext() {
         [self.queue removeObjectsInArray:self.batch];
         [self notifyForName:SEGSegmentioRequestDidSucceedNotification userInfo:self.batch];
       }
-
+      
       self.batch = nil;
       self.request = nil;
       [self endBackgroundTask];
@@ -497,7 +496,7 @@ static NSDictionary *BuildStaticContext() {
   if (self.configuration) {
     [self.configuration removeObserver:self forKeyPath:@"shouldUseLocationServices"];
   }
-
+  
   [super setConfiguration:configuration];
   [self.configuration addObserver:self forKeyPath:@"shouldUseLocationServices" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
 }
