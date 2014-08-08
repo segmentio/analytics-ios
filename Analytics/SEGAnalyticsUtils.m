@@ -128,12 +128,16 @@ NSDictionary *SEGCoerceDictionary(NSDictionary *dict) {
 }
 
 NSString *SEGIDFA() {
-  id identifierManager = NSClassFromString(@"ASIdentifierManager");
-  if (identifierManager && [[identifierManager sharedManager] isAdvertisingTrackingEnabled]) {
-    return [[[identifierManager sharedManager] advertisingIdentifier] UUIDString];
-  } else {
-    return nil;
+  NSString* idForAdvertiser = nil;
+  Class identifierManager = NSClassFromString(@"ASIdentifierManager");
+  if (identifierManager) {
+    SEL sharedManagerSelector = NSSelectorFromString(@"sharedManager");
+    id sharedManager = ((id (*)(id, SEL))[identifierManager methodForSelector:sharedManagerSelector])(identifierManager, sharedManagerSelector);
+    SEL advertisingIdentifierSelector = NSSelectorFromString(@"advertisingIdentifier");
+    NSUUID *uuid = ((NSUUID* (*)(id, SEL))[sharedManager methodForSelector:advertisingIdentifierSelector])(sharedManager, advertisingIdentifierSelector);
+    idForAdvertiser = [uuid UUIDString];
   }
+  return idForAdvertiser;
 }
 
 NSString *SEGEventNameForScreenTitle(NSString *title) {
