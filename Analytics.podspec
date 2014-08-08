@@ -1,6 +1,10 @@
 # using full path for when cocoapdos is building a local pod they don't alias
 # the dir, they copy but only the podspec and code files.
-require File.expand_path('~/dev/segmentio/analytics-ios/scripts/build.rb')
+begin
+  require File.expand_path('./scripts/build.rb')
+rescue LoadError
+  require File.expand_path('~/dev/segmentio/analytics-ios/scripts/build.rb')
+end
 
 Pod::Spec.new do |s|
   s.name            = "Analytics"
