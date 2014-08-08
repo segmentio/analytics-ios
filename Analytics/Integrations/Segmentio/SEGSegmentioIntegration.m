@@ -114,13 +114,18 @@ static NSDictionary *BuildStaticContext() {
                            };
   
 #if !(TARGET_IPHONE_SIMULATOR)
-  Class adClientClass = NSClassFromString(SEGADClientClass);
-  if (adClientClass) {
-    [[adClientClass sharedClient] determineAppInstallationAttributionWithCompletionHandler:^(BOOL appInstallationWasAttributedToiAd) {
-      if(appInstallationWasAttributedToiAd) {
+  Class adClient = NSClassFromString(SEGADClientClass);
+  if (adClient) {
+    SEL sharedClientSEL = NSSelectorFromString(@"sharedClient");
+    id sharedClient = ((id (*)(id, SEL))[adClient methodForSelector:sharedClientSEL])(adClient, sharedClientSEL);
+    void (^completionHandler)(BOOL iad) = ^(BOOL iad) {
+      if(iad) {
         __context[@"referrer"] = @{ @"type": @"iad" };
       }
-    }];
+    };
+    SEL determineAppInstallationSEL = NSSelectorFromString(@"determineAppInstallationAttributionWithCompletionHandler:");
+    IMP imp = [sharedClient methodForSelector:determineAppInstallationSEL];
+    imp(sharedClient, determineAppInstallationSEL, completionHandler);
   }
 #endif
   
