@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require_relative '../build'
 
 def current_path
@@ -41,3 +43,5 @@ contained = headers.select do |p|
 end
 
 missing_headers = headers - contained
+
+exit missing_headers.length == 0
