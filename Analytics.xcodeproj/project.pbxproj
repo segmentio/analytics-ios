@@ -22,6 +22,9 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		32225231199AD6D200478B1A /* SEGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3222522F199AD6D200478B1A /* SEGReachability.h */; };
+		32225232199AD6D200478B1A /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 32225230199AD6D200478B1A /* SEGReachability.m */; };
+		32225233199AD6D200478B1A /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 32225230199AD6D200478B1A /* SEGReachability.m */; };
 		3242C9991946A3E100FBE441 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D045551931FACD00A9F0A4 /* XCTest.framework */; };
 		3242C99A1946A3E100FBE441 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		3242C99B1946A3E100FBE441 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
@@ -199,6 +202,8 @@
 		23CD79ED9C3E478C83CB7A34 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AnalyticsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24AE4A015CBF4E95B18D10A7 /* libPods-iOS Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOS Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		288314B9A18241B284C25C5B /* Pods-Analytics.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics.xcconfig"; path = "Pods/Pods-Analytics.xcconfig"; sourceTree = "<group>"; };
+		3222522F199AD6D200478B1A /* SEGReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGReachability.h; path = Helpers/SEGReachability.h; sourceTree = "<group>"; };
+		32225230199AD6D200478B1A /* SEGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGReachability.m; path = Helpers/SEGReachability.m; sourceTree = "<group>"; };
 		3242C9981946A3E100FBE441 /* iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3242C99E1946A3E100FBE441 /* iOS Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOS Tests-Info.plist"; sourceTree = "<group>"; };
 		3242C9A01946A3E100FBE441 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -481,6 +486,8 @@
 				32430A751914186C004EFF59 /* SEGLocation.m */,
 				32E2811C1908420D00FB48D7 /* SEGBluetooth.h */,
 				32E2811D1908420D00FB48D7 /* SEGBluetooth.m */,
+				3222522F199AD6D200478B1A /* SEGReachability.h */,
+				32225230199AD6D200478B1A /* SEGReachability.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -859,6 +866,7 @@
 				3252EA451999D5A50056C32A /* GAIEcommerceFields.h in Headers */,
 				D3EDB66418C315F100A88A7E /* SEGMixpanelIntegration.h in Headers */,
 				3252EA471999D5AF0056C32A /* GAIEcommerceProduct.h in Headers */,
+				32225231199AD6D200478B1A /* SEGReachability.h in Headers */,
 				3252EA491999D5B60056C32A /* GAIEcommerceProductAction.h in Headers */,
 				32E2811E1908420D00FB48D7 /* SEGBluetooth.h in Headers */,
 				3252EA4B1999D5BB0056C32A /* GAIEcommercePromotion.h in Headers */,
@@ -1185,6 +1193,7 @@
 				3242C9B11946ADA200FBE441 /* SEGBluetooth.m in Sources */,
 				3242C9BA1946AFD900FBE441 /* SEGGoogleAnalyticsIntegration.m in Sources */,
 				3242C9B91946AFD400FBE441 /* SEGFlurryIntegration.m in Sources */,
+				32225233199AD6D200478B1A /* SEGReachability.m in Sources */,
 				3242C9BD1946AFEC00FBE441 /* SEGQuantcastIntegration.m in Sources */,
 				3242C9BC1946AFE300FBE441 /* SEGMixpanelIntegration.m in Sources */,
 				3242C9AD1946AD9600FBE441 /* SEGAnalytics.m in Sources */,
@@ -1219,6 +1228,7 @@
 				32E2811F1908420D00FB48D7 /* SEGBluetooth.m in Sources */,
 				EAA604CA17C28C7C00911919 /* SEGAnalyticsRequest.m in Sources */,
 				EA65F96717C2ABA600389A1A /* SEGAnalyticsIntegration.m in Sources */,
+				32225232199AD6D200478B1A /* SEGReachability.m in Sources */,
 				D3EDB66318C315F100A88A7E /* SEGLocalyticsIntegration.m in Sources */,
 				D3EDB65B18C315F100A88A7E /* SEGCountlyIntegration.m in Sources */,
 				32A69C231979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */,

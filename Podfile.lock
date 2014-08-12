@@ -7,15 +7,14 @@ PODS:
   - FlurrySDK (4.4.0):
     - FlurrySDK/FlurrySDK
   - FlurrySDK/FlurrySDK (4.4.0)
-  - GoogleAnalytics-iOS-SDK (3.0.8)
+  - GoogleAnalytics-iOS-SDK (3.0.9)
   - Localytics-iOS-Client (2.23.0)
   - Mixpanel (2.3.6)
   - OCMock (2.2.4)
   - Optimizely-iOS-SDK (0.6.52)
-  - Quantcast-Measure (1.4.5):
+  - Quantcast-Measure (1.4.6):
     - Quantcast-Measure/Core
-  - Quantcast-Measure/Core (1.4.5)
-  - Reachability (3.1.1)
+  - Quantcast-Measure/Core (1.4.6)
   - Taplytics (1.3.12)
   - Tapstream (2.8.1)
   - TRVSDictionaryWithCaseInsensitivity (0.0.2)
@@ -35,7 +34,6 @@ DEPENDENCIES:
   - OCMock (~> 2.2.4)
   - Optimizely-iOS-SDK (~> 0.6.52)
   - Quantcast-Measure (~> 1.4.4)
-  - Reachability (= 3.1.1)
   - Taplytics (~> 1.3.0)
   - Tapstream (~> 2.7)
   - TRVSDictionaryWithCaseInsensitivity (= 0.0.2)
@@ -48,13 +46,12 @@ SPEC CHECKSUMS:
   CrittercismSDK: d32f9f730158e3e646c445b752d7851710a1fed2
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   FlurrySDK: abaedafc350afa41b004236b67ae14f7d3748b68
-  GoogleAnalytics-iOS-SDK: a3206c68ee5f2a014ed67383d1f779072b653988
+  GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
   Localytics-iOS-Client: 3f878379d40c67945ea5972c1e1bf9762b5e5b9f
   Mixpanel: 9aba38257fc4d2777ab5db1afc55e22bdfd57a4a
   OCMock: 6db79185520e24f9f299548f2b8b07e41d881bd5
   Optimizely-iOS-SDK: 23dd7ff0cf43224df79be460dcf12fb6fb75e934
-  Quantcast-Measure: d7a364f084dbd25d53ddd57fbe38f8aa6d202825
-  Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
+  Quantcast-Measure: 82b2e0b81df7f59ee3f643551d4d79fa433f22ba
   Taplytics: d8f820afa67a73fd1ddccb1bc6144d10f2c3ad61
   Tapstream: 87a9dba9b9b0466dcd5fa2a32e897369a234eda2
   TRVSDictionaryWithCaseInsensitivity: a61daa8469fa079e05b694f6aad5441785c837d1
