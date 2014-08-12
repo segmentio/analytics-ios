@@ -55,6 +55,60 @@
 		324A42C81992C8FA0060013A /* TSPlatformImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 324A42C31992C8FA0060013A /* TSPlatformImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		324A42C91992C8FA0060013A /* TSTapstream.h in Headers */ = {isa = PBXBuildFile; fileRef = 324A42C41992C8FA0060013A /* TSTapstream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		324A42CA1992C8FA0060013A /* TSWordOfMouthDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 324A42C51992C8FA0060013A /* TSWordOfMouthDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA431999D5780056C32A /* GAIDictionaryBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA421999D5780056C32A /* GAIDictionaryBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA451999D5A50056C32A /* GAIEcommerceFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA441999D5A50056C32A /* GAIEcommerceFields.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA471999D5AF0056C32A /* GAIEcommerceProduct.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA461999D5AF0056C32A /* GAIEcommerceProduct.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA491999D5B60056C32A /* GAIEcommerceProductAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA481999D5B60056C32A /* GAIEcommerceProductAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA4B1999D5BB0056C32A /* GAIEcommercePromotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA4A1999D5BB0056C32A /* GAIEcommercePromotion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA551999D5CF0056C32A /* GAIFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA4C1999D5CF0056C32A /* GAIFields.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA561999D5CF0056C32A /* TAGContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA501999D5CF0056C32A /* TAGContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA571999D5CF0056C32A /* TAGContainerOpener.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA511999D5CF0056C32A /* TAGContainerOpener.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA581999D5CF0056C32A /* TAGDataLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA521999D5CF0056C32A /* TAGDataLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA591999D5CF0056C32A /* TAGLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA531999D5CF0056C32A /* TAGLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA5A1999D5CF0056C32A /* TAGManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA541999D5CF0056C32A /* TAGManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA621999D5E10056C32A /* LocalyticsConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA5B1999D5E10056C32A /* LocalyticsConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA631999D5E10056C32A /* LocalyticsDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA5C1999D5E10056C32A /* LocalyticsDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA641999D5E10056C32A /* LocalyticsDatapointHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA5D1999D5E10056C32A /* LocalyticsDatapointHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA651999D5E10056C32A /* LocalyticsSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA5E1999D5E10056C32A /* LocalyticsSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA661999D5E10056C32A /* LocalyticsSession+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA5F1999D5E10056C32A /* LocalyticsSession+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA671999D5E10056C32A /* LocalyticsUploader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA601999D5E10056C32A /* LocalyticsUploader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA681999D5E10056C32A /* LocalyticsUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA611999D5E10056C32A /* LocalyticsUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA6B1999D5FD0056C32A /* MPNotificationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA6A1999D5FD0056C32A /* MPNotificationViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA7A1999D6390056C32A /* QuantcastDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA6D1999D6390056C32A /* QuantcastDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA7B1999D6390056C32A /* QuantcastDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA6E1999D6390056C32A /* QuantcastDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA7C1999D6390056C32A /* QuantcastEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA6F1999D6390056C32A /* QuantcastEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA7D1999D6390056C32A /* QuantcastEventLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA701999D6390056C32A /* QuantcastEventLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA7E1999D6390056C32A /* QuantcastMeasurement.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA711999D6390056C32A /* QuantcastMeasurement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA7F1999D6390056C32A /* QuantcastMeasurement+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA721999D6390056C32A /* QuantcastMeasurement+Internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA801999D6390056C32A /* QuantcastNetworkReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA731999D6390056C32A /* QuantcastNetworkReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA811999D6390056C32A /* QuantcastOptOutDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA741999D6390056C32A /* QuantcastOptOutDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA821999D6390056C32A /* QuantcastOptOutViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA751999D6390056C32A /* QuantcastOptOutViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA831999D6390056C32A /* QuantcastParameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA761999D6390056C32A /* QuantcastParameters.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA841999D6390056C32A /* QuantcastPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA771999D6390056C32A /* QuantcastPolicy.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA851999D6390056C32A /* QuantcastUploadManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA781999D6390056C32A /* QuantcastUploadManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA861999D6390056C32A /* QuantcastUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA791999D6390056C32A /* QuantcastUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA881999D6CC0056C32A /* Taplytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA871999D6CC0056C32A /* Taplytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA8C1999D6E20056C32A /* Optimizely.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA891999D6E20056C32A /* Optimizely.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA8D1999D6E20056C32A /* OptimizelyCodeBlocksKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA8A1999D6E20056C32A /* OptimizelyCodeBlocksKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA8E1999D6E20056C32A /* OptimizelyVariableKey.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA8B1999D6E20056C32A /* OptimizelyVariableKey.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA9B1999D7040056C32A /* MPSurveyNavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA921999D7040056C32A /* MPSurveyNavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA9C1999D7040056C32A /* MPSurveyQuestion.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA931999D7040056C32A /* MPSurveyQuestion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA9D1999D7040056C32A /* MPSurveyQuestionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA941999D7040056C32A /* MPSurveyQuestionViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA9E1999D7040056C32A /* NSData+MPBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA961999D7040056C32A /* NSData+MPBase64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EA9F1999D7040056C32A /* UIColor+MPColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA971999D7040056C32A /* UIColor+MPColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EAA01999D7040056C32A /* UIImage+MPAverageColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA981999D7040056C32A /* UIImage+MPAverageColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EAA11999D7040056C32A /* UIImage+MPImageEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA991999D7040056C32A /* UIImage+MPImageEffects.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EAA21999D7040056C32A /* UIView+MPSnapshotImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA9A1999D7040056C32A /* UIView+MPSnapshotImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3252EAA61999D8B10056C32A /* BugsnagIosNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EAA51999D8B10056C32A /* BugsnagIosNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3254FBC21999D38D0043AF15 /* Amplitude.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBBF1999D38D0043AF15 /* Amplitude.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3254FBC31999D38D0043AF15 /* AmplitudeARCMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC01999D38D0043AF15 /* AmplitudeARCMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3254FBC41999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC11999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3254FBCD1999D3D00043AF15 /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC51999D3D00043AF15 /* Bugsnag.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3254FBD01999D3D00043AF15 /* BugsnagEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC81999D3D00043AF15 /* BugsnagEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3254FBD11999D3D00043AF15 /* BugsnagLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC91999D3D00043AF15 /* BugsnagLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3254FBD41999D3D00043AF15 /* BugsnagReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3254FBD71999D4370043AF15 /* Countly_OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3254FBD81999D4370043AF15 /* Countly.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD61999D4370043AF15 /* Countly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32A69C221979CF4A00D69943 /* SEGOptimizelyIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A69C201979CF4A00D69943 /* SEGOptimizelyIntegration.h */; };
 		32A69C231979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */; };
 		32A69C241979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */; };
@@ -76,8 +130,6 @@
 		D331BCFD185C2DC4007CB22F /* GAITracker.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCFA185C2DC4007CB22F /* GAITracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD06185FDDEA007CB22F /* BugsnagConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD00185FDDEA007CB22F /* BugsnagConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD07185FDDEA007CB22F /* BugsnagDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD01185FDDEA007CB22F /* BugsnagDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D331BD08185FDDEA007CB22F /* BugsnagEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD02185FDDEA007CB22F /* BugsnagEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D331BD09185FDDEA007CB22F /* BugsnagLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD03185FDDEA007CB22F /* BugsnagLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD04185FDDEA007CB22F /* BugsnagMetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD151860F5D4007CB22F /* TSAppEventSourceImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -100,7 +152,6 @@
 		D371F330185942C90053337D /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F32F185942C90053337D /* Flurry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F332185942DE0053337D /* GAI.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F331185942DE0053337D /* GAI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F334185943170053337D /* Mixpanel.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F333185943170053337D /* Mixpanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D3C07FBF185954D000649011 /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C07FBE185954D000649011 /* Bugsnag.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3EDB65618C315F100A88A7E /* SEGAmplitudeIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63918C315F100A88A7E /* SEGAmplitudeIntegration.h */; };
 		D3EDB65718C315F100A88A7E /* SEGAmplitudeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63A18C315F100A88A7E /* SEGAmplitudeIntegration.m */; };
 		D3EDB65818C315F100A88A7E /* SEGBugsnagIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63C18C315F100A88A7E /* SEGBugsnagIntegration.h */; };
@@ -117,12 +168,12 @@
 		D3EDB66318C315F100A88A7E /* SEGLocalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64C18C315F100A88A7E /* SEGLocalyticsIntegration.m */; };
 		D3EDB66418C315F100A88A7E /* SEGMixpanelIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB64E18C315F100A88A7E /* SEGMixpanelIntegration.h */; };
 		D3EDB66518C315F100A88A7E /* SEGMixpanelIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64F18C315F100A88A7E /* SEGMixpanelIntegration.m */; };
-		D3EDB66618C315F100A88A7E /* SEGSegmentioIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65118C315F100A88A7E /* SEGSegmentioIntegration.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		D3EDB66618C315F100A88A7E /* SEGSegmentioIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65118C315F100A88A7E /* SEGSegmentioIntegration.h */; };
 		D3EDB66718C315F100A88A7E /* SEGSegmentioIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65218C315F100A88A7E /* SEGSegmentioIntegration.m */; };
 		D3EDB66818C315F100A88A7E /* SEGTapstreamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65418C315F100A88A7E /* SEGTapstreamIntegration.h */; };
 		D3EDB66918C315F100A88A7E /* SEGTapstreamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65518C315F100A88A7E /* SEGTapstreamIntegration.m */; };
 		EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200B7B17659B2F003F3138 /* SEGAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EA65F96617C2ABA600389A1A /* SEGAnalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EA65F96617C2ABA600389A1A /* SEGAnalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */; };
 		EA65F96717C2ABA600389A1A /* SEGAnalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */; };
 		EAA604C917C28C7C00911919 /* SEGAnalyticsRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA604C717C28C7C00911919 /* SEGAnalyticsRequest.h */; };
 		EAA604CA17C28C7C00911919 /* SEGAnalyticsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA604C817C28C7C00911919 /* SEGAnalyticsRequest.m */; };
@@ -161,6 +212,72 @@
 		324A42C31992C8FA0060013A /* TSPlatformImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSPlatformImpl.h; path = Pods/Tapstream/objc/Tapstream/TSPlatformImpl.h; sourceTree = "<group>"; };
 		324A42C41992C8FA0060013A /* TSTapstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSTapstream.h; path = Pods/Tapstream/objc/Tapstream/TSTapstream.h; sourceTree = "<group>"; };
 		324A42C51992C8FA0060013A /* TSWordOfMouthDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSWordOfMouthDelegate.h; path = Pods/Tapstream/objc/Tapstream/TSWordOfMouthDelegate.h; sourceTree = "<group>"; };
+		3252EA421999D5780056C32A /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAIDictionaryBuilder.h"; sourceTree = "<group>"; };
+		3252EA441999D5A50056C32A /* GAIEcommerceFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceFields.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAIEcommerceFields.h"; sourceTree = "<group>"; };
+		3252EA461999D5AF0056C32A /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProduct.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAIEcommerceProduct.h"; sourceTree = "<group>"; };
+		3252EA481999D5B60056C32A /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProductAction.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAIEcommerceProductAction.h"; sourceTree = "<group>"; };
+		3252EA4A1999D5BB0056C32A /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommercePromotion.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAIEcommercePromotion.h"; sourceTree = "<group>"; };
+		3252EA4C1999D5CF0056C32A /* GAIFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAIFields.h"; sourceTree = "<group>"; };
+		3252EA4D1999D5CF0056C32A /* GAILogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAILogger.h"; sourceTree = "<group>"; };
+		3252EA4E1999D5CF0056C32A /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAITrackedViewController.h"; sourceTree = "<group>"; };
+		3252EA4F1999D5CF0056C32A /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAITracker.h"; sourceTree = "<group>"; };
+		3252EA501999D5CF0056C32A /* TAGContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TAGContainer.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleTagManager/Library/TAGContainer.h"; sourceTree = "<group>"; };
+		3252EA511999D5CF0056C32A /* TAGContainerOpener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TAGContainerOpener.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleTagManager/Library/TAGContainerOpener.h"; sourceTree = "<group>"; };
+		3252EA521999D5CF0056C32A /* TAGDataLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TAGDataLayer.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleTagManager/Library/TAGDataLayer.h"; sourceTree = "<group>"; };
+		3252EA531999D5CF0056C32A /* TAGLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TAGLogger.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleTagManager/Library/TAGLogger.h"; sourceTree = "<group>"; };
+		3252EA541999D5CF0056C32A /* TAGManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TAGManager.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleTagManager/Library/TAGManager.h"; sourceTree = "<group>"; };
+		3252EA5B1999D5E10056C32A /* LocalyticsConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsConstants.h; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsConstants.h"; sourceTree = "<group>"; };
+		3252EA5C1999D5E10056C32A /* LocalyticsDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsDatabase.h; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsDatabase.h"; sourceTree = "<group>"; };
+		3252EA5D1999D5E10056C32A /* LocalyticsDatapointHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsDatapointHelper.h; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsDatapointHelper.h"; sourceTree = "<group>"; };
+		3252EA5E1999D5E10056C32A /* LocalyticsSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsSession.h; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsSession.h"; sourceTree = "<group>"; };
+		3252EA5F1999D5E10056C32A /* LocalyticsSession+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LocalyticsSession+Private.h"; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsSession+Private.h"; sourceTree = "<group>"; };
+		3252EA601999D5E10056C32A /* LocalyticsUploader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsUploader.h; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsUploader.h"; sourceTree = "<group>"; };
+		3252EA611999D5E10056C32A /* LocalyticsUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsUtil.h; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsUtil.h"; sourceTree = "<group>"; };
+		3252EA691999D5EE0056C32A /* LocalyticsSession+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LocalyticsSession+Private.h"; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsSession+Private.h"; sourceTree = "<group>"; };
+		3252EA6A1999D5FD0056C32A /* MPNotificationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPNotificationViewController.h; path = Pods/Mixpanel/Mixpanel/MPNotificationViewController.h; sourceTree = "<group>"; };
+		3252EA6D1999D6390056C32A /* QuantcastDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastDataManager.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastDataManager.h"; sourceTree = "<group>"; };
+		3252EA6E1999D6390056C32A /* QuantcastDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastDatabase.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastDatabase.h"; sourceTree = "<group>"; };
+		3252EA6F1999D6390056C32A /* QuantcastEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastEvent.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastEvent.h"; sourceTree = "<group>"; };
+		3252EA701999D6390056C32A /* QuantcastEventLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastEventLogger.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastEventLogger.h"; sourceTree = "<group>"; };
+		3252EA711999D6390056C32A /* QuantcastMeasurement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastMeasurement.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastMeasurement.h"; sourceTree = "<group>"; };
+		3252EA721999D6390056C32A /* QuantcastMeasurement+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "QuantcastMeasurement+Internal.h"; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastMeasurement+Internal.h"; sourceTree = "<group>"; };
+		3252EA731999D6390056C32A /* QuantcastNetworkReachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastNetworkReachability.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastNetworkReachability.h"; sourceTree = "<group>"; };
+		3252EA741999D6390056C32A /* QuantcastOptOutDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastOptOutDelegate.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastOptOutDelegate.h"; sourceTree = "<group>"; };
+		3252EA751999D6390056C32A /* QuantcastOptOutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastOptOutViewController.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastOptOutViewController.h"; sourceTree = "<group>"; };
+		3252EA761999D6390056C32A /* QuantcastParameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastParameters.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastParameters.h"; sourceTree = "<group>"; };
+		3252EA771999D6390056C32A /* QuantcastPolicy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastPolicy.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastPolicy.h"; sourceTree = "<group>"; };
+		3252EA781999D6390056C32A /* QuantcastUploadManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastUploadManager.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastUploadManager.h"; sourceTree = "<group>"; };
+		3252EA791999D6390056C32A /* QuantcastUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastUtils.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastUtils.h"; sourceTree = "<group>"; };
+		3252EA871999D6CC0056C32A /* Taplytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Taplytics.h; path = Pods/Taplytics/Taplytics.framework/Headers/Taplytics.h; sourceTree = "<group>"; };
+		3252EA891999D6E20056C32A /* Optimizely.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Optimizely.h; path = "Pods/Optimizely-iOS-SDK/Optimizely.framework/Headers/Optimizely.h"; sourceTree = "<group>"; };
+		3252EA8A1999D6E20056C32A /* OptimizelyCodeBlocksKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelyCodeBlocksKey.h; path = "Pods/Optimizely-iOS-SDK/Optimizely.framework/Headers/OptimizelyCodeBlocksKey.h"; sourceTree = "<group>"; };
+		3252EA8B1999D6E20056C32A /* OptimizelyVariableKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelyVariableKey.h; path = "Pods/Optimizely-iOS-SDK/Optimizely.framework/Headers/OptimizelyVariableKey.h"; sourceTree = "<group>"; };
+		3252EA8F1999D7040056C32A /* MPNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPNotification.h; path = Pods/Mixpanel/Mixpanel/MPNotification.h; sourceTree = "<group>"; };
+		3252EA901999D7040056C32A /* MPNotificationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPNotificationViewController.h; path = Pods/Mixpanel/Mixpanel/MPNotificationViewController.h; sourceTree = "<group>"; };
+		3252EA911999D7040056C32A /* MPSurvey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPSurvey.h; path = Pods/Mixpanel/Mixpanel/MPSurvey.h; sourceTree = "<group>"; };
+		3252EA921999D7040056C32A /* MPSurveyNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPSurveyNavigationController.h; path = Pods/Mixpanel/Mixpanel/MPSurveyNavigationController.h; sourceTree = "<group>"; };
+		3252EA931999D7040056C32A /* MPSurveyQuestion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPSurveyQuestion.h; path = Pods/Mixpanel/Mixpanel/MPSurveyQuestion.h; sourceTree = "<group>"; };
+		3252EA941999D7040056C32A /* MPSurveyQuestionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPSurveyQuestionViewController.h; path = Pods/Mixpanel/Mixpanel/MPSurveyQuestionViewController.h; sourceTree = "<group>"; };
+		3252EA951999D7040056C32A /* Mixpanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Mixpanel.h; path = Pods/Mixpanel/Mixpanel/Mixpanel.h; sourceTree = "<group>"; };
+		3252EA961999D7040056C32A /* NSData+MPBase64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSData+MPBase64.h"; path = "Pods/Mixpanel/Mixpanel/NSData+MPBase64.h"; sourceTree = "<group>"; };
+		3252EA971999D7040056C32A /* UIColor+MPColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+MPColor.h"; path = "Pods/Mixpanel/Mixpanel/UIColor+MPColor.h"; sourceTree = "<group>"; };
+		3252EA981999D7040056C32A /* UIImage+MPAverageColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPAverageColor.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPAverageColor.h"; sourceTree = "<group>"; };
+		3252EA991999D7040056C32A /* UIImage+MPImageEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPImageEffects.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPImageEffects.h"; sourceTree = "<group>"; };
+		3252EA9A1999D7040056C32A /* UIView+MPSnapshotImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIView+MPSnapshotImage.h"; path = "Pods/Mixpanel/Mixpanel/UIView+MPSnapshotImage.h"; sourceTree = "<group>"; };
+		3252EAA31999D7150056C32A /* UIImage+MPImageEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPImageEffects.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPImageEffects.h"; sourceTree = "<group>"; };
+		3252EAA51999D8B10056C32A /* BugsnagIosNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagIosNotifier.h; path = Pods/Bugsnag/bugsnag/iOS/BugsnagIosNotifier.h; sourceTree = "<group>"; };
+		3254FBBF1999D38D0043AF15 /* Amplitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Amplitude.h; path = "Pods/Amplitude-iOS/Amplitude.h"; sourceTree = "<group>"; };
+		3254FBC01999D38D0043AF15 /* AmplitudeARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmplitudeARCMacros.h; path = "Pods/Amplitude-iOS/AmplitudeARCMacros.h"; sourceTree = "<group>"; };
+		3254FBC11999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmplitudeLocationManagerDelegate.h; path = "Pods/Amplitude-iOS/AmplitudeLocationManagerDelegate.h"; sourceTree = "<group>"; };
+		3254FBC51999D3D00043AF15 /* Bugsnag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bugsnag.h; path = Pods/Bugsnag/bugsnag/Bugsnag.h; sourceTree = "<group>"; };
+		3254FBC61999D3D00043AF15 /* BugsnagConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagConfiguration.h; path = Pods/Bugsnag/bugsnag/BugsnagConfiguration.h; sourceTree = "<group>"; };
+		3254FBC71999D3D00043AF15 /* BugsnagDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagDictionary.h; path = Pods/Bugsnag/bugsnag/BugsnagDictionary.h; sourceTree = "<group>"; };
+		3254FBC81999D3D00043AF15 /* BugsnagEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagEvent.h; path = Pods/Bugsnag/bugsnag/BugsnagEvent.h; sourceTree = "<group>"; };
+		3254FBC91999D3D00043AF15 /* BugsnagLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagLogger.h; path = Pods/Bugsnag/bugsnag/BugsnagLogger.h; sourceTree = "<group>"; };
+		3254FBCA1999D3D00043AF15 /* BugsnagMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagMetaData.h; path = Pods/Bugsnag/bugsnag/BugsnagMetaData.h; sourceTree = "<group>"; };
+		3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagReachability.h; path = Pods/Bugsnag/bugsnag/BugsnagReachability.h; sourceTree = "<group>"; };
+		3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Countly_OpenUDID.h; path = Pods/Countly/Countly_OpenUDID.h; sourceTree = "<group>"; };
+		3254FBD61999D4370043AF15 /* Countly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Countly.h; path = Pods/Countly/Countly.h; sourceTree = "<group>"; };
 		32A69C201979CF4A00D69943 /* SEGOptimizelyIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGOptimizelyIntegration.h; sourceTree = "<group>"; };
 		32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGOptimizelyIntegration.m; sourceTree = "<group>"; };
 		32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGQuantcastIntegration.h; sourceTree = "<group>"; };
@@ -371,18 +488,79 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				3252EAA51999D8B10056C32A /* BugsnagIosNotifier.h */,
+				3254FBBF1999D38D0043AF15 /* Amplitude.h */,
+				3254FBC01999D38D0043AF15 /* AmplitudeARCMacros.h */,
+				3254FBC11999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h */,
+				3254FBC51999D3D00043AF15 /* Bugsnag.h */,
+				3254FBC61999D3D00043AF15 /* BugsnagConfiguration.h */,
+				3254FBC71999D3D00043AF15 /* BugsnagDictionary.h */,
+				3254FBC81999D3D00043AF15 /* BugsnagEvent.h */,
+				D331BD03185FDDEA007CB22F /* BugsnagLogger.h */,
+				3254FBCA1999D3D00043AF15 /* BugsnagMetaData.h */,
+				D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */,
+				3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */,
+				3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */,
+				3254FBD61999D4370043AF15 /* Countly.h */,
+				D331BCF0185BFF49007CB22F /* CRFilter.h */,
+				D371F32D185942BB0053337D /* Crittercism.h */,
+				D331BCF1185BFF49007CB22F /* CrittercismDelegate.h */,
+				D371F32F185942C90053337D /* Flurry.h */,
+				D371F331185942DE0053337D /* GAI.h */,
+				3252EA421999D5780056C32A /* GAIDictionaryBuilder.h */,
+				3252EA441999D5A50056C32A /* GAIEcommerceFields.h */,
+				3252EA461999D5AF0056C32A /* GAIEcommerceProduct.h */,
+				3252EA481999D5B60056C32A /* GAIEcommerceProductAction.h */,
+				3252EA4A1999D5BB0056C32A /* GAIEcommercePromotion.h */,
+				3252EA4C1999D5CF0056C32A /* GAIFields.h */,
+				3252EA4D1999D5CF0056C32A /* GAILogger.h */,
+				3252EA4E1999D5CF0056C32A /* GAITrackedViewController.h */,
+				3252EA4F1999D5CF0056C32A /* GAITracker.h */,
+				3252EA5B1999D5E10056C32A /* LocalyticsConstants.h */,
+				3252EA5C1999D5E10056C32A /* LocalyticsDatabase.h */,
+				3252EA5D1999D5E10056C32A /* LocalyticsDatapointHelper.h */,
+				3252EA5E1999D5E10056C32A /* LocalyticsSession.h */,
+				3252EA691999D5EE0056C32A /* LocalyticsSession+Private.h */,
+				3252EA601999D5E10056C32A /* LocalyticsUploader.h */,
+				3252EA611999D5E10056C32A /* LocalyticsUtil.h */,
+				3252EA951999D7040056C32A /* Mixpanel.h */,
+				3252EA8F1999D7040056C32A /* MPNotification.h */,
+				3252EA6A1999D5FD0056C32A /* MPNotificationViewController.h */,
+				3252EA911999D7040056C32A /* MPSurvey.h */,
+				3252EA921999D7040056C32A /* MPSurveyNavigationController.h */,
+				3252EA931999D7040056C32A /* MPSurveyQuestion.h */,
+				3252EA941999D7040056C32A /* MPSurveyQuestionViewController.h */,
+				3252EA961999D7040056C32A /* NSData+MPBase64.h */,
+				3252EA891999D6E20056C32A /* Optimizely.h */,
+				3252EA8A1999D6E20056C32A /* OptimizelyCodeBlocksKey.h */,
+				3252EA8B1999D6E20056C32A /* OptimizelyVariableKey.h */,
+				3252EA6E1999D6390056C32A /* QuantcastDatabase.h */,
+				3252EA6D1999D6390056C32A /* QuantcastDataManager.h */,
+				3252EA6F1999D6390056C32A /* QuantcastEvent.h */,
+				3252EA701999D6390056C32A /* QuantcastEventLogger.h */,
+				3252EA711999D6390056C32A /* QuantcastMeasurement.h */,
+				3252EA721999D6390056C32A /* QuantcastMeasurement+Internal.h */,
+				3252EA731999D6390056C32A /* QuantcastNetworkReachability.h */,
+				3252EA741999D6390056C32A /* QuantcastOptOutDelegate.h */,
+				3252EA751999D6390056C32A /* QuantcastOptOutViewController.h */,
+				3252EA761999D6390056C32A /* QuantcastParameters.h */,
+				3252EA771999D6390056C32A /* QuantcastPolicy.h */,
+				3252EA781999D6390056C32A /* QuantcastUploadManager.h */,
+				3252EA791999D6390056C32A /* QuantcastUtils.h */,
 				D3D1243E18C31FDA00EE8B82 /* SEGSegmentioIntegration.h */,
-				D31C8F7D18A2D83700DA22A6 /* MPNotification.h */,
-				324A42C11992C8FA0060013A /* TSAppEventSourceImpl.h */,
-				324A42C21992C8FA0060013A /* TSCoreListenerImpl.h */,
-				324A42C31992C8FA0060013A /* TSPlatformImpl.h */,
-				324A42C41992C8FA0060013A /* TSTapstream.h */,
-				324A42C51992C8FA0060013A /* TSWordOfMouthDelegate.h */,
+				3252EA501999D5CF0056C32A /* TAGContainer.h */,
+				3252EA511999D5CF0056C32A /* TAGContainerOpener.h */,
+				3252EA521999D5CF0056C32A /* TAGDataLayer.h */,
+				3252EA531999D5CF0056C32A /* TAGLogger.h */,
+				3252EA541999D5CF0056C32A /* TAGManager.h */,
+				3252EA871999D6CC0056C32A /* Taplytics.h */,
 				D331BD1D1860F5F0007CB22F /* TSApi.h */,
 				D331BD1E1860F5F0007CB22F /* TSAppEventSource.h */,
+				324A42C11992C8FA0060013A /* TSAppEventSourceImpl.h */,
 				D331BD1F1860F5F0007CB22F /* TSConfig.h */,
 				D331BD201860F5F0007CB22F /* TSCore.h */,
 				D331BD211860F5F0007CB22F /* TSCoreListener.h */,
+				324A42C21992C8FA0060013A /* TSCoreListenerImpl.h */,
 				D331BD221860F5F0007CB22F /* TSDelegate.h */,
 				D331BD231860F5F0007CB22F /* TSEvent.h */,
 				D331BD241860F5F0007CB22F /* TSHelpers.h */,
@@ -390,8 +568,26 @@
 				D331BD261860F5F0007CB22F /* TSLogging.h */,
 				D331BD271860F5F0007CB22F /* TSLogLevel.h */,
 				D331BD281860F5F0007CB22F /* TSPlatform.h */,
+				324A42C31992C8FA0060013A /* TSPlatformImpl.h */,
 				D331BD291860F5F0007CB22F /* TSResponse.h */,
+				324A42C41992C8FA0060013A /* TSTapstream.h */,
 				D331BD2A1860F5F0007CB22F /* TSUtils.h */,
+				324A42C51992C8FA0060013A /* TSWordOfMouthDelegate.h */,
+				3252EA971999D7040056C32A /* UIColor+MPColor.h */,
+				3252EA981999D7040056C32A /* UIImage+MPAverageColor.h */,
+				3252EAA31999D7150056C32A /* UIImage+MPImageEffects.h */,
+				3252EA991999D7040056C32A /* UIImage+MPImageEffects.h */,
+				3252EA9A1999D7040056C32A /* UIView+MPSnapshotImage.h */,
+				3252EA5F1999D5E10056C32A /* LocalyticsSession+Private.h */,
+				3252EA901999D7040056C32A /* MPNotificationViewController.h */,
+				3252EA691999D5EE0056C32A /* LocalyticsSession+Private.h */,
+				D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */,
+				D331BCF8185C2DC4007CB22F /* GAILogger.h */,
+				D331BCF9185C2DC4007CB22F /* GAITrackedViewController.h */,
+				D331BCFA185C2DC4007CB22F /* GAITracker.h */,
+				D371F333185943170053337D /* Mixpanel.h */,
+				D31C8F7D18A2D83700DA22A6 /* MPNotification.h */,
+				D331BCEC185BFAA1007CB22F /* MPSurvey.h */,
 				D331BD151860F5D4007CB22F /* TSAppEventSourceImpl.h */,
 				D331BD161860F5D4007CB22F /* TSCoreListenerImpl.h */,
 				D331BD171860F5D4007CB22F /* TSPlatformImpl.h */,
@@ -402,17 +598,7 @@
 				D331BD03185FDDEA007CB22F /* BugsnagLogger.h */,
 				D331BD04185FDDEA007CB22F /* BugsnagMetaData.h */,
 				D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */,
-				D331BCF8185C2DC4007CB22F /* GAILogger.h */,
-				D331BCF9185C2DC4007CB22F /* GAITrackedViewController.h */,
-				D331BCFA185C2DC4007CB22F /* GAITracker.h */,
 				D3C07FBE185954D000649011 /* Bugsnag.h */,
-				D371F331185942DE0053337D /* GAI.h */,
-				D371F32F185942C90053337D /* Flurry.h */,
-				D371F32D185942BB0053337D /* Crittercism.h */,
-				D331BCF0185BFF49007CB22F /* CRFilter.h */,
-				D331BCF1185BFF49007CB22F /* CrittercismDelegate.h */,
-				D371F333185943170053337D /* Mixpanel.h */,
-				D331BCEC185BFAA1007CB22F /* MPSurvey.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -552,16 +738,16 @@
 		F7200B6A17659B2F003F3138 = {
 			isa = PBXGroup;
 			children = (
-				D3D35174186242B4005586E7 /* Headers */,
 				F7200B7817659B2F003F3138 /* Analytics */,
 				EA722AF617C87BB00016E8B0 /* AnalyticsTests */,
-				3242C99C1946A3E100FBE441 /* iOS Tests */,
 				F7200B7517659B2F003F3138 /* Frameworks */,
-				F7200B7417659B2F003F3138 /* Products */,
-				8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */,
-				1292362745B3499F9F8849DB /* Pods-AnalyticsTests.xcconfig */,
+				D3D35174186242B4005586E7 /* Headers */,
+				3242C99C1946A3E100FBE441 /* iOS Tests */,
 				288314B9A18241B284C25C5B /* Pods-Analytics.xcconfig */,
+				1292362745B3499F9F8849DB /* Pods-AnalyticsTests.xcconfig */,
 				A1156BA5BDDB45C69CC4E6E1 /* Pods-iOS Tests.xcconfig */,
+				8D0FCA5DB8CF4351BA2EC04C /* Pods.xcconfig */,
+				F7200B7417659B2F003F3138 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -649,34 +835,44 @@
 			buildActionMask = 2147483647;
 			files = (
 				32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */,
+				3252EAA61999D8B10056C32A /* BugsnagIosNotifier.h in Headers */,
 				EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */,
-				D3C07FBF185954D000649011 /* Bugsnag.h in Headers */,
 				D371F32E185942BB0053337D /* Crittercism.h in Headers */,
 				D3EDB65A18C315F100A88A7E /* SEGCountlyIntegration.h in Headers */,
+				3252EA551999D5CF0056C32A /* GAIFields.h in Headers */,
+				D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */,
+				D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */,
+				D331BCFD185C2DC4007CB22F /* GAITracker.h in Headers */,
+				3252EA561999D5CF0056C32A /* TAGContainer.h in Headers */,
+				3252EA571999D5CF0056C32A /* TAGContainerOpener.h in Headers */,
+				3252EA581999D5CF0056C32A /* TAGDataLayer.h in Headers */,
+				3252EA591999D5CF0056C32A /* TAGLogger.h in Headers */,
+				3252EA5A1999D5CF0056C32A /* TAGManager.h in Headers */,
 				D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */,
 				D331BCF3185BFF4A007CB22F /* CrittercismDelegate.h in Headers */,
+				3252EA431999D5780056C32A /* GAIDictionaryBuilder.h in Headers */,
 				D3EDB65818C315F100A88A7E /* SEGBugsnagIntegration.h in Headers */,
 				D371F330185942C90053337D /* Flurry.h in Headers */,
 				D371F332185942DE0053337D /* GAI.h in Headers */,
 				D3EDB65E18C315F100A88A7E /* SEGFlurryIntegration.h in Headers */,
 				32DF327A194666DA004098C1 /* SEGTaplyticsIntegration.h in Headers */,
-				D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */,
-				D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */,
-				D331BCFD185C2DC4007CB22F /* GAITracker.h in Headers */,
-				D371F334185943170053337D /* Mixpanel.h in Headers */,
-				D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */,
-				D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */,
-				D331BD06185FDDEA007CB22F /* BugsnagConfiguration.h in Headers */,
+				3252EA451999D5A50056C32A /* GAIEcommerceFields.h in Headers */,
 				D3EDB66418C315F100A88A7E /* SEGMixpanelIntegration.h in Headers */,
-				D331BD07185FDDEA007CB22F /* BugsnagDictionary.h in Headers */,
-				D331BD08185FDDEA007CB22F /* BugsnagEvent.h in Headers */,
-				D331BD09185FDDEA007CB22F /* BugsnagLogger.h in Headers */,
+				3252EA471999D5AF0056C32A /* GAIEcommerceProduct.h in Headers */,
+				3252EA491999D5B60056C32A /* GAIEcommerceProductAction.h in Headers */,
 				32E2811E1908420D00FB48D7 /* SEGBluetooth.h in Headers */,
+				3252EA4B1999D5BB0056C32A /* GAIEcommercePromotion.h in Headers */,
 				32A69C221979CF4A00D69943 /* SEGOptimizelyIntegration.h in Headers */,
 				D331BD2B1860F5F0007CB22F /* TSApi.h in Headers */,
 				D331BD2C1860F5F0007CB22F /* TSAppEventSource.h in Headers */,
 				D331BD2D1860F5F0007CB22F /* TSConfig.h in Headers */,
 				D3EDB66018C315F100A88A7E /* SEGGoogleAnalyticsIntegration.h in Headers */,
+				3252EA621999D5E10056C32A /* LocalyticsConstants.h in Headers */,
+				3252EA631999D5E10056C32A /* LocalyticsDatabase.h in Headers */,
+				3252EA641999D5E10056C32A /* LocalyticsDatapointHelper.h in Headers */,
+				3252EA651999D5E10056C32A /* LocalyticsSession.h in Headers */,
+				3252EA671999D5E10056C32A /* LocalyticsUploader.h in Headers */,
+				3252EA681999D5E10056C32A /* LocalyticsUtil.h in Headers */,
 				D331BD2E1860F5F0007CB22F /* TSCore.h in Headers */,
 				32430A7919145DA8004EFF59 /* SEGAnalyticsIntegrations.h in Headers */,
 				D3EDB66818C315F100A88A7E /* SEGTapstreamIntegration.h in Headers */,
@@ -684,29 +880,77 @@
 				D331BD301860F5F0007CB22F /* TSDelegate.h in Headers */,
 				324A42CA1992C8FA0060013A /* TSWordOfMouthDelegate.h in Headers */,
 				324A42C81992C8FA0060013A /* TSPlatformImpl.h in Headers */,
+				3254FBC21999D38D0043AF15 /* Amplitude.h in Headers */,
 				324A42C91992C8FA0060013A /* TSTapstream.h in Headers */,
 				D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */,
 				D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */,
 				D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */,
+				3254FBC31999D38D0043AF15 /* AmplitudeARCMacros.h in Headers */,
+				3254FBCD1999D3D00043AF15 /* Bugsnag.h in Headers */,
+				3254FBD01999D3D00043AF15 /* BugsnagEvent.h in Headers */,
+				3254FBD11999D3D00043AF15 /* BugsnagLogger.h in Headers */,
 				D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */,
+				D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */,
 				D331BD311860F5F0007CB22F /* TSEvent.h in Headers */,
+				3254FBD41999D3D00043AF15 /* BugsnagReachability.h in Headers */,
+				D331BD07185FDDEA007CB22F /* BugsnagDictionary.h in Headers */,
+				D331BD07185FDDEA007CB22F /* BugsnagDictionary.h in Headers */,
+				3254FBD71999D4370043AF15 /* Countly_OpenUDID.h in Headers */,
+				3254FBD81999D4370043AF15 /* Countly.h in Headers */,
+				D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */,
+				3254FBC41999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h in Headers */,
 				D331BD321860F5F0007CB22F /* TSHelpers.h in Headers */,
+				D331BD06185FDDEA007CB22F /* BugsnagConfiguration.h in Headers */,
+				3252EA7A1999D6390056C32A /* QuantcastDataManager.h in Headers */,
+				3252EA7B1999D6390056C32A /* QuantcastDatabase.h in Headers */,
+				3252EA7C1999D6390056C32A /* QuantcastEvent.h in Headers */,
+				3252EA7D1999D6390056C32A /* QuantcastEventLogger.h in Headers */,
+				3252EA7E1999D6390056C32A /* QuantcastMeasurement.h in Headers */,
+				3252EA7F1999D6390056C32A /* QuantcastMeasurement+Internal.h in Headers */,
+				3252EA801999D6390056C32A /* QuantcastNetworkReachability.h in Headers */,
+				3252EA811999D6390056C32A /* QuantcastOptOutDelegate.h in Headers */,
+				3252EA821999D6390056C32A /* QuantcastOptOutViewController.h in Headers */,
+				3252EA831999D6390056C32A /* QuantcastParameters.h in Headers */,
+				3252EA841999D6390056C32A /* QuantcastPolicy.h in Headers */,
+				3252EA851999D6390056C32A /* QuantcastUploadManager.h in Headers */,
+				3252EA861999D6390056C32A /* QuantcastUtils.h in Headers */,
+				3254FBD11999D3D00043AF15 /* BugsnagLogger.h in Headers */,
+				3252EA881999D6CC0056C32A /* Taplytics.h in Headers */,
+				D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */,
+				3252EA6B1999D5FD0056C32A /* MPNotificationViewController.h in Headers */,
+				D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */,
+				3252EA9B1999D7040056C32A /* MPSurveyNavigationController.h in Headers */,
+				3252EA661999D5E10056C32A /* LocalyticsSession+Private.h in Headers */,
+				3252EA9C1999D7040056C32A /* MPSurveyQuestion.h in Headers */,
+				3252EA9D1999D7040056C32A /* MPSurveyQuestionViewController.h in Headers */,
+				D371F334185943170053337D /* Mixpanel.h in Headers */,
+				3252EAA11999D7040056C32A /* UIImage+MPImageEffects.h in Headers */,
+				3252EA9E1999D7040056C32A /* NSData+MPBase64.h in Headers */,
+				3252EA9F1999D7040056C32A /* UIColor+MPColor.h in Headers */,
+				3252EAA01999D7040056C32A /* UIImage+MPAverageColor.h in Headers */,
+				3252EAA21999D7040056C32A /* UIView+MPSnapshotImage.h in Headers */,
+				3252EA8C1999D6E20056C32A /* Optimizely.h in Headers */,
+				3252EA8D1999D6E20056C32A /* OptimizelyCodeBlocksKey.h in Headers */,
+				3252EA8E1999D6E20056C32A /* OptimizelyVariableKey.h in Headers */,
+				D331BD06185FDDEA007CB22F /* BugsnagConfiguration.h in Headers */,
 				D331BD331860F5F0007CB22F /* TSHit.h in Headers */,
+				3254FBD01999D3D00043AF15 /* BugsnagEvent.h in Headers */,
 				D331BD341860F5F0007CB22F /* TSLogging.h in Headers */,
+				EA65F96617C2ABA600389A1A /* SEGAnalyticsIntegration.h in Headers */,
 				324A42C81992C8FA0060013A /* TSPlatformImpl.h in Headers */,
-				D3EDB66618C315F100A88A7E /* SEGSegmentioIntegration.h in Headers */,
 				32430A761914186C004EFF59 /* SEGLocation.h in Headers */,
 				D331BD351860F5F0007CB22F /* TSLogLevel.h in Headers */,
 				D3EDB66218C315F100A88A7E /* SEGLocalyticsIntegration.h in Headers */,
+				3254FBCD1999D3D00043AF15 /* Bugsnag.h in Headers */,
 				324A42C91992C8FA0060013A /* TSTapstream.h in Headers */,
 				D331BD361860F5F0007CB22F /* TSPlatform.h in Headers */,
 				D3EDB65C18C315F100A88A7E /* SEGCrittercismIntegration.h in Headers */,
+				D3EDB66618C315F100A88A7E /* SEGSegmentioIntegration.h in Headers */,
 				D3EDB65618C315F100A88A7E /* SEGAmplitudeIntegration.h in Headers */,
 				D331BD371860F5F0007CB22F /* TSResponse.h in Headers */,
 				D331BD381860F5F0007CB22F /* TSUtils.h in Headers */,
 				D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */,
 				D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */,
-				EA65F96617C2ABA600389A1A /* SEGAnalyticsIntegration.h in Headers */,
 				EA65F96617C2ABA600389A1A /* SEGAnalyticsIntegration.h in Headers */,
 				32A8C60719107DBD00173AE5 /* SEGQuantcastIntegration.h in Headers */,
 				EACB4DEA17C0BB3100624129 /* SEGAnalyticsUtils.h in Headers */,
