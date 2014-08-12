@@ -44,4 +44,7 @@ end
 
 missing_headers = headers - contained
 
-exit missing_headers.length == 0
+if missing_headers.length > 0
+  p missing_headers
+  exit 1
+end
