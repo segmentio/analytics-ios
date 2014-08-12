@@ -23,7 +23,8 @@ Pod::Spec.new do |s|
     ss.source_files = ['Analytics/*.{h,m}', 'Analytics/Helpers/*.{h,m}', 'Analytics/Integrations/SEGAnalyticsIntegrations.h']
     ss.platforms = [:ios]
     ss.dependency "Analytics/Segmentio"
-    ss.weak_frameworks = ['iAd', 'AdSupport', 'CoreBlueTooth']
+    ss.weak_frameworks = ['iAd', 'AdSupport', 'CoreBlueTooth', 'SystemConfiguration']
+    ss.frameworks = ['SystemConfiguration']
     ss.dependency 'TRVSDictionaryWithCaseInsensitivity', '0.0.2'
     s.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => "ANALYTICS_VERSION=#{s.version}" }
   end
