@@ -39,7 +39,7 @@ xcodeproj = File.open(File.join(root_path, "Analytics.xcodeproj", "project.pbxpr
 
 
 contained = headers.select do |p|
-  xcodeproj =~ /#{p.filename}.*Public/
+  xcodeproj =~ /#{Regexp.escape(p.filename)}.*Public/
 end
 
 missing_headers = headers - contained
