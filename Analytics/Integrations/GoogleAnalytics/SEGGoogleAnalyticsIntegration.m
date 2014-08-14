@@ -80,6 +80,8 @@
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
+  [super track:event properties:properties options:options];
+  
     // Try to extract a "category" property.
     NSString *category = @"All"; // default
     NSString *categoryProperty = [properties objectForKey:@"category"];
@@ -112,6 +114,30 @@
 {
     [[[GAI sharedInstance] defaultTracker] set:kGAIScreenName value:screenTitle];
     [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createAppView] build]];
+}
+
+#pragma mark - Ecommerce
+
+- (void)completedOrder:(NSDictionary *)properties {
+  NSString *orderId = properties[@"id"];
+  NSString *currency = properties[@"currency"] ?: @"USD";
+  
+  SEGLog(@"Tracking completed order to Google Analytics with properties: %@", properties);
+  
+  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createTransactionWithId:orderId
+                                                                                affiliation:properties[@"affiliation"]
+                                                                                    revenue:[self.class extractRevenue:properties]
+                                                                                        tax:properties[@"tax"]
+                                                                                   shipping:properties[@"shipping"]
+                                                                               currencyCode:currency] build]];
+
+  [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createItemWithTransactionId:orderId
+                                                                                           name:properties[@"name"]
+                                                                                            sku:properties[@"sku"]
+                                                                                       category:properties[@"category"]
+                                                                                          price:properties[@"price"]
+                                                                                       quantity:properties[@"quantity"]
+                                                                                   currencyCode:currency] build]];
 }
 
 @end

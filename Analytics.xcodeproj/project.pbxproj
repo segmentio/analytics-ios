@@ -103,6 +103,7 @@
 		3252EAA11999D7040056C32A /* UIImage+MPImageEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA991999D7040056C32A /* UIImage+MPImageEffects.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EAA21999D7040056C32A /* UIView+MPSnapshotImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA9A1999D7040056C32A /* UIView+MPSnapshotImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EAA61999D8B10056C32A /* BugsnagIosNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EAA51999D8B10056C32A /* BugsnagIosNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32539997199C80FF009DDF87 /* SEGEcommerce.h in Headers */ = {isa = PBXBuildFile; fileRef = 32539996199C80FF009DDF87 /* SEGEcommerce.h */; };
 		3254FBC21999D38D0043AF15 /* Amplitude.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBBF1999D38D0043AF15 /* Amplitude.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBC31999D38D0043AF15 /* AmplitudeARCMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC01999D38D0043AF15 /* AmplitudeARCMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBC41999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC11999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -271,6 +272,7 @@
 		3252EA9A1999D7040056C32A /* UIView+MPSnapshotImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIView+MPSnapshotImage.h"; path = "Pods/Mixpanel/Mixpanel/UIView+MPSnapshotImage.h"; sourceTree = "<group>"; };
 		3252EAA31999D7150056C32A /* UIImage+MPImageEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPImageEffects.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPImageEffects.h"; sourceTree = "<group>"; };
 		3252EAA51999D8B10056C32A /* BugsnagIosNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagIosNotifier.h; path = Pods/Bugsnag/bugsnag/iOS/BugsnagIosNotifier.h; sourceTree = "<group>"; };
+		32539996199C80FF009DDF87 /* SEGEcommerce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGEcommerce.h; sourceTree = "<group>"; };
 		3254FBBF1999D38D0043AF15 /* Amplitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Amplitude.h; path = "Pods/Amplitude-iOS/Amplitude.h"; sourceTree = "<group>"; };
 		3254FBC01999D38D0043AF15 /* AmplitudeARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmplitudeARCMacros.h; path = "Pods/Amplitude-iOS/AmplitudeARCMacros.h"; sourceTree = "<group>"; };
 		3254FBC11999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmplitudeLocationManagerDelegate.h; path = "Pods/Amplitude-iOS/AmplitudeLocationManagerDelegate.h"; sourceTree = "<group>"; };
@@ -819,6 +821,7 @@
 				EAA604C817C28C7C00911919 /* SEGAnalyticsRequest.m */,
 				EACB4DD017C0BB3100624129 /* SEGAnalyticsUtils.h */,
 				EACB4DD117C0BB3100624129 /* SEGAnalyticsUtils.m */,
+				32539996199C80FF009DDF87 /* SEGEcommerce.h */,
 				32E281211908421100FB48D7 /* Helpers */,
 				D3EDB63718C315F100A88A7E /* Integrations */,
 				F7200B7917659B2F003F3138 /* Supporting Files */,
@@ -955,6 +958,7 @@
 				D3EDB65C18C315F100A88A7E /* SEGCrittercismIntegration.h in Headers */,
 				D3EDB66618C315F100A88A7E /* SEGSegmentioIntegration.h in Headers */,
 				D3EDB65618C315F100A88A7E /* SEGAmplitudeIntegration.h in Headers */,
+				32539997199C80FF009DDF87 /* SEGEcommerce.h in Headers */,
 				D331BD371860F5F0007CB22F /* TSResponse.h in Headers */,
 				D331BD381860F5F0007CB22F /* TSUtils.h in Headers */,
 				D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */,
