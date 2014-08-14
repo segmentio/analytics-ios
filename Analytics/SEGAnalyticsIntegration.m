@@ -4,6 +4,7 @@
 #import "SEGAnalyticsIntegration.h"
 #import <TRVSDictionaryWithCaseInsensitivity.h>
 #import "SEGAnalyticsUtils.h"
+#import "SEGEcommerce.h"
 
 NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.did.start";
 
@@ -50,7 +51,13 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {}
-- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {}
+
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
+  if ([self conformsToProtocol:@protocol(SEGEcommerce)]) {
+    [self trackEcommerceEvent:event properties:properties];
+  }
+}
+
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {}
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options {}
 - (void)reset {}
@@ -103,5 +110,31 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
   }
   return nil;
 }
+
+#pragma mark - Private
+
+- (void)trackEcommerceEvent:(NSString *)event properties:(NSDictionary *)properties {
+  [[self ecommercePatternSelectorMap] enumerateKeysAndObjectsUsingBlock:^(NSString *pattern, NSString *selectorName, BOOL *stop) {
+    SEL selector = NSSelectorFromString(selectorName);
+    if ([self event:event matchesPattern:pattern] && [self respondsToSelector:selector]) {
+      [self performSelector:selector withObject:properties];
+      return;
+    }
+  }];
+}
+
+- (NSTextCheckingResult *)event:(NSString *)event matchesPattern:(NSString *)pattern {
+  return [[NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:NULL] firstMatchInString:event options:0 range:NSMakeRange(0, event.length)];
+}
+
+- (NSDictionary *)ecommercePatternSelectorMap {
+  return @{
+    @"viewed[ _]?product": @"viewedProduct:",
+    @"completed[ _]?order": @"completedOrder:",
+    @"added[ _]?product": @"addedProduct:",
+    @"removed[ _]?product": @"removedProduct"
+  };
+}
+
 
 @end
