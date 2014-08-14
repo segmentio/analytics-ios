@@ -119,7 +119,7 @@
 #pragma mark - Ecommerce
 
 - (void)completedOrder:(NSDictionary *)properties {
-  NSString *orderId = properties[@"id"];
+  NSString *orderId = properties[@"orderId"];
   NSString *currency = properties[@"currency"] ?: @"USD";
   
   SEGLog(@"Tracking completed order to Google Analytics with properties: %@", properties);
