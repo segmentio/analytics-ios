@@ -77,9 +77,9 @@ static NSDictionary *BuildStaticContext() {
   NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
   if (infoDictionary.count) {
     __context[@"app"] = @{
-                          @"name": infoDictionary[@"CFBundleDisplayName"],
-                          @"version": infoDictionary[@"CFBundleShortVersionString"],
-                          @"build": infoDictionary[@"CFBundleVersion"]
+                          @"name": infoDictionary[@"CFBundleDisplayName"] ?: @"",
+                          @"version": infoDictionary[@"CFBundleShortVersionString"] ?: @"",
+                          @"build": infoDictionary[@"CFBundleVersion"] ?: @""
                           };
   }
   
