@@ -348,6 +348,7 @@ static NSDictionary *BuildStaticContext() {
 
 - (void)queuePayload:(NSDictionary *)payload {
   [self.queue addObject:payload];
+  [self.queue writeToURL:[self queueURL] atomically:YES];
   [self flushQueueByLength];
 }
 
@@ -437,6 +438,7 @@ static NSDictionary *BuildStaticContext() {
       else {
         SEGLog(@"%@ API request success 200", self);
         [self.queue removeObjectsInArray:self.batch];
+        [self.queue writeToURL:[self queueURL] atomically:YES];
         [self notifyForName:SEGSegmentioRequestDidSucceedNotification userInfo:self.batch];
       }
       
