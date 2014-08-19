@@ -50,11 +50,12 @@ module Build
                   mixpanel = { :name => 'Mixpanel', :dependencies => [{ :name => 'Mixpanel', :version => '~> 2.3.6' }]}
                   optimizely = { :name => 'Optimizely', :dependencies => [{ :name => 'Optimizely-iOS-SDK', :version => '~> 0.6.52' }]}
                   quantcast = { :name => 'Quantcast', :dependencies => [{ :name => 'Quantcast-Measure', :version => '~> 1.4.4' }]}
-                  segmentio = { :name => 'Segmentio', :dependencies => [{ :name => 'Reachability', :version => '3.1.1' }]}
+                  segmentio = { :name => 'Segmentio', :dependencies => []}
                   taplytics = { :name => 'Taplytics', :dependencies => [{ :name => 'Taplytics', :version => '~> 1.3.0' }]}
                   tapstream = { :name => 'Tapstream', :dependencies => [{ :name => 'Tapstream', :version => '~> 2.7' }]}
+                  testflight = { :name => 'TestFlight', :dependencies => [{ :name => 'TestFlightSDK', :version => '~> 3.0.2' }]}
 
-                  pods = [segmentio, amplitude, bugsnag, countly, crittercism, flurry, google, localytics, mixpanel, optimizely, taplytics, tapstream, quantcast]
+                  pods = [segmentio, amplitude, bugsnag, countly, crittercism, flurry, google, localytics, mixpanel, optimizely, quantcast, taplytics, tapstream, testflight]
 
                   pods.map { |p| Subspec.spec_from_hash p }
                 end
