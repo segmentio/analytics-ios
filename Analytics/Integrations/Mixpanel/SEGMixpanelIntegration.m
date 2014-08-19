@@ -90,7 +90,7 @@
   [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
 }
 
-- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options {
   [[[Mixpanel sharedInstance] people] addPushDeviceToken:deviceToken];
 }
 

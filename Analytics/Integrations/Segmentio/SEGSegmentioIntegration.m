@@ -298,7 +298,7 @@ static NSDictionary *BuildStaticContext() {
   [self enqueueAction:@"group" dictionary:dictionary options:options];
 }
 
-- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options {
   NSCParameterAssert(deviceToken != nil);
   
   const unsigned char *buffer = (const unsigned char *)[deviceToken bytes];
