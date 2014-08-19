@@ -41,7 +41,7 @@
 }
 
 - (void)testHasIntegrations {
-  XCTAssertEqual(13, self.analytics.configuration.integrations.count);
+  XCTAssertEqual(14, self.analytics.configuration.integrations.count);
 }
 
 - (void)testForwardsIdentify {
