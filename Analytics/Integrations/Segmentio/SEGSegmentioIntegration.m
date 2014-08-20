@@ -163,7 +163,7 @@ static NSDictionary *BuildStaticContext() {
     self.reachability = [SEGReachability reachabilityWithHostname:@"http://google.com"];
     self.context = BuildStaticContext();
     self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
-    self.serialQueue = dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
+    self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
     self.flushTaskID = UIBackgroundTaskInvalid;
     self.name = @"Segment.io";
     self.settings = @{ @"writeKey": configuration.writeKey };
@@ -211,11 +211,11 @@ static NSDictionary *BuildStaticContext() {
 }
 
 - (void)dispatchBackground:(void(^)(void))block {
-  dispatch_specific_async(_serialQueue, block);
+  seg_dispatch_specific_async(_serialQueue, block);
 }
 
 - (void)dispatchBackgroundAndWait:(void(^)(void))block {
-  dispatch_specific_sync(_serialQueue, block);
+  seg_dispatch_specific_sync(_serialQueue, block);
 }
 
 - (void)beginBackgroundTask {

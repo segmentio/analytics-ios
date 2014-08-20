@@ -216,7 +216,7 @@ static SEGAnalytics *__sharedInstance = nil;
   for (id<SEGAnalyticsIntegration> integration in self.configuration.integrations.allValues)
     [integration updateSettings:settings[integration.name]];
 
-  dispatch_specific_async(_serialQueue, ^{
+  seg_dispatch_specific_async(_serialQueue, ^{
     [self flushMessageQueue];
   });
 }
@@ -231,7 +231,7 @@ static SEGAnalytics *__sharedInstance = nil;
   SEGLog(@"%@ Sending API settings request: %@", self, urlRequest);
 
   _settingsRequest = [SEGAnalyticsRequest startWithURLRequest:urlRequest completion:^{
-    dispatch_specific_async(_serialQueue, ^{
+    seg_dispatch_specific_async(_serialQueue, ^{
       SEGLog(@"%@ Received API settings response: %@", self, _settingsRequest.responseJSON);
 
       if (!_settingsRequest.error) {
@@ -329,7 +329,7 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 - (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options  {
-  dispatch_specific_async(_serialQueue, ^{
+  seg_dispatch_specific_async(_serialQueue, ^{
     // No cached settings, queue the API call
 
     if (!self.cachedSettings.count) {
@@ -357,7 +357,7 @@ static SEGAnalytics *__sharedInstance = nil;
   if (self = [self init]) {
     self.configuration = configuration;
     self.enabled = YES;
-    self.serialQueue = dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
+    self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
     self.messageQueue = [[NSMutableArray alloc] init];
 
     [[[self class] registeredIntegrations] enumerateKeysAndObjectsUsingBlock:^(NSString *identifier, Class integrationClass, BOOL *stop) {
