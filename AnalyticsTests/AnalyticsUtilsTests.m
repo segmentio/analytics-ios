@@ -17,7 +17,7 @@
 - (void)setUp {
     [super setUp];
     
-    self.queue = dispatch_queue_create_specific("io.segment.test.queue", DISPATCH_QUEUE_SERIAL);
+    self.queue = seg_dispatch_queue_create_specific("io.segment.test.queue", DISPATCH_QUEUE_SERIAL);
 }
 
 - (void)tearDown {
@@ -28,25 +28,25 @@
         dispatch_sync(self.queue, ^{
             __block BOOL blockRan = NO;
             
-            dispatch_specific_sync(self.queue, ^{ blockRan = YES; });
+            seg_dispatch_specific_sync(self.queue, ^{ blockRan = YES; });
             XCTAssertTrue(blockRan);
             
             blockRan = NO;
-            dispatch_specific_async(self.queue, ^{ blockRan = YES; });
+            seg_dispatch_specific_async(self.queue, ^{ blockRan = YES; });
             XCTAssertTrue(blockRan);
         });
 }
 
 - (void)testCanRunAsyncWhenDispatchingElsewhereThanQueue {
     __block BOOL blockRan = NO;
-    dispatch_specific_async(self.queue, ^{ blockRan = YES; });
+    seg_dispatch_specific_async(self.queue, ^{ blockRan = YES; });
     XCTAssertFalse(blockRan);
     EXP_expect(blockRan).will.beTruthy();
 }
 
 - (void)testCanSyncWhenDispatchingElsewhereThanQueue {
     __block BOOL blockRan = NO;
-    dispatch_specific_sync(self.queue, ^{ blockRan = YES; });
+    seg_dispatch_specific_sync(self.queue, ^{ blockRan = YES; });
     XCTAssertTrue(blockRan);
 }
 
