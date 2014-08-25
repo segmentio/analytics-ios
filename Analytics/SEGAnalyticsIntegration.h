@@ -17,6 +17,9 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
 - (BOOL)ready;
 - (void)updateSettings:(NSDictionary *)settings;
 
+@property(nonatomic, assign) BOOL valid;
+@property(nonatomic, assign) BOOL initialized;
+
 // Analytics API
 // -------------
 
@@ -49,9 +52,9 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
 @property (nonatomic, strong) SEGAnalyticsConfiguration *configuration;
 
 @property(nonatomic, copy) NSString *name;
+@property(nonatomic, copy) NSDictionary *settings;
 @property(nonatomic, assign) BOOL valid;
 @property(nonatomic, assign) BOOL initialized;
-@property(nonatomic, copy) NSDictionary *settings;
 
 - (void)validate;
 - (void)start;

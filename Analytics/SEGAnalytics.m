@@ -283,8 +283,13 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 - (void)invokeIntegration:(id <SEGAnalyticsIntegration>)integration selector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
-  if (!integration.ready) {
-    SEGLog(@"Not sending call to %@ because it isn't ready (enabled and initialized).", integration.name);
+  
+  if (![integration initialized] && [integration valid]) {
+    SEGLog(@"Not sending call to %@ because it isn't initialized", integration.name);
+  }
+  
+  if (![integration ready]) {
+    SEGLog(@"Not sending call to %@ because it isn't enabled.", integration.name);
     return;
   }
 
