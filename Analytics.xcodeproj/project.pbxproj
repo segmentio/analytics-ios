@@ -116,6 +116,9 @@
 		329AB8AC19AC4FE100E7B6BB /* TestFlight.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8A919AC4FE100E7B6BB /* TestFlight.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329AB8AD19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8AA19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329AB8AE19AC4FE100E7B6BB /* TestFlight+ManualSessions.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8AB19AC4FE100E7B6BB /* TestFlight+ManualSessions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		329AB8B219AC64BB00E7B6BB /* SEGTestFlightIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8B019AC64BB00E7B6BB /* SEGTestFlightIntegration.h */; };
+		329AB8B319AC64BB00E7B6BB /* SEGTestFlightIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 329AB8B119AC64BB00E7B6BB /* SEGTestFlightIntegration.m */; };
+		329AB8B419AC64BB00E7B6BB /* SEGTestFlightIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 329AB8B119AC64BB00E7B6BB /* SEGTestFlightIntegration.m */; };
 		32A69C221979CF4A00D69943 /* SEGOptimizelyIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A69C201979CF4A00D69943 /* SEGOptimizelyIntegration.h */; };
 		32A69C231979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */; };
 		32A69C241979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */; };
@@ -291,6 +294,8 @@
 		329AB8A919AC4FE100E7B6BB /* TestFlight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = Pods/TestFlightSDK/TestFlight.h; sourceTree = "<group>"; };
 		329AB8AA19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TestFlight+AsyncLogging.h"; path = "Pods/TestFlightSDK/TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
 		329AB8AB19AC4FE100E7B6BB /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TestFlight+ManualSessions.h"; path = "Pods/TestFlightSDK/TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
+		329AB8B019AC64BB00E7B6BB /* SEGTestFlightIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGTestFlightIntegration.h; sourceTree = "<group>"; };
+		329AB8B119AC64BB00E7B6BB /* SEGTestFlightIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGTestFlightIntegration.m; sourceTree = "<group>"; };
 		32A69C201979CF4A00D69943 /* SEGOptimizelyIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGOptimizelyIntegration.h; sourceTree = "<group>"; };
 		32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGOptimizelyIntegration.m; sourceTree = "<group>"; };
 		32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGQuantcastIntegration.h; sourceTree = "<group>"; };
@@ -458,6 +463,15 @@
 				3242C9A41946A3E100FBE441 /* iOS Tests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		329AB8AF19AC64BB00E7B6BB /* TestFlight */ = {
+			isa = PBXGroup;
+			children = (
+				329AB8B019AC64BB00E7B6BB /* SEGTestFlightIntegration.h */,
+				329AB8B119AC64BB00E7B6BB /* SEGTestFlightIntegration.m */,
+			);
+			path = TestFlight;
 			sourceTree = "<group>";
 		};
 		32A69C1F1979CF4A00D69943 /* Optimizely */ = {
@@ -639,6 +653,7 @@
 				32A8C60419107DBD00173AE5 /* Quantcast */,
 				D3EDB65018C315F100A88A7E /* Segmentio */,
 				32DF3277194666DA004098C1 /* Taplytics */,
+				329AB8AF19AC64BB00E7B6BB /* TestFlight */,
 				D3EDB65318C315F100A88A7E /* Tapstream */,
 			);
 			path = Integrations;
@@ -965,6 +980,7 @@
 				D331BD351860F5F0007CB22F /* TSLogLevel.h in Headers */,
 				D3EDB66218C315F100A88A7E /* SEGLocalyticsIntegration.h in Headers */,
 				3254FBCD1999D3D00043AF15 /* Bugsnag.h in Headers */,
+				329AB8B219AC64BB00E7B6BB /* SEGTestFlightIntegration.h in Headers */,
 				324A42C91992C8FA0060013A /* TSTapstream.h in Headers */,
 				D331BD361860F5F0007CB22F /* TSPlatform.h in Headers */,
 				D3EDB65C18C315F100A88A7E /* SEGCrittercismIntegration.h in Headers */,
@@ -1205,6 +1221,7 @@
 				3242C9B61946AFC800FBE441 /* SEGBugsnagIntegration.m in Sources */,
 				3242C9BB1946AFDD00FBE441 /* SEGLocalyticsIntegration.m in Sources */,
 				3242C9AA1946AB4700FBE441 /* AnalyticsTests.m in Sources */,
+				329AB8B419AC64BB00E7B6BB /* SEGTestFlightIntegration.m in Sources */,
 				3242C9B31946ADB000FBE441 /* SEGSegmentioIntegration.m in Sources */,
 				3242C9B11946ADA200FBE441 /* SEGBluetooth.m in Sources */,
 				3242C9BA1946AFD900FBE441 /* SEGGoogleAnalyticsIntegration.m in Sources */,
@@ -1230,6 +1247,7 @@
 			files = (
 				D3EDB66918C315F100A88A7E /* SEGTapstreamIntegration.m in Sources */,
 				D3EDB66118C315F100A88A7E /* SEGGoogleAnalyticsIntegration.m in Sources */,
+				329AB8B319AC64BB00E7B6BB /* SEGTestFlightIntegration.m in Sources */,
 				D3EDB65718C315F100A88A7E /* SEGAmplitudeIntegration.m in Sources */,
 				F7200B7E17659B2F003F3138 /* SEGAnalytics.m in Sources */,
 				32430A771914186C004EFF59 /* SEGLocation.m in Sources */,
