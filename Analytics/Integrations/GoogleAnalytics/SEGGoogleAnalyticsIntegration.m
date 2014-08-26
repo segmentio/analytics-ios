@@ -9,6 +9,12 @@
 #import "SEGAnalytics.h"
 #import "SEGGoogleAnalyticsIntegration.h"
 
+@interface SEGGoogleAnalyticsIntegration ()
+
+@property (nonatomic, copy) NSDictionary *traits;
+
+@end
+
 @implementation SEGGoogleAnalyticsIntegration
 
 #pragma mark - Initialization
@@ -66,16 +72,19 @@
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
+  // remove existing traits
+  [self resetTraits];
+  
     // Optionally send the userId if they have that enabled
-    BOOL sendUserId = [[self.settings objectForKey:@"sendUserId"] boolValue];
-    if (sendUserId) {
-        [[[GAI sharedInstance] defaultTracker] set:@"&uid" value:userId];
-    }
+    if ([self shouldSendUserId])
+      [[[GAI sharedInstance] defaultTracker] set:@"&uid" value:userId];
 
-    // We can set traits though. Iterate over all the traits and set them.
-    for (NSString *key in traits) {
-        [[[GAI sharedInstance] defaultTracker] set:key value:[traits objectForKey:key]];
-    }
+    // We can set traits though. Iterate over a ll the traits and set them.
+  self.traits = traits;
+
+  [self.traits enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    [[[GAI sharedInstance] defaultTracker] set:key value:obj];
+  }];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
@@ -138,6 +147,27 @@
                                                                                           price:properties[@"price"]
                                                                                        quantity:properties[@"quantity"]
                                                                                    currencyCode:currency] build]];
+}
+
+- (void)reset {
+  [super reset];
+  
+  [[[GAI sharedInstance] defaultTracker] set:@"&uid" value:nil];
+  
+  [self resetTraits];
+}
+
+#pragma mark - Private
+
+- (BOOL)shouldSendUserId {
+  return [[self.settings objectForKey:@"sendUserId"] boolValue];
+}
+
+- (void)resetTraits {
+  [self.traits enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+    [[[GAI sharedInstance] defaultTracker] set:key value:nil];
+  }];
+  self.traits = nil;
 }
 
 @end
