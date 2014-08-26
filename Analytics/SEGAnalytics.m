@@ -117,6 +117,7 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits {
+  
   [self identify:userId traits:traits options:nil];
 }
 
