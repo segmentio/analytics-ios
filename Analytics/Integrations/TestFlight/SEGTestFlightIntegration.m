@@ -47,7 +47,6 @@
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
-  TFLog(@"%@", event);
   [TestFlight passCheckpoint:event];
 }
 
