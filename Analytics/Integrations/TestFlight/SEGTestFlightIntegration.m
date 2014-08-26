@@ -27,13 +27,13 @@
 }
 
 - (void)validate {
-  self.valid = ([self applicationToken] != nil);
+  self.valid = ([self appToken] != nil);
 }
 
 - (void)start {
-  [TestFlight takeOff:[self applicationToken]];
+  [TestFlight takeOff:[self appToken]];
   
-  SEGLog(@"TestFlightIntegration initialized with applicationToken: %@", [self applicationToken]);
+  SEGLog(@"TestFlightIntegration initialized with appToken: %@", [self appToken]);
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
@@ -47,11 +47,12 @@
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
+  TFLog(@"%@", event);
   [TestFlight passCheckpoint:event];
 }
 
-- (NSString *)applicationToken {
-  return self.settings[@"applicationToken"];
+- (NSString *)appToken {
+  return self.settings[@"appToken"];
 }
 
 + (NSString *)identifier {
