@@ -113,6 +113,9 @@
 		3254FBD41999D3D00043AF15 /* BugsnagReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD71999D4370043AF15 /* Countly_OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD81999D4370043AF15 /* Countly.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD61999D4370043AF15 /* Countly.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		329AB8AC19AC4FE100E7B6BB /* TestFlight.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8A919AC4FE100E7B6BB /* TestFlight.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		329AB8AD19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8AA19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		329AB8AE19AC4FE100E7B6BB /* TestFlight+ManualSessions.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8AB19AC4FE100E7B6BB /* TestFlight+ManualSessions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32A69C221979CF4A00D69943 /* SEGOptimizelyIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A69C201979CF4A00D69943 /* SEGOptimizelyIntegration.h */; };
 		32A69C231979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */; };
 		32A69C241979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */; };
@@ -285,6 +288,9 @@
 		3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagReachability.h; path = Pods/Bugsnag/bugsnag/BugsnagReachability.h; sourceTree = "<group>"; };
 		3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Countly_OpenUDID.h; path = Pods/Countly/Countly_OpenUDID.h; sourceTree = "<group>"; };
 		3254FBD61999D4370043AF15 /* Countly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Countly.h; path = Pods/Countly/Countly.h; sourceTree = "<group>"; };
+		329AB8A919AC4FE100E7B6BB /* TestFlight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = Pods/TestFlightSDK/TestFlight.h; sourceTree = "<group>"; };
+		329AB8AA19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TestFlight+AsyncLogging.h"; path = "Pods/TestFlightSDK/TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
+		329AB8AB19AC4FE100E7B6BB /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TestFlight+ManualSessions.h"; path = "Pods/TestFlightSDK/TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
 		32A69C201979CF4A00D69943 /* SEGOptimizelyIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGOptimizelyIntegration.h; sourceTree = "<group>"; };
 		32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGOptimizelyIntegration.m; sourceTree = "<group>"; };
 		32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGQuantcastIntegration.h; sourceTree = "<group>"; };
@@ -497,6 +503,9 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				329AB8A919AC4FE100E7B6BB /* TestFlight.h */,
+				329AB8AA19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h */,
+				329AB8AB19AC4FE100E7B6BB /* TestFlight+ManualSessions.h */,
 				3252EAA51999D8B10056C32A /* BugsnagIosNotifier.h */,
 				3254FBBF1999D38D0043AF15 /* Amplitude.h */,
 				3254FBC01999D38D0043AF15 /* AmplitudeARCMacros.h */,
@@ -941,6 +950,9 @@
 				3252EAA01999D7040056C32A /* UIImage+MPAverageColor.h in Headers */,
 				3252EAA21999D7040056C32A /* UIView+MPSnapshotImage.h in Headers */,
 				3252EA8C1999D6E20056C32A /* Optimizely.h in Headers */,
+				329AB8AC19AC4FE100E7B6BB /* TestFlight.h in Headers */,
+				329AB8AD19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h in Headers */,
+				329AB8AE19AC4FE100E7B6BB /* TestFlight+ManualSessions.h in Headers */,
 				3252EA8D1999D6E20056C32A /* OptimizelyCodeBlocksKey.h in Headers */,
 				3252EA8E1999D6E20056C32A /* OptimizelyVariableKey.h in Headers */,
 				D331BD06185FDDEA007CB22F /* BugsnagConfiguration.h in Headers */,
@@ -1336,7 +1348,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.5.11;
+				ANALYTICS_VERSION = 1.6.0;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1368,7 +1380,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.5.11;
+				ANALYTICS_VERSION = 1.6.0;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
