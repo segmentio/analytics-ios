@@ -279,7 +279,7 @@ static SEGAnalytics *__sharedInstance = nil;
 - (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
   if (!_enabled)
     return;
-
+  
   if (self.configuration.integrations.count == 0)
     SEGLog(@"Trying to send event, but no integrations found.");
 
@@ -341,7 +341,7 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options  {
   seg_dispatch_specific_async(_serialQueue, ^{
-    if (self.cachedSettings.count == 0) {
+    if (self.cachedSettings.count == 0 || self.settingsRequest != nil) {
       // No cached settings, queue the API call
       [self queueSelector:selector arguments:arguments options:options];
     } else {
