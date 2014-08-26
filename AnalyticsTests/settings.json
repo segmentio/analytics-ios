@@ -1,67 +1,70 @@
 {
-    "Amplitude": {
-        "apiKey": "3c0a4b0907d9ea1a6ce811d6afc8e0c5"
-    },
-    "Bugsnag": {
-        "apiKey": "7563fdfc1f418e956f5e5472148759f0",
-        "useSSL": false
-    },
-    "Chartbeat": {
-        "uid": 43967,
-        "domain": "segment.io"
-    },
-    "Countly": {
-        "serverUrl": "https://cloud.count.ly",
-        "appKey": "b401156663bfcc4694aafc0dd26023a6d9b9544a"
-    },
-    "Flurry": {
-        "apiKey": "VN8HXZ28MWPB7JPBYNZD",
-        "useHttps": false,
-        "captureUncaughtExceptions": false,
-        "sessionContinueSeconds": 15
-    },
-    "Google Analytics": {
-        "classic": true,
-        "ignoreReferrer": "",
-        "initialized": true,
-        "reportUncaughtExceptions": true,
-        "doubleClick": false,
-        "enhancedLinkAttribution": false,
-        "serversideTrackingId": "",
-        "mobileTrackingId": "UA-27033709-9",
-        "universal": false,
-        "useHttps": 0,
-        "trackingId": "",
-        "domain": "none",
-        "initialPageview": true
-    },
-    "Intercom": {
-        "inbox": false,
-        "counter": false,
-        "appId": "marh8pic",
-        "apiKey": "bb740071d3c461959c7ea5f41959c4e8bd44b4a7",
-        "activator": "#IntercomDefaultWidget"
-    },
-    "Localytics": {
-        "appKey": "3ccfac0c5c366f11105f26b-c8ab109c-b6e1-11e2-88e8-005cf8cbabd8"
-    },
-    "Mixpanel": {
-        "people": false,
-        "pageview": false,
-        "token": "89f86c4aa2ce5b74cb47eb5ec95ad1f9",
-        "initialPageview": false
-    },
-    "Tapstream": {
-        "accountName": "segmentio-test",
-        "sdkSecret": "Rq8qqm3KQ_iDeqyOa55aqQ",
-        "trackAllPages": 1,
-        "trackCategorizedPages": 1,
-        "trackNamedPages": 1
-    },
-    "Webhooks": {
-        "globalHook": "http://requestb.in/1gc2atw1"
-    },
-    "Segment.io": {
-        "writeKey": "y42nxqnuh7"
-    }
+  "Amplitude": {
+    "apiKey": "3c0a4b0907d9ea1a6ce811d6afc8e0c5"
+  },
+  "Bugsnag": {
+    "apiKey": "7563fdfc1f418e956f5e5472148759f0",
+    "useSSL": false
+  },
+  "Chartbeat": {
+    "uid": 43967,
+    "domain": "segment.io"
+  },
+  "Countly": {
+    "serverUrl": "https://cloud.count.ly",
+    "appKey": "b401156663bfcc4694aafc0dd26023a6d9b9544a"
+  },
+  "Flurry": {
+    "apiKey": "VN8HXZ28MWPB7JPBYNZD",
+    "useHttps": false,
+    "captureUncaughtExceptions": false,
+    "sessionContinueSeconds": 15
+  },
+  "Google Analytics": {
+    "classic": true,
+    "ignoreReferrer": "",
+    "initialized": true,
+    "reportUncaughtExceptions": true,
+    "doubleClick": false,
+    "enhancedLinkAttribution": false,
+    "serversideTrackingId": "",
+    "mobileTrackingId": "UA-27033709-9",
+    "universal": false,
+    "useHttps": 0,
+    "trackingId": "",
+    "domain": "none",
+    "initialPageview": true
+  },
+  "Intercom": {
+    "inbox": false,
+    "counter": false,
+    "appId": "marh8pic",
+    "apiKey": "bb740071d3c461959c7ea5f41959c4e8bd44b4a7",
+    "activator": "#IntercomDefaultWidget"
+  },
+  "Localytics": {
+    "appKey": "3ccfac0c5c366f11105f26b-c8ab109c-b6e1-11e2-88e8-005cf8cbabd8"
+  },
+  "Mixpanel": {
+    "people": false,
+    "pageview": false,
+    "token": "89f86c4aa2ce5b74cb47eb5ec95ad1f9",
+    "initialPageview": false
+  },
+  "Tapstream": {
+    "accountName": "segmentio-test",
+    "sdkSecret": "Rq8qqm3KQ_iDeqyOa55aqQ",
+    "trackAllPages": 1,
+    "trackCategorizedPages": 1,
+    "trackNamedPages": 1
+  },
+  "TestFlight": {
+    "appToken": "8ee14bb7-d41d-4e4a-b8f4-77347c0c071c"
+  },
+  "Webhooks": {
+    "globalHook": "http://requestb.in/1gc2atw1"
+  },
+  "Segment.io": {
+    "writeKey": "y42nxqnuh7"
+  }
 }
