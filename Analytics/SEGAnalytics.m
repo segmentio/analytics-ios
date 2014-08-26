@@ -110,6 +110,8 @@ static SEGAnalytics *__sharedInstance = nil;
 
 #pragma mark - Analytics API
 
+#pragma mark - Identify
+
 - (void)identify:(NSString *)userId {
   [self identify:userId traits:nil options:nil];
 }
@@ -120,11 +122,13 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
   NSCParameterAssert(userId.length > 0 || traits.count > 0);
-
+  
   [self callIntegrationsWithSelector:_cmd
                            arguments:@[userId ?: [NSNull null], SEGCoerceDictionary(traits), SEGCoerceDictionary(options)]
                              options:options];
 }
+
+#pragma mark - Track
 
 - (void)track:(NSString *)event {
   [self track:event properties:nil options:nil];
@@ -142,6 +146,8 @@ static SEGAnalytics *__sharedInstance = nil;
                              options:options];
 }
 
+#pragma mark - Screen
+
 - (void)screen:(NSString *)screenTitle {
   [self screen:screenTitle properties:nil options:nil];
 }
@@ -157,6 +163,8 @@ static SEGAnalytics *__sharedInstance = nil;
                            arguments:@[screenTitle, SEGCoerceDictionary(properties), SEGCoerceDictionary(options)]
                              options:options];
 }
+
+#pragma mark - Group
 
 - (void)group:(NSString *)groupId {
   [self group:groupId traits:nil options:nil];
@@ -179,15 +187,11 @@ static SEGAnalytics *__sharedInstance = nil;
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options {
   NSParameterAssert(deviceToken != nil);
 
-  [self callIntegrationsWithSelector:_cmd
-                           arguments:@[deviceToken]
-                             options:options];
+  [self callIntegrationsWithSelector:_cmd arguments:@[deviceToken] options:options];
 }
 
 - (void)reset {
-  [self callIntegrationsWithSelector:_cmd
-                           arguments:nil
-                             options:nil];
+  [self callIntegrationsWithSelector:_cmd arguments:nil options:nil];
 }
 
 - (void)enable {
@@ -228,13 +232,14 @@ static SEGAnalytics *__sharedInstance = nil;
   NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.segment.io/project/%@/settings", self.configuration.writeKey]]];
   [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
   [urlRequest setHTTPMethod:@"GET"];
+  
   SEGLog(@"%@ Sending API settings request: %@", self, urlRequest);
 
   _settingsRequest = [SEGAnalyticsRequest startWithURLRequest:urlRequest completion:^{
     seg_dispatch_specific_async(_serialQueue, ^{
       SEGLog(@"%@ Received API settings response: %@", self, _settingsRequest.responseJSON);
 
-      if (!_settingsRequest.error) {
+      if (_settingsRequest.error == nil) {
         [self setCachedSettings:_settingsRequest.responseJSON];
       }
 
@@ -297,6 +302,8 @@ static SEGAnalytics *__sharedInstance = nil;
     SEGLog(@"Not sending call to %@ because it doesn't respond to %@.", integration.name, NSStringFromSelector(selector));
     return;
   }
+  
+
 
   if(![self isIntegration:integration enabledInOptions:options[@"integrations"]]) {
     SEGLog(@"Not sending call to %@ because it is disabled in options.", integration.name);
@@ -325,8 +332,7 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 - (void)flushMessageQueue {
-  if (_messageQueue.count) {
-
+  if (_messageQueue.count != 0) {
     for (NSArray *arr in _messageQueue)
       [self forwardSelector:NSSelectorFromString(arr[0]) arguments:arr[1] options:arr[2]];
     [_messageQueue removeAllObjects];
@@ -335,13 +341,11 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options  {
   seg_dispatch_specific_async(_serialQueue, ^{
-    // No cached settings, queue the API call
-
-    if (!self.cachedSettings.count) {
+    if (self.cachedSettings.count == 0) {
+      // No cached settings, queue the API call
       [self queueSelector:selector arguments:arguments options:options];
-    }
+    } else {
       // Settings cached, flush message queue & new API call
-    else {
       [self flushMessageQueue];
       [self forwardSelector:selector arguments:arguments options:options];
     }
