@@ -303,8 +303,6 @@ static SEGAnalytics *__sharedInstance = nil;
     SEGLog(@"Not sending call to %@ because it doesn't respond to %@.", integration.name, NSStringFromSelector(selector));
     return;
   }
-  
-
 
   if(![self isIntegration:integration enabledInOptions:options[@"integrations"]]) {
     SEGLog(@"Not sending call to %@ because it is disabled in options.", integration.name);
