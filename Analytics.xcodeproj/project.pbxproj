@@ -125,6 +125,9 @@
 		32A8C60719107DBD00173AE5 /* SEGQuantcastIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */; };
 		32A8C60819107DBD00173AE5 /* SEGQuantcastIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A8C60619107DBD00173AE5 /* SEGQuantcastIntegration.m */; };
 		32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCD99B1919A4F4007B63BA /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32CFF3CE19AE5BCF00193D3D /* SEGAppsFlyerIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CFF3CC19AE5BCF00193D3D /* SEGAppsFlyerIntegration.h */; };
+		32CFF3CF19AE5BCF00193D3D /* SEGAppsFlyerIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CFF3CD19AE5BCF00193D3D /* SEGAppsFlyerIntegration.m */; };
+		32CFF3D019AE5BCF00193D3D /* SEGAppsFlyerIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CFF3CD19AE5BCF00193D3D /* SEGAppsFlyerIntegration.m */; };
 		32DF327A194666DA004098C1 /* SEGTaplyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DF3278194666DA004098C1 /* SEGTaplyticsIntegration.h */; };
 		32DF327B194666DA004098C1 /* SEGTaplyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32DF3279194666DA004098C1 /* SEGTaplyticsIntegration.m */; };
 		32E113231908AC85006D9788 /* libPods-Analytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E113221908AC85006D9788 /* libPods-Analytics.a */; };
@@ -302,6 +305,8 @@
 		32A8C60619107DBD00173AE5 /* SEGQuantcastIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGQuantcastIntegration.m; sourceTree = "<group>"; };
 		32CC25E119072C6B0090DD06 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32CCD99B1919A4F4007B63BA /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
+		32CFF3CC19AE5BCF00193D3D /* SEGAppsFlyerIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGAppsFlyerIntegration.h; path = AppsFlyer/SEGAppsFlyerIntegration.h; sourceTree = "<group>"; };
+		32CFF3CD19AE5BCF00193D3D /* SEGAppsFlyerIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGAppsFlyerIntegration.m; path = AppsFlyer/SEGAppsFlyerIntegration.m; sourceTree = "<group>"; };
 		32D045551931FACD00A9F0A4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		32DF3278194666DA004098C1 /* SEGTaplyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGTaplyticsIntegration.h; sourceTree = "<group>"; };
 		32DF3279194666DA004098C1 /* SEGTaplyticsIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGTaplyticsIntegration.m; sourceTree = "<group>"; };
@@ -492,6 +497,15 @@
 			path = Quantcast;
 			sourceTree = "<group>";
 		};
+		32CFF3CB19AE5BAF00193D3D /* AppsFlyer */ = {
+			isa = PBXGroup;
+			children = (
+				32CFF3CC19AE5BCF00193D3D /* SEGAppsFlyerIntegration.h */,
+				32CFF3CD19AE5BCF00193D3D /* SEGAppsFlyerIntegration.m */,
+			);
+			name = AppsFlyer;
+			sourceTree = "<group>";
+		};
 		32DF3277194666DA004098C1 /* Taplytics */ = {
 			isa = PBXGroup;
 			children = (
@@ -642,6 +656,7 @@
 				EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */,
 				EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */,
 				D3EDB63818C315F100A88A7E /* Amplitude */,
+				32CFF3CB19AE5BAF00193D3D /* AppsFlyer */,
 				D3EDB63B18C315F100A88A7E /* Bugsnag */,
 				D3EDB63E18C315F100A88A7E /* Countly */,
 				D3EDB64118C315F100A88A7E /* Crittercism */,
@@ -908,6 +923,7 @@
 				3252EA651999D5E10056C32A /* LocalyticsSession.h in Headers */,
 				3252EA671999D5E10056C32A /* LocalyticsUploader.h in Headers */,
 				3252EA681999D5E10056C32A /* LocalyticsUtil.h in Headers */,
+				32CFF3CE19AE5BCF00193D3D /* SEGAppsFlyerIntegration.h in Headers */,
 				D331BD2E1860F5F0007CB22F /* TSCore.h in Headers */,
 				32430A7919145DA8004EFF59 /* SEGAnalyticsIntegrations.h in Headers */,
 				D3EDB66818C315F100A88A7E /* SEGTapstreamIntegration.h in Headers */,
@@ -1226,6 +1242,7 @@
 				3242C9B11946ADA200FBE441 /* SEGBluetooth.m in Sources */,
 				3242C9BA1946AFD900FBE441 /* SEGGoogleAnalyticsIntegration.m in Sources */,
 				3242C9B91946AFD400FBE441 /* SEGFlurryIntegration.m in Sources */,
+				32CFF3D019AE5BCF00193D3D /* SEGAppsFlyerIntegration.m in Sources */,
 				32225233199AD6D200478B1A /* SEGReachability.m in Sources */,
 				3242C9BD1946AFEC00FBE441 /* SEGQuantcastIntegration.m in Sources */,
 				3242C9BC1946AFE300FBE441 /* SEGMixpanelIntegration.m in Sources */,
@@ -1266,6 +1283,7 @@
 				D3EDB66318C315F100A88A7E /* SEGLocalyticsIntegration.m in Sources */,
 				D3EDB65B18C315F100A88A7E /* SEGCountlyIntegration.m in Sources */,
 				32A69C231979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */,
+				32CFF3CF19AE5BCF00193D3D /* SEGAppsFlyerIntegration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
