@@ -41,6 +41,7 @@ module Build
     def subspecs
       @pods ||= begin
                   amplitude = { :name => 'Amplitude', :dependencies => [{ :name => 'Amplitude-iOS', :version => '~> 2.1.0' }]}
+                  appsflyer = { :name => 'AppsFlyer', :dependencies => [{ :name => 'AppsFlyer-SDK', :version => '~> 2.5' }]}
                   bugsnag = { :name => 'Bugsnag', :dependencies => [{ :name => 'Bugsnag', :version => '~> 3.1.2' }]}
                   countly = { :name => 'Countly', :dependencies => [{ :name => 'Countly', :version => '~> 1.0.0' }]}
                   crittercism = { :name => 'Crittercism', :dependencies => [{ :name => 'CrittercismSDK', :version => '~> 4.3.3' }]}
@@ -55,7 +56,7 @@ module Build
                   tapstream = { :name => 'Tapstream', :dependencies => [{ :name => 'Tapstream', :version => '~> 2.7' }]}
                   testflight = { :name => 'TestFlight', :dependencies => [{ :name => 'TestFlightSDK', :version => '~> 3.0.2' }]}
 
-                  pods = [segmentio, amplitude, bugsnag, countly, crittercism, flurry, google, localytics, mixpanel, optimizely, quantcast, taplytics, tapstream, testflight]
+                  pods = [segmentio, amplitude, appsflyer, bugsnag, countly, crittercism, flurry, google, localytics, mixpanel, optimizely, quantcast, taplytics, tapstream, testflight]
 
                   pods.map { |p| Subspec.spec_from_hash p }
                 end
