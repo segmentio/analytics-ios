@@ -44,7 +44,8 @@
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
-  [[AppsFlyerTracker sharedTracker] trackEvent:event withValue:[self.class extractRevenue:properties]];
+  NSNumber *revenue = [self.class extractRevenue:properties];
+  [[AppsFlyerTracker sharedTracker] trackEvent:event withValue:[revenue stringValue]];
 }
 
 - (void)applicationDidBecomeActive {
