@@ -41,6 +41,10 @@
   }
 }
 
+- (void)applicationDidBecomeActive {
+  [[AppsFlyerTracker sharedTracker] trackAppLaunch];
+}
+
 #pragma mark - Private
 
 - (NSString *)devKey {
