@@ -2,6 +2,10 @@
   "Amplitude": {
     "apiKey": "3c0a4b0907d9ea1a6ce811d6afc8e0c5"
   },
+  "AppsFlyer": {
+    "appsFlyerDevKey": "pSX9JjSNkWUR8AJQQ7kPoE",
+    "appleAppID": "34320065"
+  },
   "Bugsnag": {
     "apiKey": "7563fdfc1f418e956f5e5472148759f0",
     "useSSL": false

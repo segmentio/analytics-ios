@@ -7,6 +7,8 @@
 //
 
 #import "SEGAppsFlyerIntegration.h"
+#import "SEGAnalytics.h"
+#import "SEGAnalyticsUtils.h"
 #import <AppsFlyerTracker.h>
 
 @implementation SEGAppsFlyerIntegration
