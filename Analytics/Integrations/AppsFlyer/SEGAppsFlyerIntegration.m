@@ -45,6 +45,8 @@
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
   NSNumber *revenue = [self.class extractRevenue:properties];
+  NSString *currency = properties[@"currency"];
+  if (currency) [[AppsFlyerTracker sharedTracker] setCurrencyCode:currency];
   [[AppsFlyerTracker sharedTracker] trackEvent:event withValue:[revenue stringValue]];
 }
 
