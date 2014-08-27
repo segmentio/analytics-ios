@@ -1,5 +1,6 @@
 PODS:
   - Amplitude-iOS (2.1.1)
+  - AppsFlyer-SDK (2.5.3.10)
   - Bugsnag (3.1.2)
   - Countly (1.0.0)
   - CrittercismSDK (4.3.4)
@@ -24,6 +25,7 @@ PODS:
 
 DEPENDENCIES:
   - Amplitude-iOS (~> 2.1.0)
+  - AppsFlyer-SDK (~> 2.5)
   - Bugsnag (~> 3.1.2)
   - Countly (~> 1.0.0)
   - CrittercismSDK (~> 4.3.3)
@@ -43,6 +45,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Amplitude-iOS: e72b65479dc035ef671a57e34e1a981767224318
+  AppsFlyer-SDK: 5fe24c9224136d6be65044b728c50b48591f4784
   Bugsnag: 74d109dfa41b55d16890c987c7551ca071afd3d2
   Countly: f26a3483a660b5790b2c76e1f91dea4f276b3c33
   CrittercismSDK: d32f9f730158e3e646c445b752d7851710a1fed2
