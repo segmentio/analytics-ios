@@ -28,6 +28,14 @@
   self.valid = ([self devKey] != nil && [self appId] != nil);
 }
 
+- (void)start {
+  [[AppsFlyerTracker sharedTracker] setAppleAppID:[self appId]];
+  [[AppsFlyerTracker sharedTracker] setAppsFlyerDevKey:[self devKey]];
+  
+  SEGLog(@"AppsFlyer initialized with appleAppId: %@, appsFlyerDevKey:", [self appId], [self devKey]);
+}
+
+
 #pragma mark - Private
 
 - (NSString *)devKey {
