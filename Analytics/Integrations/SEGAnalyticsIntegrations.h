@@ -10,6 +10,10 @@
 #import "SEGAmplitudeIntegration.h"
 #endif
 
+#if defined(USE_ANALYTICS_APPSFLYER) || defined(USE_ANALYTICS_ALL)
+#import "SEGAppsFlyerIntegration.h"
+#endif
+
 #if defined(USE_ANALYTICS_BUGSNAG) || defined(USE_ANALYTICS_ALL)
 #import "SEGBugsnagIntegration.h"
 #endif
