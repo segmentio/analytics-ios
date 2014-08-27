@@ -117,7 +117,10 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
   [[self ecommercePatternSelectorMap] enumerateKeysAndObjectsUsingBlock:^(NSString *pattern, NSString *selectorName, BOOL *stop) {
     SEL selector = NSSelectorFromString(selectorName);
     if ([self event:event matchesPattern:pattern] && [self respondsToSelector:selector]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
       [self performSelector:selector withObject:properties];
+#pragma clang diagnostic pop
       return;
     }
   }];
