@@ -35,6 +35,11 @@
   SEGLog(@"AppsFlyer initialized with appleAppId: %@, appsFlyerDevKey:", [self appId], [self devKey]);
 }
 
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
+  if (userId) {
+    [[AppsFlyerTracker sharedTracker] setCustomerUserID:userId];
+  }
+}
 
 #pragma mark - Private
 
