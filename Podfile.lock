@@ -10,7 +10,7 @@ PODS:
   - FlurrySDK/FlurrySDK (4.4.0)
   - GoogleAnalytics-iOS-SDK (3.0.9)
   - Localytics-iOS-Client (2.23.0)
-  - Mixpanel (2.3.6)
+  - Mixpanel (2.5.0)
   - OCMock (2.2.4)
   - Optimizely-iOS-SDK (0.6.52)
   - Quantcast-Measure (1.4.6):
@@ -33,7 +33,7 @@ DEPENDENCIES:
   - FlurrySDK (~> 4.4.0)
   - GoogleAnalytics-iOS-SDK (~> 3.0.7)
   - Localytics-iOS-Client (~> 2.23.0)
-  - Mixpanel (~> 2.3.6)
+  - Mixpanel (~> 2.5.0)
   - OCMock (~> 2.2.4)
   - Optimizely-iOS-SDK (~> 0.6.52)
   - Quantcast-Measure (~> 1.4.4)
@@ -53,7 +53,7 @@ SPEC CHECKSUMS:
   FlurrySDK: abaedafc350afa41b004236b67ae14f7d3748b68
   GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
   Localytics-iOS-Client: 3f878379d40c67945ea5972c1e1bf9762b5e5b9f
-  Mixpanel: 9aba38257fc4d2777ab5db1afc55e22bdfd57a4a
+  Mixpanel: e2cbef6022acff6e0182c994ed69b18613209611
   OCMock: 6db79185520e24f9f299548f2b8b07e41d881bd5
   Optimizely-iOS-SDK: 23dd7ff0cf43224df79be460dcf12fb6fb75e934
   Quantcast-Measure: 82b2e0b81df7f59ee3f643551d4d79fa433f22ba
