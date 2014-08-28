@@ -117,7 +117,15 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
   [[self ecommercePatternSelectorMap] enumerateKeysAndObjectsUsingBlock:^(NSString *pattern, NSString *selectorName, BOOL *stop) {
     SEL selector = NSSelectorFromString(selectorName);
     if ([self event:event matchesPattern:pattern] && [self respondsToSelector:selector]) {
-      [self performSelector:selector withObject:properties];
+
+      __unsafe_unretained id props = properties;
+      NSMethodSignature *signature = [[self class] instanceMethodSignatureForSelector:selector];
+      NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+      [invocation retainArguments];
+      invocation.target = self;
+      invocation.selector = selector;
+      [invocation setArgument:&props atIndex:2];
+      [invocation invoke];
       return;
     }
   }];
