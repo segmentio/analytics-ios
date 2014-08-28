@@ -34,7 +34,7 @@
   [[AppsFlyerTracker sharedTracker] setAppleAppID:[self appId]];
   [[AppsFlyerTracker sharedTracker] setAppsFlyerDevKey:[self devKey]];
   
-  SEGLog(@"AppsFlyer initialized with appleAppId: %@, appsFlyerDevKey:", [self appId], [self devKey]);
+  SEGLog(@"AppsFlyer initialized with appleAppId: %@, appsFlyerDevKey: %@", [self appId], [self devKey]);
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
