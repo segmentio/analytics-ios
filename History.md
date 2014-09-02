@@ -1,3 +1,104 @@
+1.7.1 / 2014-08-28
+==================
+  
+  * update: mixpanel to 2.5.0
+
+1.7.0 / 2014-08-27
+==================
+
+  * add: appsflyer
+  * fix: leak warnings
+
+1.6.2 / 2014-08-26
+==================
+
+  * add: add -reset for ga
+
+1.6.1 / 2014-08-25
+==================
+
+  * fix: remove log 
+
+1.6.0 / 2014-08-25
+==================
+
+  * add: testflight
+  * fix: queue dispatching to integrations until settings request is finished
+  * fix: improve logging for disabled integrations
+  * fix: namespace async utils with seg\_
+
+1.5.11 / 2014-08-20
+==================
+
+  * fix: remote notification forwarding
+  * add: ecommerce to ga
+
+1.5.10 / 2014-08-12
+==================
+
+  * fix: reachability name clashing
+
+1.5.9 / 2014-08-12
+==================
+
+  * fix: add rest of integration headers as public
+  * fix: add tests for integration headers to be included as public
+
+
+1.5.8 / 2014-08-08
+==================
+
+  * fix: use introspection for iad
+
+1.5.7 / 2014-08-08
+==================
+  
+  * fix: enable optimizely's mixpanel integrations
+  * fix: add checks for bluetooth symbols before use
+  * fix: add build module to improve building the sdk
+
+1.5.6 / 2014-08-07
+==================
+
+  * fix: iad to be weaker
+
+1.5.5 / 2014-08-07
+==================
+
+  * fix: include all tapstream headers
+  * fix: make advertising managers use anonymous
+  * fix: include locale
+  * fix: fix thread-safety of SEGLocation
+
+
+1.5.4 / 2014-08-04
+==================
+
+  * fix: analytics version set correctly when installed from cocoapods
+  * fix: iad referrer get/set once rather than when queued
+  * fix: warning to import top-level framework headers
+  * fix: set iad, adsupport, bluetooth as weak frameworks
+
+
+1.5.3 / 2014-07-31
+==================
+
+  * update: optimizely to 0.6.52
+
+1.5.2 / 2014-07-25
+==================
+
+  * fix: getting case-insensitive properties with mixpanel
+  * fix: weak usage of bluetooth
+  * fix: quantcast sessioning
+  * add: send referrer data when installed from iad referrer
+
+
+1.5.1 / 2014-07-20
+==================
+
+  * fix: bad import
+
 1.5.0 / 2014-07-20
 ==================
 
