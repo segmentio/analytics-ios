@@ -56,6 +56,7 @@
   * fix: enable optimizely's mixpanel integrations
   * fix: add checks for bluetooth symbols before use
   * fix: add build module to improve building the sdk
+  * udpate: ga to 3.0.7
 
 1.5.6 / 2014-08-07
 ==================
