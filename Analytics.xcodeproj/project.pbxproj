@@ -69,13 +69,6 @@
 		3252EA581999D5CF0056C32A /* TAGDataLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA521999D5CF0056C32A /* TAGDataLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EA591999D5CF0056C32A /* TAGLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA531999D5CF0056C32A /* TAGLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EA5A1999D5CF0056C32A /* TAGManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA541999D5CF0056C32A /* TAGManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA621999D5E10056C32A /* LocalyticsConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA5B1999D5E10056C32A /* LocalyticsConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA631999D5E10056C32A /* LocalyticsDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA5C1999D5E10056C32A /* LocalyticsDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA641999D5E10056C32A /* LocalyticsDatapointHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA5D1999D5E10056C32A /* LocalyticsDatapointHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA651999D5E10056C32A /* LocalyticsSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA5E1999D5E10056C32A /* LocalyticsSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA661999D5E10056C32A /* LocalyticsSession+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA5F1999D5E10056C32A /* LocalyticsSession+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA671999D5E10056C32A /* LocalyticsUploader.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA601999D5E10056C32A /* LocalyticsUploader.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA681999D5E10056C32A /* LocalyticsUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA611999D5E10056C32A /* LocalyticsUtil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EA6B1999D5FD0056C32A /* MPNotificationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA6A1999D5FD0056C32A /* MPNotificationViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EA7A1999D6390056C32A /* QuantcastDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA6D1999D6390056C32A /* QuantcastDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EA7B1999D6390056C32A /* QuantcastDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA6E1999D6390056C32A /* QuantcastDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -113,6 +106,8 @@
 		3254FBD41999D3D00043AF15 /* BugsnagReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD71999D4370043AF15 /* Countly_OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD81999D4370043AF15 /* Countly.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD61999D4370043AF15 /* Countly.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		329381EB19B7AD3000B8E55A /* LocalyticsAmpSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 329381E919B7AD3000B8E55A /* LocalyticsAmpSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		329381EC19B7AD3000B8E55A /* LocalyticsSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 329381EA19B7AD3000B8E55A /* LocalyticsSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329AB8AC19AC4FE100E7B6BB /* TestFlight.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8A919AC4FE100E7B6BB /* TestFlight.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329AB8AD19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8AA19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329AB8AE19AC4FE100E7B6BB /* TestFlight+ManualSessions.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8AB19AC4FE100E7B6BB /* TestFlight+ManualSessions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -278,14 +273,6 @@
 		3252EA521999D5CF0056C32A /* TAGDataLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TAGDataLayer.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleTagManager/Library/TAGDataLayer.h"; sourceTree = "<group>"; };
 		3252EA531999D5CF0056C32A /* TAGLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TAGLogger.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleTagManager/Library/TAGLogger.h"; sourceTree = "<group>"; };
 		3252EA541999D5CF0056C32A /* TAGManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TAGManager.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleTagManager/Library/TAGManager.h"; sourceTree = "<group>"; };
-		3252EA5B1999D5E10056C32A /* LocalyticsConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsConstants.h; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsConstants.h"; sourceTree = "<group>"; };
-		3252EA5C1999D5E10056C32A /* LocalyticsDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsDatabase.h; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsDatabase.h"; sourceTree = "<group>"; };
-		3252EA5D1999D5E10056C32A /* LocalyticsDatapointHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsDatapointHelper.h; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsDatapointHelper.h"; sourceTree = "<group>"; };
-		3252EA5E1999D5E10056C32A /* LocalyticsSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsSession.h; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsSession.h"; sourceTree = "<group>"; };
-		3252EA5F1999D5E10056C32A /* LocalyticsSession+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LocalyticsSession+Private.h"; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsSession+Private.h"; sourceTree = "<group>"; };
-		3252EA601999D5E10056C32A /* LocalyticsUploader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsUploader.h; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsUploader.h"; sourceTree = "<group>"; };
-		3252EA611999D5E10056C32A /* LocalyticsUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsUtil.h; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsUtil.h"; sourceTree = "<group>"; };
-		3252EA691999D5EE0056C32A /* LocalyticsSession+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "LocalyticsSession+Private.h"; path = "Pods/Localytics-iOS-Client/Localytics-iOS-Client-2.23.0.source/LocalyticsSession+Private.h"; sourceTree = "<group>"; };
 		3252EA6A1999D5FD0056C32A /* MPNotificationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPNotificationViewController.h; path = Pods/Mixpanel/Mixpanel/MPNotificationViewController.h; sourceTree = "<group>"; };
 		3252EA6D1999D6390056C32A /* QuantcastDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastDataManager.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastDataManager.h"; sourceTree = "<group>"; };
 		3252EA6E1999D6390056C32A /* QuantcastDatabase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = QuantcastDatabase.h; path = "Pods/Quantcast-Measure/Quantcast-iOS-Measurement/QuantcastDatabase.h"; sourceTree = "<group>"; };
@@ -331,6 +318,8 @@
 		3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagReachability.h; path = Pods/Bugsnag/bugsnag/BugsnagReachability.h; sourceTree = "<group>"; };
 		3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Countly_OpenUDID.h; path = Pods/Countly/Countly_OpenUDID.h; sourceTree = "<group>"; };
 		3254FBD61999D4370043AF15 /* Countly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Countly.h; path = Pods/Countly/Countly.h; sourceTree = "<group>"; };
+		329381E919B7AD3000B8E55A /* LocalyticsAmpSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsAmpSession.h; path = "Pods/Localytics-AMP/AMP-SDK-2.60.0/LocalyticsAmpSession.h"; sourceTree = "<group>"; };
+		329381EA19B7AD3000B8E55A /* LocalyticsSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsSession.h; path = "Pods/Localytics-AMP/AMP-SDK-2.60.0/LocalyticsSession.h"; sourceTree = "<group>"; };
 		329AB8A919AC4FE100E7B6BB /* TestFlight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = Pods/TestFlightSDK/TestFlight.h; sourceTree = "<group>"; };
 		329AB8AA19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TestFlight+AsyncLogging.h"; path = "Pods/TestFlightSDK/TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
 		329AB8AB19AC4FE100E7B6BB /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TestFlight+ManualSessions.h"; path = "Pods/TestFlightSDK/TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
@@ -617,6 +606,56 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				329381E919B7AD3000B8E55A /* LocalyticsAmpSession.h */,
+				329381EA19B7AD3000B8E55A /* LocalyticsSession.h */,
+				32AD182919AFCA100047D5F0 /* MPABTestDesignerChangeRequestMessage.h */,
+				32AD182A19AFCA100047D5F0 /* MPABTestDesignerChangeResponseMessage.h */,
+				32AD182B19AFCA100047D5F0 /* MPABTestDesignerClearRequestMessage.h */,
+				32AD182C19AFCA100047D5F0 /* MPABTestDesignerClearResponseMessage.h */,
+				32AD182D19AFCA100047D5F0 /* MPABTestDesignerConnection.h */,
+				32AD182E19AFCA100047D5F0 /* MPABTestDesignerDeviceInfoRequestMessage.h */,
+				32AD182F19AFCA100047D5F0 /* MPABTestDesignerDeviceInfoResponseMessage.h */,
+				32AD183019AFCA100047D5F0 /* MPABTestDesignerDisconnectMessage.h */,
+				32AD183119AFCA100047D5F0 /* MPABTestDesignerMessage.h */,
+				32AD183219AFCA100047D5F0 /* MPABTestDesignerSnapshotRequestMessage.h */,
+				32AD183319AFCA100047D5F0 /* MPABTestDesignerSnapshotResponseMessage.h */,
+				32AD183419AFCA100047D5F0 /* MPABTestDesignerTweakRequestMessage.h */,
+				32AD183519AFCA100047D5F0 /* MPABTestDesignerTweakResponseMessage.h */,
+				32AD183619AFCA100047D5F0 /* MPAbstractABTestDesignerMessage.h */,
+				32AD183719AFCA100047D5F0 /* MPApplicationStateSerializer.h */,
+				32AD183819AFCA100047D5F0 /* MPClassDescription.h */,
+				32AD183919AFCA100047D5F0 /* MPEnumDescription.h */,
+				32AD183A19AFCA100047D5F0 /* MPNotification.h */,
+				32AD183B19AFCA100047D5F0 /* MPNotificationViewController.h */,
+				32AD183C19AFCA100047D5F0 /* MPObjectIdentifierProvider.h */,
+				32AD183D19AFCA100047D5F0 /* MPObjectIdentityProvider.h */,
+				32AD183E19AFCA100047D5F0 /* MPObjectSelector.h */,
+				32AD183F19AFCA100047D5F0 /* MPObjectSerializer.h */,
+				32AD184019AFCA100047D5F0 /* MPObjectSerializerConfig.h */,
+				32AD184119AFCA100047D5F0 /* MPObjectSerializerContext.h */,
+				32AD184219AFCA100047D5F0 /* MPPropertyDescription.h */,
+				32AD184319AFCA100047D5F0 /* MPSequenceGenerator.h */,
+				32AD184419AFCA100047D5F0 /* MPSurvey.h */,
+				32AD184519AFCA100047D5F0 /* MPSurveyNavigationController.h */,
+				32AD184619AFCA100047D5F0 /* MPSurveyQuestion.h */,
+				32AD184719AFCA100047D5F0 /* MPSurveyQuestionViewController.h */,
+				32AD184819AFCA100047D5F0 /* MPSwizzler.h */,
+				32AD184919AFCA100047D5F0 /* MPTweak.h */,
+				32AD184A19AFCA100047D5F0 /* MPTweakInline.h */,
+				32AD184B19AFCA100047D5F0 /* MPTweakInlineInternal.h */,
+				32AD184C19AFCA100047D5F0 /* MPTweakStore.h */,
+				32AD184D19AFCA100047D5F0 /* MPTypeDescription.h */,
+				32AD184E19AFCA100047D5F0 /* MPValueTransformers.h */,
+				32AD184F19AFCA100047D5F0 /* MPVariant.h */,
+				32AD185019AFCA100047D5F0 /* MPWebSocket.h */,
+				32AD185119AFCA100047D5F0 /* Mixpanel.h */,
+				32AD185219AFCA100047D5F0 /* NSData+MPBase64.h */,
+				32AD185319AFCA100047D5F0 /* NSInvocation+MPHelpers.h */,
+				32AD185419AFCA100047D5F0 /* UIColor+MPColor.h */,
+				32AD185519AFCA100047D5F0 /* UIImage+MPAverageColor.h */,
+				32AD185619AFCA100047D5F0 /* UIImage+MPImageEffects.h */,
+				32AD185719AFCA100047D5F0 /* UIView+MPSnapshotImage.h */,
+				32AD185819AFCA100047D5F0 /* _MPTweakBindObserver.h */,
 				32CFF3D119AE947F00193D3D /* AppsFlyerTracker.h */,
 				329AB8A919AC4FE100E7B6BB /* TestFlight.h */,
 				329AB8AA19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h */,
@@ -647,12 +686,6 @@
 				3252EA4D1999D5CF0056C32A /* GAILogger.h */,
 				3252EA4E1999D5CF0056C32A /* GAITrackedViewController.h */,
 				3252EA4F1999D5CF0056C32A /* GAITracker.h */,
-				3252EA5B1999D5E10056C32A /* LocalyticsConstants.h */,
-				3252EA5C1999D5E10056C32A /* LocalyticsDatabase.h */,
-				3252EA5D1999D5E10056C32A /* LocalyticsDatapointHelper.h */,
-				3252EA5E1999D5E10056C32A /* LocalyticsSession.h */,
-				3252EA601999D5E10056C32A /* LocalyticsUploader.h */,
-				3252EA611999D5E10056C32A /* LocalyticsUtil.h */,
 				3252EA951999D7040056C32A /* Mixpanel.h */,
 				3252EA8F1999D7040056C32A /* MPNotification.h */,
 				3252EA6A1999D5FD0056C32A /* MPNotificationViewController.h */,
@@ -708,9 +741,7 @@
 				3252EAA31999D7150056C32A /* UIImage+MPImageEffects.h */,
 				3252EA991999D7040056C32A /* UIImage+MPImageEffects.h */,
 				3252EA9A1999D7040056C32A /* UIView+MPSnapshotImage.h */,
-				3252EA5F1999D5E10056C32A /* LocalyticsSession+Private.h */,
 				3252EA901999D7040056C32A /* MPNotificationViewController.h */,
-				3252EA691999D5EE0056C32A /* LocalyticsSession+Private.h */,
 				D331BCF8185C2DC4007CB22F /* GAILogger.h */,
 				D331BCF9185C2DC4007CB22F /* GAITrackedViewController.h */,
 				D331BCFA185C2DC4007CB22F /* GAITracker.h */,
@@ -869,54 +900,6 @@
 		F7200B6A17659B2F003F3138 = {
 			isa = PBXGroup;
 			children = (
-				32AD182919AFCA100047D5F0 /* MPABTestDesignerChangeRequestMessage.h */,
-				32AD182A19AFCA100047D5F0 /* MPABTestDesignerChangeResponseMessage.h */,
-				32AD182B19AFCA100047D5F0 /* MPABTestDesignerClearRequestMessage.h */,
-				32AD182C19AFCA100047D5F0 /* MPABTestDesignerClearResponseMessage.h */,
-				32AD182D19AFCA100047D5F0 /* MPABTestDesignerConnection.h */,
-				32AD182E19AFCA100047D5F0 /* MPABTestDesignerDeviceInfoRequestMessage.h */,
-				32AD182F19AFCA100047D5F0 /* MPABTestDesignerDeviceInfoResponseMessage.h */,
-				32AD183019AFCA100047D5F0 /* MPABTestDesignerDisconnectMessage.h */,
-				32AD183119AFCA100047D5F0 /* MPABTestDesignerMessage.h */,
-				32AD183219AFCA100047D5F0 /* MPABTestDesignerSnapshotRequestMessage.h */,
-				32AD183319AFCA100047D5F0 /* MPABTestDesignerSnapshotResponseMessage.h */,
-				32AD183419AFCA100047D5F0 /* MPABTestDesignerTweakRequestMessage.h */,
-				32AD183519AFCA100047D5F0 /* MPABTestDesignerTweakResponseMessage.h */,
-				32AD183619AFCA100047D5F0 /* MPAbstractABTestDesignerMessage.h */,
-				32AD183719AFCA100047D5F0 /* MPApplicationStateSerializer.h */,
-				32AD183819AFCA100047D5F0 /* MPClassDescription.h */,
-				32AD183919AFCA100047D5F0 /* MPEnumDescription.h */,
-				32AD183A19AFCA100047D5F0 /* MPNotification.h */,
-				32AD183B19AFCA100047D5F0 /* MPNotificationViewController.h */,
-				32AD183C19AFCA100047D5F0 /* MPObjectIdentifierProvider.h */,
-				32AD183D19AFCA100047D5F0 /* MPObjectIdentityProvider.h */,
-				32AD183E19AFCA100047D5F0 /* MPObjectSelector.h */,
-				32AD183F19AFCA100047D5F0 /* MPObjectSerializer.h */,
-				32AD184019AFCA100047D5F0 /* MPObjectSerializerConfig.h */,
-				32AD184119AFCA100047D5F0 /* MPObjectSerializerContext.h */,
-				32AD184219AFCA100047D5F0 /* MPPropertyDescription.h */,
-				32AD184319AFCA100047D5F0 /* MPSequenceGenerator.h */,
-				32AD184419AFCA100047D5F0 /* MPSurvey.h */,
-				32AD184519AFCA100047D5F0 /* MPSurveyNavigationController.h */,
-				32AD184619AFCA100047D5F0 /* MPSurveyQuestion.h */,
-				32AD184719AFCA100047D5F0 /* MPSurveyQuestionViewController.h */,
-				32AD184819AFCA100047D5F0 /* MPSwizzler.h */,
-				32AD184919AFCA100047D5F0 /* MPTweak.h */,
-				32AD184A19AFCA100047D5F0 /* MPTweakInline.h */,
-				32AD184B19AFCA100047D5F0 /* MPTweakInlineInternal.h */,
-				32AD184C19AFCA100047D5F0 /* MPTweakStore.h */,
-				32AD184D19AFCA100047D5F0 /* MPTypeDescription.h */,
-				32AD184E19AFCA100047D5F0 /* MPValueTransformers.h */,
-				32AD184F19AFCA100047D5F0 /* MPVariant.h */,
-				32AD185019AFCA100047D5F0 /* MPWebSocket.h */,
-				32AD185119AFCA100047D5F0 /* Mixpanel.h */,
-				32AD185219AFCA100047D5F0 /* NSData+MPBase64.h */,
-				32AD185319AFCA100047D5F0 /* NSInvocation+MPHelpers.h */,
-				32AD185419AFCA100047D5F0 /* UIColor+MPColor.h */,
-				32AD185519AFCA100047D5F0 /* UIImage+MPAverageColor.h */,
-				32AD185619AFCA100047D5F0 /* UIImage+MPImageEffects.h */,
-				32AD185719AFCA100047D5F0 /* UIView+MPSnapshotImage.h */,
-				32AD185819AFCA100047D5F0 /* _MPTweakBindObserver.h */,
 				F7200B7817659B2F003F3138 /* Analytics */,
 				EA722AF617C87BB00016E8B0 /* AnalyticsTests */,
 				F7200B7517659B2F003F3138 /* Frameworks */,
@@ -1020,6 +1003,8 @@
 				D371F32E185942BB0053337D /* Crittercism.h in Headers */,
 				D3EDB65A18C315F100A88A7E /* SEGCountlyIntegration.h in Headers */,
 				3252EA551999D5CF0056C32A /* GAIFields.h in Headers */,
+				329381EB19B7AD3000B8E55A /* LocalyticsAmpSession.h in Headers */,
+				329381EC19B7AD3000B8E55A /* LocalyticsSession.h in Headers */,
 				32CFF3D219AE947F00193D3D /* AppsFlyerTracker.h in Headers */,
 				D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */,
 				D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */,
@@ -1049,12 +1034,6 @@
 				D331BD2C1860F5F0007CB22F /* TSAppEventSource.h in Headers */,
 				D331BD2D1860F5F0007CB22F /* TSConfig.h in Headers */,
 				D3EDB66018C315F100A88A7E /* SEGGoogleAnalyticsIntegration.h in Headers */,
-				3252EA621999D5E10056C32A /* LocalyticsConstants.h in Headers */,
-				3252EA631999D5E10056C32A /* LocalyticsDatabase.h in Headers */,
-				3252EA641999D5E10056C32A /* LocalyticsDatapointHelper.h in Headers */,
-				3252EA651999D5E10056C32A /* LocalyticsSession.h in Headers */,
-				3252EA671999D5E10056C32A /* LocalyticsUploader.h in Headers */,
-				3252EA681999D5E10056C32A /* LocalyticsUtil.h in Headers */,
 				32CFF3CE19AE5BCF00193D3D /* SEGAppsFlyerIntegration.h in Headers */,
 				D331BD2E1860F5F0007CB22F /* TSCore.h in Headers */,
 				32430A7919145DA8004EFF59 /* SEGAnalyticsIntegrations.h in Headers */,
@@ -1147,7 +1126,6 @@
 				3252EA861999D6390056C32A /* QuantcastUtils.h in Headers */,
 				3254FBD11999D3D00043AF15 /* BugsnagLogger.h in Headers */,
 				3252EA881999D6CC0056C32A /* Taplytics.h in Headers */,
-				3252EA661999D5E10056C32A /* LocalyticsSession+Private.h in Headers */,
 				3252EA8C1999D6E20056C32A /* Optimizely.h in Headers */,
 				329AB8AC19AC4FE100E7B6BB /* TestFlight.h in Headers */,
 				329AB8AD19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h in Headers */,
@@ -1552,7 +1530,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.7.1;
+				ANALYTICS_VERSION = 1.7.2;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1584,7 +1562,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.7.1;
+				ANALYTICS_VERSION = 1.7.2;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
