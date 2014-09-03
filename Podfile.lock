@@ -9,7 +9,7 @@ PODS:
     - FlurrySDK/FlurrySDK
   - FlurrySDK/FlurrySDK (4.4.0)
   - GoogleAnalytics-iOS-SDK (3.0.9)
-  - Localytics-iOS-Client (2.23.0)
+  - Localytics-AMP (2.60.0)
   - Mixpanel (2.5.0)
   - OCMock (2.2.4)
   - Optimizely-iOS-SDK (0.6.52)
@@ -32,7 +32,7 @@ DEPENDENCIES:
   - Expecta (~> 0.3.0)
   - FlurrySDK (~> 4.4.0)
   - GoogleAnalytics-iOS-SDK (~> 3.0.7)
-  - Localytics-iOS-Client (~> 2.23.0)
+  - Localytics-AMP (= 2.60.0)
   - Mixpanel (~> 2.5.0)
   - OCMock (~> 2.2.4)
   - Optimizely-iOS-SDK (~> 0.6.52)
@@ -45,14 +45,14 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Amplitude-iOS: e72b65479dc035ef671a57e34e1a981767224318
-  AppsFlyer-SDK: 5fe24c9224136d6be65044b728c50b48591f4784
+  AppsFlyer-SDK: f83ad2e0821c57852512ea0bb8d3b207c64ef698
   Bugsnag: 74d109dfa41b55d16890c987c7551ca071afd3d2
   Countly: f26a3483a660b5790b2c76e1f91dea4f276b3c33
   CrittercismSDK: d32f9f730158e3e646c445b752d7851710a1fed2
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   FlurrySDK: abaedafc350afa41b004236b67ae14f7d3748b68
   GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
-  Localytics-iOS-Client: 3f878379d40c67945ea5972c1e1bf9762b5e5b9f
+  Localytics-AMP: 3d1cfef8a267ed28756798830044ec35b41e99f4
   Mixpanel: e2cbef6022acff6e0182c994ed69b18613209611
   OCMock: 6db79185520e24f9f299548f2b8b07e41d881bd5
   Optimizely-iOS-SDK: 23dd7ff0cf43224df79be460dcf12fb6fb75e934

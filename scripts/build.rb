@@ -47,7 +47,7 @@ module Build
                   crittercism = { :name => 'Crittercism', :dependencies => [{ :name => 'CrittercismSDK', :version => '~> 4.3.3' }]}
                   flurry = { :name => 'Flurry', :dependencies => [{ :name => 'FlurrySDK', :version => '~> 4.4.0' }]}
                   google = { :name => 'GoogleAnalytics', :dependencies => [{ :name => 'GoogleAnalytics-iOS-SDK', :version => '~> 3.0.7' }]}
-                  localytics = { :name => 'Localytics', :dependencies => [{ :name => 'Localytics-iOS-Client', :version => '~> 2.23.0' }]}
+                  localytics = { :name => 'Localytics', :dependencies => [{ :name => 'Localytics-AMP', :version => '2.60.0' }]}
                   mixpanel = { :name => 'Mixpanel', :dependencies => [{ :name => 'Mixpanel', :version => '~> 2.5.0' }]}
                   optimizely = { :name => 'Optimizely', :dependencies => [{ :name => 'Optimizely-iOS-SDK', :version => '~> 0.6.52' }]}
                   quantcast = { :name => 'Quantcast', :dependencies => [{ :name => 'Quantcast-Measure', :version => '~> 1.4.4' }]}

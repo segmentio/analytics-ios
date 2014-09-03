@@ -33,12 +33,16 @@
 - (void)start
 {
     NSString *appKey = [self.settings objectForKey:@"appKey"];
+
     [[LocalyticsSession sharedLocalyticsSession] startSession:appKey];
 
     NSNumber *sessionTimeoutInterval = [self.settings objectForKey:@"sessionTimeoutInterval"];
     if (sessionTimeoutInterval != nil && [sessionTimeoutInterval floatValue] > 0) {
         [LocalyticsSession sharedLocalyticsSession].sessionTimeoutInterval = [sessionTimeoutInterval floatValue];
     }
+  
+    [[LocalyticsSession shared] integratePushNotifications:UIRemoteNotificationTypeAlert];
+  
     SEGLog(@"LocalyticsIntegration initialized.");
 }
 
