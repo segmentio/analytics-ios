@@ -31,7 +31,7 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
 
 @optional;
 
-- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options;
 
 // Callbacks for app state changes
 // -------------------------------
