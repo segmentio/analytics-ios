@@ -31,7 +31,7 @@ DEPENDENCIES:
   - CrittercismSDK (~> 4.3.3)
   - Expecta (~> 0.3.0)
   - FlurrySDK (~> 4.4.0)
-  - GoogleAnalytics-iOS-SDK (~> 3.0.7)
+  - GoogleAnalytics-iOS-SDK (= 3.0.9)
   - Localytics-AMP (= 2.60.0)
   - Mixpanel (~> 2.5.0)
   - OCMock (~> 2.2.4)
