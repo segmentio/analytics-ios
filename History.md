@@ -46,6 +46,7 @@
 1.5.10 / 2014-08-12
 ==================
 
+  * update: ga to 3.0.9
   * fix: reachability name clashing
 
 1.5.9 / 2014-08-12
