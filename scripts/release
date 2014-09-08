@@ -27,6 +27,11 @@ set_version_number
 
 build_framework
 
+git add --all
+git commit -m "Release $version"
+git tag "$version"
+git push --follow-tags origin master
+
 # push to s3
 upload_to_s3 "$version"
 upload_to_s3 "latest-stable"
