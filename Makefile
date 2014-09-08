@@ -1,2 +1,2 @@
 release:
-	./scripts/release
+	./scripts/release $(version)
