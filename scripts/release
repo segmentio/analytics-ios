@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+var () {
+  xcodebuild -showBuildSettings -configuration Release -scheme Analytics.framework -workspace Analytics.xcworkspace | grep "$1 =" | cut -d= -f2 | sed -e 's/^ *//' -e 's/ *$//'
+}
+
+"$(var SRCROOT)/scripts/upload-to-s3" --path "$(var SYMROOT)/Release/Analytics-$(var ANALYTICS_VERSION).zip"
+
+"$(var SRCROOT)/scripts/upload-to-s3" --path "$(var SYMROOT)/Release/Analytics-latest-stable.zip"
+
+pod trunk push "$(var SRCROOT)/Analytics.podspec"
