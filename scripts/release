@@ -11,7 +11,7 @@ set_version_number () {
   sed -i '' "s/ANALYTICS_VERSION =.*;/ANALYTICS_VERSION = $version;/" Analytics.xcodeproj/project.pbxproj
 }
 
-var () {
+get_var () {
   xcodebuild -showBuildSettings -configuration Release -scheme Analytics.framework -workspace Analytics.xcworkspace | grep "$1 =" | cut -d= -f2 | sed -e 's/^ *//' -e 's/ *$//'
 }
 
@@ -20,7 +20,7 @@ build_framework () {
 }
 
 upload_to_s3 () {
-  "$(var SRCROOT)/scripts/upload-to-s3" --path "$(var SYMROOT)/Release/Analytics-$1.zip"
+  "$(get_var SRCROOT)/scripts/upload-to-s3" --path "$(get_var SYMROOT)/Release/Analytics-$1.zip"
 }
 
 set_version_number
@@ -32,4 +32,4 @@ upload_to_s3 "$version"
 upload_to_s3 "latest-stable"
 
 # push to cocoapods
-pod trunk push "$(var SRCROOT)/Analytics.podspec"
+pod trunk push "$(get_var SRCROOT)/Analytics.podspec"
