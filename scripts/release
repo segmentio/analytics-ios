@@ -15,10 +15,21 @@ var () {
   xcodebuild -showBuildSettings -configuration Release -scheme Analytics.framework -workspace Analytics.xcworkspace | grep "$1 =" | cut -d= -f2 | sed -e 's/^ *//' -e 's/ *$//'
 }
 
+build_framework () {
+    xcodebuild -configuration Release -scheme Analytics.framework -workspace Analytics.xcworkspace
+}
+
+upload_to_s3 () {
+  "$(var SRCROOT)/scripts/upload-to-s3" --path "$(var SYMROOT)/Release/Analytics-$1.zip"
+}
+
 set_version_number
 
-"$(var SRCROOT)/scripts/upload-to-s3" --path "$(var SYMROOT)/Release/Analytics-$(var ANALYTICS_VERSION).zip"
+build_framework
 
-"$(var SRCROOT)/scripts/upload-to-s3" --path "$(var SYMROOT)/Release/Analytics-latest-stable.zip"
+# push to s3
+upload_to_s3 "$version"
+upload_to_s3 "latest-stable"
 
+# push to cocoapods
 pod trunk push "$(var SRCROOT)/Analytics.podspec"
