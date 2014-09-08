@@ -1,8 +1,21 @@
 #!/usr/bin/env bash
 
+version="$1"
+
+if [ -z "$version" ]; then
+    echo "Version needs to be given in the form x.x.x. E.g. $ release 1.7.4"
+    exit
+fi
+
+set_version_number () {
+  sed -i '' "s/ANALYTICS_VERSION =.*;/ANALYTICS_VERSION = $version;/" Analytics.xcodeproj/project.pbxproj
+}
+
 var () {
   xcodebuild -showBuildSettings -configuration Release -scheme Analytics.framework -workspace Analytics.xcworkspace | grep "$1 =" | cut -d= -f2 | sed -e 's/^ *//' -e 's/ *$//'
 }
+
+set_version_number
 
 "$(var SRCROOT)/scripts/upload-to-s3" --path "$(var SYMROOT)/Release/Analytics-$(var ANALYTICS_VERSION).zip"
 
