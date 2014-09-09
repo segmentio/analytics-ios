@@ -16,6 +16,7 @@ get_var () {
 }
 
 build_framework () {
+    xcodebuild -configuration Release -scheme Analytics -workspace Analytics.xcworkspace
     xcodebuild -configuration Release -scheme Analytics.framework -workspace Analytics.xcworkspace
 }
 
