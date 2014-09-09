@@ -14,7 +14,7 @@ program
 var folder = '/releases/ios';
 var dest = path.join(folder, path.basename(program.path));
 
-client.putFile(program.path, dest, function (err, res) {
+client.putFile(program.path, dest, { 'x-amz-acl': 'public-read' }, function (err, res) {
   if (err || res.statusCode != 200)
     throw err;
   console.log('Uploaded ' + program.path + 'to ' + dest + ' on s3');
