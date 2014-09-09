@@ -26,18 +26,16 @@ upload_to_s3 () {
   "$(get_var SRCROOT)/scripts/upload-to-s3" --path "$(get_var SYMROOT)/Release/Analytics-$1.zip"
 }
 
+gitr_done () {
+  git add --all
+  git commit -m "Release $version"
+  git tag "$version"
+  git push origin master
+}
+
 set_version_number
-
 build_framework
-
-git add --all
-git commit -m "Release $version"
-git tag "$version"
-git push --follow-tags origin master
-
-# push to s3
+gitr_done
 upload_to_s3 "$version"
 upload_to_s3 "latest-stable"
-
-# push to cocoapods
 pod trunk push "$(get_var SRCROOT)/Analytics.podspec"
