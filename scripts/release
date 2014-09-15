@@ -31,6 +31,7 @@ gitr_done () {
   git commit -m "Release $version"
   git tag "$version"
   git push origin master
+  git push --tags origin master
 }
 
 set_version_number
