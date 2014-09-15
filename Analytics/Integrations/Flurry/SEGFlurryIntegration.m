@@ -69,9 +69,12 @@
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
+  if (self.settings[@"screenTracksEvents"]) {
+    [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
+  }
+  
   // Flurry just counts the number of page views
   // http://stackoverflow.com/questions/5404513/tracking-page-views-with-the-help-of-flurry-sdk
-  
   
   [Flurry logPageView];
 }
