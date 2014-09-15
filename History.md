@@ -1,3 +1,13 @@
+1.7.5 / 2014-09-08
+==================
+
+  * flurry: track screen calls as events (disable via a setting in the web ui)
+
+1.7.4 / 2014-09-08
+==================
+
+  * update: mixpanel to 2.5.1
+  
 1.7.3 / 2014-08-28
 ==================
 
