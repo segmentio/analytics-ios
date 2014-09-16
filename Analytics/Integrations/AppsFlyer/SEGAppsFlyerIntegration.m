@@ -34,12 +34,14 @@
   [[AppsFlyerTracker sharedTracker] setAppleAppID:[self appId]];
   [[AppsFlyerTracker sharedTracker] setAppsFlyerDevKey:[self devKey]];
   
-  SEGLog(@"AppsFlyer initialized with appleAppId: %@, appsFlyerDevKey: %@", [self appId], [self devKey]);
+  SEGLog(@"AppsFlyer: setup with appleAppId: %@, appsFlyerDevKey: %@", [self appId], [self devKey]);
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
   if (userId) {
     [[AppsFlyerTracker sharedTracker] setCustomerUserID:userId];
+    
+    SEGLog(@"AppsFlyer: set customer id: %@", userId);
   }
 }
 
@@ -48,10 +50,12 @@
   NSString *currency = properties[@"currency"];
   if (currency) [[AppsFlyerTracker sharedTracker] setCurrencyCode:currency];
   [[AppsFlyerTracker sharedTracker] trackEvent:event withValue:[revenue stringValue]];
+  SEGLog(@"AppsFlyer: trackingEvent: %@, withValue: %@", event, revenue);
 }
 
 - (void)applicationDidBecomeActive {
   [[AppsFlyerTracker sharedTracker] trackAppLaunch];
+  SEGLog(@"AppsFlyer: tracked app launch");
 }
 
 #pragma mark - Private
