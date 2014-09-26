@@ -1,0 +1,106 @@
+{
+  "integrations": [
+    {
+      "name": "Amplitude",
+      "dependencies": [{
+        "name": "Amplitude-iOS",
+        "version": "2.1.1"
+      }]
+    },
+    {
+      "name": "AppsFlyer",
+      "dependencies": [{
+        "name": "AppsFlyer-SDK",
+        "version": "2.5.3.10"
+      }]
+    },
+    {
+      "name": "Bugsnag",
+      "dependencies": [{
+        "name": "Bugsnag",
+        "version": "3.1.2"
+      }]
+    },
+    {
+      "name": "Countly",
+      "dependencies": [{
+        "name": "Countly",
+        "version": "1.0.0"
+      }]
+    },
+    {
+      "name": "Crittercism",
+      "dependencies": [{
+        "name": "CrittercismSDK",
+        "version": "4.3.4"
+      }]
+    },
+    {
+      "name": "Flurry",
+      "dependencies": [{
+        "name": "FlurrySDK",
+        "version": "4.4.0"
+      }]
+    },
+    {
+      "name": "GoogleAnalytics",
+      "dependencies": [{
+        "name": "GoogleAnalytics-iOS-SDK",
+        "version": "3.0.9"
+      }]
+    },
+    {
+      "name": "Localytics",
+      "dependencies": [{
+        "name": "Localytics-AMP",
+        "version": "2.60.0"
+      }]
+    },
+    {
+      "name": "Mixpanel",
+      "dependencies": [{
+        "name": "Mixpanel",
+        "version": "2.5.3"
+      }]
+    },
+    {
+      "name": "Optimizely",
+      "dependencies": [{
+        "name": "Optimizely-iOS-SDK",
+        "version": "0.6.52"
+      }]
+    },
+    {
+      "name": "Quantcast",
+      "dependencies": [{
+        "name": "Quantcast-Measure",
+        "version": "1.4.6"
+      }]
+    },
+    {
+      "name": "Segmentio",
+      "dependencies": []
+    },
+    {
+      "name": "Taplytics",
+      "dependencies": [{
+        "name": "Taplytics",
+        "version": "1.3.12"
+      }]
+    },
+    {
+      "name": "Tapstream",
+      "dependencies": [{
+        "name": "Tapstream",
+        "version": "2.8.1"
+      }]
+    },
+    {
+      "name": "TestFlight",
+      "dependencies": [{
+        "name": "TestFlightSDK",
+        "version": "3.0.2"
+      }]
+    }
+  ]
+}
