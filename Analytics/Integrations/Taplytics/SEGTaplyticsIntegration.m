@@ -30,7 +30,7 @@
 - (void)start {
   [Taplytics startTaplyticsAPIKey:[self apiKey]];
   
-  SEGLog(@"TapstreamIntegration initialized with api key %@", [self apiKey]);
+  SEGLog(@"TaplyticsIntegration initialized with api key %@", [self apiKey]);
 }
 
 - (void)validate {
