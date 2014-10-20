@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Usage: cli build
+# Summary: Build the sdk
+# Help: Build the sdk
+
+set -e
+
+cd "$_CLI_ROOT/../../"
+
+xcodebuild -configuration Release -scheme Analytics -workspace Analytics.xcworkspace
+xcodebuild -configuration Release -scheme Analytics.framework -workspace Analytics.xcworkspace
+

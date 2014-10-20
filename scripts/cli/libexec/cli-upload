@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Usage: cli upload <version>
+# Summary: Upload the sdk to s3
+# Help: Upload the sdk to s3
+
+set -e
+
+cli upload-to-s3 --path "$(cli var SYMROOT)/Release/Analytics-$1.zip"

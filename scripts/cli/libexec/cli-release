@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Usage: cli release <version>
+# Summary: Set the version, build, and release the sdk
+# Help: Set the version, build, and release the sdk
+
+set -e
+
+cd "$_CLI_ROOT/../../"
+
+cli version $1
+cli build
+git add --all
+git commit -m "Release $version"
+git tag $1
+git push origin master
+git push --tags origin master
+cli upload $1
+cli upload latest-stable
+pod trunk push Analytics.podspec
+
