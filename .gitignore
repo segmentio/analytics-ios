@@ -7,4 +7,4 @@
 *.xccheckout
 /Build
 /DerivedData
-scripts/node_modules
+scripts/cli/libexec/node_modules

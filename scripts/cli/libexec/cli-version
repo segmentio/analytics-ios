@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Usage: cli version <version>
+# Summary: Set the version
+# Help: Set the version
+
+cd "$_CLI_ROOT/../../"
+
+sed -i '' "s/ANALYTICS_VERSION =.*;/ANALYTICS_VERSION = $1;/" Analytics.xcodeproj/project.pbxproj
+
+

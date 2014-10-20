@@ -1,2 +1,2 @@
 release:
-	@./scripts/release $(version)
+	@./scripts/bin/cli release $(version)
