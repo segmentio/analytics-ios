@@ -40,9 +40,7 @@
     if (sessionTimeoutInterval != nil && [sessionTimeoutInterval floatValue] > 0) {
         [LocalyticsSession sharedLocalyticsSession].sessionTimeoutInterval = [sessionTimeoutInterval floatValue];
     }
-  
-    [[LocalyticsSession shared] integratePushNotifications:UIRemoteNotificationTypeAlert];
-  
+
     SEGLog(@"LocalyticsIntegration initialized.");
 }
 
