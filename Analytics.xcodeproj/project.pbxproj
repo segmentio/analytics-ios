@@ -106,8 +106,6 @@
 		3254FBD41999D3D00043AF15 /* BugsnagReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD71999D4370043AF15 /* Countly_OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD81999D4370043AF15 /* Countly.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD61999D4370043AF15 /* Countly.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		329381EB19B7AD3000B8E55A /* LocalyticsAmpSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 329381E919B7AD3000B8E55A /* LocalyticsAmpSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		329381EC19B7AD3000B8E55A /* LocalyticsSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 329381EA19B7AD3000B8E55A /* LocalyticsSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329AB8AC19AC4FE100E7B6BB /* TestFlight.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8A919AC4FE100E7B6BB /* TestFlight.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329AB8AD19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8AA19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329AB8AE19AC4FE100E7B6BB /* TestFlight+ManualSessions.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8AB19AC4FE100E7B6BB /* TestFlight+ManualSessions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -156,6 +154,9 @@
 		32AD187B19AFCA100047D5F0 /* NSInvocation+MPHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AD185319AFCA100047D5F0 /* NSInvocation+MPHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32AD187C19AFCA100047D5F0 /* _MPTweakBindObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AD185819AFCA100047D5F0 /* _MPTweakBindObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCD99B1919A4F4007B63BA /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32CEE41E19F5B6DB007758F2 /* TaplyticsOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CEE41D19F5B6DB007758F2 /* TaplyticsOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32CEE42119F5B849007758F2 /* LocalyticsAmpSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CEE41F19F5B849007758F2 /* LocalyticsAmpSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32CEE42219F5B849007758F2 /* LocalyticsSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CEE42019F5B849007758F2 /* LocalyticsSession.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CFF3CE19AE5BCF00193D3D /* SEGAppsFlyerIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CFF3CC19AE5BCF00193D3D /* SEGAppsFlyerIntegration.h */; };
 		32CFF3CF19AE5BCF00193D3D /* SEGAppsFlyerIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CFF3CD19AE5BCF00193D3D /* SEGAppsFlyerIntegration.m */; };
 		32CFF3D019AE5BCF00193D3D /* SEGAppsFlyerIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CFF3CD19AE5BCF00193D3D /* SEGAppsFlyerIntegration.m */; };
@@ -318,8 +319,6 @@
 		3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagReachability.h; path = Pods/Bugsnag/bugsnag/BugsnagReachability.h; sourceTree = "<group>"; };
 		3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Countly_OpenUDID.h; path = Pods/Countly/Countly_OpenUDID.h; sourceTree = "<group>"; };
 		3254FBD61999D4370043AF15 /* Countly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Countly.h; path = Pods/Countly/Countly.h; sourceTree = "<group>"; };
-		329381E919B7AD3000B8E55A /* LocalyticsAmpSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsAmpSession.h; path = "Pods/Localytics-AMP/AMP-SDK-2.60.0/LocalyticsAmpSession.h"; sourceTree = "<group>"; };
-		329381EA19B7AD3000B8E55A /* LocalyticsSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsSession.h; path = "Pods/Localytics-AMP/AMP-SDK-2.60.0/LocalyticsSession.h"; sourceTree = "<group>"; };
 		329AB8A919AC4FE100E7B6BB /* TestFlight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TestFlight.h; path = Pods/TestFlightSDK/TestFlight.h; sourceTree = "<group>"; };
 		329AB8AA19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TestFlight+AsyncLogging.h"; path = "Pods/TestFlightSDK/TestFlight+AsyncLogging.h"; sourceTree = "<group>"; };
 		329AB8AB19AC4FE100E7B6BB /* TestFlight+ManualSessions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "TestFlight+ManualSessions.h"; path = "Pods/TestFlightSDK/TestFlight+ManualSessions.h"; sourceTree = "<group>"; };
@@ -379,6 +378,10 @@
 		32AD185819AFCA100047D5F0 /* _MPTweakBindObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = _MPTweakBindObserver.h; path = Pods/Mixpanel/Mixpanel/_MPTweakBindObserver.h; sourceTree = "<group>"; };
 		32CC25E119072C6B0090DD06 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32CCD99B1919A4F4007B63BA /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
+		32CEE41C19F5B6DB007758F2 /* Taplytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Taplytics.h; path = Pods/Taplytics/Taplytics.framework/Headers/Taplytics.h; sourceTree = "<group>"; };
+		32CEE41D19F5B6DB007758F2 /* TaplyticsOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TaplyticsOptions.h; path = Pods/Taplytics/Taplytics.framework/Headers/TaplyticsOptions.h; sourceTree = "<group>"; };
+		32CEE41F19F5B849007758F2 /* LocalyticsAmpSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsAmpSession.h; path = "Pods/Localytics-AMP/AMP-SDK-2.71.0.bin/LocalyticsAmpSession.h"; sourceTree = "<group>"; };
+		32CEE42019F5B849007758F2 /* LocalyticsSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LocalyticsSession.h; path = "Pods/Localytics-AMP/AMP-SDK-2.71.0.bin/LocalyticsSession.h"; sourceTree = "<group>"; };
 		32CFF3CC19AE5BCF00193D3D /* SEGAppsFlyerIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGAppsFlyerIntegration.h; path = AppsFlyer/SEGAppsFlyerIntegration.h; sourceTree = "<group>"; };
 		32CFF3CD19AE5BCF00193D3D /* SEGAppsFlyerIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGAppsFlyerIntegration.m; path = AppsFlyer/SEGAppsFlyerIntegration.m; sourceTree = "<group>"; };
 		32CFF3D119AE947F00193D3D /* AppsFlyerTracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppsFlyerTracker.h; path = "Pods/AppsFlyer-SDK/AppsFlyerTracker.h"; sourceTree = "<group>"; };
@@ -432,7 +435,6 @@
 		D331BD2A1860F5F0007CB22F /* TSUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSUtils.h; path = Pods/Tapstream/objc/Core/TSUtils.h; sourceTree = "<group>"; };
 		D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.4.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.2.4.a; sourceTree = "<group>"; };
 		D36ABA63182F09F3001EB84B /* admsAppLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = admsAppLibrary.a; path = Pods/Omniture/admsAppLibrary.a; sourceTree = "<group>"; };
-		D36E2D7A18C27CA2008536A3 /* libLocalyticsAMP_x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLocalyticsAMP_x64.a; path = Pods/Localytics/libLocalyticsAMP_x64.a; sourceTree = "<group>"; };
 		D371F32D185942BB0053337D /* Crittercism.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Crittercism.h; path = Pods/CrittercismSDK/CrittercismSDK/Crittercism.h; sourceTree = "<group>"; };
 		D371F32F185942C90053337D /* Flurry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Pods/FlurrySDK/Flurry/Flurry.h; sourceTree = "<group>"; };
 		D371F331185942DE0053337D /* GAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAI.h"; sourceTree = "<group>"; };
@@ -443,7 +445,6 @@
 		D3A6A2DF18B305E200C4B510 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.2.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.2.a; sourceTree = "<group>"; };
 		D3C07FBE185954D000649011 /* Bugsnag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bugsnag.h; path = Pods/Bugsnag/bugsnag/Bugsnag.h; sourceTree = "<group>"; };
 		D3D1243E18C31FDA00EE8B82 /* SEGSegmentioIntegration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SEGSegmentioIntegration.h; path = Analytics/Integrations/Segmentio/SEGSegmentioIntegration.h; sourceTree = "<group>"; };
-		D3E9B61B18BADAEA00AB06B0 /* libLocalyticsAMP.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libLocalyticsAMP.a; path = Pods/Localytics/libLocalyticsAMP.a; sourceTree = "<group>"; };
 		D3EDB63918C315F100A88A7E /* SEGAmplitudeIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAmplitudeIntegration.h; sourceTree = "<group>"; };
 		D3EDB63A18C315F100A88A7E /* SEGAmplitudeIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGAmplitudeIntegration.m; sourceTree = "<group>"; };
 		D3EDB63C18C315F100A88A7E /* SEGBugsnagIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGBugsnagIntegration.h; sourceTree = "<group>"; };
@@ -606,8 +607,10 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				329381E919B7AD3000B8E55A /* LocalyticsAmpSession.h */,
-				329381EA19B7AD3000B8E55A /* LocalyticsSession.h */,
+				32CEE41F19F5B849007758F2 /* LocalyticsAmpSession.h */,
+				32CEE42019F5B849007758F2 /* LocalyticsSession.h */,
+				32CEE41C19F5B6DB007758F2 /* Taplytics.h */,
+				32CEE41D19F5B6DB007758F2 /* TaplyticsOptions.h */,
 				32AD182919AFCA100047D5F0 /* MPABTestDesignerChangeRequestMessage.h */,
 				32AD182A19AFCA100047D5F0 /* MPABTestDesignerChangeResponseMessage.h */,
 				32AD182B19AFCA100047D5F0 /* MPABTestDesignerClearRequestMessage.h */,
@@ -933,8 +936,6 @@
 				32F9E6B61907320700ED295B /* libPods-AnalyticsTests.a */,
 				32F9E6B31907300300ED295B /* libPods-AnalyticsTests.a */,
 				32CC25E119072C6B0090DD06 /* libPods-AnalyticsTests.a */,
-				D36E2D7A18C27CA2008536A3 /* libLocalyticsAMP_x64.a */,
-				D3E9B61B18BADAEA00AB06B0 /* libLocalyticsAMP.a */,
 				D3A6A2DF18B305E200C4B510 /* libFlurry_4.3.2.a */,
 				D309DBF218A2BD2900BA9F31 /* libFlurry_4.3.1.a */,
 				D37F756E189237430037E851 /* libFlurry_4.3.0.a */,
@@ -997,14 +998,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3252EA881999D6CC0056C32A /* Taplytics.h in Headers */,
+				32CEE41E19F5B6DB007758F2 /* TaplyticsOptions.h in Headers */,
 				32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */,
 				3252EAA61999D8B10056C32A /* BugsnagIosNotifier.h in Headers */,
 				EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */,
 				D371F32E185942BB0053337D /* Crittercism.h in Headers */,
 				D3EDB65A18C315F100A88A7E /* SEGCountlyIntegration.h in Headers */,
 				3252EA551999D5CF0056C32A /* GAIFields.h in Headers */,
-				329381EB19B7AD3000B8E55A /* LocalyticsAmpSession.h in Headers */,
-				329381EC19B7AD3000B8E55A /* LocalyticsSession.h in Headers */,
 				32CFF3D219AE947F00193D3D /* AppsFlyerTracker.h in Headers */,
 				D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */,
 				D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */,
@@ -1114,6 +1115,8 @@
 				3252EA7A1999D6390056C32A /* QuantcastDataManager.h in Headers */,
 				3252EA7B1999D6390056C32A /* QuantcastDatabase.h in Headers */,
 				3252EA7C1999D6390056C32A /* QuantcastEvent.h in Headers */,
+				32CEE42119F5B849007758F2 /* LocalyticsAmpSession.h in Headers */,
+				32CEE42219F5B849007758F2 /* LocalyticsSession.h in Headers */,
 				3252EA7D1999D6390056C32A /* QuantcastEventLogger.h in Headers */,
 				3252EA7E1999D6390056C32A /* QuantcastMeasurement.h in Headers */,
 				3252EA7F1999D6390056C32A /* QuantcastMeasurement+Internal.h in Headers */,
@@ -1125,7 +1128,6 @@
 				3252EA851999D6390056C32A /* QuantcastUploadManager.h in Headers */,
 				3252EA861999D6390056C32A /* QuantcastUtils.h in Headers */,
 				3254FBD11999D3D00043AF15 /* BugsnagLogger.h in Headers */,
-				3252EA881999D6CC0056C32A /* Taplytics.h in Headers */,
 				3252EA8C1999D6E20056C32A /* Optimizely.h in Headers */,
 				329AB8AC19AC4FE100E7B6BB /* TestFlight.h in Headers */,
 				329AB8AD19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h in Headers */,
@@ -1530,7 +1532,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.7.7;
+				ANALYTICS_VERSION = 1.7.8;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1562,7 +1564,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.7.7;
+				ANALYTICS_VERSION = 1.7.8;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
