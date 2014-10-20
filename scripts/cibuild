@@ -1,3 +1,0 @@
-#!/bin/bash
-
-$(dirname $0)/tests/test_headers.rb && xcodebuild -sdk iphonesimulator -workspace Analytics.xcworkspace/ -destination "platform=iOS Simulator,name=iPhone Retina (4-inch)" -scheme 'iOS Tests' clean test
