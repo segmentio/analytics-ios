@@ -5,6 +5,6 @@ script: ./scripts/cli/bin/cli build --cli
 notifications:
   email:
     recipients:
-      - travis@segment.io
+      - travis@segment.com
     on_success: always
     on_failure: always
