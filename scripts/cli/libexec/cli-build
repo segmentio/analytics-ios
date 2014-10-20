@@ -7,6 +7,9 @@ set -e
 
 cd "$_CLI_ROOT/../../"
 
-xcodebuild -configuration Release -scheme Analytics -workspace Analytics.xcworkspace
-xcodebuild -configuration Release -scheme Analytics.framework -workspace Analytics.xcworkspace
-
+if [ "$1"="--ci" ]; then
+    ./scripts/tests/test_headers.rb && xcodebuild -sdk iphonesimulator -workspace Analytics.xcworkspace/ -destination "platform=iOS Simulator,name=iPhone Retina (4-inch)" -scheme 'iOS Tests' clean test
+else
+  xcodebuild -configuration Release -scheme Analytics -workspace Analytics.xcworkspace
+  xcodebuild -configuration Release -scheme Analytics.framework -workspace Analytics.xcworkspace
+fi
