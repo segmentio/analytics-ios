@@ -17,4 +17,3 @@ git push --tags origin master
 cli upload $1
 cli upload latest-stable
 pod trunk push Analytics.podspec
-
