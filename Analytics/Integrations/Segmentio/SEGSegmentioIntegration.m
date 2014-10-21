@@ -183,6 +183,8 @@ static NSDictionary *BuildStaticContext() {
                         [NSLocale.currentLocale objectForKey:NSLocaleLanguageCode],
                         [NSLocale.currentLocale objectForKey:NSLocaleCountryCode]];
   
+  context[@"timezone"] = [[NSTimeZone localTimeZone] name];
+  
   context[@"network"] = ({
     NSMutableDictionary *network = [[NSMutableDictionary alloc] init];
     
