@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: cli build
+# Usage: cli build [--cli]
 # Summary: Build the sdk
 # Help: Build the sdk
 
@@ -7,9 +7,9 @@ set -e
 
 cd "$_CLI_ROOT/../../"
 
-if [ "$1"="--ci" ]; then
-    ./scripts/tests/test_headers.rb && xcodebuild -sdk iphonesimulator -workspace Analytics.xcworkspace/ -destination "platform=iOS Simulator,name=iPhone Retina (4-inch)" -scheme 'iOS Tests' clean test
+if [ -z $1 ]; then
+    xcodebuild -configuration Release -scheme Analytics -workspace Analytics.xcworkspace
+    xcodebuild -configuration Release -scheme Analytics.framework -workspace Analytics.xcworkspace
 else
-  xcodebuild -configuration Release -scheme Analytics -workspace Analytics.xcworkspace
-  xcodebuild -configuration Release -scheme Analytics.framework -workspace Analytics.xcworkspace
+  ./scripts/tests/test_headers.rb && xcodebuild -sdk iphonesimulator -workspace Analytics.xcworkspace/ -destination "platform=iOS Simulator,name=iPhone Retina (4-inch)" -scheme 'iOS Tests' clean test
 fi
