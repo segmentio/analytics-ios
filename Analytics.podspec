@@ -8,7 +8,7 @@ end
 
 Pod::Spec.new do |s|
   s.name            = "Analytics"
-  s.version         = "1.7.9"
+  s.version         = "1.7.10"
   s.summary         = "Segment analytics and marketing tools library for iOS."
   s.homepage        = "https://segment.com/libraries/ios"
   s.license         = { :type => "MIT", :file => "License.md" }
