@@ -9,10 +9,10 @@ end
 Pod::Spec.new do |s|
   s.name            = "Analytics"
   s.version         = "1.7.8"
-  s.summary         = "Segment.io analytics and marketing tools library for iOS."
-  s.homepage        = "https://segment.io/libraries/ios"
+  s.summary         = "Segment analytics and marketing tools library for iOS."
+  s.homepage        = "https://segment.com/libraries/ios"
   s.license         = { :type => "MIT", :file => "License.md" }
-  s.author          = { "Segment.io" => "friends@segment.io" }
+  s.author          = { "Segment" => "friends@segment.io" }
 
   s.source          = { :git => "https://github.com/segmentio/analytics-ios.git", :tag => s.version.to_s }
   s.ios.deployment_target = '6.0'
