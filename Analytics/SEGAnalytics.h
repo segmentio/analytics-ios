@@ -29,6 +29,11 @@
 @property (nonatomic, assign) BOOL shouldUseLocationServices;
 
 /**
+ * Whether the analytics client should track advertisting info. `YES` by default.
+ */
+@property (nonatomic, assign) BOOL enableAdvertisingTracking;
+
+/**
 * The number of queued events that the analytics client should flush at. Setting this to `1` will not queue any events and will use more battery. `20` by default.
 */
 @property (nonatomic, assign) NSUInteger flushAt;

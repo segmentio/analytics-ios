@@ -35,6 +35,7 @@ static SEGAnalytics *__sharedInstance = nil;
 - (instancetype)init {
   if (self = [super init]) {
     self.shouldUseLocationServices = NO;
+    self.enableAdvertisingTracking = YES;
     self.flushAt = 20;
     self.integrations = [NSMutableDictionary new];
   }
