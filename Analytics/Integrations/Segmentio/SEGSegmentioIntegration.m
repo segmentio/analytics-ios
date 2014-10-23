@@ -62,79 +62,6 @@ static BOOL GetAdTrackingEnabled() {
   return result;
 }
 
-NSMutableDictionary *__context = nil;
-
-static NSDictionary *BuildStaticContext() {
-  if (__context != nil) return __context;
-  
-  __context = [[NSMutableDictionary alloc] init];
-  
-  __context[@"library"] = @{
-                            @"name": @"analytics-ios",
-                            @"version": SEGStringize(ANALYTICS_VERSION)
-                            };
-  
-  NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-  if (infoDictionary.count) {
-    __context[@"app"] = @{
-                          @"name": infoDictionary[@"CFBundleDisplayName"] ?: @"",
-                          @"version": infoDictionary[@"CFBundleShortVersionString"] ?: @"",
-                          @"build": infoDictionary[@"CFBundleVersion"] ?: @""
-                          };
-  }
-  
-  UIDevice *device = [UIDevice currentDevice];
-  
-  __context[@"device"] = ({
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    dict[@"manufacturer"] = @"Apple";
-    dict[@"model"] = GetDeviceModel();
-    dict[@"idfv"] = [[device identifierForVendor] UUIDString];
-    if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
-      dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
-    }
-    NSString *idfa = SEGIDFA();
-    if (idfa.length) dict[@"idfa"] = idfa;
-    dict;
-  });
-  
-  __context[@"os"] = @{
-                       @"name" : device.systemName,
-                       @"version" : device.systemVersion
-                       };
-  
-  CTCarrier *carrier = [[[CTTelephonyNetworkInfo alloc] init] subscriberCellularProvider];
-  if (carrier.carrierName.length)
-    __context[@"network"] = @{ @"carrier": carrier.carrierName };
-  
-  CGSize screenSize = [UIScreen mainScreen].bounds.size;
-  __context[@"screen"] = @{
-                           @"width": @(screenSize.width),
-                           @"height": @(screenSize.height)
-                           };
-  
-#if !(TARGET_IPHONE_SIMULATOR)
-  Class adClient = NSClassFromString(SEGADClientClass);
-  if (adClient) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    id sharedClient = [adClient performSelector:NSSelectorFromString(@"sharedClient")];
-#pragma clang diagnostic pop
-    void (^completionHandler)(BOOL iad) = ^(BOOL iad) {
-      if(iad) {
-        __context[@"referrer"] = @{ @"type": @"iad" };
-      }
-    };
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [sharedClient performSelector:NSSelectorFromString(@"determineAppInstallationAttributionWithCompletionHandler:") withObject:completionHandler];
-#pragma clang diagnostic pop
-  }
-#endif
-  
-  return __context;
-}
-
 @interface SEGSegmentioIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
@@ -148,6 +75,7 @@ static NSDictionary *BuildStaticContext() {
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 @property (nonatomic, strong) NSMutableDictionary *traits;
+@property (nonatomic, assign) BOOL enableAdvertisingTracking;
 
 @end
 
@@ -161,7 +89,7 @@ static NSDictionary *BuildStaticContext() {
     self.userId = [[NSString alloc] initWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
     self.bluetooth = [[SEGBluetooth alloc] init];
     self.reachability = [SEGReachability reachabilityWithHostname:@"http://google.com"];
-    self.context = BuildStaticContext();
+    self.context = [self staticContext];
     self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
     self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
     self.flushTaskID = UIBackgroundTaskInvalid;
@@ -171,6 +99,74 @@ static NSDictionary *BuildStaticContext() {
     self.initialized = YES;
   }
   return self;
+}
+
+- (NSDictionary *)staticContext {
+  NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+  
+  dict[@"library"] = @{ @"name": @"analytics-ios", @"version": SEGStringize(ANALYTICS_VERSION) };
+  
+  NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+  if (infoDictionary.count) {
+    dict[@"app"] = @{
+                          @"name": infoDictionary[@"CFBundleDisplayName"] ?: @"",
+                          @"version": infoDictionary[@"CFBundleShortVersionString"] ?: @"",
+                          @"build": infoDictionary[@"CFBundleVersion"] ?: @""
+                          };
+  }
+  
+  UIDevice *device = [UIDevice currentDevice];
+  
+  dict[@"device"] = ({
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    dict[@"manufacturer"] = @"Apple";
+    dict[@"model"] = GetDeviceModel();
+    dict[@"idfv"] = [[device identifierForVendor] UUIDString];
+    if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
+      dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
+    }
+    if (self.enableAdvertisingTracking){
+      NSString *idfa = SEGIDFA();
+      if (idfa.length) dict[@"idfa"] = idfa;
+    }
+    dict;
+  });
+  
+  dict[@"os"] = @{
+                       @"name" : device.systemName,
+                       @"version" : device.systemVersion
+                       };
+  
+  CTCarrier *carrier = [[[CTTelephonyNetworkInfo alloc] init] subscriberCellularProvider];
+  if (carrier.carrierName.length)
+    dict[@"network"] = @{ @"carrier": carrier.carrierName };
+  
+  CGSize screenSize = [UIScreen mainScreen].bounds.size;
+  dict[@"screen"] = @{
+                           @"width": @(screenSize.width),
+                           @"height": @(screenSize.height)
+                           };
+  
+#if !(TARGET_IPHONE_SIMULATOR)
+  Class adClient = NSClassFromString(SEGADClientClass);
+  if (adClient) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    id sharedClient = [adClient performSelector:NSSelectorFromString(@"sharedClient")];
+#pragma clang diagnostic pop
+    void (^completionHandler)(BOOL iad) = ^(BOOL iad) {
+      if(iad) {
+        dict[@"referrer"] = @{ @"type": @"iad" };
+      }
+    };
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    [sharedClient performSelector:NSSelectorFromString(@"determineAppInstallationAttributionWithCompletionHandler:") withObject:completionHandler];
+#pragma clang diagnostic pop
+  }
+#endif
+  
+  return dict;
 }
 
 - (NSMutableDictionary *)liveContext {
@@ -507,10 +503,12 @@ static NSDictionary *BuildStaticContext() {
 - (void)setConfiguration:(SEGAnalyticsConfiguration *)configuration {
   if (self.configuration) {
     [self.configuration removeObserver:self forKeyPath:@"shouldUseLocationServices"];
+    [self.configuration removeObserver:self forKeyPath:@"enableAdvertisingTracking"];
   }
   
   [super setConfiguration:configuration];
   [self.configuration addObserver:self forKeyPath:@"shouldUseLocationServices" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
+  [self.configuration addObserver:self forKeyPath:@"enableAdvertisingTracking" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
 }
 
 #pragma mark - Key value observing
@@ -518,6 +516,8 @@ static NSDictionary *BuildStaticContext() {
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
   if ([keyPath isEqualToString:@"shouldUseLocationServices"]) {
     self.location = [object shouldUseLocationServices] ? [SEGLocation new] : nil;
+  } else if ([keyPath isEqualToString:@"enableAdvertisingTracking"]) {
+    self.enableAdvertisingTracking = [object shouldUseLocationServices];
   } else if ([keyPath isEqualToString:@"flushAt"]) {
     [self flushQueueByLength];
   } else {
