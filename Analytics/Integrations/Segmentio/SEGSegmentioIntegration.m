@@ -121,13 +121,13 @@ static BOOL GetAdTrackingEnabled() {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     dict[@"manufacturer"] = @"Apple";
     dict[@"model"] = GetDeviceModel();
-    dict[@"idfv"] = [[device identifierForVendor] UUIDString];
+    dict[@"id"] = [[device identifierForVendor] UUIDString];
     if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
       dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
     }
     if (self.enableAdvertisingTracking){
       NSString *idfa = SEGIDFA();
-      if (idfa.length) dict[@"idfa"] = idfa;
+      if (idfa.length) dict[@"advertisingId"] = idfa;
     }
     dict;
   });
