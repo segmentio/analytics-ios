@@ -10,31 +10,31 @@
 	<string>Analytics</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>153EA610-6E1D-4943-A6DC-148E3291A513</key>
-		<string>ssh://github.com/segmentio/analytics-ios-osx.git</string>
+		<key>2FBF6FF867B676467411255C927B9FD8739B9AC2</key>
+		<string>ssh://github.com/segmentio/analytics-ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Analytics/Analytics.xcodeproj/project.xcworkspace</string>
+	<string>Analytics.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>153EA610-6E1D-4943-A6DC-148E3291A513</key>
-		<string>../../..</string>
+		<key>2FBF6FF867B676467411255C927B9FD8739B9AC2</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/segmentio/analytics-ios-osx.git</string>
+	<string>ssh://github.com/segmentio/analytics-ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>153EA610-6E1D-4943-A6DC-148E3291A513</string>
+	<string>2FBF6FF867B676467411255C927B9FD8739B9AC2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>153EA610-6E1D-4943-A6DC-148E3291A513</string>
+			<string>2FBF6FF867B676467411255C927B9FD8739B9AC2</string>
 			<key>IDESourceControlWCCName</key>
-			<string>analytics-ios-osx</string>
+			<string>analytics-ios</string>
 		</dict>
 	</array>
 </dict>
