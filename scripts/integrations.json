@@ -50,6 +50,13 @@
       }]
     },
     {
+      "name": "Kahuna",
+      "dependencies": [{
+        "name": "KahunaSDK",
+        "version": "1.0.503"
+      }]
+    },
+    {
       "name": "Localytics",
       "dependencies": [{
         "name": "Localytics-AMP",

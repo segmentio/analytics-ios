@@ -67,5 +67,6 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
 + (NSDictionary *)map:(NSDictionary *)dictionary withMap:(NSDictionary *)map;
 + (NSNumber *)extractRevenue:(NSDictionary *)dictionary;
 + (NSNumber *)extractRevenue:(NSDictionary *)dictionary withKey:(NSString *)key;
++ (NSString *)extractEmail:(NSString *)userId traits:(NSDictionary *)traits;
 
 @end
