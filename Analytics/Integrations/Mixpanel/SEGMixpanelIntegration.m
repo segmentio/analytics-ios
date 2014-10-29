@@ -42,7 +42,8 @@
 #pragma mark - Analytics API
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
-  [[Mixpanel sharedInstance] identify:userId];
+  if (userId != nil && [userId length] != 0)
+    [[Mixpanel sharedInstance] identify:userId];
   
   // Map the traits to special mixpanel keywords.
   NSDictionary *map = [NSDictionary dictionaryWithObjectsAndKeys:
