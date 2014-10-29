@@ -92,7 +92,7 @@
       "name": "Tapstream",
       "dependencies": [{
         "name": "Tapstream",
-        "version": "2.8.1"
+        "version": "2.8.3"
       }]
     },
     {
