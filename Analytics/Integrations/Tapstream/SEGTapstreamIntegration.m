@@ -27,8 +27,7 @@
     return self;
 }
 
-- (void)start
-{
+- (void)start {
     TSConfig *config = [TSConfig configWithDefaults];
 
     // Load any values that the TSConfig object supports
@@ -47,6 +46,8 @@
     [TSTapstream createWithAccountName:accountName developerSecret:sdkSecret config:config];
 
     SEGLog(@"TapstreamIntegration initialized with accountName %@ and developerSecret %@", accountName, sdkSecret);
+
+    [super start];
 }
 
 
