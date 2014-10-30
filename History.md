@@ -1,3 +1,31 @@
+1.8.1 / 2014-10-30
+==================
+
+ * tapstream: update to 2.8.3
+
+1.8.0 / 2014-10-23
+==================
+
+ * add: api for enabling/disabling ad tracking
+
+1.7.10 / 2014-10-21
+==================
+
+ * mixpanel: update to 2.5.4
+
+
+1.7.9 / 2014-10-21
+==================
+
+ * add: timezone to context
+ * taplytics: add missing headers
+
+1.7.8 / 2014-10-20
+==================
+
+ * localytics: fix call to register notifications
+ * localytics: update to 2.71.0
+ * taplytics: update to 2.0.10
 
 1.7.7 / 2014-09-18
 ==================
@@ -19,7 +47,7 @@
 ==================
 
   * update: mixpanel to 2.5.1
-  
+
 1.7.3 / 2014-08-28
 ==================
 
@@ -32,7 +60,7 @@
 
 1.7.1 / 2014-08-28
 ==================
-  
+
   * update: mixpanel to 2.5.0
 
 1.7.0 / 2014-08-27
@@ -49,7 +77,7 @@
 1.6.1 / 2014-08-25
 ==================
 
-  * fix: remove log 
+  * fix: remove log
 
 1.6.0 / 2014-08-25
 ==================
@@ -85,7 +113,7 @@
 
 1.5.7 / 2014-08-08
 ==================
-  
+
   * fix: enable optimizely's mixpanel integrations
   * fix: add checks for bluetooth symbols before use
   * fix: add build module to improve building the sdk
