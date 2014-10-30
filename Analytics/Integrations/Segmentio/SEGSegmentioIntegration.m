@@ -517,7 +517,7 @@ static BOOL GetAdTrackingEnabled() {
   if ([keyPath isEqualToString:@"shouldUseLocationServices"]) {
     self.location = [object shouldUseLocationServices] ? [SEGLocation new] : nil;
   } else if ([keyPath isEqualToString:@"enableAdvertisingTracking"]) {
-    self.enableAdvertisingTracking = [object shouldUseLocationServices];
+    self.enableAdvertisingTracking = [object enableAdvertisingTracking];
   } else if ([keyPath isEqualToString:@"flushAt"]) {
     [self flushQueueByLength];
   } else {
