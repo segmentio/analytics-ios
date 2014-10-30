@@ -1,3 +1,9 @@
+1.8.2 / 2014-10-30
+==================
+
+ * tapstream: post notification that integration has started
+ * mixpanel: add check that user id isn't nil before identifying (just prevents an NSLog call they were making)
+
 1.8.1 / 2014-10-30
 ==================
 
