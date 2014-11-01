@@ -77,8 +77,7 @@
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    NSString *screenEventName = [@"screen-" stringByAppendingString:screenTitle];
-    TSEvent *e = [self makeEvent:screenEventName properties:properties options:options];
+    TSEvent *e = [self makeEvent:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
     [[TSTapstream instance] fireEvent:e];
 }
 
