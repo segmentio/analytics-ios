@@ -18,11 +18,12 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '6.0'
   s.requires_arc    = true
 
+  s.default_subspecs = %w(Segmentio)
+
   s.subspec 'Core-iOS' do |ss|
     ss.public_header_files = 'Analytics/*'
     ss.source_files = ['Analytics/*.{h,m}', 'Analytics/Helpers/*.{h,m}', 'Analytics/Integrations/SEGAnalyticsIntegrations.h']
     ss.platforms = [:ios]
-    ss.dependency "Analytics/Segmentio"
     ss.weak_frameworks = ['CoreBluetooth', 'SystemConfiguration']
     ss.frameworks = ['SystemConfiguration']
     ss.dependency 'TRVSDictionaryWithCaseInsensitivity', '0.0.2'
