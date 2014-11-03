@@ -1,5 +1,3 @@
-# using full path for when cocoapdos is building a local pod they don't alias
-# the dir, they copy but only the podspec and code files.
 begin
   require File.expand_path('./scripts/build.rb')
 rescue LoadError
@@ -22,7 +20,6 @@ Pod::Spec.new do |s|
     ss.public_header_files = 'Analytics/*'
     ss.source_files = ['Analytics/*.{h,m}', 'Analytics/Helpers/*.{h,m}', 'Analytics/Integrations/SEGAnalyticsIntegrations.h']
     ss.platforms = [:ios]
-    ss.dependency "Analytics/Segmentio"
     ss.weak_frameworks = ['CoreBluetooth', 'SystemConfiguration']
     ss.frameworks = ['SystemConfiguration']
     ss.dependency 'TRVSDictionaryWithCaseInsensitivity', '0.0.2'
@@ -35,7 +32,9 @@ Pod::Spec.new do |s|
       ss.public_header_files = 'Analytics/Integrations/*'
       ss.ios.source_files = "Analytics/Integrations/#{a.name}/SEG#{a.name}Integration.{h,m}"
       ss.platforms = [:ios]
+
       ss.dependency 'Analytics/Core-iOS'
+      ss.dependency 'Analytics/Segmentio' unless a.is_segment?
 
       (a.dependencies || []).each do |d|
         if d.version

@@ -1,6 +1,9 @@
 require 'json'
 
+
 module Build
+  SEGMENT_NAME = "Segmentio"
+
   class << self
     class Pod
       attr_accessor :name, :version
@@ -29,6 +32,10 @@ module Build
           s.dependencies = h["dependencies"].map { |d| Pod.pod_from_hash(d) }
           s
         end
+      end
+
+      def is_segment?
+        name == SEGMENT_NAME
       end
 
       def to_s

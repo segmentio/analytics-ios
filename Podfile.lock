@@ -6,7 +6,7 @@ PODS:
   - CrittercismSDK (4.3.4)
   - Expecta (0.3.1)
   - FlurrySDK (4.4.0):
-    - FlurrySDK/FlurrySDK
+    - FlurrySDK/FlurrySDK (= 4.4.0)
   - FlurrySDK/FlurrySDK (4.4.0)
   - GoogleAnalytics-iOS-SDK (3.0.9)
   - Localytics-AMP (2.71.0)
@@ -14,7 +14,7 @@ PODS:
   - OCMock (2.2.4)
   - Optimizely-iOS-SDK (0.7.55)
   - Quantcast-Measure (1.4.6):
-    - Quantcast-Measure/Core
+    - Quantcast-Measure/Core (= 1.4.6)
   - Quantcast-Measure/Core (1.4.6)
   - Taplytics (2.0.10)
   - Tapstream (2.8.3)
@@ -63,4 +63,4 @@ SPEC CHECKSUMS:
   TRVSDictionaryWithCaseInsensitivity: a61daa8469fa079e05b694f6aad5441785c837d1
   TRVSKit: fd946dbfb09de6bb75889e0f73c021a391e7594a
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.35.0.rc1
