@@ -20,8 +20,7 @@ Pod::Spec.new do |s|
     ss.public_header_files = 'Analytics/*'
     ss.source_files = ['Analytics/*.{h,m}', 'Analytics/Helpers/*.{h,m}', 'Analytics/Integrations/SEGAnalyticsIntegrations.h', 'Pods/**/*.{h,m}']
     ss.platforms = [:ios]
-    ss.weak_frameworks = ['CoreBluetooth', 'SystemConfiguration']
-    ss.frameworks = ['SystemConfiguration']
+    ss.weak_frameworks = ['CoreBluetooth', 'SystemConfiguration', 'CoreLocation']
     ss.dependency 'TRVSDictionaryWithCaseInsensitivity', '0.0.2'
     s.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => "ANALYTICS_VERSION=#{s.version}" }
   end
