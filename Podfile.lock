@@ -3,7 +3,7 @@ PODS:
   - AppsFlyer-SDK (2.5.3.10)
   - Bugsnag (3.1.2)
   - Countly (1.0.0)
-  - CrittercismSDK (4.3.4)
+  - CrittercismSDK (5.0.5)
   - Expecta (0.3.1)
   - FlurrySDK (4.4.0):
     - FlurrySDK/FlurrySDK (= 4.4.0)
@@ -28,7 +28,7 @@ DEPENDENCIES:
   - AppsFlyer-SDK (= 2.5.3.10)
   - Bugsnag (= 3.1.2)
   - Countly (= 1.0.0)
-  - CrittercismSDK (= 4.3.4)
+  - CrittercismSDK (= 5.0.5)
   - Expecta (~> 0.3.0)
   - FlurrySDK (= 4.4.0)
   - GoogleAnalytics-iOS-SDK (= 3.0.9)
@@ -48,7 +48,7 @@ SPEC CHECKSUMS:
   AppsFlyer-SDK: f83ad2e0821c57852512ea0bb8d3b207c64ef698
   Bugsnag: 74d109dfa41b55d16890c987c7551ca071afd3d2
   Countly: f26a3483a660b5790b2c76e1f91dea4f276b3c33
-  CrittercismSDK: d32f9f730158e3e646c445b752d7851710a1fed2
+  CrittercismSDK: 0f3bfca5d5e7b11ba8042a119c7aeb32c034c3aa
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   FlurrySDK: abaedafc350afa41b004236b67ae14f7d3748b68
   GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
