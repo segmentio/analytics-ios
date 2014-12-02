@@ -25,6 +25,13 @@
 		32225231199AD6D200478B1A /* SEGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3222522F199AD6D200478B1A /* SEGReachability.h */; };
 		32225232199AD6D200478B1A /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 32225230199AD6D200478B1A /* SEGReachability.m */; };
 		32225233199AD6D200478B1A /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 32225230199AD6D200478B1A /* SEGReachability.m */; };
+		32385FD91A2DF0CA008E09B2 /* MPCategoryHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FD81A2DF0CA008E09B2 /* MPCategoryHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32385FDC1A2DF0DF008E09B2 /* MPDesignerEventBindingMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FDA1A2DF0DF008E09B2 /* MPDesignerEventBindingMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32385FDD1A2DF0DF008E09B2 /* MPDesignerSessionCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FDB1A2DF0DF008E09B2 /* MPDesignerSessionCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32385FDF1A2DF0E7008E09B2 /* MPEventBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FDE1A2DF0E7008E09B2 /* MPEventBinding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32385FE11A2DF0F0008E09B2 /* MPLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FE01A2DF0F0008E09B2 /* MPLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32385FE31A2DF0FB008E09B2 /* MPUITableViewBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FE21A2DF0FB008E09B2 /* MPUITableViewBinding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32385FE51A2DF103008E09B2 /* MPUIControlBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FE41A2DF103008E09B2 /* MPUIControlBinding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3242C9991946A3E100FBE441 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D045551931FACD00A9F0A4 /* XCTest.framework */; };
 		3242C99A1946A3E100FBE441 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		3242C99B1946A3E100FBE441 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
@@ -94,7 +101,6 @@
 		3252EA9F1999D7040056C32A /* UIColor+MPColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA971999D7040056C32A /* UIColor+MPColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EAA01999D7040056C32A /* UIImage+MPAverageColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA981999D7040056C32A /* UIImage+MPAverageColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EAA11999D7040056C32A /* UIImage+MPImageEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA991999D7040056C32A /* UIImage+MPImageEffects.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EAA21999D7040056C32A /* UIView+MPSnapshotImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA9A1999D7040056C32A /* UIView+MPSnapshotImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EAA61999D8B10056C32A /* BugsnagIosNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EAA51999D8B10056C32A /* BugsnagIosNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32539997199C80FF009DDF87 /* SEGEcommerce.h in Headers */ = {isa = PBXBuildFile; fileRef = 32539996199C80FF009DDF87 /* SEGEcommerce.h */; };
 		3254FBC21999D38D0043AF15 /* Amplitude.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBBF1999D38D0043AF15 /* Amplitude.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -102,7 +108,6 @@
 		3254FBC41999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC11999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBCD1999D3D00043AF15 /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC51999D3D00043AF15 /* Bugsnag.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD01999D3D00043AF15 /* BugsnagEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC81999D3D00043AF15 /* BugsnagEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3254FBD11999D3D00043AF15 /* BugsnagLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC91999D3D00043AF15 /* BugsnagLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD41999D3D00043AF15 /* BugsnagReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD71999D4370043AF15 /* Countly_OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD81999D4370043AF15 /* Countly.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD61999D4370043AF15 /* Countly.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -246,6 +251,13 @@
 		24AE4A015CBF4E95B18D10A7 /* libPods-iOS Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iOS Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3222522F199AD6D200478B1A /* SEGReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGReachability.h; path = Helpers/SEGReachability.h; sourceTree = "<group>"; };
 		32225230199AD6D200478B1A /* SEGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGReachability.m; path = Helpers/SEGReachability.m; sourceTree = "<group>"; };
+		32385FD81A2DF0CA008E09B2 /* MPCategoryHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPCategoryHelpers.h; path = Pods/Mixpanel/Mixpanel/MPCategoryHelpers.h; sourceTree = "<group>"; };
+		32385FDA1A2DF0DF008E09B2 /* MPDesignerEventBindingMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPDesignerEventBindingMessage.h; path = Pods/Mixpanel/Mixpanel/MPDesignerEventBindingMessage.h; sourceTree = "<group>"; };
+		32385FDB1A2DF0DF008E09B2 /* MPDesignerSessionCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPDesignerSessionCollection.h; path = Pods/Mixpanel/Mixpanel/MPDesignerSessionCollection.h; sourceTree = "<group>"; };
+		32385FDE1A2DF0E7008E09B2 /* MPEventBinding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPEventBinding.h; path = Pods/Mixpanel/Mixpanel/MPEventBinding.h; sourceTree = "<group>"; };
+		32385FE01A2DF0F0008E09B2 /* MPLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPLogging.h; path = Pods/Mixpanel/Mixpanel/MPLogging.h; sourceTree = "<group>"; };
+		32385FE21A2DF0FB008E09B2 /* MPUITableViewBinding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPUITableViewBinding.h; path = Pods/Mixpanel/Mixpanel/MPUITableViewBinding.h; sourceTree = "<group>"; };
+		32385FE41A2DF103008E09B2 /* MPUIControlBinding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPUIControlBinding.h; path = Pods/Mixpanel/Mixpanel/MPUIControlBinding.h; sourceTree = "<group>"; };
 		3242C9981946A3E100FBE441 /* iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3242C99E1946A3E100FBE441 /* iOS Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOS Tests-Info.plist"; sourceTree = "<group>"; };
 		3242C9A01946A3E100FBE441 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -313,7 +325,6 @@
 		3254FBC61999D3D00043AF15 /* BugsnagConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagConfiguration.h; path = Pods/Bugsnag/bugsnag/BugsnagConfiguration.h; sourceTree = "<group>"; };
 		3254FBC71999D3D00043AF15 /* BugsnagDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagDictionary.h; path = Pods/Bugsnag/bugsnag/BugsnagDictionary.h; sourceTree = "<group>"; };
 		3254FBC81999D3D00043AF15 /* BugsnagEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagEvent.h; path = Pods/Bugsnag/bugsnag/BugsnagEvent.h; sourceTree = "<group>"; };
-		3254FBC91999D3D00043AF15 /* BugsnagLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagLogger.h; path = Pods/Bugsnag/bugsnag/BugsnagLogger.h; sourceTree = "<group>"; };
 		3254FBCA1999D3D00043AF15 /* BugsnagMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagMetaData.h; path = Pods/Bugsnag/bugsnag/BugsnagMetaData.h; sourceTree = "<group>"; };
 		3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagReachability.h; path = Pods/Bugsnag/bugsnag/BugsnagReachability.h; sourceTree = "<group>"; };
 		3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Countly_OpenUDID.h; path = Pods/Countly/Countly_OpenUDID.h; sourceTree = "<group>"; };
@@ -618,6 +629,13 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				32385FE41A2DF103008E09B2 /* MPUIControlBinding.h */,
+				32385FE21A2DF0FB008E09B2 /* MPUITableViewBinding.h */,
+				32385FE01A2DF0F0008E09B2 /* MPLogging.h */,
+				32385FDE1A2DF0E7008E09B2 /* MPEventBinding.h */,
+				32385FDA1A2DF0DF008E09B2 /* MPDesignerEventBindingMessage.h */,
+				32385FDB1A2DF0DF008E09B2 /* MPDesignerSessionCollection.h */,
+				32385FD81A2DF0CA008E09B2 /* MPCategoryHelpers.h */,
 				32CEE41F19F5B849007758F2 /* LocalyticsAmpSession.h */,
 				32CEE42019F5B849007758F2 /* LocalyticsSession.h */,
 				32CEE41C19F5B6DB007758F2 /* Taplytics.h */,
@@ -1006,8 +1024,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32385FE11A2DF0F0008E09B2 /* MPLogging.h in Headers */,
+				32385FE31A2DF0FB008E09B2 /* MPUITableViewBinding.h in Headers */,
 				3252EA881999D6CC0056C32A /* Taplytics.h in Headers */,
+				32385FE51A2DF103008E09B2 /* MPUIControlBinding.h in Headers */,
+				32385FDC1A2DF0DF008E09B2 /* MPDesignerEventBindingMessage.h in Headers */,
+				32385FDD1A2DF0DF008E09B2 /* MPDesignerSessionCollection.h in Headers */,
+				32385FD91A2DF0CA008E09B2 /* MPCategoryHelpers.h in Headers */,
 				32CEE41E19F5B6DB007758F2 /* TaplyticsOptions.h in Headers */,
+				32385FDF1A2DF0E7008E09B2 /* MPEventBinding.h in Headers */,
 				32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */,
 				3252EAA61999D8B10056C32A /* BugsnagIosNotifier.h in Headers */,
 				EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */,
@@ -1092,7 +1117,6 @@
 				3252EA9F1999D7040056C32A /* UIColor+MPColor.h in Headers */,
 				3252EAA01999D7040056C32A /* UIImage+MPAverageColor.h in Headers */,
 				3252EAA11999D7040056C32A /* UIImage+MPImageEffects.h in Headers */,
-				3252EAA21999D7040056C32A /* UIView+MPSnapshotImage.h in Headers */,
 				32AD187C19AFCA100047D5F0 /* _MPTweakBindObserver.h in Headers */,
 				D3EDB66818C315F100A88A7E /* SEGTapstreamIntegration.h in Headers */,
 				D331BD2F1860F5F0007CB22F /* TSCoreListener.h in Headers */,
@@ -1107,7 +1131,6 @@
 				3254FBC31999D38D0043AF15 /* AmplitudeARCMacros.h in Headers */,
 				3254FBCD1999D3D00043AF15 /* Bugsnag.h in Headers */,
 				3254FBD01999D3D00043AF15 /* BugsnagEvent.h in Headers */,
-				3254FBD11999D3D00043AF15 /* BugsnagLogger.h in Headers */,
 				D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */,
 				D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */,
 				D331BD311860F5F0007CB22F /* TSEvent.h in Headers */,
@@ -1135,7 +1158,6 @@
 				3252EA841999D6390056C32A /* QuantcastPolicy.h in Headers */,
 				3252EA851999D6390056C32A /* QuantcastUploadManager.h in Headers */,
 				3252EA861999D6390056C32A /* QuantcastUtils.h in Headers */,
-				3254FBD11999D3D00043AF15 /* BugsnagLogger.h in Headers */,
 				3252EA8C1999D6E20056C32A /* Optimizely.h in Headers */,
 				329AB8AC19AC4FE100E7B6BB /* TestFlight.h in Headers */,
 				329AB8AD19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h in Headers */,
@@ -1347,7 +1369,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nPRODUCT_PATH=\"${SYMROOT}/Release/Analytics.framework\"\n\n## Prepare the framework Folder Structure\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Headers\"\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Resources\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${PRODUCT_PATH}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${PRODUCT_PATH}/Headers\"\n/bin/ln -sfh Versions/Current/Analytics \"${PRODUCT_PATH}/Analytics\"\n/bin/ln -sfh Versions/Current/Resources \"${PRODUCT_PATH}/Resources\"\n\n## Compile for both iPhone (armv7, armv7s, arm64) and iPhone Simulator (i386)\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphoneos ONLY_ACTIVE_ARCH=NO\n\n## Combine the two separate libAnalytics.a into a single fat binary containing all 3 architectures\nlipo -output \"${SYMROOT}/Release/libAnalytics.a\" -create \\\n\"${SYMROOT}/Release-iphoneos/libAnalytics.a\" \\\n\"${SYMROOT}/Release-iphonesimulator/libAnalytics.a\"\n\n## Strip out Pods-dummy objects to prevent duplicate symbol when used by CocoaPods\n\nfor ARCH in i386 armv7 arm64 x86_64\ndo\nlipo \"${SYMROOT}/Release/libAnalytics.a\" -thin $ARCH -output \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\"\nDUMMY_OBJECTS=`ar -t ${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a | grep ^Pods.*-dummy.o$ | tr '\\n' ' '`\nif [ \"$DUMMY_OBJECTS\" != \"\" ]\nthen\nar -sd \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\" $DUMMY_OBJECTS\nfi\ndone\n\n## Create a fat lib from the now cleaned up thin libs and place inside framework\nlipo -output \"${PRODUCT_PATH}/Versions/A/Analytics\" -create \\\n\"${SYMROOT}/Release/libAnalytics-i386-clean.a\" \\\n\"${SYMROOT}/Release/libAnalytics-armv7-clean.a\" \\\n\"${SYMROOT}/Release/libAnalytics-arm64-clean.a\" \\\n\"${SYMROOT}/Release/libAnalytics-x86_64-clean.a\"\n\n## produce statically linked library with analytics, google analytics, flurry and crittercism\n\nlibtool -static -o \"${PRODUCT_PATH}/Versions/A/Analytics\" \\\n\"${PRODUCT_PATH}/Versions/A/Analytics\" \\\n\"${SRCROOT}/Pods/AppsFlyer-SDK/libAppsFlyerLib.a\" \\\n\"${SRCROOT}/Pods/CrittercismSDK/CrittercismSDK/libCrittercism_v4_3_4.a\" \\\n\"${SRCROOT}/Pods/FlurrySDK/Flurry/libFlurry_4.4.0.a\" \\\n\"${SRCROOT}/Pods/TestFlightSDK/libTestFlight.a\" \\\n\"${SRCROOT}/Pods/GoogleAnalytics-iOS-SDK/libGoogleAnalyticsServices.a\" \\\n\"${SRCROOT}/Pods/Optimizely-iOS-SDK/Optimizely.framework/Optimizely\" \\\n\"${SRCROOT}/Pods/Taplytics/Taplytics.framework/Taplytics\" \\\n\"${SRCROOT}\"/Pods/Localytics-AMP/*/libLocalyticsAMP_x64.a\n\n## Copy headers into the framework\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${SYMROOT}/Release-iphoneos/AnalyticsHeaders/\" \"${PRODUCT_PATH}/Versions/A/Headers/\"\n\n# also copy original resources for include by users\nall_resources=$(find Pods/Mixpanel/Mixpanel/ -type f \\( -name '*.storyboard' -or -name '*.png' \\))\n\nfor resource in $all_resources; do /bin/cp -a \"${resource}\" \"${PRODUCT_PATH}/Versions/A/Resources/\" || true; done\n\n# Zip up the framework and license for distribution, and open products folder\ncd \"${SYMROOT}/Release\"\ncp \"${PROJECT_DIR}/License.md\" .\nzip --symlinks -r Analytics-${ANALYTICS_VERSION}.zip Analytics.framework License.md\ncp -f Analytics-${ANALYTICS_VERSION}.zip Analytics-latest-stable.zip\nopen .\n";
+			shellScript = "set -e\n\nPRODUCT_PATH=\"${SYMROOT}/Release/Analytics.framework\"\n\n## Prepare the framework Folder Structure\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Headers\"\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Resources\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${PRODUCT_PATH}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${PRODUCT_PATH}/Headers\"\n/bin/ln -sfh Versions/Current/Analytics \"${PRODUCT_PATH}/Analytics\"\n/bin/ln -sfh Versions/Current/Resources \"${PRODUCT_PATH}/Resources\"\n\n## Compile for both iPhone (armv7, armv7s, arm64) and iPhone Simulator (i386)\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphoneos ONLY_ACTIVE_ARCH=NO\n\n## Combine the two separate libAnalytics.a into a single fat binary containing all 3 architectures\nlipo -output \"${SYMROOT}/Release/libAnalytics.a\" -create \\\n\"${SYMROOT}/Release-iphoneos/libAnalytics.a\" \\\n\"${SYMROOT}/Release-iphonesimulator/libAnalytics.a\"\n\n## Strip out Pods-dummy objects to prevent duplicate symbol when used by CocoaPods\n\nfor ARCH in i386 armv7 arm64 x86_64\ndo\nlipo \"${SYMROOT}/Release/libAnalytics.a\" -thin $ARCH -output \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\"\nDUMMY_OBJECTS=`ar -t ${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a | grep ^Pods.*-dummy.o$ | tr '\\n' ' '`\nif [ \"$DUMMY_OBJECTS\" != \"\" ]\nthen\nar -sd \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\" $DUMMY_OBJECTS\nfi\ndone\n\n## Create a fat lib from the now cleaned up thin libs and place inside framework\nlipo -output \"${PRODUCT_PATH}/Versions/A/Analytics\" -create \\\n\"${SYMROOT}/Release/libAnalytics-i386-clean.a\" \\\n\"${SYMROOT}/Release/libAnalytics-armv7-clean.a\" \\\n\"${SYMROOT}/Release/libAnalytics-arm64-clean.a\" \\\n\"${SYMROOT}/Release/libAnalytics-x86_64-clean.a\"\n\n## produce statically linked library with analytics, google analytics, flurry and crittercism\n\nlibtool -static -o \"${PRODUCT_PATH}/Versions/A/Analytics\" \\\n\"${PRODUCT_PATH}/Versions/A/Analytics\" \\\n\"${SRCROOT}/Pods/AppsFlyer-SDK/libAppsFlyerLib.a\" \\\n\"${SRCROOT}/Pods/CrittercismSDK/CrittercismSDK/libCrittercism_v5_0_5.a\" \\\n\"${SRCROOT}/Pods/FlurrySDK/Flurry/libFlurry_4.4.0.a\" \\\n\"${SRCROOT}/Pods/TestFlightSDK/libTestFlight.a\" \\\n\"${SRCROOT}/Pods/GoogleAnalytics-iOS-SDK/libGoogleAnalyticsServices.a\" \\\n\"${SRCROOT}/Pods/Optimizely-iOS-SDK/Optimizely.framework/Optimizely\" \\\n\"${SRCROOT}/Pods/Taplytics/Taplytics.framework/Taplytics\" \\\n\"${SRCROOT}\"/Pods/Localytics-AMP/*/libLocalyticsAMP_x64.a\n\n## Copy headers into the framework\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${SYMROOT}/Release-iphoneos/AnalyticsHeaders/\" \"${PRODUCT_PATH}/Versions/A/Headers/\"\n\n# also copy original resources for include by users\nall_resources=$(find Pods/Mixpanel/Mixpanel/ -type f \\( -name '*.storyboard' -or -name '*.png' \\))\n\nfor resource in $all_resources; do /bin/cp -a \"${resource}\" \"${PRODUCT_PATH}/Versions/A/Resources/\" || true; done\n\n# Zip up the framework and license for distribution, and open products folder\ncd \"${SYMROOT}/Release\"\ncp \"${PROJECT_DIR}/License.md\" .\nzip --symlinks -r Analytics-${ANALYTICS_VERSION}.zip Analytics.framework License.md\ncp -f Analytics-${ANALYTICS_VERSION}.zip Analytics-latest-stable.zip\nopen .\n";
 		};
 		EA8758AB17D7B77200833FB1 /* Sync Version Number References with ANALYTICS_VERSION */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1540,7 +1562,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.8.6;
+				ANALYTICS_VERSION = 1.8.7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1572,7 +1594,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.8.6;
+				ANALYTICS_VERSION = 1.8.7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
