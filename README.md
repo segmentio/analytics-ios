@@ -1,14 +1,14 @@
 analytics-ios [![Build Status](https://travis-ci.org/segmentio/analytics-ios.svg?branch=master)](https://travis-ci.org/segmentio/analytics-ios)
 =================
 
-analytics-ios is an iOS client for [Segment.io](https://segment.io)
+analytics-ios is an iOS client for [Segment](https://segment.com)
 
 Special thanks to [Tony Xiao](https://github.com/tonyxiao), [Lee Hasiuk](https://github.com/lhasiuk) and [Cristian Bica](https://github.com/cristianbica) for their contributions to the library!
 
 ## Documentation
 
-Quickstart tutorial is available at [https://segment.io/docs/tutorials/quickstart-ios/](https://segment.io/docs/tutorials/quickstart-ios/).
-Reference documentation is available at [https://segment.io/libraries/ios](https://segment.io/libraries/ios).
+Quickstart tutorial is available at [https://segment.com/docs/tutorials/quickstart-ios/](https://segment.com/docs/tutorials/quickstart-ios/).
+Reference documentation is available at [https://segment.com/libraries/ios](https://segment.com/libraries/ios).
 
 ## Development
 
@@ -36,7 +36,7 @@ WWWWWW||WWWWWW
 
 (The MIT License)
 
-Copyright (c) 2013 Segment.io Inc. <friends@segment.io>
+Copyright (c) 2013 Segment Inc. <friends@segment.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
