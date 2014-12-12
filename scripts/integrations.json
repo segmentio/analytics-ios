@@ -46,7 +46,7 @@
       "name": "GoogleAnalytics",
       "dependencies": [{
         "name": "GoogleAnalytics-iOS-SDK",
-        "version": "3.0.9"
+        "version": "3.10"
       }]
     },
     {
