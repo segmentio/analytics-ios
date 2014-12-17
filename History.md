@@ -1,4 +1,11 @@
 
+1.8.8 / 2014-12-12
+==================
+
+ * Fix cli-release script to update changelog
+ * Update google analytics to 3.10
+ * Fix reachability
+
 1.8.7 / 2014-12-02
 ==================
 
