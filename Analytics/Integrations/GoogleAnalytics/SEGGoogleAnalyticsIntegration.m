@@ -51,6 +51,12 @@
         [GAI sharedInstance].trackUncaughtExceptions = YES;
     }
 
+    // Optionally turn on GA remarketing features
+    NSString *demographicReports = [self.settings objectForKey:@"doubleClick"];
+    if ([demographicReports boolValue]) {
+      [GAI sharedInstance].allowIDFACollection = YES;
+    }
+
     // TODO: add support for sample rate
 
     // All done!
@@ -74,7 +80,7 @@
 {
   // remove existing traits
   [self resetTraits];
-  
+
     // Optionally send the userId if they have that enabled
     if ([self shouldSendUserId])
       [[[GAI sharedInstance] defaultTracker] set:@"&uid" value:userId];
@@ -90,7 +96,7 @@
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
   [super track:event properties:properties options:options];
-  
+
     // Try to extract a "category" property.
     NSString *category = @"All"; // default
     NSString *categoryProperty = [properties objectForKey:@"category"];
@@ -130,9 +136,9 @@
 - (void)completedOrder:(NSDictionary *)properties {
   NSString *orderId = properties[@"orderId"];
   NSString *currency = properties[@"currency"] ?: @"USD";
-  
+
   SEGLog(@"Tracking completed order to Google Analytics with properties: %@", properties);
-  
+
   [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createTransactionWithId:orderId
                                                                                 affiliation:properties[@"affiliation"]
                                                                                     revenue:[self.class extractRevenue:properties]
@@ -151,9 +157,9 @@
 
 - (void)reset {
   [super reset];
-  
+
   [[[GAI sharedInstance] defaultTracker] set:@"&uid" value:nil];
-  
+
   [self resetTraits];
 }
 
