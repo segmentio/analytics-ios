@@ -104,8 +104,8 @@
 		3252EAA61999D8B10056C32A /* BugsnagIosNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EAA51999D8B10056C32A /* BugsnagIosNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32539997199C80FF009DDF87 /* SEGEcommerce.h in Headers */ = {isa = PBXBuildFile; fileRef = 32539996199C80FF009DDF87 /* SEGEcommerce.h */; };
 		3254FBC21999D38D0043AF15 /* Amplitude.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBBF1999D38D0043AF15 /* Amplitude.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3254FBC31999D38D0043AF15 /* AmplitudeARCMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC01999D38D0043AF15 /* AmplitudeARCMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3254FBC41999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC11999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3254FBC31999D38D0043AF15 /* AMPARCMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC01999D38D0043AF15 /* AMPARCMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3254FBC41999D38D0043AF15 /* AMPLocationManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC11999D38D0043AF15 /* AMPLocationManagerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBCD1999D3D00043AF15 /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC51999D3D00043AF15 /* Bugsnag.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD01999D3D00043AF15 /* BugsnagEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC81999D3D00043AF15 /* BugsnagEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD41999D3D00043AF15 /* BugsnagReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -318,9 +318,9 @@
 		3252EAA31999D7150056C32A /* UIImage+MPImageEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPImageEffects.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPImageEffects.h"; sourceTree = "<group>"; };
 		3252EAA51999D8B10056C32A /* BugsnagIosNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagIosNotifier.h; path = Pods/Bugsnag/bugsnag/iOS/BugsnagIosNotifier.h; sourceTree = "<group>"; };
 		32539996199C80FF009DDF87 /* SEGEcommerce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGEcommerce.h; sourceTree = "<group>"; };
-		3254FBBF1999D38D0043AF15 /* Amplitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Amplitude.h; path = "Pods/Amplitude-iOS/Amplitude.h"; sourceTree = "<group>"; };
-		3254FBC01999D38D0043AF15 /* AmplitudeARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmplitudeARCMacros.h; path = "Pods/Amplitude-iOS/AmplitudeARCMacros.h"; sourceTree = "<group>"; };
-		3254FBC11999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmplitudeLocationManagerDelegate.h; path = "Pods/Amplitude-iOS/AmplitudeLocationManagerDelegate.h"; sourceTree = "<group>"; };
+		3254FBBF1999D38D0043AF15 /* Amplitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Amplitude.h; path = "Pods/Amplitude-iOS/Amplitude/Amplitude.h"; sourceTree = "<group>"; };
+		3254FBC01999D38D0043AF15 /* AMPARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMPARCMacros.h; path = "Pods/Amplitude-iOS/Amplitude/AMPARCMacros.h"; sourceTree = "<group>"; };
+		3254FBC11999D38D0043AF15 /* AMPLocationManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMPLocationManagerDelegate.h; path = "Pods/Amplitude-iOS/Amplitude/AMPLocationManagerDelegate.h"; sourceTree = "<group>"; };
 		3254FBC51999D3D00043AF15 /* Bugsnag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bugsnag.h; path = Pods/Bugsnag/bugsnag/Bugsnag.h; sourceTree = "<group>"; };
 		3254FBC61999D3D00043AF15 /* BugsnagConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagConfiguration.h; path = Pods/Bugsnag/bugsnag/BugsnagConfiguration.h; sourceTree = "<group>"; };
 		3254FBC71999D3D00043AF15 /* BugsnagDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagDictionary.h; path = Pods/Bugsnag/bugsnag/BugsnagDictionary.h; sourceTree = "<group>"; };
@@ -694,8 +694,8 @@
 				329AB8AB19AC4FE100E7B6BB /* TestFlight+ManualSessions.h */,
 				3252EAA51999D8B10056C32A /* BugsnagIosNotifier.h */,
 				3254FBBF1999D38D0043AF15 /* Amplitude.h */,
-				3254FBC01999D38D0043AF15 /* AmplitudeARCMacros.h */,
-				3254FBC11999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h */,
+				3254FBC01999D38D0043AF15 /* AMPARCMacros.h */,
+				3254FBC11999D38D0043AF15 /* AMPLocationManagerDelegate.h */,
 				3254FBC51999D3D00043AF15 /* Bugsnag.h */,
 				3254FBC61999D3D00043AF15 /* BugsnagConfiguration.h */,
 				3254FBC71999D3D00043AF15 /* BugsnagDictionary.h */,
@@ -1128,7 +1128,7 @@
 				D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */,
 				D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */,
 				D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */,
-				3254FBC31999D38D0043AF15 /* AmplitudeARCMacros.h in Headers */,
+				3254FBC31999D38D0043AF15 /* AMPARCMacros.h in Headers */,
 				3254FBCD1999D3D00043AF15 /* Bugsnag.h in Headers */,
 				3254FBD01999D3D00043AF15 /* BugsnagEvent.h in Headers */,
 				D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */,
@@ -1140,7 +1140,7 @@
 				3254FBD71999D4370043AF15 /* Countly_OpenUDID.h in Headers */,
 				3254FBD81999D4370043AF15 /* Countly.h in Headers */,
 				D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */,
-				3254FBC41999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h in Headers */,
+				3254FBC41999D38D0043AF15 /* AMPLocationManagerDelegate.h in Headers */,
 				D331BD321860F5F0007CB22F /* TSHelpers.h in Headers */,
 				D331BD06185FDDEA007CB22F /* BugsnagConfiguration.h in Headers */,
 				3252EA7A1999D6390056C32A /* QuantcastDataManager.h in Headers */,
@@ -1636,61 +1636,7 @@
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"Pods-Analytics-Amplitude-iOS\"",
-					"-l\"Pods-Analytics-AppsFlyer-SDK\"",
-					"-l\"Pods-Analytics-Bugsnag\"",
-					"-l\"Pods-Analytics-Countly\"",
-					"-l\"Pods-Analytics-CrittercismSDK\"",
-					"-l\"Pods-Analytics-FlurrySDK\"",
-					"-l\"Pods-Analytics-GoogleAnalytics-iOS-SDK\"",
-					"-l\"Pods-Analytics-Localytics-AMP\"",
-					"-l\"Pods-Analytics-Mixpanel\"",
-					"-l\"Pods-Analytics-Optimizely-iOS-SDK\"",
-					"-l\"Pods-Analytics-Quantcast-Measure\"",
-					"-l\"Pods-Analytics-TRVSDictionaryWithCaseInsensitivity\"",
-					"-l\"Pods-Analytics-Taplytics\"",
-					"-l\"Pods-Analytics-Tapstream\"",
-					"-l\"Pods-Analytics-TestFlightSDK\"",
-					"-l\"icucore\"",
-					"-l\"sqlite3\"",
-					"-l\"z\"",
-					"-framework",
-					"\"Accelerate\"",
-					"-framework",
-					"\"AdSupport\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreData\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"Optimizely\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"Taplytics\"",
-					"-framework",
-					"\"UIKit\"",
-					"-framework",
-					"\"iAd\"",
-					"-weak_framework",
-					"\"AdSupport\"",
-					"-weak_framework",
-					"\"CoreTelephony\"",
-				);
+				OTHER_LDFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
@@ -1720,58 +1666,7 @@
 					"$(PROJECT_DIR)/Pods/CrittercismSDK/CrittercismSDK",
 					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-l\"Pods-Analytics-Amplitude-iOS\"",
-					"-l\"Pods-Analytics-AppsFlyer-SDK\"",
-					"-l\"Pods-Analytics-Bugsnag\"",
-					"-l\"Pods-Analytics-Countly\"",
-					"-l\"Pods-Analytics-CrittercismSDK\"",
-					"-l\"Pods-Analytics-FlurrySDK\"",
-					"-l\"Pods-Analytics-GoogleAnalytics-iOS-SDK\"",
-					"-l\"Pods-Analytics-Localytics-AMP\"",
-					"-l\"Pods-Analytics-Mixpanel\"",
-					"-l\"Pods-Analytics-Optimizely-iOS-SDK\"",
-					"-l\"Pods-Analytics-Quantcast-Measure\"",
-					"-l\"Pods-Analytics-TRVSDictionaryWithCaseInsensitivity\"",
-					"-l\"Pods-Analytics-Taplytics\"",
-					"-l\"Pods-Analytics-Tapstream\"",
-					"-l\"Pods-Analytics-TestFlightSDK\"",
-					"-framework",
-					"\"Accelerate\"",
-					"-framework",
-					"\"AdSupport\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreData\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"Optimizely\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"Taplytics\"",
-					"-framework",
-					"\"UIKit\"",
-					"-framework",
-					"\"iAd\"",
-					"-weak_framework",
-					"\"AdSupport\"",
-					"-weak_framework",
-					"\"CoreTelephony\"",
-				);
+				OTHER_LDFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers/Private";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PROJECT_NAME)Headers";
