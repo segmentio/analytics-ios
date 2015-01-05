@@ -54,7 +54,7 @@
     // Optionally turn on GA remarketing features
     NSString *demographicReports = [self.settings objectForKey:@"doubleClick"];
     if ([demographicReports boolValue]) {
-      [GAI sharedInstance].allowIDFACollection = YES;
+      [[[GAI sharedInstance] defaultTracker] setAllowIDFACollection:YES];
     }
 
     // TODO: add support for sample rate
