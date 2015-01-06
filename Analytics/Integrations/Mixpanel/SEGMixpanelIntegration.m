@@ -49,7 +49,7 @@
   NSDictionary *map = [NSDictionary dictionaryWithObjectsAndKeys:
                        @"$first_name", @"firstName",
                        @"$last_name",  @"lastName",
-                       @"$created",    @"created",
+                       @"$created",    @"createdAt",
                        @"$last_seen",  @"lastSeen",
                        @"$email",      @"email",
                        @"$name",       @"name",
