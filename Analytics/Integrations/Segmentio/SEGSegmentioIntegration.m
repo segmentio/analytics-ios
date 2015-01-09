@@ -112,7 +112,8 @@ static BOOL GetAdTrackingEnabled() {
     dict[@"app"] = @{
                           @"name": infoDictionary[@"CFBundleDisplayName"] ?: @"",
                           @"version": infoDictionary[@"CFBundleShortVersionString"] ?: @"",
-                          @"build": infoDictionary[@"CFBundleVersion"] ?: @""
+                          @"build": infoDictionary[@"CFBundleVersion"] ?: @"",
+                          @"namespace": [[NSBundle mainBundle] bundleIdentifier] ?: @"",
                           };
   }
   
