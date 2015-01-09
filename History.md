@@ -5,6 +5,12 @@
  * Update Taplytics to v2.1.20
  * add support for GA remarketing
 
+1.8.10 / 2015-01-05
+==================
+
+ * Update Taplytics to v2.1.20
+ * add support for GA remarketing
+
 1.8.8 / 2014-12-12
 ==================
 
