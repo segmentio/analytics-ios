@@ -1,5 +1,5 @@
 PODS:
-  - Amplitude-iOS (2.1.1)
+  - Amplitude-iOS (2.2.4)
   - AppsFlyer-SDK (2.5.3.10)
   - Bugsnag (3.1.2)
   - Countly (1.0.0)
@@ -30,7 +30,7 @@ PODS:
     - Expecta (~> 0.3.0)
 
 DEPENDENCIES:
-  - Amplitude-iOS (= 2.1.1)
+  - Amplitude-iOS (= 2.2.4)
   - AppsFlyer-SDK (= 2.5.3.10)
   - Bugsnag (= 3.1.2)
   - Countly (= 1.0.0)
@@ -51,7 +51,7 @@ DEPENDENCIES:
   - TRVSKit/TRVSAssertions (~> 0.0.8)
 
 SPEC CHECKSUMS:
-  Amplitude-iOS: e72b65479dc035ef671a57e34e1a981767224318
+  Amplitude-iOS: bef6d4d6a5bb7e37581f6aa9d72c275023fce9e3
   AppsFlyer-SDK: f83ad2e0821c57852512ea0bb8d3b207c64ef698
   Bugsnag: 74d109dfa41b55d16890c987c7551ca071afd3d2
   Countly: f26a3483a660b5790b2c76e1f91dea4f276b3c33
@@ -70,4 +70,4 @@ SPEC CHECKSUMS:
   TRVSDictionaryWithCaseInsensitivity: a61daa8469fa079e05b694f6aad5441785c837d1
   TRVSKit: fd946dbfb09de6bb75889e0f73c021a391e7594a
 
-COCOAPODS: 0.35.0.rc2
+COCOAPODS: 0.35.0
