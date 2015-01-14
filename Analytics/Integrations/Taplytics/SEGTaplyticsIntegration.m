@@ -37,6 +37,37 @@
   self.valid = ([self apiKey] != nil);
 }
 
+#pragma mark - Analytics API
+
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
+    // Map the traits to special mixpanel keywords.
+    NSDictionary* map = @{
+      @"lastName": @"lastName",
+      @"firstName": @"firstName",
+      @"gender": @"gender",
+      @"age": @"age",
+      @"name": @"name",
+      @"email": @"email",
+      @"avatarURl": @"avatar"
+    };
+    
+    NSMutableDictionary *mappedTraits = [NSMutableDictionary dictionaryWithDictionary:[SEGAnalyticsIntegration map:traits withMap:map]];
+    mappedTraits[@"user_id"] = userId;
+    
+    [Taplytics setUserAttributes:mappedTraits];
+}
+
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
+    // If revenue is included, logRevenue to Taplytics.
+    NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:properties];
+    if (revenue) {
+        [Taplytics logRevenue:event revenue:revenue metaData:properties];
+    }
+    else {
+        [Taplytics logEvent:event value:nil metaData:properties];
+    }
+}
+
 #pragma mark - Private
 
 - (NSString *)apiKey {
