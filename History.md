@@ -1,4 +1,11 @@
 
+1.8.12 / 2015-01-13
+==================
+
+ * Update optimizely
+ * Updating Taplytics to 2.1.22
+ * Update Amplitude to v2.2.4
+
 1.8.11 / 2015-01-09
 ==================
 
