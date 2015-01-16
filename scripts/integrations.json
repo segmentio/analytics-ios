@@ -55,8 +55,8 @@
     {
       "name": "Localytics",
       "dependencies": [{
-        "name": "Localytics-AMP",
-        "version": "2.71.0"
+        "name": "Localytics",
+        "version": "3.0.0"
       }]
     },
     {

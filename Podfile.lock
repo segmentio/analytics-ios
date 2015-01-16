@@ -13,7 +13,7 @@ PODS:
   - GoogleAnalytics-iOS-SDK/Core (3.10)
   - GoogleAnalytics-iOS-SDK/IDFA (3.10):
     - GoogleAnalytics-iOS-SDK/Core
-  - Localytics-AMP (2.71.0)
+  - Localytics (3.0.0)
   - Mixpanel (2.6.0):
     - Mixpanel/MPCategoryHelpers (= 2.6.0)
   - Mixpanel/MPCategoryHelpers (2.6.0)
@@ -39,7 +39,7 @@ DEPENDENCIES:
   - FlurrySDK (= 4.4.0)
   - GoogleAnalytics-iOS-SDK (= 3.10)
   - GoogleAnalytics-iOS-SDK/IDFA (= 3.10)
-  - Localytics-AMP (= 2.71.0)
+  - Localytics (= 3.0.0)
   - Mixpanel (= 2.6.0)
   - OCMock (~> 2.2.4)
   - Optimizely-iOS-SDK (= 1.0.74)
@@ -59,7 +59,7 @@ SPEC CHECKSUMS:
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
   FlurrySDK: abaedafc350afa41b004236b67ae14f7d3748b68
   GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
-  Localytics-AMP: 4d158e216541912109b1ae7ca20b153d053d68c5
+  Localytics: c42d816fd7bf4a770812a5af0d2e4a92bc6dcfdd
   Mixpanel: e919d14f07a34ee01f81f97e535b7a240af2f793
   OCMock: 6db79185520e24f9f299548f2b8b07e41d881bd5
   Optimizely-iOS-SDK: 343a5eca92dda93db500ad0307f93161ea026b8b
