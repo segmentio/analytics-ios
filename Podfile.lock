@@ -22,7 +22,7 @@ PODS:
   - Quantcast-Measure (1.4.6):
     - Quantcast-Measure/Core (= 1.4.6)
   - Quantcast-Measure/Core (1.4.6)
-  - Taplytics (2.1.22)
+  - Taplytics (2.1.26)
   - Tapstream (2.8.3)
   - TestFlightSDK (3.0.2)
   - TRVSDictionaryWithCaseInsensitivity (0.0.2)
@@ -44,7 +44,7 @@ DEPENDENCIES:
   - OCMock (~> 2.2.4)
   - Optimizely-iOS-SDK (= 1.0.74)
   - Quantcast-Measure (= 1.4.6)
-  - Taplytics (= 2.1.22)
+  - Taplytics (= 2.1.26)
   - Tapstream (= 2.8.3)
   - TestFlightSDK (= 3.0.2)
   - TRVSDictionaryWithCaseInsensitivity (= 0.0.2)
@@ -64,10 +64,10 @@ SPEC CHECKSUMS:
   OCMock: 6db79185520e24f9f299548f2b8b07e41d881bd5
   Optimizely-iOS-SDK: 343a5eca92dda93db500ad0307f93161ea026b8b
   Quantcast-Measure: 82b2e0b81df7f59ee3f643551d4d79fa433f22ba
-  Taplytics: 2e9797023a2c90cb2ca2b4971e8e80df12dbf7a3
+  Taplytics: 710dff05d81a9a7f03cb901e0253f00c659c5c52
   Tapstream: b2d949e963c393938697db68256ba70aadddb820
   TestFlightSDK: 0c24c533748d0d84bfe7a3cb6036fa79124d84ee
   TRVSDictionaryWithCaseInsensitivity: a61daa8469fa079e05b694f6aad5441785c837d1
   TRVSKit: fd946dbfb09de6bb75889e0f73c021a391e7594a
 
-COCOAPODS: 0.35.0.rc2
+COCOAPODS: 0.36.0.beta.1
