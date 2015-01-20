@@ -1,4 +1,12 @@
 
+1.8.14 / 2015-01-19
+==================
+
+ * updated Taplytics to 2.1.26
+ * updating Taplytics integration to support user attributes and analytics events
+ * Properly cast objc_msgSend calls
+ * Fix mapping of createdAt -> $created
+
 1.8.13 / 2015-01-15
 ==================
 
