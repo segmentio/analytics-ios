@@ -88,7 +88,7 @@
                         ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
                         ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
   // cocoapods validation cant find +[Flurry setPushToken:]
-  objc_msgSend(Flurry.class, NSSelectorFromString(@"setPushToken:"), hexToken);
+  ((void(*)(Class, SEL, NSString *))objc_msgSend)(Flurry.class, NSSelectorFromString(@"setPushToken:"), hexToken);
 }
 
 @end
