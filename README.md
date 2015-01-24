@@ -5,6 +5,10 @@ analytics-ios is an iOS client for [Segment](https://segment.com)
 
 Special thanks to [Tony Xiao](https://github.com/tonyxiao), [Lee Hasiuk](https://github.com/lhasiuk) and [Cristian Bica](https://github.com/cristianbica) for their contributions to the library!
 
+## Integrating with Segment
+
+Interested in integrating your service with us? Check out our [Partners page](https://segment.com/partners/) for more details.
+
 ## Documentation
 
 Quickstart tutorial is available at [https://segment.com/docs/tutorials/quickstart-ios/](https://segment.com/docs/tutorials/quickstart-ios/).
