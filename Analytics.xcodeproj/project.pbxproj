@@ -113,6 +113,7 @@
 		3254FBD41999D3D00043AF15 /* BugsnagReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD71999D4370043AF15 /* Countly_OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD81999D4370043AF15 /* Countly.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD61999D4370043AF15 /* Countly.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		325AD8BB1A76438900A19BA8 /* BugsnagLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD03185FDDEA007CB22F /* BugsnagLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		327E0C011A689CFA0048E067 /* Localytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 327E0C001A689CFA0048E067 /* Localytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329AB8AC19AC4FE100E7B6BB /* TestFlight.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8A919AC4FE100E7B6BB /* TestFlight.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		329AB8AD19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 329AB8AA19AC4FE100E7B6BB /* TestFlight+AsyncLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1124,6 +1125,7 @@
 				D371F334185943170053337D /* Mixpanel.h in Headers */,
 				3252EA9E1999D7040056C32A /* NSData+MPBase64.h in Headers */,
 				32AD187B19AFCA100047D5F0 /* NSInvocation+MPHelpers.h in Headers */,
+				325AD8BB1A76438900A19BA8 /* BugsnagLogger.h in Headers */,
 				3252EA9F1999D7040056C32A /* UIColor+MPColor.h in Headers */,
 				3252EAA01999D7040056C32A /* UIImage+MPAverageColor.h in Headers */,
 				3252EAA11999D7040056C32A /* UIImage+MPImageEffects.h in Headers */,
