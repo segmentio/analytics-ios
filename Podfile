@@ -1,8 +1,4 @@
-begin
-  require File.expand_path('./scripts/build.rb')
-rescue LoadError
-  require File.expand_path('~/dev/segmentio/analytics-ios/scripts/build.rb')
-end
+require_relative './scripts/build.rb'
 
 inhibit_all_warnings!
 
