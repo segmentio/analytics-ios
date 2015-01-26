@@ -3,7 +3,6 @@ machine:
     LANG: en_US.UTF-8
 dependencies:
   pre:
-    - sudo gem install cocoapods --version 0.35.0
     - pod setup
     - pod install
 test:
