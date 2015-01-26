@@ -2,7 +2,6 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "SEGAnalyticsUtils.h"
-#import <AdSupport/ASIdentifierManager.h>
 
 static BOOL kAnalyticsLoggerShowLogs = NO;
 
