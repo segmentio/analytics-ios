@@ -62,9 +62,6 @@
     "trackCategorizedPages": 1,
     "trackNamedPages": 1
   },
-  "TestFlight": {
-    "appToken": "8ee14bb7-d41d-4e4a-b8f4-77347c0c071c"
-  },
   "Webhooks": {
     "globalHook": "http://requestb.in/1gc2atw1"
   },

@@ -97,13 +97,6 @@
         "name": "Tapstream",
         "version": "2.8.3"
       }]
-    },
-    {
-      "name": "TestFlight",
-      "dependencies": [{
-        "name": "TestFlightSDK",
-        "version": "3.0.2"
-      }]
     }
   ]
 }
