@@ -1,4 +1,5 @@
-require_relative './scripts/build.rb'
+require File.expand_path("../scripts/build.rb", __FILE__)
+
 
 inhibit_all_warnings!
 
@@ -34,15 +35,15 @@ post_install do |installer|
 
     default_library = installer.libraries.detect { |i| i.target_definition.name == 'Analytics' }
 
-    config_file_path = default_library.library.xcconfig_path('Release')
-
-    File.open("config.tmp", "w") do |io|
-      f = File.read(config_file_path)
-      ["icucore", "z", "sqlite3"].each do |lib|
-        f.gsub!(/-l"#{lib}"/, '')
+    [default_library.library.xcconfig_path('Debug'), default_library.library.xcconfig_path('Release')].each do |path|
+      File.open("config.tmp", "w") do |io|
+        f = File.read(path)
+        ["icucore", "z", "sqlite3"].each do |lib|
+          f.gsub!(/-l"#{lib}"/, '')
+        end
+        io << f
       end
-      io << f
-    end
 
-    FileUtils.mv("config.tmp", config_file_path)
+      FileUtils.mv("config.tmp", path)
+    end
 end
