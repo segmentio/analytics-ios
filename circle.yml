@@ -7,5 +7,5 @@ dependencies:
     - pod install
 test:
  override:
-    - ./scripts/cli/bin/cli build --cli
+    - make test
 
