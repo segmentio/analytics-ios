@@ -84,6 +84,18 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
   return mapped;
 }
 
++ (NSString *)extractEmail:(NSString *)userId traits:(NSDictionary *)traits {
+  NSString *email = [traits objectForKey:@"email"];
+  if (email) {
+    return email;
+  }
+  NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
+  if ([userId isMatchedByRegex:emailRegex]) {
+    return userId;
+  }
+  return nil;
+}
+
 + (NSNumber *)extractRevenue:(NSDictionary *)dictionary {
   return [self extractRevenue:dictionary withKey:@"revenue"];
 }
