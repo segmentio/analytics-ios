@@ -1,4 +1,12 @@
 
+1.9.0 / 2015-02-02
+==================
+
+ * Fix localytics 
+ * Remove testflight
+ * Add bugsnag logger header
+ * updating Taplytics to 2.1.32
+
 1.8.15 / 2015-01-21
 ==================
 
