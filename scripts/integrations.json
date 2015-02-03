@@ -53,6 +53,13 @@
       }]
     },
     {
+      "name": "Kahuna",
+      "dependencies": [{
+        "name": "KahunaSDK",
+        "version": ""
+      }]
+    },
+    {
       "name": "Localytics",
       "dependencies": [{
         "name": "Localytics",
