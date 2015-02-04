@@ -36,7 +36,7 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
 // Callbacks for app state changes
 // -------------------------------
 
-- (void)applicationDidFinishLaunching;
+- (void)applicationDidFinishLaunching:(NSNotification *)notification;
 - (void)applicationDidEnterBackground;
 - (void)applicationWillEnterForeground;
 - (void)applicationWillTerminate;

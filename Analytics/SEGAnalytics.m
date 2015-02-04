@@ -85,7 +85,7 @@ static SEGAnalytics *__sharedInstance = nil;
   dispatch_once(&selectorMappingOnce, ^{
     selectorMapping = @{
       UIApplicationDidFinishLaunchingNotification:
-      NSStringFromSelector(@selector(applicationDidFinishLaunching)),
+        NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
       UIApplicationDidEnterBackgroundNotification:
       NSStringFromSelector(@selector(applicationDidEnterBackground)),
       UIApplicationWillEnterForegroundNotification:

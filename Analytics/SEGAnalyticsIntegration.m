@@ -67,7 +67,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 - (void)applicationWillTerminate {}
 - (void)applicationWillResignActive {}
 - (void)applicationDidBecomeActive {}
-- (void)applicationDidFinishLaunching {}
+- (void)applicationDidFinishLaunching:(NSNotification *)notification {}
 
 #pragma mark Class Methods
 
@@ -89,11 +89,20 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
   if (email) {
     return email;
   }
-  NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}";
-  if ([userId isMatchedByRegex:emailRegex]) {
+  if ([self stringIsValidEmail:userId]){
     return userId;
   }
   return nil;
+}
+
++ (BOOL)stringIsValidEmail:(NSString *)checkString
+{
+  BOOL stricterFilter = NO; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
+  NSString *stricterFilterString = @"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
+  NSString *laxString = @".+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2}[A-Za-z]*";
+  NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+  NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+  return [emailTest evaluateWithObject:checkString];
 }
 
 + (NSNumber *)extractRevenue:(NSDictionary *)dictionary {
