@@ -1,3 +1,13 @@
+
+1.10.1 / 2015-02-05
+==================
+
+ * Update test
+ * Add kahuna header
+ * Add deps target to makefile
+ * Add separate build phase for opening release dir in finder
+ * Taplytics 2.1.36
+
 1.10.0 / 2015-02-04
 ==================
 
