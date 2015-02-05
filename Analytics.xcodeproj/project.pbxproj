@@ -28,6 +28,7 @@
 		3208C0881A64F6B200D6014F /* AMPDeviceInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3208C0831A64F6B200D6014F /* AMPDeviceInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3208C0891A64F6B200D6014F /* AMPLocationManagerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 3208C0841A64F6B200D6014F /* AMPLocationManagerDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3208C08A1A64F6B200D6014F /* Amplitude.h in Headers */ = {isa = PBXBuildFile; fileRef = 3208C0851A64F6B200D6014F /* Amplitude.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		320AFEE91A840DEB00929778 /* KahunaAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 320AFEE81A840DEB00929778 /* KahunaAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32225231199AD6D200478B1A /* SEGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3222522F199AD6D200478B1A /* SEGReachability.h */; };
 		32225232199AD6D200478B1A /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 32225230199AD6D200478B1A /* SEGReachability.m */; };
 		32225233199AD6D200478B1A /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 32225230199AD6D200478B1A /* SEGReachability.m */; };
@@ -254,6 +255,7 @@
 		3208C0831A64F6B200D6014F /* AMPDeviceInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AMPDeviceInfo.h; path = "Pods/Amplitude-iOS/Amplitude/AMPDeviceInfo.h"; sourceTree = "<group>"; };
 		3208C0841A64F6B200D6014F /* AMPLocationManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AMPLocationManagerDelegate.h; path = "Pods/Amplitude-iOS/Amplitude/AMPLocationManagerDelegate.h"; sourceTree = "<group>"; };
 		3208C0851A64F6B200D6014F /* Amplitude.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Amplitude.h; path = "Pods/Amplitude-iOS/Amplitude/Amplitude.h"; sourceTree = "<group>"; };
+		320AFEE81A840DEB00929778 /* KahunaAnalytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KahunaAnalytics.h; path = Pods/KahunaSDK/Kahuna/KahunaAnalytics.h; sourceTree = "<group>"; };
 		3222522F199AD6D200478B1A /* SEGReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGReachability.h; path = Helpers/SEGReachability.h; sourceTree = "<group>"; };
 		32225230199AD6D200478B1A /* SEGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGReachability.m; path = Helpers/SEGReachability.m; sourceTree = "<group>"; };
 		32385FD81A2DF0CA008E09B2 /* MPCategoryHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPCategoryHelpers.h; path = Pods/Mixpanel/Mixpanel/MPCategoryHelpers.h; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				320AFEE81A840DEB00929778 /* KahunaAnalytics.h */,
 				327E0C001A689CFA0048E067 /* Localytics.h */,
 				3208C0811A64F6B200D6014F /* AMPARCMacros.h */,
 				3208C0821A64F6B200D6014F /* AMPConstants.h */,
@@ -1026,6 +1029,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				320AFEE91A840DEB00929778 /* KahunaAnalytics.h in Headers */,
 				32385FE11A2DF0F0008E09B2 /* MPLogging.h in Headers */,
 				32385FE31A2DF0FB008E09B2 /* MPUITableViewBinding.h in Headers */,
 				3252EA881999D6CC0056C32A /* Taplytics.h in Headers */,
