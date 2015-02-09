@@ -1,4 +1,9 @@
 
+1.10.2 / 2015-02-09
+==================
+
+ * Fix cached traits to be included in context.traits
+
 1.10.1 / 2015-02-05
 ==================
 
