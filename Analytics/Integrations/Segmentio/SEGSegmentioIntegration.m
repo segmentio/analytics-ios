@@ -201,7 +201,7 @@ static BOOL GetAdTrackingEnabled() {
     context[@"location"] = self.location.locationDictionary;
   
   context[@"traits"] = ({
-    NSMutableDictionary *traits = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *traits = [[NSMutableDictionary alloc] initWithDictionary:[self traits]];
     
     if (self.location.hasKnownLocation)
       traits[@"address"] = self.location.addressDictionary;
