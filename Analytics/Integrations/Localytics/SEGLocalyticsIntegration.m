@@ -11,7 +11,7 @@
 + (BOOL) validateEmail:(NSString *)candidate {
   NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
   NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-  
+
   return [emailTest evaluateWithObject:candidate];
 }
 
@@ -33,14 +33,14 @@
 - (void)start
 {
   NSString *appKey = [self.settings objectForKey:@"appKey"];
-  
+
   [Localytics autoIntegrate:appKey launchOptions:nil];
-  
+
   NSNumber *sessionTimeoutInterval = [self.settings objectForKey:@"sessionTimeoutInterval"];
   if (sessionTimeoutInterval != nil && [sessionTimeoutInterval floatValue] > 0) {
     [Localytics setSessionTimeoutInterval:[sessionTimeoutInterval floatValue]];
   }
-  
+
   SEGLog(@"LocalyticsIntegration initialized.");
 }
 
@@ -61,7 +61,7 @@
   if (userId) {
     [Localytics setCustomerId:userId];
   }
-  
+
   // Email
   NSString *email = [traits objectForKey:@"email"];
   if (!email && [SEGLocalyticsIntegration validateEmail:userId]) {
@@ -70,14 +70,14 @@
   if (email) {
     [Localytics setValue:email forIdentifier:@"email"];
   }
-  
+
   // Name
   NSString *name = [traits objectForKey:@"name"];
   // TODO support first name, last name?
   if (name) {
     [Localytics setValue:name forIdentifier:@"customer_name"];
   }
-  
+
   // Other traits. Iterate over all the traits and set them.
   for (NSString *key in traits) {
     NSString* traitValue = [NSString stringWithFormat:@"%@", [traits objectForKey:key]];
@@ -89,15 +89,20 @@
 {
   // TODO add support for dimensions
   // TODO add support for value
-  
+
   // Backgrounded? Restart the session to add this event.
   BOOL isBackgrounded = [[UIApplication sharedApplication] applicationState] != UIApplicationStateActive;
   if (isBackgrounded) {
     [Localytics openSession];
   }
-  
-  [Localytics tagEvent:event attributes:properties];
-  
+
+  NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:properties];
+  if (revenue) {
+    [Localytics tagEvent:event attributes:properties customerValueIncrease:revenue];
+  } else {
+    [Localytics tagEvent:event attributes:properties];
+  }
+
   // Backgrounded? Close the session again after the event.
   if (isBackgrounded) {
     [Localytics closeSession];
