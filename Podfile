@@ -38,7 +38,7 @@ post_install do |installer|
     [default_library.library.xcconfig_path('Debug'), default_library.library.xcconfig_path('Release')].each do |path|
       File.open("config.tmp", "w") do |io|
         f = File.read(path)
-        ["icucore", "z", "sqlite3"].each do |lib|
+        ["icucore", "z", "sqlite3", "c++"].each do |lib|
           f.gsub!(/-l"#{lib}"/, '')
         end
         io << f
