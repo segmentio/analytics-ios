@@ -1,4 +1,14 @@
 
+1.10.3 / 2015-02-12
+==================
+
+ * Merge pull request #256 from segmentio/catch-serialization-error
+ * Catch serialization errors
+ * Merge pull request #210 from segmentio/fix/localytics
+ * localytics customer lifetime value
+ * Ignore IDE files
+ * Update history.md
+
 1.10.2 / 2015-02-09
 ==================
 
