@@ -108,14 +108,17 @@
 		3252EA9F1999D7040056C32A /* UIColor+MPColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA971999D7040056C32A /* UIColor+MPColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EAA01999D7040056C32A /* UIImage+MPAverageColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA981999D7040056C32A /* UIImage+MPAverageColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EAA11999D7040056C32A /* UIImage+MPImageEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA991999D7040056C32A /* UIImage+MPImageEffects.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EAA61999D8B10056C32A /* BugsnagIosNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EAA51999D8B10056C32A /* BugsnagIosNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32539997199C80FF009DDF87 /* SEGEcommerce.h in Headers */ = {isa = PBXBuildFile; fileRef = 32539996199C80FF009DDF87 /* SEGEcommerce.h */; };
-		3254FBCD1999D3D00043AF15 /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC51999D3D00043AF15 /* Bugsnag.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3254FBD01999D3D00043AF15 /* BugsnagEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBC81999D3D00043AF15 /* BugsnagEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3254FBD41999D3D00043AF15 /* BugsnagReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD71999D4370043AF15 /* Countly_OpenUDID.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3254FBD81999D4370043AF15 /* Countly.h in Headers */ = {isa = PBXBuildFile; fileRef = 3254FBD61999D4370043AF15 /* Countly.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		325AD8BB1A76438900A19BA8 /* BugsnagLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD03185FDDEA007CB22F /* BugsnagLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		325DCE311A8D875100D4142E /* Bugsnag.h in Headers */ = {isa = PBXBuildFile; fileRef = 325DCE291A8D875100D4142E /* Bugsnag.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		325DCE321A8D875100D4142E /* BugsnagConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 325DCE2A1A8D875100D4142E /* BugsnagConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		325DCE331A8D875100D4142E /* BugsnagCrashReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 325DCE2B1A8D875100D4142E /* BugsnagCrashReport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		325DCE341A8D875100D4142E /* BugsnagIosNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 325DCE2C1A8D875100D4142E /* BugsnagIosNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		325DCE351A8D875100D4142E /* BugsnagMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 325DCE2D1A8D875100D4142E /* BugsnagMetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		325DCE361A8D875100D4142E /* BugsnagNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 325DCE2E1A8D875100D4142E /* BugsnagNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		325DCE371A8D875100D4142E /* BugsnagOSXNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 325DCE2F1A8D875100D4142E /* BugsnagOSXNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		325DCE381A8D875100D4142E /* BugsnagSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 325DCE301A8D875100D4142E /* BugsnagSink.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		327E0C011A689CFA0048E067 /* Localytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 327E0C001A689CFA0048E067 /* Localytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32A69C221979CF4A00D69943 /* SEGOptimizelyIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A69C201979CF4A00D69943 /* SEGOptimizelyIntegration.h */; };
 		32A69C231979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */; };
@@ -180,10 +183,6 @@
 		D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF8185C2DC4007CB22F /* GAILogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF9185C2DC4007CB22F /* GAITrackedViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCFD185C2DC4007CB22F /* GAITracker.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCFA185C2DC4007CB22F /* GAITracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D331BD06185FDDEA007CB22F /* BugsnagConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD00185FDDEA007CB22F /* BugsnagConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D331BD07185FDDEA007CB22F /* BugsnagDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD01185FDDEA007CB22F /* BugsnagDictionary.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD04185FDDEA007CB22F /* BugsnagMetaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD151860F5D4007CB22F /* TSAppEventSourceImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD161860F5D4007CB22F /* TSCoreListenerImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD2B1860F5F0007CB22F /* TSApi.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD1D1860F5F0007CB22F /* TSApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -323,19 +322,20 @@
 		3252EA991999D7040056C32A /* UIImage+MPImageEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPImageEffects.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPImageEffects.h"; sourceTree = "<group>"; };
 		3252EA9A1999D7040056C32A /* UIView+MPSnapshotImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIView+MPSnapshotImage.h"; path = "Pods/Mixpanel/Mixpanel/UIView+MPSnapshotImage.h"; sourceTree = "<group>"; };
 		3252EAA31999D7150056C32A /* UIImage+MPImageEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPImageEffects.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPImageEffects.h"; sourceTree = "<group>"; };
-		3252EAA51999D8B10056C32A /* BugsnagIosNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagIosNotifier.h; path = Pods/Bugsnag/bugsnag/iOS/BugsnagIosNotifier.h; sourceTree = "<group>"; };
 		32539996199C80FF009DDF87 /* SEGEcommerce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGEcommerce.h; sourceTree = "<group>"; };
 		3254FBBF1999D38D0043AF15 /* Amplitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Amplitude.h; path = "Pods/Amplitude-iOS/Amplitude.h"; sourceTree = "<group>"; };
 		3254FBC01999D38D0043AF15 /* AmplitudeARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmplitudeARCMacros.h; path = "Pods/Amplitude-iOS/AmplitudeARCMacros.h"; sourceTree = "<group>"; };
 		3254FBC11999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmplitudeLocationManagerDelegate.h; path = "Pods/Amplitude-iOS/AmplitudeLocationManagerDelegate.h"; sourceTree = "<group>"; };
-		3254FBC51999D3D00043AF15 /* Bugsnag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bugsnag.h; path = Pods/Bugsnag/bugsnag/Bugsnag.h; sourceTree = "<group>"; };
-		3254FBC61999D3D00043AF15 /* BugsnagConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagConfiguration.h; path = Pods/Bugsnag/bugsnag/BugsnagConfiguration.h; sourceTree = "<group>"; };
-		3254FBC71999D3D00043AF15 /* BugsnagDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagDictionary.h; path = Pods/Bugsnag/bugsnag/BugsnagDictionary.h; sourceTree = "<group>"; };
-		3254FBC81999D3D00043AF15 /* BugsnagEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagEvent.h; path = Pods/Bugsnag/bugsnag/BugsnagEvent.h; sourceTree = "<group>"; };
-		3254FBCA1999D3D00043AF15 /* BugsnagMetaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagMetaData.h; path = Pods/Bugsnag/bugsnag/BugsnagMetaData.h; sourceTree = "<group>"; };
-		3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BugsnagReachability.h; path = Pods/Bugsnag/bugsnag/BugsnagReachability.h; sourceTree = "<group>"; };
 		3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Countly_OpenUDID.h; path = Pods/Countly/Countly_OpenUDID.h; sourceTree = "<group>"; };
 		3254FBD61999D4370043AF15 /* Countly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Countly.h; path = Pods/Countly/Countly.h; sourceTree = "<group>"; };
+		325DCE291A8D875100D4142E /* Bugsnag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bugsnag.h; path = Pods/Bugsnag/Source/Bugsnag/Bugsnag.h; sourceTree = "<group>"; };
+		325DCE2A1A8D875100D4142E /* BugsnagConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagConfiguration.h; path = Pods/Bugsnag/Source/Bugsnag/BugsnagConfiguration.h; sourceTree = "<group>"; };
+		325DCE2B1A8D875100D4142E /* BugsnagCrashReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagCrashReport.h; path = Pods/Bugsnag/Source/Bugsnag/BugsnagCrashReport.h; sourceTree = "<group>"; };
+		325DCE2C1A8D875100D4142E /* BugsnagIosNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagIosNotifier.h; path = Pods/Bugsnag/Source/Bugsnag/BugsnagIosNotifier.h; sourceTree = "<group>"; };
+		325DCE2D1A8D875100D4142E /* BugsnagMetaData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagMetaData.h; path = Pods/Bugsnag/Source/Bugsnag/BugsnagMetaData.h; sourceTree = "<group>"; };
+		325DCE2E1A8D875100D4142E /* BugsnagNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagNotifier.h; path = Pods/Bugsnag/Source/Bugsnag/BugsnagNotifier.h; sourceTree = "<group>"; };
+		325DCE2F1A8D875100D4142E /* BugsnagOSXNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagOSXNotifier.h; path = Pods/Bugsnag/Source/Bugsnag/BugsnagOSXNotifier.h; sourceTree = "<group>"; };
+		325DCE301A8D875100D4142E /* BugsnagSink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagSink.h; path = Pods/Bugsnag/Source/Bugsnag/BugsnagSink.h; sourceTree = "<group>"; };
 		327E0C001A689CFA0048E067 /* Localytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Localytics.h; path = "Pods/Localytics/Localytics-iOS-3.0.0/Localytics.h"; sourceTree = "<group>"; };
 		32A69C201979CF4A00D69943 /* SEGOptimizelyIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGOptimizelyIntegration.h; sourceTree = "<group>"; };
 		32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGOptimizelyIntegration.m; sourceTree = "<group>"; };
@@ -422,12 +422,6 @@
 		D331BCF8185C2DC4007CB22F /* GAILogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAILogger.h"; sourceTree = "<group>"; };
 		D331BCF9185C2DC4007CB22F /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAITrackedViewController.h"; sourceTree = "<group>"; };
 		D331BCFA185C2DC4007CB22F /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAITracker.h"; sourceTree = "<group>"; };
-		D331BD00185FDDEA007CB22F /* BugsnagConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagConfiguration.h; path = Pods/Bugsnag/bugsnag/BugsnagConfiguration.h; sourceTree = "<group>"; };
-		D331BD01185FDDEA007CB22F /* BugsnagDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagDictionary.h; path = Pods/Bugsnag/bugsnag/BugsnagDictionary.h; sourceTree = "<group>"; };
-		D331BD02185FDDEA007CB22F /* BugsnagEvent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagEvent.h; path = Pods/Bugsnag/bugsnag/BugsnagEvent.h; sourceTree = "<group>"; };
-		D331BD03185FDDEA007CB22F /* BugsnagLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagLogger.h; path = Pods/Bugsnag/bugsnag/BugsnagLogger.h; sourceTree = "<group>"; };
-		D331BD04185FDDEA007CB22F /* BugsnagMetaData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagMetaData.h; path = Pods/Bugsnag/bugsnag/BugsnagMetaData.h; sourceTree = "<group>"; };
-		D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagNotifier.h; path = Pods/Bugsnag/bugsnag/BugsnagNotifier.h; sourceTree = "<group>"; };
 		D331BD151860F5D4007CB22F /* TSAppEventSourceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSAppEventSourceImpl.h; path = Pods/Tapstream/objc/Tapstream/TSAppEventSourceImpl.h; sourceTree = "<group>"; };
 		D331BD161860F5D4007CB22F /* TSCoreListenerImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSCoreListenerImpl.h; path = Pods/Tapstream/objc/Tapstream/TSCoreListenerImpl.h; sourceTree = "<group>"; };
 		D331BD171860F5D4007CB22F /* TSPlatformImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSPlatformImpl.h; path = Pods/Tapstream/objc/Tapstream/TSPlatformImpl.h; sourceTree = "<group>"; };
@@ -456,7 +450,6 @@
 		D37F756E189237430037E851 /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.0.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.0.a; sourceTree = "<group>"; };
 		D39E122F1846F816009F64E7 /* libCrittercism_v4_1_2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrittercism_v4_1_2.a; path = Pods/CrittercismSDK/CrittercismSDK/libCrittercism_v4_1_2.a; sourceTree = "<group>"; };
 		D3A6A2DF18B305E200C4B510 /* libFlurry_4.3.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.2.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.2.a; sourceTree = "<group>"; };
-		D3C07FBE185954D000649011 /* Bugsnag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bugsnag.h; path = Pods/Bugsnag/bugsnag/Bugsnag.h; sourceTree = "<group>"; };
 		D3D1243E18C31FDA00EE8B82 /* SEGSegmentioIntegration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SEGSegmentioIntegration.h; path = Analytics/Integrations/Segmentio/SEGSegmentioIntegration.h; sourceTree = "<group>"; };
 		D3EDB63918C315F100A88A7E /* SEGAmplitudeIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAmplitudeIntegration.h; sourceTree = "<group>"; };
 		D3EDB63A18C315F100A88A7E /* SEGAmplitudeIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGAmplitudeIntegration.m; sourceTree = "<group>"; };
@@ -632,6 +625,14 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				325DCE291A8D875100D4142E /* Bugsnag.h */,
+				325DCE2A1A8D875100D4142E /* BugsnagConfiguration.h */,
+				325DCE2B1A8D875100D4142E /* BugsnagCrashReport.h */,
+				325DCE2C1A8D875100D4142E /* BugsnagIosNotifier.h */,
+				325DCE2D1A8D875100D4142E /* BugsnagMetaData.h */,
+				325DCE2E1A8D875100D4142E /* BugsnagNotifier.h */,
+				325DCE2F1A8D875100D4142E /* BugsnagOSXNotifier.h */,
+				325DCE301A8D875100D4142E /* BugsnagSink.h */,
 				320AFEE81A840DEB00929778 /* KahunaAnalytics.h */,
 				327E0C001A689CFA0048E067 /* Localytics.h */,
 				3208C0811A64F6B200D6014F /* AMPARCMacros.h */,
@@ -697,16 +698,9 @@
 				32AD185719AFCA100047D5F0 /* UIView+MPSnapshotImage.h */,
 				32AD185819AFCA100047D5F0 /* _MPTweakBindObserver.h */,
 				32CFF3D119AE947F00193D3D /* AppsFlyerTracker.h */,
-				3252EAA51999D8B10056C32A /* BugsnagIosNotifier.h */,
 				3254FBBF1999D38D0043AF15 /* Amplitude.h */,
 				3254FBC01999D38D0043AF15 /* AmplitudeARCMacros.h */,
 				3254FBC11999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h */,
-				3254FBC51999D3D00043AF15 /* Bugsnag.h */,
-				3254FBC61999D3D00043AF15 /* BugsnagConfiguration.h */,
-				3254FBC71999D3D00043AF15 /* BugsnagDictionary.h */,
-				3254FBC81999D3D00043AF15 /* BugsnagEvent.h */,
-				3254FBCA1999D3D00043AF15 /* BugsnagMetaData.h */,
-				3254FBCC1999D3D00043AF15 /* BugsnagReachability.h */,
 				3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */,
 				3254FBD61999D4370043AF15 /* Countly.h */,
 				D331BCF0185BFF49007CB22F /* CRFilter.h */,
@@ -789,13 +783,6 @@
 				D331BD161860F5D4007CB22F /* TSCoreListenerImpl.h */,
 				D331BD171860F5D4007CB22F /* TSPlatformImpl.h */,
 				D331BD181860F5D4007CB22F /* TSTapstream.h */,
-				D331BD00185FDDEA007CB22F /* BugsnagConfiguration.h */,
-				D331BD01185FDDEA007CB22F /* BugsnagDictionary.h */,
-				D331BD02185FDDEA007CB22F /* BugsnagEvent.h */,
-				D331BD03185FDDEA007CB22F /* BugsnagLogger.h */,
-				D331BD04185FDDEA007CB22F /* BugsnagMetaData.h */,
-				D331BD05185FDDEA007CB22F /* BugsnagNotifier.h */,
-				D3C07FBE185954D000649011 /* Bugsnag.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -1029,6 +1016,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				325DCE311A8D875100D4142E /* Bugsnag.h in Headers */,
+				325DCE321A8D875100D4142E /* BugsnagConfiguration.h in Headers */,
+				325DCE331A8D875100D4142E /* BugsnagCrashReport.h in Headers */,
+				325DCE341A8D875100D4142E /* BugsnagIosNotifier.h in Headers */,
+				325DCE351A8D875100D4142E /* BugsnagMetaData.h in Headers */,
+				325DCE361A8D875100D4142E /* BugsnagNotifier.h in Headers */,
+				325DCE371A8D875100D4142E /* BugsnagOSXNotifier.h in Headers */,
+				325DCE381A8D875100D4142E /* BugsnagSink.h in Headers */,
 				320AFEE91A840DEB00929778 /* KahunaAnalytics.h in Headers */,
 				32385FE11A2DF0F0008E09B2 /* MPLogging.h in Headers */,
 				32385FE31A2DF0FB008E09B2 /* MPUITableViewBinding.h in Headers */,
@@ -1041,7 +1036,6 @@
 				32CEE41E19F5B6DB007758F2 /* TaplyticsOptions.h in Headers */,
 				32385FDF1A2DF0E7008E09B2 /* MPEventBinding.h in Headers */,
 				32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */,
-				3252EAA61999D8B10056C32A /* BugsnagIosNotifier.h in Headers */,
 				EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */,
 				D371F32E185942BB0053337D /* Crittercism.h in Headers */,
 				D3EDB65A18C315F100A88A7E /* SEGCountlyIntegration.h in Headers */,
@@ -1122,7 +1116,6 @@
 				D371F334185943170053337D /* Mixpanel.h in Headers */,
 				3252EA9E1999D7040056C32A /* NSData+MPBase64.h in Headers */,
 				32AD187B19AFCA100047D5F0 /* NSInvocation+MPHelpers.h in Headers */,
-				325AD8BB1A76438900A19BA8 /* BugsnagLogger.h in Headers */,
 				3252EA9F1999D7040056C32A /* UIColor+MPColor.h in Headers */,
 				3252EAA01999D7040056C32A /* UIImage+MPAverageColor.h in Headers */,
 				3252EAA11999D7040056C32A /* UIImage+MPImageEffects.h in Headers */,
@@ -1141,19 +1134,11 @@
 				D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */,
 				D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */,
 				D331BD191860F5D4007CB22F /* TSAppEventSourceImpl.h in Headers */,
-				3254FBCD1999D3D00043AF15 /* Bugsnag.h in Headers */,
-				3254FBD01999D3D00043AF15 /* BugsnagEvent.h in Headers */,
 				D331BD1A1860F5D4007CB22F /* TSCoreListenerImpl.h in Headers */,
-				D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */,
 				D331BD311860F5F0007CB22F /* TSEvent.h in Headers */,
-				3254FBD41999D3D00043AF15 /* BugsnagReachability.h in Headers */,
-				D331BD07185FDDEA007CB22F /* BugsnagDictionary.h in Headers */,
-				D331BD07185FDDEA007CB22F /* BugsnagDictionary.h in Headers */,
 				3254FBD71999D4370043AF15 /* Countly_OpenUDID.h in Headers */,
 				3254FBD81999D4370043AF15 /* Countly.h in Headers */,
-				D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */,
 				D331BD321860F5F0007CB22F /* TSHelpers.h in Headers */,
-				D331BD06185FDDEA007CB22F /* BugsnagConfiguration.h in Headers */,
 				3252EA7A1999D6390056C32A /* QuantcastDataManager.h in Headers */,
 				3252EA7B1999D6390056C32A /* QuantcastDatabase.h in Headers */,
 				3252EA7C1999D6390056C32A /* QuantcastEvent.h in Headers */,
@@ -1170,16 +1155,13 @@
 				3252EA8C1999D6E20056C32A /* Optimizely.h in Headers */,
 				3252EA8D1999D6E20056C32A /* OptimizelyCodeBlocksKey.h in Headers */,
 				3252EA8E1999D6E20056C32A /* OptimizelyVariableKey.h in Headers */,
-				D331BD06185FDDEA007CB22F /* BugsnagConfiguration.h in Headers */,
 				D331BD331860F5F0007CB22F /* TSHit.h in Headers */,
-				3254FBD01999D3D00043AF15 /* BugsnagEvent.h in Headers */,
 				D331BD341860F5F0007CB22F /* TSLogging.h in Headers */,
 				EA65F96617C2ABA600389A1A /* SEGAnalyticsIntegration.h in Headers */,
 				324A42C81992C8FA0060013A /* TSPlatformImpl.h in Headers */,
 				32430A761914186C004EFF59 /* SEGLocation.h in Headers */,
 				D331BD351860F5F0007CB22F /* TSLogLevel.h in Headers */,
 				D3EDB66218C315F100A88A7E /* SEGLocalyticsIntegration.h in Headers */,
-				3254FBCD1999D3D00043AF15 /* Bugsnag.h in Headers */,
 				324A42C91992C8FA0060013A /* TSTapstream.h in Headers */,
 				D331BD361860F5F0007CB22F /* TSPlatform.h in Headers */,
 				D3EDB65C18C315F100A88A7E /* SEGCrittercismIntegration.h in Headers */,
@@ -1188,8 +1170,6 @@
 				32539997199C80FF009DDF87 /* SEGEcommerce.h in Headers */,
 				D331BD371860F5F0007CB22F /* TSResponse.h in Headers */,
 				D331BD381860F5F0007CB22F /* TSUtils.h in Headers */,
-				D331BD0A185FDDEA007CB22F /* BugsnagMetaData.h in Headers */,
-				D331BD0B185FDDEA007CB22F /* BugsnagNotifier.h in Headers */,
 				EA65F96617C2ABA600389A1A /* SEGAnalyticsIntegration.h in Headers */,
 				32A8C60719107DBD00173AE5 /* SEGQuantcastIntegration.h in Headers */,
 				EACB4DEA17C0BB3100624129 /* SEGAnalyticsUtils.h in Headers */,
@@ -1567,7 +1547,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.10.3;
+				ANALYTICS_VERSION = 1.10.4;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1599,7 +1579,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.10.3;
+				ANALYTICS_VERSION = 1.10.4;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
