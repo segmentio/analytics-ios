@@ -9,8 +9,8 @@ cd "$_CLI_ROOT/../../"
 
 cli version $1
 cli build
-git add --all
 git changelog --tag $1
+git add --all
 git commit -m "Release $version"
 git tag $1
 git push origin master
