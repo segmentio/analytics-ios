@@ -383,13 +383,19 @@ static BOOL GetAdTrackingEnabled() {
     SEGLog(@"Flushing payload %@", payloadDictionary);
     
     NSError *error = nil;
-    NSData *payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary
-                                                      options:0 error:&error];
-    if (error) {
-      SEGLog(@"%@ Error serializing JSON: %@", self, error);
+    NSException *exception = nil;
+    NSData *payload = nil;
+    @try {
+      payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary options:0 error:&error];
     }
-    
-    [self sendData:payload];
+    @catch (NSException *exc) {
+      exception = exc;
+    }
+    if (error || exception) {
+      SEGLog(@"%@ Error serializing JSON: %@", self, error);
+    } else {
+      [self sendData:payload];
+    }
   }];
 }
 
