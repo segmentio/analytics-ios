@@ -60,7 +60,7 @@
   
   [[Mixpanel sharedInstance] registerSuperProperties:mappedTraits];
   
-  if ([self.settings objectForKey:@"people"]) {
+  if ([(NSNumber *)[self.settings objectForKey:@"people"] boolValue]) {
     [[Mixpanel sharedInstance].people set:mappedTraits];
   }
 }
@@ -73,7 +73,7 @@
     
     // If revenue is included and People is enabled, trackCharge to Mixpanel.
     NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:properties];
-    if (revenue && [self.settings objectForKey:@"people"]) {
+    if (revenue && [(NSNumber *)[self.settings objectForKey:@"people"] boolValue]) {
       [[Mixpanel sharedInstance].people trackCharge:revenue];
     }
   }
