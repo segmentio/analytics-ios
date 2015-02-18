@@ -34,7 +34,7 @@
 {
   NSString *appKey = [self.settings objectForKey:@"appKey"];
 
-  [Localytics autoIntegrate:appKey launchOptions:nil];
+  [Localytics integrate:appKey];
 
   NSNumber *sessionTimeoutInterval = [self.settings objectForKey:@"sessionTimeoutInterval"];
   if (sessionTimeoutInterval != nil && [sessionTimeoutInterval floatValue] > 0) {
@@ -52,7 +52,6 @@
   BOOL hasAppKey = [self.settings objectForKey:@"appKey"] != nil;
   self.valid = hasAppKey;
 }
-
 
 #pragma mark - Analytics API
 
