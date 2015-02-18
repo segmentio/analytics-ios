@@ -25,7 +25,7 @@ PODS:
   - Quantcast-Measure (1.4.6):
     - Quantcast-Measure/Core (= 1.4.6)
   - Quantcast-Measure/Core (1.4.6)
-  - Taplytics (2.1.36)
+  - Taplytics (2.1.46)
   - Tapstream (2.8.3)
   - TRVSDictionaryWithCaseInsensitivity (0.0.2)
   - TRVSKit/TRVSAssertions (0.0.9):
@@ -47,7 +47,7 @@ DEPENDENCIES:
   - OCMock (~> 2.2.4)
   - Optimizely-iOS-SDK (= 1.0.75)
   - Quantcast-Measure (= 1.4.6)
-  - Taplytics (= 2.1.36)
+  - Taplytics (= 2.1.46)
   - Tapstream (= 2.8.3)
   - TRVSDictionaryWithCaseInsensitivity (= 0.0.2)
   - TRVSKit/TRVSAssertions (~> 0.0.8)
@@ -67,7 +67,7 @@ SPEC CHECKSUMS:
   OCMock: 6db79185520e24f9f299548f2b8b07e41d881bd5
   Optimizely-iOS-SDK: d602dca6021c35333242191914fc8c03b01833cb
   Quantcast-Measure: 82b2e0b81df7f59ee3f643551d4d79fa433f22ba
-  Taplytics: fc676e667003c9d08de2d4ac9dc1f1fcaff0ec11
+  Taplytics: 65faf2d08db6cf736dce1e30234a2acecc245b07
   Tapstream: b2d949e963c393938697db68256ba70aadddb820
   TRVSDictionaryWithCaseInsensitivity: a61daa8469fa079e05b694f6aad5441785c837d1
   TRVSKit: fd946dbfb09de6bb75889e0f73c021a391e7594a
