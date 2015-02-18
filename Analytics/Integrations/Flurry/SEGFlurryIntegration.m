@@ -30,7 +30,7 @@
   if (sessionContinueSeconds) {
     [Flurry setSessionContinueSeconds:[sessionContinueSeconds intValue]];
   }
-  
+
   // Start the session
   NSString *apiKey = [self.settings objectForKey:@"apiKey"];
   [Flurry startSession:apiKey];
@@ -45,22 +45,48 @@
   self.valid = hasAPIKey;
 }
 
+#pragma mark - Utilities
+- (float)floatForKey:(NSDictionary *)dictionary:id:(float)defaultValue  {
+  NSNumber *value = [dictionary objectForKey:id];
+  if (value) {
+    return [value floatValue];
+  } else {
+    return defaultValue;
+  }
+}
 
 #pragma mark - Analytics API
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
   [Flurry setUserID:userId];
-  
+
   // Gender
   NSString *gender = [traits objectForKey:@"gender"];
   if (gender) {
     [Flurry setGender:[gender substringToIndex:1]];
   }
-  
+
   // Age
   NSString *age = [traits objectForKey:@"age"];
   if (age) {
     [Flurry setAge:[age intValue]];
+  }
+
+  // Location
+  NSDictionary *location = [traits objectForKey:@"location"];
+  if (location) {
+    NSNumber *latitude = [location objectForKey:@"latitude"];
+    NSNumber *longitude = [location objectForKey:@"longitude"];
+
+    if (latitude && longitude) {
+      float horizontalAccuracy = [self floatForKey:location :@"horizontalAccuracy" :0];
+      float verticalAccuracy = [self floatForKey:location :@"verticalAccuracy" :0];
+
+      [Flurry setLatitude:[latitude doubleValue]
+                longitude:[longitude doubleValue]
+       horizontalAccuracy:horizontalAccuracy
+         verticalAccuracy:verticalAccuracy];
+    }
   }
 }
 
@@ -72,10 +98,10 @@
   if (self.settings[@"screenTracksEvents"]) {
     [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
   }
-  
+
   // Flurry just counts the number of page views
   // http://stackoverflow.com/questions/5404513/tracking-page-views-with-the-help-of-flurry-sdk
-  
+
   [Flurry logPageView];
 }
 
