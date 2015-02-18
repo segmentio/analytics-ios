@@ -68,6 +68,12 @@
     }
 }
 
+- (void)reset {
+    [Taplytics resetUser:^{
+        SEGLog(@"Reset Taplytics User");
+    }];
+}
+
 #pragma mark - Private
 
 - (NSString *)apiKey {
