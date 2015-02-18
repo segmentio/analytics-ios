@@ -1,4 +1,21 @@
 
+1.10.5 / 2015-02-18
+==================
+
+ * Merge branch 'master' of github.com:segmentio/analytics-ios
+ * Fix call to localytics (#259)
+ * Merge pull request #261 from jonathannorris/Taplytics-reset-user
+ * Merge pull request #260 from jonathannorris/Taplytics-2.1.46
+ * Merge pull request #262 from y-ogi/fix/mixpanel_people_settings
+ * bug fixed: Even if you set "People" off on Segment, the SDK always calls "trackChage" API of Mixpanel.
+ * Added reset user function, requires #260
+ * Updated Taplytics to 2.1.46
+ * Merge branch 'master' of github.com:segmentio/analytics-ios
+ * Update history.md
+ * Fix release script to include history.md changes
+ * Merge pull request #255 from jonathannorris/Taplytics-2-1-42
+ * updated Taplytics to 2.1.42
+
 1.10.4 / 2015-02-12
 ==================
 
