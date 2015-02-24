@@ -39,6 +39,52 @@
 		32385FE11A2DF0F0008E09B2 /* MPLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FE01A2DF0F0008E09B2 /* MPLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32385FE31A2DF0FB008E09B2 /* MPUITableViewBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FE21A2DF0FB008E09B2 /* MPUITableViewBinding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32385FE51A2DF103008E09B2 /* MPUIControlBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FE41A2DF103008E09B2 /* MPUIControlBinding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242587E1A9D0F9D00E03A28 /* KSArchSpecific.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258551A9D0F9D00E03A28 /* KSArchSpecific.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242587F1A9D0F9D00E03A28 /* KSBacktrace.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258561A9D0F9D00E03A28 /* KSBacktrace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258801A9D0F9D00E03A28 /* KSBacktrace_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258571A9D0F9D00E03A28 /* KSBacktrace_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258811A9D0F9D00E03A28 /* KSCrash.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258581A9D0F9D00E03A28 /* KSCrash.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258821A9D0F9D00E03A28 /* KSCrashAdvanced.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258591A9D0F9D00E03A28 /* KSCrashAdvanced.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258831A9D0F9D00E03A28 /* KSCrashC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242585A1A9D0F9D00E03A28 /* KSCrashC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258841A9D0F9D00E03A28 /* KSCrashCallCompletion.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242585B1A9D0F9D00E03A28 /* KSCrashCallCompletion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258851A9D0F9D00E03A28 /* KSCrashContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242585C1A9D0F9D00E03A28 /* KSCrashContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258861A9D0F9D00E03A28 /* KSCrashDoctor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242585D1A9D0F9D00E03A28 /* KSCrashDoctor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258871A9D0F9D00E03A28 /* KSCrashReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242585E1A9D0F9D00E03A28 /* KSCrashReport.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258881A9D0F9D00E03A28 /* KSCrashReportFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242585F1A9D0F9D00E03A28 /* KSCrashReportFields.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258891A9D0F9D00E03A28 /* KSCrashReportFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258601A9D0F9D00E03A28 /* KSCrashReportFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242588A1A9D0F9D00E03A28 /* KSCrashReportStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258611A9D0F9D00E03A28 /* KSCrashReportStore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242588B1A9D0F9D00E03A28 /* KSCrashReportWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258621A9D0F9D00E03A28 /* KSCrashReportWriter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242588C1A9D0F9D00E03A28 /* KSCrashSentry.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258631A9D0F9D00E03A28 /* KSCrashSentry.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242588D1A9D0F9D00E03A28 /* KSCrashSentry_CPPException.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258641A9D0F9D00E03A28 /* KSCrashSentry_CPPException.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242588E1A9D0F9D00E03A28 /* KSCrashSentry_Deadlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258651A9D0F9D00E03A28 /* KSCrashSentry_Deadlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242588F1A9D0F9D00E03A28 /* KSCrashSentry_MachException.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258661A9D0F9D00E03A28 /* KSCrashSentry_MachException.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258901A9D0F9D00E03A28 /* KSCrashSentry_NSException.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258671A9D0F9D00E03A28 /* KSCrashSentry_NSException.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258911A9D0F9D00E03A28 /* KSCrashSentry_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258681A9D0F9D00E03A28 /* KSCrashSentry_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258921A9D0F9D00E03A28 /* KSCrashSentry_Signal.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258691A9D0F9D00E03A28 /* KSCrashSentry_Signal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258931A9D0F9D00E03A28 /* KSCrashSentry_User.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242586A1A9D0F9D00E03A28 /* KSCrashSentry_User.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258941A9D0F9D00E03A28 /* KSCrashState.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242586B1A9D0F9D00E03A28 /* KSCrashState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258951A9D0F9E00E03A28 /* KSCrashType.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242586C1A9D0F9D00E03A28 /* KSCrashType.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258961A9D0F9E00E03A28 /* KSDynamicLinker.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242586D1A9D0F9D00E03A28 /* KSDynamicLinker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258971A9D0F9E00E03A28 /* KSFileUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242586E1A9D0F9D00E03A28 /* KSFileUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258981A9D0F9E00E03A28 /* KSJSONCodec.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242586F1A9D0F9D00E03A28 /* KSJSONCodec.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258991A9D0F9E00E03A28 /* KSJSONCodecObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258701A9D0F9D00E03A28 /* KSJSONCodecObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242589A1A9D0F9E00E03A28 /* KSLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258711A9D0F9D00E03A28 /* KSLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242589B1A9D0F9E00E03A28 /* KSMach.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258721A9D0F9D00E03A28 /* KSMach.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242589C1A9D0F9E00E03A28 /* KSMachApple.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258731A9D0F9D00E03A28 /* KSMachApple.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242589D1A9D0F9E00E03A28 /* KSObjC.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258741A9D0F9D00E03A28 /* KSObjC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242589E1A9D0F9E00E03A28 /* KSObjCApple.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258751A9D0F9D00E03A28 /* KSObjCApple.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3242589F1A9D0F9E00E03A28 /* KSSafeCollections.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258761A9D0F9D00E03A28 /* KSSafeCollections.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258A01A9D0F9E00E03A28 /* KSSignalInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258771A9D0F9D00E03A28 /* KSSignalInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258A11A9D0F9E00E03A28 /* KSSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258781A9D0F9D00E03A28 /* KSSingleton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258A21A9D0F9E00E03A28 /* KSString.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258791A9D0F9D00E03A28 /* KSString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258A31A9D0F9E00E03A28 /* KSSysCtl.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242587A1A9D0F9D00E03A28 /* KSSysCtl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258A41A9D0F9E00E03A28 /* KSSystemInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242587B1A9D0F9D00E03A28 /* KSSystemInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258A51A9D0F9E00E03A28 /* KSSystemInfoC.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242587C1A9D0F9D00E03A28 /* KSSystemInfoC.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258A61A9D0F9E00E03A28 /* KSZombie.h in Headers */ = {isa = PBXBuildFile; fileRef = 3242587D1A9D0F9D00E03A28 /* KSZombie.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258A81A9D0FA700E03A28 /* RFC3339DateTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258A71A9D0FA700E03A28 /* RFC3339DateTool.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258AA1A9D0FC500E03A28 /* ARCSafe_MemMgmt.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258A91A9D0FC500E03A28 /* ARCSafe_MemMgmt.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258AC1A9D0FCC00E03A28 /* Demangle.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258AB1A9D0FCC00E03A28 /* Demangle.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258AE1A9D0FD300E03A28 /* NSDictionary+Merge.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258AD1A9D0FD300E03A28 /* NSDictionary+Merge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		324258B01A9D0FD900E03A28 /* NSError+SimpleConstructor.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258AF1A9D0FD900E03A28 /* NSError+SimpleConstructor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3242C9991946A3E100FBE441 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32D045551931FACD00A9F0A4 /* XCTest.framework */; };
 		3242C99A1946A3E100FBE441 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7200B7617659B2F003F3138 /* Foundation.framework */; };
 		3242C99B1946A3E100FBE441 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F78D29F91765B382000B937E /* UIKit.framework */; };
@@ -264,6 +310,52 @@
 		32385FE01A2DF0F0008E09B2 /* MPLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPLogging.h; path = Pods/Mixpanel/Mixpanel/MPLogging.h; sourceTree = "<group>"; };
 		32385FE21A2DF0FB008E09B2 /* MPUITableViewBinding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPUITableViewBinding.h; path = Pods/Mixpanel/Mixpanel/MPUITableViewBinding.h; sourceTree = "<group>"; };
 		32385FE41A2DF103008E09B2 /* MPUIControlBinding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPUIControlBinding.h; path = Pods/Mixpanel/Mixpanel/MPUIControlBinding.h; sourceTree = "<group>"; };
+		324258551A9D0F9D00E03A28 /* KSArchSpecific.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSArchSpecific.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSArchSpecific.h; sourceTree = "<group>"; };
+		324258561A9D0F9D00E03A28 /* KSBacktrace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSBacktrace.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSBacktrace.h; sourceTree = "<group>"; };
+		324258571A9D0F9D00E03A28 /* KSBacktrace_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSBacktrace_Private.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSBacktrace_Private.h; sourceTree = "<group>"; };
+		324258581A9D0F9D00E03A28 /* KSCrash.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrash.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/KSCrash.h; sourceTree = "<group>"; };
+		324258591A9D0F9D00E03A28 /* KSCrashAdvanced.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashAdvanced.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/KSCrashAdvanced.h; sourceTree = "<group>"; };
+		3242585A1A9D0F9D00E03A28 /* KSCrashC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashC.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/KSCrashC.h; sourceTree = "<group>"; };
+		3242585B1A9D0F9D00E03A28 /* KSCrashCallCompletion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashCallCompletion.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSCrashCallCompletion.h; sourceTree = "<group>"; };
+		3242585C1A9D0F9D00E03A28 /* KSCrashContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashContext.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/KSCrashContext.h; sourceTree = "<group>"; };
+		3242585D1A9D0F9D00E03A28 /* KSCrashDoctor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashDoctor.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/KSCrashDoctor.h; sourceTree = "<group>"; };
+		3242585E1A9D0F9D00E03A28 /* KSCrashReport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashReport.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/KSCrashReport.h; sourceTree = "<group>"; };
+		3242585F1A9D0F9D00E03A28 /* KSCrashReportFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashReportFields.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/KSCrashReportFields.h; sourceTree = "<group>"; };
+		324258601A9D0F9D00E03A28 /* KSCrashReportFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashReportFilter.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Reporting/Filters/KSCrashReportFilter.h; sourceTree = "<group>"; };
+		324258611A9D0F9D00E03A28 /* KSCrashReportStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashReportStore.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/KSCrashReportStore.h; sourceTree = "<group>"; };
+		324258621A9D0F9D00E03A28 /* KSCrashReportWriter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashReportWriter.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/KSCrashReportWriter.h; sourceTree = "<group>"; };
+		324258631A9D0F9D00E03A28 /* KSCrashSentry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashSentry.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry.h; sourceTree = "<group>"; };
+		324258641A9D0F9D00E03A28 /* KSCrashSentry_CPPException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashSentry_CPPException.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_CPPException.h; sourceTree = "<group>"; };
+		324258651A9D0F9D00E03A28 /* KSCrashSentry_Deadlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashSentry_Deadlock.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_Deadlock.h; sourceTree = "<group>"; };
+		324258661A9D0F9D00E03A28 /* KSCrashSentry_MachException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashSentry_MachException.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_MachException.h; sourceTree = "<group>"; };
+		324258671A9D0F9D00E03A28 /* KSCrashSentry_NSException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashSentry_NSException.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_NSException.h; sourceTree = "<group>"; };
+		324258681A9D0F9D00E03A28 /* KSCrashSentry_Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashSentry_Private.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_Private.h; sourceTree = "<group>"; };
+		324258691A9D0F9D00E03A28 /* KSCrashSentry_Signal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashSentry_Signal.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_Signal.h; sourceTree = "<group>"; };
+		3242586A1A9D0F9D00E03A28 /* KSCrashSentry_User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashSentry_User.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_User.h; sourceTree = "<group>"; };
+		3242586B1A9D0F9D00E03A28 /* KSCrashState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashState.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/KSCrashState.h; sourceTree = "<group>"; };
+		3242586C1A9D0F9D00E03A28 /* KSCrashType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSCrashType.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/KSCrashType.h; sourceTree = "<group>"; };
+		3242586D1A9D0F9D00E03A28 /* KSDynamicLinker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSDynamicLinker.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSDynamicLinker.h; sourceTree = "<group>"; };
+		3242586E1A9D0F9D00E03A28 /* KSFileUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSFileUtils.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSFileUtils.h; sourceTree = "<group>"; };
+		3242586F1A9D0F9D00E03A28 /* KSJSONCodec.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSJSONCodec.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSJSONCodec.h; sourceTree = "<group>"; };
+		324258701A9D0F9D00E03A28 /* KSJSONCodecObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSJSONCodecObjC.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSJSONCodecObjC.h; sourceTree = "<group>"; };
+		324258711A9D0F9D00E03A28 /* KSLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSLogger.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSLogger.h; sourceTree = "<group>"; };
+		324258721A9D0F9D00E03A28 /* KSMach.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSMach.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSMach.h; sourceTree = "<group>"; };
+		324258731A9D0F9D00E03A28 /* KSMachApple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSMachApple.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSMachApple.h; sourceTree = "<group>"; };
+		324258741A9D0F9D00E03A28 /* KSObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSObjC.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSObjC.h; sourceTree = "<group>"; };
+		324258751A9D0F9D00E03A28 /* KSObjCApple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSObjCApple.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSObjCApple.h; sourceTree = "<group>"; };
+		324258761A9D0F9D00E03A28 /* KSSafeCollections.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSSafeCollections.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSSafeCollections.h; sourceTree = "<group>"; };
+		324258771A9D0F9D00E03A28 /* KSSignalInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSSignalInfo.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSSignalInfo.h; sourceTree = "<group>"; };
+		324258781A9D0F9D00E03A28 /* KSSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSSingleton.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSSingleton.h; sourceTree = "<group>"; };
+		324258791A9D0F9D00E03A28 /* KSString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSString.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSString.h; sourceTree = "<group>"; };
+		3242587A1A9D0F9D00E03A28 /* KSSysCtl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSSysCtl.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSSysCtl.h; sourceTree = "<group>"; };
+		3242587B1A9D0F9D00E03A28 /* KSSystemInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSSystemInfo.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/KSSystemInfo.h; sourceTree = "<group>"; };
+		3242587C1A9D0F9D00E03A28 /* KSSystemInfoC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSSystemInfoC.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/KSSystemInfoC.h; sourceTree = "<group>"; };
+		3242587D1A9D0F9D00E03A28 /* KSZombie.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSZombie.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSZombie.h; sourceTree = "<group>"; };
+		324258A71A9D0FA700E03A28 /* RFC3339DateTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RFC3339DateTool.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/RFC3339DateTool.h; sourceTree = "<group>"; };
+		324258A91A9D0FC500E03A28 /* ARCSafe_MemMgmt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ARCSafe_MemMgmt.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/ARCSafe_MemMgmt.h; sourceTree = "<group>"; };
+		324258AB1A9D0FCC00E03A28 /* Demangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Demangle.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/Demangle.h; sourceTree = "<group>"; };
+		324258AD1A9D0FD300E03A28 /* NSDictionary+Merge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+Merge.h"; path = "Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/NSDictionary+Merge.h"; sourceTree = "<group>"; };
+		324258AF1A9D0FD900E03A28 /* NSError+SimpleConstructor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSError+SimpleConstructor.h"; path = "Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/NSError+SimpleConstructor.h"; sourceTree = "<group>"; };
 		3242C9981946A3E100FBE441 /* iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3242C99E1946A3E100FBE441 /* iOS Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOS Tests-Info.plist"; sourceTree = "<group>"; };
 		3242C9A01946A3E100FBE441 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -924,6 +1016,52 @@
 		F7200B6A17659B2F003F3138 = {
 			isa = PBXGroup;
 			children = (
+				324258AF1A9D0FD900E03A28 /* NSError+SimpleConstructor.h */,
+				324258AD1A9D0FD300E03A28 /* NSDictionary+Merge.h */,
+				324258AB1A9D0FCC00E03A28 /* Demangle.h */,
+				324258A91A9D0FC500E03A28 /* ARCSafe_MemMgmt.h */,
+				324258A71A9D0FA700E03A28 /* RFC3339DateTool.h */,
+				324258551A9D0F9D00E03A28 /* KSArchSpecific.h */,
+				324258561A9D0F9D00E03A28 /* KSBacktrace.h */,
+				324258571A9D0F9D00E03A28 /* KSBacktrace_Private.h */,
+				324258581A9D0F9D00E03A28 /* KSCrash.h */,
+				324258591A9D0F9D00E03A28 /* KSCrashAdvanced.h */,
+				3242585A1A9D0F9D00E03A28 /* KSCrashC.h */,
+				3242585B1A9D0F9D00E03A28 /* KSCrashCallCompletion.h */,
+				3242585C1A9D0F9D00E03A28 /* KSCrashContext.h */,
+				3242585D1A9D0F9D00E03A28 /* KSCrashDoctor.h */,
+				3242585E1A9D0F9D00E03A28 /* KSCrashReport.h */,
+				3242585F1A9D0F9D00E03A28 /* KSCrashReportFields.h */,
+				324258601A9D0F9D00E03A28 /* KSCrashReportFilter.h */,
+				324258611A9D0F9D00E03A28 /* KSCrashReportStore.h */,
+				324258621A9D0F9D00E03A28 /* KSCrashReportWriter.h */,
+				324258631A9D0F9D00E03A28 /* KSCrashSentry.h */,
+				324258641A9D0F9D00E03A28 /* KSCrashSentry_CPPException.h */,
+				324258651A9D0F9D00E03A28 /* KSCrashSentry_Deadlock.h */,
+				324258661A9D0F9D00E03A28 /* KSCrashSentry_MachException.h */,
+				324258671A9D0F9D00E03A28 /* KSCrashSentry_NSException.h */,
+				324258681A9D0F9D00E03A28 /* KSCrashSentry_Private.h */,
+				324258691A9D0F9D00E03A28 /* KSCrashSentry_Signal.h */,
+				3242586A1A9D0F9D00E03A28 /* KSCrashSentry_User.h */,
+				3242586B1A9D0F9D00E03A28 /* KSCrashState.h */,
+				3242586C1A9D0F9D00E03A28 /* KSCrashType.h */,
+				3242586D1A9D0F9D00E03A28 /* KSDynamicLinker.h */,
+				3242586E1A9D0F9D00E03A28 /* KSFileUtils.h */,
+				3242586F1A9D0F9D00E03A28 /* KSJSONCodec.h */,
+				324258701A9D0F9D00E03A28 /* KSJSONCodecObjC.h */,
+				324258711A9D0F9D00E03A28 /* KSLogger.h */,
+				324258721A9D0F9D00E03A28 /* KSMach.h */,
+				324258731A9D0F9D00E03A28 /* KSMachApple.h */,
+				324258741A9D0F9D00E03A28 /* KSObjC.h */,
+				324258751A9D0F9D00E03A28 /* KSObjCApple.h */,
+				324258761A9D0F9D00E03A28 /* KSSafeCollections.h */,
+				324258771A9D0F9D00E03A28 /* KSSignalInfo.h */,
+				324258781A9D0F9D00E03A28 /* KSSingleton.h */,
+				324258791A9D0F9D00E03A28 /* KSString.h */,
+				3242587A1A9D0F9D00E03A28 /* KSSysCtl.h */,
+				3242587B1A9D0F9D00E03A28 /* KSSystemInfo.h */,
+				3242587C1A9D0F9D00E03A28 /* KSSystemInfoC.h */,
+				3242587D1A9D0F9D00E03A28 /* KSZombie.h */,
 				F7200B7817659B2F003F3138 /* Analytics */,
 				EA722AF617C87BB00016E8B0 /* AnalyticsTests */,
 				F7200B7517659B2F003F3138 /* Frameworks */,
@@ -1107,10 +1245,15 @@
 				32AD187219AFCA100047D5F0 /* MPSwizzler.h in Headers */,
 				32AD187319AFCA100047D5F0 /* MPTweak.h in Headers */,
 				32AD187419AFCA100047D5F0 /* MPTweakInline.h in Headers */,
+				324258A81A9D0FA700E03A28 /* RFC3339DateTool.h in Headers */,
 				32AD187519AFCA100047D5F0 /* MPTweakInlineInternal.h in Headers */,
 				32AD187619AFCA100047D5F0 /* MPTweakStore.h in Headers */,
 				32AD187719AFCA100047D5F0 /* MPTypeDescription.h in Headers */,
 				32AD187819AFCA100047D5F0 /* MPValueTransformers.h in Headers */,
+				324258AE1A9D0FD300E03A28 /* NSDictionary+Merge.h in Headers */,
+				324258AA1A9D0FC500E03A28 /* ARCSafe_MemMgmt.h in Headers */,
+				324258B01A9D0FD900E03A28 /* NSError+SimpleConstructor.h in Headers */,
+				324258AC1A9D0FCC00E03A28 /* Demangle.h in Headers */,
 				32AD187919AFCA100047D5F0 /* MPVariant.h in Headers */,
 				32AD187A19AFCA100047D5F0 /* MPWebSocket.h in Headers */,
 				D371F334185943170053337D /* Mixpanel.h in Headers */,
@@ -1123,6 +1266,47 @@
 				D3EDB66818C315F100A88A7E /* SEGTapstreamIntegration.h in Headers */,
 				3208C0861A64F6B200D6014F /* AMPARCMacros.h in Headers */,
 				3208C0871A64F6B200D6014F /* AMPConstants.h in Headers */,
+				3242587E1A9D0F9D00E03A28 /* KSArchSpecific.h in Headers */,
+				3242587F1A9D0F9D00E03A28 /* KSBacktrace.h in Headers */,
+				324258801A9D0F9D00E03A28 /* KSBacktrace_Private.h in Headers */,
+				324258811A9D0F9D00E03A28 /* KSCrash.h in Headers */,
+				324258821A9D0F9D00E03A28 /* KSCrashAdvanced.h in Headers */,
+				324258831A9D0F9D00E03A28 /* KSCrashC.h in Headers */,
+				324258841A9D0F9D00E03A28 /* KSCrashCallCompletion.h in Headers */,
+				324258851A9D0F9D00E03A28 /* KSCrashContext.h in Headers */,
+				324258861A9D0F9D00E03A28 /* KSCrashDoctor.h in Headers */,
+				324258871A9D0F9D00E03A28 /* KSCrashReport.h in Headers */,
+				324258881A9D0F9D00E03A28 /* KSCrashReportFields.h in Headers */,
+				324258891A9D0F9D00E03A28 /* KSCrashReportFilter.h in Headers */,
+				3242588A1A9D0F9D00E03A28 /* KSCrashReportStore.h in Headers */,
+				3242588B1A9D0F9D00E03A28 /* KSCrashReportWriter.h in Headers */,
+				3242588C1A9D0F9D00E03A28 /* KSCrashSentry.h in Headers */,
+				3242588D1A9D0F9D00E03A28 /* KSCrashSentry_CPPException.h in Headers */,
+				3242588E1A9D0F9D00E03A28 /* KSCrashSentry_Deadlock.h in Headers */,
+				3242588F1A9D0F9D00E03A28 /* KSCrashSentry_MachException.h in Headers */,
+				324258901A9D0F9D00E03A28 /* KSCrashSentry_NSException.h in Headers */,
+				324258911A9D0F9D00E03A28 /* KSCrashSentry_Private.h in Headers */,
+				324258921A9D0F9D00E03A28 /* KSCrashSentry_Signal.h in Headers */,
+				324258931A9D0F9D00E03A28 /* KSCrashSentry_User.h in Headers */,
+				324258941A9D0F9D00E03A28 /* KSCrashState.h in Headers */,
+				324258951A9D0F9E00E03A28 /* KSCrashType.h in Headers */,
+				324258961A9D0F9E00E03A28 /* KSDynamicLinker.h in Headers */,
+				324258971A9D0F9E00E03A28 /* KSFileUtils.h in Headers */,
+				324258981A9D0F9E00E03A28 /* KSJSONCodec.h in Headers */,
+				324258991A9D0F9E00E03A28 /* KSJSONCodecObjC.h in Headers */,
+				3242589A1A9D0F9E00E03A28 /* KSLogger.h in Headers */,
+				3242589B1A9D0F9E00E03A28 /* KSMach.h in Headers */,
+				3242589C1A9D0F9E00E03A28 /* KSMachApple.h in Headers */,
+				3242589D1A9D0F9E00E03A28 /* KSObjC.h in Headers */,
+				3242589E1A9D0F9E00E03A28 /* KSObjCApple.h in Headers */,
+				3242589F1A9D0F9E00E03A28 /* KSSafeCollections.h in Headers */,
+				324258A01A9D0F9E00E03A28 /* KSSignalInfo.h in Headers */,
+				324258A11A9D0F9E00E03A28 /* KSSingleton.h in Headers */,
+				324258A21A9D0F9E00E03A28 /* KSString.h in Headers */,
+				324258A31A9D0F9E00E03A28 /* KSSysCtl.h in Headers */,
+				324258A41A9D0F9E00E03A28 /* KSSystemInfo.h in Headers */,
+				324258A51A9D0F9E00E03A28 /* KSSystemInfoC.h in Headers */,
+				324258A61A9D0F9E00E03A28 /* KSZombie.h in Headers */,
 				3208C0881A64F6B200D6014F /* AMPDeviceInfo.h in Headers */,
 				3208C0891A64F6B200D6014F /* AMPLocationManagerDelegate.h in Headers */,
 				3208C08A1A64F6B200D6014F /* Amplitude.h in Headers */,
