@@ -118,13 +118,13 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits {
-  
+
   [self identify:userId traits:traits options:nil];
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
   NSCParameterAssert(userId.length > 0 || traits.count > 0);
-  
+
   [self callIntegrationsWithSelector:_cmd
                            arguments:@[userId ?: [NSNull null], SEGCoerceDictionary(traits), SEGCoerceDictionary(options)]
                              options:options];
@@ -215,7 +215,7 @@ static SEGAnalytics *__sharedInstance = nil;
 - (void)setCachedSettings:(NSDictionary *)settings {
   _cachedSettings = [settings copy];
   [_cachedSettings ?: @{} writeToURL:self.settingsURL atomically:YES];
-  [self updateIntegrationsWithSettings:settings];
+  [self updateIntegrationsWithSettings:settings[@"integrations"]];
 }
 
 - (void)updateIntegrationsWithSettings:(NSDictionary *)settings {
@@ -231,10 +231,10 @@ static SEGAnalytics *__sharedInstance = nil;
   if (_settingsRequest)
     return;
 
-  NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.segment.io/project/%@/settings", self.configuration.writeKey]]];
+  NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://cdn.segment.com/v1/projects/%@/settings", self.configuration.writeKey]]];
   [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
   [urlRequest setHTTPMethod:@"GET"];
-  
+
   SEGLog(@"%@ Sending API settings request: %@", self, urlRequest);
 
   _settingsRequest = [SEGAnalyticsRequest startWithURLRequest:urlRequest completion:^{
@@ -278,10 +278,22 @@ static SEGAnalytics *__sharedInstance = nil;
   return YES;
 }
 
+- (BOOL) isTrackEvent:(NSString *)event enabledForIntegration:(id<SEGAnalyticsIntegration>)integration inPlan:(NSDictionary *)plan {
+  if (plan[@"track"][event]) {
+    if ([plan[@"track"][event][@"enabled"] boolValue]) {
+      return [self isIntegration:integration enabledInOptions:plan[@"track"][event][@"integrations"]];
+    } else {
+      return NO;
+    }
+  }
+
+  return YES;
+}
+
 - (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
   if (!_enabled)
     return;
-  
+
   if (self.configuration.integrations.count == 0)
     SEGLog(@"Trying to send event, but no integrations found.");
 
@@ -290,11 +302,11 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 - (void)invokeIntegration:(id <SEGAnalyticsIntegration>)integration selector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options {
-  
+
   if (![integration initialized] && [integration valid]) {
     SEGLog(@"Not sending call to %@ because it isn't initialized", integration.name);
   }
-  
+
   if (![integration ready]) {
     SEGLog(@"Not sending call to %@ because it isn't enabled.", integration.name);
     return;
@@ -308,6 +320,15 @@ static SEGAnalytics *__sharedInstance = nil;
   if(![self isIntegration:integration enabledInOptions:options[@"integrations"]]) {
     SEGLog(@"Not sending call to %@ because it is disabled in options.", integration.name);
     return;
+  }
+
+  NSString* eventType = NSStringFromSelector(selector);
+  if ([eventType hasPrefix:@"track:"]) {
+    BOOL enabled = [self isTrackEvent:arguments[0] enabledForIntegration:integration inPlan:self.cachedSettings[@"plan"]];
+    if(!enabled) {
+      SEGLog(@"Not sending call to %@ because it is disabled in plan.", integration.name);
+      return;
+    }
   }
 
   NSInvocation *invocation = [self invocationForSelector:selector arguments:arguments];
@@ -353,7 +374,7 @@ static SEGAnalytics *__sharedInstance = nil;
 }
 
 - (NSURL *)settingsURL {
-  return SEGAnalyticsURLForFilename(@"analytics.settings.plist");
+  return SEGAnalyticsURLForFilename(@"analytics.settings.v2.plist");
 }
 
 @end
