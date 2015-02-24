@@ -74,6 +74,30 @@
   [self.mock verifyWithDelay:1];
 }
 
+- (void)testForwardsTrackEventsInPlan {
+  [[self.mock expect] track:@"Clicked A Page" properties:[self properties] options:[self options]];
+  [[self.mock expect] track:@"Clicked B Page" properties:[self properties] options:[self options]];
+  [[self.mock expect] track:@"Clicked C Page" properties:[self properties] options:[self options]];
+  [[self.mock expect] track:@"Clicked D Page" properties:[self properties] options:[self options]];
+
+  [self.analytics track:@"Clicked A Page" properties:[self properties] options:[self options]];
+  [self.analytics track:@"Clicked B Page" properties:[self properties] options:[self options]];
+  [self.analytics track:@"Clicked C Page" properties:[self properties] options:[self options]];
+  [self.analytics track:@"Clicked D Page" properties:[self properties] options:[self options]];
+
+  [self.mock verifyWithDelay:1];
+}
+
+- (void)testDoesNotForwardTrackEventsDisabledInPlan {
+  [[self.mock reject] track:@"Clicked E Page" properties:[self properties] options:[self options]];
+  [[self.mock reject] track:@"Clicked F Page" properties:[self properties] options:[self options]];
+
+  EXP_expect(^{ [self.analytics track:@"Clicked E Page" properties:[self properties] options:[self options]]; }).notTo.raiseAny();
+  EXP_expect(^{ [self.analytics track:@"Clicked F Page" properties:[self properties] options:[self options]]; }).notTo.raiseAny();
+
+  [self.mock verifyWithDelay:1];
+}
+
 - (void)testDoesntForwardTrackWithoutEvent {
   [[self.mock reject] track:@"" properties:[self properties] options:[self options]];
   [[self.mock reject] track:nil properties:[self properties] options:[self options]];
