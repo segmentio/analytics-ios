@@ -1,3 +1,11 @@
+1.11.0 / 2015-02-24
+===================
+
+  * Merge pull request #266 from segmentio/tracking-plan
+  * Tracking Plan
+  * bugsnag: add headers from last update
+  * tests: improve output for header test
+
 
 1.10.5 / 2015-02-18
 ==================
@@ -61,7 +69,7 @@
 1.9.0 / 2015-02-02
 ==================
 
- * Fix localytics 
+ * Fix localytics
  * Remove testflight
  * Add bugsnag logger header
  * updating Taplytics to 2.1.32
