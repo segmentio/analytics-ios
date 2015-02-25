@@ -165,7 +165,6 @@
 		325DCE361A8D875100D4142E /* BugsnagNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 325DCE2E1A8D875100D4142E /* BugsnagNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		325DCE371A8D875100D4142E /* BugsnagOSXNotifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 325DCE2F1A8D875100D4142E /* BugsnagOSXNotifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		325DCE381A8D875100D4142E /* BugsnagSink.h in Headers */ = {isa = PBXBuildFile; fileRef = 325DCE301A8D875100D4142E /* BugsnagSink.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		327E0C011A689CFA0048E067 /* Localytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 327E0C001A689CFA0048E067 /* Localytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32A69C221979CF4A00D69943 /* SEGOptimizelyIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A69C201979CF4A00D69943 /* SEGOptimizelyIntegration.h */; };
 		32A69C231979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */; };
 		32A69C241979CF4A00D69943 /* SEGOptimizelyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */; };
@@ -207,6 +206,7 @@
 		32AD187A19AFCA100047D5F0 /* MPWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AD185019AFCA100047D5F0 /* MPWebSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32AD187B19AFCA100047D5F0 /* NSInvocation+MPHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AD185319AFCA100047D5F0 /* NSInvocation+MPHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32AD187C19AFCA100047D5F0 /* _MPTweakBindObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AD185819AFCA100047D5F0 /* _MPTweakBindObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		32AFA6181A9E98CF00C2AF3E /* Localytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AFA6171A9E98CF00C2AF3E /* Localytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCD99B1919A4F4007B63BA /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CEE41E19F5B6DB007758F2 /* TaplyticsOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CEE41D19F5B6DB007758F2 /* TaplyticsOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CFF3CE19AE5BCF00193D3D /* SEGAppsFlyerIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CFF3CC19AE5BCF00193D3D /* SEGAppsFlyerIntegration.h */; };
@@ -428,7 +428,6 @@
 		325DCE2E1A8D875100D4142E /* BugsnagNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagNotifier.h; path = Pods/Bugsnag/Source/Bugsnag/BugsnagNotifier.h; sourceTree = "<group>"; };
 		325DCE2F1A8D875100D4142E /* BugsnagOSXNotifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagOSXNotifier.h; path = Pods/Bugsnag/Source/Bugsnag/BugsnagOSXNotifier.h; sourceTree = "<group>"; };
 		325DCE301A8D875100D4142E /* BugsnagSink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BugsnagSink.h; path = Pods/Bugsnag/Source/Bugsnag/BugsnagSink.h; sourceTree = "<group>"; };
-		327E0C001A689CFA0048E067 /* Localytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Localytics.h; path = "Pods/Localytics/Localytics-iOS-3.0.0/Localytics.h"; sourceTree = "<group>"; };
 		32A69C201979CF4A00D69943 /* SEGOptimizelyIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGOptimizelyIntegration.h; sourceTree = "<group>"; };
 		32A69C211979CF4A00D69943 /* SEGOptimizelyIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGOptimizelyIntegration.m; sourceTree = "<group>"; };
 		32A8C60519107DBD00173AE5 /* SEGQuantcastIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGQuantcastIntegration.h; sourceTree = "<group>"; };
@@ -481,6 +480,7 @@
 		32AD185619AFCA100047D5F0 /* UIImage+MPImageEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPImageEffects.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPImageEffects.h"; sourceTree = "<group>"; };
 		32AD185719AFCA100047D5F0 /* UIView+MPSnapshotImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIView+MPSnapshotImage.h"; path = "Pods/Mixpanel/Mixpanel/UIView+MPSnapshotImage.h"; sourceTree = "<group>"; };
 		32AD185819AFCA100047D5F0 /* _MPTweakBindObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = _MPTweakBindObserver.h; path = Pods/Mixpanel/Mixpanel/_MPTweakBindObserver.h; sourceTree = "<group>"; };
+		32AFA6171A9E98CF00C2AF3E /* Localytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Localytics.h; path = "Pods/Localytics/Localytics-iOS-3.1.0/Localytics.h"; sourceTree = "<group>"; };
 		32CC25E119072C6B0090DD06 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32CCD99B1919A4F4007B63BA /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		32CEE41C19F5B6DB007758F2 /* Taplytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Taplytics.h; path = Pods/Taplytics/Taplytics.framework/Headers/Taplytics.h; sourceTree = "<group>"; };
@@ -717,6 +717,53 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				32AFA6171A9E98CF00C2AF3E /* Localytics.h */,
+				324258AF1A9D0FD900E03A28 /* NSError+SimpleConstructor.h */,
+				324258AD1A9D0FD300E03A28 /* NSDictionary+Merge.h */,
+				324258AB1A9D0FCC00E03A28 /* Demangle.h */,
+				324258A91A9D0FC500E03A28 /* ARCSafe_MemMgmt.h */,
+				324258A71A9D0FA700E03A28 /* RFC3339DateTool.h */,
+				324258551A9D0F9D00E03A28 /* KSArchSpecific.h */,
+				324258561A9D0F9D00E03A28 /* KSBacktrace.h */,
+				324258571A9D0F9D00E03A28 /* KSBacktrace_Private.h */,
+				324258581A9D0F9D00E03A28 /* KSCrash.h */,
+				324258591A9D0F9D00E03A28 /* KSCrashAdvanced.h */,
+				3242585A1A9D0F9D00E03A28 /* KSCrashC.h */,
+				3242585B1A9D0F9D00E03A28 /* KSCrashCallCompletion.h */,
+				3242585C1A9D0F9D00E03A28 /* KSCrashContext.h */,
+				3242585D1A9D0F9D00E03A28 /* KSCrashDoctor.h */,
+				3242585E1A9D0F9D00E03A28 /* KSCrashReport.h */,
+				3242585F1A9D0F9D00E03A28 /* KSCrashReportFields.h */,
+				324258601A9D0F9D00E03A28 /* KSCrashReportFilter.h */,
+				324258611A9D0F9D00E03A28 /* KSCrashReportStore.h */,
+				324258621A9D0F9D00E03A28 /* KSCrashReportWriter.h */,
+				324258631A9D0F9D00E03A28 /* KSCrashSentry.h */,
+				324258641A9D0F9D00E03A28 /* KSCrashSentry_CPPException.h */,
+				324258651A9D0F9D00E03A28 /* KSCrashSentry_Deadlock.h */,
+				324258661A9D0F9D00E03A28 /* KSCrashSentry_MachException.h */,
+				324258671A9D0F9D00E03A28 /* KSCrashSentry_NSException.h */,
+				324258681A9D0F9D00E03A28 /* KSCrashSentry_Private.h */,
+				324258691A9D0F9D00E03A28 /* KSCrashSentry_Signal.h */,
+				3242586A1A9D0F9D00E03A28 /* KSCrashSentry_User.h */,
+				3242586B1A9D0F9D00E03A28 /* KSCrashState.h */,
+				3242586C1A9D0F9D00E03A28 /* KSCrashType.h */,
+				3242586D1A9D0F9D00E03A28 /* KSDynamicLinker.h */,
+				3242586E1A9D0F9D00E03A28 /* KSFileUtils.h */,
+				3242586F1A9D0F9D00E03A28 /* KSJSONCodec.h */,
+				324258701A9D0F9D00E03A28 /* KSJSONCodecObjC.h */,
+				324258711A9D0F9D00E03A28 /* KSLogger.h */,
+				324258721A9D0F9D00E03A28 /* KSMach.h */,
+				324258731A9D0F9D00E03A28 /* KSMachApple.h */,
+				324258741A9D0F9D00E03A28 /* KSObjC.h */,
+				324258751A9D0F9D00E03A28 /* KSObjCApple.h */,
+				324258761A9D0F9D00E03A28 /* KSSafeCollections.h */,
+				324258771A9D0F9D00E03A28 /* KSSignalInfo.h */,
+				324258781A9D0F9D00E03A28 /* KSSingleton.h */,
+				324258791A9D0F9D00E03A28 /* KSString.h */,
+				3242587A1A9D0F9D00E03A28 /* KSSysCtl.h */,
+				3242587B1A9D0F9D00E03A28 /* KSSystemInfo.h */,
+				3242587C1A9D0F9D00E03A28 /* KSSystemInfoC.h */,
+				3242587D1A9D0F9D00E03A28 /* KSZombie.h */,
 				325DCE291A8D875100D4142E /* Bugsnag.h */,
 				325DCE2A1A8D875100D4142E /* BugsnagConfiguration.h */,
 				325DCE2B1A8D875100D4142E /* BugsnagCrashReport.h */,
@@ -726,7 +773,6 @@
 				325DCE2F1A8D875100D4142E /* BugsnagOSXNotifier.h */,
 				325DCE301A8D875100D4142E /* BugsnagSink.h */,
 				320AFEE81A840DEB00929778 /* KahunaAnalytics.h */,
-				327E0C001A689CFA0048E067 /* Localytics.h */,
 				3208C0811A64F6B200D6014F /* AMPARCMacros.h */,
 				3208C0821A64F6B200D6014F /* AMPConstants.h */,
 				3208C0831A64F6B200D6014F /* AMPDeviceInfo.h */,
@@ -1016,52 +1062,6 @@
 		F7200B6A17659B2F003F3138 = {
 			isa = PBXGroup;
 			children = (
-				324258AF1A9D0FD900E03A28 /* NSError+SimpleConstructor.h */,
-				324258AD1A9D0FD300E03A28 /* NSDictionary+Merge.h */,
-				324258AB1A9D0FCC00E03A28 /* Demangle.h */,
-				324258A91A9D0FC500E03A28 /* ARCSafe_MemMgmt.h */,
-				324258A71A9D0FA700E03A28 /* RFC3339DateTool.h */,
-				324258551A9D0F9D00E03A28 /* KSArchSpecific.h */,
-				324258561A9D0F9D00E03A28 /* KSBacktrace.h */,
-				324258571A9D0F9D00E03A28 /* KSBacktrace_Private.h */,
-				324258581A9D0F9D00E03A28 /* KSCrash.h */,
-				324258591A9D0F9D00E03A28 /* KSCrashAdvanced.h */,
-				3242585A1A9D0F9D00E03A28 /* KSCrashC.h */,
-				3242585B1A9D0F9D00E03A28 /* KSCrashCallCompletion.h */,
-				3242585C1A9D0F9D00E03A28 /* KSCrashContext.h */,
-				3242585D1A9D0F9D00E03A28 /* KSCrashDoctor.h */,
-				3242585E1A9D0F9D00E03A28 /* KSCrashReport.h */,
-				3242585F1A9D0F9D00E03A28 /* KSCrashReportFields.h */,
-				324258601A9D0F9D00E03A28 /* KSCrashReportFilter.h */,
-				324258611A9D0F9D00E03A28 /* KSCrashReportStore.h */,
-				324258621A9D0F9D00E03A28 /* KSCrashReportWriter.h */,
-				324258631A9D0F9D00E03A28 /* KSCrashSentry.h */,
-				324258641A9D0F9D00E03A28 /* KSCrashSentry_CPPException.h */,
-				324258651A9D0F9D00E03A28 /* KSCrashSentry_Deadlock.h */,
-				324258661A9D0F9D00E03A28 /* KSCrashSentry_MachException.h */,
-				324258671A9D0F9D00E03A28 /* KSCrashSentry_NSException.h */,
-				324258681A9D0F9D00E03A28 /* KSCrashSentry_Private.h */,
-				324258691A9D0F9D00E03A28 /* KSCrashSentry_Signal.h */,
-				3242586A1A9D0F9D00E03A28 /* KSCrashSentry_User.h */,
-				3242586B1A9D0F9D00E03A28 /* KSCrashState.h */,
-				3242586C1A9D0F9D00E03A28 /* KSCrashType.h */,
-				3242586D1A9D0F9D00E03A28 /* KSDynamicLinker.h */,
-				3242586E1A9D0F9D00E03A28 /* KSFileUtils.h */,
-				3242586F1A9D0F9D00E03A28 /* KSJSONCodec.h */,
-				324258701A9D0F9D00E03A28 /* KSJSONCodecObjC.h */,
-				324258711A9D0F9D00E03A28 /* KSLogger.h */,
-				324258721A9D0F9D00E03A28 /* KSMach.h */,
-				324258731A9D0F9D00E03A28 /* KSMachApple.h */,
-				324258741A9D0F9D00E03A28 /* KSObjC.h */,
-				324258751A9D0F9D00E03A28 /* KSObjCApple.h */,
-				324258761A9D0F9D00E03A28 /* KSSafeCollections.h */,
-				324258771A9D0F9D00E03A28 /* KSSignalInfo.h */,
-				324258781A9D0F9D00E03A28 /* KSSingleton.h */,
-				324258791A9D0F9D00E03A28 /* KSString.h */,
-				3242587A1A9D0F9D00E03A28 /* KSSysCtl.h */,
-				3242587B1A9D0F9D00E03A28 /* KSSystemInfo.h */,
-				3242587C1A9D0F9D00E03A28 /* KSSystemInfoC.h */,
-				3242587D1A9D0F9D00E03A28 /* KSZombie.h */,
 				F7200B7817659B2F003F3138 /* Analytics */,
 				EA722AF617C87BB00016E8B0 /* AnalyticsTests */,
 				F7200B7517659B2F003F3138 /* Frameworks */,
@@ -1170,7 +1170,6 @@
 				32385FDC1A2DF0DF008E09B2 /* MPDesignerEventBindingMessage.h in Headers */,
 				32385FDD1A2DF0DF008E09B2 /* MPDesignerSessionCollection.h in Headers */,
 				32385FD91A2DF0CA008E09B2 /* MPCategoryHelpers.h in Headers */,
-				327E0C011A689CFA0048E067 /* Localytics.h in Headers */,
 				32CEE41E19F5B6DB007758F2 /* TaplyticsOptions.h in Headers */,
 				32385FDF1A2DF0E7008E09B2 /* MPEventBinding.h in Headers */,
 				32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */,
@@ -1245,6 +1244,7 @@
 				32AD187219AFCA100047D5F0 /* MPSwizzler.h in Headers */,
 				32AD187319AFCA100047D5F0 /* MPTweak.h in Headers */,
 				32AD187419AFCA100047D5F0 /* MPTweakInline.h in Headers */,
+				32AFA6181A9E98CF00C2AF3E /* Localytics.h in Headers */,
 				324258A81A9D0FA700E03A28 /* RFC3339DateTool.h in Headers */,
 				32AD187519AFCA100047D5F0 /* MPTweakInlineInternal.h in Headers */,
 				32AD187619AFCA100047D5F0 /* MPTweakStore.h in Headers */,

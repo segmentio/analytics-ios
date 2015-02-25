@@ -2,7 +2,7 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "SEGLocalyticsIntegration.h"
-#import <Localytics.h>
+#import <Localytics/Localytics.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 
