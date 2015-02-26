@@ -12,25 +12,18 @@
       "Clicked C Page": {
         "enabled": true,
         "integrations": {
-          "All": true
+          "All": false
         }
       },
       "Clicked D Page": {
         "enabled": true,
         "integrations": {
-          "All": false,
-          "Segment.io": true
+          "All": true,
+          "Segment.io": false
         }
       },
       "Clicked E Page": {
         "enabled": false
-      },
-      "Clicked F Page": {
-        "enabled": true,
-        "integrations": {
-          "All": true,
-          "Segment.io": false
-        }
       }
     }
   },

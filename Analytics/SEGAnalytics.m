@@ -268,6 +268,9 @@ static SEGAnalytics *__sharedInstance = nil;
 #pragma mark - Private
 
 - (BOOL)isIntegration:(id<SEGAnalyticsIntegration>)integration enabledInOptions:(NSDictionary *)options {
+  if([@"Segment.io" isEqualToString:integration.name]) {
+    return YES;
+  }
   if (options[integration.name]) {
     return [options[integration.name] boolValue];
   } else if (options[@"All"]) {
