@@ -90,10 +90,8 @@
 
 - (void)testDoesNotForwardTrackEventsDisabledInPlan {
   [[self.mock reject] track:@"Clicked E Page" properties:[self properties] options:[self options]];
-  [[self.mock reject] track:@"Clicked F Page" properties:[self properties] options:[self options]];
 
   EXP_expect(^{ [self.analytics track:@"Clicked E Page" properties:[self properties] options:[self options]]; }).notTo.raiseAny();
-  EXP_expect(^{ [self.analytics track:@"Clicked F Page" properties:[self properties] options:[self options]]; }).notTo.raiseAny();
 
   [self.mock verifyWithDelay:1];
 }
