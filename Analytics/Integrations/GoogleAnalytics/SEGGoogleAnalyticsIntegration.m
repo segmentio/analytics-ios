@@ -140,14 +140,14 @@
   NSString *currency = properties[@"currency"] ?: @"USD";
 
   SEGLog(@"Tracking completed order to Google Analytics with properties: %@", properties);
-    
+
   [self.tracker send:[[GAIDictionaryBuilder createTransactionWithId:orderId
                                                         affiliation:properties[@"affiliation"]
                                                             revenue:[self.class extractRevenue:properties]
                                                                 tax:properties[@"tax"]
                                                            shipping:properties[@"shipping"]
                                                        currencyCode:currency] build]];
-    
+
   [self.tracker send:[[GAIDictionaryBuilder createItemWithTransactionId:orderId
                                                                    name:properties[@"name"]
                                                                     sku:properties[@"sku"]
