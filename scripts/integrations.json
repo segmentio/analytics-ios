@@ -95,7 +95,7 @@
       "name": "Taplytics",
       "dependencies": [{
         "name": "Taplytics",
-        "version": "2.1.56"
+        "version": "2.1.60"
       }]
     },
     {
