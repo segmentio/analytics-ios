@@ -1,4 +1,14 @@
 
+1.11.2 / 2015-03-10
+===================
+
+  * Merge pull request #273 from jonathannorris/Taplytics-2.1.60
+  * Updated Taplytics to 2.1.60
+  * Merge pull request #269 from jonathannorris/Taplytics-2.1.56
+  * Merge pull request #268 from segmentio/fix-plan
+  * Updating Taplytics to 2.1.56
+  * All enabled events should be sent to Segment
+
 1.11.1 / 2015-03-06
 ===================
 
