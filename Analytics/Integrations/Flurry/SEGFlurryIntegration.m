@@ -62,6 +62,16 @@
   if (age) {
     [Flurry setAge:[age intValue]];
   }
+  
+  NSDictionary *location = [traits objectForKey:@"location"];
+  
+  if (location) {
+    float latitude = [[location objectForKey:@"latitude"] floatValue];
+    float longitude = [[location objectForKey:@"longitude"] floatValue];
+    float horizontalAccuracy = [[location objectForKey:@"horizontalAccuracy"] floatValue];
+    float verticalAccuracy = [[location objectForKey:@"verticalAccuracy"] floatValue];
+    [Flurry setLatitude:latitude longitude:longitude horizontalAccuracy:horizontalAccuracy verticalAccuracy:verticalAccuracy];
+  }
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
