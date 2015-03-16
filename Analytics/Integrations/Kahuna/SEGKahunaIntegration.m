@@ -24,7 +24,7 @@
 }
 
 - (void)start {
-  [KahunaAnalytics startWithKey:[self.settings objectForKey:@"apiKey"]];
+  [KahunaAnalytics launchWithKey:[self.settings objectForKey:@"apiKey"]];
   [super start];
 }
 
