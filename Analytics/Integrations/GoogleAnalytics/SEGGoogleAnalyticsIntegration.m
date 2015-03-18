@@ -43,7 +43,7 @@
     }
     // Require setup with the trackingId.
     NSString *trackingId = [self.settings objectForKey:@"mobileTrackingId"];
-    [[GAI sharedInstance] trackerWithTrackingId:trackingId];
+    [[GAI sharedInstance] setDefaultTracker:[[GAI sharedInstance] trackerWithTrackingId:trackingId]];
 
     // Optionally turn on uncaught exception tracking.
     NSString *reportUncaughtExceptions = [self.settings objectForKey:@"reportUncaughtExceptions"];
