@@ -1,5 +1,5 @@
 PODS:
-  - Amplitude-iOS (2.2.4)
+  - Amplitude-iOS (2.3.0)
   - AppsFlyer-SDK (2.5.3.10)
   - Bugsnag (4.0.3):
     - Bugsnag/no-arc (= 4.0.3)
@@ -32,7 +32,7 @@ PODS:
     - Expecta (~> 0.3.0)
 
 DEPENDENCIES:
-  - Amplitude-iOS (= 2.2.4)
+  - Amplitude-iOS (= 2.3.0)
   - AppsFlyer-SDK (= 2.5.3.10)
   - Bugsnag (= 4.0.3)
   - Countly (= 1.0.0)
@@ -53,7 +53,7 @@ DEPENDENCIES:
   - TRVSKit/TRVSAssertions (~> 0.0.8)
 
 SPEC CHECKSUMS:
-  Amplitude-iOS: bef6d4d6a5bb7e37581f6aa9d72c275023fce9e3
+  Amplitude-iOS: f786c0acfd3e8977412a7abce2c49bab1e715a8f
   AppsFlyer-SDK: f83ad2e0821c57852512ea0bb8d3b207c64ef698
   Bugsnag: daf5ca27ac3af61c2cbd6faf77d0fb29f58d0e6a
   Countly: f26a3483a660b5790b2c76e1f91dea4f276b3c33
