@@ -1,4 +1,12 @@
 
+1.11.3 / 2015-03-27
+===================
+
+  * Drop flaky test
+  * Update Amplitude integration to 2.3.0
+  * Update Kahuna Integration
+  * Send location to flurry
+
 1.11.2 / 2015-03-10
 ===================
 
