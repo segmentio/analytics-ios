@@ -91,6 +91,10 @@
   [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
 }
 
+- (void)alias:(NSString *)newId options:(NSDictionary *)options {
+  [[Mixpanel sharedInstance] createAlias:newId forDistinctID:[Mixpanel sharedInstance].distinctId];
+}
+
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options {
   [[[Mixpanel sharedInstance] people] addPushDeviceToken:deviceToken];
 }
