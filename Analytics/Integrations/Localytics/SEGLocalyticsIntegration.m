@@ -118,6 +118,9 @@
   [Localytics setPushToken:deviceToken];
 }
 
+- (void)flush {
+  [Localytics upload];
+}
 
 #pragma mark - Callbacks for app state changes
 

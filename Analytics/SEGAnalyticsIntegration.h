@@ -29,6 +29,7 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options;
 - (void)alias:(NSString *)newId options:(NSDictionary *)options;
 - (void)reset;
+- (void)flush;
 
 @optional;
 
