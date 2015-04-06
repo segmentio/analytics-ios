@@ -163,6 +163,11 @@
   [self resetTraits];
 }
 
+
+- (void)flush {
+  [[GAI sharedInstance] dispatch];
+}
+
 #pragma mark - Private
 
 - (BOOL)shouldSendUserId {

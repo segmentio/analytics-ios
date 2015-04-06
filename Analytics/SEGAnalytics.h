@@ -193,14 +193,25 @@
  @method
 
  @abstract
- Reset any user state that is cached on the device.
+ Trigger an upload of all queued events.
 
+ @discussion
+ This is useful when you want to force all messages queued on the device to be uploaded. Please note that not all integrations
+ respond to this method.
+ */
+- (void)flush;
+
+/*!
+ @method
+ 
+ @abstract
+ Reset any user state that is cached on the device.
+ 
  @discussion
  This is useful when a user logs out and you want to clear the identity. It will clear any
  traits or userId's cached on the device.
  */
 - (void)reset;
-
 
 /*!
  @method

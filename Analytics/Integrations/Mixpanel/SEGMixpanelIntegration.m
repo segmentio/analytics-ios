@@ -124,4 +124,8 @@
   [[Mixpanel sharedInstance] reset];
 }
 
+- (void)flush {
+  [[Mixpanel sharedInstance] flush];
+}
+
 @end
