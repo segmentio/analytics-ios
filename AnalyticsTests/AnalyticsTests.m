@@ -111,6 +111,14 @@
   [self.mock verifyWithDelay:1];
 }
 
+- (void)testForwardsFlush {
+  [[self.mock expect] flush];
+  
+  [self.analytics flush];
+  
+  [self.mock verifyWithDelay:1];
+}
+
 - (void)testDoesntForwardTrackWithoutEvent {
   [[self.mock reject] track:@"" properties:[self properties] options:[self options]];
   [[self.mock reject] track:nil properties:[self properties] options:[self options]];

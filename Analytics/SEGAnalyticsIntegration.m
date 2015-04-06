@@ -62,6 +62,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options {}
 - (void)alias:(NSString *)newId options:(NSDictionary *)options {}
 - (void)reset {}
+- (void)flush {};
 
 - (void)applicationDidEnterBackground {}
 - (void)applicationWillEnterForeground {}
