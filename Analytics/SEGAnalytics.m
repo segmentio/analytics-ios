@@ -182,6 +182,17 @@ static SEGAnalytics *__sharedInstance = nil;
                              options:options];
 }
 
+#pragma mark - Alias
+
+- (void)alias:(NSString *)newId {
+  [self alias:newId options:nil];
+}
+
+- (void)alias:(NSString *)newId options:(NSDictionary *)options {
+  [self callIntegrationsWithSelector:_cmd
+                           arguments:@[newId, SEGCoerceDictionary(options)] options:options];
+}
+
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
   [self registerForRemoteNotificationsWithDeviceToken:deviceToken options:nil];
 }
@@ -214,7 +225,12 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)setCachedSettings:(NSDictionary *)settings {
   _cachedSettings = [settings copy];
-  [_cachedSettings ?: @{} writeToURL:self.settingsURL atomically:YES];
+  NSURL* settingsURL = [self settingsURL];
+  if (!_cachedSettings) {
+    // [@{} writeToURL:settingsURL atomically:YES];
+    return;
+  }
+  [_cachedSettings writeToURL:settingsURL atomically:YES];
   [self updateIntegrationsWithSettings:settings[@"integrations"]];
 }
 
