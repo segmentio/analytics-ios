@@ -33,11 +33,16 @@
   [super setUp];
 
   self.analytics = [[SEGAnalytics alloc] initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:@"k5l6rrye0hsv566zwuk7"]];
-  self.analytics.cachedSettings = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:
-                                                                                    [[NSBundle bundleForClass:[self class]]
-                                                                                               URLForResource:@"settings" withExtension:@"json"]] options:NSJSONReadingMutableContainers error:NULL];
+  self.analytics.cachedSettings = [self testSettings];
   self.mock = [OCMockObject partialMockForObject:[self.analytics.configuration.integrations objectForKey:@"Segment.io"]];
   [self.analytics.configuration.integrations setValue:self.mock forKey:@"Segment.io"];
+}
+
+- (NSDictionary *)testSettings {
+  NSDictionary* settings = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:
+                                           [[NSBundle bundleForClass:[self class]]
+                                            URLForResource:@"settings" withExtension:@"json"]] options:NSJSONReadingMutableContainers error:NULL];
+  return settings;
 }
 
 - (void)testHasIntegrations {
@@ -96,6 +101,14 @@
 
   [self.mock verifyWithDelay:1];
    */
+}
+
+- (void)testForwardsAlias {
+  [[self.mock expect] alias:[self identity] options:[self options]];
+  
+  [self.analytics alias:[self identity] options:[self options]];
+  
+  [self.mock verifyWithDelay:1];
 }
 
 - (void)testDoesntForwardTrackWithoutEvent {
