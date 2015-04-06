@@ -207,6 +207,10 @@ static SEGAnalytics *__sharedInstance = nil;
   [self callIntegrationsWithSelector:_cmd arguments:nil options:nil];
 }
 
+- (void)flush {
+  [self callIntegrationsWithSelector:_cmd arguments:nil options:nil];
+}
+
 - (void)enable {
   _enabled = YES;
 }

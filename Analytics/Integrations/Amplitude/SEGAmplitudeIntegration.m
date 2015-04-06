@@ -81,4 +81,8 @@
     [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
 }
 
+- (void)flush {
+  [Amplitude uploadEvents];
+}
+
 @end
