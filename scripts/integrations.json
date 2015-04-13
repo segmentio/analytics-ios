@@ -59,6 +59,13 @@
         "version": "1.0.550"
       }]
     },
+                   {
+                   "name": "Leanplum",
+                   "dependencies": [{
+                                    "name": "Leanplum-iOS-SDK",
+                                    "version": "1.2.22"
+                                    }]
+                   },
     {
       "name": "Localytics",
       "dependencies": [{
@@ -95,7 +102,7 @@
       "name": "Taplytics",
       "dependencies": [{
         "name": "Taplytics",
-        "version": "2.1.68"
+        "version": "2.1.60"
       }]
     },
     {
