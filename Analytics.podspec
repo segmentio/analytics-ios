@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.requires_arc    = true
 
   s.subspec 'Core-iOS' do |ss|
-    ss.public_header_files = 'Analytics/*.h'
+    ss.public_header_files = ['Analytics/*.h', 'Analytics/Helpers/*.h', 'Analytics/Integrations/SEGAnalyticsIntegrations.h']
     ss.source_files = ['Analytics/*.{h,m}', 'Analytics/Helpers/*.{h,m}', 'Analytics/Integrations/SEGAnalyticsIntegrations.h']
     ss.platforms = [:ios]
     ss.weak_frameworks = ['CoreBluetooth', 'SystemConfiguration', 'CoreLocation']
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   Build.subspecs.each do |a|
     s.subspec a.name do |ss|
       ss.prefix_header_contents = "#define USE_ANALYTICS_#{a.name.upcase} 1"
-      ss.public_header_files = 'Analytics/Integrations/*.h'
+      ss.public_header_files = ['Analytics/Integrations/*.h', "Analytics/Integrations/#{a.name}/SEG#{a.name}Integration.h"]
       ss.ios.source_files = "Analytics/Integrations/#{a.name}/SEG#{a.name}Integration.{h,m}"
       ss.platforms = [:ios]
 
