@@ -28,7 +28,7 @@ const NSString *SEGCentralManagerClass = @"CBCentralManager";
 
   _queue = dispatch_queue_create("io.segment.bluetooth.queue", NULL);
 
-  if (&CBCentralManagerOptionShowPowerAlertKey != NULL) {
+  if (&CBCentralManagerOptionShowPowerAlertKey != NO) {
     _manager = [[centralManager alloc] initWithDelegate:self queue:_queue options:@{ CBCentralManagerOptionShowPowerAlertKey: @NO }];
   } else {
     _manager = [[centralManager alloc] initWithDelegate:self queue:_queue];
