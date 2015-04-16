@@ -48,9 +48,12 @@
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
   NSNumber *revenue = [self.class extractRevenue:properties];
-  if (revenue != nil){
+  if (revenue == nil){
+    [KahunaAnalytics trackEvent:event];
+  } else {
+    // Although not documented, Kahuna wants revenue in cents
     NSNumber *quantity = [properties objectForKey:@"quantity"] ?: @1;
-    [KahunaAnalytics trackEvent:event withCount:[quantity longValue] andValue:[revenue longValue]];
+    [KahunaAnalytics trackEvent:event withCount:[quantity longValue] andValue:[revenue longValue] * 100];
   }
 }
 
