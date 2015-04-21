@@ -276,7 +276,7 @@ static BOOL GetAdTrackingEnabled() {
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setValue:event forKey:@"event"];
   [dictionary setValue:properties forKey:@"properties"];
-  
+
   [self enqueueAction:@"track" dictionary:dictionary options:options];
 }
 
@@ -349,11 +349,18 @@ static BOOL GetAdTrackingEnabled() {
     // they've changed (see identify function)
     [payload setValue:self.userId forKey:@"userId"];
     [payload setValue:self.anonymousId forKey:@"anonymousId"];
-    SEGLog(@"%@ Enqueueing action: %@", self, payload);
-    
+
     [payload setValue:[self integrationsDictionary:options[@"integrations"]] forKey:@"integrations"];
+
+    NSDictionary *defaultContext = [self liveContext];
+    NSDictionary *customContext = options[@"context"];
+    int capacity = customContext.count + defaultContext.count;
+    NSMutableDictionary *context = [NSMutableDictionary dictionaryWithCapacity:capacity];
+    [context addEntriesFromDictionary:defaultContext];
+    [context addEntriesFromDictionary:customContext]; // let the custom context override ours
     [payload setValue:[self liveContext] forKey:@"context"];
-    
+
+    SEGLog(@"%@ Enqueueing action: %@", self, payload);
     [self queuePayload:payload];
   }];
 }
