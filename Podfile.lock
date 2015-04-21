@@ -6,7 +6,7 @@ PODS:
   - Bugsnag/no-arc (4.0.3)
   - Countly (1.0.0)
   - CrittercismSDK (5.0.5)
-  - Expecta (0.3.1)
+  - Expecta (0.3.2)
   - FlurrySDK (4.4.0):
     - FlurrySDK/FlurrySDK (= 4.4.0)
   - FlurrySDK/FlurrySDK (4.4.0)
@@ -58,7 +58,7 @@ SPEC CHECKSUMS:
   Bugsnag: 7267951d92ac48ff264b605cf65b42208dfde905
   Countly: 61e8a4518699221846db98f09a5d6f2b38267a25
   CrittercismSDK: 807a7ae007fc0f5e14973926ac846351650e3bce
-  Expecta: a354d4633409dd9fe8c4f5ff5130426adbe31628
+  Expecta: 8c507baf13211207b1e9d0a741480600e6b4ed15
   FlurrySDK: 68f1952f3d04a82cfcfbf00ed3435e81317c2946
   GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
   KahunaSDK: faea009399ca65af8a88243b75e87d0d5f4ef129
