@@ -13,3 +13,10 @@
 @property(nonatomic, copy) NSDictionary *settings;
 
 @end
+
+@interface KahunaAppLaunchMonitor : NSObject
+
++ (instancetype) sharedInstance;
+- (void) didFinishLaunching:(NSNotification*) userInfo;
+
+@end
