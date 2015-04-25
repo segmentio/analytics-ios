@@ -44,9 +44,6 @@ static NSString* const KAHUNA_NONE = @"none";
                                            selector:@selector(didFinishLaunching:)
                                                name:UIApplicationDidFinishLaunchingNotification
                                              object:nil];
-  
-  [KahunaAnalytics setDeepIntegrationMode:true];    // Creating Kahuna on the main thread and enabling deep integration mode.
-                                                    // This ensures Kahuna's LocationManager is created on the main thread.
 }
 
 - (id)init {
@@ -277,6 +274,9 @@ static NSString* const KAHUNA_NONE = @"none";
 }
 
 - (void) didFinishLaunching:(NSNotification*) notificationPayload {
+  [KahunaAnalytics setDeepIntegrationMode:true];    // Creating Kahuna on the main thread and enabling deep integration mode.
+                                                    // This ensures Kahuna's LocationManager is created on the main thread.
+  
   NSDictionary *userInfo = notificationPayload.userInfo;
   if ([userInfo valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey]) {
     NSDictionary *remoteNotification = [userInfo valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
