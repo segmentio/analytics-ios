@@ -5,11 +5,19 @@
 #import "KahunaAnalytics.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
+#import <objc/runtime.h>
 
 #define KAHUNA_NOT_STRING_NULL_EMPTY(obj) (obj != nil \
 && [obj isKindOfClass:[NSString class]] \
 && ![@"" isEqualToString:obj])
 
+BOOL addedMethodHandleActionWithIdentifierWithFetchCompletionHandler;
+
+// Selectors that we are going to swizzle in this wrapper.
+void (*selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError)(id, SEL, id, id);
+void (*selOriginalApplicationDidReceiveRemoteNotification)(id, SEL, id, id);
+void (*selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler)(id, SEL, id, id, void (^)(UIBackgroundFetchResult result));
+void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler)(id, SEL, id, id, id, void (^)());
 
 static NSString* const KAHUNA_VIEWED_PRODUCT_CATEGORY = @"Viewed Product Category";
 static NSString* const KAHUNA_VIEWED_PRODUCT = @"Viewed Product";
@@ -39,11 +47,12 @@ static NSString* const KAHUNA_NONE = @"none";
   [SEGAnalytics registerIntegration:self withIdentifier:@"Kahuna"];
   
   // When this class loads we will register for the 'UIApplicationDidFinishLaunchingNotification' notification.
-  // To receive the notification we will use the KahunaAppLaunchMonitor singleton instance.
-  [[NSNotificationCenter defaultCenter] addObserver:[KahunaAppLaunchMonitor sharedInstance]
+  // To receive the notification we will use the KahunaPushMonitor singleton instance.
+  [[NSNotificationCenter defaultCenter] addObserver:[KahunaPushMonitor sharedInstance]
                                            selector:@selector(didFinishLaunching:)
                                                name:UIApplicationDidFinishLaunchingNotification
                                              object:nil];
+
 }
 
 - (id)init {
@@ -56,7 +65,18 @@ static NSString* const KAHUNA_NONE = @"none";
 }
 
 - (void)start {
-  [KahunaAnalytics launchWithKey:[self.settings objectForKey:@"apiKey"]];
+  // We just need one call to launchWithKey and not multiple.
+  if ([KahunaPushMonitor sharedInstance].kahunaInitialized == NO) {
+    [KahunaAnalytics launchWithKey:[self.settings objectForKey:@"apiKey"]];
+    // If we have recorded any push user info, then
+    if ([KahunaPushMonitor sharedInstance].pushInfo != nil) {
+      [KahunaAnalytics handleNotification:[KahunaPushMonitor sharedInstance].pushInfo withApplicationState:[KahunaPushMonitor sharedInstance].applicationState];
+      [KahunaPushMonitor sharedInstance].pushInfo = nil;
+    }
+    
+    [KahunaPushMonitor sharedInstance].kahunaInitialized = TRUE;
+  }
+  
   [super start];
 }
 
@@ -245,13 +265,11 @@ static NSString* const KAHUNA_NONE = @"none";
 }
 
 - (void)alias:(NSString *)newId options:(NSDictionary *)options {
-  if (KAHUNA_NOT_STRING_NULL_EMPTY (newId)) {
-    [KahunaAnalytics setUserCredentialsWithKey:KAHUNA_CREDENTIAL_USER_ID andValue:newId];
-  }
+
 }
 
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options {
-  // Do nothing, since we are already taking care of this using deep integration.
+  [KahunaAnalytics setDeviceToken:deviceToken];
 }
 
 - (void)reset {
@@ -262,25 +280,199 @@ static NSString* const KAHUNA_NONE = @"none";
 
 // This class is responsible for getting the 'UIApplicationDidFinishLaunchingNotification' notification. It is received by the
 // method didFinishLaunching and it calls [KahunaAnalytics handleNotification API.
-@implementation KahunaAppLaunchMonitor
+@implementation KahunaPushMonitor
 
 + (instancetype) sharedInstance {
-  static KahunaAppLaunchMonitor *instance;
+  static KahunaPushMonitor *instance;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    instance = [[KahunaAppLaunchMonitor alloc] init];
+    instance = [[KahunaPushMonitor alloc] init];
   });
   return instance;
 }
 
 - (void) didFinishLaunching:(NSNotification*) notificationPayload {
-  [KahunaAnalytics setDeepIntegrationMode:true];    // Creating Kahuna on the main thread and enabling deep integration mode.
-                                                    // This ensures Kahuna's LocationManager is created on the main thread.
   
   NSDictionary *userInfo = notificationPayload.userInfo;
   if ([userInfo valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey]) {
     NSDictionary *remoteNotification = [userInfo valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-    [KahunaAnalytics handleNotification:remoteNotification withApplicationState:UIApplicationStateInactive];
+    [KahunaPushMonitor sharedInstance].pushInfo = remoteNotification;
+    [KahunaPushMonitor sharedInstance].applicationState = UIApplicationStateInactive;
+  }
+  
+  // We will also swizzle the app delegate methods now. We need this so that we can intercept the registration for device token
+  // and a push being received when the app is in foreground or background.
+  [self swizzleAppDelegateMethods];
+}
+
+// App Delegate methods that deal with push notifications need to be swizzled here. That way this class will receive the delegate callbacks
+// and access the necesary details from each callback.
+- (void) swizzleAppDelegateMethods
+{
+  // ####### didFailToRegisterForRemoteNotificationsWithError  #######
+  SEL selector = @selector(application:didFailToRegisterForRemoteNotificationsWithError:);
+  if ([[UIApplication sharedApplication].delegate respondsToSelector:selector])
+  {
+    selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError = (void (*)(id, SEL, id, id)) [[[UIApplication sharedApplication].delegate class] instanceMethodForSelector:selector];
+  }
+  else
+  {
+    Method methodSegmentWrapper = class_getInstanceMethod([self class], selector);
+    const char *methodTypeEncoding = method_getTypeEncoding(methodSegmentWrapper);
+    
+    IMP implementationSegmentWrapper = class_getMethodImplementation([self class], selector);
+    class_addMethod ([[UIApplication sharedApplication].delegate class], selector, implementationSegmentWrapper, methodTypeEncoding);
+  }
+  
+  // ####### didReceiveRemoteNotification  #######
+  selector = @selector(application:didReceiveRemoteNotification:);
+  if ([[UIApplication sharedApplication].delegate respondsToSelector:selector])
+  {
+    selOriginalApplicationDidReceiveRemoteNotification = (void (*)(id, SEL, id, id)) [[[UIApplication sharedApplication].delegate class] instanceMethodForSelector:selector];
+  }
+  else
+  {
+    Method methodSegmentWrapper = class_getInstanceMethod([self class], selector);
+    const char *methodTypeEncoding = method_getTypeEncoding(methodSegmentWrapper);
+    
+    IMP implementationSegmentWrapper = class_getMethodImplementation([self class], selector);
+    class_addMethod ([[UIApplication sharedApplication].delegate class], selector, implementationSegmentWrapper, methodTypeEncoding);
+  }
+  
+  // ####### didReceiveRemoteNotification:fetchCompletionHandler  #######
+  selector = @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:);
+  if ([[UIApplication sharedApplication].delegate respondsToSelector:selector])
+  {
+    selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler = (void (*)(id, SEL, id, id, void (^)(UIBackgroundFetchResult result))) [[[UIApplication sharedApplication].delegate class] instanceMethodForSelector:selector];
+  }
+  
+  // ####### handleActionWithIdentifier:forRemoteNotification:completionHandler  #######
+  selector = @selector(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:);
+  if ([[UIApplication sharedApplication].delegate respondsToSelector:selector])
+  {
+    selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler = (void (*)(id, SEL, id, id, id, void(^)())) [[[UIApplication sharedApplication].delegate class] instanceMethodForSelector:selector];
+  }
+  else
+  {
+    Method methodSegmentWrapper = class_getInstanceMethod([self class], selector);
+    const char *methodTypeEncoding = method_getTypeEncoding(methodSegmentWrapper);
+    
+    IMP implementationSegmentWrapper = class_getMethodImplementation([self class], selector);
+    addedMethodHandleActionWithIdentifierWithFetchCompletionHandler = class_addMethod ([[UIApplication sharedApplication].delegate class], selector, implementationSegmentWrapper, methodTypeEncoding);
+  }
+  
+  // Swizzle the methods only if we got the original Application selector. Otherwise no point doing the swizzling.
+  Method methodSegmentWrapper = nil;
+  Method methodHostApp = nil;
+  
+  // Swizzling didFailToRegisterForRemoteNotificationsWithError
+  if (selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError)
+  {
+    methodSegmentWrapper = class_getInstanceMethod ([self class], @selector(application:didFailToRegisterForRemoteNotificationsWithError:));
+    methodHostApp = class_getInstanceMethod ([[UIApplication sharedApplication].delegate class], @selector(application:didFailToRegisterForRemoteNotificationsWithError:));
+    method_exchangeImplementations (methodSegmentWrapper, methodHostApp);
+  }
+  
+  // Swizzling didReceiveRemoteNotification
+  if(selOriginalApplicationDidReceiveRemoteNotification)
+  {
+    methodSegmentWrapper = class_getInstanceMethod ([self class], @selector(application:didReceiveRemoteNotification:));
+    methodHostApp = class_getInstanceMethod ([[UIApplication sharedApplication].delegate class], @selector(application:didReceiveRemoteNotification:));
+    method_exchangeImplementations (methodSegmentWrapper, methodHostApp);
+  }
+  
+  if (selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler)
+  {
+    methodSegmentWrapper = class_getInstanceMethod ([self class], @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:));
+    methodHostApp = class_getInstanceMethod ([[UIApplication sharedApplication].delegate class], @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:));
+    method_exchangeImplementations (methodSegmentWrapper, methodHostApp);
+  }
+  
+  selector = @selector(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:);
+  if (selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler)
+  {
+    methodSegmentWrapper = class_getInstanceMethod ([self class], selector);
+    methodHostApp = class_getInstanceMethod ([[UIApplication sharedApplication].delegate class], selector);
+    method_exchangeImplementations (methodSegmentWrapper, methodHostApp);
+  }
+}
+
+- (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+  if ([KahunaPushMonitor sharedInstance].kahunaInitialized) {
+    [KahunaAnalytics handleNotificationRegistrationFailure:error];
+  }
+  
+  if (selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError)
+  {
+    selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError ([UIApplication sharedApplication].delegate,
+                                                                            @selector(application:didFailToRegisterForRemoteNotificationsWithError:),
+                                                                            application,
+                                                                            error);
+  }
+}
+
+- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+  // When we get this notification, check if kahuna is initialized. If not store it for future use.
+  if ([KahunaPushMonitor sharedInstance].kahunaInitialized) {
+    [KahunaAnalytics handleNotification:userInfo withApplicationState:[UIApplication sharedApplication].applicationState];
+  } else {
+    [KahunaPushMonitor sharedInstance].pushInfo = userInfo;
+    [KahunaPushMonitor sharedInstance].applicationState = [UIApplication sharedApplication].applicationState;
+  }
+  
+  if (selOriginalApplicationDidReceiveRemoteNotification)
+  {
+    selOriginalApplicationDidReceiveRemoteNotification ([UIApplication sharedApplication].delegate,
+                                                        @selector(application:didReceiveRemoteNotification:),
+                                                        application,
+                                                        userInfo);
+  }
+}
+
+- (void) application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^) (UIBackgroundFetchResult result))completionHandler
+{
+  // When we get this notification, check if kahuna is initialized. If not store it for future use.
+  if ([KahunaPushMonitor sharedInstance].kahunaInitialized) {
+    [KahunaAnalytics handleNotification:userInfo withApplicationState:[UIApplication sharedApplication].applicationState];
+  } else {
+    [KahunaPushMonitor sharedInstance].pushInfo = userInfo;
+    [KahunaPushMonitor sharedInstance].applicationState = [UIApplication sharedApplication].applicationState;
+  }
+  
+  if (selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler)
+  {
+    selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler ([UIApplication sharedApplication].delegate,
+                                                                                  @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:),
+                                                                                  application,
+                                                                                  userInfo,
+                                                                                  completionHandler);
+  }
+}
+
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void(^)())completionHandler
+{
+  // When we get this notification, check if kahuna is initialized. If not store it for future use.
+  if ([KahunaPushMonitor sharedInstance].kahunaInitialized) {
+    [KahunaAnalytics handleNotification:userInfo withApplicationState:[UIApplication sharedApplication].applicationState];
+  } else {
+    [KahunaPushMonitor sharedInstance].pushInfo = userInfo;
+    [KahunaPushMonitor sharedInstance].applicationState = [UIApplication sharedApplication].applicationState;
+  }
+  
+  if (selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler)
+  {
+    selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler ([UIApplication sharedApplication].delegate,
+                                                                                @selector(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:),
+                                                                                application,
+                                                                                identifier,
+                                                                                userInfo,
+                                                                                completionHandler);
+  } else {
+    if (addedMethodHandleActionWithIdentifierWithFetchCompletionHandler) {
+      completionHandler ();
+    }
   }
 }
 

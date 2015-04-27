@@ -5,7 +5,7 @@
 #import <Foundation/Foundation.h>
 #import "SEGAnalyticsIntegration.h"
 
-@interface SEGKahunaIntegration : SEGAnalyticsIntegration
+@interface SEGKahunaIntegration : SEGAnalyticsIntegration 
 
 @property(nonatomic, copy) NSString *name;
 @property(nonatomic, assign) BOOL valid;
@@ -14,7 +14,10 @@
 
 @end
 
-@interface KahunaAppLaunchMonitor : NSObject
+@interface KahunaPushMonitor : NSObject
+@property (nonatomic) NSDictionary *pushInfo;
+@property (nonatomic) UIApplicationState applicationState;
+@property (nonatomic) BOOL kahunaInitialized;
 
 + (instancetype) sharedInstance;
 - (void) didFinishLaunching:(NSNotification*) userInfo;
