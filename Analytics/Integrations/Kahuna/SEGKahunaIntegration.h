@@ -5,7 +5,9 @@
 #import <Foundation/Foundation.h>
 #import "SEGAnalyticsIntegration.h"
 
-@interface SEGKahunaIntegration : SEGAnalyticsIntegration 
+@interface SEGKahunaIntegration : SEGAnalyticsIntegration {
+    NSSet *_kahunaCredentialsKeys;
+}
 
 @property(nonatomic, copy) NSString *name;
 @property(nonatomic, assign) BOOL valid;
