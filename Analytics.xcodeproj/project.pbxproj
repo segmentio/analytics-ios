@@ -269,6 +269,14 @@
 		D3EDB66718C315F100A88A7E /* SEGSegmentioIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65218C315F100A88A7E /* SEGSegmentioIntegration.m */; };
 		D3EDB66818C315F100A88A7E /* SEGTapstreamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB65418C315F100A88A7E /* SEGTapstreamIntegration.h */; };
 		D3EDB66918C315F100A88A7E /* SEGTapstreamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65518C315F100A88A7E /* SEGTapstreamIntegration.m */; };
+		DA7B09C11AF18ED100A65698 /* Apptimize.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7B09BC1AF18ED100A65698 /* Apptimize.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA7B09C21AF18ED100A65698 /* Apptimize+Compatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7B09BD1AF18ED100A65698 /* Apptimize+Compatibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA7B09C31AF18ED100A65698 /* Apptimize+Segment.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7B09BE1AF18ED100A65698 /* Apptimize+Segment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA7B09C41AF18ED100A65698 /* Apptimize+Variables.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7B09BF1AF18ED100A65698 /* Apptimize+Variables.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DA7B09C51AF18ED100A65698 /* Apptimize+VariablesInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = DA7B09C01AF18ED100A65698 /* Apptimize+VariablesInternal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DAEB6FF11AC9EBCA003E7FB3 /* SEGApptimizeIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = DAEB6FEF1AC9EBCA003E7FB3 /* SEGApptimizeIntegration.h */; };
+		DAEB6FF21AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB6FF01AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m */; };
+		DAEB6FF31AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = DAEB6FF01AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m */; };
 		EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = F7200B7B17659B2F003F3138 /* SEGAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA65F96617C2ABA600389A1A /* SEGAnalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */; };
 		EA65F96717C2ABA600389A1A /* SEGAnalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */; };
@@ -563,6 +571,13 @@
 		D3EDB65218C315F100A88A7E /* SEGSegmentioIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGSegmentioIntegration.m; sourceTree = "<group>"; };
 		D3EDB65418C315F100A88A7E /* SEGTapstreamIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGTapstreamIntegration.h; sourceTree = "<group>"; };
 		D3EDB65518C315F100A88A7E /* SEGTapstreamIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGTapstreamIntegration.m; sourceTree = "<group>"; };
+		DA7B09BC1AF18ED100A65698 /* Apptimize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Apptimize.h; path = Pods/Apptimize/Apptimize.framework/Headers/Apptimize.h; sourceTree = "<group>"; };
+		DA7B09BD1AF18ED100A65698 /* Apptimize+Compatibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Apptimize+Compatibility.h"; path = "Pods/Apptimize/Apptimize.framework/Headers/Apptimize+Compatibility.h"; sourceTree = "<group>"; };
+		DA7B09BE1AF18ED100A65698 /* Apptimize+Segment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Apptimize+Segment.h"; path = "Pods/Apptimize/Apptimize.framework/Headers/Apptimize+Segment.h"; sourceTree = "<group>"; };
+		DA7B09BF1AF18ED100A65698 /* Apptimize+Variables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Apptimize+Variables.h"; path = "Pods/Apptimize/Apptimize.framework/Headers/Apptimize+Variables.h"; sourceTree = "<group>"; };
+		DA7B09C01AF18ED100A65698 /* Apptimize+VariablesInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Apptimize+VariablesInternal.h"; path = "Pods/Apptimize/Apptimize.framework/Headers/Apptimize+VariablesInternal.h"; sourceTree = "<group>"; };
+		DAEB6FEF1AC9EBCA003E7FB3 /* SEGApptimizeIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGApptimizeIntegration.h; path = Apptimize/SEGApptimizeIntegration.h; sourceTree = "<group>"; };
+		DAEB6FF01AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGApptimizeIntegration.m; path = Apptimize/SEGApptimizeIntegration.m; sourceTree = "<group>"; };
 		E83F0FBE9BA94A03A4883160 /* libPods-Analytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Analytics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA14A25217FB1E9400870901 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = settings.json; path = ../AnalyticsTests/settings.json; sourceTree = "<group>"; };
 		EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SegmentioTests.m; path = ../AnalyticsTests/SegmentioTests.m; sourceTree = "<group>"; };
@@ -921,6 +936,11 @@
 				D331BD161860F5D4007CB22F /* TSCoreListenerImpl.h */,
 				D331BD171860F5D4007CB22F /* TSPlatformImpl.h */,
 				D331BD181860F5D4007CB22F /* TSTapstream.h */,
+				DA7B09BC1AF18ED100A65698 /* Apptimize.h */,
+				DA7B09BD1AF18ED100A65698 /* Apptimize+Compatibility.h */,
+				DA7B09BE1AF18ED100A65698 /* Apptimize+Segment.h */,
+				DA7B09BF1AF18ED100A65698 /* Apptimize+Variables.h */,
+				DA7B09C01AF18ED100A65698 /* Apptimize+VariablesInternal.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -946,6 +966,7 @@
 				D3EDB65018C315F100A88A7E /* Segmentio */,
 				32DF3277194666DA004098C1 /* Taplytics */,
 				D3EDB65318C315F100A88A7E /* Tapstream */,
+				DAEB6FF41AC9EBCE003E7FB3 /* Apptimize */,
 			);
 			path = Integrations;
 			sourceTree = "<group>";
@@ -1038,6 +1059,15 @@
 				D3EDB65518C315F100A88A7E /* SEGTapstreamIntegration.m */,
 			);
 			path = Tapstream;
+			sourceTree = "<group>";
+		};
+		DAEB6FF41AC9EBCE003E7FB3 /* Apptimize */ = {
+			isa = PBXGroup;
+			children = (
+				DAEB6FEF1AC9EBCA003E7FB3 /* SEGApptimizeIntegration.h */,
+				DAEB6FF01AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m */,
+			);
+			name = Apptimize;
 			sourceTree = "<group>";
 		};
 		EA722AF617C87BB00016E8B0 /* AnalyticsTests */ = {
@@ -1154,6 +1184,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA7B09C11AF18ED100A65698 /* Apptimize.h in Headers */,
+				DA7B09C21AF18ED100A65698 /* Apptimize+Compatibility.h in Headers */,
+				DA7B09C31AF18ED100A65698 /* Apptimize+Segment.h in Headers */,
+				DA7B09C41AF18ED100A65698 /* Apptimize+Variables.h in Headers */,
+				DA7B09C51AF18ED100A65698 /* Apptimize+VariablesInternal.h in Headers */,
 				325DCE311A8D875100D4142E /* Bugsnag.h in Headers */,
 				325DCE321A8D875100D4142E /* BugsnagConfiguration.h in Headers */,
 				325DCE331A8D875100D4142E /* BugsnagCrashReport.h in Headers */,
@@ -1172,6 +1207,7 @@
 				32385FD91A2DF0CA008E09B2 /* MPCategoryHelpers.h in Headers */,
 				32CEE41E19F5B6DB007758F2 /* TaplyticsOptions.h in Headers */,
 				32385FDF1A2DF0E7008E09B2 /* MPEventBinding.h in Headers */,
+				DAEB6FF11AC9EBCA003E7FB3 /* SEGApptimizeIntegration.h in Headers */,
 				32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */,
 				EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */,
 				D371F32E185942BB0053337D /* Crittercism.h in Headers */,
@@ -1538,7 +1574,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nPRODUCT_PATH=\"${SYMROOT}/Release/Analytics.framework\"\n\n## Prepare the framework Folder Structure\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Headers\"\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Resources\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${PRODUCT_PATH}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${PRODUCT_PATH}/Headers\"\n/bin/ln -sfh Versions/Current/Analytics \"${PRODUCT_PATH}/Analytics\"\n/bin/ln -sfh Versions/Current/Resources \"${PRODUCT_PATH}/Resources\"\n\n## Compile for both iPhone (armv7, armv7s, arm64) and iPhone Simulator (i386)\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphoneos ONLY_ACTIVE_ARCH=NO\n\n## Combine the two separate libAnalytics.a into a single fat binary containing all 3 architectures\nlipo -output \"${SYMROOT}/Release/libAnalytics.a\" -create \\\n\"${SYMROOT}/Release-iphoneos/libAnalytics.a\" \\\n\"${SYMROOT}/Release-iphonesimulator/libAnalytics.a\"\n\n## Strip out Pods-dummy objects to prevent duplicate symbol when used by CocoaPods\n\nfor ARCH in i386 armv7 arm64 x86_64\ndo\nlipo \"${SYMROOT}/Release/libAnalytics.a\" -thin $ARCH -output \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\"\nDUMMY_OBJECTS=`ar -t ${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a | grep ^Pods.*-dummy.o$ | tr '\\n' ' '`\nif [ \"$DUMMY_OBJECTS\" != \"\" ]\nthen\nar -sd \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\" $DUMMY_OBJECTS\nfi\ndone\n\n## Create a fat lib from the now cleaned up thin libs and place inside framework\nlipo -output \"${PRODUCT_PATH}/Versions/A/Analytics\" -create \\\n\"${SYMROOT}/Release/libAnalytics-i386-clean.a\" \\\n\"${SYMROOT}/Release/libAnalytics-armv7-clean.a\" \\\n\"${SYMROOT}/Release/libAnalytics-arm64-clean.a\" \\\n\"${SYMROOT}/Release/libAnalytics-x86_64-clean.a\"\n\n## produce statically linked library with analytics, google analytics, flurry and crittercism\n\nlibtool -static -o \"${PRODUCT_PATH}/Versions/A/Analytics\" \\\n\"${PRODUCT_PATH}/Versions/A/Analytics\" \\\n\"${SRCROOT}/Pods/Optimizely-iOS-SDK/Optimizely.framework/Optimizely\" \\\n\"${SRCROOT}/Pods/Taplytics/Taplytics.framework/Taplytics\"\n\n## Copy headers into the framework\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${SYMROOT}/Release-iphoneos/AnalyticsHeaders/\" \"${PRODUCT_PATH}/Versions/A/Headers/\"\n\n# also copy original resources for include by users\nall_resources=$(find Pods/Mixpanel/Mixpanel/ -type f \\( -name '*.storyboard' -or -name '*.png' \\))\n\nfor resource in $all_resources; do /bin/cp -a \"${resource}\" \"${PRODUCT_PATH}/Versions/A/Resources/\" || true; done\n\n# Zip up the framework and license for distribution, and open products folder\ncd \"${SYMROOT}/Release\"\ncp \"${PROJECT_DIR}/License.md\" .\nzip --symlinks -r Analytics-${ANALYTICS_VERSION}.zip Analytics.framework License.md\ncp -f Analytics-${ANALYTICS_VERSION}.zip Analytics-latest-stable.zip\n";
+			shellScript = "set -e\n\nPRODUCT_PATH=\"${SYMROOT}/Release/Analytics.framework\"\n\n## Prepare the framework Folder Structure\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Headers\"\nmkdir -p \"${PRODUCT_PATH}/Versions/A/Resources\"\n\n# Link the \"Current\" version to \"A\"\n/bin/ln -sfh A \"${PRODUCT_PATH}/Versions/Current\"\n/bin/ln -sfh Versions/Current/Headers \"${PRODUCT_PATH}/Headers\"\n/bin/ln -sfh Versions/Current/Analytics \"${PRODUCT_PATH}/Analytics\"\n/bin/ln -sfh Versions/Current/Resources \"${PRODUCT_PATH}/Resources\"\n\n## Compile for both iPhone (armv7, armv7s, arm64) and iPhone Simulator (i386)\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO\nxcodebuild -workspace Analytics.xcworkspace -scheme Analytics -configuration Release -sdk iphoneos ONLY_ACTIVE_ARCH=NO\n\n## Combine the two separate libAnalytics.a into a single fat binary containing all 3 architectures\nlipo -output \"${SYMROOT}/Release/libAnalytics.a\" -create \\\n\"${SYMROOT}/Release-iphoneos/libAnalytics.a\" \\\n\"${SYMROOT}/Release-iphonesimulator/libAnalytics.a\"\n\n## Strip out Pods-dummy objects to prevent duplicate symbol when used by CocoaPods\n\nfor ARCH in i386 armv7 arm64 x86_64\ndo\nlipo \"${SYMROOT}/Release/libAnalytics.a\" -thin $ARCH -output \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\"\nDUMMY_OBJECTS=`ar -t ${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a | grep ^Pods.*-dummy.o$ | tr '\\n' ' '`\nif [ \"$DUMMY_OBJECTS\" != \"\" ]\nthen\nar -sd \"${SYMROOT}/Release/libAnalytics-${ARCH}-clean.a\" $DUMMY_OBJECTS\nfi\ndone\n\n## Create a fat lib from the now cleaned up thin libs and place inside framework\nlipo -output \"${PRODUCT_PATH}/Versions/A/Analytics\" -create \\\n\"${SYMROOT}/Release/libAnalytics-i386-clean.a\" \\\n\"${SYMROOT}/Release/libAnalytics-armv7-clean.a\" \\\n\"${SYMROOT}/Release/libAnalytics-arm64-clean.a\" \\\n\"${SYMROOT}/Release/libAnalytics-x86_64-clean.a\"\n\n## produce statically linked library with analytics, google analytics, flurry and crittercism\n\nlibtool -static -o \"${PRODUCT_PATH}/Versions/A/Analytics\" \\\n\"${PRODUCT_PATH}/Versions/A/Analytics\" \\\n\"${SRCROOT}/Pods/Optimizely-iOS-SDK/Optimizely.framework/Optimizely\" \\\n\"${SRCROOT}/Pods/Taplytics/Taplytics.framework/Taplytics\" \\\n\"${SRCROOT}/Pods/Apptimize/Apptimize.framework/Apptimize\"\n\n## Copy headers into the framework\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\n/bin/cp -a \"${SYMROOT}/Release-iphoneos/AnalyticsHeaders/\" \"${PRODUCT_PATH}/Versions/A/Headers/\"\n\n# also copy original resources for include by users\nall_resources=$(find Pods/Mixpanel/Mixpanel/ -type f \\( -name '*.storyboard' -or -name '*.png' \\))\n\nfor resource in $all_resources; do /bin/cp -a \"${resource}\" \"${PRODUCT_PATH}/Versions/A/Resources/\" || true; done\n\n# Zip up the framework and license for distribution, and open products folder\ncd \"${SYMROOT}/Release\"\ncp \"${PROJECT_DIR}/License.md\" .\nzip --symlinks -r Analytics-${ANALYTICS_VERSION}.zip Analytics.framework License.md\ncp -f Analytics-${ANALYTICS_VERSION}.zip Analytics-latest-stable.zip\n";
 		};
 		EA8758AB17D7B77200833FB1 /* Sync Version Number References with ANALYTICS_VERSION */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1590,6 +1626,7 @@
 				3242C9BA1946AFD900FBE441 /* SEGGoogleAnalyticsIntegration.m in Sources */,
 				3242C9B91946AFD400FBE441 /* SEGFlurryIntegration.m in Sources */,
 				32CFF3D019AE5BCF00193D3D /* SEGAppsFlyerIntegration.m in Sources */,
+				DAEB6FF31AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m in Sources */,
 				32225233199AD6D200478B1A /* SEGReachability.m in Sources */,
 				3242C9BD1946AFEC00FBE441 /* SEGQuantcastIntegration.m in Sources */,
 				3242C9BC1946AFE300FBE441 /* SEGMixpanelIntegration.m in Sources */,
@@ -1610,6 +1647,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3EDB66918C315F100A88A7E /* SEGTapstreamIntegration.m in Sources */,
+				DAEB6FF21AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m in Sources */,
 				D3EDB66118C315F100A88A7E /* SEGGoogleAnalyticsIntegration.m in Sources */,
 				32F6381C1A8134A600C65643 /* SEGKahunaIntegration.m in Sources */,
 				D3EDB65718C315F100A88A7E /* SEGAmplitudeIntegration.m in Sources */,
@@ -1829,6 +1867,7 @@
 					"-l\"Pods-Analytics-Quantcast-Measure\"",
 					"-l\"Pods-Analytics-TRVSDictionaryWithCaseInsensitivity\"",
 					"-l\"Pods-Analytics-Taplytics\"",
+					"-l\"Pods-Analytics-Apptimize\"",
 					"-l\"Pods-Analytics-Tapstream\"",
 					"-framework",
 					"\"Accelerate\"",
@@ -1926,6 +1965,7 @@
 					"-l\"Pods-Analytics-Quantcast-Measure\"",
 					"-l\"Pods-Analytics-TRVSDictionaryWithCaseInsensitivity\"",
 					"-l\"Pods-Analytics-Taplytics\"",
+					"-l\"Pods-Analytics-Apptimize\"",
 					"-l\"Pods-Analytics-Tapstream\"",
 					"-framework",
 					"\"Accelerate\"",
