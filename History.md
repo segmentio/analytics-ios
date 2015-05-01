@@ -2,75 +2,14 @@
 1.11.5 / 2015-05-01
 ===================
 
-  * podspec: use ios 6 for platform
-  * podspec: fix platform
-  * Release 1.11.4
-  * Merge pull request #276 from lucoceano/master
-  * verbose
   * Updated Taplytics to 2.1.78
-  * Merge pull request #294 from tonyxiao/swift-cocoapods-fix
-  * Updated Taplytics to 2.1.74
-  * Update pod version
-  * Merge pull request #297 from segmentio/send-context
-  * Update spectra
-  * Update gitignore
-  * custom context
-  * Add CONTRIBUTING.md
-  * Merge pull request #295 from segmentio/send-kahuna-quantity-and-revenue
-  * Send revenue to Kahuna in cents
-  * Update kahuna
-  * Merge pull request #292 from jonathannorris/Taplytics-2.1.70
-  * make build
+  * Add ability to send custom context fields
+  * Update Kahuna integration
   * Check CBCentralManagerOptionShowPowerAlertKey != NO
-  * Fix compilation issue when integrating with cocoapods swift
-  * Marking more headers as public to make dependency as a cocoapods swift module work
-  * Update Taplytics to 2.1.70
-  * Bump
-  * Merge pull request #290 from jonathannorris/Taplytics-2.1.68
-  * Update Taplytics to 2.1.68
-  * Merge pull request #288 from jonathannorris/Taplytics-2.1.66
-  * Updated Taplytics to 2.1.66
-  * Merge pull request #287 from segmentio/add-flush
+  * Swift support
   * Add flush method
-  * Merge pull request #286 from segmentio/add-alias
   * Add alias method
-  * revert pod
-  * Sets the segment tracker always as default
-
-1.11.4 / 2015-05-01
-===================
-
-  * Merge pull request #276 from lucoceano/master
-  * verbose
-  * Updated Taplytics to 2.1.78
-  * Merge pull request #294 from tonyxiao/swift-cocoapods-fix
-  * Updated Taplytics to 2.1.74
-  * Update pod version
-  * Merge pull request #297 from segmentio/send-context
-  * Update spectra
-  * Update gitignore
-  * custom context
-  * Add CONTRIBUTING.md
-  * Merge pull request #295 from segmentio/send-kahuna-quantity-and-revenue
-  * Send revenue to Kahuna in cents
-  * Update kahuna
-  * Merge pull request #292 from jonathannorris/Taplytics-2.1.70
-  * make build
-  * Check CBCentralManagerOptionShowPowerAlertKey != NO
-  * Fix compilation issue when integrating with cocoapods swift
-  * Marking more headers as public to make dependency as a cocoapods swift module work
-  * Update Taplytics to 2.1.70
-  * Bump
-  * Merge pull request #290 from jonathannorris/Taplytics-2.1.68
-  * Update Taplytics to 2.1.68
-  * Merge pull request #288 from jonathannorris/Taplytics-2.1.66
-  * Updated Taplytics to 2.1.66
-  * Merge pull request #287 from segmentio/add-flush
-  * Add flush method
-  * Merge pull request #286 from segmentio/add-alias
-  * Add alias method
-  * revert pod
-  * Sets the segment tracker always as default
+  * Update Google Analytics integration and sets the segment tracker always as default
 
 1.11.3 / 2015-03-27
 ===================
