@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.subspec 'Core-iOS' do |ss|
     ss.public_header_files = ['Analytics/*.h', 'Analytics/Helpers/*.h', 'Analytics/Integrations/SEGAnalyticsIntegrations.h']
     ss.source_files = ['Analytics/*.{h,m}', 'Analytics/Helpers/*.{h,m}', 'Analytics/Integrations/SEGAnalyticsIntegrations.h']
-    ss.platform = :ios
+    ss.platform = :ios, '6.0'
     ss.weak_frameworks = ['CoreBluetooth', 'SystemConfiguration', 'CoreLocation']
     ss.dependency 'TRVSDictionaryWithCaseInsensitivity', '0.0.2'
     s.xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => "ANALYTICS_VERSION=#{s.version}" }
@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
       ss.prefix_header_contents = "#define USE_ANALYTICS_#{a.name.upcase} 1"
       ss.public_header_files = ['Analytics/Integrations/*.h', "Analytics/Integrations/#{a.name}/SEG#{a.name}Integration.h"]
       ss.ios.source_files = "Analytics/Integrations/#{a.name}/SEG#{a.name}Integration.{h,m}"
-      ss.platform = :ios
+      ss.platform = :ios, '6.0'
 
       ss.dependency 'Analytics/Core-iOS'
       ss.dependency 'Analytics/Segmentio' unless a.is_segment?
