@@ -104,9 +104,9 @@ static BOOL GetAdTrackingEnabled() {
 
 - (NSDictionary *)staticContext {
   NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-  
+
   dict[@"library"] = @{ @"name": @"analytics-ios", @"version": SEGStringize(ANALYTICS_VERSION) };
-  
+
   NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
   if (infoDictionary.count) {
     dict[@"app"] = @{
@@ -116,9 +116,9 @@ static BOOL GetAdTrackingEnabled() {
                           @"namespace": [[NSBundle mainBundle] bundleIdentifier] ?: @"",
                           };
   }
-  
+
   UIDevice *device = [UIDevice currentDevice];
-  
+
   dict[@"device"] = ({
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     dict[@"manufacturer"] = @"Apple";
@@ -133,22 +133,22 @@ static BOOL GetAdTrackingEnabled() {
     }
     dict;
   });
-  
+
   dict[@"os"] = @{
                        @"name" : device.systemName,
                        @"version" : device.systemVersion
                        };
-  
+
   CTCarrier *carrier = [[[CTTelephonyNetworkInfo alloc] init] subscriberCellularProvider];
   if (carrier.carrierName.length)
     dict[@"network"] = @{ @"carrier": carrier.carrierName };
-  
+
   CGSize screenSize = [UIScreen mainScreen].bounds.size;
   dict[@"screen"] = @{
                            @"width": @(screenSize.width),
                            @"height": @(screenSize.height)
                            };
-  
+
 #if !(TARGET_IPHONE_SIMULATOR)
   Class adClient = NSClassFromString(SEGADClientClass);
   if (adClient) {
@@ -167,48 +167,48 @@ static BOOL GetAdTrackingEnabled() {
 #pragma clang diagnostic pop
   }
 #endif
-  
+
   return dict;
 }
 
 - (NSMutableDictionary *)liveContext {
   NSMutableDictionary *context = [[NSMutableDictionary alloc] init];
-  
+
   [context addEntriesFromDictionary:self.context];
-  
+
   context[@"locale"] = [NSString stringWithFormat:
                         @"%@-%@",
                         [NSLocale.currentLocale objectForKey:NSLocaleLanguageCode],
                         [NSLocale.currentLocale objectForKey:NSLocaleCountryCode]];
-  
+
   context[@"timezone"] = [[NSTimeZone localTimeZone] name];
-  
+
   context[@"network"] = ({
     NSMutableDictionary *network = [[NSMutableDictionary alloc] init];
-    
+
     if (self.bluetooth.hasKnownState)
       network[@"bluetooth"] = @(self.bluetooth.isEnabled);
-    
+
     if (self.reachability.isReachable){
       network[@"wifi"] = @(self.reachability.isReachableViaWiFi);
       network[@"cellular"] = @(self.reachability.isReachableViaWWAN);
     }
-    
+
     network;
   });
-  
+
   if (self.location.hasKnownLocation)
     context[@"location"] = self.location.locationDictionary;
-  
+
   context[@"traits"] = ({
     NSMutableDictionary *traits = [[NSMutableDictionary alloc] initWithDictionary:[self traits]];
-    
+
     if (self.location.hasKnownLocation)
       traits[@"address"] = self.location.addressDictionary;
-    
+
     traits;
   });
-  
+
   return context;
 }
 
@@ -222,7 +222,7 @@ static BOOL GetAdTrackingEnabled() {
 
 - (void)beginBackgroundTask {
   [self endBackgroundTask];
-  
+
   self.flushTaskID = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
     [self endBackgroundTask];
   }];
@@ -266,13 +266,13 @@ static BOOL GetAdTrackingEnabled() {
     [self saveUserId:userId];
     [self addTraits:traits];
   }];
-  
+
   [self enqueueAction:@"identify" dictionary:@{ @"traits": traits } options:options];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
   NSCParameterAssert(event.length > 0);
-  
+
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setValue:event forKey:@"event"];
   [dictionary setValue:properties forKey:@"properties"];
@@ -282,21 +282,21 @@ static BOOL GetAdTrackingEnabled() {
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
   NSCParameterAssert(screenTitle.length > 0);
-  
+
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setValue:screenTitle forKey:@"name"];
   [dictionary setValue:properties forKey:@"properties"];
-  
+
   [self enqueueAction:@"screen" dictionary:dictionary options:options];
 }
 
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options {
   NSCParameterAssert(groupId.length > 0);
-  
+
   NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
   [dictionary setValue:groupId forKey:@"groupId"];
   [dictionary setValue:traits forKey:@"traits"];
-  
+
   [self enqueueAction:@"group" dictionary:dictionary options:options];
 }
 
@@ -312,7 +312,7 @@ static BOOL GetAdTrackingEnabled() {
 
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options {
   NSCParameterAssert(deviceToken != nil);
-  
+
   const unsigned char *buffer = (const unsigned char *)[deviceToken bytes];
   if (!buffer) {
     return;
@@ -343,7 +343,7 @@ static BOOL GetAdTrackingEnabled() {
   payload[@"type"] = action;
   payload[@"timestamp"] = [[NSDate date] description];
   payload[@"messageId"] = GenerateUUIDString();
-  
+
   [self dispatchBackground:^{
     // attach userId and anonymousId inside the dispatch_async in case
     // they've changed (see identify function)
@@ -358,7 +358,7 @@ static BOOL GetAdTrackingEnabled() {
     NSMutableDictionary *context = [NSMutableDictionary dictionaryWithCapacity:capacity];
     [context addEntriesFromDictionary:defaultContext];
     [context addEntriesFromDictionary:customContext]; // let the custom context override ours
-    [payload setValue:[self liveContext] forKey:@"context"];
+    [payload setValue:[self context] forKey:@"context"];
 
     SEGLog(@"%@ Enqueueing action: %@", self, payload);
     [self queuePayload:payload];
@@ -388,17 +388,17 @@ static BOOL GetAdTrackingEnabled() {
     } else {
       self.batch = [NSArray arrayWithArray:self.queue];
     }
-    
+
     SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)self.batch.count, (unsigned long)self.queue.count);
-    
+
     NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
     [payloadDictionary setObject:self.configuration.writeKey forKey:@"writeKey"];
     [payloadDictionary setObject:[[NSDate date] description] forKey:@"sentAt"];
     [payloadDictionary setObject:self.context forKey:@"context"];
     [payloadDictionary setObject:self.batch forKey:@"batch"];
-    
+
     SEGLog(@"Flushing payload %@", payloadDictionary);
-    
+
     NSError *error = nil;
     NSException *exception = nil;
     NSData *payload = nil;
@@ -419,7 +419,7 @@ static BOOL GetAdTrackingEnabled() {
 - (void)flushQueueByLength {
   [self dispatchBackground:^{
     SEGLog(@"%@ Length is %lu.", self, (unsigned long)self.queue.count);
-    
+
     if (self.request == nil && [self.queue count] >= self.configuration.flushAt) {
       [self flush];
     }
@@ -452,7 +452,7 @@ static BOOL GetAdTrackingEnabled() {
   [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
   [urlRequest setHTTPMethod:@"POST"];
   [urlRequest setHTTPBody:data];
-  
+
   SEGLog(@"%@ Sending batch API request.", self);
   self.request = [SEGAnalyticsRequest startWithURLRequest:urlRequest completion:^{
     [self dispatchBackground:^{
@@ -466,7 +466,7 @@ static BOOL GetAdTrackingEnabled() {
         [self.queue writeToURL:[self queueURL] atomically:YES];
         [self notifyForName:SEGSegmentioRequestDidSucceedNotification userInfo:self.batch];
       }
-      
+
       self.batch = nil;
       self.request = nil;
       [self endBackgroundTask];
@@ -532,7 +532,7 @@ static BOOL GetAdTrackingEnabled() {
     [self.configuration removeObserver:self forKeyPath:@"shouldUseLocationServices"];
     [self.configuration removeObserver:self forKeyPath:@"enableAdvertisingTracking"];
   }
-  
+
   [super setConfiguration:configuration];
   [self.configuration addObserver:self forKeyPath:@"shouldUseLocationServices" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
   [self.configuration addObserver:self forKeyPath:@"enableAdvertisingTracking" options:NSKeyValueObservingOptionInitial|NSKeyValueObservingOptionNew context:NULL];
