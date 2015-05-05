@@ -28,7 +28,10 @@ const NSString *SEGCentralManagerClass = @"CBCentralManager";
 
   _queue = dispatch_queue_create("io.segment.bluetooth.queue", NULL);
 
-  if (&CBCentralManagerOptionShowPowerAlertKey != NO) {
+  // Reading the address inline fails on iOS 6, must use a temporary
+  // variable to compare.
+  NSInteger addr = &CBCentralManagerOptionShowPowerAlertKey;
+  if (addr != 0) {
     _manager = [[centralManager alloc] initWithDelegate:self queue:_queue options:@{ CBCentralManagerOptionShowPowerAlertKey: @NO }];
   } else {
     _manager = [[centralManager alloc] initWithDelegate:self queue:_queue];
