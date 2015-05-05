@@ -358,7 +358,7 @@ static BOOL GetAdTrackingEnabled() {
     NSMutableDictionary *context = [NSMutableDictionary dictionaryWithCapacity:capacity];
     [context addEntriesFromDictionary:defaultContext];
     [context addEntriesFromDictionary:customContext]; // let the custom context override ours
-    [payload setValue:[self context] forKey:@"context"];
+    [payload setValue:context forKey:@"context"];
 
     SEGLog(@"%@ Enqueueing action: %@", self, payload);
     [self queuePayload:payload];
