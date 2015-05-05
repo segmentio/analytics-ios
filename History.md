@@ -1,4 +1,11 @@
 
+1.11.7 / 2015-05-05
+===================
+
+  * Use the right context for sending custom context fields
+  * Fix for iOS 6 compatibility
+  * Updated Taplytics 2.1.82
+
 1.11.6 / 2015-05-03
 ===================
 
