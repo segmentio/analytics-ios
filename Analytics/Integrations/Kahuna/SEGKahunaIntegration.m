@@ -47,8 +47,8 @@ static NSString* const KAHUNA_NONE = @"None";
   [SEGAnalytics registerIntegration:self withIdentifier:@"Kahuna"];
   
   // When this class loads we will register for the 'UIApplicationDidFinishLaunchingNotification' notification.
-  // To receive the notification we will use the KahunaPushMonitor singleton instance.
-  [[NSNotificationCenter defaultCenter] addObserver:[KahunaPushMonitor sharedInstance]
+  // To receive the notification we will use the SEGKahunaPushMonitor singleton instance.
+  [[NSNotificationCenter defaultCenter] addObserver:[SEGKahunaPushMonitor sharedInstance]
                                            selector:@selector(didFinishLaunching:)
                                                name:UIApplicationDidFinishLaunchingNotification
                                              object:nil];
