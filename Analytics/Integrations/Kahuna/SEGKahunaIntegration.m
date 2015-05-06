@@ -74,24 +74,23 @@ static NSString* const KAHUNA_NONE = @"None";
 }
 
 - (void)start {
-  @try {
-    // We just need one call to launchWithKey and not multiple.
-    if ([KahunaPushMonitor sharedInstance].kahunaInitialized == NO) {
-      [KahunaAnalytics launchWithKey:[self.settings objectForKey:@"apiKey"]];
+  NSString *apiKey = [self.settings objectForKey:@"apiKey"];
+  if (KAHUNA_NOT_STRING_NULL_EMPTY(apiKey)) {
+    // We just need one call to launchWithKey and not multiple. The "start" method is called
+    // everytime the app comes to foreground.
+    if ([SEGKahunaPushMonitor sharedInstance].kahunaInitialized == NO) {
+      [KahunaAnalytics launchWithKey:apiKey];
       // If we have recorded any push user info, then
-      if ([KahunaPushMonitor sharedInstance].pushInfo != nil) {
-        [KahunaAnalytics handleNotification:[KahunaPushMonitor sharedInstance].pushInfo withApplicationState:[KahunaPushMonitor sharedInstance].applicationState];
-        [KahunaPushMonitor sharedInstance].pushInfo = nil;
+      if ([SEGKahunaPushMonitor sharedInstance].pushInfo != nil) {
+        [KahunaAnalytics handleNotification:[SEGKahunaPushMonitor sharedInstance].pushInfo withApplicationState:[SEGKahunaPushMonitor sharedInstance].applicationState];
+        [SEGKahunaPushMonitor sharedInstance].pushInfo = nil;
       }
       
-      [KahunaPushMonitor sharedInstance].kahunaInitialized = TRUE;
+      [SEGKahunaPushMonitor sharedInstance].kahunaInitialized = TRUE;
     }
-    
-    [super start];
   }
-  @catch (NSException *exception) {
-    NSLog (@"Kahuna-Segment Exception : %@", exception.description);
-  }
+  
+  [super start];
 }
 
 #pragma mark - Settings
@@ -285,13 +284,13 @@ static NSString* const KAHUNA_NONE = @"None";
 
 // This class is responsible for getting the 'UIApplicationDidFinishLaunchingNotification' notification. It is received by the
 // method didFinishLaunching and it calls [KahunaAnalytics handleNotification API.
-@implementation KahunaPushMonitor
+@implementation SEGKahunaPushMonitor
 
 + (instancetype) sharedInstance {
-  static KahunaPushMonitor *instance;
+  static SEGKahunaPushMonitor *instance;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    instance = [[KahunaPushMonitor alloc] init];
+    instance = [[SEGKahunaPushMonitor alloc] init];
   });
   return instance;
 }
@@ -301,8 +300,8 @@ static NSString* const KAHUNA_NONE = @"None";
     NSDictionary *userInfo = notificationPayload.userInfo;
     if ([userInfo valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey]) {
       NSDictionary *remoteNotification = [userInfo valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-      [KahunaPushMonitor sharedInstance].pushInfo = remoteNotification;
-      [KahunaPushMonitor sharedInstance].applicationState = UIApplicationStateInactive;
+      [SEGKahunaPushMonitor sharedInstance].pushInfo = remoteNotification;
+      [SEGKahunaPushMonitor sharedInstance].applicationState = UIApplicationStateInactive;
     }
     
     // We will also swizzle the app delegate methods now. We need this so that we can intercept the registration for device token
@@ -414,7 +413,7 @@ static NSString* const KAHUNA_NONE = @"None";
 - (void) application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
   @try {
-    if ([KahunaPushMonitor sharedInstance].kahunaInitialized) {
+    if ([SEGKahunaPushMonitor sharedInstance].kahunaInitialized) {
       [KahunaAnalytics handleNotificationRegistrationFailure:error];
     }
     
@@ -491,11 +490,11 @@ static NSString* const KAHUNA_NONE = @"None";
 
 - (void) pushReceived:(NSDictionary*) userInfo {
   // When we get this notification, check if kahuna is initialized. If not store it for future use.
-  if ([KahunaPushMonitor sharedInstance].kahunaInitialized) {
+  if ([SEGKahunaPushMonitor sharedInstance].kahunaInitialized) {
     [KahunaAnalytics handleNotification:userInfo withApplicationState:[UIApplication sharedApplication].applicationState];
   } else {
-    [KahunaPushMonitor sharedInstance].pushInfo = userInfo;
-    [KahunaPushMonitor sharedInstance].applicationState = [UIApplication sharedApplication].applicationState;
+    [SEGKahunaPushMonitor sharedInstance].pushInfo = userInfo;
+    [SEGKahunaPushMonitor sharedInstance].applicationState = [UIApplication sharedApplication].applicationState;
   }
 }
 
