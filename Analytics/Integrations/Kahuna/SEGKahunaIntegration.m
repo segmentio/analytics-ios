@@ -262,11 +262,8 @@ static NSString* const KAHUNA_NONE = @"None";
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
-  id trackAllPages = [self.settings objectForKey:@"trackAllPages"];
-  if (trackAllPages &&
-      [trackAllPages isKindOfClass:[NSNumber class]] &&
-      [trackAllPages intValue] == 1 &&
-      KAHUNA_NOT_STRING_NULL_EMPTY (screenTitle)) {
+  BOOL trackAllPages = [[self.settings objectForKey:@"trackAllPages"] boolValue];
+  if (trackAllPages && KAHUNA_NOT_STRING_NULL_EMPTY (screenTitle)) {
     // Track the screen view as an event.
     [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
   }
