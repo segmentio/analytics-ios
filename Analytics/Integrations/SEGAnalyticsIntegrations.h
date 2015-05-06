@@ -66,3 +66,7 @@
 #if defined(USE_ANALYTICS_SEGMENTIO) || defined(USE_ANALYTICS_ALL)
 #import "SEGSegmentioIntegration.h"
 #endif
+
+#if defined(USE_ANALYTICS_APPTIMIZE) || defined(USE_ANALYTICS_ALL)
+#import "SEGApptimizeIntegration.h"
+#endif
