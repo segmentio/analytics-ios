@@ -16,7 +16,7 @@
 
 @end
 
-@interface KahunaPushMonitor : NSObject
+@interface SEGKahunaPushMonitor : NSObject
 @property (nonatomic) NSDictionary *pushInfo;
 @property (nonatomic) UIApplicationState applicationState;
 @property (nonatomic) BOOL kahunaInitialized;
