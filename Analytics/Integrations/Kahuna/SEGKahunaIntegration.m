@@ -285,21 +285,16 @@ static NSString* const KAHUNA_NONE = @"None";
 }
 
 - (void) didFinishLaunching:(NSNotification*) notificationPayload {
-  @try {
-    NSDictionary *userInfo = notificationPayload.userInfo;
-    if ([userInfo valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey]) {
-      NSDictionary *remoteNotification = [userInfo valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-      [SEGKahunaPushMonitor sharedInstance].pushInfo = remoteNotification;
-      [SEGKahunaPushMonitor sharedInstance].applicationState = UIApplicationStateInactive;
-    }
-    
-    // We will also swizzle the app delegate methods now. We need this so that we can intercept the registration for device token
-    // and a push being received when the app is in foreground or background.
-    [self swizzleAppDelegateMethods];
+  NSDictionary *userInfo = notificationPayload.userInfo;
+  if ([userInfo valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey]) {
+    NSDictionary *remoteNotification = [userInfo valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    [SEGKahunaPushMonitor sharedInstance].pushInfo = remoteNotification;
+    [SEGKahunaPushMonitor sharedInstance].applicationState = UIApplicationStateInactive;
   }
-  @catch (NSException *exception) {
-    NSLog (@"Kahuna-Segment Exception : %@", exception.description);
-  }
+  
+  // We will also swizzle the app delegate methods now. We need this so that we can intercept the registration for device token
+  // and a push being received when the app is in foreground or background.
+  [self swizzleAppDelegateMethods];
 }
 
 // App Delegate methods that deal with push notifications need to be swizzled here. That way this class will receive the delegate callbacks
