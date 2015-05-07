@@ -26,7 +26,7 @@
 - (void)start {
   NSString *token = [self.settings objectForKey:@"token"];
   [Mixpanel sharedInstanceWithToken:token];
-  
+
   [super start];
 }
 
@@ -44,7 +44,7 @@
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
   if (userId != nil && [userId length] != 0)
     [[Mixpanel sharedInstance] identify:userId];
-  
+
   // Map the traits to special mixpanel keywords.
   NSDictionary *map = [NSDictionary dictionaryWithObjectsAndKeys:
                        @"$first_name", @"firstName",
@@ -55,11 +55,11 @@
                        @"$name",       @"name",
                        @"$username",   @"username",
                        @"$phone",      @"phone",  nil];
-  
+
   NSDictionary *mappedTraits = [SEGAnalyticsIntegration map:traits withMap:map];
-  
+
   [[Mixpanel sharedInstance] registerSuperProperties:mappedTraits];
-  
+
   if ([(NSNumber *)[self.settings objectForKey:@"people"] boolValue]) {
     [[Mixpanel sharedInstance].people set:mappedTraits];
   }
@@ -70,14 +70,14 @@
   if (![self eventIsBlocked:event]) {
     // Track the raw event.
     [[Mixpanel sharedInstance] track:event properties:properties];
-    
+
     // If revenue is included and People is enabled, trackCharge to Mixpanel.
     NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:properties];
     if (revenue && [(NSNumber *)[self.settings objectForKey:@"people"] boolValue]) {
       [[Mixpanel sharedInstance].people trackCharge:revenue];
     }
   }
-  
+
   // If people is enabled we may want to increment this event in people
   if ([self eventShouldIncrement:event]) {
     [[Mixpanel sharedInstance].people increment:event by:@1];
@@ -87,8 +87,10 @@
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
-  // Track the screen view as an event.
-  [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
+  if ([(NSNumber *)[self.settings objectForKey:@"trackAllPages"] boolValue]) {
+    // Track the screen view as an event.
+    [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
+  }
 }
 
 - (void)alias:(NSString *)newId options:(NSDictionary *)options {
