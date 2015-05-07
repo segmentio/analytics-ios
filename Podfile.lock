@@ -16,7 +16,7 @@ PODS:
   - GoogleAnalytics-iOS-SDK/Core (3.10)
   - GoogleAnalytics-iOS-SDK/IDFA (3.10):
     - GoogleAnalytics-iOS-SDK/Core
-  - KahunaSDK (1.0.556)
+  - KahunaSDK (1.0.570)
   - Localytics (3.1.0)
   - Mixpanel (2.6.0):
     - Mixpanel/MPCategoryHelpers (= 2.6.0)
@@ -43,7 +43,7 @@ DEPENDENCIES:
   - FlurrySDK (= 4.4.0)
   - GoogleAnalytics-iOS-SDK (= 3.10)
   - GoogleAnalytics-iOS-SDK/IDFA (= 3.10)
-  - KahunaSDK (= 1.0.556)
+  - KahunaSDK (= 1.0.570)
   - Localytics (= 3.1.0)
   - Mixpanel (= 2.6.0)
   - OCMock (~> 2.2.4)
@@ -64,7 +64,7 @@ SPEC CHECKSUMS:
   Expecta: 8c507baf13211207b1e9d0a741480600e6b4ed15
   FlurrySDK: 68f1952f3d04a82cfcfbf00ed3435e81317c2946
   GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
-  KahunaSDK: faea009399ca65af8a88243b75e87d0d5f4ef129
+  KahunaSDK: ea15fdf9757c4d9bf639bf190888e20b688a30ed
   Localytics: 87268a820c285f6f5ed3fa505a176c049ed07462
   Mixpanel: 488567f7138408f360377dd46e1d189655f8b435
   OCMock: a6a7dc0e3997fb9f35d99f72528698ebf60d64f2
