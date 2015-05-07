@@ -102,104 +102,96 @@ static NSString* const KAHUNA_NONE = @"None";
 #pragma mark - Analytics API
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
-  @try {
-    NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-    if (KAHUNA_NOT_STRING_NULL_EMPTY (userId)) {
-      [KahunaAnalytics setUserCredentialsWithKey:KAHUNA_CREDENTIAL_USER_ID andValue:userId];
-    }
+  NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+  if (KAHUNA_NOT_STRING_NULL_EMPTY (userId)) {
+    [KahunaAnalytics setUserCredentialsWithKey:KAHUNA_CREDENTIAL_USER_ID andValue:userId];
+  }
+  
+  // We will go through each of the above keys, and try to see if the traits has that key. If it does, then we will add the key:value as a credential.
+  // All other traits is being tracked as an attribute.
+  for (NSString *eachKey in traits) {
+    if (!KAHUNA_NOT_STRING_NULL_EMPTY (eachKey)) continue;
     
-    // We will go through each of the above keys, and try to see if the traits has that key. If it does, then we will add the key:value as a credential.
-    // All other traits is being tracked as an attribute.
-    for (NSString *eachKey in traits) {
-      if (!KAHUNA_NOT_STRING_NULL_EMPTY (eachKey)) continue;
-      
-      NSString *eachValue = [traits objectForKey:eachKey];
-      if (KAHUNA_NOT_STRING_NULL_EMPTY (eachValue)) {
-        // Check if this is a Kahuna credential key.
-        if ([_kahunaCredentialsKeys containsObject:eachKey]) {
-          [KahunaAnalytics setUserCredentialsWithKey:eachKey andValue:eachValue];
-        } else {
-          [attributes setValue:eachValue forKey:eachKey];
-        }
-      } else if ([eachValue isKindOfClass:[NSNumber class]]) {
-        // Check if this is a Kahuna credential key.
-        if ([_kahunaCredentialsKeys containsObject:eachKey]) {
-          [KahunaAnalytics setUserCredentialsWithKey:eachKey andValue:[NSString stringWithFormat:@"%@", eachValue]];
-        } else {
-          [attributes setValue:[NSString stringWithFormat:@"%@", eachValue] forKey:eachKey];
-        }
+    NSString *eachValue = [traits objectForKey:eachKey];
+    if (KAHUNA_NOT_STRING_NULL_EMPTY (eachValue)) {
+      // Check if this is a Kahuna credential key.
+      if ([_kahunaCredentialsKeys containsObject:eachKey]) {
+        [KahunaAnalytics setUserCredentialsWithKey:eachKey andValue:eachValue];
       } else {
-        @try {
-          [attributes setValue:[eachValue description] forKey:eachKey];
-        }
-        @catch (NSException *exception) {
-          // Do nothing.
-        }
+        [attributes setValue:eachValue forKey:eachKey];
+      }
+    } else if ([eachValue isKindOfClass:[NSNumber class]]) {
+      // Check if this is a Kahuna credential key.
+      if ([_kahunaCredentialsKeys containsObject:eachKey]) {
+        [KahunaAnalytics setUserCredentialsWithKey:eachKey andValue:[NSString stringWithFormat:@"%@", eachValue]];
+      } else {
+        [attributes setValue:[NSString stringWithFormat:@"%@", eachValue] forKey:eachKey];
+      }
+    } else {
+      @try {
+        [attributes setValue:[eachValue description] forKey:eachKey];
+      }
+      @catch (NSException *exception) {
+        // Do nothing.
       }
     }
-    
-    // Track the attributes if we have any items in it.
-    if (attributes.count > 0) {
-      [KahunaAnalytics setUserAttributes:attributes];
-    }
   }
-  @catch (NSException *exception) {
-    NSLog (@"Kahuna-Segment Exception : %@", exception.description);
+  
+  // Track the attributes if we have any items in it.
+  if (attributes.count > 0) {
+    [KahunaAnalytics setUserAttributes:attributes];
   }
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
-  @try {
-    NSNumber *revenue = [self.class extractRevenue:properties];
-    NSNumber *quantity = nil;
-    for (NSString *key in properties) {
-      if ([key caseInsensitiveCompare:@"quantity"] == NSOrderedSame) {
-        id value = properties[key];
-        if ([value isKindOfClass:[NSString class]]) {
-          quantity = [NSNumber numberWithLong:[value longLongValue]];
-        } else if ([value isKindOfClass:[NSNumber class]]) {
-          quantity = value;
-        }
-        
-        break;
+  NSNumber *revenue = [self.class extractRevenue:properties];
+  NSNumber *quantity = nil;
+  for (NSString *key in properties) {
+    if (!KAHUNA_NOT_STRING_NULL_EMPTY (key)) continue;
+    if ([key caseInsensitiveCompare:@"quantity"] == NSOrderedSame) {
+      id value = properties[key];
+      if ([value isKindOfClass:[NSString class]]) {
+        quantity = [NSNumber numberWithLong:[value longLongValue]];
+      } else if ([value isKindOfClass:[NSNumber class]]) {
+        quantity = value;
       }
-    }
-    
-    // Get the count and value from quantity and revenue.
-    long value = (long) ([revenue doubleValue] * 100);
-    long count = [quantity longValue];
-    
-    if (count + value > 0) {
-      [KahunaAnalytics trackEvent:event withCount:count andValue:value];
-    } else {
-      [KahunaAnalytics trackEvent:event];
-    }
-    
-    NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *lowerCaseKeyProperties = [[NSMutableDictionary alloc] init];
-    
-    // Lower case all the keys and copy over the properties into a new dictionary.
-    for (NSString *eachKey in properties) {
-      [lowerCaseKeyProperties setValue:properties[eachKey] forKey:[eachKey lowercaseString]];
-    }
-    
-    if ([event caseInsensitiveCompare:KAHUNA_VIEWED_PRODUCT_CATEGORY] == NSOrderedSame) {
-      [self addViewedProductCategoryElements:&attributes fromProperties:lowerCaseKeyProperties];
-    } else if ([event caseInsensitiveCompare:KAHUNA_VIEWED_PRODUCT] == NSOrderedSame) {
-      [self addViewedProductElements:&attributes fromProperties:lowerCaseKeyProperties];
-    } else if ([event caseInsensitiveCompare:KAHUNA_ADDED_PRODUCT] == NSOrderedSame) {
-      [self addAddedProductElements:&attributes fromProperties:lowerCaseKeyProperties];
-    } else if ([event caseInsensitiveCompare:KAHUNA_COMPLETED_ORDER] == NSOrderedSame) {
-      [self addCompletedOrderElements:&attributes fromProperties:lowerCaseKeyProperties];
-    }
-    
-    // If we have collected any attributes, then we will call the setUserAttributes API
-    if  (attributes.count > 0) {
-      [KahunaAnalytics setUserAttributes:attributes];
+      
+      break;
     }
   }
-  @catch (NSException *exception) {
-    NSLog (@"Kahuna-Segment Exception : %@", exception.description);
+  
+  // Get the count and value from quantity and revenue.
+  long value = (long) ([revenue doubleValue] * 100);
+  long count = [quantity longValue];
+  
+  if (count + value > 0) {
+    [KahunaAnalytics trackEvent:event withCount:count andValue:value];
+  } else {
+    [KahunaAnalytics trackEvent:event];
+  }
+  
+  NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+  NSMutableDictionary *lowerCaseKeyProperties = [[NSMutableDictionary alloc] init];
+  
+  // Lower case all the keys and copy over the properties into a new dictionary.
+  for (NSString *eachKey in properties) {
+    if (!KAHUNA_NOT_STRING_NULL_EMPTY (eachKey)) continue;
+    [lowerCaseKeyProperties setValue:properties[eachKey] forKey:[eachKey lowercaseString]];
+  }
+  
+  if ([event caseInsensitiveCompare:KAHUNA_VIEWED_PRODUCT_CATEGORY] == NSOrderedSame) {
+    [self addViewedProductCategoryElements:&attributes fromProperties:lowerCaseKeyProperties];
+  } else if ([event caseInsensitiveCompare:KAHUNA_VIEWED_PRODUCT] == NSOrderedSame) {
+    [self addViewedProductElements:&attributes fromProperties:lowerCaseKeyProperties];
+  } else if ([event caseInsensitiveCompare:KAHUNA_ADDED_PRODUCT] == NSOrderedSame) {
+    [self addAddedProductElements:&attributes fromProperties:lowerCaseKeyProperties];
+  } else if ([event caseInsensitiveCompare:KAHUNA_COMPLETED_ORDER] == NSOrderedSame) {
+    [self addCompletedOrderElements:&attributes fromProperties:lowerCaseKeyProperties];
+  }
+  
+  // If we have collected any attributes, then we will call the setUserAttributes API
+  if  (attributes.count > 0) {
+    [KahunaAnalytics setUserAttributes:attributes];
   }
 }
 
