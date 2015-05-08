@@ -77,8 +77,10 @@
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    // No explicit support for screens, so we'll track an event instead.
-    [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
+    if ([(NSNumber *)[self.settings objectForKey:@"trackAllPages"] boolValue]) {
+        // Track the screen view as an event.
+        [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
+    }
 }
 
 - (void)flush {
