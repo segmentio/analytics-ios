@@ -107,7 +107,7 @@ static BOOL GetAdTrackingEnabled() {
 
   dict[@"library"] = @{ @"name": @"analytics-ios", @"version": SEGStringize(ANALYTICS_VERSION) };
 
-  NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+  NSDictionary *infoDictionary = [[NSBundle mainBundle] localizedInfoDictionary];
   if (infoDictionary.count) {
     dict[@"app"] = @{
                           @"name": infoDictionary[@"CFBundleDisplayName"] ?: @"",
