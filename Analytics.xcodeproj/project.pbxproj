@@ -736,6 +736,8 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				6EB809551AFC136D00959050 /* AMPURLConnection.h */,
+				6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */,
 				32AFA6171A9E98CF00C2AF3E /* Localytics.h */,
 				324258AF1A9D0FD900E03A28 /* NSError+SimpleConstructor.h */,
 				324258AD1A9D0FD300E03A28 /* NSDictionary+Merge.h */,
@@ -1096,8 +1098,6 @@
 		F7200B6A17659B2F003F3138 = {
 			isa = PBXGroup;
 			children = (
-				6EB809551AFC136D00959050 /* AMPURLConnection.h */,
-				6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */,
 				F7200B7817659B2F003F3138 /* Analytics */,
 				EA722AF617C87BB00016E8B0 /* AnalyticsTests */,
 				F7200B7517659B2F003F3138 /* Frameworks */,
