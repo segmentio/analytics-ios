@@ -46,7 +46,7 @@
 }
 
 - (void)testHasIntegrations {
-  XCTAssertEqual(15, self.analytics.configuration.integrations.count);
+  XCTAssertEqual(16, self.analytics.configuration.integrations.count);
 }
 
 - (void)testForwardsIdentify {
@@ -105,17 +105,17 @@
 
 - (void)testForwardsAlias {
   [[self.mock expect] alias:[self identity] options:[self options]];
-  
+
   [self.analytics alias:[self identity] options:[self options]];
-  
+
   [self.mock verifyWithDelay:1];
 }
 
 - (void)testForwardsFlush {
   [[self.mock expect] flush];
-  
+
   [self.analytics flush];
-  
+
   [self.mock verifyWithDelay:1];
 }
 
