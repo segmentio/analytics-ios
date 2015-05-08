@@ -45,7 +45,7 @@ static NSString* const KAHUNA_NONE = @"None";
 
 + (void)load {
   [SEGAnalytics registerIntegration:self withIdentifier:@"Kahuna"];
-  
+
   // When this class loads we will register for the 'UIApplicationDidFinishLaunchingNotification' notification.
   // To receive the notification we will use the SEGKahunaPushMonitor singleton instance.
   [[NSNotificationCenter defaultCenter] addObserver:[SEGKahunaPushMonitor sharedInstance]
@@ -60,7 +60,7 @@ static NSString* const KAHUNA_NONE = @"None";
     self.name = @"Kahuna";
     self.valid = NO;
     self.initialized = NO;
-    
+
     _kahunaCredentialsKeys = [NSSet setWithObjects:       KAHUNA_CREDENTIAL_USERNAME,
                                                           KAHUNA_CREDENTIAL_EMAIL,
                                                           KAHUNA_CREDENTIAL_FACEBOOK,
@@ -85,11 +85,11 @@ static NSString* const KAHUNA_NONE = @"None";
         [KahunaAnalytics handleNotification:[SEGKahunaPushMonitor sharedInstance].pushInfo withApplicationState:[SEGKahunaPushMonitor sharedInstance].applicationState];
         [SEGKahunaPushMonitor sharedInstance].pushInfo = nil;
       }
-      
+
       [SEGKahunaPushMonitor sharedInstance].kahunaInitialized = TRUE;
     }
   }
-  
+
   [super start];
 }
 
@@ -106,12 +106,12 @@ static NSString* const KAHUNA_NONE = @"None";
   if (KAHUNA_NOT_STRING_NULL_EMPTY (userId)) {
     [KahunaAnalytics setUserCredentialsWithKey:KAHUNA_CREDENTIAL_USER_ID andValue:userId];
   }
-  
+
   // We will go through each of the above keys, and try to see if the traits has that key. If it does, then we will add the key:value as a credential.
   // All other traits is being tracked as an attribute.
   for (NSString *eachKey in traits) {
     if (!KAHUNA_NOT_STRING_NULL_EMPTY (eachKey)) continue;
-    
+
     NSString *eachValue = [traits objectForKey:eachKey];
     if (KAHUNA_NOT_STRING_NULL_EMPTY (eachValue)) {
       // Check if this is a Kahuna credential key.
@@ -136,7 +136,7 @@ static NSString* const KAHUNA_NONE = @"None";
       }
     }
   }
-  
+
   // Track the attributes if we have any items in it.
   if (attributes.count > 0) {
     [KahunaAnalytics setUserAttributes:attributes];
@@ -155,30 +155,30 @@ static NSString* const KAHUNA_NONE = @"None";
       } else if ([value isKindOfClass:[NSNumber class]]) {
         quantity = value;
       }
-      
+
       break;
     }
   }
-  
+
   // Get the count and value from quantity and revenue.
   long value = (long) ([revenue doubleValue] * 100);
   long count = [quantity longValue];
-  
+
   if (count + value > 0) {
     [KahunaAnalytics trackEvent:event withCount:count andValue:value];
   } else {
     [KahunaAnalytics trackEvent:event];
   }
-  
+
   NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
   NSMutableDictionary *lowerCaseKeyProperties = [[NSMutableDictionary alloc] init];
-  
+
   // Lower case all the keys and copy over the properties into a new dictionary.
   for (NSString *eachKey in properties) {
     if (!KAHUNA_NOT_STRING_NULL_EMPTY (eachKey)) continue;
     [lowerCaseKeyProperties setValue:properties[eachKey] forKey:[eachKey lowercaseString]];
   }
-  
+
   if ([event caseInsensitiveCompare:KAHUNA_VIEWED_PRODUCT_CATEGORY] == NSOrderedSame) {
     [self addViewedProductCategoryElements:&attributes fromProperties:lowerCaseKeyProperties];
   } else if ([event caseInsensitiveCompare:KAHUNA_VIEWED_PRODUCT] == NSOrderedSame) {
@@ -188,7 +188,7 @@ static NSString* const KAHUNA_NONE = @"None";
   } else if ([event caseInsensitiveCompare:KAHUNA_COMPLETED_ORDER] == NSOrderedSame) {
     [self addCompletedOrderElements:&attributes fromProperties:lowerCaseKeyProperties];
   }
-  
+
   // If we have collected any attributes, then we will call the setUserAttributes API
   if  (attributes.count > 0) {
     [KahunaAnalytics setUserAttributes:attributes];
@@ -207,7 +207,7 @@ static NSString* const KAHUNA_NONE = @"None";
         if (aryOfCategoriesViewed.count > 50) {
           [aryOfCategoriesViewed removeObjectAtIndex:0];  // Remove the first object.
         }
-        
+
         [aryOfCategoriesViewed addObject:value];
         [(*attributes) setValue:[aryOfCategoriesViewed componentsJoinedByString:@","] forKey:KAHUNA_CATEGORIES_VIEWED];
       }
@@ -226,7 +226,7 @@ static NSString* const KAHUNA_NONE = @"None";
   if (KAHUNA_NOT_STRING_NULL_EMPTY(kname)) {
     [(*attributes) setValue:kname forKey:KAHUNA_LAST_PRODUCT_VIEWED_NAME];
   }
-  
+
   [self addViewedProductCategoryElements:attributes fromProperties:properties];
 }
 
@@ -235,12 +235,12 @@ static NSString* const KAHUNA_NONE = @"None";
   if (KAHUNA_NOT_STRING_NULL_EMPTY(kname)) {
     [(*attributes) setValue:kname forKey:KAHUNA_LAST_PRODUCT_ADDED_TO_CART_NAME];
   }
-  
+
   id category = properties [KAHUNA_CATEGORY];
   if (!KAHUNA_NOT_STRING_NULL_EMPTY(category)) {
     category = KAHUNA_NONE;
   }
-  
+
   [(*attributes) setValue:category forKey:KAHUNA_LAST_PRODUCT_ADDED_TO_CART_CATEGORY];
 }
 
@@ -254,7 +254,7 @@ static NSString* const KAHUNA_NONE = @"None";
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options {
-  BOOL trackAllPages = [[self.settings objectForKey:@"trackAllPages"] boolValue];
+  BOOL trackAllPages = [(NSNumber *)[self.settings objectForKey:@"trackAllPages"] boolValue];
   if (trackAllPages && KAHUNA_NOT_STRING_NULL_EMPTY (screenTitle)) {
     // Track the screen view as an event.
     [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
@@ -291,7 +291,7 @@ static NSString* const KAHUNA_NONE = @"None";
     [SEGKahunaPushMonitor sharedInstance].pushInfo = remoteNotification;
     [SEGKahunaPushMonitor sharedInstance].applicationState = UIApplicationStateInactive;
   }
-  
+
   // We will also swizzle the app delegate methods now. We need this so that we can intercept the registration for device token
   // and a push being received when the app is in foreground or background.
   [self swizzleAppDelegateMethods];
@@ -312,11 +312,11 @@ static NSString* const KAHUNA_NONE = @"None";
     {
       Method methodSegmentWrapper = class_getInstanceMethod([self class], selector);
       const char *methodTypeEncoding = method_getTypeEncoding(methodSegmentWrapper);
-      
+
       IMP implementationSegmentWrapper = class_getMethodImplementation([self class], selector);
       class_addMethod ([[UIApplication sharedApplication].delegate class], selector, implementationSegmentWrapper, methodTypeEncoding);
     }
-    
+
     // ####### didReceiveRemoteNotification  #######
     selector = @selector(application:didReceiveRemoteNotification:);
     if ([[UIApplication sharedApplication].delegate respondsToSelector:selector])
@@ -327,18 +327,18 @@ static NSString* const KAHUNA_NONE = @"None";
     {
       Method methodSegmentWrapper = class_getInstanceMethod([self class], selector);
       const char *methodTypeEncoding = method_getTypeEncoding(methodSegmentWrapper);
-      
+
       IMP implementationSegmentWrapper = class_getMethodImplementation([self class], selector);
       class_addMethod ([[UIApplication sharedApplication].delegate class], selector, implementationSegmentWrapper, methodTypeEncoding);
     }
-    
+
     // ####### didReceiveRemoteNotification:fetchCompletionHandler  #######
     selector = @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:);
     if ([[UIApplication sharedApplication].delegate respondsToSelector:selector])
     {
       selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler = (void (*)(id, SEL, id, id, void (^)(UIBackgroundFetchResult result))) [[[UIApplication sharedApplication].delegate class] instanceMethodForSelector:selector];
     }
-    
+
     // ####### handleActionWithIdentifier:forRemoteNotification:completionHandler  #######
     selector = @selector(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:);
     if ([[UIApplication sharedApplication].delegate respondsToSelector:selector])
@@ -349,15 +349,15 @@ static NSString* const KAHUNA_NONE = @"None";
     {
       Method methodSegmentWrapper = class_getInstanceMethod([self class], selector);
       const char *methodTypeEncoding = method_getTypeEncoding(methodSegmentWrapper);
-      
+
       IMP implementationSegmentWrapper = class_getMethodImplementation([self class], selector);
       addedMethodHandleActionWithIdentifierWithFetchCompletionHandler = class_addMethod ([[UIApplication sharedApplication].delegate class], selector, implementationSegmentWrapper, methodTypeEncoding);
     }
-    
+
     // Swizzle the methods only if we got the original Application selector. Otherwise no point doing the swizzling.
     Method methodSegmentWrapper = nil;
     Method methodHostApp = nil;
-    
+
     // Swizzling didFailToRegisterForRemoteNotificationsWithError
     if (selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError)
     {
@@ -365,7 +365,7 @@ static NSString* const KAHUNA_NONE = @"None";
       methodHostApp = class_getInstanceMethod ([[UIApplication sharedApplication].delegate class], @selector(application:didFailToRegisterForRemoteNotificationsWithError:));
       method_exchangeImplementations (methodSegmentWrapper, methodHostApp);
     }
-    
+
     // Swizzling didReceiveRemoteNotification
     if(selOriginalApplicationDidReceiveRemoteNotification)
     {
@@ -373,14 +373,14 @@ static NSString* const KAHUNA_NONE = @"None";
       methodHostApp = class_getInstanceMethod ([[UIApplication sharedApplication].delegate class], @selector(application:didReceiveRemoteNotification:));
       method_exchangeImplementations (methodSegmentWrapper, methodHostApp);
     }
-    
+
     if (selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler)
     {
       methodSegmentWrapper = class_getInstanceMethod ([self class], @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:));
       methodHostApp = class_getInstanceMethod ([[UIApplication sharedApplication].delegate class], @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:));
       method_exchangeImplementations (methodSegmentWrapper, methodHostApp);
     }
-    
+
     selector = @selector(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:);
     if (selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler)
     {
@@ -400,7 +400,7 @@ static NSString* const KAHUNA_NONE = @"None";
     if ([SEGKahunaPushMonitor sharedInstance].kahunaInitialized) {
       [KahunaAnalytics handleNotificationRegistrationFailure:error];
     }
-    
+
     if (selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError)
     {
       selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError ([UIApplication sharedApplication].delegate,
