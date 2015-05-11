@@ -1,4 +1,14 @@
 
+1.11.8 / 2015-05-11
+===================
+
+  * Use Localized Info Dictionary instead of default
+  * Respect trackAllPages setting for Amplitude
+  * Respect trackAllPages setting for Mixpanel
+  * Add Kahuna Integration
+  * Add Apptimize Integration.
+  * Update Amplitude to version 2.4.0
+
 1.11.7 / 2015-05-05
 ===================
 
