@@ -356,6 +356,7 @@ static BOOL GetAdTrackingEnabled() {
     NSDictionary *customContext = options[@"context"];
     int capacity = customContext.count + defaultContext.count;
     NSMutableDictionary *context = [NSMutableDictionary dictionaryWithCapacity:capacity];
+    [context setValue:_traits forKey:@"traits"];
     [context addEntriesFromDictionary:defaultContext];
     [context addEntriesFromDictionary:customContext]; // let the custom context override ours
     [payload setValue:context forKey:@"context"];
