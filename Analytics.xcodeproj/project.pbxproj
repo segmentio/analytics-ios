@@ -1596,7 +1596,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Update the version in Analytics.h header\noldVersion=\"\\/\\/ Version .*\"\nnewVersion=\"\\/\\/ Version ${ANALYTICS_VERSION} (Do not change this line. It is automatically modified by the build process)\"\nsed -i '' -e \"s/${oldVersion}/${newVersion}/g\" Analytics/Analytics.h\n\n# Update the version in Analytics.podspec\noldVersion=\"s.version         = .*\"\nnewVersion=\"s.version         = \\\"${ANALYTICS_VERSION}\\\"\"\nsed -i '' -e \"s/${oldVersion}/${newVersion}/g\" Analytics.podspec\n";
+			shellScript = "# Update the version in Analytics.h header\noldVersion=\"\\/\\/ Version .*\"\nnewVersion=\"\\/\\/ Version ${ANALYTICS_VERSION} (Do not change this line. It is automatically modified by the build process)\"\nsed -i'' -r \"s/${oldVersion}/${newVersion}/g\" Analytics/Analytics.h\n\n# Update the version in Analytics.podspec\noldVersion=\"s.version         = .*\"\nnewVersion=\"s.version         = \\\"${ANALYTICS_VERSION}\\\"\"\nsed -i'' -r \"s/${oldVersion}/${newVersion}/g\" Analytics.podspec\n";
 		};
 		F7DFF836C131403D8AD86562 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1777,7 +1777,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.11.8;
+				ANALYTICS_VERSION = 1.11.9;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1809,7 +1809,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.11.8;
+				ANALYTICS_VERSION = 1.11.9;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;

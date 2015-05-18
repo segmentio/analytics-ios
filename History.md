@@ -1,4 +1,14 @@
 
+1.11.9 / 2015-05-18
+===================
+
+  * seg: remove use of mutable traits, use immutable live context
+  * Merge pull request #313 from segmentio/send-context.traits
+  * Send context.traits
+  * Bump pod
+  * Merge pull request #311 from jonathannorris/Taplytics-2.1.86
+  * Updated Taplytics to 2.1.86
+
 1.11.8 / 2015-05-11
 ===================
 

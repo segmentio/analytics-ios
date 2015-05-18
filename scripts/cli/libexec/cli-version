@@ -5,6 +5,6 @@
 
 cd "$_CLI_ROOT/../../"
 
-sed -i '' "s/ANALYTICS_VERSION =.*;/ANALYTICS_VERSION = $1;/" Analytics.xcodeproj/project.pbxproj
+sed -i'' -r "s/ANALYTICS_VERSION =.*;/ANALYTICS_VERSION = $1;/" Analytics.xcodeproj/project.pbxproj
 
 
