@@ -171,7 +171,7 @@ static BOOL GetAdTrackingEnabled() {
   return dict;
 }
 
-- (NSMutableDictionary *)liveContext {
+- (NSDictionary *)liveContext {
   NSMutableDictionary *context = [[NSMutableDictionary alloc] init];
 
   [context addEntriesFromDictionary:self.context];
@@ -209,7 +209,7 @@ static BOOL GetAdTrackingEnabled() {
     traits;
   });
 
-  return context;
+  return [context copy];
 }
 
 - (void)dispatchBackground:(void(^)(void))block {
@@ -343,7 +343,7 @@ static BOOL GetAdTrackingEnabled() {
   payload[@"type"] = action;
   payload[@"timestamp"] = [[NSDate date] description];
   payload[@"messageId"] = GenerateUUIDString();
-
+  
   [self dispatchBackground:^{
     // attach userId and anonymousId inside the dispatch_async in case
     // they've changed (see identify function)
@@ -354,9 +354,10 @@ static BOOL GetAdTrackingEnabled() {
 
     NSDictionary *defaultContext = [self liveContext];
     NSDictionary *customContext = options[@"context"];
-    int capacity = customContext.count + defaultContext.count;
+    
+    NSUInteger capacity = customContext.count + defaultContext.count;
     NSMutableDictionary *context = [NSMutableDictionary dictionaryWithCapacity:capacity];
-    [context setValue:_traits forKey:@"traits"];
+    
     [context addEntriesFromDictionary:defaultContext];
     [context addEntriesFromDictionary:customContext]; // let the custom context override ours
     [payload setValue:context forKey:@"context"];
