@@ -77,7 +77,7 @@
       "name": "Optimizely",
       "dependencies": [{
         "name": "Optimizely-iOS-SDK",
-        "version": "1.0.75"
+        "version": "1.0.81"
       }]
     },
     {
