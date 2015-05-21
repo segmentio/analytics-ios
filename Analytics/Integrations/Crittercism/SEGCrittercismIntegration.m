@@ -26,7 +26,9 @@
 - (void)start
 {
     NSString *appId = [self.settings objectForKey:@"appId"];
-    [Crittercism enableWithAppID:appId];
+    CrittercismConfig* config = [CrittercismConfig defaultConfig];
+    [config setMonitorUIWebView:[(NSNumber *)[self.settings objectForKey:@"monitorWebView"] boolValue]];
+    [Crittercism enableWithAppID:appId andConfig:config];
     SEGLog(@"CrittercismIntegration initialized.");
 }
 
