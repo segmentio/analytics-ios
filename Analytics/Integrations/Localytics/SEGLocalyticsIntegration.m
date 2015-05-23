@@ -148,6 +148,7 @@
 #pragma mark - Callbacks for app state changes
 
 - (void)applicationDidEnterBackground {
+  [Localytics dismissCurrentInAppMessage];
   [Localytics closeSession];
   [Localytics upload];
 }
@@ -162,6 +163,7 @@
   [Localytics upload];
 }
 - (void)applicationWillResignActive {
+  [Localytics dismissCurrentInAppMessage];
   [Localytics closeSession];
   [Localytics upload];
 }
