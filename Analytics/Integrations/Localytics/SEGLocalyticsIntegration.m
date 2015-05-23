@@ -46,6 +46,18 @@
   SEGLog(@"LocalyticsIntegration initialized.");
 }
 
+- (void)setCustomDimensions:(NSDictionary *)dimensions {
+  NSDictionary *customDimensions = self.settings[@"dimensions"];
+
+  for (NSString *key in dimensions) {
+    NSNumber *dimension = customDimensions[key];
+    if (dimension) {
+      NSString *dimensionValue = [NSString stringWithFormat:@"%@", [dimensions objectForKey:key]];
+      [Localytics setValue:dimensionValue forCustomDimension:[dimension integerValue]];
+    }
+  }
+}
+
 #pragma mark - Settings
 
 - (void)validate {
@@ -78,18 +90,19 @@
     [Localytics setValue:name forIdentifier:@"customer_name"];
   }
 
+  [self setCustomDimensions:traits];
+
   // Other traits. Iterate over all the traits and set them.
   for (NSString *key in traits) {
     NSString *traitValue =
         [NSString stringWithFormat:@"%@", [traits objectForKey:key]];
-    [Localytics setValue:traitValue forIdentifier:key];
+    [Localytics setValue:traitValue forProfileAttribute:key withScope:LLProfileScopeApplication];
   }
 }
 
 - (void)track:(NSString *)event
     properties:(NSDictionary *)properties
        options:(NSDictionary *)options {
-  // TODO add support for dimensions
   // TODO add support for value
 
   // Backgrounded? Restart the session to add this event.
@@ -107,6 +120,8 @@
   } else {
     [Localytics tagEvent:event attributes:properties];
   }
+
+  [self setCustomDimensions:properties];
 
   // Backgrounded? Close the session again after the event.
   if (isBackgrounded) {
