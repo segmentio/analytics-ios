@@ -1,4 +1,16 @@
 
+1.11.10 / 2015-05-27
+====================
+
+  * Localytics: Dismiss In App Messages
+  * Send custom dimensions to Localytics
+  * Kahuna: Move push registration to start method
+  * Fix: Added more checks for concurrency
+  * Updated Taplytics. Added group functionality
+  * Enable Monitoring web views for Crittercism
+  * Update Crittercism Integration
+  * Update Optimizely SDK
+
 1.11.9 / 2015-05-18
 ===================
 
