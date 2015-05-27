@@ -68,6 +68,19 @@
     }
 }
 
+- (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options {
+    NSMutableDictionary *userAttributes = [[NSMutableDictionary alloc] init];
+    
+    if (groupId && [groupId length] > 0)
+        [userAttributes setObject:groupId forKey:@"groupId"];
+    
+    if (traits && [[traits allKeys] count] > 0)
+        [userAttributes setObject:traits forKey:@"groupTraits"];
+    
+    if (userAttributes.count > 0)
+        [Taplytics setUserAttributes:userAttributes];
+};
+
 - (void)reset {
     [Taplytics resetUser:^{
         SEGLog(@"Reset Taplytics User");
