@@ -46,14 +46,14 @@
   SEGLog(@"LocalyticsIntegration initialized.");
 }
 
-- (void)setCustomDimensions:(NSDictionary *)dimensions {
+- (void)setCustomDimensions:(NSDictionary *)dictionary {
   NSDictionary *customDimensions = self.settings[@"dimensions"];
 
-  for (NSString *key in dimensions) {
-    NSNumber *dimension = customDimensions[key];
-    if (dimension) {
-      NSString *dimensionValue = [NSString stringWithFormat:@"%@", [dimensions objectForKey:key]];
-      [Localytics setValue:dimensionValue forCustomDimension:[dimension integerValue]];
+  for (NSString *key in dictionary) {
+    if ([customDimensions objectForKey:key] != nil) {
+      NSString *dimension = [customDimensions objectForKey:key];
+      [Localytics setValue:[dictionary objectForKey:key]
+          forCustomDimension:[dimension integerValue]];
     }
   }
 }
@@ -96,7 +96,9 @@
   for (NSString *key in traits) {
     NSString *traitValue =
         [NSString stringWithFormat:@"%@", [traits objectForKey:key]];
-    [Localytics setValue:traitValue forProfileAttribute:key withScope:LLProfileScopeApplication];
+    [Localytics setValue:traitValue
+        forProfileAttribute:key
+                  withScope:LLProfileScopeApplication];
   }
 }
 
