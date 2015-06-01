@@ -248,14 +248,14 @@ static BOOL GetAdTrackingEnabled() {
 - (void)saveUserId:(NSString *)userId {
   [self dispatchBackground:^{
     self.userId = userId;
-    [_userId writeToURL:self.userIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+    [self.userId writeToURL:self.userIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
   }];
 }
 
 - (void)addTraits:(NSDictionary *)traits {
   [self dispatchBackground:^{
-    [_traits addEntriesFromDictionary:traits];
-    [_traits writeToURL:self.traitsURL atomically:YES];
+    [self.traits addEntriesFromDictionary:traits];
+    [[self.traits copy] writeToURL:self.traitsURL atomically:YES];
   }];
 }
 
@@ -369,7 +369,7 @@ static BOOL GetAdTrackingEnabled() {
 
 - (void)queuePayload:(NSDictionary *)payload {
   [self.queue addObject:payload];
-  [self.queue writeToURL:[self queueURL] atomically:YES];
+  [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
   [self flushQueueByLength];
 }
 
@@ -465,7 +465,7 @@ static BOOL GetAdTrackingEnabled() {
       else {
         SEGLog(@"%@ API request success 200", self);
         [self.queue removeObjectsInArray:self.batch];
-        [self.queue writeToURL:[self queueURL] atomically:YES];
+        [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
         [self notifyForName:SEGSegmentioRequestDidSucceedNotification userInfo:self.batch];
       }
 
@@ -487,7 +487,7 @@ static BOOL GetAdTrackingEnabled() {
 - (void)applicationWillTerminate {
   [self dispatchBackgroundAndWait:^{
     if (self.queue.count)
-      [self.queue writeToURL:self.queueURL atomically:YES];
+      [[self.queue copy] writeToURL:self.queueURL atomically:YES];
   }];
 }
 
