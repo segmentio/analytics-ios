@@ -226,10 +226,10 @@
 		6E5EF3D51B10063E001A4BA4 /* OptimizelyExperimentData.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB809561AFC136D00959050 /* AMPURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809551AFC136D00959050 /* AMPURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		792395711B1DBFC100FFA42B /* UXCam.h in Headers */ = {isa = PBXBuildFile; fileRef = 792395701B1DBFC100FFA42B /* UXCam.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		799CA4991B1C9C7100F6F939 /* SEGUXcamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 799CA4971B1C9C7100F6F939 /* SEGUXcamIntegration.h */; };
 		799CA49A1B1C9C7100F6F939 /* SEGUXcamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 799CA4981B1C9C7100F6F939 /* SEGUXcamIntegration.m */; };
 		799CA49B1B1C9C7100F6F939 /* SEGUXcamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 799CA4981B1C9C7100F6F939 /* SEGUXcamIntegration.m */; };
-		799CA4A01B1CB1EA00F6F939 /* UXCam.h in Headers */ = {isa = PBXBuildFile; fileRef = 799CA49F1B1CB1EA00F6F939 /* UXCam.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCEC185BFAA1007CB22F /* MPSurvey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF0185BFF49007CB22F /* CRFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -522,9 +522,9 @@
 		6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Amplitude+SSLPinning.h"; path = "Pods/Amplitude-iOS/Amplitude/Amplitude+SSLPinning.h"; sourceTree = "<group>"; };
 		6EB809551AFC136D00959050 /* AMPURLConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AMPURLConnection.h; path = "Pods/Amplitude-iOS/Amplitude/AMPURLConnection.h"; sourceTree = "<group>"; };
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		792395701B1DBFC100FFA42B /* UXCam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UXCam.h; path = Pods/UXCam/UXCam.framework/Versions/2.0.4/Headers/UXCam.h; sourceTree = "<group>"; };
 		799CA4971B1C9C7100F6F939 /* SEGUXcamIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGUXcamIntegration.h; path = UXCam/SEGUXcamIntegration.h; sourceTree = "<group>"; };
 		799CA4981B1C9C7100F6F939 /* SEGUXcamIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGUXcamIntegration.m; path = UXCam/SEGUXcamIntegration.m; sourceTree = "<group>"; };
-		799CA49F1B1CB1EA00F6F939 /* UXCam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UXCam.h; path = Pods/UXCam/UXCam.framework/Versions/2.0.2/Headers/UXCam.h; sourceTree = "<group>"; };
 		7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBlockMatchEvaluator.h; sourceTree = "<group>"; };
 		7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockMatchEvaluator.m; sourceTree = "<group>"; };
 		7F4FA16EBDB55C5FC1C286A4 /* Pods-iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Tests/Pods-iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -969,7 +969,7 @@
 				DA7B09BE1AF18ED100A65698 /* Apptimize+Segment.h */,
 				DA7B09BF1AF18ED100A65698 /* Apptimize+Variables.h */,
 				DA7B09C01AF18ED100A65698 /* Apptimize+VariablesInternal.h */,
-				799CA49F1B1CB1EA00F6F939 /* UXCam.h */,
+				792395701B1DBFC100FFA42B /* UXCam.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -1403,7 +1403,7 @@
 				3252EA801999D6390056C32A /* QuantcastNetworkReachability.h in Headers */,
 				3252EA811999D6390056C32A /* QuantcastOptOutDelegate.h in Headers */,
 				3252EA821999D6390056C32A /* QuantcastOptOutViewController.h in Headers */,
-				799CA4A01B1CB1EA00F6F939 /* UXCam.h in Headers */,
+				792395711B1DBFC100FFA42B /* UXCam.h in Headers */,
 				3252EA831999D6390056C32A /* QuantcastParameters.h in Headers */,
 				3252EA841999D6390056C32A /* QuantcastPolicy.h in Headers */,
 				3252EA851999D6390056C32A /* QuantcastUploadManager.h in Headers */,
