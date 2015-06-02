@@ -31,6 +31,7 @@
   [Taplytics startTaplyticsAPIKey:[self apiKey]];
   
   SEGLog(@"TaplyticsIntegration initialized with api key %@", [self apiKey]);
+  [super start];
 }
 
 - (void)validate {

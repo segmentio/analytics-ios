@@ -35,6 +35,7 @@
   NSString *apiKey = [self.settings objectForKey:@"apiKey"];
   [Flurry startSession:apiKey];
   SEGLog(@"FlurryIntegration initialized.");
+  [super start];
 }
 
 

@@ -28,6 +28,7 @@
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
     [Amplitude initializeApiKey:apiKey];
     SEGLog(@"AmplitudeIntegration initialized.");
+    [super start];
 }
 
 

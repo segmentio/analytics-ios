@@ -25,11 +25,10 @@
 
 - (void)start
 {
-  // Initialization
   NSString *apiKey = [self.settings objectForKey:@"apiKey"];
   [Bugsnag startBugsnagWithApiKey:apiKey];
   SEGLog(@"BugsnagIntegration initialized with apiKey %@", apiKey);
-  
+  [super start];
   // TODO add support for non-SSL?
 }
 

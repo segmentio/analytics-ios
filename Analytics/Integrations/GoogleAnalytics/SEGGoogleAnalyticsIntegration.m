@@ -61,6 +61,7 @@
 
     // All done!
     SEGLog(@"GoogleAnalyticsIntegration initialized.");
+  [super start];
 }
 
 

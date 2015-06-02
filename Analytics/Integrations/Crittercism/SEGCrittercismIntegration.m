@@ -30,6 +30,7 @@
     [config setMonitorUIWebView:[(NSNumber *)[self.settings objectForKey:@"monitorWebView"] boolValue]];
     [Crittercism enableWithAppID:appId andConfig:config];
     SEGLog(@"CrittercismIntegration initialized.");
+    [super start];
 }
 
 

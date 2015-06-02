@@ -33,6 +33,7 @@
         [[Countly sharedInstance] start:appKey withHost:serverUrl];
         SEGLog(@"CountlyIntegration initialized with appKey %@ and serverUrl %@", appKey, serverUrl);
     });
+    [super start]; // todo: maybe not?
 }
 
 
