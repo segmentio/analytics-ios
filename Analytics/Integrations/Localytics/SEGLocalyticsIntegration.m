@@ -44,6 +44,7 @@
   }
 
   SEGLog(@"LocalyticsIntegration initialized.");
+  [super start];
 }
 
 - (void)setCustomDimensions:(NSDictionary *)dictionary {
