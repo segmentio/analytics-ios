@@ -112,10 +112,10 @@
 }
 
 - (NSNumber *)shakeMenu {
-    NSString *value = self.settings[@"shakeMenu"];
+    NSNumber *value = self.settings[@"shakeMenu"];
     
     if (value != nil)
-        return [NSNumber numberWithBool:[value boolValue]];
+        return value;
     
     return nil;
 }
