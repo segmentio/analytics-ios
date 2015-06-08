@@ -28,9 +28,16 @@
 }
 
 - (void)start {
-  [Taplytics startTaplyticsAPIKey:[self apiKey]];
+  NSDictionary *options = [[NSMutableDictionary alloc] init];
   
-  SEGLog(@"TaplyticsIntegration initialized with api key %@", [self apiKey]);
+  [options setValue:[self delayLoad] forKey:@"delayLoad"];
+  if ([self shakeMenu]) {
+    [options setValue:@YES forKey:@"shakeMenu"];
+  }
+  
+  [Taplytics startTaplyticsAPIKey:[self apiKey] options:options];
+  
+  SEGLog(@"TaplyticsIntegration initialized with api key %@ and options %@", [self apiKey], options);
   [super start];
 }
 
@@ -94,6 +101,16 @@
   return self.settings[@"apiKey"];
 }
 
+- (NSNumber *)delayLoad {
+    return (NSNumber *)[self.settings objectForKey:@"delayLoad"];
+}
+
+- (BOOL)shakeMenu {
+    if ([(NSNumber *)[self.settings objectForKey:@"shakeMenu"] boolValue]) {
+      return YES;
+    }
+    return NO;
+}
 
 + (NSString *)identifier {
   return @"Taplytics";
