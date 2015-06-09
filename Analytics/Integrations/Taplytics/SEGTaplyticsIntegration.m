@@ -29,11 +29,8 @@
 
 - (void)start {
   NSDictionary *options = [[NSMutableDictionary alloc] init];
-  
   [options setValue:[self delayLoad] forKey:@"delayLoad"];
-  if ([self shakeMenu]) {
-    [options setValue:@YES forKey:@"shakeMenu"];
-  }
+  [options setValue:[self shakeMenu] forKey:@"shakeMenu"];
   
   [Taplytics startTaplyticsAPIKey:[self apiKey] options:options];
   
@@ -105,11 +102,8 @@
     return (NSNumber *)[self.settings objectForKey:@"delayLoad"];
 }
 
-- (BOOL)shakeMenu {
-    if ([(NSNumber *)[self.settings objectForKey:@"shakeMenu"] boolValue]) {
-      return YES;
-    }
-    return NO;
+- (NSNumber *)shakeMenu {
+    return (NSNumber *)[self.settings objectForKey:@"shakeMenu"];
 }
 
 + (NSString *)identifier {
