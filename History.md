@@ -1,4 +1,11 @@
 
+1.11.12 / 2015-06-09
+====================
+
+  * Use infoDictionary and override with values from localizedInfoDictionary
+  * Added delayLoad, and shakeMenu options for Taplytics. Removed random, old files in Tapstream's directory.
+  * Call [super start] in all integrations
+
 1.11.11 / 2015-06-01
 ====================
 
