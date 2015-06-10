@@ -124,3 +124,5 @@ Pods/
 
 # Custom CLI scripts
 scripts/cli/libexec/node_modules
+Analytics.podspec-r
+Analytics/Analytics.h-r
