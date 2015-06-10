@@ -31,6 +31,7 @@
   NSDictionary *options = [[NSMutableDictionary alloc] init];
   [options setValue:[self delayLoad] forKey:@"delayLoad"];
   [options setValue:[self shakeMenu] forKey:@"shakeMenu"];
+  [options setValue:[self pushSandbox] forKey:@"pushSandbox"];
   
   [Taplytics startTaplyticsAPIKey:[self apiKey] options:options];
   
@@ -99,11 +100,15 @@
 }
 
 - (NSNumber *)delayLoad {
-    return (NSNumber *)[self.settings objectForKey:@"delayLoad"];
+  return (NSNumber *)[self.settings objectForKey:@"delayLoad"];
 }
 
 - (NSNumber *)shakeMenu {
-    return (NSNumber *)[self.settings objectForKey:@"shakeMenu"];
+  return (NSNumber *)[self.settings objectForKey:@"shakeMenu"];
+}
+
+- (NSNumber *)pushSandbox {
+  return (NSNumber *)[self.settings objectForKey:@"pushSandbox"];
 }
 
 + (NSString *)identifier {
