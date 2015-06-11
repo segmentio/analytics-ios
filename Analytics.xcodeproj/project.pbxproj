@@ -226,6 +226,9 @@
 		6E5EF3D51B10063E001A4BA4 /* OptimizelyExperimentData.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB809561AFC136D00959050 /* AMPURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809551AFC136D00959050 /* AMPURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C7C3167D1B1C6236004A4CA7 /* SEGMoEngageIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = C7C3167B1B1C6236004A4CA7 /* SEGMoEngageIntegration.h */; };
+		C7C3167E1B1C6236004A4CA7 /* SEGMoEngageIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C3167C1B1C6236004A4CA7 /* SEGMoEngageIntegration.m */; };
+		C7C3167F1B1C6236004A4CA7 /* SEGMoEngageIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = C7C3167C1B1C6236004A4CA7 /* SEGMoEngageIntegration.m */; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCEC185BFAA1007CB22F /* MPSurvey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF0185BFF49007CB22F /* CRFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -521,6 +524,8 @@
 		7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBlockMatchEvaluator.h; sourceTree = "<group>"; };
 		7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockMatchEvaluator.m; sourceTree = "<group>"; };
 		7F4FA16EBDB55C5FC1C286A4 /* Pods-iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Tests/Pods-iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
+		C7C3167B1B1C6236004A4CA7 /* SEGMoEngageIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGMoEngageIntegration.h; sourceTree = "<group>"; };
+		C7C3167C1B1C6236004A4CA7 /* SEGMoEngageIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGMoEngageIntegration.m; sourceTree = "<group>"; };
 		CF9D8D528CEEAAA3F9A1B394 /* Pods-Analytics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Analytics/Pods-Analytics.debug.xcconfig"; sourceTree = "<group>"; };
 		D309DBF218A2BD2900BA9F31 /* libFlurry_4.3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.1.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.1.a; sourceTree = "<group>"; };
 		D31C8F7D18A2D83700DA22A6 /* MPNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPNotification.h; path = Pods/Mixpanel/Mixpanel/MPNotification.h; sourceTree = "<group>"; };
@@ -735,6 +740,15 @@
 				7F4FA16EBDB55C5FC1C286A4 /* Pods-iOS Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C7C3167A1B1C6236004A4CA7 /* MoEngage */ = {
+			isa = PBXGroup;
+			children = (
+				C7C3167B1B1C6236004A4CA7 /* SEGMoEngageIntegration.h */,
+				C7C3167C1B1C6236004A4CA7 /* SEGMoEngageIntegration.m */,
+			);
+			path = MoEngage;
 			sourceTree = "<group>";
 		};
 		D3D35174186242B4005586E7 /* Headers */ = {
@@ -973,6 +987,7 @@
 				D3EDB64A18C315F100A88A7E /* Localytics */,
 				32F638181A81348700C65643 /* Kahuna */,
 				D3EDB64D18C315F100A88A7E /* Mixpanel */,
+				C7C3167A1B1C6236004A4CA7 /* MoEngage */,
 				32A69C1F1979CF4A00D69943 /* Optimizely */,
 				32A8C60419107DBD00173AE5 /* Quantcast */,
 				D3EDB65018C315F100A88A7E /* Segmentio */,
@@ -1243,6 +1258,7 @@
 				D3EDB65818C315F100A88A7E /* SEGBugsnagIntegration.h in Headers */,
 				D371F330185942C90053337D /* Flurry.h in Headers */,
 				D371F332185942DE0053337D /* GAI.h in Headers */,
+				C7C3167D1B1C6236004A4CA7 /* SEGMoEngageIntegration.h in Headers */,
 				D3EDB65E18C315F100A88A7E /* SEGFlurryIntegration.h in Headers */,
 				32DF327A194666DA004098C1 /* SEGTaplyticsIntegration.h in Headers */,
 				3252EA451999D5A50056C32A /* GAIEcommerceFields.h in Headers */,
@@ -1649,6 +1665,7 @@
 				3242C9AD1946AD9600FBE441 /* SEGAnalytics.m in Sources */,
 				3242C9BE1946AFF200FBE441 /* SEGTaplyticsIntegration.m in Sources */,
 				3242C9AF1946AD9B00FBE441 /* SEGAnalyticsUtils.m in Sources */,
+				C7C3167F1B1C6236004A4CA7 /* SEGMoEngageIntegration.m in Sources */,
 				3242C9AE1946AD9900FBE441 /* SEGAnalyticsRequest.m in Sources */,
 				3242C9B81946AFD100FBE441 /* SEGCrittercismIntegration.m in Sources */,
 				3242C9A31946A3E100FBE441 /* iOS_Tests.m in Sources */,
@@ -1663,6 +1680,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3EDB66918C315F100A88A7E /* SEGTapstreamIntegration.m in Sources */,
+				C7C3167E1B1C6236004A4CA7 /* SEGMoEngageIntegration.m in Sources */,
 				DAEB6FF21AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m in Sources */,
 				D3EDB66118C315F100A88A7E /* SEGGoogleAnalyticsIntegration.m in Sources */,
 				32F6381C1A8134A600C65643 /* SEGKahunaIntegration.m in Sources */,
