@@ -7,21 +7,37 @@
 static BOOL kAnalyticsLoggerShowLogs = NO;
 
 NSURL *SEGAnalyticsURLForFilename(NSString *filename) {
-  NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+  NSArray *paths = NSSearchPathForDirectoriesInDomains(
+      NSApplicationSupportDirectory, NSUserDomainMask, YES);
   NSString *supportPath = [paths firstObject];
-  if (![[NSFileManager defaultManager] fileExistsAtPath:supportPath isDirectory:NULL]) {
+  if (![[NSFileManager defaultManager] fileExistsAtPath:supportPath
+                                            isDirectory:NULL]) {
     NSError *error = nil;
-    if (![[NSFileManager defaultManager] createDirectoryAtPath:supportPath withIntermediateDirectories:YES attributes:nil error:&error]) {
+    if (![[NSFileManager defaultManager] createDirectoryAtPath:supportPath
+                                   withIntermediateDirectories:YES
+                                                    attributes:nil
+                                                         error:&error]) {
       SEGLog(@"error: %@", error.localizedDescription);
     }
   }
-  return [NSURL fileURLWithPath:[supportPath stringByAppendingPathComponent:filename]];
+  return [NSURL
+      fileURLWithPath:[supportPath stringByAppendingPathComponent:filename]];
+}
+
+// Date Utils
+NSString *iso8601FormattedString(NSDate *date) {
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZ";
+  return [dateFormatter stringFromDate:date];
 }
 
 // Async Utils
-dispatch_queue_t seg_dispatch_queue_create_specific(const char *label, dispatch_queue_attr_t attr) {
+dispatch_queue_t
+seg_dispatch_queue_create_specific(const char *label,
+                                   dispatch_queue_attr_t attr) {
   dispatch_queue_t queue = dispatch_queue_create(label, attr);
-  dispatch_queue_set_specific(queue, (__bridge const void *)queue, (__bridge void *)queue, NULL);
+  dispatch_queue_set_specific(queue, (__bridge const void *)queue,
+                              (__bridge void *)queue, NULL);
   return queue;
 }
 
@@ -29,7 +45,8 @@ BOOL seg_dispatch_is_on_specific_queue(dispatch_queue_t queue) {
   return dispatch_get_specific((__bridge const void *)queue) != NULL;
 }
 
-void seg_dispatch_specific(dispatch_queue_t queue, dispatch_block_t block, BOOL waitForCompletion) {
+void seg_dispatch_specific(dispatch_queue_t queue, dispatch_block_t block,
+                           BOOL waitForCompletion) {
   if (dispatch_get_specific((__bridge const void *)queue)) {
     block();
   } else if (waitForCompletion) {
@@ -39,11 +56,13 @@ void seg_dispatch_specific(dispatch_queue_t queue, dispatch_block_t block, BOOL 
   }
 }
 
-void seg_dispatch_specific_async(dispatch_queue_t queue, dispatch_block_t block) {
+void seg_dispatch_specific_async(dispatch_queue_t queue,
+                                 dispatch_block_t block) {
   seg_dispatch_specific(queue, block, NO);
 }
 
-void seg_dispatch_specific_sync(dispatch_queue_t queue, dispatch_block_t block) {
+void seg_dispatch_specific_sync(dispatch_queue_t queue,
+                                dispatch_block_t block) {
   seg_dispatch_specific(queue, block, YES);
 }
 
@@ -54,8 +73,9 @@ void SEGSetShowDebugLogs(BOOL showDebugLogs) {
 }
 
 void SEGLog(NSString *format, ...) {
-  if (!kAnalyticsLoggerShowLogs) return;
-  
+  if (!kAnalyticsLoggerShowLogs)
+    return;
+
   va_list args;
   va_start(args, format);
   NSLogv(format, args);
@@ -72,42 +92,46 @@ static id SEGCoerceJSONObject(id obj) {
       [obj isKindOfClass:[NSNull class]]) {
     return obj;
   }
-  
+
   if ([obj isKindOfClass:[NSArray class]]) {
     NSMutableArray *array = [NSMutableArray array];
     for (id i in obj)
       [array addObject:SEGCoerceJSONObject(i)];
     return array;
   }
-  
+
   if ([obj isKindOfClass:[NSDictionary class]]) {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     for (NSString *key in obj) {
       if (![key isKindOfClass:[NSString class]])
-        SEGLog(@"warning: dictionary keys should be strings. got: %@. coercing to: %@", [key class], [key description]);
+        SEGLog(@"warning: dictionary keys should be strings. got: %@. coercing "
+               @"to: %@",
+               [key class], [key description]);
       dict[key.description] = SEGCoerceJSONObject(obj[key]);
     }
     return dict;
   }
-  
+
   // NSDate description is already a valid ISO8061 string
   if ([obj isKindOfClass:[NSDate class]])
-    return [obj description];
-  
+    return iso8601FormattedString(obj);
+
   if ([obj isKindOfClass:[NSURL class]])
     return [obj absoluteString];
-  
+
   // default to sending the object's description
-  SEGLog(@"warning: dictionary values should be valid json types. got: %@. coercing to: %@", [obj class], [obj description]);
+  SEGLog(@"warning: dictionary values should be valid json types. got: %@. "
+         @"coercing to: %@",
+         [obj class], [obj description]);
   return [obj description];
 }
 
 static void AssertDictionaryTypes(id dict) {
   assert([dict isKindOfClass:[NSDictionary class]]);
   for (id key in dict) {
-    assert([key isKindOfClass: [NSString class]]);
+    assert([key isKindOfClass:[NSString class]]);
     id value = dict[key];
-    
+
     assert([value isKindOfClass:[NSString class]] ||
            [value isKindOfClass:[NSNumber class]] ||
            [value isKindOfClass:[NSNull class]] ||
@@ -128,13 +152,20 @@ NSDictionary *SEGCoerceDictionary(NSDictionary *dict) {
 }
 
 NSString *SEGIDFA() {
-  NSString* idForAdvertiser = nil;
+  NSString *idForAdvertiser = nil;
   Class identifierManager = NSClassFromString(@"ASIdentifierManager");
   if (identifierManager) {
     SEL sharedManagerSelector = NSSelectorFromString(@"sharedManager");
-    id sharedManager = ((id (*)(id, SEL))[identifierManager methodForSelector:sharedManagerSelector])(identifierManager, sharedManagerSelector);
-    SEL advertisingIdentifierSelector = NSSelectorFromString(@"advertisingIdentifier");
-    NSUUID *uuid = ((NSUUID* (*)(id, SEL))[sharedManager methodForSelector:advertisingIdentifierSelector])(sharedManager, advertisingIdentifierSelector);
+    id sharedManager =
+        ((id (*)(id, SEL))
+             [identifierManager methodForSelector:sharedManagerSelector])(
+            identifierManager, sharedManagerSelector);
+    SEL advertisingIdentifierSelector =
+        NSSelectorFromString(@"advertisingIdentifier");
+    NSUUID *uuid =
+        ((NSUUID * (*)(id, SEL))
+             [sharedManager methodForSelector:advertisingIdentifierSelector])(
+            sharedManager, advertisingIdentifierSelector);
     idForAdvertiser = [uuid UUIDString];
   }
   return idForAdvertiser;
