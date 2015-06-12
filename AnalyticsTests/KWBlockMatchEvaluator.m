@@ -8,13 +8,16 @@
 
 #import "KWBlockMatchEvaluator.h"
 
+
 @implementation KWBlockMatchEvaluator
 
-- (BOOL)matches:(id)object {
+- (BOOL)matches:(id)object
+{
     return self.matchBlock(object);
 }
 
-+ (id)evaluatorWithBlock:(BOOL (^)(id object))matchBlock {
++ (id)evaluatorWithBlock:(BOOL (^)(id object))matchBlock
+{
     NSParameterAssert(matchBlock);
     KWBlockMatchEvaluator *evaluator = [[self alloc] init];
     evaluator.matchBlock = matchBlock;

@@ -6,15 +6,18 @@
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 
+
 @implementation SEGCountlyIntegration
 
 #pragma mark - Initialization
 
-+ (void)load {
++ (void)load
+{
     [SEGAnalytics registerIntegration:self withIdentifier:@"Countly"];
 }
 
-- (id)init {
+- (id)init
+{
     if (self = [super init]) {
         self.name = @"Countly";
         self.valid = NO;
@@ -66,8 +69,7 @@
     if (revenue) {
         SEGLog(@"Calling Countly with event:%@, segmentation:%@, sum:%@", event, notNestedProperties, revenue);
         [[Countly sharedInstance] recordEvent:event segmentation:notNestedProperties count:1 sum:revenue.longValue];
-    }
-    else {
+    } else {
         SEGLog(@"Calling Countly with event:%@, segmentation:%@", event, notNestedProperties);
         [[Countly sharedInstance] recordEvent:event segmentation:notNestedProperties count:1];
     }

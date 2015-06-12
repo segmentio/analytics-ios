@@ -6,19 +6,23 @@
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 
-@interface SEGTapstreamIntegration()
+
+@interface SEGTapstreamIntegration ()
 - (TSEvent *)makeEvent:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options;
 @end
+
 
 @implementation SEGTapstreamIntegration
 
 #pragma mark - Initialization
 
-+ (void)load {
++ (void)load
+{
     [SEGAnalytics registerIntegration:self withIdentifier:@"Tapstream"];
 }
 
-- (id)init {
+- (id)init
+{
     if (self = [super init]) {
         self.name = @"Tapstream";
         self.valid = NO;
@@ -27,12 +31,13 @@
     return self;
 }
 
-- (void)start {
+- (void)start
+{
     TSConfig *config = [TSConfig configWithDefaults];
 
     // Load any values that the TSConfig object supports
-    for(NSString *key in self.settings) {
-        if([config respondsToSelector:NSSelectorFromString(key)]) {
+    for (NSString *key in self.settings) {
+        if ([config respondsToSelector:NSSelectorFromString(key)]) {
             [config setValue:[self.settings objectForKey:key] forKey:key];
         }
     }
@@ -91,20 +96,14 @@
 
     TSEvent *e = [TSEvent eventWithName:event oneTimeOnly:oto];
 
-    for(NSString *key in properties)
-    {
+    for (NSString *key in properties) {
         id value = [properties objectForKey:key];
-        if([value isKindOfClass:[NSString class]])
-        {
+        if ([value isKindOfClass:[NSString class]]) {
             [e addValue:(NSString *)value forKey:(NSString *)key];
-        }
-        else if([value isKindOfClass:[NSNumber class]])
-        {
+        } else if ([value isKindOfClass:[NSNumber class]]) {
             NSNumber *number = (NSNumber *)value;
             [e addValue:(NSString *)number forKey:(NSString *)key];
-        }
-        else
-        {
+        } else {
             SEGLog(@"Tapstream Event cannot accept a param of type %@, skipping param %@", [value class], key);
         }
     }

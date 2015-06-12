@@ -46,56 +46,59 @@
  * @see http://nshipster.com/ns_enum-ns_options/
  **/
 #ifndef NS_ENUM
-#define NS_ENUM(_type, _name) enum _name : _type _name; enum _name : _type
+#define NS_ENUM(_type, _name) \
+    enum _name : _type _name; \
+    enum _name : _type
 #endif
 
 extern NSString *const kSEGReachabilityChangedNotification;
 
 typedef NS_ENUM(NSInteger, SEGNetworkStatus) {
-  // Apple NetworkStatus Compatible Names.
-  SEGNotReachable = 0,
-  SEGReachableViaWiFi = 2,
-  SEGReachableViaWWAN = 1
+    // Apple NetworkStatus Compatible Names.
+    SEGNotReachable = 0,
+    SEGReachableViaWiFi = 2,
+    SEGReachableViaWWAN = 1
 };
 
 @class SEGReachability;
 
-typedef void (^SEGNetworkReachable)(SEGReachability * reachability);
-typedef void (^SEGNetworkUnreachable)(SEGReachability * reachability);
+typedef void (^SEGNetworkReachable)(SEGReachability *reachability);
+typedef void (^SEGNetworkUnreachable)(SEGReachability *reachability);
+
 
 @interface SEGReachability : NSObject
 
-@property (nonatomic, copy) SEGNetworkReachable    reachableBlock;
-@property (nonatomic, copy) SEGNetworkUnreachable  unreachableBlock;
+@property (nonatomic, copy) SEGNetworkReachable reachableBlock;
+@property (nonatomic, copy) SEGNetworkUnreachable unreachableBlock;
 
 
 @property (nonatomic, assign) BOOL reachableOnWWAN;
 
-+(SEGReachability*)reachabilityWithHostname:(NSString*)hostname;
-+(SEGReachability*)reachabilityForInternetConnection;
-+(SEGReachability*)reachabilityForLocalWiFi;
++ (SEGReachability *)reachabilityWithHostname:(NSString *)hostname;
++ (SEGReachability *)reachabilityForInternetConnection;
++ (SEGReachability *)reachabilityForLocalWiFi;
 
--(SEGReachability *)initWithReachabilityRef:(SCNetworkReachabilityRef)ref;
+- (SEGReachability *)initWithReachabilityRef:(SCNetworkReachabilityRef)ref;
 
--(BOOL)startNotifier;
--(void)stopNotifier;
+- (BOOL)startNotifier;
+- (void)stopNotifier;
 
--(BOOL)isReachable;
--(BOOL)isReachableViaWWAN;
--(BOOL)isReachableViaWiFi;
+- (BOOL)isReachable;
+- (BOOL)isReachableViaWWAN;
+- (BOOL)isReachableViaWiFi;
 
 // WWAN may be available, but not active until a connection has been established.
 // WiFi may require a connection for VPN on Demand.
--(BOOL)isConnectionRequired; // Identical DDG variant.
--(BOOL)connectionRequired; // Apple's routine.
+- (BOOL)isConnectionRequired; // Identical DDG variant.
+- (BOOL)connectionRequired;   // Apple's routine.
 // Dynamic, on demand connection?
--(BOOL)isConnectionOnDemand;
+- (BOOL)isConnectionOnDemand;
 // Is user intervention required?
--(BOOL)isInterventionRequired;
+- (BOOL)isInterventionRequired;
 
--(SEGNetworkStatus)currentReachabilityStatus;
--(SCNetworkReachabilityFlags)reachabilityFlags;
--(NSString*)currentReachabilityString;
--(NSString*)currentReachabilityFlags;
+- (SEGNetworkStatus)currentReachabilityStatus;
+- (SCNetworkReachabilityFlags)reachabilityFlags;
+- (NSString *)currentReachabilityString;
+- (NSString *)currentReachabilityFlags;
 
 @end

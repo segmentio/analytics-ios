@@ -17,8 +17,8 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
 - (BOOL)ready;
 - (void)updateSettings:(NSDictionary *)settings;
 
-@property(nonatomic, assign) BOOL valid;
-@property(nonatomic, assign) BOOL initialized;
+@property (nonatomic, assign) BOOL valid;
+@property (nonatomic, assign) BOOL initialized;
 
 // Analytics API
 // -------------
@@ -31,7 +31,8 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
 - (void)reset;
 - (void)flush;
 
-@optional;
+@optional
+;
 
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options;
 
@@ -47,16 +48,17 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
 
 @end
 
+
 @interface SEGAnalyticsIntegration : NSObject <SEGAnalyticsIntegration>
 
 - (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
 
 @property (nonatomic, strong) SEGAnalyticsConfiguration *configuration;
 
-@property(nonatomic, copy) NSString *name;
-@property(nonatomic, copy) NSDictionary *settings;
-@property(nonatomic, assign) BOOL valid;
-@property(nonatomic, assign) BOOL initialized;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSDictionary *settings;
+@property (nonatomic, assign) BOOL valid;
+@property (nonatomic, assign) BOOL initialized;
 
 - (void)validate;
 - (void)start;
