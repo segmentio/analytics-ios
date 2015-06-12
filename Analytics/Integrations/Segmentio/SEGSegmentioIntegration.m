@@ -342,7 +342,7 @@ static BOOL GetAdTrackingEnabled() {
   // and the timestamp will be more accurate.
   NSMutableDictionary *payload = [dictionary mutableCopy];
   payload[@"type"] = action;
-  payload[@"timestamp"] = [[NSDate date] description];
+  payload[@"timestamp"] = iso8601FormattedString([NSDate date]);
   payload[@"messageId"] = GenerateUUIDString();
   
   [self dispatchBackground:^{

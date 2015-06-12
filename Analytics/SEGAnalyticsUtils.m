@@ -24,6 +24,13 @@ NSURL *SEGAnalyticsURLForFilename(NSString *filename) {
       fileURLWithPath:[supportPath stringByAppendingPathComponent:filename]];
 }
 
+// Date Utils
+NSString *iso8601FormattedString(NSDate *date) {
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+  dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZ";
+  return [dateFormatter stringFromDate:date];
+}
+
 // Async Utils
 dispatch_queue_t
 seg_dispatch_queue_create_specific(const char *label,
@@ -107,7 +114,7 @@ static id SEGCoerceJSONObject(id obj) {
 
   // NSDate description is already a valid ISO8061 string
   if ([obj isKindOfClass:[NSDate class]])
-    return [obj description];
+    return iso8601FormattedString(obj);
 
   if ([obj isKindOfClass:[NSURL class]])
     return [obj absoluteString];

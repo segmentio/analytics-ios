@@ -8,6 +8,9 @@
 
 NSURL *SEGAnalyticsURLForFilename(NSString *filename);
 
+// Date Utils
+NSString *iso8601FormattedString(NSDate *date);
+
 // Async Utils
 dispatch_queue_t seg_dispatch_queue_create_specific(const char *label,
                                                     dispatch_queue_attr_t attr);
