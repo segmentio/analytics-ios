@@ -31,6 +31,7 @@ PODS:
   - TRVSDictionaryWithCaseInsensitivity (0.0.2)
   - TRVSKit/TRVSAssertions (0.0.9):
     - Expecta (~> 0.3.0)
+  - UXCam (2.0.5)
 
 DEPENDENCIES:
   - Amplitude-iOS (= 2.4.0)
@@ -53,6 +54,7 @@ DEPENDENCIES:
   - Tapstream (= 2.8.3)
   - TRVSDictionaryWithCaseInsensitivity (= 0.0.2)
   - TRVSKit/TRVSAssertions (~> 0.0.8)
+  - UXCam (= 2.0.5)
 
 SPEC CHECKSUMS:
   Amplitude-iOS: b5a2643ed7ce861cc65c8de437c7b4d9bc1708eb
@@ -74,5 +76,6 @@ SPEC CHECKSUMS:
   Tapstream: 37f7339a7d8aa8cc92b045edbacc91ef7f4090c5
   TRVSDictionaryWithCaseInsensitivity: 51d2ccf52c6d645d27b63467a98fa02c556e01b0
   TRVSKit: cbc09d442ce631c6b0f9e4ee4fb666a96146e4b3
+  UXCam: 995df5a0300732f447fa6a94b6f7523236bf1e4e
 
 COCOAPODS: 0.37.2
