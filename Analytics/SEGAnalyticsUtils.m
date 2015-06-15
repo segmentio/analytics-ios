@@ -26,8 +26,12 @@ NSURL *SEGAnalyticsURLForFilename(NSString *filename) {
 
 // Date Utils
 NSString *iso8601FormattedString(NSDate *date) {
-  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-  dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZ";
+  static NSDateFormatter *dateFormatter;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZ";
+  });
   return [dateFormatter stringFromDate:date];
 }
 
