@@ -1,4 +1,13 @@
 
+1.11.13 / 2015-06-15
+====================
+
+  * Update Crittercism pod
+  * Update Taplytics to 2.1.96
+  * Force ISO 8601 Dates
+  * Update AppsFlyer
+  * Added pushSandbox option to Taplytics.
+
 1.11.12 / 2015-06-09
 ====================
 
