@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface SEGLocation : NSObject
 
 @property (nonatomic, copy, readonly) NSString *city;

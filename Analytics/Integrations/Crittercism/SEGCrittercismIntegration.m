@@ -6,15 +6,18 @@
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 
+
 @implementation SEGCrittercismIntegration
 
 #pragma mark - Initialization
 
-+ (void)load {
++ (void)load
+{
     [SEGAnalytics registerIntegration:self withIdentifier:@"Crittercism"];
 }
 
-- (id)init {
+- (id)init
+{
     if (self = [super init]) {
         self.name = @"Crittercism";
         self.valid = NO;
@@ -26,7 +29,7 @@
 - (void)start
 {
     NSString *appId = [self.settings objectForKey:@"appId"];
-    CrittercismConfig* config = [CrittercismConfig defaultConfig];
+    CrittercismConfig *config = [CrittercismConfig defaultConfig];
     [config setMonitorUIWebView:[(NSNumber *)[self.settings objectForKey:@"monitorWebView"] boolValue]];
     [Crittercism enableWithAppID:appId andConfig:config];
     SEGLog(@"CrittercismIntegration initialized.");

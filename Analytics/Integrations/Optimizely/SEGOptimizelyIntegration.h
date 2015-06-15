@@ -8,6 +8,7 @@
 
 #import "SEGAnalyticsIntegration.h"
 
+
 @interface SEGOptimizelyIntegration : SEGAnalyticsIntegration
 
 @end

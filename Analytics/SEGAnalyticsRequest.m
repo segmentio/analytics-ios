@@ -5,6 +5,7 @@
 
 #import "SEGAnalyticsRequest.h"
 
+
 @interface SEGAnalyticsRequest () <NSURLConnectionDataDelegate> {
     NSMutableData *_responseData;
 }
@@ -19,16 +20,19 @@
 
 @end
 
+
 @implementation SEGAnalyticsRequest
 
-- (id)initWithURLRequest:(NSURLRequest *)urlRequest {
+- (id)initWithURLRequest:(NSURLRequest *)urlRequest
+{
     if (self = [super init]) {
         _urlRequest = urlRequest;
     }
     return self;
 }
 
-- (void)start {
+- (void)start
+{
     self.connection = [[NSURLConnection alloc] initWithRequest:self.urlRequest
                                                       delegate:self
                                               startImmediately:NO];
@@ -36,23 +40,27 @@
     [self.connection start];
 }
 
-- (void)finish {
+- (void)finish
+{
     if (self.completion)
         self.completion();
 }
 
 #pragma mark NSURLConnection Delegate
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
     self.response = (NSHTTPURLResponse *)response;
     _responseData = [[NSMutableData alloc] init];
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
     [_responseData appendData:data];
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
     NSInteger statusCode = self.response.statusCode;
     if ([self.acceptableStatusCodes containsIndex:statusCode]) {
         NSError *error = nil;
@@ -65,14 +73,14 @@
     } else {
         self.error = [NSError errorWithDomain:@"HTTP"
                                          code:statusCode
-                                     userInfo:@{NSLocalizedDescriptionKey:
-                        [NSString stringWithFormat:@"HTTP Error %ld", (long)statusCode]}];
-
+                                     userInfo:@{ NSLocalizedDescriptionKey :
+                                                     [NSString stringWithFormat:@"HTTP Error %ld", (long)statusCode] }];
     }
     [self finish];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
     self.error = error;
     [self finish];
 }
@@ -80,14 +88,16 @@
 #pragma mark - Class Methods
 
 + (instancetype)startWithURLRequest:(NSURLRequest *)urlRequest
-                         completion:(SEGAnalyticsRequestCompletionBlock)completion {
+                         completion:(SEGAnalyticsRequestCompletionBlock)completion
+{
     SEGAnalyticsRequest *request = [[self alloc] initWithURLRequest:urlRequest];
     request.completion = completion;
     [request start];
     return request;
 }
 
-+ (NSOperationQueue *)networkQueue {
++ (NSOperationQueue *)networkQueue
+{
     static dispatch_once_t onceToken;
     static NSOperationQueue *networkQueue;
     dispatch_once(&onceToken, ^{
@@ -98,7 +108,8 @@
 
 #pragma mark - Private
 
-- (NSIndexSet *)acceptableStatusCodes {
+- (NSIndexSet *)acceptableStatusCodes
+{
     if (!_acceptableStatusCodes) {
         _acceptableStatusCodes = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(200, 100)];
     }

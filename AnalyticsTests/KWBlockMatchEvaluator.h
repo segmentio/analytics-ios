@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface KWBlockMatchEvaluator : NSObject
 
-@property (nonatomic, copy) BOOL(^matchBlock)(id object);
+@property (nonatomic, copy) BOOL (^matchBlock)(id object);
 
 - (BOOL)matches:(id)object;
 

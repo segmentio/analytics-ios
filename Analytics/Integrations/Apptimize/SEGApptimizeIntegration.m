@@ -14,49 +14,57 @@
 #import <Apptimize/Apptimize.h>
 #import <Apptimize/Apptimize+Segment.h>
 
+
 @implementation SEGApptimizeIntegration
 
 + (NSString *)name { return @"Apptimize"; }
 
-+ (void)load {
++ (void)load
+{
     [SEGAnalytics registerIntegration:self withIdentifier:[self name]];
 }
 
-- (id)init {
+- (id)init
+{
     if (self = [super init]) {
         self.name = [[self class] name];
         self.valid = NO;
         self.initialized = NO;
-        
+
         [Apptimize SEG_ensureLibraryHasBeenInitialized];
     }
     return self;
 }
 
-- (void)validate {
+- (void)validate
+{
     self.valid = [self.settings objectForKey:@"appkey"] != nil;
 }
 
-- (void)start {
+- (void)start
+{
     [Apptimize startApptimizeWithApplicationKey:[self.settings objectForKey:@"appkey"]];
     [super start];
 }
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
+{
     if (userId != nil) {
         [Apptimize setUserAttributeString:userId forKey:@"user_id"];
     }
-    
+
     if (traits) {
         [Apptimize SEG_setUserAttributesFromDictionary:traits];
     }
 }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
+{
     [Apptimize SEG_track:event attributes:properties];
 }
 
-- (void)reset {
+- (void)reset
+{
     [Apptimize SEG_resetUserData];
 }
 

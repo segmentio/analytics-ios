@@ -8,6 +8,7 @@ extern NSString *const SEGSegmentioDidSendRequestNotification;
 extern NSString *const SEGSegmentioRequestDidSucceedNotification;
 extern NSString *const SEGSegmentioRequestDidFailNotification;
 
+
 @interface SEGSegmentioIntegration : SEGAnalyticsIntegration
 
 @property (nonatomic, copy) NSString *anonymousId;

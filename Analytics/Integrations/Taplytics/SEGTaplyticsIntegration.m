@@ -12,82 +12,90 @@
 
 #import <Taplytics/Taplytics.h>
 
+
 @implementation SEGTaplyticsIntegration
 
-+ (void)load {
-  [SEGAnalytics registerIntegration:self withIdentifier:[self identifier]];
++ (void)load
+{
+    [SEGAnalytics registerIntegration:self withIdentifier:[self identifier]];
 }
 
-- (id)init {
-  if (self = [super init]) {
-    self.name = [self.class identifier];
-    self.valid = NO;
-    self.initialized = NO;
-  }
-  return self;
+- (id)init
+{
+    if (self = [super init]) {
+        self.name = [self.class identifier];
+        self.valid = NO;
+        self.initialized = NO;
+    }
+    return self;
 }
 
-- (void)start {
-  NSDictionary *options = [[NSMutableDictionary alloc] init];
-  [options setValue:[self delayLoad] forKey:@"delayLoad"];
-  [options setValue:[self shakeMenu] forKey:@"shakeMenu"];
-  [options setValue:[self pushSandbox] forKey:@"pushSandbox"];
-  
-  [Taplytics startTaplyticsAPIKey:[self apiKey] options:options];
-  
-  SEGLog(@"TaplyticsIntegration initialized with api key %@ and options %@", [self apiKey], options);
-  [super start];
+- (void)start
+{
+    NSDictionary *options = [[NSMutableDictionary alloc] init];
+    [options setValue:[self delayLoad] forKey:@"delayLoad"];
+    [options setValue:[self shakeMenu] forKey:@"shakeMenu"];
+    [options setValue:[self pushSandbox] forKey:@"pushSandbox"];
+
+    [Taplytics startTaplyticsAPIKey:[self apiKey] options:options];
+
+    SEGLog(@"TaplyticsIntegration initialized with api key %@ and options %@", [self apiKey], options);
+    [super start];
 }
 
-- (void)validate {
-  self.valid = ([self apiKey] != nil);
+- (void)validate
+{
+    self.valid = ([self apiKey] != nil);
 }
 
 #pragma mark - Analytics API
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options {
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
+{
     // Map the traits to special mixpanel keywords.
-    NSDictionary* map = @{
-      @"lastName": @"lastName",
-      @"firstName": @"firstName",
-      @"gender": @"gender",
-      @"age": @"age",
-      @"name": @"name",
-      @"email": @"email",
-      @"avatarURl": @"avatar"
+    NSDictionary *map = @{
+        @"lastName" : @"lastName",
+        @"firstName" : @"firstName",
+        @"gender" : @"gender",
+        @"age" : @"age",
+        @"name" : @"name",
+        @"email" : @"email",
+        @"avatarURl" : @"avatar"
     };
-    
+
     NSMutableDictionary *mappedTraits = [NSMutableDictionary dictionaryWithDictionary:[SEGAnalyticsIntegration map:traits withMap:map]];
     mappedTraits[@"user_id"] = userId;
-    
+
     [Taplytics setUserAttributes:mappedTraits];
 }
 
-- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options {
+- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
+{
     // If revenue is included, logRevenue to Taplytics.
     NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:properties];
     if (revenue) {
         [Taplytics logRevenue:event revenue:revenue metaData:properties];
-    }
-    else {
+    } else {
         [Taplytics logEvent:event value:nil metaData:properties];
     }
 }
 
-- (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options {
+- (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options
+{
     NSMutableDictionary *userAttributes = [[NSMutableDictionary alloc] init];
-    
+
     if (groupId && [groupId length] > 0)
         [userAttributes setObject:groupId forKey:@"groupId"];
-    
+
     if (traits && [[traits allKeys] count] > 0)
         [userAttributes setObject:traits forKey:@"groupTraits"];
-    
+
     if (userAttributes.count > 0)
         [Taplytics setUserAttributes:userAttributes];
 };
 
-- (void)reset {
+- (void)reset
+{
     [Taplytics resetUser:^{
         SEGLog(@"Reset Taplytics User");
     }];
@@ -95,24 +103,29 @@
 
 #pragma mark - Private
 
-- (NSString *)apiKey {
-  return self.settings[@"apiKey"];
+- (NSString *)apiKey
+{
+    return self.settings[@"apiKey"];
 }
 
-- (NSNumber *)delayLoad {
-  return (NSNumber *)[self.settings objectForKey:@"delayLoad"];
+- (NSNumber *)delayLoad
+{
+    return (NSNumber *)[self.settings objectForKey:@"delayLoad"];
 }
 
-- (NSNumber *)shakeMenu {
-  return (NSNumber *)[self.settings objectForKey:@"shakeMenu"];
+- (NSNumber *)shakeMenu
+{
+    return (NSNumber *)[self.settings objectForKey:@"shakeMenu"];
 }
 
-- (NSNumber *)pushSandbox {
-  return (NSNumber *)[self.settings objectForKey:@"pushSandbox"];
+- (NSNumber *)pushSandbox
+{
+    return (NSNumber *)[self.settings objectForKey:@"pushSandbox"];
 }
 
-+ (NSString *)identifier {
-  return @"Taplytics";
++ (NSString *)identifier
+{
+    return @"Taplytics";
 }
 
 @end

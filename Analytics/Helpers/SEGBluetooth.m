@@ -11,6 +11,7 @@
 
 const NSString *SEGCentralManagerClass = @"CBCentralManager";
 
+
 @interface SEGBluetooth () <CBCentralManagerDelegate>
 
 @property (nonatomic, strong) CBCentralManager *manager;
@@ -18,33 +19,37 @@ const NSString *SEGCentralManagerClass = @"CBCentralManager";
 
 @end
 
+
 @implementation SEGBluetooth
 
-- (id)init {
-  Class centralManager = NSClassFromString(@"CBCentralManager");
+- (id)init
+{
+    Class centralManager = NSClassFromString(@"CBCentralManager");
 
-  if (!centralManager) return nil;
-  if (!(self = [super init])) return nil;
+    if (!centralManager) return nil;
+    if (!(self = [super init])) return nil;
 
-  _queue = dispatch_queue_create("io.segment.bluetooth.queue", NULL);
+    _queue = dispatch_queue_create("io.segment.bluetooth.queue", NULL);
 
-  // Check if we can use newer CoreBluetooth functions
-  NSInteger addr = &CBCentralManagerOptionShowPowerAlertKey;
-  BOOL hasOptions = [centralManager instancesRespondToSelector:@selector(initWithDelegate:queue:options:)];
-  if (hasOptions && addr != 0) {
-    _manager = [[centralManager alloc] initWithDelegate:self queue:_queue options:@{ CBCentralManagerOptionShowPowerAlertKey: @NO }];
-  } else {
-    _manager = [[centralManager alloc] initWithDelegate:self queue:_queue];
-  }
+    // Check if we can use newer CoreBluetooth functions
+    NSInteger addr = &CBCentralManagerOptionShowPowerAlertKey;
+    BOOL hasOptions = [centralManager instancesRespondToSelector:@selector(initWithDelegate:queue:options:)];
+    if (hasOptions && addr != 0) {
+        _manager = [[centralManager alloc] initWithDelegate:self queue:_queue options:@{ CBCentralManagerOptionShowPowerAlertKey : @NO }];
+    } else {
+        _manager = [[centralManager alloc] initWithDelegate:self queue:_queue];
+    }
 
-  return self;
+    return self;
 }
 
-- (BOOL)hasKnownState {
+- (BOOL)hasKnownState
+{
     return _manager && (_manager.state != CBCentralManagerStateUnknown);
 }
 
-- (BOOL)isEnabled {
+- (BOOL)isEnabled
+{
     return _manager.state == CBCentralManagerStatePoweredOn;
 }
 

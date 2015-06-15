@@ -6,15 +6,18 @@
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 
+
 @implementation SEGAmplitudeIntegration
 
 #pragma mark - Initialization
 
-+ (void)load {
++ (void)load
+{
     [SEGAnalytics registerIntegration:self withIdentifier:@"Amplitude"];
 }
 
-- (id)init {
+- (id)init
+{
     if (self = [super init]) {
         self.name = @"Amplitude";
         self.valid = NO;
@@ -84,8 +87,9 @@
     }
 }
 
-- (void)flush {
-  [Amplitude uploadEvents];
+- (void)flush
+{
+    [Amplitude uploadEvents];
 }
 
 @end

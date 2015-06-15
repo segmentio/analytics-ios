@@ -5,11 +5,12 @@
 #import "SEGAnalyticsIntegration.h"
 #import "SEGEcommerce.h"
 
+
 @interface SEGGoogleAnalyticsIntegration : SEGAnalyticsIntegration <SEGEcommerce>
 
-@property(nonatomic, copy) NSString *name;
-@property(nonatomic, assign) BOOL valid;
-@property(nonatomic, assign) BOOL initialized;
-@property(nonatomic, copy) NSDictionary *settings;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) BOOL valid;
+@property (nonatomic, assign) BOOL initialized;
+@property (nonatomic, copy) NSDictionary *settings;
 
 @end

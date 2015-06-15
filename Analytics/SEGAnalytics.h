@@ -245,6 +245,7 @@
 
 @end
 
+
 @interface SEGAnalytics (Internal)
 
 /**
@@ -265,6 +266,7 @@
 - (instancetype)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
 
 @end
+
 
 @interface SEGAnalytics (Deprecated)
 
