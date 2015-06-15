@@ -223,10 +223,10 @@
 		6E5EF3D31B1005FB001A4BA4 /* CrittercismConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5EF3D21B1005FB001A4BA4 /* CrittercismConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E5EF3D51B10063E001A4BA4 /* OptimizelyExperimentData.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E85F3701B2F792100763913 /* SEGAnalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */; };
-		6E85F3711B2F792100763913 /* TSAppEventSourceImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD151860F5D4007CB22F /* TSAppEventSourceImpl.h */; };
-		6E85F3721B2F792100763913 /* TSCoreListenerImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD161860F5D4007CB22F /* TSCoreListenerImpl.h */; };
-		6E85F3731B2F792100763913 /* TSTapstream.h in Headers */ = {isa = PBXBuildFile; fileRef = 324A42C41992C8FA0060013A /* TSTapstream.h */; };
-		6E85F3741B2F792100763913 /* TSPlatformImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 324A42C31992C8FA0060013A /* TSPlatformImpl.h */; };
+		6E85F3711B2F792100763913 /* TSAppEventSourceImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD151860F5D4007CB22F /* TSAppEventSourceImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E85F3721B2F792100763913 /* TSCoreListenerImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD161860F5D4007CB22F /* TSCoreListenerImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E85F3731B2F792100763913 /* TSTapstream.h in Headers */ = {isa = PBXBuildFile; fileRef = 324A42C41992C8FA0060013A /* TSTapstream.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E85F3741B2F792100763913 /* TSPlatformImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 324A42C31992C8FA0060013A /* TSPlatformImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB809561AFC136D00959050 /* AMPURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809551AFC136D00959050 /* AMPURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1212,6 +1212,7 @@
 				325DCE371A8D875100D4142E /* BugsnagOSXNotifier.h in Headers */,
 				325DCE381A8D875100D4142E /* BugsnagSink.h in Headers */,
 				320AFEE91A840DEB00929778 /* KahunaAnalytics.h in Headers */,
+				6E85F3711B2F792100763913 /* TSAppEventSourceImpl.h in Headers */,
 				32385FE11A2DF0F0008E09B2 /* MPLogging.h in Headers */,
 				32385FE31A2DF0FB008E09B2 /* MPUITableViewBinding.h in Headers */,
 				3252EA881999D6CC0056C32A /* Taplytics.h in Headers */,
@@ -1235,6 +1236,7 @@
 				3252EA571999D5CF0056C32A /* TAGContainerOpener.h in Headers */,
 				3252EA581999D5CF0056C32A /* TAGDataLayer.h in Headers */,
 				3252EA591999D5CF0056C32A /* TAGLogger.h in Headers */,
+				6E85F3721B2F792100763913 /* TSCoreListenerImpl.h in Headers */,
 				3252EA5A1999D5CF0056C32A /* TAGManager.h in Headers */,
 				6E5EF3D31B1005FB001A4BA4 /* CrittercismConfig.h in Headers */,
 				D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */,
@@ -1364,10 +1366,6 @@
 				D331BD2F1860F5F0007CB22F /* TSCoreListener.h in Headers */,
 				D331BD301860F5F0007CB22F /* TSDelegate.h in Headers */,
 				324A42CA1992C8FA0060013A /* TSWordOfMouthDelegate.h in Headers */,
-				6E85F3741B2F792100763913 /* TSPlatformImpl.h in Headers */,
-				6E85F3731B2F792100763913 /* TSTapstream.h in Headers */,
-				6E85F3711B2F792100763913 /* TSAppEventSourceImpl.h in Headers */,
-				6E85F3721B2F792100763913 /* TSCoreListenerImpl.h in Headers */,
 				D331BD311860F5F0007CB22F /* TSEvent.h in Headers */,
 				3254FBD71999D4370043AF15 /* Countly_OpenUDID.h in Headers */,
 				3254FBD81999D4370043AF15 /* Countly.h in Headers */,
@@ -1377,7 +1375,9 @@
 				6E5EF3D51B10063E001A4BA4 /* OptimizelyExperimentData.h in Headers */,
 				3252EA7C1999D6390056C32A /* QuantcastEvent.h in Headers */,
 				3252EA7D1999D6390056C32A /* QuantcastEventLogger.h in Headers */,
+				6E85F3741B2F792100763913 /* TSPlatformImpl.h in Headers */,
 				3252EA7E1999D6390056C32A /* QuantcastMeasurement.h in Headers */,
+				6E85F3731B2F792100763913 /* TSTapstream.h in Headers */,
 				3252EA7F1999D6390056C32A /* QuantcastMeasurement+Internal.h in Headers */,
 				3252EA801999D6390056C32A /* QuantcastNetworkReachability.h in Headers */,
 				3252EA811999D6390056C32A /* QuantcastOptOutDelegate.h in Headers */,
