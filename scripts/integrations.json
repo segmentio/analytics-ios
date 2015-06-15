@@ -25,7 +25,7 @@
       "name": "Bugsnag",
       "dependencies": [{
         "name": "Bugsnag",
-        "version": "4.0.3"
+        "version": "4.0.7"
       }]
     },
     {
