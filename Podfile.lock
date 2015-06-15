@@ -11,10 +11,10 @@ PODS:
   - FlurrySDK (6.5.0):
     - FlurrySDK/FlurrySDK (= 6.5.0)
   - FlurrySDK/FlurrySDK (6.5.0)
-  - GoogleAnalytics-iOS-SDK (3.10):
-    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
-  - GoogleAnalytics-iOS-SDK/Core (3.10)
-  - GoogleAnalytics-iOS-SDK/IDFA (3.10):
+  - GoogleAnalytics-iOS-SDK (3.12):
+    - GoogleAnalytics-iOS-SDK/Core (= 3.12)
+  - GoogleAnalytics-iOS-SDK/Core (3.12)
+  - GoogleAnalytics-iOS-SDK/IDFA (3.12):
     - GoogleAnalytics-iOS-SDK/Core
   - KahunaSDK (1.0.570)
   - Localytics (3.1.0)
@@ -41,8 +41,8 @@ DEPENDENCIES:
   - CrittercismSDK (= 5.2.0)
   - Expecta (~> 0.3.0)
   - FlurrySDK (= 6.5.0)
-  - GoogleAnalytics-iOS-SDK (= 3.10)
-  - GoogleAnalytics-iOS-SDK/IDFA (= 3.10)
+  - GoogleAnalytics-iOS-SDK (= 3.12)
+  - GoogleAnalytics-iOS-SDK/IDFA (= 3.12)
   - KahunaSDK (= 1.0.570)
   - Localytics (= 3.1.0)
   - Mixpanel (= 2.6.0)
@@ -63,7 +63,7 @@ SPEC CHECKSUMS:
   CrittercismSDK: b22f9541803c2babb1c8996862b097dc47ec7105
   Expecta: 8c507baf13211207b1e9d0a741480600e6b4ed15
   FlurrySDK: 7e749c1bd22f4fb0a863663e38c58bc841980b25
-  GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
+  GoogleAnalytics-iOS-SDK: 0a3327a993b8ed2b8fe1c6c4a8dcf5b76d2237a8
   KahunaSDK: ea15fdf9757c4d9bf639bf190888e20b688a30ed
   Localytics: 87268a820c285f6f5ed3fa505a176c049ed07462
   Mixpanel: 488567f7138408f360377dd46e1d189655f8b435

@@ -53,10 +53,10 @@
       "name": "GoogleAnalytics",
       "dependencies": [{
         "name": "GoogleAnalytics-iOS-SDK",
-        "version": "3.10"
+        "version": "3.12"
       }, {
         "name": "GoogleAnalytics-iOS-SDK/IDFA",
-        "version": "3.10"
+        "version": "3.12"
       }]
     },
     {
