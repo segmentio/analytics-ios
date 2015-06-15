@@ -46,7 +46,7 @@
       "name": "Flurry",
       "dependencies": [{
         "name": "FlurrySDK",
-        "version": "4.4.0"
+        "version": "6.5.0"
       }]
     },
     {
