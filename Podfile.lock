@@ -24,7 +24,7 @@ PODS:
     - Mixpanel/MPCategoryHelpers
   - Mixpanel/MPCategoryHelpers (2.8.1)
   - OCMock (2.2.4)
-  - Optimizely-iOS-SDK (1.0.81)
+  - Optimizely-iOS-SDK (1.0.84)
   - Quantcast-Measure (1.4.6):
     - Quantcast-Measure/Core (= 1.4.6)
   - Quantcast-Measure/Core (1.4.6)
@@ -49,7 +49,7 @@ DEPENDENCIES:
   - Localytics (= 3.3.0)
   - Mixpanel (= 2.8.1)
   - OCMock (~> 2.2.4)
-  - Optimizely-iOS-SDK (= 1.0.81)
+  - Optimizely-iOS-SDK (= 1.0.84)
   - Quantcast-Measure (= 1.4.6)
   - Taplytics (= 2.1.96)
   - Tapstream (= 2.8.3)
@@ -70,7 +70,7 @@ SPEC CHECKSUMS:
   Localytics: 64ada284cde3f2b30fb04272d5d735d49657d0ab
   Mixpanel: 93c4825025e6380ced273ed7178496282e385077
   OCMock: a6a7dc0e3997fb9f35d99f72528698ebf60d64f2
-  Optimizely-iOS-SDK: 33b0580735808a876f0b91a53ab25c7501bad082
+  Optimizely-iOS-SDK: 7bcfbef117c513d4480db80a2b635a7349dca53d
   Quantcast-Measure: 415d204ee4010b27493369e131cec09de1b5acf5
   Taplytics: 7e16c121b0c7c0fa2a8f14f60a7cfaf1733ffc1c
   Tapstream: 37f7339a7d8aa8cc92b045edbacc91ef7f4090c5
