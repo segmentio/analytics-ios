@@ -91,7 +91,7 @@
       "name": "Quantcast",
       "dependencies": [{
         "name": "Quantcast-Measure",
-        "version": "1.4.6"
+        "version": "1.4.7"
       }]
     },
     {
