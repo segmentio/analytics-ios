@@ -29,7 +29,7 @@
 - (void)start
 {
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
-    [Amplitude initializeApiKey:apiKey];
+    [[Amplitude instance] initializeApiKey:apiKey];
     SEGLog(@"AmplitudeIntegration initialized.");
     [super start];
 }
@@ -49,13 +49,13 @@
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    [Amplitude setUserId:userId];
-    [Amplitude setUserProperties:traits];
+    [[Amplitude instance] setUserId:userId];
+    [[Amplitude instance] setUserProperties:traits];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    [Amplitude logEvent:event withEventProperties:properties];
+    [[Amplitude instance] logEvent:event withEventProperties:properties];
 
     // Track any revenue.
     NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:properties];
@@ -72,10 +72,10 @@
         if (!receipt || ![receipt isKindOfClass:[NSString class]]) {
             receipt = nil;
         }
-        [Amplitude logRevenue:productId
-                     quantity:[quantity integerValue]
-                        price:revenue
-                      receipt:receipt];
+        [[Amplitude instance] logRevenue:productId
+                                quantity:[quantity integerValue]
+                                   price:revenue
+                                 receipt:receipt];
     }
 }
 
@@ -89,7 +89,7 @@
 
 - (void)flush
 {
-    [Amplitude uploadEvents];
+    [[Amplitude instance] uploadEvents];
 }
 
 @end
