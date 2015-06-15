@@ -36,7 +36,6 @@
 		32385FDC1A2DF0DF008E09B2 /* MPDesignerEventBindingMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FDA1A2DF0DF008E09B2 /* MPDesignerEventBindingMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32385FDD1A2DF0DF008E09B2 /* MPDesignerSessionCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FDB1A2DF0DF008E09B2 /* MPDesignerSessionCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32385FDF1A2DF0E7008E09B2 /* MPEventBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FDE1A2DF0E7008E09B2 /* MPEventBinding.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32385FE11A2DF0F0008E09B2 /* MPLogging.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FE01A2DF0F0008E09B2 /* MPLogging.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32385FE31A2DF0FB008E09B2 /* MPUITableViewBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FE21A2DF0FB008E09B2 /* MPUITableViewBinding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32385FE51A2DF103008E09B2 /* MPUIControlBinding.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FE41A2DF103008E09B2 /* MPUIControlBinding.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3242587E1A9D0F9D00E03A28 /* KSArchSpecific.h in Headers */ = {isa = PBXBuildFile; fileRef = 324258551A9D0F9D00E03A28 /* KSArchSpecific.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -228,6 +227,7 @@
 		6E85F3741B2F792100763913 /* TSPlatformImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 324A42C31992C8FA0060013A /* TSPlatformImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E85F3901B2F922F00763913 /* CountlyDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85F38F1B2F922F00763913 /* CountlyDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E85F3921B2F974700763913 /* Localytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85F3911B2F974700763913 /* Localytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E85F3941B2F980B00763913 /* MPLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85F3931B2F980B00763913 /* MPLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB809561AFC136D00959050 /* AMPURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809551AFC136D00959050 /* AMPURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -320,7 +320,6 @@
 		32385FDA1A2DF0DF008E09B2 /* MPDesignerEventBindingMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPDesignerEventBindingMessage.h; path = Pods/Mixpanel/Mixpanel/MPDesignerEventBindingMessage.h; sourceTree = "<group>"; };
 		32385FDB1A2DF0DF008E09B2 /* MPDesignerSessionCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPDesignerSessionCollection.h; path = Pods/Mixpanel/Mixpanel/MPDesignerSessionCollection.h; sourceTree = "<group>"; };
 		32385FDE1A2DF0E7008E09B2 /* MPEventBinding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPEventBinding.h; path = Pods/Mixpanel/Mixpanel/MPEventBinding.h; sourceTree = "<group>"; };
-		32385FE01A2DF0F0008E09B2 /* MPLogging.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPLogging.h; path = Pods/Mixpanel/Mixpanel/MPLogging.h; sourceTree = "<group>"; };
 		32385FE21A2DF0FB008E09B2 /* MPUITableViewBinding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPUITableViewBinding.h; path = Pods/Mixpanel/Mixpanel/MPUITableViewBinding.h; sourceTree = "<group>"; };
 		32385FE41A2DF103008E09B2 /* MPUIControlBinding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPUIControlBinding.h; path = Pods/Mixpanel/Mixpanel/MPUIControlBinding.h; sourceTree = "<group>"; };
 		324258551A9D0F9D00E03A28 /* KSArchSpecific.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KSArchSpecific.h; path = Pods/Bugsnag/KSCrash/Source/KSCrash/Recording/Tools/KSArchSpecific.h; sourceTree = "<group>"; };
@@ -517,6 +516,7 @@
 		6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelyExperimentData.h; path = "Pods/Optimizely-iOS-SDK/Optimizely.framework/Headers/OptimizelyExperimentData.h"; sourceTree = "<group>"; };
 		6E85F38F1B2F922F00763913 /* CountlyDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CountlyDB.h; path = Pods/Countly/CountlyDB.h; sourceTree = "<group>"; };
 		6E85F3911B2F974700763913 /* Localytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Localytics.h; path = "Pods/Localytics/Localytics-iOS-3.3.0/Localytics.h"; sourceTree = "<group>"; };
+		6E85F3931B2F980B00763913 /* MPLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPLogger.h; path = Pods/Mixpanel/Mixpanel/MPLogger.h; sourceTree = "<group>"; };
 		6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Amplitude+SSLPinning.h"; path = "Pods/Amplitude-iOS/Amplitude/Amplitude+SSLPinning.h"; sourceTree = "<group>"; };
 		6EB809551AFC136D00959050 /* AMPURLConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AMPURLConnection.h; path = "Pods/Amplitude-iOS/Amplitude/AMPURLConnection.h"; sourceTree = "<group>"; };
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -742,6 +742,7 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				6E85F3931B2F980B00763913 /* MPLogger.h */,
 				6E85F3911B2F974700763913 /* Localytics.h */,
 				6E85F38F1B2F922F00763913 /* CountlyDB.h */,
 				6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */,
@@ -810,7 +811,6 @@
 				3208C0851A64F6B200D6014F /* Amplitude.h */,
 				32385FE41A2DF103008E09B2 /* MPUIControlBinding.h */,
 				32385FE21A2DF0FB008E09B2 /* MPUITableViewBinding.h */,
-				32385FE01A2DF0F0008E09B2 /* MPLogging.h */,
 				32385FDE1A2DF0E7008E09B2 /* MPEventBinding.h */,
 				32385FDA1A2DF0DF008E09B2 /* MPDesignerEventBindingMessage.h */,
 				32385FDB1A2DF0DF008E09B2 /* MPDesignerSessionCollection.h */,
@@ -1218,7 +1218,6 @@
 				6E85F3901B2F922F00763913 /* CountlyDB.h in Headers */,
 				320AFEE91A840DEB00929778 /* KahunaAnalytics.h in Headers */,
 				6E85F3711B2F792100763913 /* TSAppEventSourceImpl.h in Headers */,
-				32385FE11A2DF0F0008E09B2 /* MPLogging.h in Headers */,
 				32385FE31A2DF0FB008E09B2 /* MPUITableViewBinding.h in Headers */,
 				3252EA881999D6CC0056C32A /* Taplytics.h in Headers */,
 				32385FE51A2DF103008E09B2 /* MPUIControlBinding.h in Headers */,
@@ -1275,6 +1274,7 @@
 				32AD185E19AFCA100047D5F0 /* MPABTestDesignerDeviceInfoRequestMessage.h in Headers */,
 				32AD185F19AFCA100047D5F0 /* MPABTestDesignerDeviceInfoResponseMessage.h in Headers */,
 				32AD186019AFCA100047D5F0 /* MPABTestDesignerDisconnectMessage.h in Headers */,
+				6E85F3941B2F980B00763913 /* MPLogger.h in Headers */,
 				32AD186119AFCA100047D5F0 /* MPABTestDesignerMessage.h in Headers */,
 				32AD186219AFCA100047D5F0 /* MPABTestDesignerSnapshotRequestMessage.h in Headers */,
 				32AD186319AFCA100047D5F0 /* MPABTestDesignerSnapshotResponseMessage.h in Headers */,
