@@ -1,11 +1,21 @@
 machine:
   environment:
     LANG: en_US.UTF-8
+  xcode:
+    version: "6.3.1"
+
 dependencies:
   pre:
     - pod setup
     - pod install
+
 test:
  override:
     - make test
 
+test:
+  override:
+    - set -o pipefail &&
+      make test |
+      tee $CIRCLE_ARTIFACTS/xcode_raw.log |
+      xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/results.xml
