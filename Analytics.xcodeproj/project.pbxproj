@@ -424,12 +424,8 @@
 		3252EA971999D7040056C32A /* UIColor+MPColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+MPColor.h"; path = "Pods/Mixpanel/Mixpanel/UIColor+MPColor.h"; sourceTree = "<group>"; };
 		3252EA981999D7040056C32A /* UIImage+MPAverageColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPAverageColor.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPAverageColor.h"; sourceTree = "<group>"; };
 		3252EA991999D7040056C32A /* UIImage+MPImageEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPImageEffects.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPImageEffects.h"; sourceTree = "<group>"; };
-		3252EA9A1999D7040056C32A /* UIView+MPSnapshotImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIView+MPSnapshotImage.h"; path = "Pods/Mixpanel/Mixpanel/UIView+MPSnapshotImage.h"; sourceTree = "<group>"; };
 		3252EAA31999D7150056C32A /* UIImage+MPImageEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPImageEffects.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPImageEffects.h"; sourceTree = "<group>"; };
 		32539996199C80FF009DDF87 /* SEGEcommerce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGEcommerce.h; sourceTree = "<group>"; };
-		3254FBBF1999D38D0043AF15 /* Amplitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Amplitude.h; path = "Pods/Amplitude-iOS/Amplitude.h"; sourceTree = "<group>"; };
-		3254FBC01999D38D0043AF15 /* AmplitudeARCMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmplitudeARCMacros.h; path = "Pods/Amplitude-iOS/AmplitudeARCMacros.h"; sourceTree = "<group>"; };
-		3254FBC11999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AmplitudeLocationManagerDelegate.h; path = "Pods/Amplitude-iOS/AmplitudeLocationManagerDelegate.h"; sourceTree = "<group>"; };
 		3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Countly_OpenUDID.h; path = Pods/Countly/Countly_OpenUDID.h; sourceTree = "<group>"; };
 		3254FBD61999D4370043AF15 /* Countly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Countly.h; path = Pods/Countly/Countly.h; sourceTree = "<group>"; };
 		325DCE291A8D875100D4142E /* Bugsnag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bugsnag.h; path = Pods/Bugsnag/Source/Bugsnag/Bugsnag.h; sourceTree = "<group>"; };
@@ -490,7 +486,6 @@
 		32AD185419AFCA100047D5F0 /* UIColor+MPColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIColor+MPColor.h"; path = "Pods/Mixpanel/Mixpanel/UIColor+MPColor.h"; sourceTree = "<group>"; };
 		32AD185519AFCA100047D5F0 /* UIImage+MPAverageColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPAverageColor.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPAverageColor.h"; sourceTree = "<group>"; };
 		32AD185619AFCA100047D5F0 /* UIImage+MPImageEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPImageEffects.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPImageEffects.h"; sourceTree = "<group>"; };
-		32AD185719AFCA100047D5F0 /* UIView+MPSnapshotImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIView+MPSnapshotImage.h"; path = "Pods/Mixpanel/Mixpanel/UIView+MPSnapshotImage.h"; sourceTree = "<group>"; };
 		32AD185819AFCA100047D5F0 /* _MPTweakBindObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = _MPTweakBindObserver.h; path = Pods/Mixpanel/Mixpanel/_MPTweakBindObserver.h; sourceTree = "<group>"; };
 		32CC25E119072C6B0090DD06 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32CCD99B1919A4F4007B63BA /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
@@ -863,12 +858,8 @@
 				32AD185419AFCA100047D5F0 /* UIColor+MPColor.h */,
 				32AD185519AFCA100047D5F0 /* UIImage+MPAverageColor.h */,
 				32AD185619AFCA100047D5F0 /* UIImage+MPImageEffects.h */,
-				32AD185719AFCA100047D5F0 /* UIView+MPSnapshotImage.h */,
 				32AD185819AFCA100047D5F0 /* _MPTweakBindObserver.h */,
 				32CFF3D119AE947F00193D3D /* AppsFlyerTracker.h */,
-				3254FBBF1999D38D0043AF15 /* Amplitude.h */,
-				3254FBC01999D38D0043AF15 /* AmplitudeARCMacros.h */,
-				3254FBC11999D38D0043AF15 /* AmplitudeLocationManagerDelegate.h */,
 				3254FBD51999D4370043AF15 /* Countly_OpenUDID.h */,
 				3254FBD61999D4370043AF15 /* Countly.h */,
 				D331BCF0185BFF49007CB22F /* CRFilter.h */,
@@ -939,7 +930,6 @@
 				3252EA981999D7040056C32A /* UIImage+MPAverageColor.h */,
 				3252EAA31999D7150056C32A /* UIImage+MPImageEffects.h */,
 				3252EA991999D7040056C32A /* UIImage+MPImageEffects.h */,
-				3252EA9A1999D7040056C32A /* UIView+MPSnapshotImage.h */,
 				3252EA901999D7040056C32A /* MPNotificationViewController.h */,
 				D331BCF8185C2DC4007CB22F /* GAILogger.h */,
 				D331BCF9185C2DC4007CB22F /* GAITrackedViewController.h */,
