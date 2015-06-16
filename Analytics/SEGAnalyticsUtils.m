@@ -126,7 +126,6 @@ static id SEGCoerceJSONObject(id obj)
         return dict;
     }
 
-    // NSDate description is already a valid ISO8061 string
     if ([obj isKindOfClass:[NSDate class]])
         return iso8601FormattedString(obj);
 
