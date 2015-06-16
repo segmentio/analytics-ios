@@ -7,7 +7,7 @@ PODS:
   - Bugsnag/no-arc (4.0.7)
   - Countly (3.0.0)
   - CrittercismSDK (5.2.0)
-  - Expecta (0.3.2)
+  - Expecta (1.0.0)
   - FlurrySDK (6.5.0):
     - FlurrySDK/FlurrySDK (= 6.5.0)
   - FlurrySDK/FlurrySDK (6.5.0)
@@ -31,8 +31,6 @@ PODS:
   - Taplytics (2.1.96)
   - Tapstream (2.9.0)
   - TRVSDictionaryWithCaseInsensitivity (0.0.2)
-  - TRVSKit/TRVSAssertions (0.0.9):
-    - Expecta (~> 0.3.0)
 
 DEPENDENCIES:
   - Amplitude-iOS (= 2.5.1)
@@ -41,7 +39,7 @@ DEPENDENCIES:
   - Bugsnag (= 4.0.7)
   - Countly (= 3.0.0)
   - CrittercismSDK (= 5.2.0)
-  - Expecta (~> 0.3.0)
+  - Expecta (~> 1.0.0)
   - FlurrySDK (= 6.5.0)
   - GoogleAnalytics-iOS-SDK (= 3.12)
   - GoogleAnalytics-iOS-SDK/IDFA (= 3.12)
@@ -54,7 +52,6 @@ DEPENDENCIES:
   - Taplytics (= 2.1.96)
   - Tapstream (= 2.9.0)
   - TRVSDictionaryWithCaseInsensitivity (= 0.0.2)
-  - TRVSKit/TRVSAssertions (~> 0.0.8)
 
 SPEC CHECKSUMS:
   Amplitude-iOS: 1108012e40096d339d768cb8a6d79c774f47da2c
@@ -63,7 +60,7 @@ SPEC CHECKSUMS:
   Bugsnag: 5861d8519d30063abe7b3fcdcf4114a6dddab27a
   Countly: 4212967fc5739ffccfbff3b0fe863be45c984879
   CrittercismSDK: b22f9541803c2babb1c8996862b097dc47ec7105
-  Expecta: 8c507baf13211207b1e9d0a741480600e6b4ed15
+  Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
   FlurrySDK: 7e749c1bd22f4fb0a863663e38c58bc841980b25
   GoogleAnalytics-iOS-SDK: 0a3327a993b8ed2b8fe1c6c4a8dcf5b76d2237a8
   KahunaSDK: ea15fdf9757c4d9bf639bf190888e20b688a30ed
@@ -75,6 +72,5 @@ SPEC CHECKSUMS:
   Taplytics: 7e16c121b0c7c0fa2a8f14f60a7cfaf1733ffc1c
   Tapstream: e07f84d53c17a8a2ab53f81d2372299e786617aa
   TRVSDictionaryWithCaseInsensitivity: 51d2ccf52c6d645d27b63467a98fa02c556e01b0
-  TRVSKit: cbc09d442ce631c6b0f9e4ee4fb666a96146e4b3
 
 COCOAPODS: 0.37.2

@@ -20,9 +20,8 @@ end
 
 target 'iOS Tests', :exclusive => true do
   import_pods
-  pod 'TRVSKit/TRVSAssertions', '~> 0.0.8'
   pod 'OCMock', '~> 3.1.2'
-  pod 'Expecta', '~> 0.3.0'
+  pod 'Expecta', '~> 1.0.0'
 end
 
 post_install do |installer|
