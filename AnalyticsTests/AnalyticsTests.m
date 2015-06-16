@@ -32,9 +32,17 @@
 
 @implementation SEGAnalyticsTests
 
+static id _mockNSBundle;
+
 - (void)setUp
 {
     [super setUp];
+
+    // Mock the mainBundle so it returns the testBundle
+    // http://stackoverflow.com/a/28993552/1431669
+    _mockNSBundle = [OCMockObject niceMockForClass:[NSBundle class]];
+    NSBundle *correctMainBundle = [NSBundle bundleForClass:self.class];
+    [[[[_mockNSBundle stub] classMethod] andReturn:correctMainBundle] mainBundle];
 
     self.analytics = [[SEGAnalytics alloc] initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:@"k5l6rrye0hsv566zwuk7"]];
     self.analytics.cachedSettings = [self testSettings];
@@ -74,13 +82,17 @@
     [[self.mock reject] identify:@"" traits:@{} options:[self options]];
     [[self.mock reject] identify:@"" traits:nil options:[self options]];
 
-    EXP_expect(^{ [self.analytics identify:nil traits:nil options:[self options]];
+    EXP_expect(^{
+      [self.analytics identify:nil traits:nil options:[self options]];
     });
-    EXP_expect(^{ [self.analytics identify:nil traits:@{} options:[self options]];
+    EXP_expect(^{
+      [self.analytics identify:nil traits:@{} options:[self options]];
     });
-    EXP_expect(^{ [self.analytics identify:@"" traits:@{} options:[self options]];
+    EXP_expect(^{
+      [self.analytics identify:@"" traits:@{} options:[self options]];
     });
-    EXP_expect(^{ [self.analytics identify:@"" traits:nil options:[self options]];
+    EXP_expect(^{
+      [self.analytics identify:@"" traits:nil options:[self options]];
     });
 
     [self.mock verifyWithDelay:1];
@@ -144,9 +156,11 @@
     [[self.mock reject] track:@"" properties:[self properties] options:[self options]];
     [[self.mock reject] track:nil properties:[self properties] options:[self options]];
 
-    EXP_expect(^{ [self.analytics track:@"" properties:[self properties] options:[self options]];
+    EXP_expect(^{
+      [self.analytics track:@"" properties:[self properties] options:[self options]];
     }).to.raiseAny();
-    EXP_expect(^{ [self.analytics track:nil properties:[self properties] options:[self options]];
+    EXP_expect(^{
+      [self.analytics track:nil properties:[self properties] options:[self options]];
     }).to.raiseAny();
 
     [self.mock verifyWithDelay:1];

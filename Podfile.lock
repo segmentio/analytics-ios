@@ -1,78 +1,76 @@
 PODS:
-  - Amplitude-iOS (2.4.0)
+  - Amplitude-iOS (2.5.1)
   - AppsFlyer-SDK (2.5.3.15.1)
-  - Apptimize (2.10.0.1)
-  - Bugsnag (4.0.3):
-    - Bugsnag/no-arc (= 4.0.3)
-  - Bugsnag/no-arc (4.0.3)
-  - Countly (1.0.0)
+  - Apptimize (2.11.0.1)
+  - Bugsnag (4.0.7):
+    - Bugsnag/no-arc (= 4.0.7)
+  - Bugsnag/no-arc (4.0.7)
+  - Countly (3.0.0)
   - CrittercismSDK (5.2.0)
-  - Expecta (0.3.2)
-  - FlurrySDK (4.4.0):
-    - FlurrySDK/FlurrySDK (= 4.4.0)
-  - FlurrySDK/FlurrySDK (4.4.0)
-  - GoogleAnalytics-iOS-SDK (3.10):
-    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
-  - GoogleAnalytics-iOS-SDK/Core (3.10)
-  - GoogleAnalytics-iOS-SDK/IDFA (3.10):
+  - Expecta (1.0.0)
+  - FlurrySDK (6.5.0):
+    - FlurrySDK/FlurrySDK (= 6.5.0)
+  - FlurrySDK/FlurrySDK (6.5.0)
+  - GoogleAnalytics-iOS-SDK (3.12):
+    - GoogleAnalytics-iOS-SDK/Core (= 3.12)
+  - GoogleAnalytics-iOS-SDK/Core (3.12)
+  - GoogleAnalytics-iOS-SDK/IDFA (3.12):
     - GoogleAnalytics-iOS-SDK/Core
   - KahunaSDK (1.0.570)
-  - Localytics (3.1.0)
-  - Mixpanel (2.6.0):
-    - Mixpanel/MPCategoryHelpers (= 2.6.0)
-  - Mixpanel/MPCategoryHelpers (2.6.0)
-  - OCMock (2.2.4)
-  - Optimizely-iOS-SDK (1.0.81)
-  - Quantcast-Measure (1.4.6):
-    - Quantcast-Measure/Core (= 1.4.6)
-  - Quantcast-Measure/Core (1.4.6)
+  - Localytics (3.3.0)
+  - Mixpanel (2.8.1):
+    - Mixpanel/Mixpanel (= 2.8.1)
+  - Mixpanel/Mixpanel (2.8.1):
+    - Mixpanel/MPCategoryHelpers
+  - Mixpanel/MPCategoryHelpers (2.8.1)
+  - OCMock (3.1.2)
+  - Optimizely-iOS-SDK (1.0.84)
+  - Quantcast-Measure (1.4.7):
+    - Quantcast-Measure/Core (= 1.4.7)
+  - Quantcast-Measure/Core (1.4.7)
   - Taplytics (2.1.96)
-  - Tapstream (2.8.3)
+  - Tapstream (2.9.0)
   - TRVSDictionaryWithCaseInsensitivity (0.0.2)
-  - TRVSKit/TRVSAssertions (0.0.9):
-    - Expecta (~> 0.3.0)
 
 DEPENDENCIES:
-  - Amplitude-iOS (= 2.4.0)
+  - Amplitude-iOS (= 2.5.1)
   - AppsFlyer-SDK (= 2.5.3.15.1)
-  - Apptimize (= 2.10.0.1)
-  - Bugsnag (= 4.0.3)
-  - Countly (= 1.0.0)
+  - Apptimize (= 2.11.0.1)
+  - Bugsnag (= 4.0.7)
+  - Countly (= 3.0.0)
   - CrittercismSDK (= 5.2.0)
-  - Expecta (~> 0.3.0)
-  - FlurrySDK (= 4.4.0)
-  - GoogleAnalytics-iOS-SDK (= 3.10)
-  - GoogleAnalytics-iOS-SDK/IDFA (= 3.10)
+  - Expecta (~> 1.0.0)
+  - FlurrySDK (= 6.5.0)
+  - GoogleAnalytics-iOS-SDK (= 3.12)
+  - GoogleAnalytics-iOS-SDK/IDFA (= 3.12)
   - KahunaSDK (= 1.0.570)
-  - Localytics (= 3.1.0)
-  - Mixpanel (= 2.6.0)
-  - OCMock (~> 2.2.4)
-  - Optimizely-iOS-SDK (= 1.0.81)
-  - Quantcast-Measure (= 1.4.6)
+  - Localytics (= 3.3.0)
+  - Mixpanel (= 2.8.1)
+  - OCMock (~> 3.1.2)
+  - Optimizely-iOS-SDK (= 1.0.84)
+  - Quantcast-Measure (= 1.4.7)
   - Taplytics (= 2.1.96)
-  - Tapstream (= 2.8.3)
+  - Tapstream (= 2.9.0)
   - TRVSDictionaryWithCaseInsensitivity (= 0.0.2)
-  - TRVSKit/TRVSAssertions (~> 0.0.8)
 
 SPEC CHECKSUMS:
-  Amplitude-iOS: b5a2643ed7ce861cc65c8de437c7b4d9bc1708eb
+  Amplitude-iOS: 1108012e40096d339d768cb8a6d79c774f47da2c
   AppsFlyer-SDK: 34670f7a518e82cfba54dc8ad7738bacf4117b9c
-  Apptimize: c180b9833f3a83498475cda9e52d67282280b0e5
-  Bugsnag: 7267951d92ac48ff264b605cf65b42208dfde905
-  Countly: 61e8a4518699221846db98f09a5d6f2b38267a25
+  Apptimize: 5ec482ca36dbec7bd5017f546509136229aa1822
+  Bugsnag: 5861d8519d30063abe7b3fcdcf4114a6dddab27a
+  Countly: 4212967fc5739ffccfbff3b0fe863be45c984879
   CrittercismSDK: b22f9541803c2babb1c8996862b097dc47ec7105
-  Expecta: 8c507baf13211207b1e9d0a741480600e6b4ed15
-  FlurrySDK: 68f1952f3d04a82cfcfbf00ed3435e81317c2946
-  GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
+  Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
+  FlurrySDK: 7e749c1bd22f4fb0a863663e38c58bc841980b25
+  GoogleAnalytics-iOS-SDK: 0a3327a993b8ed2b8fe1c6c4a8dcf5b76d2237a8
   KahunaSDK: ea15fdf9757c4d9bf639bf190888e20b688a30ed
-  Localytics: 87268a820c285f6f5ed3fa505a176c049ed07462
-  Mixpanel: 488567f7138408f360377dd46e1d189655f8b435
-  OCMock: a6a7dc0e3997fb9f35d99f72528698ebf60d64f2
-  Optimizely-iOS-SDK: 33b0580735808a876f0b91a53ab25c7501bad082
-  Quantcast-Measure: 415d204ee4010b27493369e131cec09de1b5acf5
+  Localytics: 64ada284cde3f2b30fb04272d5d735d49657d0ab
+  Mixpanel: 93c4825025e6380ced273ed7178496282e385077
+  OCMock: a10ea9f0a6e921651f96f78b6faee95ebc813b92
+  Optimizely-iOS-SDK: 7bcfbef117c513d4480db80a2b635a7349dca53d
+  Quantcast-Measure: de15122f2b48380afe42443d132f40f382df8ae7
   Taplytics: 7e16c121b0c7c0fa2a8f14f60a7cfaf1733ffc1c
-  Tapstream: 37f7339a7d8aa8cc92b045edbacc91ef7f4090c5
+  Tapstream: e07f84d53c17a8a2ab53f81d2372299e786617aa
   TRVSDictionaryWithCaseInsensitivity: 51d2ccf52c6d645d27b63467a98fa02c556e01b0
-  TRVSKit: cbc09d442ce631c6b0f9e4ee4fb666a96146e4b3
 
 COCOAPODS: 0.37.2

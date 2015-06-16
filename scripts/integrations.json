@@ -4,7 +4,7 @@
       "name": "Amplitude",
       "dependencies": [{
         "name": "Amplitude-iOS",
-        "version": "2.4.0"
+        "version": "2.5.1"
       }]
     },
     {
@@ -15,17 +15,24 @@
       }]
     },
     {
+      "name": "Apptimize",
+      "dependencies": [{
+        "name": "Apptimize",
+        "version": "2.11.0.1"
+      }]
+    },
+    {
       "name": "Bugsnag",
       "dependencies": [{
         "name": "Bugsnag",
-        "version": "4.0.3"
+        "version": "4.0.7"
       }]
     },
     {
       "name": "Countly",
       "dependencies": [{
         "name": "Countly",
-        "version": "1.0.0"
+        "version": "3.0.0"
       }]
     },
     {
@@ -39,17 +46,17 @@
       "name": "Flurry",
       "dependencies": [{
         "name": "FlurrySDK",
-        "version": "4.4.0"
+        "version": "6.5.0"
       }]
     },
     {
       "name": "GoogleAnalytics",
       "dependencies": [{
         "name": "GoogleAnalytics-iOS-SDK",
-        "version": "3.10"
+        "version": "3.12"
       }, {
         "name": "GoogleAnalytics-iOS-SDK/IDFA",
-        "version": "3.10"
+        "version": "3.12"
       }]
     },
     {
@@ -63,28 +70,28 @@
       "name": "Localytics",
       "dependencies": [{
         "name": "Localytics",
-        "version": "3.1.0"
+        "version": "3.3.0"
       }]
     },
     {
       "name": "Mixpanel",
       "dependencies": [{
         "name": "Mixpanel",
-        "version": "2.6.0"
+        "version": "2.8.1"
       }]
     },
     {
       "name": "Optimizely",
       "dependencies": [{
         "name": "Optimizely-iOS-SDK",
-        "version": "1.0.81"
+        "version": "1.0.84"
       }]
     },
     {
       "name": "Quantcast",
       "dependencies": [{
         "name": "Quantcast-Measure",
-        "version": "1.4.6"
+        "version": "1.4.7"
       }]
     },
     {
@@ -102,14 +109,7 @@
       "name": "Tapstream",
       "dependencies": [{
         "name": "Tapstream",
-        "version": "2.8.3"
-      }]
-    },
-    {
-      "name": "Apptimize",
-      "dependencies": [{
-        "name": "Apptimize",
-        "version": "2.10.0.1"
+        "version": "2.9.0"
       }]
     }
   ]

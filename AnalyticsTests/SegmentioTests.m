@@ -6,7 +6,6 @@
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGSegmentioIntegration.h"
-#import <TRVSKit/TRVSAssertions.h>
 
 
 @interface SEGSegmentioIntegration (Private)
@@ -41,6 +40,68 @@
 
 
 @implementation SEGSegmentioIntegrationTests
+
+void trvs_assertNotificationsObserved(id self, void (^block)(void), id firstNotification, ...)
+{
+    NSCParameterAssert(block != nil);
+    NSCParameterAssert(firstNotification != nil);
+
+    va_list args;
+    va_start(args, firstNotification);
+    NSMutableArray *observers = [[NSMutableArray alloc] init];
+    __block NSUInteger actualObservedCount = 0;
+    NSUInteger expectedObservedCount = 0;
+
+    for (id currentNotification = firstNotification; currentNotification != nil; currentNotification = va_arg(args, id)) {
+        ++expectedObservedCount;
+
+        [observers addObject:[NSNotificationCenter.defaultCenter addObserverForName:currentNotification
+                                                                             object:nil
+                                                                              queue:nil
+                                                                         usingBlock:^(NSNotification *note) {
+                                                                           ++actualObservedCount;
+                                                                         }]];
+    }
+
+    va_end(args);
+
+    block();
+
+    EXP_expect(actualObservedCount).will.equal(expectedObservedCount);
+
+    for (id observer in observers) [NSNotificationCenter.defaultCenter removeObserver:observer];
+}
+
+void trvs_assertNotificationsNotObserved(id self, void (^block)(void), id firstNotification, ...)
+{
+    NSCParameterAssert(block != nil);
+    NSCParameterAssert(firstNotification != nil);
+
+    va_list args;
+    va_start(args, firstNotification);
+    NSMutableArray *observers = [[NSMutableArray alloc] init];
+    __block NSUInteger actualObservedCount = 0;
+    NSUInteger expectedObservedCount = 0;
+
+    for (id currentNotification = firstNotification; currentNotification != nil; currentNotification = va_arg(args, id)) {
+        ++expectedObservedCount;
+
+        [observers addObject:[NSNotificationCenter.defaultCenter addObserverForName:currentNotification
+                                                                             object:nil
+                                                                              queue:nil
+                                                                         usingBlock:^(NSNotification *note) {
+                                                                           ++actualObservedCount;
+                                                                         }]];
+    }
+
+    va_end(args);
+
+    block();
+
+    EXP_expect(actualObservedCount).willNot.equal(expectedObservedCount);
+
+    for (id observer in observers) [NSNotificationCenter.defaultCenter removeObserver:observer];
+}
 
 - (void)setUp
 {
@@ -107,7 +168,7 @@
     if ([self isCI]) return;
 
     trvs_assertNotificationsObserved(self, ^{
-    [self.integration track:self.event properties:self.properties options:self.options];
+      [self.integration track:self.event properties:self.properties options:self.options];
     }, SEGSegmentioDidSendRequestNotification, SEGSegmentioRequestDidSucceedNotification, nil);
 }
 
@@ -149,7 +210,7 @@
     if ([self isCI]) return;
 
     trvs_assertNotificationsObserved(self, ^{
-    [self.integration identify:self.identity traits:self.traits options:self.options];
+      [self.integration identify:self.identity traits:self.traits options:self.options];
     }, SEGSegmentioDidSendRequestNotification, SEGSegmentioRequestDidSucceedNotification, nil);
 }
 
@@ -157,14 +218,14 @@
 {
     self.integration.configuration.flushAt = 2;
     trvs_assertNotificationsNotObserved(self, ^{
-    [self.integration track:self.event properties:self.properties options:self.options];
+      [self.integration track:self.event properties:self.properties options:self.options];
 
-    NSString *anonymousId = self.integration.anonymousId;
+      NSString *anonymousId = self.integration.anonymousId;
 
-    [self.integration reset];
+      [self.integration reset];
 
-    EXP_expect(self.integration.queue.count).will.equal(0);
-    XCTAssertNotEqualObjects(anonymousId, self.integration.anonymousId);
+      EXP_expect(self.integration.queue.count).will.equal(0);
+      XCTAssertNotEqualObjects(anonymousId, self.integration.anonymousId);
     }, SEGSegmentioRequestDidSucceedNotification, SEGSegmentioDidSendRequestNotification, nil);
 }
 
