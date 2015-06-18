@@ -426,7 +426,7 @@ static BOOL GetAdTrackingEnabled()
 
       NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
       [payloadDictionary setObject:self.configuration.writeKey forKey:@"writeKey"];
-      [payloadDictionary setObject:[[NSDate date] description] forKey:@"sentAt"];
+      [payloadDictionary setObject:iso8601FormattedString([NSDate date]) forKey:@"sentAt"];
       [payloadDictionary setObject:self.context forKey:@"context"];
       [payloadDictionary setObject:self.batch forKey:@"batch"];
 
