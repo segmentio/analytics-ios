@@ -24,6 +24,23 @@
     [_integration updateSettings:@{ @"apiKey" : @"foo" }];
 }
 
+- (void)testStart
+{
+    [[[_flurryMock reject] ignoringNonObjectArgs] setSessionContinueSeconds:0];
+
+    [_integration updateSettings:@{ @"apiKey" : @"foo" }];
+
+    OCMVerify([_flurryMock startSession:@"foo"]);
+}
+
+- (void)testStartWithExtraOptions
+{
+    [_integration updateSettings:@{ @"apiKey" : @"foo",
+                                    @"sessionContinueSeconds" : @20 }];
+
+    OCMVerify([_flurryMock setSessionContinueSeconds:20]);
+    OCMVerify([_flurryMock startSession:@"foo"]);
+}
 
 - (void)testValidate
 {

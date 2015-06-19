@@ -27,13 +27,13 @@
 - (void)start
 {
     // Session settings
-    NSNumber *sessionContinueSeconds = [self.settings objectForKey:@"sessionContinueSeconds"];
+    NSNumber *sessionContinueSeconds = self.settings[@"sessionContinueSeconds"];
     if (sessionContinueSeconds) {
         [Flurry setSessionContinueSeconds:[sessionContinueSeconds intValue]];
     }
 
     // Start the session
-    NSString *apiKey = [self.settings objectForKey:@"apiKey"];
+    NSString *apiKey = self.settings[@"apiKey"];
     [Flurry startSession:apiKey];
     SEGLog(@"FlurryIntegration initialized.");
     [super start];
