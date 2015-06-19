@@ -1,11 +1,8 @@
-// FlurryIntegration.m
-// Copyright (c) 2014 Segment.io. All rights reserved.
-
 #import "SEGFlurryIntegration.h"
-#import <Flurry.h>
-#import <objc/message.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
+#import <Flurry.h>
+#import <objc/message.h>
 
 
 @implementation SEGFlurryIntegration
@@ -42,7 +39,6 @@
     [super start];
 }
 
-
 #pragma mark - Settings
 
 - (void)validate
@@ -50,7 +46,6 @@
     BOOL hasAPIKey = [self.settings objectForKey:@"apiKey"] != nil;
     self.valid = hasAPIKey;
 }
-
 
 #pragma mark - Analytics API
 
