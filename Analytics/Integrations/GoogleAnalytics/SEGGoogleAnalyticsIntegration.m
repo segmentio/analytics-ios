@@ -95,7 +95,7 @@
     self.traits = traits;
 
     [self.traits enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-    [[[GAI sharedInstance] defaultTracker] set:key value:obj];
+      [[[GAI sharedInstance] defaultTracker] set:key value:obj];
     }];
 }
 
@@ -134,7 +134,7 @@
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     [[[GAI sharedInstance] defaultTracker] set:kGAIScreenName value:screenTitle];
-    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createAppView] build]];
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 #pragma mark - Ecommerce
@@ -187,7 +187,7 @@
 - (void)resetTraits
 {
     [self.traits enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-    [[[GAI sharedInstance] defaultTracker] set:key value:nil];
+      [[[GAI sharedInstance] defaultTracker] set:key value:nil];
     }];
     self.traits = nil;
 }
