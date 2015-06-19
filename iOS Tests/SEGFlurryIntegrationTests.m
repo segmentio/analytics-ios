@@ -41,4 +41,15 @@
 }
 
 
+- (void)testScreenWithScreenTracksEvents
+{
+    [_integration updateSettings:@{ @"apiKey" : @"foo",
+                                    @"screenTracksEvents" : @YES }];
+
+    [_integration screen:@"foo" properties:@{ @"bar" : @"baz" } options:nil];
+
+    OCMVerify([_flurryMock logEvent:@"Viewed foo Screen" withParameters:@{ @"bar" : @"baz" }]);
+    OCMVerify([_flurryMock logPageView]);
+}
+
 @end
