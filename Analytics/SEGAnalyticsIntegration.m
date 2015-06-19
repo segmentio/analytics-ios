@@ -86,10 +86,11 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
     NSMutableDictionary *mapped = [NSMutableDictionary dictionaryWithDictionary:dictionary];
     TRVSDictionaryWithCaseInsensitivity *dict = [[TRVSDictionaryWithCaseInsensitivity alloc] initWithDictionary:dictionary];
     for (id key in map) {
-        [dict objectAndKeyForKey:key block:^(id obj, id aKey) {
-      mapped[map[key]] = dict[key];
-      [mapped removeObjectForKey:aKey];
-        }];
+        [dict objectAndKeyForKey:key
+                           block:^(id obj, id aKey) {
+                             mapped[map[key]] = dict[key];
+                             [mapped removeObjectForKey:aKey];
+                           }];
     }
 
     return mapped;
@@ -151,14 +152,15 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 - (void)trackEcommerceEvent:(NSString *)event properties:(NSDictionary *)properties
 {
     [[self ecommercePatternSelectorMap] enumerateKeysAndObjectsUsingBlock:^(NSString *pattern, NSString *selectorName, BOOL *stop) {
-    SEL selector = NSSelectorFromString(selectorName);
-    if ([self event:event matchesPattern:pattern] && [self respondsToSelector:selector]) {
+      SEL selector = NSSelectorFromString(selectorName);
+      if ([self event:event matchesPattern:pattern] && [self respondsToSelector:selector]) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-      [self performSelector:selector withObject:properties];
+          [self performSelector:selector
+                     withObject:properties];
 #pragma clang diagnostic pop
-      return;
-    }
+          return;
+      }
     }];
 }
 

@@ -65,7 +65,8 @@ LOCATION_NUMBER_PROPERTY(speed, location.speed);
 - (BOOL)hasKnownLocation
 {
     __block BOOL result = NO;
-    dispatch_sync(self.syncQueue, ^{ result = self.currentPlacemark != nil;
+    dispatch_sync(self.syncQueue, ^{
+      result = self.currentPlacemark != nil;
     });
     return result;
 }
@@ -87,12 +88,13 @@ LOCATION_NUMBER_PROPERTY(speed, location.speed);
     if (!locations.count) return;
 
     __weak typeof(self) weakSelf = self;
-    [self.geocoder reverseGeocodeLocation:locations.firstObject completionHandler:^(NSArray *placemarks, NSError *error) {
-    __strong typeof(weakSelf) strongSelf = weakSelf;
-    dispatch_sync(strongSelf.syncQueue, ^{
-      strongSelf.currentPlacemark = placemarks.firstObject;
-    });
-    }];
+    [self.geocoder reverseGeocodeLocation:locations.firstObject
+                        completionHandler:^(NSArray *placemarks, NSError *error) {
+                          __strong typeof(weakSelf) strongSelf = weakSelf;
+                          dispatch_sync(strongSelf.syncQueue, ^{
+                            strongSelf.currentPlacemark = placemarks.firstObject;
+                          });
+                        }];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error

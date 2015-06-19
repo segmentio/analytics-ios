@@ -14,6 +14,10 @@
 #import "SEGAppsFlyerIntegration.h"
 #endif
 
+#if defined(USE_ANALYTICS_APPTIMIZE) || defined(USE_ANALYTICS_ALL)
+#import "SEGApptimizeIntegration.h"
+#endif
+
 #if defined(USE_ANALYTICS_BUGSNAG) || defined(USE_ANALYTICS_ALL)
 #import "SEGBugsnagIntegration.h"
 #endif
@@ -50,6 +54,9 @@
 #import "SEGOptimizelyIntegration.h"
 #endif
 
+#if defined(USE_ANALYTICS_SEGMENTIO) || defined(USE_ANALYTICS_ALL)
+#import "SEGSegmentioIntegration.h"
+#endif
 
 #if defined(USE_ANALYTICS_TAPLYTICS) || defined(USE_ANALYTICS_ALL)
 #import "SEGTaplyticsIntegration.h"
@@ -61,12 +68,4 @@
 
 #if defined(USE_ANALYTICS_QUANTCAST) || defined(USE_ANALYTICS_ALL)
 #import "SEGQuantcastIntegration.h"
-#endif
-
-#if defined(USE_ANALYTICS_SEGMENTIO) || defined(USE_ANALYTICS_ALL)
-#import "SEGSegmentioIntegration.h"
-#endif
-
-#if defined(USE_ANALYTICS_APPTIMIZE) || defined(USE_ANALYTICS_ALL)
-#import "SEGApptimizeIntegration.h"
 #endif
