@@ -34,6 +34,38 @@
     XCTAssertFalse(_integration.valid);
 }
 
+- (void)testIdentify
+{
+    [[_flurryMock reject] setGender:[OCMArg any]];
+    [[_flurryMock reject] setAge:0];
+    [[_flurryMock reject] setLatitude:0 longitude:0 horizontalAccuracy:0 verticalAccuracy:0];
+
+    [_integration identify:@"foo" traits:@{} options:nil];
+
+    OCMVerify([_flurryMock setUserID:@"foo"]);
+}
+
+- (void)testIdentifyWithSpecialParams
+{
+    [_integration identify:@"foo"
+                    traits:@{
+                        @"gender" : @"bar",
+                        @"age" : @"20",
+                        @"location" : @{
+                            @"latitude" : @21.2,
+                            @"longitude" : @38.9832,
+                            @"horizontalAccuracy" : @9,
+                            @"verticalAccuracy" : @0.08
+                        }
+                    }
+                   options:nil];
+
+    OCMVerify([_flurryMock setUserID:@"foo"]);
+    OCMVerify([_flurryMock setGender:@"b"]);
+    OCMVerify([_flurryMock setAge:20]);
+    [[[_flurryMock expect] ignoringNonObjectArgs] setLatitude:0 longitude:0 horizontalAccuracy:0 verticalAccuracy:0];
+}
+
 
 - (void)testTrack
 {
