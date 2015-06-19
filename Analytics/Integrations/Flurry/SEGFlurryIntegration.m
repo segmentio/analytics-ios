@@ -1,11 +1,8 @@
-// FlurryIntegration.m
-// Copyright (c) 2014 Segment.io. All rights reserved.
-
 #import "SEGFlurryIntegration.h"
-#import <Flurry.h>
-#import <objc/message.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
+#import <Flurry.h>
+#import <objc/message.h>
 
 
 @implementation SEGFlurryIntegration
@@ -30,27 +27,25 @@
 - (void)start
 {
     // Session settings
-    NSNumber *sessionContinueSeconds = [self.settings objectForKey:@"sessionContinueSeconds"];
+    NSNumber *sessionContinueSeconds = self.settings[@"sessionContinueSeconds"];
     if (sessionContinueSeconds) {
         [Flurry setSessionContinueSeconds:[sessionContinueSeconds intValue]];
     }
 
     // Start the session
-    NSString *apiKey = [self.settings objectForKey:@"apiKey"];
+    NSString *apiKey = self.settings[@"apiKey"];
     [Flurry startSession:apiKey];
     SEGLog(@"FlurryIntegration initialized.");
     [super start];
 }
 
-
 #pragma mark - Settings
 
 - (void)validate
 {
-    BOOL hasAPIKey = [self.settings objectForKey:@"apiKey"] != nil;
+    BOOL hasAPIKey = self.settings[@"apiKey"] != nil;
     self.valid = hasAPIKey;
 }
-
 
 #pragma mark - Analytics API
 
@@ -58,25 +53,22 @@
 {
     [Flurry setUserID:userId];
 
-    // Gender
-    NSString *gender = [traits objectForKey:@"gender"];
+    NSString *gender = traits[@"gender"];
     if (gender) {
         [Flurry setGender:[gender substringToIndex:1]];
     }
 
-    // Age
-    NSString *age = [traits objectForKey:@"age"];
+    NSString *age = traits[@"age"];
     if (age) {
         [Flurry setAge:[age intValue]];
     }
 
-    NSDictionary *location = [traits objectForKey:@"location"];
-
+    NSDictionary *location = traits[@"location"];
     if (location) {
-        float latitude = [[location objectForKey:@"latitude"] floatValue];
-        float longitude = [[location objectForKey:@"longitude"] floatValue];
-        float horizontalAccuracy = [[location objectForKey:@"horizontalAccuracy"] floatValue];
-        float verticalAccuracy = [[location objectForKey:@"verticalAccuracy"] floatValue];
+        float latitude = [location[@"latitude"] floatValue];
+        float longitude = [location[@"longitude"] floatValue];
+        float horizontalAccuracy = [location[@"horizontalAccuracy"] floatValue];
+        float verticalAccuracy = [location[@"verticalAccuracy"] floatValue];
         [Flurry setLatitude:latitude longitude:longitude horizontalAccuracy:horizontalAccuracy verticalAccuracy:verticalAccuracy];
     }
 }

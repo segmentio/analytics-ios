@@ -7,4 +7,7 @@
 
 @interface SEGFlurryIntegration : SEGAnalyticsIntegration
 
+@property (nonatomic, assign) Class clazz;
+
+
 @end
