@@ -24,6 +24,17 @@
     [_integration updateSettings:@{ @"apiKey" : @"foo" }];
 }
 
+
+- (void)testValidate
+{
+    [_integration updateSettings:@{ @"apiKey" : @"foo" }];
+    XCTAssertTrue(_integration.valid);
+
+    [_integration updateSettings:@{}];
+    XCTAssertFalse(_integration.valid);
+}
+
+
 - (void)testTrack
 {
     [_integration track:@"foo" properties:@{ @"bar" : @"baz" } options:nil];

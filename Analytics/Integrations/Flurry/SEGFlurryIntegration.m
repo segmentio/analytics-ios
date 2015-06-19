@@ -43,7 +43,7 @@
 
 - (void)validate
 {
-    BOOL hasAPIKey = [self.settings objectForKey:@"apiKey"] != nil;
+    BOOL hasAPIKey = self.settings[@"apiKey"] != nil;
     self.valid = hasAPIKey;
 }
 
