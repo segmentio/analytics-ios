@@ -1,4 +1,23 @@
 
+1.12.0 / 2015-06-22
+===================
+
+  * Clean up auto synthesized properties in subclasses
+  * Force ISO 8601 for sentAt timestamp
+  * Remove deprecated header files
+  * Update Tapstream SDK
+  * Update Quantcast SDK
+  * Update Optimizely SDK
+  * Update Mixpanel SDK
+  * Update Localytics SDK
+  * Update Google Analytics SDK
+  * Update Flurry SDK
+  * Update Countly SDK
+  * Update Bugsnag SDK
+  * Update Apptimize SDK
+  * Update Amplitude integration
+  * Make Tapstream headers public
+
 1.11.13 / 2015-06-15
 ====================
 
