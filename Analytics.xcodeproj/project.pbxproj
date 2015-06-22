@@ -1742,6 +1742,7 @@
 				INFOPLIST_FILE = "iOS Tests/iOS Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USE_ANALYTICS_ALL = 1;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -1770,6 +1771,7 @@
 				INFOPLIST_FILE = "iOS Tests/iOS Tests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USE_ANALYTICS_ALL = 1;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
