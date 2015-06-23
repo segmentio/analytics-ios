@@ -3,8 +3,11 @@
 
 #import <Foundation/Foundation.h>
 #import "SEGAnalyticsIntegration.h"
+#import <Amplitude-iOS/Amplitude.h>
 
 
 @interface SEGAmplitudeIntegration : SEGAnalyticsIntegration
+
+@property (assign) Amplitude *amplitude;
 
 @end

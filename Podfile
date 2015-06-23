@@ -21,6 +21,7 @@ end
 target 'iOS Tests', :exclusive => true do
   import_pods
   pod 'OCMock', '~> 3.1.2'
+  pod 'OCMockito', '~> 1.4.0'
   pod 'Expecta', '~> 1.0.0'
 end
 
