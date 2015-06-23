@@ -1,7 +1,6 @@
 // AmplitudeIntegration.m
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
-#import <Amplitude-iOS/Amplitude.h>
 #import "SEGAmplitudeIntegration.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
@@ -22,6 +21,7 @@
         self.name = @"Amplitude";
         self.valid = NO;
         self.initialized = NO;
+        self.amplitude = [Amplitude instance];
     }
     return self;
 }
@@ -49,13 +49,13 @@
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    [[Amplitude instance] setUserId:userId];
-    [[Amplitude instance] setUserProperties:traits];
+    [_amplitude setUserId:userId];
+    [_amplitude setUserProperties:traits];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    [[Amplitude instance] logEvent:event withEventProperties:properties];
+    [_amplitude logEvent:event withEventProperties:properties];
 
     // Track any revenue.
     NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:properties];
@@ -72,10 +72,11 @@
         if (!receipt || ![receipt isKindOfClass:[NSString class]]) {
             receipt = nil;
         }
-        [[Amplitude instance] logRevenue:productId
-                                quantity:[quantity integerValue]
-                                   price:revenue
-                                 receipt:receipt];
+        NSLog(@"Number : %@", revenue);
+        [_amplitude logRevenue:productId
+                      quantity:[quantity integerValue]
+                         price:revenue
+                       receipt:receipt];
     }
 }
 
@@ -89,7 +90,7 @@
 
 - (void)flush
 {
-    [[Amplitude instance] uploadEvents];
+    [_amplitude uploadEvents];
 }
 
 @end
