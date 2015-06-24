@@ -22,6 +22,7 @@
         self.name = @"Bugsnag";
         self.valid = NO;
         self.initialized = NO;
+        self.bugsnagClass = [Bugsnag class];
     }
     return self;
 }
@@ -29,7 +30,7 @@
 - (void)start
 {
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
-    [Bugsnag startBugsnagWithApiKey:apiKey];
+    [self.bugsnagClass startBugsnagWithApiKey:apiKey];
     SEGLog(@"BugsnagIntegration initialized with apiKey %@", apiKey);
     [super start];
     // TODO add support for non-SSL?
@@ -50,22 +51,17 @@
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     // User ID
-    [[Bugsnag configuration] setUser:userId withName:[traits objectForKey:@"name"] andEmail:[traits objectForKey:@"email"]];
+    [[self.bugsnagClass configuration] setUser:userId withName:[traits objectForKey:@"name"] andEmail:[traits objectForKey:@"email"]];
 
     // Other traits. Iterate over all the traits and set them.
     for (NSString *key in traits) {
-        [Bugsnag addAttribute:key withValue:[traits objectForKey:key] toTabWithName:@"user"];
+        [self.bugsnagClass addAttribute:key withValue:[traits objectForKey:key] toTabWithName:@"user"];
     }
-}
-
-- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
-{
-    // There's no event tracking with Bugsnag.
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)optionsoptions
 {
-    [[Bugsnag configuration] setContext:screenTitle];
+    [[self.bugsnagClass configuration] setContext:screenTitle];
 }
 
 @end
