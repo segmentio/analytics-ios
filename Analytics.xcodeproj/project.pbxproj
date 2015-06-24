@@ -219,6 +219,7 @@
 		32F6381D1A8134A600C65643 /* SEGKahunaIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6381A1A8134A600C65643 /* SEGKahunaIntegration.m */; };
 		6182B863DB2D44D1B463AE3B /* libPods-iOS Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AE4A015CBF4E95B18D10A7 /* libPods-iOS Tests.a */; };
 		6E16FFF81B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E16FFF71B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m */; };
+		6E51469A1B3B573600F8F87C /* SEGBugsnagIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5146991B3B573600F8F87C /* SEGBugsnagIntegrationTests.m */; };
 		6E5EF3D31B1005FB001A4BA4 /* CrittercismConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5EF3D21B1005FB001A4BA4 /* CrittercismConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E5EF3D51B10063E001A4BA4 /* OptimizelyExperimentData.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E85F3701B2F792100763913 /* SEGAnalyticsIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */; };
@@ -510,6 +511,7 @@
 		32F9E6B61907320700ED295B /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32F9E6B91907323900ED295B /* libPods-Analytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Analytics.a"; path = "Pods/build/Debug-iphoneos/libPods-Analytics.a"; sourceTree = "<group>"; };
 		6E16FFF71B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGFlurryIntegrationTests.m; sourceTree = "<group>"; };
+		6E5146991B3B573600F8F87C /* SEGBugsnagIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGBugsnagIntegrationTests.m; path = Integrations/Bugsnag/SEGBugsnagIntegrationTests.m; sourceTree = "<group>"; };
 		6E5EF3D21B1005FB001A4BA4 /* CrittercismConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CrittercismConfig.h; path = Pods/CrittercismSDK/CrittercismSDK/CrittercismConfig.h; sourceTree = "<group>"; };
 		6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelyExperimentData.h; path = "Pods/Optimizely-iOS-SDK/Optimizely.framework/Headers/OptimizelyExperimentData.h"; sourceTree = "<group>"; };
 		6E85F38F1B2F922F00763913 /* CountlyDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CountlyDB.h; path = Pods/Countly/CountlyDB.h; sourceTree = "<group>"; };
@@ -743,6 +745,7 @@
 			isa = PBXGroup;
 			children = (
 				6EB4681F1B39CDBD00A0E4B9 /* Amplitude */,
+				6E5146981B3B571D00F8F87C /* Bugsnag */,
 				6E16FFF41B33AD0B00B4F7FE /* Flurry */,
 			);
 			name = Integrations;
@@ -754,6 +757,14 @@
 				6E16FFF71B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m */,
 			);
 			name = Flurry;
+			sourceTree = "<group>";
+		};
+		6E5146981B3B571D00F8F87C /* Bugsnag */ = {
+			isa = PBXGroup;
+			children = (
+				6E5146991B3B573600F8F87C /* SEGBugsnagIntegrationTests.m */,
+			);
+			name = Bugsnag;
 			sourceTree = "<group>";
 		};
 		6EB4681F1B39CDBD00A0E4B9 /* Amplitude */ = {
@@ -1663,6 +1674,7 @@
 				32CFF3D019AE5BCF00193D3D /* SEGAppsFlyerIntegration.m in Sources */,
 				DAEB6FF31AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m in Sources */,
 				32225233199AD6D200478B1A /* SEGReachability.m in Sources */,
+				6E51469A1B3B573600F8F87C /* SEGBugsnagIntegrationTests.m in Sources */,
 				6E16FFF81B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m in Sources */,
 				3242C9BD1946AFEC00FBE441 /* SEGQuantcastIntegration.m in Sources */,
 				3242C9BC1946AFE300FBE441 /* SEGMixpanelIntegration.m in Sources */,
