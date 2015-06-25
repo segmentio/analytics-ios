@@ -22,6 +22,8 @@
         self.name = @"Crittercism";
         self.valid = NO;
         self.initialized = NO;
+        self.crittercismClass = [Crittercism class];
+        self.crittercismConfigClass = [CrittercismConfig class];
     }
     return self;
 }
@@ -31,7 +33,7 @@
     NSString *appId = [self.settings objectForKey:@"appId"];
     CrittercismConfig *config = [CrittercismConfig defaultConfig];
     [config setMonitorUIWebView:[(NSNumber *)[self.settings objectForKey:@"monitorWebView"] boolValue]];
-    [Crittercism enableWithAppID:appId andConfig:config];
+    [self.crittercismClass enableWithAppID:appId andConfig:config];
     SEGLog(@"CrittercismIntegration initialized.");
     [super start];
 }
@@ -52,23 +54,23 @@
 {
     // Username
     if (userId) {
-        [Crittercism setUsername:userId];
+        [self.crittercismClass setUsername:userId];
     }
 
     // Other traits. Iterate over all the traits and set them.
     for (NSString *key in traits) {
-        [Crittercism setValue:[traits objectForKey:key] forKey:key];
+        [self.crittercismClass setValue:[traits objectForKey:key] forKey:key];
     }
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    [Crittercism leaveBreadcrumb:event];
+    [self.crittercismClass leaveBreadcrumb:event];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)optionsoptions
 {
-    [Crittercism leaveBreadcrumb:SEGEventNameForScreenTitle(screenTitle)];
+    [self.crittercismClass leaveBreadcrumb:SEGEventNameForScreenTitle(screenTitle)];
 }
 
 

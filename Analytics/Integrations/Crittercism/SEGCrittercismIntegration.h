@@ -7,4 +7,7 @@
 
 @interface SEGCrittercismIntegration : SEGAnalyticsIntegration
 
+@property Class crittercismClass;
+@property Class crittercismConfigClass;
+
 @end
