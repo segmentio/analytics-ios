@@ -233,6 +233,7 @@
 		6EB468211B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB468201B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m */; };
 		6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB809561AFC136D00959050 /* AMPURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809551AFC136D00959050 /* AMPURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6EFF0CE51B3B63FB005190A2 /* SEGCountlyIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFF0CE41B3B63FB005190A2 /* SEGCountlyIntegrationTests.m */; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCEC185BFAA1007CB22F /* MPSurvey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF0185BFF49007CB22F /* CRFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -520,6 +521,7 @@
 		6EB468201B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGAmplitudeIntegrationTests.m; path = Integrations/Amplitude/SEGAmplitudeIntegrationTests.m; sourceTree = "<group>"; };
 		6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Amplitude+SSLPinning.h"; path = "Pods/Amplitude-iOS/Amplitude/Amplitude+SSLPinning.h"; sourceTree = "<group>"; };
 		6EB809551AFC136D00959050 /* AMPURLConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AMPURLConnection.h; path = "Pods/Amplitude-iOS/Amplitude/AMPURLConnection.h"; sourceTree = "<group>"; };
+		6EFF0CE41B3B63FB005190A2 /* SEGCountlyIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGCountlyIntegrationTests.m; path = Integrations/Countly/SEGCountlyIntegrationTests.m; sourceTree = "<group>"; };
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBlockMatchEvaluator.h; sourceTree = "<group>"; };
 		7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockMatchEvaluator.m; sourceTree = "<group>"; };
@@ -744,6 +746,7 @@
 		6E16FFF31B33AD0600B4F7FE /* Integrations */ = {
 			isa = PBXGroup;
 			children = (
+				6EFF0CE31B3B63E6005190A2 /* Countly */,
 				6EB4681F1B39CDBD00A0E4B9 /* Amplitude */,
 				6E5146981B3B571D00F8F87C /* Bugsnag */,
 				6E16FFF41B33AD0B00B4F7FE /* Flurry */,
@@ -773,6 +776,14 @@
 				6EB468201B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m */,
 			);
 			name = Amplitude;
+			sourceTree = "<group>";
+		};
+		6EFF0CE31B3B63E6005190A2 /* Countly */ = {
+			isa = PBXGroup;
+			children = (
+				6EFF0CE41B3B63FB005190A2 /* SEGCountlyIntegrationTests.m */,
+			);
+			name = Countly;
 			sourceTree = "<group>";
 		};
 		D3D35174186242B4005586E7 /* Headers */ = {
@@ -1660,6 +1671,7 @@
 			files = (
 				3242C9B51946AFC500FBE441 /* SEGAmplitudeIntegration.m in Sources */,
 				3242C9B01946ADA000FBE441 /* SEGLocation.m in Sources */,
+				6EFF0CE51B3B63FB005190A2 /* SEGCountlyIntegrationTests.m in Sources */,
 				3242C9AB1946AB4700FBE441 /* AnalyticsUtilsTests.m in Sources */,
 				3242C9AC1946AB4700FBE441 /* SegmentioTests.m in Sources */,
 				3242C9BF1946AFF900FBE441 /* SEGTapstreamIntegration.m in Sources */,

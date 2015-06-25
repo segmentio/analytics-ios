@@ -22,6 +22,7 @@
         self.name = @"Countly";
         self.valid = NO;
         self.initialized = NO;
+        self.countly = [Countly sharedInstance];
     }
     return self;
 }
@@ -33,8 +34,8 @@
 
     // Countly's SDK will silently fail to send data if it's not initialized on the main thread.
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[Countly sharedInstance] start:appKey withHost:serverUrl];
-        SEGLog(@"CountlyIntegration initialized with appKey %@ and serverUrl %@", appKey, serverUrl);
+      [self.countly start:appKey withHost:serverUrl];
+      SEGLog(@"CountlyIntegration initialized with appKey %@ and serverUrl %@", appKey, serverUrl);
     });
     [super start]; // todo: maybe not?
 }
@@ -52,12 +53,6 @@
 
 #pragma mark - Analytics API
 
-
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
-{
-    // Countly has no support for identity information.
-}
-
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     // Countly's SDK will silently fail to send data if it's not sent on the main thread.
@@ -68,10 +63,10 @@
     NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:properties];
     if (revenue) {
         SEGLog(@"Calling Countly with event:%@, segmentation:%@, sum:%@", event, notNestedProperties, revenue);
-        [[Countly sharedInstance] recordEvent:event segmentation:notNestedProperties count:1 sum:revenue.longValue];
+        [self.countly recordEvent:event segmentation:notNestedProperties count:1 sum:revenue.longValue];
     } else {
         SEGLog(@"Calling Countly with event:%@, segmentation:%@", event, notNestedProperties);
-        [[Countly sharedInstance] recordEvent:event segmentation:notNestedProperties count:1];
+        [self.countly recordEvent:event segmentation:notNestedProperties count:1];
     }
 }
 
