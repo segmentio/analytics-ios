@@ -9,15 +9,6 @@
 
 @implementation SEGLocalyticsIntegration
 
-+ (BOOL)validateEmail:(NSString *)candidate
-{
-    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    NSPredicate *emailTest =
-        [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-
-    return [emailTest evaluateWithObject:candidate];
-}
-
 + (void)load
 {
     [SEGAnalytics registerIntegration:self withIdentifier:@"Localytics"];
@@ -31,6 +22,7 @@
         self.name = @"Localytics";
         self.valid = NO;
         self.initialized = NO;
+        self.localyticsClass = [Localytics class];
     }
     return self;
 }
@@ -39,13 +31,13 @@
 {
     NSString *appKey = [self.settings objectForKey:@"appKey"];
 
-    [Localytics integrate:appKey];
+    [self.localyticsClass integrate:appKey];
 
     NSNumber *sessionTimeoutInterval =
         [self.settings objectForKey:@"sessionTimeoutInterval"];
     if (sessionTimeoutInterval != nil &&
         [sessionTimeoutInterval floatValue] > 0) {
-        [Localytics setSessionTimeoutInterval:[sessionTimeoutInterval floatValue]];
+        [self.localyticsClass setSessionTimeoutInterval:[sessionTimeoutInterval floatValue]];
     }
 
     SEGLog(@"LocalyticsIntegration initialized.");
@@ -59,8 +51,8 @@
     for (NSString *key in dictionary) {
         if ([customDimensions objectForKey:key] != nil) {
             NSString *dimension = [customDimensions objectForKey:key];
-            [Localytics setValue:[dictionary objectForKey:key]
-                forCustomDimension:[dimension integerValue]];
+            [self.localyticsClass setValue:[dictionary objectForKey:key]
+                        forCustomDimension:[dimension integerValue]];
         }
     }
 }
@@ -80,23 +72,18 @@
          options:(NSDictionary *)options
 {
     if (userId) {
-        [Localytics setCustomerId:userId];
+        [self.localyticsClass setCustomerId:userId];
     }
 
-    // Email
     NSString *email = [traits objectForKey:@"email"];
-    if (!email && [SEGLocalyticsIntegration validateEmail:userId]) {
-        email = userId;
-    }
     if (email) {
-        [Localytics setValue:email forIdentifier:@"email"];
+        [self.localyticsClass setValue:email forIdentifier:@"email"];
     }
 
-    // Name
     NSString *name = [traits objectForKey:@"name"];
     // TODO support first name, last name?
     if (name) {
-        [Localytics setValue:name forIdentifier:@"customer_name"];
+        [self.localyticsClass setValue:name forIdentifier:@"customer_name"];
     }
 
     [self setCustomDimensions:traits];
@@ -105,9 +92,9 @@
     for (NSString *key in traits) {
         NSString *traitValue =
             [NSString stringWithFormat:@"%@", [traits objectForKey:key]];
-        [Localytics setValue:traitValue
-            forProfileAttribute:key
-                      withScope:LLProfileScopeApplication];
+        [self.localyticsClass setValue:traitValue
+                   forProfileAttribute:key
+                             withScope:LLProfileScopeApplication];
     }
 }
 
@@ -121,23 +108,23 @@
     BOOL isBackgrounded = [[UIApplication sharedApplication] applicationState] !=
         UIApplicationStateActive;
     if (isBackgrounded) {
-        [Localytics openSession];
+        [self.localyticsClass openSession];
     }
 
     NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:properties];
     if (revenue) {
-        [Localytics tagEvent:event
-                       attributes:properties
-            customerValueIncrease:revenue];
+        [self.localyticsClass tagEvent:event
+                            attributes:properties
+                 customerValueIncrease:revenue];
     } else {
-        [Localytics tagEvent:event attributes:properties];
+        [self.localyticsClass tagEvent:event attributes:properties];
     }
 
     [self setCustomDimensions:properties];
 
     // Backgrounded? Close the session again after the event.
     if (isBackgrounded) {
-        [Localytics closeSession];
+        [self.localyticsClass closeSession];
     }
 }
 
@@ -145,51 +132,50 @@
     properties:(NSDictionary *)properties
        options:(NSDictionary *)options
 {
-    // For enterprise only...
-    [Localytics tagScreen:screenTitle];
+    [self.localyticsClass tagScreen:screenTitle];
 }
 
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
                                               options:(NSDictionary *)options
 {
-    [Localytics setPushToken:deviceToken];
+    [self.localyticsClass setPushToken:deviceToken];
 }
 
 - (void)flush
 {
-    [Localytics upload];
+    [self.localyticsClass upload];
 }
 
 #pragma mark - Callbacks for app state changes
 
 - (void)applicationDidEnterBackground
 {
-    [Localytics dismissCurrentInAppMessage];
-    [Localytics closeSession];
-    [Localytics upload];
+    [self.localyticsClass dismissCurrentInAppMessage];
+    [self.localyticsClass closeSession];
+    [self.localyticsClass upload];
 }
 
 - (void)applicationWillEnterForeground
 {
-    [Localytics openSession];
-    [Localytics upload];
+    [self.localyticsClass openSession];
+    [self.localyticsClass upload];
 }
 
 - (void)applicationWillTerminate
 {
-    [Localytics closeSession];
-    [Localytics upload];
+    [self.localyticsClass closeSession];
+    [self.localyticsClass upload];
 }
 - (void)applicationWillResignActive
 {
-    [Localytics dismissCurrentInAppMessage];
-    [Localytics closeSession];
-    [Localytics upload];
+    [self.localyticsClass dismissCurrentInAppMessage];
+    [self.localyticsClass closeSession];
+    [self.localyticsClass upload];
 }
 - (void)applicationDidBecomeActive
 {
-    [Localytics openSession];
-    [Localytics upload];
+    [self.localyticsClass openSession];
+    [self.localyticsClass upload];
 }
 
 @end

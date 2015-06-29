@@ -7,4 +7,6 @@
 
 @interface SEGLocalyticsIntegration : SEGAnalyticsIntegration
 
+@property Class localyticsClass;
+
 @end
