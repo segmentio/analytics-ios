@@ -26,6 +26,7 @@
         self.name = [self.class identifier];
         self.valid = NO;
         self.initialized = NO;
+        self.taplyticsClass = [Taplytics class];
     }
     return self;
 }
@@ -37,7 +38,7 @@
     [options setValue:[self shakeMenu] forKey:@"shakeMenu"];
     [options setValue:[self pushSandbox] forKey:@"pushSandbox"];
 
-    [Taplytics startTaplyticsAPIKey:[self apiKey] options:options];
+    [self.taplyticsClass startTaplyticsAPIKey:[self apiKey] options:options];
 
     SEGLog(@"TaplyticsIntegration initialized with api key %@ and options %@", [self apiKey], options);
     [super start];
@@ -52,21 +53,14 @@
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    // Map the traits to special mixpanel keywords.
-    NSDictionary *map = @{
-        @"lastName" : @"lastName",
-        @"firstName" : @"firstName",
-        @"gender" : @"gender",
-        @"age" : @"age",
-        @"name" : @"name",
-        @"email" : @"email",
-        @"avatarURl" : @"avatar"
-    };
-
-    NSMutableDictionary *mappedTraits = [NSMutableDictionary dictionaryWithDictionary:[SEGAnalyticsIntegration map:traits withMap:map]];
+    NSMutableDictionary *mappedTraits = [NSMutableDictionary dictionaryWithDictionary:traits];
+    if (traits[@"avatar"]) {
+        mappedTraits[@"avatarURL"] = traits[@"avatar"];
+        [mappedTraits removeObjectForKey:@"avatar"];
+    }
     mappedTraits[@"user_id"] = userId;
 
-    [Taplytics setUserAttributes:mappedTraits];
+    [self.taplyticsClass setUserAttributes:mappedTraits];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
@@ -74,9 +68,9 @@
     // If revenue is included, logRevenue to Taplytics.
     NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:properties];
     if (revenue) {
-        [Taplytics logRevenue:event revenue:revenue metaData:properties];
+        [self.taplyticsClass logRevenue:event revenue:revenue metaData:properties];
     } else {
-        [Taplytics logEvent:event value:nil metaData:properties];
+        [self.taplyticsClass logEvent:event value:nil metaData:properties];
     }
 }
 
@@ -91,13 +85,13 @@
         [userAttributes setObject:traits forKey:@"groupTraits"];
 
     if (userAttributes.count > 0)
-        [Taplytics setUserAttributes:userAttributes];
+        [self.taplyticsClass setUserAttributes:userAttributes];
 };
 
 - (void)reset
 {
-    [Taplytics resetUser:^{
-        SEGLog(@"Reset Taplytics User");
+    [self.taplyticsClass resetUser:^{
+      SEGLog(@"Reset Taplytics User");
     }];
 }
 
