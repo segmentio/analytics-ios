@@ -11,4 +11,6 @@
 
 @interface SEGTaplyticsIntegration : SEGAnalyticsIntegration
 
+@property Class taplyticsClass;
+
 @end
