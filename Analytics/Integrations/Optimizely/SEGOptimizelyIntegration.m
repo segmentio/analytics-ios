@@ -14,13 +14,6 @@
 NSString *SEGMixpanelClass = @"Mixpanel";
 
 
-@interface SEGOptimizelyIntegration ()
-
-@property (nonatomic, assign) BOOL needsToActivateMixpanel;
-
-@end
-
-
 @implementation SEGOptimizelyIntegration
 
 + (void)load
@@ -34,6 +27,7 @@ NSString *SEGMixpanelClass = @"Mixpanel";
         self.name = self.class.identifier;
         self.valid = YES;
         self.initialized = NO;
+        self.optimizelyClass = [Optimizely class];
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(integrationDidStart:) name:SEGAnalyticsIntegrationDidStart object:nil];
     }
@@ -54,7 +48,7 @@ NSString *SEGMixpanelClass = @"Mixpanel";
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    [Optimizely trackEvent:event];
+    [self.optimizelyClass trackEvent:event];
 }
 
 #pragma mark - Private
@@ -69,7 +63,7 @@ NSString *SEGMixpanelClass = @"Mixpanel";
     if (NSClassFromString(SEGMixpanelClass) && self.needsToActivateMixpanel) {
         SEGLog(@"Activating Optimizely's Mixpanel integration.");
 
-        [Optimizely activateMixpanelIntegration];
+        [self.optimizelyClass activateMixpanelIntegration];
         self.needsToActivateMixpanel = NO;
     }
 }

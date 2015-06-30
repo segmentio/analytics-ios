@@ -11,4 +11,7 @@
 
 @interface SEGOptimizelyIntegration : SEGAnalyticsIntegration
 
+@property Class optimizelyClass;
+@property (nonatomic, assign) BOOL needsToActivateMixpanel;
+
 @end
