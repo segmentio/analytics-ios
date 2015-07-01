@@ -52,7 +52,7 @@ void (*selOriginalApplicationDidReceiveRemoteNotification)(id, SEL, id, id);
         }
         
         [SEGMoEngagePushManager sharedInstance].moengageInitialized = TRUE;
-        SEGLog(@"MoEngage initialized.");
+        SEGLog(@"MoEngage-Segment - initialized.");
     }
 
 // When this class loads we will register for the 'UIApplicationDidFinishLaunchingNotification' notification.
@@ -88,8 +88,7 @@ void (*selOriginalApplicationDidReceiveRemoteNotification)(id, SEL, id, id);
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options{
     if(!userId){
-        NSLog(@"MoEngage - trying to call identify without any userId");
-        return;
+        NSLog(@"MoEngage-Segment - calling identify without any userId");
     }
     [self setAttributes:traits];
 }
@@ -129,7 +128,7 @@ void (*selOriginalApplicationDidReceiveRemoteNotification)(id, SEL, id, id);
     }
     
     if([traits objectForKey:@"address"]){
-        [[MoEngage sharedInstance]setUserAttribute:[traits objectForKey:@"address"] forKey:@"age"];
+        [[MoEngage sharedInstance]setUserAttribute:[traits objectForKey:@"address"] forKey:@"address"];
     }
     
     if([traits objectForKey:@"age"]){
