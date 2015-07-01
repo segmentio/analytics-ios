@@ -7,4 +7,6 @@
 
 @interface SEGMixpanelIntegration : SEGAnalyticsIntegration
 
+@property Class mixpanelClass;
+
 @end

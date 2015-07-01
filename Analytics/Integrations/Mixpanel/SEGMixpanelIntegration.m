@@ -22,6 +22,7 @@
         self.name = @"Mixpanel";
         self.valid = NO;
         self.initialized = NO;
+        self.mixpanelClass = [Mixpanel class];
     }
     return self;
 }
@@ -29,7 +30,7 @@
 - (void)start
 {
     NSString *token = [self.settings objectForKey:@"token"];
-    [Mixpanel sharedInstanceWithToken:token];
+    [self.mixpanelClass sharedInstanceWithToken:token];
 
     [super start];
 }
@@ -47,8 +48,9 @@
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    if (userId != nil && [userId length] != 0)
-        [[Mixpanel sharedInstance] identify:userId];
+    if (userId != nil && [userId length] != 0) {
+        [[self.mixpanelClass sharedInstance] identify:userId];
+    }
 
     // Map the traits to special mixpanel keywords.
     NSDictionary *map = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -63,32 +65,29 @@
 
     NSDictionary *mappedTraits = [SEGAnalyticsIntegration map:traits withMap:map];
 
-    [[Mixpanel sharedInstance] registerSuperProperties:mappedTraits];
+    [[self.mixpanelClass sharedInstance] registerSuperProperties:mappedTraits];
 
     if ([(NSNumber *)[self.settings objectForKey:@"people"] boolValue]) {
-        [[Mixpanel sharedInstance].people set:mappedTraits];
+        [[[self.mixpanelClass sharedInstance] people] set:mappedTraits];
     }
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    // Only track the event if it isn't blocked
-    if (![self eventIsBlocked:event]) {
-        // Track the raw event.
-        [[Mixpanel sharedInstance] track:event properties:properties];
+    // Track the raw event.
+    [[self.mixpanelClass sharedInstance] track:event properties:properties];
 
-        // If revenue is included and People is enabled, trackCharge to Mixpanel.
-        NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:properties];
-        if (revenue && [(NSNumber *)[self.settings objectForKey:@"people"] boolValue]) {
-            [[Mixpanel sharedInstance].people trackCharge:revenue];
-        }
+    // If revenue is included and People is enabled, trackCharge to Mixpanel.
+    NSNumber *revenue = [SEGAnalyticsIntegration extractRevenue:properties];
+    if (revenue && [(NSNumber *)[self.settings objectForKey:@"people"] boolValue]) {
+        [[[self.mixpanelClass sharedInstance] people] trackCharge:revenue];
     }
 
     // If people is enabled we may want to increment this event in people
     if ([self eventShouldIncrement:event]) {
-        [[Mixpanel sharedInstance].people increment:event by:@1];
+        [[[self.mixpanelClass sharedInstance] people] increment:event by:@1];
         NSString *lastEvent = [NSString stringWithFormat:@"Last %@", event];
-        [[Mixpanel sharedInstance].people set:lastEvent to:[NSDate date]];
+        [[[self.mixpanelClass sharedInstance] people] set:lastEvent to:[NSDate date]];
     }
 }
 
@@ -102,12 +101,12 @@
 
 - (void)alias:(NSString *)newId options:(NSDictionary *)options
 {
-    [[Mixpanel sharedInstance] createAlias:newId forDistinctID:[Mixpanel sharedInstance].distinctId];
+    [[self.mixpanelClass sharedInstance] createAlias:newId forDistinctID:[[self.mixpanelClass sharedInstance] distinctId]];
 }
 
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options
 {
-    [[[Mixpanel sharedInstance] people] addPushDeviceToken:deviceToken];
+    [[[self.mixpanelClass sharedInstance] people] addPushDeviceToken:deviceToken];
 }
 
 - (BOOL)eventShouldIncrement:(NSString *)event
@@ -121,26 +120,15 @@
     return NO;
 }
 
-- (BOOL)eventIsBlocked:(NSString *)event
-{
-    NSArray *blocked = [self.settings objectForKey:@"blockedEvents"];
-    for (NSString *block in blocked) {
-        if ([event caseInsensitiveCompare:block] == NSOrderedSame) {
-            return YES;
-        }
-    }
-    return NO;
-}
-
 - (void)reset
 {
-    [[Mixpanel sharedInstance] flush];
-    [[Mixpanel sharedInstance] reset];
+    [[self.mixpanelClass sharedInstance] flush];
+    [[self.mixpanelClass sharedInstance] reset];
 }
 
 - (void)flush
 {
-    [[Mixpanel sharedInstance] flush];
+    [[self.mixpanelClass sharedInstance] flush];
 }
 
 @end
