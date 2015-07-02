@@ -145,7 +145,8 @@
 
 - (void)testTrackWithIncrement
 {
-    [_integration setSettings:@{ @"increments" : @[ @"foo" ] }];
+    [_integration setSettings:@{ @"people" : @1,
+                                 @"increments" : @[ @"foo" ] }];
 
     [_integration track:@"foo" properties:@{} options:nil];
 
