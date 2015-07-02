@@ -218,6 +218,9 @@
 		32F6381C1A8134A600C65643 /* SEGKahunaIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6381A1A8134A600C65643 /* SEGKahunaIntegration.m */; };
 		32F6381D1A8134A600C65643 /* SEGKahunaIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6381A1A8134A600C65643 /* SEGKahunaIntegration.m */; };
 		6182B863DB2D44D1B463AE3B /* libPods-iOS Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AE4A015CBF4E95B18D10A7 /* libPods-iOS Tests.a */; };
+		6E0DC0D81B44ABA400461485 /* SEGUXCamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E0DC0D61B44ABA400461485 /* SEGUXCamIntegration.h */; };
+		6E0DC0D91B44ABA400461485 /* SEGUXCamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0DC0D71B44ABA400461485 /* SEGUXCamIntegration.m */; };
+		6E0DC0DB1B44AC6000461485 /* UXCam.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E0DC0DA1B44AC6000461485 /* UXCam.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E12DD831B3CA2A1005E35D0 /* SEGCrittercismIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E12DD821B3CA2A1005E35D0 /* SEGCrittercismIntegrationTests.m */; };
 		6E16FFF81B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E16FFF71B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m */; };
 		6E51469A1B3B573600F8F87C /* SEGBugsnagIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5146991B3B573600F8F87C /* SEGBugsnagIntegrationTests.m */; };
@@ -516,6 +519,9 @@
 		32F9E6B31907300300ED295B /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32F9E6B61907320700ED295B /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32F9E6B91907323900ED295B /* libPods-Analytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Analytics.a"; path = "Pods/build/Debug-iphoneos/libPods-Analytics.a"; sourceTree = "<group>"; };
+		6E0DC0D61B44ABA400461485 /* SEGUXCamIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGUXCamIntegration.h; path = UXCam/SEGUXCamIntegration.h; sourceTree = "<group>"; };
+		6E0DC0D71B44ABA400461485 /* SEGUXCamIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGUXCamIntegration.m; path = UXCam/SEGUXCamIntegration.m; sourceTree = "<group>"; };
+		6E0DC0DA1B44AC6000461485 /* UXCam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UXCam.h; path = Pods/UXCam/UXCam.framework/Versions/2.0.5/Headers/UXCam.h; sourceTree = "<group>"; };
 		6E12DD821B3CA2A1005E35D0 /* SEGCrittercismIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGCrittercismIntegrationTests.m; path = Integrations/Crittercism/SEGCrittercismIntegrationTests.m; sourceTree = "<group>"; };
 		6E16FFF71B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGFlurryIntegrationTests.m; sourceTree = "<group>"; };
 		6E5146991B3B573600F8F87C /* SEGBugsnagIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGBugsnagIntegrationTests.m; path = Integrations/Bugsnag/SEGBugsnagIntegrationTests.m; sourceTree = "<group>"; };
@@ -753,6 +759,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6E0DC0D51B44AAA800461485 /* UXCam */ = {
+			isa = PBXGroup;
+			children = (
+				6E0DC0D61B44ABA400461485 /* SEGUXCamIntegration.h */,
+				6E0DC0D71B44ABA400461485 /* SEGUXCamIntegration.m */,
+			);
+			name = UXCam;
+			sourceTree = "<group>";
+		};
 		6E12DD811B3CA285005E35D0 /* Crittercism */ = {
 			isa = PBXGroup;
 			children = (
@@ -844,6 +859,7 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				6E0DC0DA1B44AC6000461485 /* UXCam.h */,
 				6E85F3931B2F980B00763913 /* MPLogger.h */,
 				6E85F3911B2F974700763913 /* Localytics.h */,
 				6E85F38F1B2F922F00763913 /* CountlyDB.h */,
@@ -1065,20 +1081,21 @@
 				EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */,
 				D3EDB63818C315F100A88A7E /* Amplitude */,
 				32CFF3CB19AE5BAF00193D3D /* AppsFlyer */,
+				DAEB6FF41AC9EBCE003E7FB3 /* Apptimize */,
 				D3EDB63B18C315F100A88A7E /* Bugsnag */,
 				D3EDB63E18C315F100A88A7E /* Countly */,
 				D3EDB64118C315F100A88A7E /* Crittercism */,
 				D3EDB64418C315F100A88A7E /* Flurry */,
 				D3EDB64718C315F100A88A7E /* GoogleAnalytics */,
-				D3EDB64A18C315F100A88A7E /* Localytics */,
 				32F638181A81348700C65643 /* Kahuna */,
+				D3EDB64A18C315F100A88A7E /* Localytics */,
 				D3EDB64D18C315F100A88A7E /* Mixpanel */,
 				32A69C1F1979CF4A00D69943 /* Optimizely */,
 				32A8C60419107DBD00173AE5 /* Quantcast */,
 				D3EDB65018C315F100A88A7E /* Segmentio */,
 				32DF3277194666DA004098C1 /* Taplytics */,
 				D3EDB65318C315F100A88A7E /* Tapstream */,
-				DAEB6FF41AC9EBCE003E7FB3 /* Apptimize */,
+				6E0DC0D51B44AAA800461485 /* UXCam */,
 			);
 			path = Integrations;
 			sourceTree = "<group>";
@@ -1297,6 +1314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */,
+				6E0DC0D81B44ABA400461485 /* SEGUXCamIntegration.h in Headers */,
 				6EB809561AFC136D00959050 /* AMPURLConnection.h in Headers */,
 				6E85F3921B2F974700763913 /* Localytics.h in Headers */,
 				DA7B09C11AF18ED100A65698 /* Apptimize.h in Headers */,
@@ -1480,6 +1498,7 @@
 				3252EA7E1999D6390056C32A /* QuantcastMeasurement.h in Headers */,
 				6E85F3731B2F792100763913 /* TSTapstream.h in Headers */,
 				3252EA7F1999D6390056C32A /* QuantcastMeasurement+Internal.h in Headers */,
+				6E0DC0DB1B44AC6000461485 /* UXCam.h in Headers */,
 				3252EA801999D6390056C32A /* QuantcastNetworkReachability.h in Headers */,
 				3252EA811999D6390056C32A /* QuantcastOptOutDelegate.h in Headers */,
 				3252EA821999D6390056C32A /* QuantcastOptOutViewController.h in Headers */,
@@ -1768,6 +1787,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3EDB66918C315F100A88A7E /* SEGTapstreamIntegration.m in Sources */,
+				6E0DC0D91B44ABA400461485 /* SEGUXCamIntegration.m in Sources */,
 				DAEB6FF21AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m in Sources */,
 				D3EDB66118C315F100A88A7E /* SEGGoogleAnalyticsIntegration.m in Sources */,
 				32F6381C1A8134A600C65643 /* SEGKahunaIntegration.m in Sources */,
