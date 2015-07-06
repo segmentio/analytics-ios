@@ -91,6 +91,9 @@
       "trackCategorizedPages": 1,
       "trackNamedPages": 1
     },
+	"UXCam": {
+		  "apiKey" : "4f49e4560236bd5"
+	},
     "Webhooks": {
       "globalHook": "http://requestb.in/1gc2atw1"
     },
