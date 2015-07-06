@@ -69,3 +69,9 @@
 #if defined(USE_ANALYTICS_QUANTCAST) || defined(USE_ANALYTICS_ALL)
 #import "SEGQuantcastIntegration.h"
 #endif
+
+#if defined(USE_ANALYTICS_UXCAM) || defined(USE_ANALYTICS_ALL)
+#import "SEGUXCamIntegration.h"
+#endif
+
+

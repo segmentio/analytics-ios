@@ -239,6 +239,11 @@
 		6ED462261B42D6020042BFE4 /* SEGMixpanelIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED462251B42D6020042BFE4 /* SEGMixpanelIntegrationTests.m */; };
 		6EFAD9AE1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAD9AD1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m */; };
 		6EFF0CE51B3B63FB005190A2 /* SEGCountlyIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFF0CE41B3B63FB005190A2 /* SEGCountlyIntegrationTests.m */; };
+		79D247EA1B4AF3C9002D8F90 /* SEGUXCamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D247E81B4AF3C9002D8F90 /* SEGUXCamIntegration.h */; };
+		79D247EB1B4AF3C9002D8F90 /* SEGUXCamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D247E91B4AF3C9002D8F90 /* SEGUXCamIntegration.m */; };
+		79D247F01B4AF538002D8F90 /* UXCam.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D247EF1B4AF538002D8F90 /* UXCam.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		79D247F31B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D247F21B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m */; };
+		79D247F41B4B00CC002D8F90 /* SEGUXCamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D247E91B4AF3C9002D8F90 /* SEGUXCamIntegration.m */; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCEC185BFAA1007CB22F /* MPSurvey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF0185BFF49007CB22F /* CRFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -533,6 +538,10 @@
 		6EFAD9AD1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGTaplyticsIntegrationTests.m; path = Integrations/Taplytics/SEGTaplyticsIntegrationTests.m; sourceTree = "<group>"; };
 		6EFF0CE41B3B63FB005190A2 /* SEGCountlyIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGCountlyIntegrationTests.m; path = Integrations/Countly/SEGCountlyIntegrationTests.m; sourceTree = "<group>"; };
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		79D247E81B4AF3C9002D8F90 /* SEGUXCamIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGUXCamIntegration.h; path = UXCam/SEGUXCamIntegration.h; sourceTree = "<group>"; };
+		79D247E91B4AF3C9002D8F90 /* SEGUXCamIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGUXCamIntegration.m; path = UXCam/SEGUXCamIntegration.m; sourceTree = "<group>"; };
+		79D247EF1B4AF538002D8F90 /* UXCam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UXCam.h; path = Pods/UXCam/UXCam.framework/Versions/2.0.5/Headers/UXCam.h; sourceTree = "<group>"; };
+		79D247F21B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGUXCamIntegrationTests.m; sourceTree = "<group>"; };
 		7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBlockMatchEvaluator.h; sourceTree = "<group>"; };
 		7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockMatchEvaluator.m; sourceTree = "<group>"; };
 		7F4FA16EBDB55C5FC1C286A4 /* Pods-iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Tests/Pods-iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -764,6 +773,7 @@
 		6E16FFF31B33AD0600B4F7FE /* Integrations */ = {
 			isa = PBXGroup;
 			children = (
+				79D247F11B4AFDF9002D8F90 /* UXCam */,
 				6ED462241B42D5E70042BFE4 /* Mixpanel */,
 				6E8F058A1B4231FE00305E99 /* Optimizely */,
 				6EFAD9AC1B41A965000664C1 /* Taplytics */,
@@ -839,6 +849,24 @@
 				6EFF0CE41B3B63FB005190A2 /* SEGCountlyIntegrationTests.m */,
 			);
 			name = Countly;
+			sourceTree = "<group>";
+		};
+		79D247EC1B4AF3EF002D8F90 /* UXCam */ = {
+			isa = PBXGroup;
+			children = (
+				79D247E81B4AF3C9002D8F90 /* SEGUXCamIntegration.h */,
+				79D247E91B4AF3C9002D8F90 /* SEGUXCamIntegration.m */,
+			);
+			name = UXCam;
+			sourceTree = "<group>";
+		};
+		79D247F11B4AFDF9002D8F90 /* UXCam */ = {
+			isa = PBXGroup;
+			children = (
+				79D247F21B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m */,
+			);
+			name = UXCam;
+			path = Integrations/UXCam;
 			sourceTree = "<group>";
 		};
 		D3D35174186242B4005586E7 /* Headers */ = {
@@ -1053,6 +1081,7 @@
 				DA7B09BE1AF18ED100A65698 /* Apptimize+Segment.h */,
 				DA7B09BF1AF18ED100A65698 /* Apptimize+Variables.h */,
 				DA7B09C01AF18ED100A65698 /* Apptimize+VariablesInternal.h */,
+				79D247EF1B4AF538002D8F90 /* UXCam.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -1079,6 +1108,7 @@
 				32DF3277194666DA004098C1 /* Taplytics */,
 				D3EDB65318C315F100A88A7E /* Tapstream */,
 				DAEB6FF41AC9EBCE003E7FB3 /* Apptimize */,
+				79D247EC1B4AF3EF002D8F90 /* UXCam */,
 			);
 			path = Integrations;
 			sourceTree = "<group>";
@@ -1297,6 +1327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */,
+				79D247EA1B4AF3C9002D8F90 /* SEGUXCamIntegration.h in Headers */,
 				6EB809561AFC136D00959050 /* AMPURLConnection.h in Headers */,
 				6E85F3921B2F974700763913 /* Localytics.h in Headers */,
 				DA7B09C11AF18ED100A65698 /* Apptimize.h in Headers */,
@@ -1480,6 +1511,7 @@
 				3252EA7E1999D6390056C32A /* QuantcastMeasurement.h in Headers */,
 				6E85F3731B2F792100763913 /* TSTapstream.h in Headers */,
 				3252EA7F1999D6390056C32A /* QuantcastMeasurement+Internal.h in Headers */,
+				79D247F01B4AF538002D8F90 /* UXCam.h in Headers */,
 				3252EA801999D6390056C32A /* QuantcastNetworkReachability.h in Headers */,
 				3252EA811999D6390056C32A /* QuantcastOptOutDelegate.h in Headers */,
 				3252EA821999D6390056C32A /* QuantcastOptOutViewController.h in Headers */,
@@ -1724,6 +1756,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79D247F31B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m in Sources */,
 				3242C9B51946AFC500FBE441 /* SEGAmplitudeIntegration.m in Sources */,
 				3242C9B01946ADA000FBE441 /* SEGLocation.m in Sources */,
 				6E8F058C1B42321800305E99 /* SEGOptimizelyIntegrationTests.m in Sources */,
@@ -1750,6 +1783,7 @@
 				6E12DD831B3CA2A1005E35D0 /* SEGCrittercismIntegrationTests.m in Sources */,
 				6E92C1E71B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m in Sources */,
 				3242C9BC1946AFE300FBE441 /* SEGMixpanelIntegration.m in Sources */,
+				79D247F41B4B00CC002D8F90 /* SEGUXCamIntegration.m in Sources */,
 				3242C9AD1946AD9600FBE441 /* SEGAnalytics.m in Sources */,
 				3242C9BE1946AFF200FBE441 /* SEGTaplyticsIntegration.m in Sources */,
 				3242C9AF1946AD9B00FBE441 /* SEGAnalyticsUtils.m in Sources */,
@@ -1768,6 +1802,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3EDB66918C315F100A88A7E /* SEGTapstreamIntegration.m in Sources */,
+				79D247EB1B4AF3C9002D8F90 /* SEGUXCamIntegration.m in Sources */,
 				DAEB6FF21AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m in Sources */,
 				D3EDB66118C315F100A88A7E /* SEGGoogleAnalyticsIntegration.m in Sources */,
 				32F6381C1A8134A600C65643 /* SEGKahunaIntegration.m in Sources */,
