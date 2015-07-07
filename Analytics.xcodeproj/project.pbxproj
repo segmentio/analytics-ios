@@ -232,6 +232,7 @@
 		6E85F3941B2F980B00763913 /* MPLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85F3931B2F980B00763913 /* MPLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E8F058C1B42321800305E99 /* SEGOptimizelyIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F058B1B42321800305E99 /* SEGOptimizelyIntegrationTests.m */; };
 		6E92C1E71B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92C1E61B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m */; };
+		6EB2963E1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB2963D1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m */; };
 		6EB468211B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB468201B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m */; };
 		6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB809561AFC136D00959050 /* AMPURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809551AFC136D00959050 /* AMPURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -530,6 +531,7 @@
 		6E85F3931B2F980B00763913 /* MPLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPLogger.h; path = Pods/Mixpanel/Mixpanel/MPLogger.h; sourceTree = "<group>"; };
 		6E8F058B1B42321800305E99 /* SEGOptimizelyIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGOptimizelyIntegrationTests.m; path = Integrations/Optimizely/SEGOptimizelyIntegrationTests.m; sourceTree = "<group>"; };
 		6E92C1E61B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGLocalyticsIntegrationTests.m; path = Integrations/Localytics/SEGLocalyticsIntegrationTests.m; sourceTree = "<group>"; };
+		6EB2963D1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGTapstreamIntegrationTests.m; path = Integrations/Tapstream/SEGTapstreamIntegrationTests.m; sourceTree = "<group>"; };
 		6EB468201B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGAmplitudeIntegrationTests.m; path = Integrations/Amplitude/SEGAmplitudeIntegrationTests.m; sourceTree = "<group>"; };
 		6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Amplitude+SSLPinning.h"; path = "Pods/Amplitude-iOS/Amplitude/Amplitude+SSLPinning.h"; sourceTree = "<group>"; };
 		6EB809551AFC136D00959050 /* AMPURLConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AMPURLConnection.h; path = "Pods/Amplitude-iOS/Amplitude/AMPURLConnection.h"; sourceTree = "<group>"; };
@@ -610,7 +612,6 @@
 		DAEB6FEF1AC9EBCA003E7FB3 /* SEGApptimizeIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGApptimizeIntegration.h; path = Apptimize/SEGApptimizeIntegration.h; sourceTree = "<group>"; };
 		DAEB6FF01AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGApptimizeIntegration.m; path = Apptimize/SEGApptimizeIntegration.m; sourceTree = "<group>"; };
 		E83F0FBE9BA94A03A4883160 /* libPods-Analytics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Analytics.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA14A25217FB1E9400870901 /* settings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = settings.json; path = ../AnalyticsTests/settings.json; sourceTree = "<group>"; };
 		EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SegmentioTests.m; path = ../AnalyticsTests/SegmentioTests.m; sourceTree = "<group>"; };
 		EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGAnalyticsIntegration.h; path = ../SEGAnalyticsIntegration.h; sourceTree = "<group>"; };
 		EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGAnalyticsIntegration.m; path = ../SEGAnalyticsIntegration.m; sourceTree = "<group>"; };
@@ -672,7 +673,6 @@
 			isa = PBXGroup;
 			children = (
 				6E16FFF31B33AD0600B4F7FE /* Integrations */,
-				EA14A25217FB1E9400870901 /* settings.json */,
 				EA722AFD17C87BB00016E8B0 /* AnalyticsTests.m */,
 				EABE4F4017C88A6D00A1081B /* AnalyticsUtilsTests.m */,
 				EA3B4CC617C8900A00233EA9 /* SegmentioTests.m */,
@@ -772,6 +772,7 @@
 		6E16FFF31B33AD0600B4F7FE /* Integrations */ = {
 			isa = PBXGroup;
 			children = (
+				6EB2963C1B4C3A3000805337 /* Tapstream */,
 				79D247F11B4AFDF9002D8F90 /* UXCam */,
 				6ED462241B42D5E70042BFE4 /* Mixpanel */,
 				6E8F058A1B4231FE00305E99 /* Optimizely */,
@@ -816,6 +817,14 @@
 				6E92C1E61B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m */,
 			);
 			name = Localytics;
+			sourceTree = "<group>";
+		};
+		6EB2963C1B4C3A3000805337 /* Tapstream */ = {
+			isa = PBXGroup;
+			children = (
+				6EB2963D1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m */,
+			);
+			name = Tapstream;
 			sourceTree = "<group>";
 		};
 		6EB4681F1B39CDBD00A0E4B9 /* Amplitude */ = {
@@ -1771,6 +1780,7 @@
 				3242C9BA1946AFD900FBE441 /* SEGGoogleAnalyticsIntegration.m in Sources */,
 				3242C9B91946AFD400FBE441 /* SEGFlurryIntegration.m in Sources */,
 				6EFAD9AE1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m in Sources */,
+				6EB2963E1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m in Sources */,
 				32CFF3D019AE5BCF00193D3D /* SEGAppsFlyerIntegration.m in Sources */,
 				DAEB6FF31AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m in Sources */,
 				32225233199AD6D200478B1A /* SEGReachability.m in Sources */,

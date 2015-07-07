@@ -2,14 +2,8 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "SEGTapstreamIntegration.h"
-#import <TSTapstream.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
-
-
-@interface SEGTapstreamIntegration ()
-- (TSEvent *)makeEvent:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options;
-@end
 
 
 @implementation SEGTapstreamIntegration
@@ -27,6 +21,7 @@
         self.name = @"Tapstream";
         self.valid = NO;
         self.initialized = NO;
+        self.tapstreamClass = [TSTapstream class];
     }
     return self;
 }
@@ -48,7 +43,7 @@
     NSString *accountName = [self.settings objectForKey:@"accountName"];
     NSString *sdkSecret = [self.settings objectForKey:@"sdkSecret"];
 
-    [TSTapstream createWithAccountName:accountName developerSecret:sdkSecret config:config];
+    [self.tapstreamClass createWithAccountName:accountName developerSecret:sdkSecret config:config];
 
     SEGLog(@"TapstreamIntegration initialized with accountName %@ and developerSecret %@", accountName, sdkSecret);
 
@@ -68,24 +63,17 @@
 
 #pragma mark - Analytics API
 
-
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
-{
-    // Tapstream doesn't have an explicit user identification event
-}
-
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     TSEvent *e = [self makeEvent:event properties:properties options:options];
-    [[TSTapstream instance] fireEvent:e];
+    [[self.tapstreamClass instance] fireEvent:e];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     TSEvent *e = [self makeEvent:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
-    [[TSTapstream instance] fireEvent:e];
+    [[self.tapstreamClass instance] fireEvent:e];
 }
-
 
 - (TSEvent *)makeEvent:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
