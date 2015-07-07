@@ -3,8 +3,13 @@
 
 #import <Foundation/Foundation.h>
 #import "SEGAnalyticsIntegration.h"
+#import <TSTapstream.h>
 
 
 @interface SEGTapstreamIntegration : SEGAnalyticsIntegration
+
+@property Class tapstreamClass;
+
+- (TSEvent *)makeEvent:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options;
 
 @end
