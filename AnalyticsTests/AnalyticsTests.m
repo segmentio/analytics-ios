@@ -52,12 +52,109 @@ static id _mockNSBundle;
 
 - (NSDictionary *)testSettings
 {
-    NSDictionary *settings = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:
-                                                                                 [[NSBundle bundleForClass:[self class]]
-                                                                                     URLForResource:@"settings"
-                                                                                      withExtension:@"json"]]
-                                                             options:NSJSONReadingMutableContainers
-                                                               error:NULL];
+    NSDictionary *settings = @{
+        @"plan" : @{
+            @"track" : @{
+                @"Clicked A Page" : @{
+                    @"enabled" : @YES,
+                    @"integrations" : @{}
+                },
+                @"Clicked B Page" : @{
+                    @"enabled" : @YES
+                },
+                @"Clicked C Page" : @{
+                    @"enabled" : @YES,
+                    @"integrations" : @{
+                        @"All" : @NO
+                    }
+                },
+                @"Clicked D Page" : @{
+                    @"enabled" : @YES,
+                    @"integrations" : @{
+                        @"All" : @YES,
+                        @"Segment.io" : @NO
+                    }
+                },
+                @"Clicked E Page" : @{
+                    @"enabled" : @NO
+                }
+            }
+        },
+        @"integrations" : @{
+            @"Amplitude" : @{
+                @"apiKey" : @"3c0a4b0907d9ea1a6ce811d6afc8e0c5"
+            },
+            @"AppsFlyer" : @{
+                @"appsFlyerDevKey" : @"pSX9JjSNkWUR8AJQQ7kPoE",
+                @"appleAppID" : @"34320065"
+            },
+            @"Bugsnag" : @{
+                @"apiKey" : @"7563fdfc1f418e956f5e5472148759f0",
+                @"useSSL" : @NO
+            },
+            @"Chartbeat" : @{
+                @"uid" : @43967,
+                @"domain" : @"segment.io"
+            },
+            @"Countly" : @{
+                @"serverUrl" : @"https://cloud.count.ly",
+                @"appKey" : @"b401156663bfcc4694aafc0dd26023a6d9b9544a"
+            },
+            @"Flurry" : @{
+                @"apiKey" : @"VN8HXZ28MWPB7JPBYNZD",
+                @"useHttps" : @NO,
+                @"captureUncaughtExceptions" : @NO,
+                @"sessionContinueSeconds" : @15
+            },
+            @"Google Analytics" : @{
+                @"classic" : @YES,
+                @"ignoreReferrer" : @"",
+                @"initialized" : @YES,
+                @"reportUncaughtExceptions" : @NO,
+                @"doubleClick" : @NO,
+                @"enhancedLinkAttribution" : @NO,
+                @"serversideTrackingId" : @"",
+                @"mobileTrackingId" : @"UA-27033709-9",
+                @"universal" : @NO,
+                @"useHttps" : @0,
+                @"trackingId" : @"",
+                @"domain" : @"none",
+                @"initialPageview" : @NO
+            },
+            @"Intercom" : @{
+                @"inbox" : @NO,
+                @"counter" : @NO,
+                @"appId" : @"marh8pic",
+                @"apiKey" : @"bb740071d3c461959c7ea5f41959c4e8bd44b4a7",
+                @"activator" : @"#IntercomDefaultWidget"
+            },
+            @"Localytics" : @{
+                @"appKey" : @"3ccfac0c5c366f11105f26b-c8ab109c-b6e1-11e2-88e8-005cf8cbabd8"
+            },
+            @"Mixpanel" : @{
+                @"people" : @NO,
+                @"pageview" : @NO,
+                @"token" : @"89f86c4aa2ce5b74cb47eb5ec95ad1f9",
+                @"initialPageview" : @NO
+            },
+            @"Tapstream" : @{
+                @"accountName" : @"segmentio-test",
+                @"sdkSecret" : @"Rq8qqm3KQ_iDeqyOa55aqQ",
+                @"trackAllPages" : @YES,
+                @"trackCategorizedPages" : @YES,
+                @"trackNamedPages" : @YES
+            },
+            @"UXCam" : @{
+                @"apiKey" : @"4f49e4560236bd5"
+            },
+            @"Webhooks" : @{
+                @"globalHook" : @"http://requestb.in/1gc2atw1"
+            },
+            @"Segment.io" : @{
+                @"writeKey" : @"y42nxqnuh7"
+            }
+        }
+    };
     return settings;
 }
 

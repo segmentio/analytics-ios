@@ -99,7 +99,6 @@
 		3242C9B11946ADA200FBE441 /* SEGBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E2811D1908420D00FB48D7 /* SEGBluetooth.m */; };
 		3242C9B21946ADA900FBE441 /* SEGAnalyticsIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */; };
 		3242C9B31946ADB000FBE441 /* SEGSegmentioIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB65218C315F100A88A7E /* SEGSegmentioIntegration.m */; };
-		3242C9B41946AFA100FBE441 /* settings.json in Resources */ = {isa = PBXBuildFile; fileRef = EA14A25217FB1E9400870901 /* settings.json */; };
 		3242C9B51946AFC500FBE441 /* SEGAmplitudeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63A18C315F100A88A7E /* SEGAmplitudeIntegration.m */; };
 		3242C9B61946AFC800FBE441 /* SEGBugsnagIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63D18C315F100A88A7E /* SEGBugsnagIntegration.m */; };
 		3242C9B71946AFCC00FBE441 /* SEGCountlyIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB64018C315F100A88A7E /* SEGCountlyIntegration.m */; };
@@ -1623,7 +1622,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3242C9B41946AFA100FBE441 /* settings.json in Resources */,
 				3242C9A11946A3E100FBE441 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
