@@ -38,6 +38,13 @@ NSString *SEGMixpanelClass = @"Mixpanel";
 {
     [self activateMixpanel];
 
+    if (![(NSNumber *)[self.settings objectForKey:@"listen"] boolValue]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(experimentDidGetViewed:)
+                                                     name:OptimizelyExperimentVisitedNotification
+                                                   object:nil];
+    }
+
     [super start];
 }
 
@@ -65,6 +72,23 @@ NSString *SEGMixpanelClass = @"Mixpanel";
 
         [self.optimizelyClass activateMixpanelIntegration];
         self.needsToActivateMixpanel = NO;
+    }
+}
+
+- (void)experimentDidGetViewed:(NSNotification *)notification
+{
+    NSString *experimentName = notification.name;
+    for (OptimizelyExperimentData *data in [Optimizely sharedInstance].visitedExperiments) {
+        if ([data.experimentName isEqualToString:experimentName]) {
+            [[SEGAnalytics sharedAnalytics] track:@"Experiment Viewed"
+                                       properties:@{
+                                           @"experimentId" : data.experimentId,
+                                           @"experimentName" : data.experimentName,
+                                           @"variationId" : data.variationId,
+                                           @"variationName" : data.variationName
+                                       }];
+            break;
+        }
     }
 }
 
