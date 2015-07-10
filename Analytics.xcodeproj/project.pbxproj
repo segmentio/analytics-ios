@@ -1101,6 +1101,7 @@
 				EA65F96417C2ABA600389A1A /* SEGAnalyticsIntegration.h */,
 				EA65F96517C2ABA600389A1A /* SEGAnalyticsIntegration.m */,
 				D3EDB63818C315F100A88A7E /* Amplitude */,
+				DAEB6FF41AC9EBCE003E7FB3 /* Apptimize */,
 				32CFF3CB19AE5BAF00193D3D /* AppsFlyer */,
 				D3EDB63B18C315F100A88A7E /* Bugsnag */,
 				D3EDB63E18C315F100A88A7E /* Countly */,
@@ -1115,7 +1116,6 @@
 				D3EDB65018C315F100A88A7E /* Segmentio */,
 				32DF3277194666DA004098C1 /* Taplytics */,
 				D3EDB65318C315F100A88A7E /* Tapstream */,
-				DAEB6FF41AC9EBCE003E7FB3 /* Apptimize */,
 				79D247EC1B4AF3EF002D8F90 /* UXCam */,
 			);
 			path = Integrations;

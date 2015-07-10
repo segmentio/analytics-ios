@@ -44,7 +44,27 @@
 - (void)start
 {
     [Apptimize startApptimizeWithApplicationKey:[self.settings objectForKey:@"appkey"]];
+
+    if (![(NSNumber *)[self.settings objectForKey:@"listen"] boolValue]) {
+        [self sendRoots];
+    }
+
     [super start];
+}
+
+- (void)sendRoots
+{
+    [[Apptimize testInfo] enumerateKeysAndObjectsUsingBlock:^(id key, id<ApptimizeTestInfo> experiment, BOOL *stop) {
+      if ([experiment userHasParticipated]) {
+          [[SEGAnalytics sharedAnalytics] track:@"Experiment Viewed"
+                                     properties:@{
+                                         @"experimentId" : [experiment testID],
+                                         @"experimentName" : [experiment testName],
+                                         @"variationId" : [experiment enrolledVariantID],
+                                         @"variationName" : [experiment enrolledVariantName]
+                                     }];
+      }
+    }];
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
