@@ -46,24 +46,37 @@
     [Apptimize startApptimizeWithApplicationKey:[self.settings objectForKey:@"appkey"]];
 
     if (![(NSNumber *)[self.settings objectForKey:@"listen"] boolValue]) {
-        [self sendRoots];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(experimentDidGetViewed:)
+                                                     name:ApptimizeTestRunNotification
+                                                   object:nil];
     }
 
     [super start];
 }
 
-- (void)sendRoots
+- (void)experimentDidGetViewed:(NSNotification *)notification
 {
+    if (!notification.userInfo[ApptimizeTestFirstRunUserInfoKey]) {
+        return;
+    }
+
+    // Apptimize doesn't notify with IDs, so we iterate over all experiments to find the matching one.
+    NSString *name = notification.userInfo[ApptimizeTestNameUserInfoKey];
+    NSString *variant = notification.userInfo[ApptimizeVariantNameUserInfoKey];
     [[Apptimize testInfo] enumerateKeysAndObjectsUsingBlock:^(id key, id<ApptimizeTestInfo> experiment, BOOL *stop) {
-      if ([experiment userHasParticipated]) {
-          [[SEGAnalytics sharedAnalytics] track:@"Experiment Viewed"
-                                     properties:@{
-                                         @"experimentId" : [experiment testID],
-                                         @"experimentName" : [experiment testName],
-                                         @"variationId" : [experiment enrolledVariantID],
-                                         @"variationName" : [experiment enrolledVariantName]
-                                     }];
+      BOOL match = [experiment.testName isEqualToString:name] && [experiment.enrolledVariantName isEqualToString:variant];
+      if (!match) {
+          return;
       }
+      [[SEGAnalytics sharedAnalytics] track:@"Experiment Viewed"
+                                 properties:@{
+                                     @"experimentId" : [experiment testID],
+                                     @"experimentName" : [experiment testName],
+                                     @"variationId" : [experiment enrolledVariantID],
+                                     @"variationName" : [experiment enrolledVariantName]
+                                 }];
+      *stop = YES;
     }];
 }
 
