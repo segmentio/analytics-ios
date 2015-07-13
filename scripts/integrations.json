@@ -52,11 +52,11 @@
     {
       "name": "GoogleAnalytics",
       "dependencies": [{
-        "name": "GoogleAnalytics-iOS-SDK",
-        "version": "3.12"
+        "name": "GoogleAnalytics",
+        "version": "3.12.0"
       }, {
-        "name": "GoogleAnalytics-iOS-SDK/IDFA",
-        "version": "3.12"
+        "name": "GoogleIDFASupport",
+        "version": "3.12.0"
       }]
     },
     {
