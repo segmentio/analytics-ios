@@ -1,3 +1,10 @@
+1.12.1 / 2015-07-13
+===================
+
+  * Add Optimizely Root integration
+  * Add Apptimize root integration
+  * Update Countly SDK
+  * Add UXCam Integration
 
 1.12.0 / 2015-06-22
 ===================
