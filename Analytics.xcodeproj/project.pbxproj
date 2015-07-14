@@ -218,6 +218,13 @@
 		6E165A1A1B54771A002C1C40 /* GAITrackedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A101B54771A002C1C40 /* GAITrackedViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E165A1B1B54771A002C1C40 /* GAITracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A111B54771A002C1C40 /* GAITracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E16FFF81B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E16FFF71B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m */; };
+		6E2AFA3E1B55850C00C8A14E /* MOEHelperConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA3C1B55850C00C8A14E /* MOEHelperConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E2AFA3F1B55850C00C8A14E /* MoEngage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA3D1B55850C00C8A14E /* MoEngage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E2AFA421B55852400C8A14E /* MOInbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA401B55852400C8A14E /* MOInbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E2AFA431B55852400C8A14E /* MOInboxViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA411B55852400C8A14E /* MOInboxViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E2AFA4B1B55863400C8A14E /* SEGMoEngageIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA491B55863400C8A14E /* SEGMoEngageIntegration.h */; };
+		6E2AFA4C1B55863400C8A14E /* SEGMoEngageIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2AFA4A1B55863400C8A14E /* SEGMoEngageIntegration.m */; };
+		6E2AFA4D1B55863400C8A14E /* SEGMoEngageIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2AFA4A1B55863400C8A14E /* SEGMoEngageIntegration.m */; };
 		6E51469A1B3B573600F8F87C /* SEGBugsnagIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5146991B3B573600F8F87C /* SEGBugsnagIntegrationTests.m */; };
 		6E5EF3D31B1005FB001A4BA4 /* CrittercismConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5EF3D21B1005FB001A4BA4 /* CrittercismConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E5EF3D51B10063E001A4BA4 /* OptimizelyExperimentData.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -519,6 +526,12 @@
 		6E165A101B54771A002C1C40 /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = Pods/GoogleAnalytics/Headers/Public/GAITrackedViewController.h; sourceTree = "<group>"; };
 		6E165A111B54771A002C1C40 /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = Pods/GoogleAnalytics/Headers/Public/GAITracker.h; sourceTree = "<group>"; };
 		6E16FFF71B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGFlurryIntegrationTests.m; sourceTree = "<group>"; };
+		6E2AFA3C1B55850C00C8A14E /* MOEHelperConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MOEHelperConstants.h; path = "Pods/MoEngage-iOS-SDK/Headers/MOEHelperConstants.h"; sourceTree = "<group>"; };
+		6E2AFA3D1B55850C00C8A14E /* MoEngage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoEngage.h; path = "Pods/MoEngage-iOS-SDK/Headers/MoEngage.h"; sourceTree = "<group>"; };
+		6E2AFA401B55852400C8A14E /* MOInbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MOInbox.h; path = "Pods/MoEngage-iOS-SDK/Headers/MOInbox.h"; sourceTree = "<group>"; };
+		6E2AFA411B55852400C8A14E /* MOInboxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MOInboxViewController.h; path = "Pods/MoEngage-iOS-SDK/Headers/MOInboxViewController.h"; sourceTree = "<group>"; };
+		6E2AFA491B55863400C8A14E /* SEGMoEngageIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGMoEngageIntegration.h; path = MoEngage/SEGMoEngageIntegration.h; sourceTree = "<group>"; };
+		6E2AFA4A1B55863400C8A14E /* SEGMoEngageIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGMoEngageIntegration.m; path = MoEngage/SEGMoEngageIntegration.m; sourceTree = "<group>"; };
 		6E5146991B3B573600F8F87C /* SEGBugsnagIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGBugsnagIntegrationTests.m; path = Integrations/Bugsnag/SEGBugsnagIntegrationTests.m; sourceTree = "<group>"; };
 		6E5EF3D21B1005FB001A4BA4 /* CrittercismConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CrittercismConfig.h; path = Pods/CrittercismSDK/CrittercismSDK/CrittercismConfig.h; sourceTree = "<group>"; };
 		6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelyExperimentData.h; path = "Pods/Optimizely-iOS-SDK/Optimizely.framework/Headers/OptimizelyExperimentData.h"; sourceTree = "<group>"; };
@@ -787,6 +800,15 @@
 			name = Flurry;
 			sourceTree = "<group>";
 		};
+		6E2AFA371B55841900C8A14E /* MoEngage */ = {
+			isa = PBXGroup;
+			children = (
+				6E2AFA491B55863400C8A14E /* SEGMoEngageIntegration.h */,
+				6E2AFA4A1B55863400C8A14E /* SEGMoEngageIntegration.m */,
+			);
+			name = MoEngage;
+			sourceTree = "<group>";
+		};
 		6E5146981B3B571D00F8F87C /* Bugsnag */ = {
 			isa = PBXGroup;
 			children = (
@@ -872,6 +894,10 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				6E2AFA401B55852400C8A14E /* MOInbox.h */,
+				6E2AFA411B55852400C8A14E /* MOInboxViewController.h */,
+				6E2AFA3C1B55850C00C8A14E /* MOEHelperConstants.h */,
+				6E2AFA3D1B55850C00C8A14E /* MoEngage.h */,
 				6E165A081B54771A002C1C40 /* GAI.h */,
 				6E165A091B54771A002C1C40 /* GAIDictionaryBuilder.h */,
 				6E165A0A1B54771A002C1C40 /* GAIEcommerceFields.h */,
@@ -1100,6 +1126,7 @@
 				32F638181A81348700C65643 /* Kahuna */,
 				D3EDB64A18C315F100A88A7E /* Localytics */,
 				D3EDB64D18C315F100A88A7E /* Mixpanel */,
+				6E2AFA371B55841900C8A14E /* MoEngage */,
 				32A69C1F1979CF4A00D69943 /* Optimizely */,
 				32A8C60419107DBD00173AE5 /* Quantcast */,
 				D3EDB65018C315F100A88A7E /* Segmentio */,
@@ -1371,8 +1398,12 @@
 				6E5EF3D31B1005FB001A4BA4 /* CrittercismConfig.h in Headers */,
 				D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */,
 				D331BCF3185BFF4A007CB22F /* CrittercismDelegate.h in Headers */,
+				6E2AFA421B55852400C8A14E /* MOInbox.h in Headers */,
+				6E2AFA431B55852400C8A14E /* MOInboxViewController.h in Headers */,
 				D3EDB65818C315F100A88A7E /* SEGBugsnagIntegration.h in Headers */,
 				D371F330185942C90053337D /* Flurry.h in Headers */,
+				6E2AFA3E1B55850C00C8A14E /* MOEHelperConstants.h in Headers */,
+				6E2AFA3F1B55850C00C8A14E /* MoEngage.h in Headers */,
 				D3EDB65E18C315F100A88A7E /* SEGFlurryIntegration.h in Headers */,
 				32DF327A194666DA004098C1 /* SEGTaplyticsIntegration.h in Headers */,
 				D3EDB66418C315F100A88A7E /* SEGMixpanelIntegration.h in Headers */,
@@ -1387,6 +1418,7 @@
 				D331BD2E1860F5F0007CB22F /* TSCore.h in Headers */,
 				32430A7919145DA8004EFF59 /* SEGAnalyticsIntegrations.h in Headers */,
 				32AD185919AFCA100047D5F0 /* MPABTestDesignerChangeRequestMessage.h in Headers */,
+				6E2AFA4B1B55863400C8A14E /* SEGMoEngageIntegration.h in Headers */,
 				32AD185A19AFCA100047D5F0 /* MPABTestDesignerChangeResponseMessage.h in Headers */,
 				32AD185B19AFCA100047D5F0 /* MPABTestDesignerClearRequestMessage.h in Headers */,
 				32AD185C19AFCA100047D5F0 /* MPABTestDesignerClearResponseMessage.h in Headers */,
@@ -1764,6 +1796,7 @@
 				3242C9BA1946AFD900FBE441 /* SEGGoogleAnalyticsIntegration.m in Sources */,
 				3242C9B91946AFD400FBE441 /* SEGFlurryIntegration.m in Sources */,
 				6EFAD9AE1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m in Sources */,
+				6E2AFA4D1B55863400C8A14E /* SEGMoEngageIntegration.m in Sources */,
 				6EB2963E1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m in Sources */,
 				32CFF3D019AE5BCF00193D3D /* SEGAppsFlyerIntegration.m in Sources */,
 				DAEB6FF31AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m in Sources */,
@@ -1810,6 +1843,7 @@
 				D3EDB66718C315F100A88A7E /* SEGSegmentioIntegration.m in Sources */,
 				D3EDB65D18C315F100A88A7E /* SEGCrittercismIntegration.m in Sources */,
 				32E2811F1908420D00FB48D7 /* SEGBluetooth.m in Sources */,
+				6E2AFA4C1B55863400C8A14E /* SEGMoEngageIntegration.m in Sources */,
 				EAA604CA17C28C7C00911919 /* SEGAnalyticsRequest.m in Sources */,
 				EA65F96717C2ABA600389A1A /* SEGAnalyticsIntegration.m in Sources */,
 				32225232199AD6D200478B1A /* SEGReachability.m in Sources */,

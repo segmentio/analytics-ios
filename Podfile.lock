@@ -20,6 +20,7 @@ PODS:
   - Mixpanel/Mixpanel (2.8.1):
     - Mixpanel/MPCategoryHelpers
   - Mixpanel/MPCategoryHelpers (2.8.1)
+  - MoEngage-iOS-SDK (1.4.3)
   - OCHamcrest (4.1.1)
   - OCMock (3.1.2)
   - OCMockito (1.4.0):
@@ -47,6 +48,7 @@ DEPENDENCIES:
   - KahunaSDK (= 1.0.570)
   - Localytics (= 3.3.0)
   - Mixpanel (= 2.8.1)
+  - MoEngage-iOS-SDK (= 1.4.3)
   - OCMock (~> 3.1.2)
   - OCMockito (~> 1.4.0)
   - Optimizely-iOS-SDK (= 1.0.86)
@@ -70,6 +72,7 @@ SPEC CHECKSUMS:
   KahunaSDK: ea15fdf9757c4d9bf639bf190888e20b688a30ed
   Localytics: 64ada284cde3f2b30fb04272d5d735d49657d0ab
   Mixpanel: 93c4825025e6380ced273ed7178496282e385077
+  MoEngage-iOS-SDK: 81be7a433349a7d535c905a08629359eeefe0952
   OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
   OCMock: a10ea9f0a6e921651f96f78b6faee95ebc813b92
   OCMockito: 4981140c9a9ec06c31af40f636e3c0f25f27e6b2
