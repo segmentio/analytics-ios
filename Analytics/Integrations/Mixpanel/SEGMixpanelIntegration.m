@@ -121,12 +121,18 @@
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    // Mixpanel doesn't have the concept of screen views, so we only track the trackAllPages option is enabled.
     if ([(NSNumber *)[self.settings objectForKey:@"trackAllPages"] boolValue]) {
-        // Track the screen view as an event.
-        // e.g. "Home" screen is tracked as "Viewed Home Screen".
-        [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
+        [self realScreen:screenTitle properties:properties options:options];
+    } else if ([(NSNumber *)[self.settings objectForKey:@"trackNamedPages"] boolValue] && screenTitle) {
+        [self realScreen:screenTitle properties:properties options:options];
+    } else if ([(NSNumber *)[self.settings objectForKey:@"trackCategorizedPages"] boolValue] && properties[@"category"]) {
+        [self realScreen:screenTitle properties:properties options:options];
     }
+}
+
+- (void)realScreen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
+{
+    [self track:SEGEventNameForScreenTitle(screenTitle) properties:properties options:options];
 }
 
 - (void)alias:(NSString *)newId options:(NSDictionary *)options
