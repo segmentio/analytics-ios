@@ -243,6 +243,7 @@
 		6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB809561AFC136D00959050 /* AMPURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809551AFC136D00959050 /* AMPURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6ED462261B42D6020042BFE4 /* SEGMixpanelIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED462251B42D6020042BFE4 /* SEGMixpanelIntegrationTests.m */; };
+		6EF665321B5860D400DC7EA1 /* SEGAppsFlyerIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF665311B5860D400DC7EA1 /* SEGAppsFlyerIntegrationTests.m */; };
 		6EFAD9AE1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAD9AD1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m */; };
 		6EFF0CE51B3B63FB005190A2 /* SEGCountlyIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFF0CE41B3B63FB005190A2 /* SEGCountlyIntegrationTests.m */; };
 		79D247EA1B4AF3C9002D8F90 /* SEGUXCamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D247E81B4AF3C9002D8F90 /* SEGUXCamIntegration.h */; };
@@ -545,6 +546,7 @@
 		6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Amplitude+SSLPinning.h"; path = "Pods/Amplitude-iOS/Amplitude/Amplitude+SSLPinning.h"; sourceTree = "<group>"; };
 		6EB809551AFC136D00959050 /* AMPURLConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AMPURLConnection.h; path = "Pods/Amplitude-iOS/Amplitude/AMPURLConnection.h"; sourceTree = "<group>"; };
 		6ED462251B42D6020042BFE4 /* SEGMixpanelIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGMixpanelIntegrationTests.m; path = Integrations/Mixpanel/SEGMixpanelIntegrationTests.m; sourceTree = "<group>"; };
+		6EF665311B5860D400DC7EA1 /* SEGAppsFlyerIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGAppsFlyerIntegrationTests.m; path = AppsFlyer/SEGAppsFlyerIntegrationTests.m; sourceTree = "<group>"; };
 		6EFAD9AD1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGTaplyticsIntegrationTests.m; path = Integrations/Taplytics/SEGTaplyticsIntegrationTests.m; sourceTree = "<group>"; };
 		6EFF0CE41B3B63FB005190A2 /* SEGCountlyIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGCountlyIntegrationTests.m; path = Integrations/Countly/SEGCountlyIntegrationTests.m; sourceTree = "<group>"; };
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -778,6 +780,7 @@
 			isa = PBXGroup;
 			children = (
 				6EB4681F1B39CDBD00A0E4B9 /* Amplitude */,
+				6EF6652D1B585DC900DC7EA1 /* AppsFlyer */,
 				6E5146981B3B571D00F8F87C /* Bugsnag */,
 				6EFF0CE31B3B63E6005190A2 /* Countly */,
 				6E12DD811B3CA285005E35D0 /* Crittercism */,
@@ -855,6 +858,14 @@
 				6ED462251B42D6020042BFE4 /* SEGMixpanelIntegrationTests.m */,
 			);
 			name = Mixpanel;
+			sourceTree = "<group>";
+		};
+		6EF6652D1B585DC900DC7EA1 /* AppsFlyer */ = {
+			isa = PBXGroup;
+			children = (
+				6EF665311B5860D400DC7EA1 /* SEGAppsFlyerIntegrationTests.m */,
+			);
+			name = AppsFlyer;
 			sourceTree = "<group>";
 		};
 		6EFAD9AC1B41A965000664C1 /* Taplytics */ = {
@@ -1813,6 +1824,7 @@
 				3242C9BE1946AFF200FBE441 /* SEGTaplyticsIntegration.m in Sources */,
 				3242C9AF1946AD9B00FBE441 /* SEGAnalyticsUtils.m in Sources */,
 				3242C9AE1946AD9900FBE441 /* SEGAnalyticsRequest.m in Sources */,
+				6EF665321B5860D400DC7EA1 /* SEGAppsFlyerIntegrationTests.m in Sources */,
 				6EB468211B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m in Sources */,
 				3242C9B81946AFD100FBE441 /* SEGCrittercismIntegration.m in Sources */,
 				3242C9A31946A3E100FBE441 /* iOS_Tests.m in Sources */,

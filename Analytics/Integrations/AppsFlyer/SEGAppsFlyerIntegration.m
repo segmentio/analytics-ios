@@ -9,7 +9,6 @@
 #import "SEGAppsFlyerIntegration.h"
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
-#import <AppsFlyerTracker.h>
 
 
 @implementation SEGAppsFlyerIntegration
@@ -25,6 +24,7 @@
         self.name = [self.class identifier];
         self.valid = NO;
         self.initialized = NO;
+        self.appsFlyer = [AppsFlyerTracker sharedTracker];
     }
     return self;
 }
@@ -36,8 +36,8 @@
 
 - (void)start
 {
-    [[AppsFlyerTracker sharedTracker] setAppleAppID:[self appId]];
-    [[AppsFlyerTracker sharedTracker] setAppsFlyerDevKey:[self devKey]];
+    [self.appsFlyer setAppleAppID:[self appId]];
+    [self.appsFlyer setAppsFlyerDevKey:[self devKey]];
 
     SEGLog(@"AppsFlyer: setup with appleAppId: %@, appsFlyerDevKey: %@", [self appId], [self devKey]);
     [super start];
@@ -46,7 +46,7 @@
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     if (userId) {
-        [[AppsFlyerTracker sharedTracker] setCustomerUserID:userId];
+        [self.appsFlyer setCustomerUserID:userId];
 
         SEGLog(@"AppsFlyer: set customer id: %@", userId);
     }
@@ -56,14 +56,17 @@
 {
     NSNumber *revenue = [self.class extractRevenue:properties];
     NSString *currency = properties[@"currency"];
-    if (currency) [[AppsFlyerTracker sharedTracker] setCurrencyCode:currency];
-    [[AppsFlyerTracker sharedTracker] trackEvent:event withValue:[revenue stringValue]];
+    if (currency) {
+        [self.appsFlyer setCurrencyCode:currency];
+    }
+    [self.appsFlyer trackEvent:event
+                     withValue:[revenue stringValue]];
     SEGLog(@"AppsFlyer: trackingEvent: %@, withValue: %@", event, revenue);
 }
 
 - (void)applicationDidBecomeActive
 {
-    [[AppsFlyerTracker sharedTracker] trackAppLaunch];
+    [self.appsFlyer trackAppLaunch];
     SEGLog(@"AppsFlyer: tracked app launch");
 }
 

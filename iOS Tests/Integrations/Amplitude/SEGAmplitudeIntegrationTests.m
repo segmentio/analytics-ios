@@ -20,7 +20,6 @@
 @interface SEGAmplitudeIntegrationTests : XCTestCase
 
 @property SEGAmplitudeIntegration *integration;
-
 @property Amplitude *amplitudeMock;
 
 @end
