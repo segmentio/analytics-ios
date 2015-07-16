@@ -7,8 +7,11 @@
 //
 
 #import "SEGAnalyticsIntegration.h"
+#import <AppsFlyerTracker.h>
 
 
 @interface SEGAppsFlyerIntegration : SEGAnalyticsIntegration
+
+@property AppsFlyerTracker *appsFlyer;
 
 @end
