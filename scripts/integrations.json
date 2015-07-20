@@ -62,8 +62,8 @@
     {
       "name": "Kahuna",
       "dependencies": [{
-        "name": "KahunaSDK",
-        "version": "1.0.570"
+        "name": "Kahuna",
+        "version": "2.0.2"
       }]
     },
     {

@@ -2,7 +2,7 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "SEGKahunaIntegration.h"
-#import "KahunaAnalytics.h"
+#import "Kahuna.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 #import <objc/runtime.h>
@@ -73,10 +73,10 @@ static NSString *const KAHUNA_NONE = @"None";
         // We just need one call to launchWithKey and not multiple. The "start" method is called
         // everytime the app comes to foreground.
         if ([SEGKahunaPushMonitor sharedInstance].kahunaInitialized == NO) {
-            [KahunaAnalytics launchWithKey:apiKey];
+            [Kahuna launchWithKey:apiKey];
             // If we have recorded any push user info, then
             if ([SEGKahunaPushMonitor sharedInstance].pushInfo != nil) {
-                [KahunaAnalytics handleNotification:[SEGKahunaPushMonitor sharedInstance].pushInfo withApplicationState:[SEGKahunaPushMonitor sharedInstance].applicationState];
+                [Kahuna handleNotification:[SEGKahunaPushMonitor sharedInstance].pushInfo withApplicationState:[SEGKahunaPushMonitor sharedInstance].applicationState];
                 [SEGKahunaPushMonitor sharedInstance].pushInfo = nil;
             }
 
@@ -106,27 +106,32 @@ static NSString *const KAHUNA_NONE = @"None";
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
+    KahunaUserCredentials *credentials = [Kahuna getUserCredentials];
+    bool addedCredentials = false;
     if (KAHUNA_NOT_STRING_NULL_EMPTY(userId)) {
-        [KahunaAnalytics setUserCredentialsWithKey:KAHUNA_CREDENTIAL_USER_ID andValue:userId];
+        [credentials addCredential:KAHUNA_CREDENTIAL_USER_ID withValue:userId];
+        addedCredentials = true;
     }
-
+    
     // We will go through each of the above keys, and try to see if the traits has that key. If it does, then we will add the key:value as a credential.
     // All other traits is being tracked as an attribute.
     for (NSString *eachKey in traits) {
         if (!KAHUNA_NOT_STRING_NULL_EMPTY(eachKey)) continue;
-
+        
         NSString *eachValue = [traits objectForKey:eachKey];
         if (KAHUNA_NOT_STRING_NULL_EMPTY(eachValue)) {
             // Check if this is a Kahuna credential key.
             if ([_kahunaCredentialsKeys containsObject:eachKey]) {
-                [KahunaAnalytics setUserCredentialsWithKey:eachKey andValue:eachValue];
+                [credentials addCredential:eachKey withValue:eachValue];
+                addedCredentials = true;
             } else {
                 [attributes setValue:eachValue forKey:eachKey];
             }
         } else if ([eachValue isKindOfClass:[NSNumber class]]) {
             // Check if this is a Kahuna credential key.
             if ([_kahunaCredentialsKeys containsObject:eachKey]) {
-                [KahunaAnalytics setUserCredentialsWithKey:eachKey andValue:[NSString stringWithFormat:@"%@", eachValue]];
+                [credentials addCredential:eachKey withValue:[NSString stringWithFormat:@"%@", eachValue]];
+                addedCredentials = true;
             } else {
                 [attributes setValue:[NSString stringWithFormat:@"%@", eachValue] forKey:eachKey];
             }
@@ -139,10 +144,18 @@ static NSString *const KAHUNA_NONE = @"None";
             }
         }
     }
-
+    
+    if (addedCredentials) {
+        NSError *error = nil;
+        [Kahuna loginWithCredentials:credentials error:&error];
+        if (error) {
+            NSLog(@"Kahuna-Segment Login Error : %@", error.description);
+        }
+    }
+    
     // Track the attributes if we have any items in it.
     if (attributes.count > 0) {
-        [KahunaAnalytics setUserAttributes:attributes];
+        [Kahuna setUserAttributes:attributes];
     }
 }
 
@@ -169,9 +182,9 @@ static NSString *const KAHUNA_NONE = @"None";
     long count = [quantity longValue];
 
     if (count + value > 0) {
-        [KahunaAnalytics trackEvent:event withCount:count andValue:value];
+        [Kahuna trackEvent:event withCount:count andValue:value];
     } else {
-        [KahunaAnalytics trackEvent:event];
+        [Kahuna trackEvent:event];
     }
 
     NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
@@ -195,7 +208,7 @@ static NSString *const KAHUNA_NONE = @"None";
 
     // If we have collected any attributes, then we will call the setUserAttributes API
     if (attributes.count > 0) {
-        [KahunaAnalytics setUserAttributes:attributes];
+        [Kahuna setUserAttributes:attributes];
     }
 }
 
@@ -204,7 +217,7 @@ static NSString *const KAHUNA_NONE = @"None";
     id value = properties[KAHUNA_CATEGORY];
     if (value && ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]])) {
         [(*attributes)setValue:value forKey:KAHUNA_LAST_VIEWED_CATEGORY];
-        NSDictionary *existingAttributes = [KahunaAnalytics getUserAttributes];
+        NSDictionary *existingAttributes = [Kahuna getUserAttributes];
         id categoriesViewed = [existingAttributes valueForKey:KAHUNA_CATEGORIES_VIEWED];
         if (categoriesViewed && [categoriesViewed isKindOfClass:[NSString class]]) {
             NSMutableArray *aryOfCategoriesViewed = [[categoriesViewed componentsSeparatedByString:@","] mutableCopy];
@@ -272,18 +285,18 @@ static NSString *const KAHUNA_NONE = @"None";
 
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options
 {
-    [KahunaAnalytics setDeviceToken:deviceToken];
+    [Kahuna setDeviceToken:deviceToken];
 }
 
 - (void)reset
 {
-    [KahunaAnalytics logout];
+    [Kahuna logout];
 }
 
 @end
 
 // This class is responsible for getting the 'UIApplicationDidFinishLaunchingNotification' notification. It is received by the
-// method didFinishLaunching and it calls [KahunaAnalytics handleNotification API.
+// method didFinishLaunching and it calls [Kahuna handleNotification API.
 @implementation SEGKahunaPushMonitor
 
 + (instancetype)sharedInstance
@@ -397,7 +410,7 @@ static NSString *const KAHUNA_NONE = @"None";
 {
     @try {
         if ([SEGKahunaPushMonitor sharedInstance].kahunaInitialized) {
-            [KahunaAnalytics handleNotificationRegistrationFailure:error];
+            [Kahuna handleNotificationRegistrationFailure:error];
         }
 
         if (selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError) {
@@ -471,7 +484,7 @@ static NSString *const KAHUNA_NONE = @"None";
 {
     // When we get this notification, check if kahuna is initialized. If not store it for future use.
     if ([SEGKahunaPushMonitor sharedInstance].kahunaInitialized) {
-        [KahunaAnalytics handleNotification:userInfo withApplicationState:[UIApplication sharedApplication].applicationState];
+        [Kahuna handleNotification:userInfo withApplicationState:[UIApplication sharedApplication].applicationState];
     } else {
         [SEGKahunaPushMonitor sharedInstance].pushInfo = userInfo;
         [SEGKahunaPushMonitor sharedInstance].applicationState = [UIApplication sharedApplication].applicationState;
