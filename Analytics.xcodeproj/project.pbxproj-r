@@ -114,17 +114,6 @@
 		32430A771914186C004EFF59 /* SEGLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 32430A751914186C004EFF59 /* SEGLocation.m */; };
 		32430A7919145DA8004EFF59 /* SEGAnalyticsIntegrations.h in Headers */ = {isa = PBXBuildFile; fileRef = 32430A7819145DA8004EFF59 /* SEGAnalyticsIntegrations.h */; };
 		324A42CA1992C8FA0060013A /* TSWordOfMouthDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 324A42C51992C8FA0060013A /* TSWordOfMouthDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA431999D5780056C32A /* GAIDictionaryBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA421999D5780056C32A /* GAIDictionaryBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA451999D5A50056C32A /* GAIEcommerceFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA441999D5A50056C32A /* GAIEcommerceFields.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA471999D5AF0056C32A /* GAIEcommerceProduct.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA461999D5AF0056C32A /* GAIEcommerceProduct.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA491999D5B60056C32A /* GAIEcommerceProductAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA481999D5B60056C32A /* GAIEcommerceProductAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA4B1999D5BB0056C32A /* GAIEcommercePromotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA4A1999D5BB0056C32A /* GAIEcommercePromotion.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA551999D5CF0056C32A /* GAIFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA4C1999D5CF0056C32A /* GAIFields.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA561999D5CF0056C32A /* TAGContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA501999D5CF0056C32A /* TAGContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA571999D5CF0056C32A /* TAGContainerOpener.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA511999D5CF0056C32A /* TAGContainerOpener.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA581999D5CF0056C32A /* TAGDataLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA521999D5CF0056C32A /* TAGDataLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA591999D5CF0056C32A /* TAGLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA531999D5CF0056C32A /* TAGLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3252EA5A1999D5CF0056C32A /* TAGManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA541999D5CF0056C32A /* TAGManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EA6B1999D5FD0056C32A /* MPNotificationViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA6A1999D5FD0056C32A /* MPNotificationViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EA7A1999D6390056C32A /* QuantcastDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA6D1999D6390056C32A /* QuantcastDataManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3252EA7B1999D6390056C32A /* QuantcastDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 3252EA6E1999D6390056C32A /* QuantcastDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -218,7 +207,24 @@
 		32F6381D1A8134A600C65643 /* SEGKahunaIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6381A1A8134A600C65643 /* SEGKahunaIntegration.m */; };
 		6182B863DB2D44D1B463AE3B /* libPods-iOS Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AE4A015CBF4E95B18D10A7 /* libPods-iOS Tests.a */; };
 		6E12DD831B3CA2A1005E35D0 /* SEGCrittercismIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E12DD821B3CA2A1005E35D0 /* SEGCrittercismIntegrationTests.m */; };
+		6E165A121B54771A002C1C40 /* GAI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A081B54771A002C1C40 /* GAI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E165A131B54771A002C1C40 /* GAIDictionaryBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A091B54771A002C1C40 /* GAIDictionaryBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E165A141B54771A002C1C40 /* GAIEcommerceFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A0A1B54771A002C1C40 /* GAIEcommerceFields.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E165A151B54771A002C1C40 /* GAIEcommerceProduct.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A0B1B54771A002C1C40 /* GAIEcommerceProduct.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E165A161B54771A002C1C40 /* GAIEcommerceProductAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A0C1B54771A002C1C40 /* GAIEcommerceProductAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E165A171B54771A002C1C40 /* GAIEcommercePromotion.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A0D1B54771A002C1C40 /* GAIEcommercePromotion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E165A181B54771A002C1C40 /* GAIFields.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A0E1B54771A002C1C40 /* GAIFields.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E165A191B54771A002C1C40 /* GAILogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A0F1B54771A002C1C40 /* GAILogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E165A1A1B54771A002C1C40 /* GAITrackedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A101B54771A002C1C40 /* GAITrackedViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E165A1B1B54771A002C1C40 /* GAITracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A111B54771A002C1C40 /* GAITracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E16FFF81B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E16FFF71B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m */; };
+		6E2AFA3E1B55850C00C8A14E /* MOEHelperConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA3C1B55850C00C8A14E /* MOEHelperConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E2AFA3F1B55850C00C8A14E /* MoEngage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA3D1B55850C00C8A14E /* MoEngage.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E2AFA421B55852400C8A14E /* MOInbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA401B55852400C8A14E /* MOInbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E2AFA431B55852400C8A14E /* MOInboxViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA411B55852400C8A14E /* MOInboxViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E2AFA4B1B55863400C8A14E /* SEGMoEngageIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA491B55863400C8A14E /* SEGMoEngageIntegration.h */; };
+		6E2AFA4C1B55863400C8A14E /* SEGMoEngageIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2AFA4A1B55863400C8A14E /* SEGMoEngageIntegration.m */; };
+		6E2AFA4D1B55863400C8A14E /* SEGMoEngageIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2AFA4A1B55863400C8A14E /* SEGMoEngageIntegration.m */; };
 		6E51469A1B3B573600F8F87C /* SEGBugsnagIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5146991B3B573600F8F87C /* SEGBugsnagIntegrationTests.m */; };
 		6E5EF3D31B1005FB001A4BA4 /* CrittercismConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5EF3D21B1005FB001A4BA4 /* CrittercismConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E5EF3D51B10063E001A4BA4 /* OptimizelyExperimentData.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -237,6 +243,7 @@
 		6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB809561AFC136D00959050 /* AMPURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809551AFC136D00959050 /* AMPURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6ED462261B42D6020042BFE4 /* SEGMixpanelIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6ED462251B42D6020042BFE4 /* SEGMixpanelIntegrationTests.m */; };
+		6EF665321B5860D400DC7EA1 /* SEGAppsFlyerIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF665311B5860D400DC7EA1 /* SEGAppsFlyerIntegrationTests.m */; };
 		6EFAD9AE1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAD9AD1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m */; };
 		6EFF0CE51B3B63FB005190A2 /* SEGCountlyIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFF0CE41B3B63FB005190A2 /* SEGCountlyIntegrationTests.m */; };
 		79D247EA1B4AF3C9002D8F90 /* SEGUXCamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D247E81B4AF3C9002D8F90 /* SEGUXCamIntegration.h */; };
@@ -248,9 +255,6 @@
 		D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCEC185BFAA1007CB22F /* MPSurvey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF0185BFF49007CB22F /* CRFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCF3185BFF4A007CB22F /* CrittercismDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF1185BFF49007CB22F /* CrittercismDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF8185C2DC4007CB22F /* GAILogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF9185C2DC4007CB22F /* GAITrackedViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D331BCFD185C2DC4007CB22F /* GAITracker.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCFA185C2DC4007CB22F /* GAITracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD2B1860F5F0007CB22F /* TSApi.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD1D1860F5F0007CB22F /* TSApi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD2C1860F5F0007CB22F /* TSAppEventSource.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD1E1860F5F0007CB22F /* TSAppEventSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD2D1860F5F0007CB22F /* TSConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD1F1860F5F0007CB22F /* TSConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -267,7 +271,6 @@
 		D331BD381860F5F0007CB22F /* TSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD2A1860F5F0007CB22F /* TSUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F32E185942BB0053337D /* Crittercism.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F32D185942BB0053337D /* Crittercism.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F330185942C90053337D /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F32F185942C90053337D /* Flurry.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D371F332185942DE0053337D /* GAI.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F331185942DE0053337D /* GAI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F334185943170053337D /* Mixpanel.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F333185943170053337D /* Mixpanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3EDB65618C315F100A88A7E /* SEGAmplitudeIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63918C315F100A88A7E /* SEGAmplitudeIntegration.h */; };
 		D3EDB65718C315F100A88A7E /* SEGAmplitudeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63A18C315F100A88A7E /* SEGAmplitudeIntegration.m */; };
@@ -395,15 +398,6 @@
 		324A42C31992C8FA0060013A /* TSPlatformImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSPlatformImpl.h; path = Pods/Tapstream/objc/Tapstream/TSPlatformImpl.h; sourceTree = "<group>"; };
 		324A42C41992C8FA0060013A /* TSTapstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSTapstream.h; path = Pods/Tapstream/objc/Tapstream/TSTapstream.h; sourceTree = "<group>"; };
 		324A42C51992C8FA0060013A /* TSWordOfMouthDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TSWordOfMouthDelegate.h; path = Pods/Tapstream/objc/Tapstream/TSWordOfMouthDelegate.h; sourceTree = "<group>"; };
-		3252EA421999D5780056C32A /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAIDictionaryBuilder.h"; sourceTree = "<group>"; };
-		3252EA441999D5A50056C32A /* GAIEcommerceFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceFields.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAIEcommerceFields.h"; sourceTree = "<group>"; };
-		3252EA461999D5AF0056C32A /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProduct.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAIEcommerceProduct.h"; sourceTree = "<group>"; };
-		3252EA481999D5B60056C32A /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProductAction.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAIEcommerceProductAction.h"; sourceTree = "<group>"; };
-		3252EA4A1999D5BB0056C32A /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommercePromotion.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAIEcommercePromotion.h"; sourceTree = "<group>"; };
-		3252EA4C1999D5CF0056C32A /* GAIFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAIFields.h"; sourceTree = "<group>"; };
-		3252EA4D1999D5CF0056C32A /* GAILogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAILogger.h"; sourceTree = "<group>"; };
-		3252EA4E1999D5CF0056C32A /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAITrackedViewController.h"; sourceTree = "<group>"; };
-		3252EA4F1999D5CF0056C32A /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAITracker.h"; sourceTree = "<group>"; };
 		3252EA501999D5CF0056C32A /* TAGContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TAGContainer.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleTagManager/Library/TAGContainer.h"; sourceTree = "<group>"; };
 		3252EA511999D5CF0056C32A /* TAGContainerOpener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TAGContainerOpener.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleTagManager/Library/TAGContainerOpener.h"; sourceTree = "<group>"; };
 		3252EA521999D5CF0056C32A /* TAGDataLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TAGDataLayer.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleTagManager/Library/TAGDataLayer.h"; sourceTree = "<group>"; };
@@ -522,7 +516,23 @@
 		32F9E6B61907320700ED295B /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32F9E6B91907323900ED295B /* libPods-Analytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Analytics.a"; path = "Pods/build/Debug-iphoneos/libPods-Analytics.a"; sourceTree = "<group>"; };
 		6E12DD821B3CA2A1005E35D0 /* SEGCrittercismIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGCrittercismIntegrationTests.m; path = Integrations/Crittercism/SEGCrittercismIntegrationTests.m; sourceTree = "<group>"; };
+		6E165A081B54771A002C1C40 /* GAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = Pods/GoogleAnalytics/Headers/Public/GAI.h; sourceTree = "<group>"; };
+		6E165A091B54771A002C1C40 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = Pods/GoogleAnalytics/Headers/Public/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		6E165A0A1B54771A002C1C40 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceFields.h; path = Pods/GoogleAnalytics/Headers/Public/GAIEcommerceFields.h; sourceTree = "<group>"; };
+		6E165A0B1B54771A002C1C40 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProduct.h; path = Pods/GoogleAnalytics/Headers/Public/GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		6E165A0C1B54771A002C1C40 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProductAction.h; path = Pods/GoogleAnalytics/Headers/Public/GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		6E165A0D1B54771A002C1C40 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIEcommercePromotion.h; path = Pods/GoogleAnalytics/Headers/Public/GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		6E165A0E1B54771A002C1C40 /* GAIFields.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = Pods/GoogleAnalytics/Headers/Public/GAIFields.h; sourceTree = "<group>"; };
+		6E165A0F1B54771A002C1C40 /* GAILogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = Pods/GoogleAnalytics/Headers/Public/GAILogger.h; sourceTree = "<group>"; };
+		6E165A101B54771A002C1C40 /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = Pods/GoogleAnalytics/Headers/Public/GAITrackedViewController.h; sourceTree = "<group>"; };
+		6E165A111B54771A002C1C40 /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = Pods/GoogleAnalytics/Headers/Public/GAITracker.h; sourceTree = "<group>"; };
 		6E16FFF71B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGFlurryIntegrationTests.m; sourceTree = "<group>"; };
+		6E2AFA3C1B55850C00C8A14E /* MOEHelperConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MOEHelperConstants.h; path = "Pods/MoEngage-iOS-SDK/Headers/MOEHelperConstants.h"; sourceTree = "<group>"; };
+		6E2AFA3D1B55850C00C8A14E /* MoEngage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoEngage.h; path = "Pods/MoEngage-iOS-SDK/Headers/MoEngage.h"; sourceTree = "<group>"; };
+		6E2AFA401B55852400C8A14E /* MOInbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MOInbox.h; path = "Pods/MoEngage-iOS-SDK/Headers/MOInbox.h"; sourceTree = "<group>"; };
+		6E2AFA411B55852400C8A14E /* MOInboxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MOInboxViewController.h; path = "Pods/MoEngage-iOS-SDK/Headers/MOInboxViewController.h"; sourceTree = "<group>"; };
+		6E2AFA491B55863400C8A14E /* SEGMoEngageIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGMoEngageIntegration.h; path = MoEngage/SEGMoEngageIntegration.h; sourceTree = "<group>"; };
+		6E2AFA4A1B55863400C8A14E /* SEGMoEngageIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGMoEngageIntegration.m; path = MoEngage/SEGMoEngageIntegration.m; sourceTree = "<group>"; };
 		6E5146991B3B573600F8F87C /* SEGBugsnagIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGBugsnagIntegrationTests.m; path = Integrations/Bugsnag/SEGBugsnagIntegrationTests.m; sourceTree = "<group>"; };
 		6E5EF3D21B1005FB001A4BA4 /* CrittercismConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CrittercismConfig.h; path = Pods/CrittercismSDK/CrittercismSDK/CrittercismConfig.h; sourceTree = "<group>"; };
 		6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelyExperimentData.h; path = "Pods/Optimizely-iOS-SDK/Optimizely.framework/Headers/OptimizelyExperimentData.h"; sourceTree = "<group>"; };
@@ -536,6 +546,7 @@
 		6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Amplitude+SSLPinning.h"; path = "Pods/Amplitude-iOS/Amplitude/Amplitude+SSLPinning.h"; sourceTree = "<group>"; };
 		6EB809551AFC136D00959050 /* AMPURLConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AMPURLConnection.h; path = "Pods/Amplitude-iOS/Amplitude/AMPURLConnection.h"; sourceTree = "<group>"; };
 		6ED462251B42D6020042BFE4 /* SEGMixpanelIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGMixpanelIntegrationTests.m; path = Integrations/Mixpanel/SEGMixpanelIntegrationTests.m; sourceTree = "<group>"; };
+		6EF665311B5860D400DC7EA1 /* SEGAppsFlyerIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGAppsFlyerIntegrationTests.m; path = AppsFlyer/SEGAppsFlyerIntegrationTests.m; sourceTree = "<group>"; };
 		6EFAD9AD1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGTaplyticsIntegrationTests.m; path = Integrations/Taplytics/SEGTaplyticsIntegrationTests.m; sourceTree = "<group>"; };
 		6EFF0CE41B3B63FB005190A2 /* SEGCountlyIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGCountlyIntegrationTests.m; path = Integrations/Countly/SEGCountlyIntegrationTests.m; sourceTree = "<group>"; };
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -552,9 +563,6 @@
 		D331BCEC185BFAA1007CB22F /* MPSurvey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPSurvey.h; path = Pods/Mixpanel/Mixpanel/MPSurvey.h; sourceTree = "<group>"; };
 		D331BCF0185BFF49007CB22F /* CRFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CRFilter.h; path = Pods/CrittercismSDK/CrittercismSDK/CRFilter.h; sourceTree = "<group>"; };
 		D331BCF1185BFF49007CB22F /* CrittercismDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CrittercismDelegate.h; path = Pods/CrittercismSDK/CrittercismSDK/CrittercismDelegate.h; sourceTree = "<group>"; };
-		D331BCF8185C2DC4007CB22F /* GAILogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAILogger.h"; sourceTree = "<group>"; };
-		D331BCF9185C2DC4007CB22F /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAITrackedViewController.h"; sourceTree = "<group>"; };
-		D331BCFA185C2DC4007CB22F /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAITracker.h"; sourceTree = "<group>"; };
 		D331BD151860F5D4007CB22F /* TSAppEventSourceImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSAppEventSourceImpl.h; path = Pods/Tapstream/objc/Tapstream/TSAppEventSourceImpl.h; sourceTree = "<group>"; };
 		D331BD161860F5D4007CB22F /* TSCoreListenerImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSCoreListenerImpl.h; path = Pods/Tapstream/objc/Tapstream/TSCoreListenerImpl.h; sourceTree = "<group>"; };
 		D331BD171860F5D4007CB22F /* TSPlatformImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TSPlatformImpl.h; path = Pods/Tapstream/objc/Tapstream/TSPlatformImpl.h; sourceTree = "<group>"; };
@@ -577,7 +585,6 @@
 		D36ABA63182F09F3001EB84B /* admsAppLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = admsAppLibrary.a; path = Pods/Omniture/admsAppLibrary.a; sourceTree = "<group>"; };
 		D371F32D185942BB0053337D /* Crittercism.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Crittercism.h; path = Pods/CrittercismSDK/CrittercismSDK/Crittercism.h; sourceTree = "<group>"; };
 		D371F32F185942C90053337D /* Flurry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Pods/FlurrySDK/Flurry/Flurry.h; sourceTree = "<group>"; };
-		D371F331185942DE0053337D /* GAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = "Pods/GoogleAnalytics-iOS-SDK/GoogleAnalytics/Library/GAI.h"; sourceTree = "<group>"; };
 		D371F333185943170053337D /* Mixpanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Mixpanel.h; path = Pods/Mixpanel/Mixpanel/Mixpanel.h; sourceTree = "<group>"; };
 		D37F756C189237360037E851 /* libCrittercism_v4_3_1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrittercism_v4_3_1.a; path = Pods/CrittercismSDK/CrittercismSDK/libCrittercism_v4_3_1.a; sourceTree = "<group>"; };
 		D37F756E189237430037E851 /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.0.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.0.a; sourceTree = "<group>"; };
@@ -773,6 +780,7 @@
 			isa = PBXGroup;
 			children = (
 				6EB4681F1B39CDBD00A0E4B9 /* Amplitude */,
+				6EF6652D1B585DC900DC7EA1 /* AppsFlyer */,
 				6E5146981B3B571D00F8F87C /* Bugsnag */,
 				6EFF0CE31B3B63E6005190A2 /* Countly */,
 				6E12DD811B3CA285005E35D0 /* Crittercism */,
@@ -793,6 +801,15 @@
 				6E16FFF71B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m */,
 			);
 			name = Flurry;
+			sourceTree = "<group>";
+		};
+		6E2AFA371B55841900C8A14E /* MoEngage */ = {
+			isa = PBXGroup;
+			children = (
+				6E2AFA491B55863400C8A14E /* SEGMoEngageIntegration.h */,
+				6E2AFA4A1B55863400C8A14E /* SEGMoEngageIntegration.m */,
+			);
+			name = MoEngage;
 			sourceTree = "<group>";
 		};
 		6E5146981B3B571D00F8F87C /* Bugsnag */ = {
@@ -843,6 +860,14 @@
 			name = Mixpanel;
 			sourceTree = "<group>";
 		};
+		6EF6652D1B585DC900DC7EA1 /* AppsFlyer */ = {
+			isa = PBXGroup;
+			children = (
+				6EF665311B5860D400DC7EA1 /* SEGAppsFlyerIntegrationTests.m */,
+			);
+			name = AppsFlyer;
+			sourceTree = "<group>";
+		};
 		6EFAD9AC1B41A965000664C1 /* Taplytics */ = {
 			isa = PBXGroup;
 			children = (
@@ -880,6 +905,20 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				6E2AFA401B55852400C8A14E /* MOInbox.h */,
+				6E2AFA411B55852400C8A14E /* MOInboxViewController.h */,
+				6E2AFA3C1B55850C00C8A14E /* MOEHelperConstants.h */,
+				6E2AFA3D1B55850C00C8A14E /* MoEngage.h */,
+				6E165A081B54771A002C1C40 /* GAI.h */,
+				6E165A091B54771A002C1C40 /* GAIDictionaryBuilder.h */,
+				6E165A0A1B54771A002C1C40 /* GAIEcommerceFields.h */,
+				6E165A0B1B54771A002C1C40 /* GAIEcommerceProduct.h */,
+				6E165A0C1B54771A002C1C40 /* GAIEcommerceProductAction.h */,
+				6E165A0D1B54771A002C1C40 /* GAIEcommercePromotion.h */,
+				6E165A0E1B54771A002C1C40 /* GAIFields.h */,
+				6E165A0F1B54771A002C1C40 /* GAILogger.h */,
+				6E165A101B54771A002C1C40 /* GAITrackedViewController.h */,
+				6E165A111B54771A002C1C40 /* GAITracker.h */,
 				6E85F3931B2F980B00763913 /* MPLogger.h */,
 				6E85F3911B2F974700763913 /* Localytics.h */,
 				6E85F38F1B2F922F00763913 /* CountlyDB.h */,
@@ -1009,16 +1048,6 @@
 				D371F32D185942BB0053337D /* Crittercism.h */,
 				D331BCF1185BFF49007CB22F /* CrittercismDelegate.h */,
 				D371F32F185942C90053337D /* Flurry.h */,
-				D371F331185942DE0053337D /* GAI.h */,
-				3252EA421999D5780056C32A /* GAIDictionaryBuilder.h */,
-				3252EA441999D5A50056C32A /* GAIEcommerceFields.h */,
-				3252EA461999D5AF0056C32A /* GAIEcommerceProduct.h */,
-				3252EA481999D5B60056C32A /* GAIEcommerceProductAction.h */,
-				3252EA4A1999D5BB0056C32A /* GAIEcommercePromotion.h */,
-				3252EA4C1999D5CF0056C32A /* GAIFields.h */,
-				3252EA4D1999D5CF0056C32A /* GAILogger.h */,
-				3252EA4E1999D5CF0056C32A /* GAITrackedViewController.h */,
-				3252EA4F1999D5CF0056C32A /* GAITracker.h */,
 				3252EA951999D7040056C32A /* Mixpanel.h */,
 				3252EA8F1999D7040056C32A /* MPNotification.h */,
 				3252EA6A1999D5FD0056C32A /* MPNotificationViewController.h */,
@@ -1074,9 +1103,6 @@
 				3252EAA31999D7150056C32A /* UIImage+MPImageEffects.h */,
 				3252EA991999D7040056C32A /* UIImage+MPImageEffects.h */,
 				3252EA901999D7040056C32A /* MPNotificationViewController.h */,
-				D331BCF8185C2DC4007CB22F /* GAILogger.h */,
-				D331BCF9185C2DC4007CB22F /* GAITrackedViewController.h */,
-				D331BCFA185C2DC4007CB22F /* GAITracker.h */,
 				D371F333185943170053337D /* Mixpanel.h */,
 				D31C8F7D18A2D83700DA22A6 /* MPNotification.h */,
 				D331BCEC185BFAA1007CB22F /* MPSurvey.h */,
@@ -1111,6 +1137,7 @@
 				32F638181A81348700C65643 /* Kahuna */,
 				D3EDB64A18C315F100A88A7E /* Localytics */,
 				D3EDB64D18C315F100A88A7E /* Mixpanel */,
+				6E2AFA371B55841900C8A14E /* MoEngage */,
 				32A69C1F1979CF4A00D69943 /* Optimizely */,
 				32A8C60419107DBD00173AE5 /* Quantcast */,
 				D3EDB65018C315F100A88A7E /* Segmentio */,
@@ -1351,6 +1378,16 @@
 				325DCE361A8D875100D4142E /* BugsnagNotifier.h in Headers */,
 				325DCE371A8D875100D4142E /* BugsnagOSXNotifier.h in Headers */,
 				325DCE381A8D875100D4142E /* BugsnagSink.h in Headers */,
+				6E165A121B54771A002C1C40 /* GAI.h in Headers */,
+				6E165A131B54771A002C1C40 /* GAIDictionaryBuilder.h in Headers */,
+				6E165A141B54771A002C1C40 /* GAIEcommerceFields.h in Headers */,
+				6E165A151B54771A002C1C40 /* GAIEcommerceProduct.h in Headers */,
+				6E165A161B54771A002C1C40 /* GAIEcommerceProductAction.h in Headers */,
+				6E165A171B54771A002C1C40 /* GAIEcommercePromotion.h in Headers */,
+				6E165A181B54771A002C1C40 /* GAIFields.h in Headers */,
+				6E165A191B54771A002C1C40 /* GAILogger.h in Headers */,
+				6E165A1A1B54771A002C1C40 /* GAITrackedViewController.h in Headers */,
+				6E165A1B1B54771A002C1C40 /* GAITracker.h in Headers */,
 				6E85F3901B2F922F00763913 /* CountlyDB.h in Headers */,
 				320AFEE91A840DEB00929778 /* KahunaAnalytics.h in Headers */,
 				6E85F3711B2F792100763913 /* TSAppEventSourceImpl.h in Headers */,
@@ -1367,33 +1404,22 @@
 				EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */,
 				D371F32E185942BB0053337D /* Crittercism.h in Headers */,
 				D3EDB65A18C315F100A88A7E /* SEGCountlyIntegration.h in Headers */,
-				3252EA551999D5CF0056C32A /* GAIFields.h in Headers */,
 				32CFF3D219AE947F00193D3D /* AppsFlyerTracker.h in Headers */,
-				D331BCFB185C2DC4007CB22F /* GAILogger.h in Headers */,
-				D331BCFC185C2DC4007CB22F /* GAITrackedViewController.h in Headers */,
-				D331BCFD185C2DC4007CB22F /* GAITracker.h in Headers */,
-				3252EA561999D5CF0056C32A /* TAGContainer.h in Headers */,
-				3252EA571999D5CF0056C32A /* TAGContainerOpener.h in Headers */,
-				3252EA581999D5CF0056C32A /* TAGDataLayer.h in Headers */,
-				3252EA591999D5CF0056C32A /* TAGLogger.h in Headers */,
 				6E85F3721B2F792100763913 /* TSCoreListenerImpl.h in Headers */,
-				3252EA5A1999D5CF0056C32A /* TAGManager.h in Headers */,
 				6E5EF3D31B1005FB001A4BA4 /* CrittercismConfig.h in Headers */,
 				D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */,
 				D331BCF3185BFF4A007CB22F /* CrittercismDelegate.h in Headers */,
-				3252EA431999D5780056C32A /* GAIDictionaryBuilder.h in Headers */,
+				6E2AFA421B55852400C8A14E /* MOInbox.h in Headers */,
+				6E2AFA431B55852400C8A14E /* MOInboxViewController.h in Headers */,
 				D3EDB65818C315F100A88A7E /* SEGBugsnagIntegration.h in Headers */,
 				D371F330185942C90053337D /* Flurry.h in Headers */,
-				D371F332185942DE0053337D /* GAI.h in Headers */,
+				6E2AFA3E1B55850C00C8A14E /* MOEHelperConstants.h in Headers */,
+				6E2AFA3F1B55850C00C8A14E /* MoEngage.h in Headers */,
 				D3EDB65E18C315F100A88A7E /* SEGFlurryIntegration.h in Headers */,
 				32DF327A194666DA004098C1 /* SEGTaplyticsIntegration.h in Headers */,
-				3252EA451999D5A50056C32A /* GAIEcommerceFields.h in Headers */,
 				D3EDB66418C315F100A88A7E /* SEGMixpanelIntegration.h in Headers */,
-				3252EA471999D5AF0056C32A /* GAIEcommerceProduct.h in Headers */,
 				32225231199AD6D200478B1A /* SEGReachability.h in Headers */,
-				3252EA491999D5B60056C32A /* GAIEcommerceProductAction.h in Headers */,
 				32E2811E1908420D00FB48D7 /* SEGBluetooth.h in Headers */,
-				3252EA4B1999D5BB0056C32A /* GAIEcommercePromotion.h in Headers */,
 				32A69C221979CF4A00D69943 /* SEGOptimizelyIntegration.h in Headers */,
 				D331BD2B1860F5F0007CB22F /* TSApi.h in Headers */,
 				D331BD2C1860F5F0007CB22F /* TSAppEventSource.h in Headers */,
@@ -1403,6 +1429,7 @@
 				D331BD2E1860F5F0007CB22F /* TSCore.h in Headers */,
 				32430A7919145DA8004EFF59 /* SEGAnalyticsIntegrations.h in Headers */,
 				32AD185919AFCA100047D5F0 /* MPABTestDesignerChangeRequestMessage.h in Headers */,
+				6E2AFA4B1B55863400C8A14E /* SEGMoEngageIntegration.h in Headers */,
 				32AD185A19AFCA100047D5F0 /* MPABTestDesignerChangeResponseMessage.h in Headers */,
 				32AD185B19AFCA100047D5F0 /* MPABTestDesignerClearRequestMessage.h in Headers */,
 				32AD185C19AFCA100047D5F0 /* MPABTestDesignerClearResponseMessage.h in Headers */,
@@ -1780,6 +1807,7 @@
 				3242C9BA1946AFD900FBE441 /* SEGGoogleAnalyticsIntegration.m in Sources */,
 				3242C9B91946AFD400FBE441 /* SEGFlurryIntegration.m in Sources */,
 				6EFAD9AE1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m in Sources */,
+				6E2AFA4D1B55863400C8A14E /* SEGMoEngageIntegration.m in Sources */,
 				6EB2963E1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m in Sources */,
 				32CFF3D019AE5BCF00193D3D /* SEGAppsFlyerIntegration.m in Sources */,
 				DAEB6FF31AC9EBCA003E7FB3 /* SEGApptimizeIntegration.m in Sources */,
@@ -1796,6 +1824,7 @@
 				3242C9BE1946AFF200FBE441 /* SEGTaplyticsIntegration.m in Sources */,
 				3242C9AF1946AD9B00FBE441 /* SEGAnalyticsUtils.m in Sources */,
 				3242C9AE1946AD9900FBE441 /* SEGAnalyticsRequest.m in Sources */,
+				6EF665321B5860D400DC7EA1 /* SEGAppsFlyerIntegrationTests.m in Sources */,
 				6EB468211B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m in Sources */,
 				3242C9B81946AFD100FBE441 /* SEGCrittercismIntegration.m in Sources */,
 				3242C9A31946A3E100FBE441 /* iOS_Tests.m in Sources */,
@@ -1826,6 +1855,7 @@
 				D3EDB66718C315F100A88A7E /* SEGSegmentioIntegration.m in Sources */,
 				D3EDB65D18C315F100A88A7E /* SEGCrittercismIntegration.m in Sources */,
 				32E2811F1908420D00FB48D7 /* SEGBluetooth.m in Sources */,
+				6E2AFA4C1B55863400C8A14E /* SEGMoEngageIntegration.m in Sources */,
 				EAA604CA17C28C7C00911919 /* SEGAnalyticsRequest.m in Sources */,
 				EA65F96717C2ABA600389A1A /* SEGAnalyticsIntegration.m in Sources */,
 				32225232199AD6D200478B1A /* SEGReachability.m in Sources */,
@@ -1933,7 +1963,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.12.0;
+				ANALYTICS_VERSION = 1.12.1;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1965,7 +1995,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ANALYTICS_VERSION = 1.12.0;
+				ANALYTICS_VERSION = 1.12.1;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;

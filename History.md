@@ -1,3 +1,12 @@
+
+1.12.2 / 2015-07-20
+===================
+
+  * Update Taplytics to 2.3.12
+  * Add MoEngage integration
+  * Fix mixpanel screen method to respect trackNamedPages and trackCategorizedPages
+  * Update Google Analytics
+
 1.12.1 / 2015-07-13
 ===================
 
