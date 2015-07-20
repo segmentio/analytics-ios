@@ -109,7 +109,7 @@
       "name": "Taplytics",
       "dependencies": [{
         "name": "Taplytics",
-        "version": "2.1.96"
+        "version": "2.3.12"
       }]
     },
     {
