@@ -9,7 +9,6 @@
 #import "SEGQuantcastIntegration.h"
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
-#import <Quantcast-Measure/QuantcastMeasurement.h>
 
 
 @implementation SEGQuantcastIntegration
@@ -23,6 +22,7 @@
 {
     if (self = [super init]) {
         self.name = self.class.name;
+        self.quantcast = [QuantcastMeasurement sharedInstance];
     }
     return self;
 }
@@ -34,23 +34,23 @@
 
 - (void)start
 {
-    [[QuantcastMeasurement sharedInstance] setupMeasurementSessionWithAPIKey:self.settings[@"apiKey"] userIdentifier:self.settings[@"userIdentifier"] labels:self.settings[@"labels"]];
+    [self.quantcast setupMeasurementSessionWithAPIKey:self.settings[@"apiKey"] userIdentifier:self.settings[@"userIdentifier"] labels:self.settings[@"labels"]];
     [super start];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    [[QuantcastMeasurement sharedInstance] logEvent:event withLabels:self.settings[@"labels"]];
+    [self.quantcast logEvent:event withLabels:self.settings[@"labels"]];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    [[QuantcastMeasurement sharedInstance] logEvent:SEGEventNameForScreenTitle(screenTitle) withLabels:self.settings[@"labels"]];
+    [self.quantcast logEvent:SEGEventNameForScreenTitle(screenTitle) withLabels:self.settings[@"labels"]];
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    [[QuantcastMeasurement sharedInstance] recordUserIdentifier:userId withLabels:self.settings[@"labels"]];
+    [self.quantcast recordUserIdentifier:userId withLabels:self.settings[@"labels"]];
 }
 
 #pragma mark - Private
