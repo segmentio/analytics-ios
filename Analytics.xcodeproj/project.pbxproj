@@ -238,6 +238,7 @@
 		6E85F3941B2F980B00763913 /* MPLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85F3931B2F980B00763913 /* MPLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E8F058C1B42321800305E99 /* SEGOptimizelyIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F058B1B42321800305E99 /* SEGOptimizelyIntegrationTests.m */; };
 		6E92C1E71B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92C1E61B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m */; };
+		6E9F1EE71B605E7400E55D88 /* SEGApptimizeIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E9F1EE61B605E7400E55D88 /* SEGApptimizeIntegrationTests.m */; };
 		6EB2963E1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB2963D1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m */; };
 		6EB44C751B5F11EE0014BCDB /* SEGQuantcastIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB44C741B5F11EE0014BCDB /* SEGQuantcastIntegrationTests.m */; };
 		6EB468211B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB468201B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m */; };
@@ -542,6 +543,7 @@
 		6E85F3931B2F980B00763913 /* MPLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPLogger.h; path = Pods/Mixpanel/Mixpanel/MPLogger.h; sourceTree = "<group>"; };
 		6E8F058B1B42321800305E99 /* SEGOptimizelyIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGOptimizelyIntegrationTests.m; path = Integrations/Optimizely/SEGOptimizelyIntegrationTests.m; sourceTree = "<group>"; };
 		6E92C1E61B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGLocalyticsIntegrationTests.m; path = Integrations/Localytics/SEGLocalyticsIntegrationTests.m; sourceTree = "<group>"; };
+		6E9F1EE61B605E7400E55D88 /* SEGApptimizeIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGApptimizeIntegrationTests.m; path = Integrations/Apptimize/SEGApptimizeIntegrationTests.m; sourceTree = "<group>"; };
 		6EB2963D1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGTapstreamIntegrationTests.m; path = Integrations/Tapstream/SEGTapstreamIntegrationTests.m; sourceTree = "<group>"; };
 		6EB44C741B5F11EE0014BCDB /* SEGQuantcastIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGQuantcastIntegrationTests.m; path = Integrations/Quantcast/SEGQuantcastIntegrationTests.m; sourceTree = "<group>"; };
 		6EB468201B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGAmplitudeIntegrationTests.m; path = Integrations/Amplitude/SEGAmplitudeIntegrationTests.m; sourceTree = "<group>"; };
@@ -783,6 +785,7 @@
 			children = (
 				6EB4681F1B39CDBD00A0E4B9 /* Amplitude */,
 				6EF6652D1B585DC900DC7EA1 /* AppsFlyer */,
+				6E9F1EE51B605E4100E55D88 /* Apptimize */,
 				6E5146981B3B571D00F8F87C /* Bugsnag */,
 				6EFF0CE31B3B63E6005190A2 /* Countly */,
 				6E12DD811B3CA285005E35D0 /* Crittercism */,
@@ -837,6 +840,14 @@
 				6E92C1E61B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m */,
 			);
 			name = Localytics;
+			sourceTree = "<group>";
+		};
+		6E9F1EE51B605E4100E55D88 /* Apptimize */ = {
+			isa = PBXGroup;
+			children = (
+				6E9F1EE61B605E7400E55D88 /* SEGApptimizeIntegrationTests.m */,
+			);
+			name = Apptimize;
 			sourceTree = "<group>";
 		};
 		6EB2963C1B4C3A3000805337 /* Tapstream */ = {
@@ -1807,6 +1818,7 @@
 				6E8F058C1B42321800305E99 /* SEGOptimizelyIntegrationTests.m in Sources */,
 				6EFF0CE51B3B63FB005190A2 /* SEGCountlyIntegrationTests.m in Sources */,
 				3242C9AB1946AB4700FBE441 /* AnalyticsUtilsTests.m in Sources */,
+				6E9F1EE71B605E7400E55D88 /* SEGApptimizeIntegrationTests.m in Sources */,
 				3242C9AC1946AB4700FBE441 /* SegmentioTests.m in Sources */,
 				3242C9BF1946AFF900FBE441 /* SEGTapstreamIntegration.m in Sources */,
 				3242C9B61946AFC800FBE441 /* SEGBugsnagIntegration.m in Sources */,
