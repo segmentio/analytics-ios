@@ -106,7 +106,7 @@ static NSString *const KAHUNA_NONE = @"None";
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     NSMutableDictionary *attributes = [[NSMutableDictionary alloc] init];
-    KahunaUserCredentials *credentials = [Kahuna getUserCredentials];
+    KahunaUserCredentials *credentials = [Kahuna createUserCredentials];
     bool addedCredentials = false;
     if (KAHUNA_NOT_STRING_NULL_EMPTY(userId)) {
         [credentials addCredential:KAHUNA_CREDENTIAL_USER_ID withValue:userId];
