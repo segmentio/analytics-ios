@@ -11,6 +11,7 @@
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 
+
 @implementation SEGApptimizeIntegration
 
 + (NSString *)name { return @"Apptimize"; }

@@ -15,6 +15,7 @@
 #import <OCMockito/OCMockito.h>
 #import <XCTest/XCTest.h>
 
+
 @interface SEGApptimizeIntegrationTests : XCTestCase
 
 @property SEGApptimizeIntegration *integration;
