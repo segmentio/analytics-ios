@@ -11,6 +11,7 @@
 #import <Apptimize/Apptimize.h>
 #import <Apptimize/Apptimize+Segment.h>
 
+
 @interface SEGApptimizeIntegration : SEGAnalyticsIntegration
 
 @property Class apptimizeClass;

@@ -15,6 +15,7 @@
 #define MOCKITO_SHORTHAND
 #import <OCMockito/OCMockito.h>
 
+
 @interface SEGQuantastIntegrationTests : XCTestCase
 
 @property SEGQuantcastIntegration *integration;
