@@ -206,6 +206,7 @@
 		32F6381C1A8134A600C65643 /* SEGKahunaIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6381A1A8134A600C65643 /* SEGKahunaIntegration.m */; };
 		32F6381D1A8134A600C65643 /* SEGKahunaIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F6381A1A8134A600C65643 /* SEGKahunaIntegration.m */; };
 		6182B863DB2D44D1B463AE3B /* libPods-iOS Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24AE4A015CBF4E95B18D10A7 /* libPods-iOS Tests.a */; };
+		6E0570C41B63038F0072B471 /* SEGGoogleAnalyticsIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E0570C31B63038F0072B471 /* SEGGoogleAnalyticsIntegrationTests.m */; };
 		6E12DD831B3CA2A1005E35D0 /* SEGCrittercismIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E12DD821B3CA2A1005E35D0 /* SEGCrittercismIntegrationTests.m */; };
 		6E165A121B54771A002C1C40 /* GAI.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A081B54771A002C1C40 /* GAI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E165A131B54771A002C1C40 /* GAIDictionaryBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A091B54771A002C1C40 /* GAIDictionaryBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -517,6 +518,7 @@
 		32F9E6B31907300300ED295B /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32F9E6B61907320700ED295B /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32F9E6B91907323900ED295B /* libPods-Analytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Analytics.a"; path = "Pods/build/Debug-iphoneos/libPods-Analytics.a"; sourceTree = "<group>"; };
+		6E0570C31B63038F0072B471 /* SEGGoogleAnalyticsIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGGoogleAnalyticsIntegrationTests.m; path = Integrations/GoogleAnalytics/SEGGoogleAnalyticsIntegrationTests.m; sourceTree = "<group>"; };
 		6E12DD821B3CA2A1005E35D0 /* SEGCrittercismIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGCrittercismIntegrationTests.m; path = Integrations/Crittercism/SEGCrittercismIntegrationTests.m; sourceTree = "<group>"; };
 		6E165A081B54771A002C1C40 /* GAI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = Pods/GoogleAnalytics/Headers/Public/GAI.h; sourceTree = "<group>"; };
 		6E165A091B54771A002C1C40 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = Pods/GoogleAnalytics/Headers/Public/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
@@ -772,6 +774,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6E0570C21B63037A0072B471 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				6E0570C31B63038F0072B471 /* SEGGoogleAnalyticsIntegrationTests.m */,
+			);
+			name = GoogleAnalytics;
+			sourceTree = "<group>";
+		};
 		6E12DD811B3CA285005E35D0 /* Crittercism */ = {
 			isa = PBXGroup;
 			children = (
@@ -790,6 +800,7 @@
 				6EFF0CE31B3B63E6005190A2 /* Countly */,
 				6E12DD811B3CA285005E35D0 /* Crittercism */,
 				6E16FFF41B33AD0B00B4F7FE /* Flurry */,
+				6E0570C21B63037A0072B471 /* GoogleAnalytics */,
 				6E92C1E51B3DD5030049B5A8 /* Localytics */,
 				6ED462241B42D5E70042BFE4 /* Mixpanel */,
 				6E8F058A1B4231FE00305E99 /* Optimizely */,
@@ -1818,6 +1829,7 @@
 				6E8F058C1B42321800305E99 /* SEGOptimizelyIntegrationTests.m in Sources */,
 				6EFF0CE51B3B63FB005190A2 /* SEGCountlyIntegrationTests.m in Sources */,
 				3242C9AB1946AB4700FBE441 /* AnalyticsUtilsTests.m in Sources */,
+				6E0570C41B63038F0072B471 /* SEGGoogleAnalyticsIntegrationTests.m in Sources */,
 				6E9F1EE71B605E7400E55D88 /* SEGApptimizeIntegrationTests.m in Sources */,
 				3242C9AC1946AB4700FBE441 /* SegmentioTests.m in Sources */,
 				3242C9BF1946AFF900FBE441 /* SEGTapstreamIntegration.m in Sources */,
