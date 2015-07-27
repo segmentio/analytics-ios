@@ -9,7 +9,7 @@
 #import "SEGOptimizelyIntegration.h"
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
-#import <Optimizely-iOS-SDK/Optimizely.h>
+#import <Optimizely.h>
 
 NSString *SEGMixpanelClass = @"Mixpanel";
 
