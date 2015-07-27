@@ -2,19 +2,9 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 
-#import <GoogleAnalytics/GAIDictionaryBuilder.h>
-#import <GoogleAnalytics/GAIFields.h>
-#import <GoogleAnalytics/GAI.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 #import "SEGGoogleAnalyticsIntegration.h"
-
-
-@interface SEGGoogleAnalyticsIntegration ()
-
-@property (nonatomic, copy) NSDictionary *traits;
-
-@end
 
 
 @implementation SEGGoogleAnalyticsIntegration
@@ -32,6 +22,7 @@
         self.name = @"Google Analytics";
         self.valid = NO;
         self.initialized = NO;
+        self.gai = [GAI sharedInstance];
     }
     return self;
 }
@@ -48,21 +39,20 @@
     }
     // Require setup with the trackingId.
     NSString *trackingId = [self.settings objectForKey:@"mobileTrackingId"];
-    [[GAI sharedInstance] setDefaultTracker:[[GAI sharedInstance] trackerWithTrackingId:trackingId]];
+    _tracker = [_gai trackerWithTrackingId:trackingId];
+    [_gai setDefaultTracker:_tracker];
 
     // Optionally turn on uncaught exception tracking.
     NSString *reportUncaughtExceptions = [self.settings objectForKey:@"reportUncaughtExceptions"];
     if ([reportUncaughtExceptions boolValue]) {
-        [GAI sharedInstance].trackUncaughtExceptions = YES;
+        [_gai setTrackUncaughtExceptions:YES];
     }
 
     // Optionally turn on GA remarketing features
     NSString *demographicReports = [self.settings objectForKey:@"doubleClick"];
     if ([demographicReports boolValue]) {
-        [[[GAI sharedInstance] defaultTracker] setAllowIDFACollection:YES];
+        [_tracker setAllowIDFACollection:YES];
     }
-
-    // TODO: add support for sample rate
 
     // All done!
     SEGLog(@"GoogleAnalyticsIntegration initialized.");
@@ -88,14 +78,15 @@
     [self resetTraits];
 
     // Optionally send the userId if they have that enabled
-    if ([self shouldSendUserId])
-        [[[GAI sharedInstance] defaultTracker] set:@"&uid" value:userId];
+    if ([self shouldSendUserId]) {
+        [_tracker set:@"&uid" value:userId];
+    }
 
     // We can set traits though. Iterate over a ll the traits and set them.
     self.traits = traits;
 
     [self.traits enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-      [[[GAI sharedInstance] defaultTracker] set:key value:obj];
+      [_tracker set:key value:obj];
     }];
 }
 
@@ -124,17 +115,17 @@
     SEGLog(@"Sending to Google Analytics: category %@, action %@, label %@, value %@", category, event, label, value);
 
     // Track the event!
-    [[[GAI sharedInstance] defaultTracker] send:
-                                               [[GAIDictionaryBuilder createEventWithCategory:category
-                                                                                       action:event
-                                                                                        label:label
-                                                                                        value:value] build]];
+    [_tracker send:
+                  [[GAIDictionaryBuilder createEventWithCategory:category
+                                                          action:event
+                                                           label:label
+                                                           value:value] build]];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    [[[GAI sharedInstance] defaultTracker] set:kGAIScreenName value:screenTitle];
-    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createScreenView] build]];
+    [_tracker set:kGAIScreenName value:screenTitle];
+    [_tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 }
 
 #pragma mark - Ecommerce
@@ -146,27 +137,27 @@
 
     SEGLog(@"Tracking completed order to Google Analytics with properties: %@", properties);
 
-    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createTransactionWithId:orderId
-                                                                                   affiliation:properties[@"affiliation"]
-                                                                                       revenue:[self.class extractRevenue:properties]
-                                                                                           tax:properties[@"tax"]
-                                                                                      shipping:properties[@"shipping"]
-                                                                                  currencyCode:currency] build]];
+    [_tracker send:[[GAIDictionaryBuilder createTransactionWithId:orderId
+                                                      affiliation:properties[@"affiliation"]
+                                                          revenue:[self.class extractRevenue:properties]
+                                                              tax:properties[@"tax"]
+                                                         shipping:properties[@"shipping"]
+                                                     currencyCode:currency] build]];
 
-    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createItemWithTransactionId:orderId
-                                                                                              name:properties[@"name"]
-                                                                                               sku:properties[@"sku"]
-                                                                                          category:properties[@"category"]
-                                                                                             price:properties[@"price"]
-                                                                                          quantity:properties[@"quantity"]
-                                                                                      currencyCode:currency] build]];
+    [_tracker send:[[GAIDictionaryBuilder createItemWithTransactionId:orderId
+                                                                 name:properties[@"name"]
+                                                                  sku:properties[@"sku"]
+                                                             category:properties[@"category"]
+                                                                price:properties[@"price"]
+                                                             quantity:properties[@"quantity"]
+                                                         currencyCode:currency] build]];
 }
 
 - (void)reset
 {
     [super reset];
 
-    [[[GAI sharedInstance] defaultTracker] set:@"&uid" value:nil];
+    [_tracker set:@"&uid" value:nil];
 
     [self resetTraits];
 }
@@ -174,7 +165,7 @@
 
 - (void)flush
 {
-    [[GAI sharedInstance] dispatch];
+    [_gai dispatch];
 }
 
 #pragma mark - Private
@@ -187,7 +178,7 @@
 - (void)resetTraits
 {
     [self.traits enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-      [[[GAI sharedInstance] defaultTracker] set:key value:nil];
+      [_tracker set:key value:nil];
     }];
     self.traits = nil;
 }
