@@ -22,6 +22,7 @@ static NSString *const KAHUNA_NAME = @"name";
 static NSString *const KAHUNA_ID = @"id";
 static NSString *const KAHUNA_DISCOUNT = @"discount";
 static NSString *const KAHUNA_NONE = @"None";
+static NSString *const SEGMENT = @"segment";
 
 
 #endif

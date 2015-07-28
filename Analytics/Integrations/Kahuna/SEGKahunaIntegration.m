@@ -55,6 +55,10 @@ void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandle
         // We just need one call to launchWithKey and not multiple. The "start" method is called
         // everytime the app comes to foreground.
         if ([SEGKahunaPushMonitor sharedInstance].kahunaInitialized == NO) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wundeclared-selector"
+            [self.kahunaClass performSelector:@selector(setSDKWrapper:withVersion:) withObject:SEGMENT withObject:[SEGAnalytics version]];
+#pragma GCC diagnostic pop
             [self.kahunaClass launchWithKey:apiKey];
             // If we have recorded any push user info, then
             if ([SEGKahunaPushMonitor sharedInstance].pushInfo != nil) {
@@ -97,7 +101,6 @@ void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandle
     // All other traits is being tracked as an attribute.
     for (NSString *eachKey in traits) {
         if (!KAHUNA_NOT_STRING_NULL_EMPTY(eachKey)) continue;
-        
         NSString *eachValue = [traits objectForKey:eachKey];
         if (KAHUNA_NOT_STRING_NULL_EMPTY(eachValue)) {
             // Check if this is a Kahuna credential key.
@@ -153,11 +156,12 @@ void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandle
         }
     }
 
-    // Get the count and value from quantity and revenue.
-    long value = (long)([revenue doubleValue] * 100);
-    long count = [quantity longValue];
-
-    if (count + value > 0) {
+    // If we get revenue and quantity in the properties, then no matter what we will try to extract the numbers they hold and trackEvent with Count and Value.
+    if (revenue && quantity) {
+        // Get the count and value from quantity and revenue.
+        long value = (long)([revenue doubleValue] * 100);
+        long count = [quantity longValue];
+        
         [self.kahunaClass trackEvent:event withCount:count andValue:value];
     } else {
         [self.kahunaClass trackEvent:event];

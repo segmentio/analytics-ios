@@ -120,13 +120,23 @@
 {
     [_integration track:@"foo" properties:@{ @"revenue" : @10 } options:nil];
     
-    [verifyCount(_kahunaClassMock, times(1)) trackEvent:@"foo" withCount:0 andValue:1000];
+    [verifyCount(_kahunaClassMock, times(1)) trackEvent:@"foo"];
+    [verifyCount(_kahunaClassMock, never()) trackEvent:@"foo" withCount:anything() andValue:anything()];
+}
+
+- (void)testTrackWithQuantityButNoRevenue
+{
+    [_integration track:@"foo" properties:@{ @"quantity" : @10 } options:nil];
+    
+    [verifyCount(_kahunaClassMock, times(1)) trackEvent:@"foo"];
+    [verifyCount(_kahunaClassMock, never()) trackEvent:@"foo" withCount:anything() andValue:anything()];
 }
 
 - (void)testTrackWithQuantityAndRevenue
 {
     [_integration track:@"foo" properties:@{ @"revenue" : @10, @"quantity" : @4 } options:nil];
     
+    [verifyCount(_kahunaClassMock, never()) trackEvent:anything()];
     [verifyCount(_kahunaClassMock, times(1)) trackEvent:@"foo" withCount:4 andValue:1000];
 }
 
