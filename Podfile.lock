@@ -13,7 +13,7 @@ PODS:
   - FlurrySDK/FlurrySDK (6.5.0)
   - GoogleAnalytics (3.12.0)
   - GoogleIDFASupport (3.12.0)
-  - Kahuna (2.0.2)
+  - Kahuna (2.0.3)
   - Localytics (3.3.0)
   - Mixpanel (2.8.1):
     - Mixpanel/Mixpanel (= 2.8.1)
@@ -45,7 +45,7 @@ DEPENDENCIES:
   - FlurrySDK (= 6.5.0)
   - GoogleAnalytics (= 3.12.0)
   - GoogleIDFASupport (= 3.12.0)
-  - Kahuna (= 2.0.2)
+  - Kahuna (= 2.0.3)
   - Localytics (= 3.3.0)
   - Mixpanel (= 2.8.1)
   - MoEngage-iOS-SDK (= 1.4.3)
@@ -69,7 +69,7 @@ SPEC CHECKSUMS:
   FlurrySDK: 7e749c1bd22f4fb0a863663e38c58bc841980b25
   GoogleAnalytics: ef2e0b800ef3c1e62688cdfc959e0d3132bc246c
   GoogleIDFASupport: 0dd25ffdd152fd8e3deefd72978b42ef818ef0fa
-  Kahuna: 3ccab3f4fe1ef8827d2a823c697129b621a13ffd
+  Kahuna: 06c3dea6aee22f5ae9c3eb6a6b9ae703cd5dd5cb
   Localytics: 64ada284cde3f2b30fb04272d5d735d49657d0ab
   Mixpanel: 93c4825025e6380ced273ed7178496282e385077
   MoEngage-iOS-SDK: 81be7a433349a7d535c905a08629359eeefe0952
