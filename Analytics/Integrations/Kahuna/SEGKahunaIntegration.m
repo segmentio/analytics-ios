@@ -96,7 +96,7 @@ void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandle
     if (KAHUNA_NOT_STRING_NULL_EMPTY(userId)) {
         [credentials addCredential:KAHUNA_CREDENTIAL_USER_ID withValue:userId];
     }
-    
+
     // We will go through each of the above keys, and try to see if the traits has that key. If it does, then we will add the key:value as a credential.
     // All other traits is being tracked as an attribute.
     for (NSString *eachKey in traits) {
