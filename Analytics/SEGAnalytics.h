@@ -187,7 +187,10 @@
  */
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options;
-
+- (void)failToRegisterForRemoteNotificationsWithError:(NSError *)error;
+- (void)receiveRemoteNotification:(NSDictionary *)userInfo;
+- (void)receiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler;
+- (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)(void))completionHandler;
 
 /*!
  @method

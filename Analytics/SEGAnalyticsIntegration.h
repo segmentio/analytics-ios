@@ -80,6 +80,11 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
 - (void)applicationWillResignActive;
 - (void)applicationDidBecomeActive;
 
+- (void)applicationDidFailToRegisterForRemoteNotificationsWithError:(NSError *)error;
+- (void)applicationDidReceiveRemoteNotification:(NSDictionary *)userInfo;
+- (void)applicationDidReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler;
+- (void)applicationHandleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)(void))completionHandler;
+
 @end
 
 
