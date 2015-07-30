@@ -7,7 +7,7 @@ PODS:
   - Bugsnag/no-arc (4.0.7)
   - Countly (15.06.01)
   - CrittercismSDK (5.2.0)
-  - Expecta (1.0.0)
+  - Expecta (1.0.2)
   - FlurrySDK (6.5.0):
     - FlurrySDK/FlurrySDK (= 6.5.0)
   - FlurrySDK/FlurrySDK (6.5.0)
@@ -63,7 +63,7 @@ SPEC CHECKSUMS:
   Bugsnag: 5861d8519d30063abe7b3fcdcf4114a6dddab27a
   Countly: 2151c5286995b84972ba4a92c3fba6b5fafce6bb
   CrittercismSDK: b22f9541803c2babb1c8996862b097dc47ec7105
-  Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
+  Expecta: 54e8a3530add08f4f0208c111355eda7cde74a53
   FlurrySDK: 7e749c1bd22f4fb0a863663e38c58bc841980b25
   GoogleAnalytics: ef2e0b800ef3c1e62688cdfc959e0d3132bc246c
   GoogleIDFASupport: 0dd25ffdd152fd8e3deefd72978b42ef818ef0fa
