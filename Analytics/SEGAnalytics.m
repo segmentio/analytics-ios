@@ -230,6 +230,26 @@ static SEGAnalytics *__sharedInstance = nil;
     [self callIntegrationsWithSelector:_cmd arguments:@[ deviceToken ] options:options];
 }
 
+- (void)failToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    [self callIntegrationsWithSelector:_cmd arguments:@[ error ] options:nil];
+}
+
+- (void)receiveRemoteNotification:(NSDictionary *)userInfo
+{
+    [self callIntegrationsWithSelector:_cmd arguments:@[ userInfo ] options:nil];
+}
+
+- (void)receiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler
+{
+    [self callIntegrationsWithSelector:_cmd arguments:@[ userInfo, handler ] options:nil];
+}
+
+- (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)(void))completionHandler
+{
+    [self callIntegrationsWithSelector:_cmd arguments:@[ identifier, userInfo, completionHandler ] options:nil];
+}
+
 - (void)reset
 {
     [self callIntegrationsWithSelector:_cmd arguments:nil options:nil];

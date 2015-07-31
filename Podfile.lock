@@ -1,6 +1,6 @@
 PODS:
   - Amplitude-iOS (2.5.1)
-  - AppsFlyer-SDK (2.5.3.15.1)
+  - AppsFlyer-SDK (2.5.3.19)
   - Apptimize (2.11.0.1)
   - Bugsnag (4.0.7):
     - Bugsnag/no-arc (= 4.0.7)
@@ -13,13 +13,11 @@ PODS:
   - FlurrySDK/FlurrySDK (6.5.0)
   - GoogleAnalytics (3.12.0)
   - GoogleIDFASupport (3.12.0)
-  - KahunaSDK (1.0.570)
+  - Kahuna (2.0.3)
   - Localytics (3.3.0)
-  - Mixpanel (2.8.1):
-    - Mixpanel/Mixpanel (= 2.8.1)
-  - Mixpanel/Mixpanel (2.8.1):
-    - Mixpanel/MPCategoryHelpers
-  - Mixpanel/MPCategoryHelpers (2.8.1)
+  - Mixpanel (2.8.2):
+    - Mixpanel/Mixpanel (= 2.8.2)
+  - Mixpanel/Mixpanel (2.8.2)
   - MoEngage-iOS-SDK (1.4.3)
   - OCHamcrest (4.1.1)
   - OCMock (3.1.2)
@@ -36,7 +34,7 @@ PODS:
 
 DEPENDENCIES:
   - Amplitude-iOS (= 2.5.1)
-  - AppsFlyer-SDK (= 2.5.3.15.1)
+  - AppsFlyer-SDK (= 2.5.3.19)
   - Apptimize (= 2.11.0.1)
   - Bugsnag (= 4.0.7)
   - Countly (= 15.06.01)
@@ -45,9 +43,9 @@ DEPENDENCIES:
   - FlurrySDK (= 6.5.0)
   - GoogleAnalytics (= 3.12.0)
   - GoogleIDFASupport (= 3.12.0)
-  - KahunaSDK (= 1.0.570)
+  - Kahuna (= 2.0.3)
   - Localytics (= 3.3.0)
-  - Mixpanel (= 2.8.1)
+  - Mixpanel (= 2.8.2)
   - MoEngage-iOS-SDK (= 1.4.3)
   - OCMock (~> 3.1.2)
   - OCMockito (~> 1.4.0)
@@ -60,7 +58,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Amplitude-iOS: 1108012e40096d339d768cb8a6d79c774f47da2c
-  AppsFlyer-SDK: 34670f7a518e82cfba54dc8ad7738bacf4117b9c
+  AppsFlyer-SDK: a0e68e41c6ece355c4b34cf3cdceae08f7da89b0
   Apptimize: 5ec482ca36dbec7bd5017f546509136229aa1822
   Bugsnag: 5861d8519d30063abe7b3fcdcf4114a6dddab27a
   Countly: 2151c5286995b84972ba4a92c3fba6b5fafce6bb
@@ -69,9 +67,9 @@ SPEC CHECKSUMS:
   FlurrySDK: 7e749c1bd22f4fb0a863663e38c58bc841980b25
   GoogleAnalytics: ef2e0b800ef3c1e62688cdfc959e0d3132bc246c
   GoogleIDFASupport: 0dd25ffdd152fd8e3deefd72978b42ef818ef0fa
-  KahunaSDK: ea15fdf9757c4d9bf639bf190888e20b688a30ed
+  Kahuna: 06c3dea6aee22f5ae9c3eb6a6b9ae703cd5dd5cb
   Localytics: 64ada284cde3f2b30fb04272d5d735d49657d0ab
-  Mixpanel: 93c4825025e6380ced273ed7178496282e385077
+  Mixpanel: f4d71ac2a306e7cda6ad03d4a2be249a0fd7a967
   MoEngage-iOS-SDK: 81be7a433349a7d535c905a08629359eeefe0952
   OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
   OCMock: a10ea9f0a6e921651f96f78b6faee95ebc813b92

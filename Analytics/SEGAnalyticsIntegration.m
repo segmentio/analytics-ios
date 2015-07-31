@@ -79,6 +79,11 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 - (void)applicationDidBecomeActive {}
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {}
 
+- (void)applicationDidFailToRegisterForRemoteNotificationsWithError:(NSError *)error {}
+- (void)applicationDidReceiveRemoteNotification:(NSDictionary *)userInfo {}
+- (void)applicationDidReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))handler {}
+- (void)applicationHandleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)(void))completionHandler {}
+
 #pragma mark Class Methods
 
 + (NSDictionary *)map:(NSDictionary *)dictionary withMap:(NSDictionary *)map

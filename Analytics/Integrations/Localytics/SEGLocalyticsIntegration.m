@@ -37,7 +37,8 @@
         [self.settings objectForKey:@"sessionTimeoutInterval"];
     if (sessionTimeoutInterval != nil &&
         [sessionTimeoutInterval floatValue] > 0) {
-        [self.localyticsClass setSessionTimeoutInterval:[sessionTimeoutInterval floatValue]];
+        [self.localyticsClass
+            setSessionTimeoutInterval:[sessionTimeoutInterval floatValue]];
     }
 
     SEGLog(@"LocalyticsIntegration initialized.");
@@ -115,7 +116,7 @@
     if (revenue) {
         [self.localyticsClass tagEvent:event
                             attributes:properties
-                 customerValueIncrease:revenue];
+                 customerValueIncrease:@([revenue intValue] * 100)];
     } else {
         [self.localyticsClass tagEvent:event attributes:properties];
     }

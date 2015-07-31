@@ -14,6 +14,7 @@
 @property (nonatomic, assign) BOOL valid;
 @property (nonatomic, assign) BOOL initialized;
 @property (nonatomic, copy) NSDictionary *settings;
+@property Class kahunaClass;
 
 @end
 
@@ -22,6 +23,7 @@
 @property (nonatomic) NSDictionary *pushInfo;
 @property (nonatomic) UIApplicationState applicationState;
 @property (nonatomic) BOOL kahunaInitialized;
+@property Class kahunaClass;
 
 + (instancetype)sharedInstance;
 - (void)didFinishLaunching:(NSNotification *)userInfo;

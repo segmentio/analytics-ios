@@ -7,8 +7,11 @@
 //
 
 #import "SEGAnalyticsIntegration.h"
+#import <Quantcast-Measure/QuantcastMeasurement.h>
 
 
 @interface SEGQuantcastIntegration : SEGAnalyticsIntegration
+
+@property (assign) QuantcastMeasurement *quantcast;
 
 @end
