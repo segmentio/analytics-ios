@@ -12,10 +12,10 @@
 BOOL addedMethodHandleActionWithIdentifierWithFetchCompletionHandler;
 
 // Selectors that we are going to swizzle in this wrapper.
-void (*selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError)(id, SEL, id, id);
-void (*selOriginalApplicationDidReceiveRemoteNotification)(id, SEL, id, id);
-void (*selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler)(id, SEL, id, id, void (^)(UIBackgroundFetchResult result));
-void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler)(id, SEL, id, id, id, void (^)());
+void (*selKAHOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError)(id, SEL, id, id);
+void (*selKAHOriginalApplicationDidReceiveRemoteNotification)(id, SEL, id, id);
+void (*selKAHOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler)(id, SEL, id, id, void (^)(UIBackgroundFetchResult result));
+void (*selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler)(id, SEL, id, id, id, void (^)());
 
 static NSString *const KAHUNA_VIEWED_PRODUCT_CATEGORY = @"Viewed Product Category";
 static NSString *const KAHUNA_VIEWED_PRODUCT = @"Viewed Product";
@@ -325,7 +325,7 @@ static NSString *const KAHUNA_NONE = @"None";
         // ####### didFailToRegisterForRemoteNotificationsWithError  #######
         SEL selector = @selector(application:didFailToRegisterForRemoteNotificationsWithError:);
         if ([[UIApplication sharedApplication].delegate respondsToSelector:selector]) {
-            selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError = (void (*)(id, SEL, id, id))[[[UIApplication sharedApplication].delegate class] instanceMethodForSelector:selector];
+            selKAHOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError = (void (*)(id, SEL, id, id))[[[UIApplication sharedApplication].delegate class] instanceMethodForSelector:selector];
         } else {
             Method methodSegmentWrapper = class_getInstanceMethod([self class], selector);
             const char *methodTypeEncoding = method_getTypeEncoding(methodSegmentWrapper);
@@ -337,7 +337,7 @@ static NSString *const KAHUNA_NONE = @"None";
         // ####### didReceiveRemoteNotification  #######
         selector = @selector(application:didReceiveRemoteNotification:);
         if ([[UIApplication sharedApplication].delegate respondsToSelector:selector]) {
-            selOriginalApplicationDidReceiveRemoteNotification = (void (*)(id, SEL, id, id))[[[UIApplication sharedApplication].delegate class] instanceMethodForSelector:selector];
+            selKAHOriginalApplicationDidReceiveRemoteNotification = (void (*)(id, SEL, id, id))[[[UIApplication sharedApplication].delegate class] instanceMethodForSelector:selector];
         } else {
             Method methodSegmentWrapper = class_getInstanceMethod([self class], selector);
             const char *methodTypeEncoding = method_getTypeEncoding(methodSegmentWrapper);
@@ -349,13 +349,13 @@ static NSString *const KAHUNA_NONE = @"None";
         // ####### didReceiveRemoteNotification:fetchCompletionHandler  #######
         selector = @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:);
         if ([[UIApplication sharedApplication].delegate respondsToSelector:selector]) {
-            selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler = (void (*)(id, SEL, id, id, void (^)(UIBackgroundFetchResult result)))[[[UIApplication sharedApplication].delegate class] instanceMethodForSelector:selector];
+            selKAHOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler = (void (*)(id, SEL, id, id, void (^)(UIBackgroundFetchResult result)))[[[UIApplication sharedApplication].delegate class] instanceMethodForSelector:selector];
         }
 
         // ####### handleActionWithIdentifier:forRemoteNotification:completionHandler  #######
         selector = @selector(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:);
         if ([[UIApplication sharedApplication].delegate respondsToSelector:selector]) {
-            selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler = (void (*)(id, SEL, id, id, id, void (^)()))[[[UIApplication sharedApplication].delegate class] instanceMethodForSelector:selector];
+            selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler = (void (*)(id, SEL, id, id, id, void (^)()))[[[UIApplication sharedApplication].delegate class] instanceMethodForSelector:selector];
         } else {
             Method methodSegmentWrapper = class_getInstanceMethod([self class], selector);
             const char *methodTypeEncoding = method_getTypeEncoding(methodSegmentWrapper);
@@ -369,27 +369,27 @@ static NSString *const KAHUNA_NONE = @"None";
         Method methodHostApp = nil;
 
         // Swizzling didFailToRegisterForRemoteNotificationsWithError
-        if (selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError) {
+        if (selKAHOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError) {
             methodSegmentWrapper = class_getInstanceMethod([self class], @selector(application:didFailToRegisterForRemoteNotificationsWithError:));
             methodHostApp = class_getInstanceMethod([[UIApplication sharedApplication].delegate class], @selector(application:didFailToRegisterForRemoteNotificationsWithError:));
             method_exchangeImplementations(methodSegmentWrapper, methodHostApp);
         }
 
         // Swizzling didReceiveRemoteNotification
-        if (selOriginalApplicationDidReceiveRemoteNotification) {
+        if (selKAHOriginalApplicationDidReceiveRemoteNotification) {
             methodSegmentWrapper = class_getInstanceMethod([self class], @selector(application:didReceiveRemoteNotification:));
             methodHostApp = class_getInstanceMethod([[UIApplication sharedApplication].delegate class], @selector(application:didReceiveRemoteNotification:));
             method_exchangeImplementations(methodSegmentWrapper, methodHostApp);
         }
 
-        if (selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler) {
+        if (selKAHOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler) {
             methodSegmentWrapper = class_getInstanceMethod([self class], @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:));
             methodHostApp = class_getInstanceMethod([[UIApplication sharedApplication].delegate class], @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:));
             method_exchangeImplementations(methodSegmentWrapper, methodHostApp);
         }
 
         selector = @selector(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:);
-        if (selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler) {
+        if (selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler) {
             methodSegmentWrapper = class_getInstanceMethod([self class], selector);
             methodHostApp = class_getInstanceMethod([[UIApplication sharedApplication].delegate class], selector);
             method_exchangeImplementations(methodSegmentWrapper, methodHostApp);
@@ -405,8 +405,8 @@ static NSString *const KAHUNA_NONE = @"None";
     @try {
         [[SEGKahunaPushMonitor sharedInstance] failedToRegisterPush:error];
 
-        if (selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError) {
-            selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError([UIApplication sharedApplication].delegate,
+        if (selKAHOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError) {
+            selKAHOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError([UIApplication sharedApplication].delegate,
                                                                                    @selector(application:didFailToRegisterForRemoteNotificationsWithError:),
                                                                                    application,
                                                                                    error);
@@ -421,8 +421,8 @@ static NSString *const KAHUNA_NONE = @"None";
 {
     @try {
         [[SEGKahunaPushMonitor sharedInstance] pushReceived:userInfo];
-        if (selOriginalApplicationDidReceiveRemoteNotification) {
-            selOriginalApplicationDidReceiveRemoteNotification([UIApplication sharedApplication].delegate,
+        if (selKAHOriginalApplicationDidReceiveRemoteNotification) {
+            selKAHOriginalApplicationDidReceiveRemoteNotification([UIApplication sharedApplication].delegate,
                                                                @selector(application:didReceiveRemoteNotification:),
                                                                application,
                                                                userInfo);
@@ -437,8 +437,8 @@ static NSString *const KAHUNA_NONE = @"None";
 {
     @try {
         [[SEGKahunaPushMonitor sharedInstance] pushReceived:userInfo];
-        if (selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler) {
-            selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler([UIApplication sharedApplication].delegate,
+        if (selKAHOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler) {
+            selKAHOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler([UIApplication sharedApplication].delegate,
                                                                                          @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:),
                                                                                          application,
                                                                                          userInfo,
@@ -454,8 +454,8 @@ static NSString *const KAHUNA_NONE = @"None";
 {
     @try {
         [[SEGKahunaPushMonitor sharedInstance] pushReceived:userInfo];
-        if (selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler) {
-            selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler([UIApplication sharedApplication].delegate,
+        if (selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler) {
+            selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler([UIApplication sharedApplication].delegate,
                                                                                        @selector(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:),
                                                                                        application,
                                                                                        identifier,
