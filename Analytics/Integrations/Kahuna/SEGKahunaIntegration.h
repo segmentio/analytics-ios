@@ -19,9 +19,10 @@
 
 
 @interface SEGKahunaPushMonitor : NSObject
-@property (nonatomic) NSDictionary *pushInfo;
-@property (nonatomic) UIApplicationState applicationState;
-@property (nonatomic) BOOL kahunaInitialized;
+@property (atomic) NSDictionary *pushInfo;
+@property (atomic) UIApplicationState applicationState;
+@property (atomic) BOOL kahunaInitialized;
+@property (atomic) NSError *failedToRegisterError;
 
 + (instancetype)sharedInstance;
 - (void)didFinishLaunching:(NSNotification *)userInfo;
