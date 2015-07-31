@@ -26,6 +26,13 @@ void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandle
 + (void)load
 {
     [SEGAnalytics registerIntegration:self withIdentifier:@"Kahuna"];
+    
+    // When this class loads we will register for the 'UIApplicationDidFinishLaunchingNotification' notification.
+    // To receive the notification we will use the SEGKahunaPushMonitor singleton instance.
+    [[NSNotificationCenter defaultCenter] addObserver:[SEGKahunaPushMonitor sharedInstance]
+                                             selector:@selector(didFinishLaunching:)
+                                                 name:UIApplicationDidFinishLaunchingNotification
+                                               object:nil];
 }
 
 - (id)init
@@ -60,7 +67,14 @@ void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandle
             [self.kahunaClass performSelector:@selector(setSDKWrapper:withVersion:) withObject:SEGMENT withObject:[SEGAnalytics version]];
 #pragma GCC diagnostic pop
             [self.kahunaClass launchWithKey:apiKey];
-            // If we have recorded any push user info, then
+            
+            // If we have a push token registration failure, then call the Kahuna handleNotificationRegistrationFailure method.
+            if ([SEGKahunaPushMonitor sharedInstance].failedToRegisterError != nil) {
+                [self.kahunaClass handleNotificationRegistrationFailure:[SEGKahunaPushMonitor sharedInstance].failedToRegisterError];
+                [SEGKahunaPushMonitor sharedInstance].failedToRegisterError = nil;
+            }
+            
+            // If we have recorded any push info, then call the Kahuna handleNotification method.
             if ([SEGKahunaPushMonitor sharedInstance].pushInfo != nil) {
                 [self.kahunaClass handleNotification:[SEGKahunaPushMonitor sharedInstance].pushInfo withApplicationState:[SEGKahunaPushMonitor sharedInstance].applicationState];
                 [SEGKahunaPushMonitor sharedInstance].pushInfo = nil;
@@ -69,13 +83,6 @@ void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandle
             [SEGKahunaPushMonitor sharedInstance].kahunaInitialized = TRUE;
         }
     }
-
-    // When this class loads we will register for the 'UIApplicationDidFinishLaunchingNotification' notification.
-    // To receive the notification we will use the SEGKahunaPushMonitor singleton instance.
-    [[NSNotificationCenter defaultCenter] addObserver:[SEGKahunaPushMonitor sharedInstance]
-                                             selector:@selector(didFinishLaunching:)
-                                                 name:UIApplicationDidFinishLaunchingNotification
-                                               object:nil];
 
     [super start];
 }
@@ -399,10 +406,7 @@ void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandle
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
     @try {
-        if ([SEGKahunaPushMonitor sharedInstance].kahunaInitialized) {
-            [self.kahunaClass handleNotificationRegistrationFailure:error];
-        }
-
+        [[SEGKahunaPushMonitor sharedInstance] failedToRegisterPush:error];
         if (selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError) {
             selOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError([UIApplication sharedApplication].delegate,
                                                                                    @selector(application:didFailToRegisterForRemoteNotificationsWithError:),
@@ -418,7 +422,7 @@ void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandle
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
     @try {
-        [self pushReceived:userInfo];
+        [[SEGKahunaPushMonitor sharedInstance] pushReceived:userInfo];
         if (selOriginalApplicationDidReceiveRemoteNotification) {
             selOriginalApplicationDidReceiveRemoteNotification([UIApplication sharedApplication].delegate,
                                                                @selector(application:didReceiveRemoteNotification:),
@@ -434,7 +438,7 @@ void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandle
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
 {
     @try {
-        [self pushReceived:userInfo];
+        [[SEGKahunaPushMonitor sharedInstance] pushReceived:userInfo];
         if (selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler) {
             selOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler([UIApplication sharedApplication].delegate,
                                                                                          @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:),
@@ -451,7 +455,7 @@ void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandle
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler
 {
     @try {
-        [self pushReceived:userInfo];
+        [[SEGKahunaPushMonitor sharedInstance] pushReceived:userInfo];
         if (selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler) {
             selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler([UIApplication sharedApplication].delegate,
                                                                                        @selector(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:),
@@ -478,6 +482,16 @@ void (*selOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandle
     } else {
         [SEGKahunaPushMonitor sharedInstance].pushInfo = userInfo;
         [SEGKahunaPushMonitor sharedInstance].applicationState = [UIApplication sharedApplication].applicationState;
+    }
+}
+
+- (void)failedToRegisterPush:(NSError *)error
+{
+    // When we get this failure, check if kahuna is initialized. If not store it for future use.
+    if ([SEGKahunaPushMonitor sharedInstance].kahunaInitialized) {
+        [self.kahunaClass handleNotificationRegistrationFailure:error];
+    } else {
+        [SEGKahunaPushMonitor sharedInstance].failedToRegisterError = error;
     }
 }
 
