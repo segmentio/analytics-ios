@@ -81,6 +81,13 @@ static NSString *const KAHUNA_NONE = @"None";
         // everytime the app comes to foreground.
         if ([SEGKahunaPushMonitor sharedInstance].kahunaInitialized == NO) {
             [KahunaAnalytics launchWithKey:apiKey];
+
+            // If we have a push token registration failure, then call the Kahuna handleNotificationRegistrationFailure method.
+            if ([SEGKahunaPushMonitor sharedInstance].failedToRegisterError != nil) {
+                [KahunaAnalytics handleNotificationRegistrationFailure:[SEGKahunaPushMonitor sharedInstance].failedToRegisterError];
+                [SEGKahunaPushMonitor sharedInstance].failedToRegisterError = nil;
+            }
+            
             // If we have recorded any push user info, then
             if ([SEGKahunaPushMonitor sharedInstance].pushInfo != nil) {
                 [KahunaAnalytics handleNotification:[SEGKahunaPushMonitor sharedInstance].pushInfo withApplicationState:[SEGKahunaPushMonitor sharedInstance].applicationState];
