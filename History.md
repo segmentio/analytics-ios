@@ -1,4 +1,9 @@
 
+1.12.5 / 2015-07-31
+===================
+  
+  * Update Kahuna integration to avoid clashing with MoEngage
+
 1.12.4 / 2015-07-31
 ===================
 
