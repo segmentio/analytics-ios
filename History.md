@@ -1,4 +1,15 @@
 
+1.12.5 / 2015-07-31
+===================
+  
+  * Update Kahuna integration to avoid clashing with MoEngage
+
+1.12.4 / 2015-07-31
+===================
+
+  * Update Kahuna SDK
+  * Kahuna: Added the IF condition for forwarding failedToRegisterError in case it was recorded.
+
 1.12.3 / 2015-07-31
 ===================
 
