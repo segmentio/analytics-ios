@@ -1,5 +1,6 @@
 require File.expand_path("../scripts/build.rb", __FILE__)
 
+platform :ios, '7.0'
 
 inhibit_all_warnings!
 
