@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var knox = require('knox');
-var conf = require('s-config');
+var conf = require('@segment/config');
 var fs = require('fs');
 var program = require('commander');
 var client = knox.createClient(conf('s3'));
