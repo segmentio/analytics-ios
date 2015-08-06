@@ -4,7 +4,7 @@
   "description": "",
   "dependencies": {
     "knox": "^0.9.1",
-    "s-config": "^3.8.4",
+    "@segment/config": "^3.8.4",
     "commander": "^2.3.0"
   },
   "author": "Travis Jeffery",
