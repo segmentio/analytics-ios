@@ -8,7 +8,7 @@
 
 #import "SEGUXCamIntegration.h"
 
-#include <UXCam/UXCam.h>
+#import <UXCam/UXCam.h>
 
 #import "SEGAnalytics.h"
 
