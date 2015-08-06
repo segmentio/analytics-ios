@@ -1,4 +1,11 @@
 
+2.0.1 / 2015-08-06
+==================
+
+  * Fix uxcam
+  * add use-libraries to pod release
+  * fix platform versions
+
 2.0.0 / 2015-08-06
 ==================
 
