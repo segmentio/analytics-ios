@@ -2,7 +2,7 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "SEGAnalyticsIntegration.h"
-#import <TRVSDictionaryWithCaseInsensitivity.h>
+#import <TRVSDictionaryWithCaseInsensitivity/TRVSDictionaryWithCaseInsensitivity.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGEcommerce.h"
 
