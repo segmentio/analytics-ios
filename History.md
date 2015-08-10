@@ -1,4 +1,11 @@
 
+2.0.2 / 2015-08-10
+==================
+
+  * Fix import (close #388)
+  * Merge pull request #399 from segmentio/fix/circle
+  * remove some links
+
 2.0.1 / 2015-08-06
 ==================
 
