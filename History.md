@@ -1,4 +1,12 @@
 
+2.0.3 / 2015-08-11
+==================
+
+  * mixpanel: update to 2.8.2 (close #400)
+  * Fix kahuna link
+  * Integration file changes were removed during fetching from segment repo. Redoing it.
+  * SDK 2 Segment wrapper changes.
+
 2.0.2 / 2015-08-10
 ==================
 
