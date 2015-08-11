@@ -28,8 +28,8 @@ Pod::Spec.new do |s|
   Build.subspecs.each do |a|
     s.subspec a.name do |ss|
       ss.prefix_header_contents = "#define USE_ANALYTICS_#{a.name.upcase} 1"
-      ss.public_header_files = ['Analytics/Integrations/*.h', "Analytics/Integrations/#{a.name}/SEG#{a.name}Integration.h"]
-      ss.ios.source_files = "Analytics/Integrations/#{a.name}/SEG#{a.name}Integration.{h,m}"
+      ss.public_header_files = ['Analytics/Integrations/*.h', "Analytics/Integrations/#{a.name}/*.h"]
+      ss.ios.source_files = "Analytics/Integrations/#{a.name}/*.{h,m}"
       ss.platform = :ios, '7.0'
 
       ss.dependency 'Analytics/Core-iOS'
