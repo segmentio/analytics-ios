@@ -1,4 +1,10 @@
 
+2.0.5 / 2015-08-11
+==================
+
+  * Update Taplytics to 2.4.0
+  * Fix how Optimizely root is enabled
+
 2.0.4 / 2015-08-11
 ==================
 
