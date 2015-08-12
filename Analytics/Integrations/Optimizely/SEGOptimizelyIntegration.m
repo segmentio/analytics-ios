@@ -38,7 +38,8 @@ NSString *SEGMixpanelClass = @"Mixpanel";
 {
     [self activateMixpanel];
 
-    if (![(NSNumber *)[self.settings objectForKey:@"listen"] boolValue]) {
+    if ([(NSNumber *)[self.settings objectForKey:@"listen"] boolValue]) {
+        SEGLog(@"Enabling Optimizely root.");
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(experimentDidGetViewed:)
                                                      name:OptimizelyExperimentVisitedNotification
