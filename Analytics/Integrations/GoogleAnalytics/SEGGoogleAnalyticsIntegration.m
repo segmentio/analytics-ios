@@ -91,12 +91,14 @@
     if ([self shouldSendUserId])
         [[[GAI sharedInstance] defaultTracker] set:@"&uid" value:userId];
 
-    // We can set traits though. Iterate over a ll the traits and set them.
+    // We can set traits though. Iterate over all the traits and set them.
     self.traits = traits;
 
     [self.traits enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
       [[[GAI sharedInstance] defaultTracker] set:key value:obj];
     }];
+
+    [self setCustomDimensionsAndMetricsOnDefaultTracker:traits];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
@@ -123,18 +125,23 @@
 
     SEGLog(@"Sending to Google Analytics: category %@, action %@, label %@, value %@", category, event, label, value);
 
+    GAIDictionaryBuilder *hit =
+        [GAIDictionaryBuilder createEventWithCategory:category
+                                               action:event
+                                                label:label
+                                                value:value];
+
     // Track the event!
-    [[[GAI sharedInstance] defaultTracker] send:
-                                               [[GAIDictionaryBuilder createEventWithCategory:category
-                                                                                       action:event
-                                                                                        label:label
-                                                                                        value:value] build]];
+    [[[GAI sharedInstance] defaultTracker]
+        send:[self setCustomDimensionsAndMetrics:properties onHit:hit]];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     [[[GAI sharedInstance] defaultTracker] set:kGAIScreenName value:screenTitle];
-    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createScreenView] build]];
+    GAIDictionaryBuilder *view = [GAIDictionaryBuilder createScreenView];
+    [[[GAI sharedInstance] defaultTracker]
+        send:[self setCustomDimensionsAndMetrics:properties onHit:view]];
 }
 
 #pragma mark - Ecommerce
@@ -146,20 +153,22 @@
 
     SEGLog(@"Tracking completed order to Google Analytics with properties: %@", properties);
 
-    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createTransactionWithId:orderId
-                                                                                   affiliation:properties[@"affiliation"]
-                                                                                       revenue:[self.class extractRevenue:properties]
-                                                                                           tax:properties[@"tax"]
-                                                                                      shipping:properties[@"shipping"]
-                                                                                  currencyCode:currency] build]];
+    [[[GAI sharedInstance] defaultTracker]
+        send:[[GAIDictionaryBuilder createTransactionWithId:orderId
+                                                affiliation:properties[@"affiliation"]
+                                                    revenue:[self.class extractRevenue:properties]
+                                                        tax:properties[@"tax"]
+                                                   shipping:properties[@"shipping"]
+                                               currencyCode:currency] build]];
 
-    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createItemWithTransactionId:orderId
-                                                                                              name:properties[@"name"]
-                                                                                               sku:properties[@"sku"]
-                                                                                          category:properties[@"category"]
-                                                                                             price:properties[@"price"]
-                                                                                          quantity:properties[@"quantity"]
-                                                                                      currencyCode:currency] build]];
+    [[[GAI sharedInstance] defaultTracker]
+        send:[[GAIDictionaryBuilder createItemWithTransactionId:orderId
+                                                           name:properties[@"name"]
+                                                            sku:properties[@"sku"]
+                                                       category:properties[@"category"]
+                                                          price:properties[@"price"]
+                                                       quantity:properties[@"quantity"]
+                                                   currencyCode:currency] build]];
 }
 
 - (void)reset
@@ -178,6 +187,69 @@
 }
 
 #pragma mark - Private
+
+// event and screen properties are generall hit-scoped dimensions, so we want
+// to set them on the hits, not the tracker
+- (NSDictionary *)setCustomDimensionsAndMetrics:(NSDictionary *)properties onHit:(GAIDictionaryBuilder *)hit
+{
+    NSDictionary *customDimensions = self.settings[@"dimensions"];
+    NSDictionary *customMetrics = self.settings[@"metrics"];
+
+    for (NSString *key in properties) {
+        NSString *dimensionString = [customDimensions objectForKey:key];
+        // [@"dimension" length] == 8
+        NSUInteger dimension = [self extractNumber:dimensionString from:8];
+        if (dimension != 0) {
+            [hit set:[properties objectForKey:key]
+                forKey:[GAIFields customDimensionForIndex:dimension]];
+        }
+
+        NSString *metricString = [customMetrics objectForKey:key];
+        // [@"metric" length] == 5
+        NSUInteger metric = [self extractNumber:dimensionString from:5];
+        if (metric != 0) {
+            [hit set:[properties objectForKey:key]
+                forKey:[GAIFields customMetricForIndex:metric]];
+        }
+    }
+
+    return [hit build];
+}
+
+// e.g. extractNumber("dimension3", 8) returns 3
+// e.g. extractNumber("dimension9", 8) returns 9
+- (int)extractNumber:(NSString *)text from:(NSUInteger)start
+{
+    if (text == nil || [text length] == 0) {
+        return 0;
+    }
+    return [[text substringFromIndex:start] intValue];
+}
+
+// traits are user-scoped dimensions. as such, it makes sense to set them on the tracker
+- (void)setCustomDimensionsAndMetricsOnDefaultTracker:(NSDictionary *)traits
+{
+    NSDictionary *customDimensions = self.settings[@"dimensions"];
+    NSDictionary *customMetrics = self.settings[@"metrics"];
+
+    for (NSString *key in traits) {
+        NSString *dimensionString = [customDimensions objectForKey:key];
+        // [@"dimension" length] == 8
+        NSUInteger dimension = [self extractNumber:dimensionString from:8];
+        if (dimension != 0) {
+            [[[GAI sharedInstance] defaultTracker] set:[GAIFields customDimensionForIndex:dimension]
+                                                 value:[traits objectForKey:key]];
+        }
+
+        NSString *metricString = [customMetrics objectForKey:key];
+        // [@"metric" length] == 5
+        NSUInteger metric = [self extractNumber:dimensionString from:5];
+        if (metric != 0) {
+            [[[GAI sharedInstance] defaultTracker] set:[GAIFields customMetricForIndex:metric]
+                                                 value:[traits objectForKey:key]];
+        }
+    }
+}
 
 - (BOOL)shouldSendUserId
 {
