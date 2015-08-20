@@ -391,15 +391,21 @@ static BOOL GetAdTrackingEnabled()
       [payload setValue:context forKey:@"context"];
 
       SEGLog(@"%@ Enqueueing action: %@", self, payload);
-      [self queuePayload:payload];
+      [self queuePayload:[payload copy]];
     }];
 }
 
 - (void)queuePayload:(NSDictionary *)payload
 {
+  @try {
     [self.queue addObject:payload];
     [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
     [self flushQueueByLength];
+
+  }
+  @catch (NSException *exception) {
+    SEGLog(@"%@ Error writing payload: %@", self, exception);
+  }
 }
 
 - (void)flush
@@ -424,7 +430,7 @@ static BOOL GetAdTrackingEnabled()
 
       SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)self.batch.count, (unsigned long)self.queue.count);
 
-      NSMutableDictionary *payloadDictionary = [NSMutableDictionary dictionary];
+      NSMutableDictionary *payloadDictionary = [[NSMutableDictionary alloc] init];
       [payloadDictionary setObject:self.configuration.writeKey forKey:@"writeKey"];
       [payloadDictionary setObject:iso8601FormattedString([NSDate date]) forKey:@"sentAt"];
       [payloadDictionary setObject:self.context forKey:@"context"];

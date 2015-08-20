@@ -21,8 +21,7 @@ NSURL *SEGAnalyticsURLForFilename(NSString *filename)
             SEGLog(@"error: %@", error.localizedDescription);
         }
     }
-    return [NSURL
-        fileURLWithPath:[supportPath stringByAppendingPathComponent:filename]];
+  return [[[NSURL alloc] initFileURLWithPath:[supportPath stringByAppendingPathComponent:filename]]];
 }
 
 // Date Utils
