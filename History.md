@@ -1,4 +1,10 @@
 
+2.0.6 / 2015-08-20
+==================
+
+  * Fix typo
+  * Prevent crash when error occurs writing payload to disk
+
 2.0.5 / 2015-08-11
 ==================
 
