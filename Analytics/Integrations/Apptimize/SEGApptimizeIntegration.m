@@ -11,9 +11,6 @@
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 
-#import <Apptimize/Apptimize.h>
-#import <Apptimize/Apptimize+Segment.h>
-
 
 @implementation SEGApptimizeIntegration
 
@@ -30,8 +27,9 @@
         self.name = [[self class] name];
         self.valid = NO;
         self.initialized = NO;
+        self.apptimizeClass = [Apptimize class];
 
-        [Apptimize SEG_ensureLibraryHasBeenInitialized];
+        [self.apptimizeClass SEG_ensureLibraryHasBeenInitialized];
     }
     return self;
 }
@@ -43,7 +41,7 @@
 
 - (void)start
 {
-    [Apptimize startApptimizeWithApplicationKey:[self.settings objectForKey:@"appkey"]];
+    [self.apptimizeClass startApptimizeWithApplicationKey:[self.settings objectForKey:@"appkey"]];
 
     if (![(NSNumber *)[self.settings objectForKey:@"listen"] boolValue]) {
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -64,7 +62,7 @@
     // Apptimize doesn't notify with IDs, so we iterate over all experiments to find the matching one.
     NSString *name = notification.userInfo[ApptimizeTestNameUserInfoKey];
     NSString *variant = notification.userInfo[ApptimizeVariantNameUserInfoKey];
-    [[Apptimize testInfo] enumerateKeysAndObjectsUsingBlock:^(id key, id<ApptimizeTestInfo> experiment, BOOL *stop) {
+    [[self.apptimizeClass testInfo] enumerateKeysAndObjectsUsingBlock:^(id key, id<ApptimizeTestInfo> experiment, BOOL *stop) {
       BOOL match = [experiment.testName isEqualToString:name] && [experiment.enrolledVariantName isEqualToString:variant];
       if (!match) {
           return;
@@ -83,22 +81,22 @@
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     if (userId != nil) {
-        [Apptimize setUserAttributeString:userId forKey:@"user_id"];
+        [self.apptimizeClass setUserAttributeString:userId forKey:@"user_id"];
     }
 
     if (traits) {
-        [Apptimize SEG_setUserAttributesFromDictionary:traits];
+        [self.apptimizeClass SEG_setUserAttributesFromDictionary:traits];
     }
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    [Apptimize SEG_track:event attributes:properties];
+    [self.apptimizeClass SEG_track:event attributes:properties];
 }
 
 - (void)reset
 {
-    [Apptimize SEG_resetUserData];
+    [self.apptimizeClass SEG_resetUserData];
 }
 
 @end

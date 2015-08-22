@@ -39,9 +39,9 @@
 
 - (void)testValidate
 {
-	[_integration updateSettings:@{ @"apiKey" : @"foo" }];
-	
-	XCTAssertTrue(_integration.valid);
+    [_integration updateSettings:@{ @"apiKey" : @"foo" }];
+
+    XCTAssertTrue(_integration.valid);
 }
 
 @end

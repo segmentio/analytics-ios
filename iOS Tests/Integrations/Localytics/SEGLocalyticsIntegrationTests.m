@@ -31,7 +31,6 @@
 {
     [super setUp];
 
-
     _localyticsClassMock = mockClass([Localytics class]);
 
     _integration = [[SEGLocalyticsIntegration alloc] init];
@@ -50,6 +49,17 @@
     [_integration flush];
 
     [verifyCount(_localyticsClassMock, times(1)) upload];
+}
+
+- (void)testTrack
+{
+    [_integration track:@"foo" properties:@{ @"revenue" : @100 } options:nil];
+
+    [verifyCount(_localyticsClassMock, times(1)) tagEvent:@"foo"
+                                               attributes:@{
+                                                   @"revenue" : @100
+                                               }
+                                    customerValueIncrease:@10000];
 }
 
 - (void)testScreen
@@ -75,30 +85,38 @@
 
 - (void)testIdentifyWithEmail
 {
-    [_integration identify:nil traits:@{ @"email" : @"friends@segment.com" } options:nil];
+    [_integration identify:nil
+                    traits:@{
+                        @"email" : @"friends@segment.com"
+                    }
+                   options:nil];
 
-    [verifyCount(_localyticsClassMock, times(1)) setValue:@"friends@segment.com" forIdentifier:@"email"];
+    [verifyCount(_localyticsClassMock, times(1)) setValue:@"friends@segment.com"
+                                            forIdentifier:@"email"];
 }
 
 - (void)testIdentifyWithoutEmail
 {
     [_integration identify:nil traits:nil options:nil];
 
-    [verifyCount(_localyticsClassMock, never()) setValue:anything() forIdentifier:anything()];
+    [verifyCount(_localyticsClassMock, never()) setValue:anything()
+                                           forIdentifier:anything()];
 }
 
 - (void)testIdentifyWithName
 {
     [_integration identify:nil traits:@{ @"name" : @"foo" } options:nil];
 
-    [verifyCount(_localyticsClassMock, times(1)) setValue:@"foo" forIdentifier:@"customer_name"];
+    [verifyCount(_localyticsClassMock, times(1)) setValue:@"foo"
+                                            forIdentifier:@"customer_name"];
 }
 
 - (void)testIdentifyWithoutName
 {
     [_integration identify:nil traits:nil options:nil];
 
-    [verifyCount(_localyticsClassMock, never()) setValue:anything() forIdentifier:anything()];
+    [verifyCount(_localyticsClassMock, never()) setValue:anything()
+                                           forIdentifier:anything()];
 }
 
 - (void)testIdentifyWithTraits
@@ -110,8 +128,14 @@
                     }
                    options:nil];
 
-    [verifyCount(_localyticsClassMock, times(1)) setValue:@"bar" forProfileAttribute:@"foo" withScope:LLProfileScopeApplication];
-    [verifyCount(_localyticsClassMock, times(1)) setValue:@"qux" forProfileAttribute:@"baz" withScope:LLProfileScopeApplication];
+    [verifyCount(_localyticsClassMock, times(1))
+                   setValue:@"bar"
+        forProfileAttribute:@"foo"
+                  withScope:LLProfileScopeApplication];
+    [verifyCount(_localyticsClassMock, times(1))
+                   setValue:@"qux"
+        forProfileAttribute:@"baz"
+                  withScope:LLProfileScopeApplication];
 }
 
 @end
