@@ -32,10 +32,10 @@
 {
     dispatch_sync(self.queue, ^{
             __block BOOL blockRan = NO;
-            
+
             seg_dispatch_specific_sync(self.queue, ^{ blockRan = YES; });
             XCTAssertTrue(blockRan);
-            
+
             blockRan = NO;
             seg_dispatch_specific_async(self.queue, ^{ blockRan = YES; });
             XCTAssertTrue(blockRan);
@@ -45,7 +45,9 @@
 - (void)testCanRunAsyncWhenDispatchingElsewhereThanQueue
 {
     __block BOOL blockRan = NO;
-    seg_dispatch_specific_async(self.queue, ^{ blockRan = YES;
+    seg_dispatch_specific_async(self.queue, ^{
+       [NSThread sleepForTimeInterval:.5];
+        blockRan = YES;
     });
     XCTAssertFalse(blockRan);
     EXP_expect(blockRan).will.beTruthy();
