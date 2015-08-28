@@ -29,6 +29,9 @@
 - (void)start
 {
     NSString *apiKey = [self.settings objectForKey:@"apiKey"];
+    if ([(NSNumber *)[self.settings objectForKey:@"trackSessionEvents"] boolValue]) {
+        [Amplitude instance].trackingSessionEvents = true;
+    }
     [[Amplitude instance] initializeApiKey:apiKey];
     SEGLog(@"AmplitudeIntegration initialized.");
     [super start];
