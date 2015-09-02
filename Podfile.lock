@@ -27,7 +27,7 @@ PODS:
   - Quantcast-Measure (1.4.7):
     - Quantcast-Measure/Core (= 1.4.7)
   - Quantcast-Measure/Core (1.4.7)
-  - Taplytics (2.4.0)
+  - Taplytics (2.4.12)
   - Tapstream (2.9.0)
   - TRVSDictionaryWithCaseInsensitivity (0.0.2)
   - UXCam (2.0.5)
@@ -51,7 +51,7 @@ DEPENDENCIES:
   - OCMockito (~> 1.4.0)
   - Optimizely-iOS-SDK (= 1.0.86)
   - Quantcast-Measure (= 1.4.7)
-  - Taplytics (= 2.4.0)
+  - Taplytics (= 2.4.12)
   - Tapstream (= 2.9.0)
   - TRVSDictionaryWithCaseInsensitivity (= 0.0.2)
   - UXCam (= 2.0.5)
@@ -76,7 +76,7 @@ SPEC CHECKSUMS:
   OCMockito: 4981140c9a9ec06c31af40f636e3c0f25f27e6b2
   Optimizely-iOS-SDK: 6c247b8eb907d9de290ff6ee37fb0c157a7f3444
   Quantcast-Measure: de15122f2b48380afe42443d132f40f382df8ae7
-  Taplytics: 0f2b355cd545d25a69888816bf9ce4d4eb61176f
+  Taplytics: f01697052bd82c8dcbc4fb4c4d2bcd39ead646c8
   Tapstream: e07f84d53c17a8a2ab53f81d2372299e786617aa
   TRVSDictionaryWithCaseInsensitivity: 51d2ccf52c6d645d27b63467a98fa02c556e01b0
   UXCam: 995df5a0300732f447fa6a94b6f7523236bf1e4e
