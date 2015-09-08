@@ -8,6 +8,7 @@
 
 #import "SEGAnalyticsIntegration.h"
 
+
 @interface SEGUXCamIntegration : SEGAnalyticsIntegration
 
 @property Class uxcamClass; // Unit testing hackery
