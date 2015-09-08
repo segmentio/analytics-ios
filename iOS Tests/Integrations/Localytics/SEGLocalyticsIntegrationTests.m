@@ -52,6 +52,17 @@
     [verifyCount(_localyticsClassMock, times(1)) upload];
 }
 
+- (void)testTrack
+{
+    [_integration track:@"foo" properties:@{ @"revenue" : @100 } options:nil];
+
+    [verifyCount(_localyticsClassMock, times(1)) tagEvent:@"foo"
+                                               attributes:@{
+                                                   @"revenue" : @100
+                                               }
+                                    customerValueIncrease:@10000];
+}
+
 - (void)testScreen
 {
     [_integration screen:@"foo" properties:nil options:nil];
