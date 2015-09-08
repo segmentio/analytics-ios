@@ -397,15 +397,15 @@ static BOOL GetAdTrackingEnabled()
 
 - (void)queuePayload:(NSDictionary *)payload
 {
-  @try {
-    [self.queue addObject:payload];
-    [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
-    [self flushQueueByLength];
+    @try {
+        [self.queue addObject:payload];
+        [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
+        [self flushQueueByLength];
 
-  }
-  @catch (NSException *exception) {
-    SEGLog(@"%@ Error writing payload: %@", self, exception);
-  }
+    }
+    @catch (NSException *exception) {
+        SEGLog(@"%@ Error writing payload: %@", self, exception);
+    }
 }
 
 - (void)flush

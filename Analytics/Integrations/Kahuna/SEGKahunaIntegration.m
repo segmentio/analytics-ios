@@ -18,6 +18,7 @@ void (*selKAHOriginalApplicationDidReceiveRemoteNotification)(id, SEL, id, id);
 void (*selKAHOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler)(id, SEL, id, id, void (^)(UIBackgroundFetchResult result));
 void (*selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler)(id, SEL, id, id, id, void (^)());
 
+
 @implementation SEGKahunaIntegration
 @synthesize initialized, valid, name, settings;
 
@@ -67,13 +68,13 @@ void (*selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHan
             [self.kahunaClass performSelector:@selector(setSDKWrapper:withVersion:) withObject:SEGMENT withObject:[SEGAnalytics version]];
 #pragma GCC diagnostic pop
             [self.kahunaClass launchWithKey:apiKey];
-            
+
             // If we have a push token registration failure, then call the Kahuna handleNotificationRegistrationFailure method.
             if ([SEGKahunaPushMonitor sharedInstance].failedToRegisterError != nil) {
                 [self.kahunaClass handleNotificationRegistrationFailure:[SEGKahunaPushMonitor sharedInstance].failedToRegisterError];
                 [SEGKahunaPushMonitor sharedInstance].failedToRegisterError = nil;
             }
-            
+
             // If we have recorded any push user info, then
             if ([SEGKahunaPushMonitor sharedInstance].pushInfo != nil) {
                 [self.kahunaClass handleNotification:[SEGKahunaPushMonitor sharedInstance].pushInfo withApplicationState:[SEGKahunaPushMonitor sharedInstance].applicationState];
@@ -133,13 +134,13 @@ void (*selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHan
             }
         }
     }
-    
+
     NSError *error = nil;
     [self.kahunaClass loginWithCredentials:credentials error:&error];
     if (error) {
         NSLog(@"Kahuna-Segment Login Error : %@", error.description);
     }
-    
+
     // Track the attributes if we have any items in it.
     if (attributes.count > 0) {
         [self.kahunaClass setUserAttributes:attributes];
@@ -169,7 +170,7 @@ void (*selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHan
         // Get the count and value from quantity and revenue.
         long value = (long)([revenue doubleValue] * 100);
         long count = [quantity longValue];
-        
+
         [self.kahunaClass trackEvent:event withCount:count andValue:value];
     } else {
         [self.kahunaClass trackEvent:event];
@@ -297,13 +298,14 @@ void (*selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHan
     return instance;
 }
 
-- (id) init {
+- (id)init
+{
     self = [super init];
     if (self) {
         self.kahunaClass = [Kahuna class];
         return self;
     }
-    
+
     return nil;
 }
 
@@ -411,9 +413,9 @@ void (*selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHan
 
         if (selKAHOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError) {
             selKAHOriginalApplicationDidFailToRegisterForRemoteNotificationsWithError([UIApplication sharedApplication].delegate,
-                                                                                   @selector(application:didFailToRegisterForRemoteNotificationsWithError:),
-                                                                                   application,
-                                                                                   error);
+                                                                                      @selector(application:didFailToRegisterForRemoteNotificationsWithError:),
+                                                                                      application,
+                                                                                      error);
         }
     }
     @catch (NSException *exception) {
@@ -427,9 +429,9 @@ void (*selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHan
         [[SEGKahunaPushMonitor sharedInstance] pushReceived:userInfo];
         if (selKAHOriginalApplicationDidReceiveRemoteNotification) {
             selKAHOriginalApplicationDidReceiveRemoteNotification([UIApplication sharedApplication].delegate,
-                                                               @selector(application:didReceiveRemoteNotification:),
-                                                               application,
-                                                               userInfo);
+                                                                  @selector(application:didReceiveRemoteNotification:),
+                                                                  application,
+                                                                  userInfo);
         }
     }
     @catch (NSException *exception) {
@@ -443,10 +445,10 @@ void (*selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHan
         [[SEGKahunaPushMonitor sharedInstance] pushReceived:userInfo];
         if (selKAHOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler) {
             selKAHOriginalApplicationDidReceiveRemoteNotificationWithFetchCompletionHandler([UIApplication sharedApplication].delegate,
-                                                                                         @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:),
-                                                                                         application,
-                                                                                         userInfo,
-                                                                                         completionHandler);
+                                                                                            @selector(application:didReceiveRemoteNotification:fetchCompletionHandler:),
+                                                                                            application,
+                                                                                            userInfo,
+                                                                                            completionHandler);
         }
     }
     @catch (NSException *exception) {
@@ -460,11 +462,11 @@ void (*selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHan
         [[SEGKahunaPushMonitor sharedInstance] pushReceived:userInfo];
         if (selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler) {
             selKAHOriginalApplicationHandleActionWithIdentifierWithFetchCompletionHandler([UIApplication sharedApplication].delegate,
-                                                                                       @selector(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:),
-                                                                                       application,
-                                                                                       identifier,
-                                                                                       userInfo,
-                                                                                       completionHandler);
+                                                                                          @selector(application:handleActionWithIdentifier:forRemoteNotification:completionHandler:),
+                                                                                          application,
+                                                                                          identifier,
+                                                                                          userInfo,
+                                                                                          completionHandler);
         } else {
             if (addedKAHMethodHandleActionWithIdentifierWithFetchCompletionHandler) {
                 completionHandler();
