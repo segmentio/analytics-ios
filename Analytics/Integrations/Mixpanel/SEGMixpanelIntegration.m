@@ -4,7 +4,7 @@
 // Import the public header files
 #import "SEGMixpanelIntegration.h"
 // Import the Mixpanel SDK
-#import <Mixpanel.h>
+#import <Mixpanel/Mixpanel.h>
 // Import the SEGAnalytics class
 #import "SEGAnalytics.h"
 // Import some utility methods
