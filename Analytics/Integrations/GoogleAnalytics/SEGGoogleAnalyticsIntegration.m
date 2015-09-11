@@ -13,6 +13,7 @@
 @interface SEGGoogleAnalyticsIntegration ()
 
 @property (nonatomic, copy) NSDictionary *traits;
+@property (nonatomic, assign) id<GAITracker> tracker;
 
 @end
 
@@ -48,7 +49,8 @@
     }
     // Require setup with the trackingId.
     NSString *trackingId = [self.settings objectForKey:@"mobileTrackingId"];
-    [[GAI sharedInstance] setDefaultTracker:[[GAI sharedInstance] trackerWithTrackingId:trackingId]];
+    self.tracker = [[GAI sharedInstance] trackerWithTrackingId:trackingId];
+    [[GAI sharedInstance] setDefaultTracker:self.tracker];
 
     // Optionally turn on uncaught exception tracking.
     NSString *reportUncaughtExceptions = [self.settings objectForKey:@"reportUncaughtExceptions"];
@@ -59,7 +61,7 @@
     // Optionally turn on GA remarketing features
     NSString *demographicReports = [self.settings objectForKey:@"doubleClick"];
     if ([demographicReports boolValue]) {
-        [[[GAI sharedInstance] defaultTracker] setAllowIDFACollection:YES];
+        [self.tracker setAllowIDFACollection:YES];
     }
 
     // TODO: add support for sample rate
@@ -87,15 +89,14 @@
     // remove existing traits
     [self resetTraits];
 
-    // Optionally send the userId if they have that enabled
-    if ([self shouldSendUserId])
-        [[[GAI sharedInstance] defaultTracker] set:@"&uid" value:userId];
+    if ([self shouldSendUserId]) {
+        [self.tracker set:@"&uid" value:userId];
+    }
 
-    // We can set traits though. Iterate over all the traits and set them.
     self.traits = traits;
 
     [self.traits enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-      [[[GAI sharedInstance] defaultTracker] set:key value:obj];
+      [self.tracker set:key value:obj];
     }];
 
     [self setCustomDimensionsAndMetricsOnDefaultTracker:traits];
@@ -132,16 +133,14 @@
                                                 value:value];
 
     // Track the event!
-    [[[GAI sharedInstance] defaultTracker]
-        send:[self setCustomDimensionsAndMetrics:properties onHit:hit]];
+    [self.tracker send:[self setCustomDimensionsAndMetrics:properties onHit:hit]];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    [[[GAI sharedInstance] defaultTracker] set:kGAIScreenName value:screenTitle];
+    [self.tracker set:kGAIScreenName value:screenTitle];
     GAIDictionaryBuilder *view = [GAIDictionaryBuilder createScreenView];
-    [[[GAI sharedInstance] defaultTracker]
-        send:[self setCustomDimensionsAndMetrics:properties onHit:view]];
+    [self.tracker send:[self setCustomDimensionsAndMetrics:properties onHit:view]];
 }
 
 #pragma mark - Ecommerce
@@ -153,7 +152,7 @@
 
     SEGLog(@"Tracking completed order to Google Analytics with properties: %@", properties);
 
-    [[[GAI sharedInstance] defaultTracker]
+    [self.tracker
         send:[[GAIDictionaryBuilder createTransactionWithId:orderId
                                                 affiliation:properties[@"affiliation"]
                                                     revenue:[self.class extractRevenue:properties]
@@ -161,7 +160,7 @@
                                                    shipping:properties[@"shipping"]
                                                currencyCode:currency] build]];
 
-    [[[GAI sharedInstance] defaultTracker]
+    [self.tracker
         send:[[GAIDictionaryBuilder createItemWithTransactionId:orderId
                                                            name:properties[@"name"]
                                                             sku:properties[@"sku"]
@@ -175,7 +174,7 @@
 {
     [super reset];
 
-    [[[GAI sharedInstance] defaultTracker] set:@"&uid" value:nil];
+    [self.tracker set:@"&uid" value:nil];
 
     [self resetTraits];
 }
@@ -237,16 +236,16 @@
         // [@"dimension" length] == 8
         NSUInteger dimension = [self extractNumber:dimensionString from:8];
         if (dimension != 0) {
-            [[[GAI sharedInstance] defaultTracker] set:[GAIFields customDimensionForIndex:dimension]
-                                                 value:[traits objectForKey:key]];
+            [self.tracker set:[GAIFields customDimensionForIndex:dimension]
+                        value:[traits objectForKey:key]];
         }
 
         NSString *metricString = [customMetrics objectForKey:key];
         // [@"metric" length] == 5
         NSUInteger metric = [self extractNumber:dimensionString from:5];
         if (metric != 0) {
-            [[[GAI sharedInstance] defaultTracker] set:[GAIFields customMetricForIndex:metric]
-                                                 value:[traits objectForKey:key]];
+            [self.tracker set:[GAIFields customMetricForIndex:metric]
+                        value:[traits objectForKey:key]];
         }
     }
 }
@@ -259,7 +258,7 @@
 - (void)resetTraits
 {
     [self.traits enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-      [[[GAI sharedInstance] defaultTracker] set:key value:nil];
+      [self.tracker set:key value:nil];
     }];
     self.traits = nil;
 }
