@@ -1,4 +1,12 @@
 
+2.0.7 / 2015-09-11
+==================
+
+  * Add support for custom dimensions and metrics.
+  * Send revenue to Localytics and not cents
+  * Upgrade GoogleAnalytics to 3.13.0
+  * Updating Amplitude SDK v3.0.0
+
 2.0.6 / 2015-08-20
 ==================
 
