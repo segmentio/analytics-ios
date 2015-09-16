@@ -34,6 +34,7 @@
 		32225231199AD6D200478B1A /* SEGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 3222522F199AD6D200478B1A /* SEGReachability.h */; };
 		32225232199AD6D200478B1A /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 32225230199AD6D200478B1A /* SEGReachability.m */; };
 		32225233199AD6D200478B1A /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 32225230199AD6D200478B1A /* SEGReachability.m */; };
+		322E795F1BAA2C70007E11FD /* UXCam.h in Headers */ = {isa = PBXBuildFile; fileRef = 322E795E1BAA2C70007E11FD /* UXCam.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32385FD91A2DF0CA008E09B2 /* MPCategoryHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FD81A2DF0CA008E09B2 /* MPCategoryHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32385FDC1A2DF0DF008E09B2 /* MPDesignerEventBindingMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FDA1A2DF0DF008E09B2 /* MPDesignerEventBindingMessage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32385FDD1A2DF0DF008E09B2 /* MPDesignerSessionCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 32385FDB1A2DF0DF008E09B2 /* MPDesignerSessionCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -250,7 +251,6 @@
 		6EFF0CE51B3B63FB005190A2 /* SEGCountlyIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFF0CE41B3B63FB005190A2 /* SEGCountlyIntegrationTests.m */; };
 		79D247EA1B4AF3C9002D8F90 /* SEGUXCamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D247E81B4AF3C9002D8F90 /* SEGUXCamIntegration.h */; };
 		79D247EB1B4AF3C9002D8F90 /* SEGUXCamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D247E91B4AF3C9002D8F90 /* SEGUXCamIntegration.m */; };
-		79D247F01B4AF538002D8F90 /* UXCam.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D247EF1B4AF538002D8F90 /* UXCam.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D247F31B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D247F21B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m */; };
 		79D247F41B4B00CC002D8F90 /* SEGUXCamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D247E91B4AF3C9002D8F90 /* SEGUXCamIntegration.m */; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -337,6 +337,7 @@
 		320AFEE81A840DEB00929778 /* Kahuna.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Kahuna.h; path = Pods/Kahuna/Kahuna.framework/Headers/Kahuna.h; sourceTree = "<group>"; };
 		3222522F199AD6D200478B1A /* SEGReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGReachability.h; path = Helpers/SEGReachability.h; sourceTree = "<group>"; };
 		32225230199AD6D200478B1A /* SEGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGReachability.m; path = Helpers/SEGReachability.m; sourceTree = "<group>"; };
+		322E795E1BAA2C70007E11FD /* UXCam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UXCam.h; path = Pods/UXCam/UXCam.framework/Headers/UXCam.h; sourceTree = "<group>"; };
 		32385FD81A2DF0CA008E09B2 /* MPCategoryHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPCategoryHelpers.h; path = Pods/Mixpanel/Mixpanel/MPCategoryHelpers.h; sourceTree = "<group>"; };
 		32385FDA1A2DF0DF008E09B2 /* MPDesignerEventBindingMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPDesignerEventBindingMessage.h; path = Pods/Mixpanel/Mixpanel/MPDesignerEventBindingMessage.h; sourceTree = "<group>"; };
 		32385FDB1A2DF0DF008E09B2 /* MPDesignerSessionCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPDesignerSessionCollection.h; path = Pods/Mixpanel/Mixpanel/MPDesignerSessionCollection.h; sourceTree = "<group>"; };
@@ -557,7 +558,6 @@
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D247E81B4AF3C9002D8F90 /* SEGUXCamIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGUXCamIntegration.h; path = UXCam/SEGUXCamIntegration.h; sourceTree = "<group>"; };
 		79D247E91B4AF3C9002D8F90 /* SEGUXCamIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGUXCamIntegration.m; path = UXCam/SEGUXCamIntegration.m; sourceTree = "<group>"; };
-		79D247EF1B4AF538002D8F90 /* UXCam.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UXCam.h; path = Pods/UXCam/UXCam.framework/Versions/2.0.5/Headers/UXCam.h; sourceTree = "<group>"; };
 		79D247F21B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGUXCamIntegrationTests.m; sourceTree = "<group>"; };
 		7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBlockMatchEvaluator.h; sourceTree = "<group>"; };
 		7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockMatchEvaluator.m; sourceTree = "<group>"; };
@@ -920,6 +920,7 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				322E795E1BAA2C70007E11FD /* UXCam.h */,
 				6E2AFA401B55852400C8A14E /* MOInbox.h */,
 				6E2AFA411B55852400C8A14E /* MOInboxViewController.h */,
 				6E2AFA3C1B55850C00C8A14E /* MOEHelperConstants.h */,
@@ -1130,7 +1131,6 @@
 				DA7B09BE1AF18ED100A65698 /* Apptimize+Segment.h */,
 				DA7B09BF1AF18ED100A65698 /* Apptimize+Variables.h */,
 				DA7B09C01AF18ED100A65698 /* Apptimize+VariablesInternal.h */,
-				79D247EF1B4AF538002D8F90 /* UXCam.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -1415,6 +1415,7 @@
 				32385FD91A2DF0CA008E09B2 /* MPCategoryHelpers.h in Headers */,
 				32CEE41E19F5B6DB007758F2 /* TaplyticsOptions.h in Headers */,
 				32385FDF1A2DF0E7008E09B2 /* MPEventBinding.h in Headers */,
+				322E795F1BAA2C70007E11FD /* UXCam.h in Headers */,
 				DAEB6FF11AC9EBCA003E7FB3 /* SEGApptimizeIntegration.h in Headers */,
 				32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */,
 				EA25892317C6979D000CEF61 /* SEGAnalytics.h in Headers */,
@@ -1563,7 +1564,6 @@
 				3252EA7E1999D6390056C32A /* QuantcastMeasurement.h in Headers */,
 				6E85F3731B2F792100763913 /* TSTapstream.h in Headers */,
 				3252EA7F1999D6390056C32A /* QuantcastMeasurement+Internal.h in Headers */,
-				79D247F01B4AF538002D8F90 /* UXCam.h in Headers */,
 				3252EA801999D6390056C32A /* QuantcastNetworkReachability.h in Headers */,
 				3252EA811999D6390056C32A /* QuantcastOptOutDelegate.h in Headers */,
 				3252EA821999D6390056C32A /* QuantcastOptOutViewController.h in Headers */,
