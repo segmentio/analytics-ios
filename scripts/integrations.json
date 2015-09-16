@@ -118,6 +118,13 @@
         "name": "Tapstream",
         "version": "2.9.0"
       }]
+    },
+    {
+      "name": "UXCam",
+      "dependencies": [{
+        "name": "UXCam",
+        "version": "2.3.2"
+      }]
     }
   ]
 }
