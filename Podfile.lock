@@ -30,7 +30,7 @@ PODS:
   - Taplytics (2.4.0)
   - Tapstream (2.9.0)
   - TRVSDictionaryWithCaseInsensitivity (0.0.2)
-  - UXCam (2.0.5)
+  - UXCam (2.3.2)
 
 DEPENDENCIES:
   - Amplitude-iOS (= 3.0.0)
@@ -54,7 +54,7 @@ DEPENDENCIES:
   - Taplytics (= 2.4.0)
   - Tapstream (= 2.9.0)
   - TRVSDictionaryWithCaseInsensitivity (= 0.0.2)
-  - UXCam (= 2.0.5)
+  - UXCam (= 2.3.2)
 
 SPEC CHECKSUMS:
   Amplitude-iOS: 07875b822c2c935ea7f8021830d375ed4d812d31
@@ -79,6 +79,6 @@ SPEC CHECKSUMS:
   Taplytics: 0f2b355cd545d25a69888816bf9ce4d4eb61176f
   Tapstream: e07f84d53c17a8a2ab53f81d2372299e786617aa
   TRVSDictionaryWithCaseInsensitivity: 51d2ccf52c6d645d27b63467a98fa02c556e01b0
-  UXCam: 995df5a0300732f447fa6a94b6f7523236bf1e4e
+  UXCam: b4914853e5512ac16a3e4a33499cd470230d7a6e
 
 COCOAPODS: 0.38.2

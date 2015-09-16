@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "SEGOptimizelyIntegration.h"
-#import <Optimizely-iOS-SDK/Optimizely.h>
+#import <Optimizely/Optimizely.h>
 
 #define HC_SHORTHAND
 #import <OCHamcrest/OCHamcrest.h>
