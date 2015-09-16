@@ -27,24 +27,61 @@ target 'iOS Tests', :exclusive => true do
 end
 
 post_install do |installer|
-    installer.project.targets.each do |target|
-        target.build_configurations.each do |config|
-            config.build_settings['ARCHS'] = "i386 armv7 armv7s x86_64 arm64"
-            config.build_settings['VALID_ARCHS'] = "i386 armv7 armv7s x86_64 arm64"
-        end
+  if Gem::Version.new(Gem.loaded_specs['cocoapods'].version) >= Gem::Version.new('0.38.0')
+    install_38 installer
+  else
+    install_37 installer
+  end
+end
+
+def install_38 installer
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['ARCHS'] = "i386 armv7 armv7s x86_64 arm64"
+      config.build_settings['VALID_ARCHS'] = "i386 armv7 armv7s x86_64 arm64"
     end
+  end
 
-    default_library = installer.libraries.detect { |i| i.target_definition.name == 'Analytics' }
+  default_library = installer.aggregate_targets.detect { |i| i.target_definition.name == 'Analytics' }
 
-    [default_library.library.xcconfig_path('Debug'), default_library.library.xcconfig_path('Release')].each do |path|
-      File.open("config.tmp", "w") do |io|
-        f = File.read(path)
-        ["icucore", "z", "sqlite3", "c++"].each do |lib|
-          f.gsub!(/-l"#{lib}"/, '')
-        end
-        io << f
+  puts default_library
+
+  [default_library.xcconfig_relative_path('Debug'), default_library.xcconfig_relative_path('Release')].each do |path|
+    path = File.expand_path(File.join(File.dirname(__FILE__), path))
+
+    File.open("config.tmp", "w") do |io|
+      f = File.read(path)
+      ["icucore", "z", "sqlite3", "c++"].each do |lib|
+        f.gsub!(/-l"#{lib}"/, '')
       end
-
-      FileUtils.mv("config.tmp", path)
+      io << f
     end
+
+    FileUtils.mv("config.tmp", path)
+  end
+
+end
+
+def install_37 installer
+  installer.project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['ARCHS'] = "i386 armv7 armv7s x86_64 arm64"
+      config.build_settings['VALID_ARCHS'] = "i386 armv7 armv7s x86_64 arm64"
+    end
+  end
+
+  default_library = installer.libraries.detect { |i| i.target_definition.name == 'Analytics' }
+
+  [default_library.library.xcconfig_path('Debug'), default_library.library.xcconfig_path('Release')].each do |path|
+    puts path
+    File.open("config.tmp", "w") do |io|
+      f = File.read(path)
+      ["icucore", "z", "sqlite3", "c++"].each do |lib|
+        f.gsub!(/-l"#{lib}"/, '')
+      end
+      io << f
+    end
+
+    FileUtils.mv("config.tmp", path)
+  end
 end
