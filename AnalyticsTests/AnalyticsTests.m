@@ -163,7 +163,7 @@ static id _mockNSBundle;
 
 - (void)testHasIntegrations
 {
-    XCTAssertEqual(18, self.analytics.configuration.integrations.count);
+    XCTAssertEqual(17, self.analytics.configuration.integrations.count);
 }
 
 - (void)testForwardsIdentify

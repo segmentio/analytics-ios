@@ -205,7 +205,7 @@
 
         NSString *metricString = [customMetrics objectForKey:key];
         // [@"metric" length] == 5
-        NSUInteger metric = [self extractNumber:dimensionString from:5];
+        NSUInteger metric = [self extractNumber:metricString from:5];
         if (metric != 0) {
             [hit set:[properties objectForKey:key]
                 forKey:[GAIFields customMetricForIndex:metric]];
@@ -242,7 +242,7 @@
 
         NSString *metricString = [customMetrics objectForKey:key];
         // [@"metric" length] == 5
-        NSUInteger metric = [self extractNumber:dimensionString from:5];
+        NSUInteger metric = [self extractNumber:metricString from:5];
         if (metric != 0) {
             [self.tracker set:[GAIFields customMetricForIndex:metric]
                         value:[traits objectForKey:key]];

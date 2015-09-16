@@ -31,6 +31,7 @@ NSString *iso8601FormattedString(NSDate *date)
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
       dateFormatter = [[NSDateFormatter alloc] init];
+      dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
       dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZ";
     });
     return [dateFormatter stringFromDate:date];
