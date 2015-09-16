@@ -44,8 +44,6 @@ def install_38 installer
 
   default_library = installer.aggregate_targets.detect { |i| i.target_definition.name == 'Analytics' }
 
-  puts default_library
-
   [default_library.xcconfig_relative_path('Debug'), default_library.xcconfig_relative_path('Release')].each do |path|
     path = File.expand_path(File.join(File.dirname(__FILE__), path))
 

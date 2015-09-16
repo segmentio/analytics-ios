@@ -64,7 +64,7 @@ SPEC CHECKSUMS:
   Countly: 2151c5286995b84972ba4a92c3fba6b5fafce6bb
   CrittercismSDK: b22f9541803c2babb1c8996862b097dc47ec7105
   Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
-  FlurrySDK: 7e749c1bd22f4fb0a863663e38c58bc841980b25
+  FlurrySDK: 820acaa95f7ec08797517720714783928d3e386b
   GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
   GoogleIDFASupport: 0dd25ffdd152fd8e3deefd72978b42ef818ef0fa
   Kahuna: 06c3dea6aee22f5ae9c3eb6a6b9ae703cd5dd5cb
@@ -81,4 +81,4 @@ SPEC CHECKSUMS:
   TRVSDictionaryWithCaseInsensitivity: 51d2ccf52c6d645d27b63467a98fa02c556e01b0
   UXCam: 995df5a0300732f447fa6a94b6f7523236bf1e4e
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.38.2
