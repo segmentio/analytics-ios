@@ -78,6 +78,11 @@
 
 - (void)testIdentify
 {
+    [_integration setSettings:@{
+        @"token" : @"foo",
+        @"setAllTraitsByDefault" : @1
+    }];
+
     [_integration identify:@"foo" traits:@{ @"bar" : @"baz" } options:@{}];
 
     [verifyCount(_mixpanelMock, times(1)) identify:@"foo"];
@@ -89,7 +94,8 @@
 {
     [_integration setSettings:@{
         @"token" : @"foo",
-        @"people" : @1
+        @"people" : @1,
+        @"setAllTraitsByDefault" : @1
     }];
 
     [_integration identify:@"foo" traits:@{ @"bar" : @"baz" } options:@{}];
@@ -99,8 +105,27 @@
     [verifyCount(_mixpanelPeopleMock, times(1)) set:@{ @"bar" : @"baz" }];
 }
 
-- (void)testIdentifyWithTraits
+- (void)testIdentifyWithPeopleAndWithoutSettingTraits
 {
+    [_integration setSettings:@{
+        @"token" : @"foo",
+        @"people" : @1,
+        @"setAllTraitsByDefault" : @0
+    }];
+    [_integration identify:@"foo" traits:@{ @"bar" : @"baz" } options:@{}];
+
+    [verifyCount(_mixpanelMock, times(1)) identify:@"foo"];
+    [verifyCount(_mixpanelMock, times(0)) registerSuperProperties:anything()];
+    [verifyCount(_mixpanelPeopleMock, times(0)) set:anything()];
+}
+
+- (void)testIdentifyWithMappedTraits
+{
+    [_integration setSettings:@{
+        @"token" : @"foo",
+        @"setAllTraitsByDefault" : @1
+    }];
+
     [_integration identify:@"foo"
                     traits:@{
                         @"firstName" : @"bar",
@@ -126,6 +151,103 @@
         @"$phone" : @"barbazqaz"
     }];
 }
+
+- (void)testIdentifyWithMappedPropertiesAndSuperProperties
+{
+    [_integration setSettings:@{
+        @"token" : @"foo",
+        @"people" : @1,
+        @"setAllTraitsByDefault" : @0
+    }];
+
+    [_integration identify:@"foo"
+                    traits:@{
+                        @"firstName" : @"bar",
+                        @"lastName" : @"baz",
+                        @"createdAt" : @"qaz",
+                        @"lastSeen" : @"foobar",
+                        @"email" : @"barbaz",
+                        @"name" : @"bazqaz",
+                        @"username" : @"foobarbaz",
+                        @"phone" : @"barbazqaz"
+                    }
+                   options:@{
+                       @"integrations" : @{
+                           @"Mixpanel" : @{
+                               @"superProperties" : @[ @"firstName" ],
+                               @"peopleProperties" : @[ @"lastName" ],
+                           }
+                       }
+                   }];
+
+    [verifyCount(_mixpanelMock, times(1)) identify:@"foo"];
+    [verifyCount(_mixpanelMock, times(1)) registerSuperProperties:@{
+        @"$first_name" : @"bar"
+    }];
+    [verifyCount(_mixpanelPeopleMock, times(1)) set:@{
+        @"$last_name" : @"baz"
+    }];
+}
+
+- (void)testIdentifyWithoutSetAllTraitsAndNoMappedTraits
+{
+    [_integration setSettings:@{
+        @"token" : @"foo",
+        @"people" : @1,
+        @"setAllTraitsByDefault" : @0
+    }];
+
+    [_integration identify:@"foo"
+                    traits:@{
+                        @"firstName" : @"bar",
+                        @"lastName" : @"baz",
+                        @"createdAt" : @"qaz",
+                        @"lastSeen" : @"foobar",
+                        @"email" : @"barbaz",
+                        @"name" : @"bazqaz",
+                        @"username" : @"foobarbaz",
+                        @"phone" : @"barbazqaz"
+                    }
+                   options:@{
+                       @"integrations" : @{
+                           @"Mixpanel" : @{}
+                       }
+                   }];
+
+    [verifyCount(_mixpanelMock, times(1)) identify:@"foo"];
+    [verifyCount(_mixpanelMock, times(1)) registerSuperProperties:anything()];
+    [verifyCount(_mixpanelPeopleMock, times(1)) set:anything()];
+}
+
+
+- (void)testIdentifyWithoutSetAllTraitsAndNoMixpanelOptions
+{
+    [_integration setSettings:@{
+        @"token" : @"foo",
+        @"people" : @1,
+        @"setAllTraitsByDefault" : @0
+    }];
+
+    [_integration identify:@"foo"
+                    traits:@{
+                        @"firstName" : @"bar",
+                        @"lastName" : @"baz",
+                        @"createdAt" : @"qaz",
+                        @"lastSeen" : @"foobar",
+                        @"email" : @"barbaz",
+                        @"name" : @"bazqaz",
+                        @"username" : @"foobarbaz",
+                        @"phone" : @"barbazqaz"
+                    }
+                   options:@{
+                       @"integrations" : @{}
+                   }];
+
+    [verifyCount(_mixpanelMock, times(1)) identify:@"foo"];
+    [verifyCount(_mixpanelMock, times(0)) registerSuperProperties:anything()];
+    [verifyCount(_mixpanelPeopleMock, times(0)) set:anything()];
+}
+
 
 - (void)testTrack
 {
