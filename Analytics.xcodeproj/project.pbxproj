@@ -242,6 +242,7 @@
 		6E8F058C1B42321800305E99 /* SEGOptimizelyIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F058B1B42321800305E99 /* SEGOptimizelyIntegrationTests.m */; };
 		6E92C1E71B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92C1E61B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m */; };
 		6EB2963E1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB2963D1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m */; };
+		6EB44C751B5F11EE0014BCDB /* SEGQuantcastIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB44C741B5F11EE0014BCDB /* SEGQuantcastIntegrationTests.m */; };
 		6EB468211B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB468201B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m */; };
 		6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6EB809561AFC136D00959050 /* AMPURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB809551AFC136D00959050 /* AMPURLConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -548,6 +549,7 @@
 		6E8F058B1B42321800305E99 /* SEGOptimizelyIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGOptimizelyIntegrationTests.m; path = Integrations/Optimizely/SEGOptimizelyIntegrationTests.m; sourceTree = "<group>"; };
 		6E92C1E61B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGLocalyticsIntegrationTests.m; path = Integrations/Localytics/SEGLocalyticsIntegrationTests.m; sourceTree = "<group>"; };
 		6EB2963D1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGTapstreamIntegrationTests.m; path = Integrations/Tapstream/SEGTapstreamIntegrationTests.m; sourceTree = "<group>"; };
+		6EB44C741B5F11EE0014BCDB /* SEGQuantcastIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGQuantcastIntegrationTests.m; path = Integrations/Quantcast/SEGQuantcastIntegrationTests.m; sourceTree = "<group>"; };
 		6EB468201B39CE0B00A0E4B9 /* SEGAmplitudeIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGAmplitudeIntegrationTests.m; path = Integrations/Amplitude/SEGAmplitudeIntegrationTests.m; sourceTree = "<group>"; };
 		6EB809531AFC135E00959050 /* Amplitude+SSLPinning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Amplitude+SSLPinning.h"; path = "Pods/Amplitude-iOS/Amplitude/Amplitude+SSLPinning.h"; sourceTree = "<group>"; };
 		6EB809551AFC136D00959050 /* AMPURLConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AMPURLConnection.h; path = "Pods/Amplitude-iOS/Amplitude/AMPURLConnection.h"; sourceTree = "<group>"; };
@@ -803,6 +805,7 @@
 				6E92C1E51B3DD5030049B5A8 /* Localytics */,
 				6ED462241B42D5E70042BFE4 /* Mixpanel */,
 				6E8F058A1B4231FE00305E99 /* Optimizely */,
+				6EF046EF1B5F117200E973C7 /* Quantcast */,
 				6EFAD9AC1B41A965000664C1 /* Taplytics */,
 				6EB2963C1B4C3A3000805337 /* Tapstream */,
 				79D247F11B4AFDF9002D8F90 /* UXCam */,
@@ -873,6 +876,14 @@
 				6ED462251B42D6020042BFE4 /* SEGMixpanelIntegrationTests.m */,
 			);
 			name = Mixpanel;
+			sourceTree = "<group>";
+		};
+		6EF046EF1B5F117200E973C7 /* Quantcast */ = {
+			isa = PBXGroup;
+			children = (
+				6EB44C741B5F11EE0014BCDB /* SEGQuantcastIntegrationTests.m */,
+			);
+			name = Quantcast;
 			sourceTree = "<group>";
 		};
 		6EF6652D1B585DC900DC7EA1 /* AppsFlyer */ = {
@@ -1834,6 +1845,7 @@
 				6E16FFF81B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m in Sources */,
 				3242C9BD1946AFEC00FBE441 /* SEGQuantcastIntegration.m in Sources */,
 				6E12DD831B3CA2A1005E35D0 /* SEGCrittercismIntegrationTests.m in Sources */,
+				6EB44C751B5F11EE0014BCDB /* SEGQuantcastIntegrationTests.m in Sources */,
 				6E92C1E71B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m in Sources */,
 				3242C9BC1946AFE300FBE441 /* SEGMixpanelIntegration.m in Sources */,
 				79D247F41B4B00CC002D8F90 /* SEGUXCamIntegration.m in Sources */,

@@ -90,17 +90,4 @@
     [Flurry logPageView];
 }
 
-- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options
-{
-    // Why oh why does Flurry require an NSString?! NSData was good enough for everyone else lol
-    // http://stackoverflow.com/a/9372848/1426850
-    const unsigned *tokenBytes = [deviceToken bytes];
-    NSString *hexToken = [NSString stringWithFormat:@"%08x%08x%08x%08x%08x%08x%08x%08x",
-                                                    ntohl(tokenBytes[0]), ntohl(tokenBytes[1]), ntohl(tokenBytes[2]),
-                                                    ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
-                                                    ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
-    // cocoapods validation cant find +[Flurry setPushToken:]
-    ((void (*)(Class, SEL, NSString *))objc_msgSend)(Flurry.class, NSSelectorFromString(@"setPushToken:"), hexToken);
-}
-
 @end
