@@ -228,6 +228,7 @@
 		6E2AFA4B1B55863400C8A14E /* SEGMoEngageIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA491B55863400C8A14E /* SEGMoEngageIntegration.h */; };
 		6E2AFA4C1B55863400C8A14E /* SEGMoEngageIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2AFA4A1B55863400C8A14E /* SEGMoEngageIntegration.m */; };
 		6E2AFA4D1B55863400C8A14E /* SEGMoEngageIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E2AFA4A1B55863400C8A14E /* SEGMoEngageIntegration.m */; };
+		6E410BD31BAB81C700D88ED9 /* Localytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E410BD11BAB817700D88ED9 /* Localytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E51469A1B3B573600F8F87C /* SEGBugsnagIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E5146991B3B573600F8F87C /* SEGBugsnagIntegrationTests.m */; };
 		6E5EF3D31B1005FB001A4BA4 /* CrittercismConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5EF3D21B1005FB001A4BA4 /* CrittercismConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E5EF3D51B10063E001A4BA4 /* OptimizelyExperimentData.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -237,7 +238,6 @@
 		6E85F3731B2F792100763913 /* TSTapstream.h in Headers */ = {isa = PBXBuildFile; fileRef = 324A42C41992C8FA0060013A /* TSTapstream.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E85F3741B2F792100763913 /* TSPlatformImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 324A42C31992C8FA0060013A /* TSPlatformImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E85F3901B2F922F00763913 /* CountlyDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85F38F1B2F922F00763913 /* CountlyDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6E85F3921B2F974700763913 /* Localytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85F3911B2F974700763913 /* Localytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E85F3941B2F980B00763913 /* MPLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85F3931B2F980B00763913 /* MPLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E8F058C1B42321800305E99 /* SEGOptimizelyIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F058B1B42321800305E99 /* SEGOptimizelyIntegrationTests.m */; };
 		6E92C1E71B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92C1E61B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m */; };
@@ -539,11 +539,11 @@
 		6E2AFA411B55852400C8A14E /* MOInboxViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MOInboxViewController.h; path = "Pods/MoEngage-iOS-SDK/Headers/MOInboxViewController.h"; sourceTree = "<group>"; };
 		6E2AFA491B55863400C8A14E /* SEGMoEngageIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGMoEngageIntegration.h; path = MoEngage/SEGMoEngageIntegration.h; sourceTree = "<group>"; };
 		6E2AFA4A1B55863400C8A14E /* SEGMoEngageIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGMoEngageIntegration.m; path = MoEngage/SEGMoEngageIntegration.m; sourceTree = "<group>"; };
+		6E410BD11BAB817700D88ED9 /* Localytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Localytics.h; path = "Pods/Localytics/Localytics-iOS-3.5.0/Localytics.h"; sourceTree = "<group>"; };
 		6E5146991B3B573600F8F87C /* SEGBugsnagIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGBugsnagIntegrationTests.m; path = Integrations/Bugsnag/SEGBugsnagIntegrationTests.m; sourceTree = "<group>"; };
 		6E5EF3D21B1005FB001A4BA4 /* CrittercismConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CrittercismConfig.h; path = Pods/CrittercismSDK/CrittercismSDK/CrittercismConfig.h; sourceTree = "<group>"; };
 		6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OptimizelyExperimentData.h; path = "Pods/Optimizely-iOS-SDK/Optimizely.framework/Headers/OptimizelyExperimentData.h"; sourceTree = "<group>"; };
 		6E85F38F1B2F922F00763913 /* CountlyDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CountlyDB.h; path = Pods/Countly/CountlyDB.h; sourceTree = "<group>"; };
-		6E85F3911B2F974700763913 /* Localytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Localytics.h; path = "Pods/Localytics/Localytics-iOS-3.3.0/Localytics.h"; sourceTree = "<group>"; };
 		6E85F3931B2F980B00763913 /* MPLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPLogger.h; path = Pods/Mixpanel/Mixpanel/MPLogger.h; sourceTree = "<group>"; };
 		6E8F058B1B42321800305E99 /* SEGOptimizelyIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGOptimizelyIntegrationTests.m; path = Integrations/Optimizely/SEGOptimizelyIntegrationTests.m; sourceTree = "<group>"; };
 		6E92C1E61B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGLocalyticsIntegrationTests.m; path = Integrations/Localytics/SEGLocalyticsIntegrationTests.m; sourceTree = "<group>"; };
@@ -920,6 +920,7 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				6E410BD11BAB817700D88ED9 /* Localytics.h */,
 				322E795E1BAA2C70007E11FD /* UXCam.h */,
 				6E2AFA401B55852400C8A14E /* MOInbox.h */,
 				6E2AFA411B55852400C8A14E /* MOInboxViewController.h */,
@@ -936,7 +937,6 @@
 				6E165A101B54771A002C1C40 /* GAITrackedViewController.h */,
 				6E165A111B54771A002C1C40 /* GAITracker.h */,
 				6E85F3931B2F980B00763913 /* MPLogger.h */,
-				6E85F3911B2F974700763913 /* Localytics.h */,
 				6E85F38F1B2F922F00763913 /* CountlyDB.h */,
 				6E5EF3D41B10063E001A4BA4 /* OptimizelyExperimentData.h */,
 				6E5EF3D21B1005FB001A4BA4 /* CrittercismConfig.h */,
@@ -1377,10 +1377,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E410BD31BAB81C700D88ED9 /* Localytics.h in Headers */,
 				6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */,
 				79D247EA1B4AF3C9002D8F90 /* SEGUXCamIntegration.h in Headers */,
 				6EB809561AFC136D00959050 /* AMPURLConnection.h in Headers */,
-				6E85F3921B2F974700763913 /* Localytics.h in Headers */,
 				DA7B09C11AF18ED100A65698 /* Apptimize.h in Headers */,
 				DA7B09C21AF18ED100A65698 /* Apptimize+Compatibility.h in Headers */,
 				DA7B09C31AF18ED100A65698 /* Apptimize+Segment.h in Headers */,
