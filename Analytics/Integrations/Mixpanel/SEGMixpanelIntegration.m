@@ -80,16 +80,44 @@
                                           @"$name", @"name",
                                           @"$username", @"username",
                                           @"$phone", @"phone", nil];
-    NSDictionary *mappedTraits = [SEGAnalyticsIntegration map:traits withMap:map];
 
-    // Register the mapped traits.
-    [[self.mixpanelClass sharedInstance] registerSuperProperties:mappedTraits];
+    if ([self setAllTraitsByDefault]) {
+        NSDictionary *mappedTraits = [SEGAnalyticsIntegration map:traits withMap:map];
 
-    // Mixpanel also has a people API that works seperately, so we set the traits for it as well.
-    if ([(NSNumber *)[self.settings objectForKey:@"people"] boolValue]) {
-        // You'll notice that we could also have done: [self.mixpanelClass.sharedInstance.people set:mappedTraits];
-        // Using methods instead of properties directly lets us mock them in tests, which is why we use the syntax below.
-        [[[self.mixpanelClass sharedInstance] people] set:mappedTraits];
+        // Register the mapped traits.
+        [[self.mixpanelClass sharedInstance] registerSuperProperties:mappedTraits];
+
+        // Mixpanel also has a people API that works seperately, so we set the traits for it as well.
+        if ([self peopleEnabled]) {
+            // You'll notice that we could also have done: [self.mixpanelClass.sharedInstance.people set:mappedTraits];
+            // Using methods instead of properties directly lets us mock them in tests, which is why we use the syntax below.
+            [[[self.mixpanelClass sharedInstance] people] set:mappedTraits];
+        }
+
+        return;
+    }
+
+    NSDictionary *mixpanelOptions = [self mixpanelOptions:options];
+    if (!mixpanelOptions) {
+        return;
+    }
+
+    NSArray *superProperties = [mixpanelOptions objectForKey:@"superProperties"];
+    NSMutableDictionary *superPropertyTraits = [NSMutableDictionary dictionaryWithCapacity:superProperties.count];
+    for (NSString *superProperty in superProperties) {
+        superPropertyTraits[superProperty] = traits[superProperty];
+    }
+    NSDictionary *mappedSuperProperties = [SEGAnalyticsIntegration map:superPropertyTraits withMap:map];
+    [[self.mixpanelClass sharedInstance] registerSuperProperties:mappedSuperProperties];
+
+    if ([self peopleEnabled]) {
+        NSArray *peopleProperties = [mixpanelOptions objectForKey:@"peopleProperties"];
+        NSMutableDictionary *peoplePropertyTraits = [NSMutableDictionary dictionaryWithCapacity:peopleProperties.count];
+        for (NSString *peopleProperty in peopleProperties) {
+            peoplePropertyTraits[peopleProperty] = traits[peopleProperty];
+        }
+        NSDictionary *mappedPeopleProperties = [SEGAnalyticsIntegration map:peoplePropertyTraits withMap:map];
+        [[[self.mixpanelClass sharedInstance] people] set:mappedPeopleProperties];
     }
 }
 
@@ -99,7 +127,7 @@
     [[self.mixpanelClass sharedInstance] track:event properties:properties];
 
     // Don't go any further if Mixpanel people is disabled.
-    if (![(NSNumber *)[self.settings objectForKey:@"people"] boolValue]) {
+    if (![self peopleEnabled]) {
         return;
     }
 
@@ -158,6 +186,28 @@
         }
     }
     return NO;
+}
+
+// Return true the project has the People feature enabled.
+- (BOOL)peopleEnabled
+{
+    return [(NSNumber *)[self.settings objectForKey:@"people"] boolValue];
+}
+
+// Return true if all traits should be set by default.
+- (BOOL)setAllTraitsByDefault
+{
+    return [(NSNumber *)[self.settings objectForKey:@"setAllTraitsByDefault"] boolValue];
+}
+
+// Return true if all traits should be set by default.
+- (NSDictionary *)mixpanelOptions:(NSDictionary *)options
+{
+    NSDictionary *integrations = [options objectForKey:@"integrations"];
+    if (integrations) {
+        return [integrations objectForKey:@"Mixpanel"];
+    }
+    return nil;
 }
 
 - (void)reset
