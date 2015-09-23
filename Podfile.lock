@@ -1,5 +1,5 @@
 PODS:
-  - Amplitude-iOS (3.0.0)
+  - Amplitude-iOS (3.0.1)
   - AppsFlyer-SDK (2.5.3.15.1)
   - Apptimize (2.11.0.1)
   - Bugsnag (4.0.7):
@@ -33,7 +33,7 @@ PODS:
   - UXCam (2.3.2)
 
 DEPENDENCIES:
-  - Amplitude-iOS (= 3.0.0)
+  - Amplitude-iOS (= 3.0.1)
   - AppsFlyer-SDK (= 2.5.3.15.1)
   - Apptimize (= 2.11.0.1)
   - Bugsnag (= 4.0.7)
@@ -57,7 +57,7 @@ DEPENDENCIES:
   - UXCam (= 2.3.2)
 
 SPEC CHECKSUMS:
-  Amplitude-iOS: 07875b822c2c935ea7f8021830d375ed4d812d31
+  Amplitude-iOS: 4016a201afba201865b4c84d23df0d49ed13d5a6
   AppsFlyer-SDK: 34670f7a518e82cfba54dc8ad7738bacf4117b9c
   Apptimize: 5ec482ca36dbec7bd5017f546509136229aa1822
   Bugsnag: 5861d8519d30063abe7b3fcdcf4114a6dddab27a
