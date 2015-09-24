@@ -4,8 +4,10 @@
 #include <sys/sysctl.h>
 
 #import <UIKit/UIKit.h>
+#if !(TARGET_OS_TV)
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#endif
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalyticsRequest.h"
@@ -13,7 +15,9 @@
 #import "SEGBluetooth.h"
 #import "SEGReachability.h"
 #import "SEGLocation.h"
+#if !(TARGET_OS_TV)
 #import <iAd/iAd.h>
+#endif
 
 NSString *const SEGSegmentDidSendRequestNotification = @"SegmentDidSendRequest";
 NSString *const SEGSegmentRequestDidSucceedNotification = @"SegmentRequestDidSucceed";
@@ -139,9 +143,11 @@ static BOOL GetAdTrackingEnabled()
         @"version" : device.systemVersion
     };
 
+#if !(TARGET_OS_TV)
     CTCarrier *carrier = [[[CTTelephonyNetworkInfo alloc] init] subscriberCellularProvider];
     if (carrier.carrierName.length)
         dict[@"network"] = @{ @"carrier" : carrier.carrierName };
+#endif
 
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     dict[@"screen"] = @{
