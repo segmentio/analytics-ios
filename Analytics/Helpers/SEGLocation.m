@@ -47,7 +47,9 @@
         self.geocoder = [[CLGeocoder alloc] init];
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
+#if !(TARGET_OS_TV)
         [self.locationManager startUpdatingLocation];
+#endif
         self.syncQueue = dispatch_queue_create("io.segment.location.syncQueue", NULL);
     }
     return self;
@@ -60,7 +62,9 @@ LOCATION_STRING_PROPERTY(postalCode, postalCode);
 LOCATION_STRING_PROPERTY(street, thoroughfare);
 LOCATION_NUMBER_PROPERTY(latitude, location.coordinate.latitude);
 LOCATION_NUMBER_PROPERTY(longitude, location.coordinate.longitude);
+#if !(TARGET_OS_TV)
 LOCATION_NUMBER_PROPERTY(speed, location.speed);
+#endif
 
 - (BOOL)hasKnownLocation
 {
