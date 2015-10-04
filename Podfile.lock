@@ -1,5 +1,6 @@
 PODS:
-  - Amplitude-iOS (3.0.1)
+  - Amplitude-iOS (3.1.0):
+    - FMDB/standalone (~> 2.5)
   - AppsFlyer-SDK (2.5.3.15.1)
   - Apptimize (2.11.0.1)
   - Bugsnag (4.0.7):
@@ -11,6 +12,13 @@ PODS:
   - FlurrySDK (6.5.0):
     - FlurrySDK/FlurrySDK (= 6.5.0)
   - FlurrySDK/FlurrySDK (6.5.0)
+  - FMDB/common (2.5)
+  - FMDB/standalone (2.5):
+    - FMDB/common
+    - FMDB/standalone/default (= 2.5)
+  - FMDB/standalone/default (2.5):
+    - FMDB/common
+    - sqlite3
   - GoogleAnalytics (3.13.0)
   - GoogleIDFASupport (3.12.0)
   - Kahuna (2.0.3)
@@ -27,13 +35,16 @@ PODS:
   - Quantcast-Measure (1.4.7):
     - Quantcast-Measure/Core (= 1.4.7)
   - Quantcast-Measure/Core (1.4.7)
+  - sqlite3 (3.8.11.1):
+    - sqlite3/common (= 3.8.11.1)
+  - sqlite3/common (3.8.11.1)
   - Taplytics (2.4.0)
   - Tapstream (2.9.0)
   - TRVSDictionaryWithCaseInsensitivity (0.0.2)
   - UXCam (2.3.2)
 
 DEPENDENCIES:
-  - Amplitude-iOS (= 3.0.1)
+  - Amplitude-iOS (= 3.1.0)
   - AppsFlyer-SDK (= 2.5.3.15.1)
   - Apptimize (= 2.11.0.1)
   - Bugsnag (= 4.0.7)
@@ -57,7 +68,7 @@ DEPENDENCIES:
   - UXCam (= 2.3.2)
 
 SPEC CHECKSUMS:
-  Amplitude-iOS: 4016a201afba201865b4c84d23df0d49ed13d5a6
+  Amplitude-iOS: 3e2c2bc40967ed22234f6ba48f4b14056410084e
   AppsFlyer-SDK: 34670f7a518e82cfba54dc8ad7738bacf4117b9c
   Apptimize: 5ec482ca36dbec7bd5017f546509136229aa1822
   Bugsnag: 5861d8519d30063abe7b3fcdcf4114a6dddab27a
@@ -65,6 +76,7 @@ SPEC CHECKSUMS:
   CrittercismSDK: b22f9541803c2babb1c8996862b097dc47ec7105
   Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
   FlurrySDK: 820acaa95f7ec08797517720714783928d3e386b
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
   GoogleIDFASupport: 0dd25ffdd152fd8e3deefd72978b42ef818ef0fa
   Kahuna: 06c3dea6aee22f5ae9c3eb6a6b9ae703cd5dd5cb
@@ -76,6 +88,7 @@ SPEC CHECKSUMS:
   OCMockito: 4981140c9a9ec06c31af40f636e3c0f25f27e6b2
   Optimizely-iOS-SDK: 6c247b8eb907d9de290ff6ee37fb0c157a7f3444
   Quantcast-Measure: de15122f2b48380afe42443d132f40f382df8ae7
+  sqlite3: 73d6ec33f24f74ceb91df8f1b6e1809251f0f580
   Taplytics: 0f2b355cd545d25a69888816bf9ce4d4eb61176f
   Tapstream: e07f84d53c17a8a2ab53f81d2372299e786617aa
   TRVSDictionaryWithCaseInsensitivity: 51d2ccf52c6d645d27b63467a98fa02c556e01b0
