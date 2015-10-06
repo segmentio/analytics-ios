@@ -1,4 +1,15 @@
 
+2.0.13 / 2015-10-06
+===================
+
+  * mixpanel: updaate to 2.8.3
+  * Merge pull request #439 from amplitude/update-amplitude-3.0.1
+  * updating Amplitude SDK to v3.0.1
+  * Merge pull request #437 from segmentio/update-tools
+  * Merge pull request #434 from segmentio/mp-update
+  * update cocoapods and xcode for CI
+  * Support not setting traits on Mixpanel
+
 2.0.12 / 2015-09-22
 ===================
 
