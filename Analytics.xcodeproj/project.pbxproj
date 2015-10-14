@@ -221,6 +221,7 @@
 		6E165A1A1B54771A002C1C40 /* GAITrackedViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A101B54771A002C1C40 /* GAITrackedViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E165A1B1B54771A002C1C40 /* GAITracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E165A111B54771A002C1C40 /* GAITracker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E16FFF81B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E16FFF71B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m */; };
+		6E2764B81BCF185A00F05C68 /* TaplyticsVar.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2764B71BCF185A00F05C68 /* TaplyticsVar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E2AFA3E1B55850C00C8A14E /* MOEHelperConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA3C1B55850C00C8A14E /* MOEHelperConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E2AFA3F1B55850C00C8A14E /* MoEngage.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA3D1B55850C00C8A14E /* MoEngage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E2AFA421B55852400C8A14E /* MOInbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E2AFA401B55852400C8A14E /* MOInbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -530,6 +531,7 @@
 		6E165A101B54771A002C1C40 /* GAITrackedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = Pods/GoogleAnalytics/Headers/Public/GAITrackedViewController.h; sourceTree = "<group>"; };
 		6E165A111B54771A002C1C40 /* GAITracker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = Pods/GoogleAnalytics/Headers/Public/GAITracker.h; sourceTree = "<group>"; };
 		6E16FFF71B33AD3400B4F7FE /* SEGFlurryIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGFlurryIntegrationTests.m; sourceTree = "<group>"; };
+		6E2764B71BCF185A00F05C68 /* TaplyticsVar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TaplyticsVar.h; path = Pods/Taplytics/Taplytics.framework/Headers/TaplyticsVar.h; sourceTree = "<group>"; };
 		6E2AFA3C1B55850C00C8A14E /* MOEHelperConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MOEHelperConstants.h; path = "Pods/MoEngage-iOS-SDK/Headers/MOEHelperConstants.h"; sourceTree = "<group>"; };
 		6E2AFA3D1B55850C00C8A14E /* MoEngage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MoEngage.h; path = "Pods/MoEngage-iOS-SDK/Headers/MoEngage.h"; sourceTree = "<group>"; };
 		6E2AFA401B55852400C8A14E /* MOInbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MOInbox.h; path = "Pods/MoEngage-iOS-SDK/Headers/MOInbox.h"; sourceTree = "<group>"; };
@@ -1127,6 +1129,7 @@
 				AE0D59141BCF0FD600F70600 /* Localytics.h */,
 				6E830F9C1BCF136F00AFDCA1 /* AMPDatabaseHelper.h */,
 				6E830F9E1BCF137700AFDCA1 /* AMPUtils.h */,
+				6E2764B71BCF185A00F05C68 /* TaplyticsVar.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -1373,6 +1376,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E2764B81BCF185A00F05C68 /* TaplyticsVar.h in Headers */,
 				AE0D59161BCF102B00F70600 /* Localytics.h in Headers */,
 				6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */,
 				6E830F9D1BCF136F00AFDCA1 /* AMPDatabaseHelper.h in Headers */,
