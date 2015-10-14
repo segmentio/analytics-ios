@@ -194,7 +194,6 @@
 		32AD187A19AFCA100047D5F0 /* MPWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AD185019AFCA100047D5F0 /* MPWebSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32AD187B19AFCA100047D5F0 /* NSInvocation+MPHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AD185319AFCA100047D5F0 /* NSInvocation+MPHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32AD187C19AFCA100047D5F0 /* _MPTweakBindObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AD185819AFCA100047D5F0 /* _MPTweakBindObserver.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32C2690E1BB210CE00CE0D78 /* Localytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 32C2690D1BB210CE00CE0D78 /* Localytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CCD99C1919A4F4007B63BA /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CCD99B1919A4F4007B63BA /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CEE41E19F5B6DB007758F2 /* TaplyticsOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CEE41D19F5B6DB007758F2 /* TaplyticsOptions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32CFF3CE19AE5BCF00193D3D /* SEGAppsFlyerIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CFF3CC19AE5BCF00193D3D /* SEGAppsFlyerIntegration.h */; };
@@ -253,6 +252,7 @@
 		79D247EB1B4AF3C9002D8F90 /* SEGUXCamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D247E91B4AF3C9002D8F90 /* SEGUXCamIntegration.m */; };
 		79D247F31B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D247F21B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m */; };
 		79D247F41B4B00CC002D8F90 /* SEGUXCamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D247E91B4AF3C9002D8F90 /* SEGUXCamIntegration.m */; };
+		AE0D59161BCF102B00F70600 /* Localytics.h in Headers */ = {isa = PBXBuildFile; fileRef = AE0D59141BCF0FD600F70600 /* Localytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCEC185BFAA1007CB22F /* MPSurvey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF0185BFF49007CB22F /* CRFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -501,7 +501,6 @@
 		32AD185519AFCA100047D5F0 /* UIImage+MPAverageColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPAverageColor.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPAverageColor.h"; sourceTree = "<group>"; };
 		32AD185619AFCA100047D5F0 /* UIImage+MPImageEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "UIImage+MPImageEffects.h"; path = "Pods/Mixpanel/Mixpanel/UIImage+MPImageEffects.h"; sourceTree = "<group>"; };
 		32AD185819AFCA100047D5F0 /* _MPTweakBindObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = _MPTweakBindObserver.h; path = Pods/Mixpanel/Mixpanel/_MPTweakBindObserver.h; sourceTree = "<group>"; };
-		32C2690D1BB210CE00CE0D78 /* Localytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Localytics.h; path = "Pods/Localytics/Localytics-iOS-3.5.0/Localytics.h"; sourceTree = "<group>"; };
 		32CC25E119072C6B0090DD06 /* libPods-AnalyticsTests.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-AnalyticsTests.a"; path = "Pods/build/Debug-iphoneos/libPods-AnalyticsTests.a"; sourceTree = "<group>"; };
 		32CCD99B1919A4F4007B63BA /* Analytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		32CEE41C19F5B6DB007758F2 /* Taplytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Taplytics.h; path = Pods/Taplytics/Taplytics.framework/Headers/Taplytics.h; sourceTree = "<group>"; };
@@ -562,6 +561,7 @@
 		7E94C0EE18932A5B004BD132 /* KWBlockMatchEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KWBlockMatchEvaluator.h; sourceTree = "<group>"; };
 		7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockMatchEvaluator.m; sourceTree = "<group>"; };
 		7F4FA16EBDB55C5FC1C286A4 /* Pods-iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Tests/Pods-iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
+		AE0D59141BCF0FD600F70600 /* Localytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Localytics.h; path = "Pods/Localytics/Localytics-iOS-3.5.1/Localytics.h"; sourceTree = "<group>"; };
 		CF9D8D528CEEAAA3F9A1B394 /* Pods-Analytics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Analytics/Pods-Analytics.debug.xcconfig"; sourceTree = "<group>"; };
 		D309DBF218A2BD2900BA9F31 /* libFlurry_4.3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.1.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.1.a; sourceTree = "<group>"; };
 		D31C8F7D18A2D83700DA22A6 /* MPNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPNotification.h; path = Pods/Mixpanel/Mixpanel/MPNotification.h; sourceTree = "<group>"; };
@@ -920,7 +920,6 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				32C2690D1BB210CE00CE0D78 /* Localytics.h */,
 				322E795E1BAA2C70007E11FD /* UXCam.h */,
 				6E2AFA401B55852400C8A14E /* MOInbox.h */,
 				6E2AFA411B55852400C8A14E /* MOInboxViewController.h */,
@@ -1131,6 +1130,7 @@
 				DA7B09BE1AF18ED100A65698 /* Apptimize+Segment.h */,
 				DA7B09BF1AF18ED100A65698 /* Apptimize+Variables.h */,
 				DA7B09C01AF18ED100A65698 /* Apptimize+VariablesInternal.h */,
+				AE0D59141BCF0FD600F70600 /* Localytics.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -1377,9 +1377,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE0D59161BCF102B00F70600 /* Localytics.h in Headers */,
 				6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */,
 				79D247EA1B4AF3C9002D8F90 /* SEGUXCamIntegration.h in Headers */,
-				32C2690E1BB210CE00CE0D78 /* Localytics.h in Headers */,
 				6EB809561AFC136D00959050 /* AMPURLConnection.h in Headers */,
 				DA7B09C11AF18ED100A65698 /* Apptimize.h in Headers */,
 				DA7B09C21AF18ED100A65698 /* Apptimize+Compatibility.h in Headers */,

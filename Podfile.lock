@@ -14,7 +14,7 @@ PODS:
   - GoogleAnalytics (3.13.0)
   - GoogleIDFASupport (3.12.0)
   - Kahuna (2.0.3)
-  - Localytics (3.5.0)
+  - Localytics (3.5.1)
   - Mixpanel (2.8.3):
     - Mixpanel/Mixpanel (= 2.8.3)
   - Mixpanel/Mixpanel (2.8.3)
@@ -44,7 +44,7 @@ DEPENDENCIES:
   - GoogleAnalytics (= 3.13.0)
   - GoogleIDFASupport (= 3.12.0)
   - Kahuna (= 2.0.3)
-  - Localytics (= 3.5.0)
+  - Localytics (= 3.5.1)
   - Mixpanel (= 2.8.3)
   - MoEngage-iOS-SDK (= 1.4.3)
   - OCMock (~> 3.1.2)
@@ -68,7 +68,7 @@ SPEC CHECKSUMS:
   GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
   GoogleIDFASupport: 0dd25ffdd152fd8e3deefd72978b42ef818ef0fa
   Kahuna: 06c3dea6aee22f5ae9c3eb6a6b9ae703cd5dd5cb
-  Localytics: 856c2183047b3d9d7c4c0bbbbe95cc3fe110fe77
+  Localytics: da06c00606839b53978ca093adbca1d8afdeeb3e
   Mixpanel: fd52e097ae0d27295d0595b2261c60b94d191fda
   MoEngage-iOS-SDK: 81be7a433349a7d535c905a08629359eeefe0952
   OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
