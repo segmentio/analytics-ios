@@ -1,6 +1,4 @@
-# analytics-ios 
-
-[![Circle CI](https://img.shields.io/circleci/project/BrightFlair/PHP.Gt.svg?style=flat-square)](https://circleci.com/gh/segmentio/analytics-ios)
+# analytics-ios
 
 analytics-ios is an iOS client for [Segment](https://segment.com)
 
