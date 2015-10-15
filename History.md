@@ -1,4 +1,13 @@
 
+2.0.14 / 2015-10-14
+===================
+
+  * Update Taplytics
+  * Update Apptimize
+  * updating Amplitude SDK to v3.1.1
+  * bumping localytics to 3.5.1
+  * use metricString instead of dimensionString
+
 2.0.13 / 2015-10-06
 ===================
 
