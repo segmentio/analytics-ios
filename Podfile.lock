@@ -9,9 +9,7 @@ PODS:
   - Countly (15.06.01)
   - CrittercismSDK (5.2.0)
   - Expecta (1.0.0)
-  - FlurrySDK (6.5.0):
-    - FlurrySDK/FlurrySDK (= 6.5.0)
-  - FlurrySDK/FlurrySDK (6.5.0)
+  - Flurry-iOS-SDK/FlurrySDK (7.1.0)
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
@@ -44,7 +42,7 @@ DEPENDENCIES:
   - Countly (= 15.06.01)
   - CrittercismSDK (= 5.2.0)
   - Expecta (~> 1.0.0)
-  - FlurrySDK (= 6.5.0)
+  - Flurry-iOS-SDK/FlurrySDK (= 7.1.0)
   - GoogleAnalytics (= 3.13.0)
   - GoogleIDFASupport (= 3.12.0)
   - Kahuna (= 2.0.3)
@@ -68,7 +66,7 @@ SPEC CHECKSUMS:
   Countly: 2151c5286995b84972ba4a92c3fba6b5fafce6bb
   CrittercismSDK: b22f9541803c2babb1c8996862b097dc47ec7105
   Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
-  FlurrySDK: 820acaa95f7ec08797517720714783928d3e386b
+  Flurry-iOS-SDK: 7b3fe6c3344c82b73c4c84163652eada84fbfcf4
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
   GoogleIDFASupport: 0dd25ffdd152fd8e3deefd72978b42ef818ef0fa
