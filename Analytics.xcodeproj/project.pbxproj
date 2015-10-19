@@ -241,6 +241,7 @@
 		6E85F3741B2F792100763913 /* TSPlatformImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 324A42C31992C8FA0060013A /* TSPlatformImpl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E85F3901B2F922F00763913 /* CountlyDB.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85F38F1B2F922F00763913 /* CountlyDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E85F3941B2F980B00763913 /* MPLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E85F3931B2F980B00763913 /* MPLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E8B4E6C1BD5B4F90030E75F /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E8B4E6B1BD5B4F90030E75F /* Flurry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E8F058C1B42321800305E99 /* SEGOptimizelyIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E8F058B1B42321800305E99 /* SEGOptimizelyIntegrationTests.m */; };
 		6E92C1E71B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E92C1E61B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m */; };
 		6EB2963E1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB2963D1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m */; };
@@ -544,6 +545,7 @@
 		6E830F9E1BCF137700AFDCA1 /* AMPUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMPUtils.h; path = "Pods/Amplitude-iOS/Amplitude/AMPUtils.h"; sourceTree = "<group>"; };
 		6E85F38F1B2F922F00763913 /* CountlyDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CountlyDB.h; path = Pods/Countly/CountlyDB.h; sourceTree = "<group>"; };
 		6E85F3931B2F980B00763913 /* MPLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPLogger.h; path = Pods/Mixpanel/Mixpanel/MPLogger.h; sourceTree = "<group>"; };
+		6E8B4E6B1BD5B4F90030E75F /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = "Pods/Flurry-iOS-SDK/Flurry/Flurry.h"; sourceTree = "<group>"; };
 		6E8F058B1B42321800305E99 /* SEGOptimizelyIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGOptimizelyIntegrationTests.m; path = Integrations/Optimizely/SEGOptimizelyIntegrationTests.m; sourceTree = "<group>"; };
 		6E92C1E61B3DD5260049B5A8 /* SEGLocalyticsIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGLocalyticsIntegrationTests.m; path = Integrations/Localytics/SEGLocalyticsIntegrationTests.m; sourceTree = "<group>"; };
 		6EB2963D1B4C3B2F00805337 /* SEGTapstreamIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGTapstreamIntegrationTests.m; path = Integrations/Tapstream/SEGTapstreamIntegrationTests.m; sourceTree = "<group>"; };
@@ -1125,6 +1127,7 @@
 				DA7B09C01AF18ED100A65698 /* Apptimize+VariablesInternal.h */,
 				AE0D59141BCF0FD600F70600 /* Localytics.h */,
 				6E830F9C1BCF136F00AFDCA1 /* AMPDatabaseHelper.h */,
+				6E8B4E6B1BD5B4F90030E75F /* Flurry.h */,
 				6E830F9E1BCF137700AFDCA1 /* AMPUtils.h */,
 				6E2764B71BCF185A00F05C68 /* TaplyticsVar.h */,
 			);
@@ -1554,6 +1557,7 @@
 				3254FBD81999D4370043AF15 /* Countly.h in Headers */,
 				D331BD321860F5F0007CB22F /* TSHelpers.h in Headers */,
 				3252EA7A1999D6390056C32A /* QuantcastDataManager.h in Headers */,
+				6E8B4E6C1BD5B4F90030E75F /* Flurry.h in Headers */,
 				3252EA7B1999D6390056C32A /* QuantcastDatabase.h in Headers */,
 				6E5EF3D51B10063E001A4BA4 /* OptimizelyExperimentData.h in Headers */,
 				3252EA7C1999D6390056C32A /* QuantcastEvent.h in Headers */,
