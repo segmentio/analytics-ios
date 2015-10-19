@@ -275,7 +275,6 @@
 		D331BD371860F5F0007CB22F /* TSResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD291860F5F0007CB22F /* TSResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BD381860F5F0007CB22F /* TSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BD2A1860F5F0007CB22F /* TSUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F32E185942BB0053337D /* Crittercism.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F32D185942BB0053337D /* Crittercism.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D371F330185942C90053337D /* Flurry.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F32F185942C90053337D /* Flurry.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D371F334185943170053337D /* Mixpanel.h in Headers */ = {isa = PBXBuildFile; fileRef = D371F333185943170053337D /* Mixpanel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3EDB65618C315F100A88A7E /* SEGAmplitudeIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = D3EDB63918C315F100A88A7E /* SEGAmplitudeIntegration.h */; };
 		D3EDB65718C315F100A88A7E /* SEGAmplitudeIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EDB63A18C315F100A88A7E /* SEGAmplitudeIntegration.m */; };
@@ -590,7 +589,6 @@
 		D369201C181604CD009F24C0 /* libFlurry_4.2.4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.2.4.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.2.4.a; sourceTree = "<group>"; };
 		D36ABA63182F09F3001EB84B /* admsAppLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = admsAppLibrary.a; path = Pods/Omniture/admsAppLibrary.a; sourceTree = "<group>"; };
 		D371F32D185942BB0053337D /* Crittercism.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Crittercism.h; path = Pods/CrittercismSDK/CrittercismSDK/Crittercism.h; sourceTree = "<group>"; };
-		D371F32F185942C90053337D /* Flurry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Pods/FlurrySDK/Flurry/Flurry.h; sourceTree = "<group>"; };
 		D371F333185943170053337D /* Mixpanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Mixpanel.h; path = Pods/Mixpanel/Mixpanel/Mixpanel.h; sourceTree = "<group>"; };
 		D37F756C189237360037E851 /* libCrittercism_v4_3_1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCrittercism_v4_3_1.a; path = Pods/CrittercismSDK/CrittercismSDK/libCrittercism_v4_3_1.a; sourceTree = "<group>"; };
 		D37F756E189237430037E851 /* libFlurry_4.3.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.0.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.0.a; sourceTree = "<group>"; };
@@ -1063,7 +1061,6 @@
 				D331BCF0185BFF49007CB22F /* CRFilter.h */,
 				D371F32D185942BB0053337D /* Crittercism.h */,
 				D331BCF1185BFF49007CB22F /* CrittercismDelegate.h */,
-				D371F32F185942C90053337D /* Flurry.h */,
 				3252EA951999D7040056C32A /* Mixpanel.h */,
 				3252EA8F1999D7040056C32A /* MPNotification.h */,
 				3252EA6A1999D5FD0056C32A /* MPNotificationViewController.h */,
@@ -1431,7 +1428,6 @@
 				6E2AFA421B55852400C8A14E /* MOInbox.h in Headers */,
 				6E2AFA431B55852400C8A14E /* MOInboxViewController.h in Headers */,
 				D3EDB65818C315F100A88A7E /* SEGBugsnagIntegration.h in Headers */,
-				D371F330185942C90053337D /* Flurry.h in Headers */,
 				6E2AFA3E1B55850C00C8A14E /* MOEHelperConstants.h in Headers */,
 				6E2AFA3F1B55850C00C8A14E /* MoEngage.h in Headers */,
 				D3EDB65E18C315F100A88A7E /* SEGFlurryIntegration.h in Headers */,

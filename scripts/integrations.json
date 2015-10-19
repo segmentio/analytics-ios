@@ -45,8 +45,8 @@
     {
       "name": "Flurry",
       "dependencies": [{
-        "name": "FlurrySDK",
-        "version": "6.5.0"
+        "name": "Flurry-iOS-SDK/FlurrySDK",
+        "version": "7.1.0"
       }]
     },
     {
