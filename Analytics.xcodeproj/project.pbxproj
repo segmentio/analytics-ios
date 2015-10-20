@@ -252,6 +252,7 @@
 		6EF665321B5860D400DC7EA1 /* SEGAppsFlyerIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EF665311B5860D400DC7EA1 /* SEGAppsFlyerIntegrationTests.m */; };
 		6EFAD9AE1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFAD9AD1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m */; };
 		6EFF0CE51B3B63FB005190A2 /* SEGCountlyIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFF0CE41B3B63FB005190A2 /* SEGCountlyIntegrationTests.m */; };
+		6EFFFF1B1BD7FD6500C5068E /* AMPIdentify.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EFFFF1A1BD7FD6500C5068E /* AMPIdentify.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79D247EA1B4AF3C9002D8F90 /* SEGUXCamIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 79D247E81B4AF3C9002D8F90 /* SEGUXCamIntegration.h */; };
 		79D247EB1B4AF3C9002D8F90 /* SEGUXCamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D247E91B4AF3C9002D8F90 /* SEGUXCamIntegration.m */; };
 		79D247F31B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D247F21B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m */; };
@@ -556,6 +557,7 @@
 		6EF665311B5860D400DC7EA1 /* SEGAppsFlyerIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGAppsFlyerIntegrationTests.m; path = AppsFlyer/SEGAppsFlyerIntegrationTests.m; sourceTree = "<group>"; };
 		6EFAD9AD1B41A97C000664C1 /* SEGTaplyticsIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGTaplyticsIntegrationTests.m; path = Integrations/Taplytics/SEGTaplyticsIntegrationTests.m; sourceTree = "<group>"; };
 		6EFF0CE41B3B63FB005190A2 /* SEGCountlyIntegrationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGCountlyIntegrationTests.m; path = Integrations/Countly/SEGCountlyIntegrationTests.m; sourceTree = "<group>"; };
+		6EFFFF1A1BD7FD6500C5068E /* AMPIdentify.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AMPIdentify.h; path = "Pods/Amplitude-iOS/Amplitude/AMPIdentify.h"; sourceTree = "<group>"; };
 		70B38155D048462482A91850 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		79D247E81B4AF3C9002D8F90 /* SEGUXCamIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEGUXCamIntegration.h; path = UXCam/SEGUXCamIntegration.h; sourceTree = "<group>"; };
 		79D247E91B4AF3C9002D8F90 /* SEGUXCamIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEGUXCamIntegration.m; path = UXCam/SEGUXCamIntegration.m; sourceTree = "<group>"; };
@@ -921,6 +923,7 @@
 		D3D35174186242B4005586E7 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				6EFFFF1A1BD7FD6500C5068E /* AMPIdentify.h */,
 				322E795E1BAA2C70007E11FD /* UXCam.h */,
 				6E2AFA401B55852400C8A14E /* MOInbox.h */,
 				6E2AFA411B55852400C8A14E /* MOInboxViewController.h */,
@@ -1376,6 +1379,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EFFFF1B1BD7FD6500C5068E /* AMPIdentify.h in Headers */,
 				6E2764B81BCF185A00F05C68 /* TaplyticsVar.h in Headers */,
 				AE0D59161BCF102B00F70600 /* Localytics.h in Headers */,
 				6EB809541AFC135E00959050 /* Amplitude+SSLPinning.h in Headers */,

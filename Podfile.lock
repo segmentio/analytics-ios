@@ -1,5 +1,5 @@
 PODS:
-  - Amplitude-iOS (3.1.1):
+  - Amplitude-iOS (3.2.0):
     - FMDB/standard (~> 2.5)
   - AppsFlyer-SDK (2.5.3.15.1)
   - Apptimize (2.14.2)
@@ -35,7 +35,7 @@ PODS:
   - UXCam (2.3.2)
 
 DEPENDENCIES:
-  - Amplitude-iOS (= 3.1.1)
+  - Amplitude-iOS (= 3.2.0)
   - AppsFlyer-SDK (= 2.5.3.15.1)
   - Apptimize (= 2.14.2)
   - Bugsnag (= 4.0.7)
@@ -59,7 +59,7 @@ DEPENDENCIES:
   - UXCam (= 2.3.2)
 
 SPEC CHECKSUMS:
-  Amplitude-iOS: baba94b99a0166d5b874b46e5ef723f48b804bdd
+  Amplitude-iOS: 6f82e97de436fd145ae9a205933b350fcdfbcddc
   AppsFlyer-SDK: 34670f7a518e82cfba54dc8ad7738bacf4117b9c
   Apptimize: f187322af7163fe27dd3b3520d94d445680bec45
   Bugsnag: 5861d8519d30063abe7b3fcdcf4114a6dddab27a
