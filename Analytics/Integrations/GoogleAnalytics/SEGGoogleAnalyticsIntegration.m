@@ -56,15 +56,15 @@
     NSString *reportUncaughtExceptions = [self.settings objectForKey:@"reportUncaughtExceptions"];
     if ([reportUncaughtExceptions boolValue]) {
         [GAI sharedInstance].trackUncaughtExceptions = YES;
+        SEGLog(@"[[GAI sharedInstance] defaultTracker] trackUncaughtExceptions = YES;");
     }
 
     // Optionally turn on GA remarketing features
     NSString *demographicReports = [self.settings objectForKey:@"doubleClick"];
     if ([demographicReports boolValue]) {
         [self.tracker setAllowIDFACollection:YES];
+        SEGLog(@"[[[GAI sharedInstance] defaultTracker] setAllowIDFACollection:YES];");
     }
-
-    // TODO: add support for sample rate
 
     // All done!
     SEGLog(@"GoogleAnalyticsIntegration initialized.");
@@ -91,12 +91,14 @@
 
     if ([self shouldSendUserId]) {
         [self.tracker set:@"&uid" value:userId];
+        SEGLog(@"[[[GAI sharedInstance] defaultTracker] set:&uid value:%@];", userId);
     }
 
     self.traits = traits;
 
     [self.traits enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-      [self.tracker set:key value:obj];
+        [self.tracker set:key value:obj];
+        SEGLog(@"[[[GAI sharedInstance] defaultTracker] set:%@ value:%@];", key, obj);
     }];
 
     [self setCustomDimensionsAndMetricsOnDefaultTracker:traits];
@@ -124,23 +126,25 @@
         value = valueFallback;
     }
 
-    SEGLog(@"Sending to Google Analytics: category %@, action %@, label %@, value %@", category, event, label, value);
-
-    GAIDictionaryBuilder *hit =
+    GAIDictionaryBuilder *hitBuilder =
         [GAIDictionaryBuilder createEventWithCategory:category
                                                action:event
                                                 label:label
                                                 value:value];
-
-    // Track the event!
-    [self.tracker send:[self setCustomDimensionsAndMetrics:properties onHit:hit]];
+    NSDictionary *hit =[self setCustomDimensionsAndMetrics:properties onHit:hitBuilder];
+    [self.tracker send:hit];
+    SEGLog(@"[[[GAI sharedInstance] defaultTracker] send:%@];", hit);
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     [self.tracker set:kGAIScreenName value:screenTitle];
-    GAIDictionaryBuilder *view = [GAIDictionaryBuilder createScreenView];
-    [self.tracker send:[self setCustomDimensionsAndMetrics:properties onHit:view]];
+    SEGLog(@"[[[GAI sharedInstance] defaultTracker] set:%@ value:%@];", kGAIScreenName, screenTitle);
+
+    GAIDictionaryBuilder *hitBuilder = [GAIDictionaryBuilder createScreenView];
+    NSDictionary *hit =[self setCustomDimensionsAndMetrics:properties onHit:hitBuilder];
+    [self.tracker send:hit];
+    SEGLog(@"[[[GAI sharedInstance] defaultTracker] send:%@];", hit);
 }
 
 #pragma mark - Ecommerce
@@ -150,24 +154,24 @@
     NSString *orderId = properties[@"orderId"];
     NSString *currency = properties[@"currency"] ?: @"USD";
 
-    SEGLog(@"Tracking completed order to Google Analytics with properties: %@", properties);
+    NSDictionary *transaction = [[GAIDictionaryBuilder createTransactionWithId:orderId
+                                       affiliation:properties[@"affiliation"]
+                                           revenue:[self.class extractRevenue:properties]
+                                               tax:properties[@"tax"]
+                                          shipping:properties[@"shipping"]
+                                                                  currencyCode:currency] build];
+    [self.tracker send:transaction];
+    SEGLog(@"[[[GAI sharedInstance] defaultTracker] send:%@];", transaction);
 
-    [self.tracker
-        send:[[GAIDictionaryBuilder createTransactionWithId:orderId
-                                                affiliation:properties[@"affiliation"]
-                                                    revenue:[self.class extractRevenue:properties]
-                                                        tax:properties[@"tax"]
-                                                   shipping:properties[@"shipping"]
-                                               currencyCode:currency] build]];
-
-    [self.tracker
-        send:[[GAIDictionaryBuilder createItemWithTransactionId:orderId
-                                                           name:properties[@"name"]
-                                                            sku:properties[@"sku"]
-                                                       category:properties[@"category"]
-                                                          price:properties[@"price"]
-                                                       quantity:properties[@"quantity"]
-                                                   currencyCode:currency] build]];
+    NSDictionary *item = [[GAIDictionaryBuilder createItemWithTransactionId:orderId
+                                                                       name:properties[@"name"]
+                                                                        sku:properties[@"sku"]
+                                                                   category:properties[@"category"]
+                                                                      price:properties[@"price"]
+                                                                   quantity:properties[@"quantity"]
+                                                               currencyCode:currency] build];
+    [self.tracker send:item];
+    SEGLog(@"[[[GAI sharedInstance] defaultTracker] send:%@];", item);
 }
 
 - (void)reset
@@ -175,6 +179,7 @@
     [super reset];
 
     [self.tracker set:@"&uid" value:nil];
+    SEGLog(@"[[[GAI sharedInstance] defaultTracker] set:&uid value:nil];");
 
     [self resetTraits];
 }
@@ -216,7 +221,7 @@
 }
 
 // e.g. extractNumber("dimension3", 8) returns 3
-// e.g. extractNumber("dimension9", 8) returns 9
+// e.g. extractNumber("metric9", 5) returns 9
 - (int)extractNumber:(NSString *)text from:(NSUInteger)start
 {
     if (text == nil || [text length] == 0) {
@@ -258,7 +263,8 @@
 - (void)resetTraits
 {
     [self.traits enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-      [self.tracker set:key value:nil];
+        [self.tracker set:key value:nil];
+        SEGLog(@"[[[GAI sharedInstance] defaultTracker] set:%@ value:nil];", key);
     }];
     self.traits = nil;
 }
