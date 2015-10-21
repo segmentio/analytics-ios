@@ -1,4 +1,11 @@
 
+2.0.15 / 2015-10-21
+===================
+
+  * Add Verbose logs for GA integration
+  * Update Amplitude SDK to v3.2.0
+  * Update Flurry integration
+
 2.0.14 / 2015-10-14
 ===================
 
