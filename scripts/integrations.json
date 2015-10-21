@@ -91,7 +91,7 @@
       "name": "Optimizely",
       "dependencies": [{
         "name": "Optimizely-iOS-SDK",
-        "version": "1.0.86"
+        "version": "1.2.2"
       }]
     },
     {

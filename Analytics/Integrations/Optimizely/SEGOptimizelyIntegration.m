@@ -59,6 +59,11 @@ NSString *SEGMixpanelClass = @"Mixpanel";
     [self.optimizelyClass trackEvent:event];
 }
 
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
+{
+    [[self.optimizelyClass sharedInstance] setUserId:userId];
+}
+
 #pragma mark - Private
 
 + (NSString *)identifier
