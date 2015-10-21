@@ -57,11 +57,13 @@ NSString *SEGMixpanelClass = @"Mixpanel";
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     [self.optimizelyClass trackEvent:event];
+    SEGLog(@"[Optimizely trackEvent:%@];", event);
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     [[self.optimizelyClass sharedInstance] setUserId:userId];
+    SEGLog(@"[Optimizely sharedInstance].userId = %@;", userId);
 }
 
 #pragma mark - Private
@@ -74,9 +76,8 @@ NSString *SEGMixpanelClass = @"Mixpanel";
 - (void)activateMixpanel
 {
     if (NSClassFromString(SEGMixpanelClass) && self.needsToActivateMixpanel) {
-        SEGLog(@"Activating Optimizely's Mixpanel integration.");
-
         [self.optimizelyClass activateMixpanelIntegration];
+        SEGLog(@"[Optimizely activateMixpanelIntegration];");
         self.needsToActivateMixpanel = NO;
     }
 }
