@@ -25,7 +25,7 @@ PODS:
   - OCMock (3.1.2)
   - OCMockito (1.4.0):
     - OCHamcrest (~> 4.0)
-  - Optimizely-iOS-SDK (1.0.86)
+  - Optimizely-iOS-SDK (1.2.2)
   - Quantcast-Measure (1.4.7):
     - Quantcast-Measure/Core (= 1.4.7)
   - Quantcast-Measure/Core (1.4.7)
@@ -51,7 +51,7 @@ DEPENDENCIES:
   - MoEngage-iOS-SDK (= 1.4.3)
   - OCMock (~> 3.1.2)
   - OCMockito (~> 1.4.0)
-  - Optimizely-iOS-SDK (= 1.0.86)
+  - Optimizely-iOS-SDK (= 1.2.2)
   - Quantcast-Measure (= 1.4.7)
   - Taplytics (= 2.7.8)
   - Tapstream (= 2.9.0)
@@ -77,7 +77,7 @@ SPEC CHECKSUMS:
   OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
   OCMock: a10ea9f0a6e921651f96f78b6faee95ebc813b92
   OCMockito: 4981140c9a9ec06c31af40f636e3c0f25f27e6b2
-  Optimizely-iOS-SDK: 6c247b8eb907d9de290ff6ee37fb0c157a7f3444
+  Optimizely-iOS-SDK: b6f231f0fc6259b732f10bce02bb667805c2f615
   Quantcast-Measure: de15122f2b48380afe42443d132f40f382df8ae7
   Taplytics: 0204c258a9a20e2607e3797142a9cb6f00bc210b
   Tapstream: e07f84d53c17a8a2ab53f81d2372299e786617aa

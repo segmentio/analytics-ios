@@ -21,6 +21,7 @@
 
 @property SEGOptimizelyIntegration *integration;
 @property Class optimizelyClassMock;
+@property Optimizely *optimizelyMock;
 
 @end
 
@@ -31,8 +32,9 @@
 {
     [super setUp];
 
-
+    _optimizelyMock = mock([Optimizely class]);
     _optimizelyClassMock = mockClass([Optimizely class]);
+    [given([_optimizelyClassMock sharedInstance]) willReturn:_optimizelyMock];
 
     _integration = [[SEGOptimizelyIntegration alloc] init];
     [_integration setOptimizelyClass:_optimizelyClassMock];
@@ -43,6 +45,14 @@
     [_integration track:@"foo" properties:nil options:nil];
 
     [verifyCount(_optimizelyClassMock, times(1)) trackEvent:@"foo"];
+}
+
+- (void)testIdentify
+{
+    [_integration identify:@"foo" traits:nil options:nil];
+
+    [verifyCount(_optimizelyClassMock, times(1)) sharedInstance];
+    [verifyCount(_optimizelyMock, times(1)) setUserId:@"foo"];
 }
 
 - (void)testStart
