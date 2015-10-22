@@ -3,7 +3,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SEGAnalyticsIntegration.h"
-#import <TSTapstream.h>
+#import <Tapstream/TSTapstream.h>
 
 
 @interface SEGTapstreamIntegration : SEGAnalyticsIntegration
