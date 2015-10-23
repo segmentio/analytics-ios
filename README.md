@@ -13,11 +13,9 @@ Interested in integrating your service with us? Check out our [Partners page](ht
 Quickstart tutorial is available at [https://segment.com/docs/tutorials/quickstart-ios/](https://segment.com/docs/tutorials/quickstart-ios/).
 Reference documentation is available at [https://segment.com/libraries/ios](https://segment.com/libraries/ios).
 
-## Development
+## Contributing
 
-[Documentation for getting starting with hacking on the SDK and adding integrations](https://segmentio.hackpad.com/Engineering-Getting-started-with-the-iOS-SDK-1LQqD1q9SKQ).
-
-We use OCMockito for testing. The simpler verify macro was conflicting from another dependency, so you'll notice we use `verifyCount(..., times(1))` instead.
+See the [contribution guide](https://github.com/segmentio/analytics-ios/blob/master/CONTRIBUTING.md) for more details.
 
 ## License
 
