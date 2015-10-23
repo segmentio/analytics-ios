@@ -3,9 +3,9 @@
 
 #import "SEGKahunaDefines.h"
 #import "SEGKahunaIntegration.h"
-#import "Kahuna.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
+#import <Kahuna/Kahuna.h>
 #import <objc/runtime.h>
 
 #define KAHUNA_NOT_STRING_NULL_EMPTY(obj) (obj != nil && [obj isKindOfClass:[NSString class]] && ![@"" isEqualToString:obj])

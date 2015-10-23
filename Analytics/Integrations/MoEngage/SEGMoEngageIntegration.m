@@ -9,8 +9,8 @@
 #import "SEGMoEngageIntegration.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
-#import "MoEngage.h"
-#import "MOEHelperConstants.h"
+#import <MoEngage-iOS-SDK/MoEngage.h>
+#import <MoEngage-iOS-SDK/MOEHelperConstants.h>
 #import <objc/runtime.h>
 
 // Selectors that we are going to swizzle in this wrapper.

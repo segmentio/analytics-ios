@@ -2,7 +2,7 @@
 // Copyright (c) 2014 Segment.io. All rights reserved.
 
 #import "SEGCountlyIntegration.h"
-#import <Countly.h>
+#import <Countly/Countly.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 
