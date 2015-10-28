@@ -1,4 +1,11 @@
 
+2.0.16 / 2015-10-28
+===================
+
+  * Add verbose logs for Optimizely.
+  * Update Optimizely Integration.
+  * Namespace Tapstream, MoEngage, Crittercism, Countly, AppsFlyer and Kahuna imports.
+
 2.0.15 / 2015-10-21
 ===================
 
