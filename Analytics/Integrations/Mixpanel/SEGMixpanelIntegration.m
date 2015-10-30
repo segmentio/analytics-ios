@@ -56,6 +56,7 @@
 
     // Initialize the Mixpanel SDK.
     [self.mixpanelClass sharedInstanceWithToken:token];
+    SEGLog(@"[Mixpanel sharedInstanceWithToken:%@]", token);
 
     // Call the super implementation, which will notify observers that Mixpanel has been initialized.
     [super start];
@@ -68,6 +69,7 @@
     // Ensure that the userID is set and valid (i.e. a non-empty string).
     if (userId != nil && [userId length] != 0) {
         [[self.mixpanelClass sharedInstance] identify:userId];
+        SEGLog(@"[[Mixpanel sharedInstance] identify:%@]", userId);
     }
 
     // Map the traits to special mixpanel properties.
@@ -86,12 +88,14 @@
 
         // Register the mapped traits.
         [[self.mixpanelClass sharedInstance] registerSuperProperties:mappedTraits];
+        SEGLog(@"[[Mixpanel sharedInstance] registerSuperProperties:%@]", mappedTraits);
 
         // Mixpanel also has a people API that works seperately, so we set the traits for it as well.
         if ([self peopleEnabled]) {
             // You'll notice that we could also have done: [self.mixpanelClass.sharedInstance.people set:mappedTraits];
             // Using methods instead of properties directly lets us mock them in tests, which is why we use the syntax below.
             [[[self.mixpanelClass sharedInstance] people] set:mappedTraits];
+            SEGLog(@"[[[Mixpanel sharedInstance] people] set:%@]", mappedTraits);
         }
 
         return;
@@ -109,6 +113,7 @@
     }
     NSDictionary *mappedSuperProperties = [SEGAnalyticsIntegration map:superPropertyTraits withMap:map];
     [[self.mixpanelClass sharedInstance] registerSuperProperties:mappedSuperProperties];
+    SEGLog(@"[[Mixpanel sharedInstance] registerSuperProperties:%@]", mappedSuperProperties);
 
     if ([self peopleEnabled]) {
         NSArray *peopleProperties = [mixpanelOptions objectForKey:@"peopleProperties"];
@@ -118,6 +123,7 @@
         }
         NSDictionary *mappedPeopleProperties = [SEGAnalyticsIntegration map:peoplePropertyTraits withMap:map];
         [[[self.mixpanelClass sharedInstance] people] set:mappedPeopleProperties];
+        SEGLog(@"[[[Mixpanel sharedInstance] people] set:%@]", mappedSuperProperties);
     }
 }
 
@@ -136,14 +142,19 @@
     // Check if there was a revenue.
     if (revenue) {
         [[[self.mixpanelClass sharedInstance] people] trackCharge:revenue];
+        SEGLog(@"[[[Mixpanel sharedInstance] people] trackCharge:%@]", revenue);
     }
 
     // Mixpanel has the ability keep a running 'count' events. So we check if this is an event
     // that should be incremented (by checking the settings).
     if ([self eventShouldIncrement:event]) {
         [[[self.mixpanelClass sharedInstance] people] increment:event by:@1];
+        SEGLog(@"[[[Mixpanel sharedInstance] people] increment:%@ by:1]", event);
+
         NSString *lastEvent = [NSString stringWithFormat:@"Last %@", event];
-        [[[self.mixpanelClass sharedInstance] people] set:lastEvent to:[NSDate date]];
+        NSDate *lastDate = [NSDate date];
+        [[[self.mixpanelClass sharedInstance] people] set:lastEvent to:lastDate];
+        SEGLog(@"[[[Mixpanel sharedInstance] people] set:%@ to:%@]", lastEvent, lastDate);
     }
 }
 
@@ -166,7 +177,9 @@
 - (void)alias:(NSString *)newId options:(NSDictionary *)options
 {
     // Instead of using our own anonymousId, we use Mixpanel's own generated Id.
-    [[self.mixpanelClass sharedInstance] createAlias:newId forDistinctID:[[self.mixpanelClass sharedInstance] distinctId]];
+    NSString *distinctId = [[self.mixpanelClass sharedInstance] distinctId];
+    [[self.mixpanelClass sharedInstance] createAlias:newId forDistinctID:distinctId];
+    SEGLog(@"[[Mixpanel sharedInstance] createAlias:%@ forDistinctID:%@]", newId, distinctId);
 }
 
 // Invoked when the device is registered with a push token.
@@ -174,6 +187,7 @@
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options
 {
     [[[self.mixpanelClass sharedInstance] people] addPushDeviceToken:deviceToken];
+    SEGLog(@"[[[[Mixpanel sharedInstance] people] addPushDeviceToken:%@]", deviceToken);
 }
 
 // An internal utility method that checks the settings to see if this event should be incremented in Mixpanel.
@@ -212,13 +226,16 @@
 
 - (void)reset
 {
-    [[self.mixpanelClass sharedInstance] flush];
+    [self flush];
+
     [[self.mixpanelClass sharedInstance] reset];
+    SEGLog(@"[[Mixpanel sharedInstance] reset]");
 }
 
 - (void)flush
 {
     [[self.mixpanelClass sharedInstance] flush];
+    SEGLog(@"[[Mixpanel sharedInstance] flush]");
 }
 
 // Mixpanel doesn't implement the group method so we don't implement it!
