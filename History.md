@@ -1,4 +1,11 @@
 
+2.0.17 / 2015-10-30
+===================
+
+  * Add verbose logging in Mixpanel
+  * Better logging messages when sending to integrations
+  * Update Taplytics to 2.7.14
+
 2.0.16 / 2015-10-28
 ===================
 
