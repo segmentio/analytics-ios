@@ -1,0 +1,25 @@
+{
+  "name": "Analytics",
+  "version": "0.1.0",
+  "summary": "A short description of Analytics.",
+  "description": "",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/Analytics",
+  "license": "MIT",
+  "authors": {
+    "Prateek Srivastava": "f2prateek@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/Analytics.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "Analytics": [
+      "Pod/Assets/*.png"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+PODS:
+  - Analytics (0.1.0)
+  - Expecta (1.0.3)
+  - Specta (1.0.4)
+
+DEPENDENCIES:
+  - Analytics (from `../`)
+  - Expecta
+  - Specta
+
+EXTERNAL SOURCES:
+  Analytics:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Analytics: cfee71bd217304d30c92ebdd8221bfcf7573d45a
+  Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
+  Specta: 69bb134672aae190a1379ff91df07dad8dd1f869
+
+COCOAPODS: 0.39.0
