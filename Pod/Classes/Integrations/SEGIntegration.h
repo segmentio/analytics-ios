@@ -1,4 +1,10 @@
 #import <Foundation/Foundation.h>
+#import "SEGIdentifyPayload.h"
+#import "SEGTrackPayload.h"
+#import "SEGScreenPayload.h"
+#import "SEGAliasPayload.h"
+#import "SEGIdentifyPayload.h"
+#import "SEGGroupPayload.h"
 
 @protocol SEGIntegration
 
@@ -8,34 +14,34 @@
 // 2. [[SEGAnalytics sharedInstance] identify:someUserId traits:someTraits];
 // 3. [[SEGAnalytics sharedInstance] identify:someUserId traits:someTraits options:someOptions];
 // @see https://segment.com/docs/spec/identify/
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options;
+- (void)identify:(SEGIdentifyPayload *)payload;
 
 // Track will be called when the user calls either of the following:
 // 1. [[SEGAnalytics sharedInstance] track:someEvent];
 // 2. [[SEGAnalytics sharedInstance] track:someEvent properties:someProperties];
 // 3. [[SEGAnalytics sharedInstance] track:someEvent properties:someProperties options:someOptions];
 // @see https://segment.com/docs/spec/track/
-- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options;
+- (void)track:(SEGTrackPayload *)payload;
 
 // Screen will be called when the user calls either of the following:
 // 1. [[SEGAnalytics sharedInstance] screen:someEvent];
 // 2. [[SEGAnalytics sharedInstance] screen:someEvent properties:someProperties];
 // 3. [[SEGAnalytics sharedInstance] screen:someEvent properties:someProperties options:someOptions];
 // @see https://segment.com/docs/spec/screen/
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options;
+- (void)screen:(SEGScreenPayload *)payload;
 
 // Group will be called when the user calls either of the following:
 // 1. [[SEGAnalytics sharedInstance] group:someGroupId];
 // 2. [[SEGAnalytics sharedInstance] group:someGroupId traits:];
 // 3. [[SEGAnalytics sharedInstance] group:someGroupId traits:someGroupTraits options:someOptions];
 // @see https://segment.com/docs/spec/group/
-- (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options;
+- (void)group:(SEGGroupPayload *)payload;
 
 // Alias will be called when the user calls either of the following:
 // 1. [[SEGAnalytics sharedInstance] alias:someNewId];
 // 2. [[SEGAnalytics sharedInstance] alias:someNewId options:someOptions];
 // @see https://segment.com/docs/spec/alias/
-- (void)alias:(NSString *)newId options:(NSDictionary *)options;
+- (void)alias:(SEGAliasPayload *)payload;
 
 // Reset is invoked when the user logs out, and any data saved about the user should be cleared.
 - (void)reset;
