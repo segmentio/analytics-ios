@@ -1,10 +1,10 @@
 #import "SEGAnalytics.h"
 
+static SEGAnalytics *__sharedInstance = nil;
+
 @interface SEGAnalyticsConfiguration ()
 
-@property (nonatomic, copy, readwrite) NSString *writeKey;
-
-@property (nonatomic, readwrite) NSMutableArray *factories;
+@property (nonatomic, readonly) NSMutableArray *factories;
 
 @end
 
@@ -18,23 +18,45 @@
 - (id)initWithWriteKey:(NSString *)writeKey
 {
     if (self = [self init]) {
-        self.writeKey = writeKey;
+        _writeKey = writeKey;
+        _factories = [NSMutableArray array];
         self.shouldUseLocationServices = NO;
         self.enableAdvertisingTracking = YES;
         self.flushAt = 20;
-        self.factories = [NSMutableArray array];
     }
     return self;
 }
 
 -(void)use:(id<SEGIntegrationFactory>)factory
 {
-    [_factories addObject:factory];
+    [self.factories addObject:factory];
 }
 
 @end
 
+@interface SEGAnalytics ()
+
+@property (nonatomic, assign) NSArray *writeKey;
+
+@property (nonatomic, readwrite) NSMutableArray *factories;
+
+@end
+
 @implementation SEGAnalytics
+
++ (void)setupWithConfiguration:(SEGAnalyticsConfiguration *)configuration
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        __sharedInstance = [[self alloc] initWithConfiguration:configuration];
+    });
+}
+
+- (instancetype)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
+    if (self = [self init]) {
+    }
+    return self;
+}
 
 - (void)identify:(NSString *)userId
 {
@@ -103,7 +125,7 @@
 
 - (void)alias:(NSString *)newId options:(NSDictionary *)options
 {
-    
+    // todo:
 }
 
 @end

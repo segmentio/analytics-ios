@@ -43,18 +43,25 @@
 
 @interface SEGAnalytics : NSObject
 
+/**
+ * Setup the analytics client.
+ *
+ * @param configuration The configuration used to setup the client.
+ */
++ (void)setupWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
+
 /*!
  @method
- 
+
  @abstract
  Associate a user with their unique ID and record traits about them.
- 
+
  @param userId        A database ID (or email address) for this user. If you don't have a userId
  but want to record traits, you should pass nil. For more information on how we
  generate the UUID and Apple's policies on IDs, see https://segment.io/libraries/ios#ids
- 
+
  @param traits        A dictionary of traits you know about the user. Things like: email, name, plan, etc.
- 
+
  @discussion
  When you learn more about who your user is, you can record that information with identify.
  */
