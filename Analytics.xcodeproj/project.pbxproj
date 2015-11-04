@@ -258,6 +258,7 @@
 		79D247F31B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D247F21B4AFDF9002D8F90 /* SEGUXCamIntegrationTests.m */; };
 		79D247F41B4B00CC002D8F90 /* SEGUXCamIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 79D247E91B4AF3C9002D8F90 /* SEGUXCamIntegration.m */; };
 		AE0D59161BCF102B00F70600 /* Localytics.h in Headers */ = {isa = PBXBuildFile; fileRef = AE0D59141BCF0FD600F70600 /* Localytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C75476F51BEA03ED00987ABE /* MOGeofenceHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = C75476F41BEA03ED00987ABE /* MOGeofenceHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31C8F7E18A2D83700DA22A6 /* MPNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = D31C8F7D18A2D83700DA22A6 /* MPNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCED185BFAA1007CB22F /* MPSurvey.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCEC185BFAA1007CB22F /* MPSurvey.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331BCF2185BFF49007CB22F /* CRFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = D331BCF0185BFF49007CB22F /* CRFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -566,6 +567,7 @@
 		7E94C0EF18932A5B004BD132 /* KWBlockMatchEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KWBlockMatchEvaluator.m; sourceTree = "<group>"; };
 		7F4FA16EBDB55C5FC1C286A4 /* Pods-iOS Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Tests/Pods-iOS Tests.release.xcconfig"; sourceTree = "<group>"; };
 		AE0D59141BCF0FD600F70600 /* Localytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Localytics.h; path = "Pods/Localytics/Localytics-iOS-3.5.1/Localytics.h"; sourceTree = "<group>"; };
+		C75476F41BEA03ED00987ABE /* MOGeofenceHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MOGeofenceHandler.h; path = "Pods/MoEngage-iOS-SDK/Headers/MOGeofenceHandler.h"; sourceTree = "<group>"; };
 		CF9D8D528CEEAAA3F9A1B394 /* Pods-Analytics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Analytics/Pods-Analytics.debug.xcconfig"; sourceTree = "<group>"; };
 		D309DBF218A2BD2900BA9F31 /* libFlurry_4.3.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry_4.3.1.a; path = Pods/FlurrySDK/Flurry/libFlurry_4.3.1.a; sourceTree = "<group>"; };
 		D31C8F7D18A2D83700DA22A6 /* MPNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MPNotification.h; path = Pods/Mixpanel/Mixpanel/MPNotification.h; sourceTree = "<group>"; };
@@ -925,6 +927,7 @@
 			children = (
 				6EFFFF1A1BD7FD6500C5068E /* AMPIdentify.h */,
 				322E795E1BAA2C70007E11FD /* UXCam.h */,
+				C75476F41BEA03ED00987ABE /* MOGeofenceHandler.h */,
 				6E2AFA401B55852400C8A14E /* MOInbox.h */,
 				6E2AFA411B55852400C8A14E /* MOInboxViewController.h */,
 				6E2AFA3C1B55850C00C8A14E /* MOEHelperConstants.h */,
@@ -1379,6 +1382,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C75476F51BEA03ED00987ABE /* MOGeofenceHandler.h in Headers */,
 				6EFFFF1B1BD7FD6500C5068E /* AMPIdentify.h in Headers */,
 				6E2764B81BCF185A00F05C68 /* TaplyticsVar.h in Headers */,
 				AE0D59161BCF102B00F70600 /* Localytics.h in Headers */,
@@ -2044,6 +2048,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF9D8D528CEEAAA3F9A1B394 /* Pods-Analytics.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Analytics.dst;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2133,6 +2138,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 095FDFE35C86958DB4798F57 /* Pods-Analytics.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = NO;
 				DSTROOT = /tmp/Analytics.dst;
