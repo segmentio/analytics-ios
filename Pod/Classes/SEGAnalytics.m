@@ -8,6 +8,7 @@
 
 #import "SEGIntegrationFactory.h"
 #import "SEGIntegration.h"
+#import <objc/runtime.h>
 
 static NSMutableDictionary *__registeredIntegrations = nil;
 static SEGAnalytics *__sharedInstance = nil;
@@ -69,7 +70,7 @@ static SEGAnalytics *__sharedInstance = nil;
 @property (nonatomic, strong) NSMutableArray *messageQueue;
 @property (nonatomic, strong) SEGAnalyticsRequest *settingsRequest;
 @property (nonatomic, assign) BOOL enabled;
-@property (nonatomic, assign) NSArray *factories;
+@property (nonatomic, strong) NSArray *factories;
 @property (nonatomic, assign) NSMutableDictionary *integrations;
 
 @end
@@ -429,7 +430,7 @@ static SEGAnalytics *__sharedInstance = nil;
         return;
     }
     
-    if (![self isIntegration:integration enabledInOptions:options[@"integrations"]]) {
+    if (![self isIntegration:key enabledInOptions:options[@"integrations"]]) {
         SEGLog(@"Not sending call to %@ because it is disabled in options.", key);
         return;
     }
@@ -450,17 +451,18 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (NSInvocation *)invocationForSelector:(SEL)selector arguments:(NSArray *)arguments
 {
-    /*
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[SEGIntegration instanceMethodSignatureForSelector:selector]];
+    struct objc_method_description description = protocol_getMethodDescription(@protocol(SEGIntegration), selector, NO, YES);
+    
+    NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:description.types];
+
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     invocation.selector = selector;
     for (int i = 0; i < arguments.count; i++) {
         id argument = (arguments[i] == [NSNull null]) ? nil : arguments[i];
         [invocation setArgument:&argument atIndex:i + 2];
     }
     return invocation;
-    */
-    return nil;
-}
+ }
 
 - (void)queueSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
 {
