@@ -6,7 +6,7 @@
 #import "SEGIdentifyPayload.h"
 #import "SEGGroupPayload.h"
 
-@protocol SEGIntegration
+@protocol SEGIntegration <NSObject>
 
 @optional
 // Identify will be called when the user calls either of the following:

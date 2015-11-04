@@ -43,6 +43,7 @@ static SEGAnalytics *__sharedInstance = nil;
         self.enableAdvertisingTracking = YES;
         self.flushAt = 20;
         _factories = [NSMutableArray array];
+        // todo: add segment integration
     }
     return self;
 }
@@ -69,7 +70,7 @@ static SEGAnalytics *__sharedInstance = nil;
 @property (nonatomic, strong) SEGAnalyticsRequest *settingsRequest;
 @property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, assign) NSArray *factories;
-@property (nonatomic, assign) NSDictionary *integrations;
+@property (nonatomic, assign) NSMutableDictionary *integrations;
 
 @end
 
@@ -96,7 +97,8 @@ static SEGAnalytics *__sharedInstance = nil;
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         self.messageQueue = [[NSMutableArray alloc] init];
         self.factories = [configuration.factories copy];
-        
+        self.integrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
+
         // Update settings on each integration immediately
         [self refreshSettings];
         
@@ -309,13 +311,24 @@ static SEGAnalytics *__sharedInstance = nil;
         return;
     }
     [_cachedSettings writeToURL:settingsURL atomically:YES];
-    [self updateIntegrationsWithSettings:settings[@"integrations"]];
+    
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        [self updateIntegrationsWithSettings:settings[@"integrations"]];
+    });
 }
 
 - (void)updateIntegrationsWithSettings:(NSDictionary *)settings
 {
-    for (id<SEGIntegration> integration in self.configuration.integrations.allValues) {
-        [integration updateSettings:settings[integration.name]];
+    for (id<SEGIntegrationFactory> factory in self.factories) {
+        NSString *key = [factory key];
+        NSDictionary *settings = settings[key];
+        if (settings) {
+            id<SEGIntegration> integration = [factory createWithSettings:settings forAnalytics:self];
+            if (integration != nil) {
+                self.integrations[key] = integration;
+            }
+        }
     }
     
     seg_dispatch_specific_async(_serialQueue, ^{
@@ -368,13 +381,13 @@ static SEGAnalytics *__sharedInstance = nil;
 
 #pragma mark - Private
 
-- (BOOL)isIntegration:(id<SEGIntegration>)integration enabledInOptions:(NSDictionary *)options
+- (BOOL)isIntegration:(NSString *)key enabledInOptions:(NSDictionary *)options
 {
-    if ([@"Segment.io" isEqualToString:integration.name]) {
+    if ([@"Segment.io" isEqualToString:key]) {
         return YES;
     }
-    if (options[integration.name]) {
-        return [options[integration.name] boolValue];
+    if (options[key]) {
+        return [options[key] boolValue];
     } else if (options[@"All"]) {
         return [options[@"All"] boolValue];
     } else if (options[@"all"]) {
@@ -383,11 +396,11 @@ static SEGAnalytics *__sharedInstance = nil;
     return YES;
 }
 
-- (BOOL)isTrackEvent:(NSString *)event enabledForIntegration:(id<SEGIntegration>)integration inPlan:(NSDictionary *)plan
+- (BOOL)isTrackEvent:(NSString *)event enabledForIntegration:(NSString *)key inPlan:(NSDictionary *)plan
 {
     if (plan[@"track"][event]) {
         if ([plan[@"track"][event][@"enabled"] boolValue]) {
-            return [self isIntegration:integration enabledInOptions:plan[@"track"][event][@"integrations"]];
+            return [self isIntegration:key enabledInOptions:plan[@"track"][event][@"integrations"]];
         } else {
             return NO;
         }
@@ -401,57 +414,52 @@ static SEGAnalytics *__sharedInstance = nil;
     if (!_enabled)
         return;
     
-    if (self.configuration.integrations.count == 0)
+    if (self.integrations.count == 0)
         SEGLog(@"Trying to send event, but no integrations found.");
     
-    for (id<SEGIntegration> integration in self.configuration.integrations.allValues)
-        [self invokeIntegration:integration selector:selector arguments:arguments options:options];
+    [self.integrations enumerateKeysAndObjectsUsingBlock:^(NSString *key, id<SEGIntegration> integration, BOOL *stop){
+        [self invokeIntegration:integration key:key selector:selector arguments:arguments options:options];
+    }];
 }
 
-- (void)invokeIntegration:(id<SEGIntegration>)integration selector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
+- (void)invokeIntegration:(id<SEGIntegration>)integration key:(NSString *)key selector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
 {
-    if (![integration initialized] && [integration valid]) {
-        SEGLog(@"Not sending call to %@ because it isn't initialized", integration.name);
-    }
-    
-    if (![integration ready]) {
-        SEGLog(@"Not sending call to %@ because it isn't enabled.", integration.name);
-        return;
-    }
-    
     if (![integration respondsToSelector:selector]) {
-        SEGLog(@"Not sending call to %@ because it doesn't respond to %@.", integration.name, NSStringFromSelector(selector));
+        SEGLog(@"Not sending call to %@ because it doesn't respond to %@.", key, NSStringFromSelector(selector));
         return;
     }
     
     if (![self isIntegration:integration enabledInOptions:options[@"integrations"]]) {
-        SEGLog(@"Not sending call to %@ because it is disabled in options.", integration.name);
+        SEGLog(@"Not sending call to %@ because it is disabled in options.", key);
         return;
     }
     
     NSString *eventType = NSStringFromSelector(selector);
     if ([eventType hasPrefix:@"track:"]) {
-        BOOL enabled = [self isTrackEvent:arguments[0] enabledForIntegration:integration inPlan:self.cachedSettings[@"plan"]];
+        BOOL enabled = [self isTrackEvent:arguments[0] enabledForIntegration:key inPlan:self.cachedSettings[@"plan"]];
         if (!enabled) {
-            SEGLog(@"Not sending call to %@ because it is disabled in plan.", integration.name);
+            SEGLog(@"Not sending call to %@ because it is disabled in plan.", key);
             return;
         }
     }
     
-    SEGLog(@"Running: %@ with arguments on integration: %@", eventType, arguments, integration.name);
+    SEGLog(@"Running: %@ with arguments on integration: %@", eventType, arguments, key);
     NSInvocation *invocation = [self invocationForSelector:selector arguments:arguments];
     [invocation invokeWithTarget:integration];
 }
 
 - (NSInvocation *)invocationForSelector:(SEL)selector arguments:(NSArray *)arguments
 {
-    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[SEGAnalyticsIntegration instanceMethodSignatureForSelector:selector]];
+    /*
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[SEGIntegration instanceMethodSignatureForSelector:selector]];
     invocation.selector = selector;
     for (int i = 0; i < arguments.count; i++) {
         id argument = (arguments[i] == [NSNull null]) ? nil : arguments[i];
         [invocation setArgument:&argument atIndex:i + 2];
     }
     return invocation;
+    */
+    return nil;
 }
 
 - (void)queueSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
