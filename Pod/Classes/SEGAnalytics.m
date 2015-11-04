@@ -71,7 +71,7 @@ static SEGAnalytics *__sharedInstance = nil;
 @property (nonatomic, strong) SEGAnalyticsRequest *settingsRequest;
 @property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, strong) NSArray *factories;
-@property (nonatomic, assign) NSMutableDictionary *integrations;
+@property (nonatomic, strong) NSMutableDictionary *integrations;
 
 @end
 

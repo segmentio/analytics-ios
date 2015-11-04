@@ -1,0 +1,1 @@
+../../../../../Pod/Classes/Integrations/SEGIntegration.h

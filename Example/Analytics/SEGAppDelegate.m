@@ -7,11 +7,16 @@
 //
 
 #import "SEGAppDelegate.h"
+#import <Analytics/SEGAnalytics.h>
 
 @implementation SEGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [SEGAnalytics setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:@"MlTmISmburwl2nN9o3NFpGfElujcfb0q"]];
+    [SEGAnalytics debug:YES];
+
+    [[SEGAnalytics sharedAnalytics] track:@"Hello World"];
     // Override point for customization after application launch.
     return YES;
 }

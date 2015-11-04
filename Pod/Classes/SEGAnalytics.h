@@ -3,8 +3,9 @@
 // Version 1.0.0 (Do not change this line. It is automatically modified by the build process)
 
 #import <Foundation/Foundation.h>
-#import "SEGIntegration.h"
 #import "SEGIntegrationFactory.h"
+
+@protocol SEGIntegrationFactory;
 
 /**
  * This object provides a set of properties to control various policies of the analytics client. Other than `writeKey`, these properties can be changed at any time.
