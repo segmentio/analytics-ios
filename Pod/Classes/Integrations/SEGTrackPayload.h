@@ -9,6 +9,7 @@
 
 - (instancetype)initWithEvent:(NSString *)event
                    properties:(NSDictionary *)properties
-                      context:(NSDictionary *)context;
+                      context:(NSDictionary *)context
+                 integrations:(NSDictionary *)integrations;
 
 @end

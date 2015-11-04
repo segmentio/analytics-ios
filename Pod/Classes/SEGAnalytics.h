@@ -247,6 +247,15 @@
  */
 + (NSString *)version;
 
+/**
+ * Returns a dictionary of integrations that are bundled. This is an internal Segment API, and may be removed at any time
+ * without notice.
+ */
+- (NSDictionary *)bundledIntegrations;
+
+/** Returns the configuration used to create the analytics client. */
+- (SEGAnalyticsConfiguration *)configuration;
+
 @end
 
 @interface SEGAnalytics (Deprecated)

@@ -9,6 +9,7 @@
 
 - (instancetype)initWithGroupId:(NSString *)groupId
                         traits:(NSDictionary *)traits
-                       context:(NSDictionary *)context;
+                       context:(NSDictionary *)context
+                   integrations:(NSDictionary *)integrations;
 
 @end

@@ -6,6 +6,7 @@
 @property (nonatomic,readonly) NSString *theNewId;
 
 - (instancetype)initWithNewId:(NSString *)newId
-                      context:(NSDictionary *)context;
+                      context:(NSDictionary *)context
+                 integrations:(NSDictionary *)integrations;
 
 @end

@@ -9,10 +9,9 @@
 #import "SEGIntegrationFactory.h"
 #import "SEGIntegration.h"
 #import <objc/runtime.h>
+#import "SEGSegmentIntegrationFactory.h"
 
-static NSMutableDictionary *__registeredIntegrations = nil;
 static SEGAnalytics *__sharedInstance = nil;
-
 
 @interface SEGAnalyticsConfiguration ()
 
@@ -44,7 +43,7 @@ static SEGAnalytics *__sharedInstance = nil;
         self.enableAdvertisingTracking = YES;
         self.flushAt = 20;
         _factories = [NSMutableArray array];
-        // todo: add segment integration
+        [_factories addObject:[SEGSegmentIntegrationFactory instance]];
     }
     return self;
 }
@@ -72,6 +71,7 @@ static SEGAnalytics *__sharedInstance = nil;
 @property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, strong) NSArray *factories;
 @property (nonatomic, strong) NSMutableDictionary *integrations;
+@property (nonatomic, strong) NSMutableDictionary *registeredIntegrations;
 
 @end
 
@@ -99,6 +99,7 @@ static SEGAnalytics *__sharedInstance = nil;
         self.messageQueue = [[NSMutableArray alloc] init];
         self.factories = [configuration.factories copy];
         self.integrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
+        self.configuration = configuration;
 
         // Update settings on each integration immediately
         [self refreshSettings];
@@ -312,22 +313,23 @@ static SEGAnalytics *__sharedInstance = nil;
         return;
     }
     [_cachedSettings writeToURL:settingsURL atomically:YES];
-    
-    static dispatch_once_t token;
-    dispatch_once(&token, ^{
+
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
         [self updateIntegrationsWithSettings:settings[@"integrations"]];
     });
 }
 
-- (void)updateIntegrationsWithSettings:(NSDictionary *)settings
+- (void)updateIntegrationsWithSettings:(NSDictionary *)projectSettings
 {
     for (id<SEGIntegrationFactory> factory in self.factories) {
         NSString *key = [factory key];
-        NSDictionary *settings = settings[key];
-        if (settings) {
-            id<SEGIntegration> integration = [factory createWithSettings:settings forAnalytics:self];
+        NSDictionary *integrationSettings = [projectSettings objectForKey:key];
+        if (integrationSettings) {
+            id<SEGIntegration> integration = [factory createWithSettings:integrationSettings forAnalytics:self];
             if (integration != nil) {
                 self.integrations[key] = integration;
+                self.registeredIntegrations[key] = @NO;
             }
         }
     }
@@ -498,6 +500,12 @@ static SEGAnalytics *__sharedInstance = nil;
 {
     return SEGAnalyticsURLForFilename(@"analytics.settings.v2.plist");
 }
+
+- (NSDictionary *)bundledIntegrations
+{
+    return [self.registeredIntegrations copy];
+}
+
 
 @end
 

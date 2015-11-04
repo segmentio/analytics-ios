@@ -11,6 +11,7 @@
 
 - (instancetype)initWithName:(NSString *)name
                    properties:(NSDictionary *)properties
-                      context:(NSDictionary *)context;
+                      context:(NSDictionary *)context
+                integrations:(NSDictionary *)integrations;
 
 @end

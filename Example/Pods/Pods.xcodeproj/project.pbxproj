@@ -70,6 +70,16 @@
 		696CF00DCA39F94C3DB4778B28C7C40D /* SPTExampleGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = E4286F5B187014B00F18766782F7018D /* SPTExampleGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		69CF1F420A2787627ACCB048F5E9B369 /* SEGScreenPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = ADCA07F631D0CF8B9EB81B0CEEE24187 /* SEGScreenPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E1D978790705E137FDE439AA68DD3AA /* EXPFloatTuple.h in Headers */ = {isa = PBXBuildFile; fileRef = 17B271C769948413B2D6A2FA5FA661F5 /* EXPFloatTuple.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E6D7DCA1BEABC6A00AAF21D /* SEGSegmentIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E6D7DC81BEABC6A00AAF21D /* SEGSegmentIntegrationFactory.h */; };
+		6E6D7DCB1BEABC6A00AAF21D /* SEGSegmentIntegrationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E6D7DC91BEABC6A00AAF21D /* SEGSegmentIntegrationFactory.m */; };
+		6EA234F61BE9CC8500B8F2C4 /* SEGSegmentIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EA234F41BE9CC8500B8F2C4 /* SEGSegmentIntegration.h */; };
+		6EA234F71BE9CC8500B8F2C4 /* SEGSegmentIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA234F51BE9CC8500B8F2C4 /* SEGSegmentIntegration.m */; };
+		6EA234FA1BE9CD5100B8F2C4 /* SEGBluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EA234F81BE9CD5100B8F2C4 /* SEGBluetooth.h */; };
+		6EA234FB1BE9CD5100B8F2C4 /* SEGBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA234F91BE9CD5100B8F2C4 /* SEGBluetooth.m */; };
+		6EA234FE1BE9CD7200B8F2C4 /* SEGLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EA234FC1BE9CD7200B8F2C4 /* SEGLocation.h */; };
+		6EA234FF1BE9CD7200B8F2C4 /* SEGLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA234FD1BE9CD7200B8F2C4 /* SEGLocation.m */; };
+		6EA235021BE9CDAE00B8F2C4 /* SEGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EA235001BE9CDAE00B8F2C4 /* SEGReachability.h */; };
+		6EA235031BE9CDAE00B8F2C4 /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA235011BE9CDAE00B8F2C4 /* SEGReachability.m */; };
 		6EFC63A5CED45BB39FC79D87F2C47D6B /* EXPMatchers+beGreaterThan.h in Headers */ = {isa = PBXBuildFile; fileRef = B3BBEA8D0E2B46A33A73346032F24AAA /* EXPMatchers+beGreaterThan.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6F278423C8AE1DA47F35E374BB5B91EC /* EXPMatchers+beSupersetOf.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B06F4EDF054A24295A7BD524587CABC /* EXPMatchers+beSupersetOf.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		724AA5B7B61D8953F8A0F8AC8A0F653B /* SpectaUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7687931B86D55C2A3B7570964EEFDEAB /* SpectaUtility.m */; };
@@ -253,6 +263,16 @@
 		6B586C9631D8EC14A5F7D93D77325428 /* Pods-Analytics_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Analytics_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		6BCE6D5B8CC473FBB53B2CA68168E799 /* SEGAnalytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SEGAnalytics.h; sourceTree = "<group>"; };
 		6D2BE9DB06FECF3E305E95DB3D41624C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6E6D7DC81BEABC6A00AAF21D /* SEGSegmentIntegrationFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGSegmentIntegrationFactory.h; sourceTree = "<group>"; };
+		6E6D7DC91BEABC6A00AAF21D /* SEGSegmentIntegrationFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGSegmentIntegrationFactory.m; sourceTree = "<group>"; };
+		6EA234F41BE9CC8500B8F2C4 /* SEGSegmentIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGSegmentIntegration.h; sourceTree = "<group>"; };
+		6EA234F51BE9CC8500B8F2C4 /* SEGSegmentIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGSegmentIntegration.m; sourceTree = "<group>"; };
+		6EA234F81BE9CD5100B8F2C4 /* SEGBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGBluetooth.h; sourceTree = "<group>"; };
+		6EA234F91BE9CD5100B8F2C4 /* SEGBluetooth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGBluetooth.m; sourceTree = "<group>"; };
+		6EA234FC1BE9CD7200B8F2C4 /* SEGLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGLocation.h; sourceTree = "<group>"; };
+		6EA234FD1BE9CD7200B8F2C4 /* SEGLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGLocation.m; sourceTree = "<group>"; };
+		6EA235001BE9CDAE00B8F2C4 /* SEGReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGReachability.h; sourceTree = "<group>"; };
+		6EA235011BE9CDAE00B8F2C4 /* SEGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGReachability.m; sourceTree = "<group>"; };
 		703415C2EE9680F0727E67786997E0A2 /* SEGIdentifyPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SEGIdentifyPayload.m; sourceTree = "<group>"; };
 		704CDA1E2D73288DAC9C4FDBA881844E /* Specta-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Specta-prefix.pch"; sourceTree = "<group>"; };
 		725FD454003799E3C5F6FE998212E0D5 /* Pods-Analytics_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Analytics_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -682,6 +702,16 @@
 				39A3F8C244AA6F952C82138304055ECD /* SEGAnalyticsRequest.m */,
 				78429B4C28E002FEB545AFF3AE4D06E1 /* SEGAnalyticsUtils.h */,
 				1CE7D50F078C881F89E748651D8A4BB6 /* SEGAnalyticsUtils.m */,
+				6E6D7DC81BEABC6A00AAF21D /* SEGSegmentIntegrationFactory.h */,
+				6E6D7DC91BEABC6A00AAF21D /* SEGSegmentIntegrationFactory.m */,
+				6EA234F41BE9CC8500B8F2C4 /* SEGSegmentIntegration.h */,
+				6EA234F51BE9CC8500B8F2C4 /* SEGSegmentIntegration.m */,
+				6EA234F81BE9CD5100B8F2C4 /* SEGBluetooth.h */,
+				6EA234F91BE9CD5100B8F2C4 /* SEGBluetooth.m */,
+				6EA234FC1BE9CD7200B8F2C4 /* SEGLocation.h */,
+				6EA234FD1BE9CD7200B8F2C4 /* SEGLocation.m */,
+				6EA235001BE9CDAE00B8F2C4 /* SEGReachability.h */,
+				6EA235011BE9CDAE00B8F2C4 /* SEGReachability.m */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -788,13 +818,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEF1C095AA71BE240CC45820FA783D72 /* Analytics-umbrella.h in Headers */,
+				6EA234FA1BE9CD5100B8F2C4 /* SEGBluetooth.h in Headers */,
 				A3A2720D8D6B8BD24F0A7C6B1C66637A /* SEGAliasPayload.h in Headers */,
 				124A7E309AC64F3A3272C530B97326C7 /* SEGAnalytics.h in Headers */,
 				D77263FC86EA27C008BB4E9709B4C515 /* SEGAnalyticsRequest.h in Headers */,
+				6EA234FE1BE9CD7200B8F2C4 /* SEGLocation.h in Headers */,
 				49D76CBB6AB857153A4D57EC6FD6055B /* SEGAnalyticsUtils.h in Headers */,
+				6EA235021BE9CDAE00B8F2C4 /* SEGReachability.h in Headers */,
+				6EA234F61BE9CC8500B8F2C4 /* SEGSegmentIntegration.h in Headers */,
 				DC19CFDBFA9BA736A23F9A5130D1807E /* SEGGroupPayload.h in Headers */,
 				C6135152A55FCFB82C8E395BA00B4C89 /* SEGIdentifyPayload.h in Headers */,
 				2FBDB0B048E7B0D5B6EA296900B0AB1F /* SEGIntegration.h in Headers */,
+				6E6D7DCA1BEABC6A00AAF21D /* SEGSegmentIntegrationFactory.h in Headers */,
 				24BD9D81CEE4DFEC6A798CF21DEED3B0 /* SEGIntegrationFactory.h in Headers */,
 				12040B3E579AA38348546AC29C6EFE02 /* SEGPayload.h in Headers */,
 				69CF1F420A2787627ACCB048F5E9B369 /* SEGScreenPayload.h in Headers */,
@@ -1066,12 +1101,17 @@
 				4CA9D8DB99E0B663C57A2F31DA344954 /* Analytics-dummy.m in Sources */,
 				03898FD609941F660097EAE9A272D8A8 /* SEGAliasPayload.m in Sources */,
 				73F1BEEF3E4AF33EE3CEC64A39F0A4CE /* SEGAnalytics.m in Sources */,
+				6E6D7DCB1BEABC6A00AAF21D /* SEGSegmentIntegrationFactory.m in Sources */,
 				74CBCFB423A41222B33DE0925F9C3DE1 /* SEGAnalyticsRequest.m in Sources */,
+				6EA234F71BE9CC8500B8F2C4 /* SEGSegmentIntegration.m in Sources */,
 				1ADF550B7B6B86C59538C64B7D2B7982 /* SEGAnalyticsUtils.m in Sources */,
 				5F9B0F8E4B15C57A53B4A869697FD8AA /* SEGGroupPayload.m in Sources */,
+				6EA234FF1BE9CD7200B8F2C4 /* SEGLocation.m in Sources */,
 				516A0F1049301F11C8589185D84690E2 /* SEGIdentifyPayload.m in Sources */,
 				AC5666664023369EEBE1908FFE32F294 /* SEGPayload.m in Sources */,
 				D23F652D19E782B33E2A03915F26DA69 /* SEGScreenPayload.m in Sources */,
+				6EA234FB1BE9CD5100B8F2C4 /* SEGBluetooth.m in Sources */,
+				6EA235031BE9CDAE00B8F2C4 /* SEGReachability.m in Sources */,
 				FAEE2F78DD508DF7B7E759EB6C28B54C /* SEGTrackPayload.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

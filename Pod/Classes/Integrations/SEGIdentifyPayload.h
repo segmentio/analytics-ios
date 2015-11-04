@@ -9,6 +9,7 @@
 
 - (instancetype)initWithUserId:(NSString *)userId
                    traits:(NSDictionary *)traits
-                      context:(NSDictionary *)context;
+                      context:(NSDictionary *)context
+                  integrations:(NSDictionary *)integrations;
 
 @end
