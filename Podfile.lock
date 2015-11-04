@@ -8,7 +8,7 @@ PODS:
   - Bugsnag/no-arc (4.0.7)
   - Countly (15.06.01)
   - CrittercismSDK (5.2.0)
-  - Expecta (1.0.0)
+  - Expecta (1.0.3)
   - Flurry-iOS-SDK/FlurrySDK (7.1.0)
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
@@ -21,8 +21,8 @@ PODS:
     - Mixpanel/Mixpanel (= 2.8.3)
   - Mixpanel/Mixpanel (2.8.3)
   - MoEngage-iOS-SDK (1.6)
-  - OCHamcrest (4.1.1)
-  - OCMock (3.1.2)
+  - OCHamcrest (4.3.0)
+  - OCMock (3.1.5)
   - OCMockito (1.4.0):
     - OCHamcrest (~> 4.0)
   - Optimizely-iOS-SDK (1.2.2)
@@ -65,7 +65,7 @@ SPEC CHECKSUMS:
   Bugsnag: 5861d8519d30063abe7b3fcdcf4114a6dddab27a
   Countly: 2151c5286995b84972ba4a92c3fba6b5fafce6bb
   CrittercismSDK: b22f9541803c2babb1c8996862b097dc47ec7105
-  Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
+  Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
   Flurry-iOS-SDK: 7b3fe6c3344c82b73c4c84163652eada84fbfcf4
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   GoogleAnalytics: fcf1f1cad57ae1a9a53520018f0f680ceeeb8b49
@@ -74,8 +74,8 @@ SPEC CHECKSUMS:
   Localytics: da06c00606839b53978ca093adbca1d8afdeeb3e
   Mixpanel: fd52e097ae0d27295d0595b2261c60b94d191fda
   MoEngage-iOS-SDK: 1680229d3202db3e39e998c6a8bce313962d25db
-  OCHamcrest: 6f03ffa81d12feab872638490a44ab0a6d3aca10
-  OCMock: a10ea9f0a6e921651f96f78b6faee95ebc813b92
+  OCHamcrest: cd63d27f48a266d4412c0b295b01b8f0940efa81
+  OCMock: 4c2925291f80407c3738dd1db14d21d0cc278864
   OCMockito: 4981140c9a9ec06c31af40f636e3c0f25f27e6b2
   Optimizely-iOS-SDK: b6f231f0fc6259b732f10bce02bb667805c2f615
   Quantcast-Measure: de15122f2b48380afe42443d132f40f382df8ae7
