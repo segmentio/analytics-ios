@@ -1,21 +1,25 @@
-#import "SEGAnalytics.h"
-#import "SEGIdentifyPayload.h"
-#import "SEGTrackPayload.h"
-#import "SEGScreenPayload.h"
-#import "SEGAliasPayload.h"
-#import "SEGIdentifyPayload.h"
-#import "SEGGroupPayload.h"
-#import "SEGExecutor.h"
-#import "SEGSerialExecutor.h"
-#import "SEGClient.h"
+// Analytics.m
+// Copyright (c) 2014 Segment.io. All rights reserved.
 
+#import <UIKit/UIKit.h>
+#import "SEGAnalyticsUtils.h"
+#import "SEGAnalyticsRequest.h"
+#import "SEGAnalytics.h"
+
+#import "SEGIntegrationFactory.h"
+#import "SEGIntegration.h"
+
+static NSMutableDictionary *__registeredIntegrations = nil;
 static SEGAnalytics *__sharedInstance = nil;
+
 
 @interface SEGAnalyticsConfiguration ()
 
-@property (nonatomic, readonly) NSMutableArray *factories;
+@property (nonatomic, copy, readwrite) NSString *writeKey;
+@property (nonatomic, assign, readonly) NSMutableArray *factories;
 
 @end
+
 
 @implementation SEGAnalyticsConfiguration
 
@@ -27,11 +31,18 @@ static SEGAnalytics *__sharedInstance = nil;
 - (id)initWithWriteKey:(NSString *)writeKey
 {
     if (self = [self init]) {
-        _writeKey = writeKey;
-        _factories = [NSMutableArray array];
+        self.writeKey = writeKey;
+    }
+    return self;
+}
+
+- (instancetype)init
+{
+    if (self = [super init]) {
         self.shouldUseLocationServices = NO;
         self.enableAdvertisingTracking = YES;
         self.flushAt = 20;
+        _factories = [NSMutableArray array];
     }
     return self;
 }
@@ -41,23 +52,31 @@ static SEGAnalytics *__sharedInstance = nil;
     [self.factories addObject:factory];
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%p:%@, %@>", self, self.class, [self dictionaryWithValuesForKeys:@[ @"writeKey", @"shouldUseLocationServices", @"flushAt" ]]];
+}
+
 @end
+
 
 @interface SEGAnalytics ()
 
-@property (nonatomic, assign) NSArray *writeKey;
-
-@property (nonatomic, strong) NSArray *factories;
-
-@property (nonatomic, strong) id<SEGExecutor> executor;
-
-@property (nonatomic, strong) SEGClient *client;
-
 @property (nonatomic, strong) NSDictionary *cachedSettings;
+@property (nonatomic, strong) SEGAnalyticsConfiguration *configuration;
+@property (nonatomic, strong) dispatch_queue_t serialQueue;
+@property (nonatomic, strong) NSMutableArray *messageQueue;
+@property (nonatomic, strong) SEGAnalyticsRequest *settingsRequest;
+@property (nonatomic, assign) BOOL enabled;
+@property (nonatomic, assign) NSArray *factories;
+@property (nonatomic, assign) NSDictionary *integrations;
 
 @end
 
+
 @implementation SEGAnalytics
+
+@synthesize cachedSettings = _cachedSettings;
 
 + (void)setupWithConfiguration:(SEGAnalyticsConfiguration *)configuration
 {
@@ -67,60 +86,88 @@ static SEGAnalytics *__sharedInstance = nil;
     });
 }
 
-- (instancetype)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
+- (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration
+{
+    NSCParameterAssert(configuration != nil);
+    
     if (self = [self init]) {
-        // todo:
-        _executor = [[SEGSerialExecutor alloc] initWithName:@"com.segment.analytics"];
-        _factories = [[configuration factories] copy];
-        _client = [[SEGClient alloc] initWithWriteKey:configuration.writeKey];
+        self.configuration = configuration;
+        self.enabled = YES;
+        self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
+        self.messageQueue = [[NSMutableArray alloc] init];
+        self.factories = [configuration.factories copy];
         
+        // Update settings on each integration immediately
+        [self refreshSettings];
         
+        // Attach to application state change hooks
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        
+        // Update settings on foreground
+        [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        
+        // Pass through for application state change events
+        for (NSString *name in @[ UIApplicationDidEnterBackgroundNotification,
+                                  UIApplicationDidFinishLaunchingNotification,
+                                  UIApplicationWillEnterForegroundNotification,
+                                  UIApplicationWillTerminateNotification,
+                                  UIApplicationWillResignActiveNotification,
+                                  UIApplicationDidBecomeActiveNotification ]) {
+            [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:nil];
+        }
     }
     return self;
 }
 
-+(NSURL *)URLForFileName:(NSString *)fileName
+
+#pragma mark - NSNotificationCenter Callback
+
+
+- (void)onAppForeground:(NSNotification *)note
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(
-                                                         NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *supportPath = [paths firstObject];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:supportPath
-                                              isDirectory:NULL]) {
-        NSError *error = nil;
-        if (![[NSFileManager defaultManager] createDirectoryAtPath:supportPath
-                                       withIntermediateDirectories:YES
-                                                        attributes:nil
-                                                             error:&error]) {
-            // SEGLog(@"error: %@", error.localizedDescription);
-        }
-    }
-    return [[NSURL alloc] initFileURLWithPath:[supportPath stringByAppendingPathComponent:fileName]];
+    [self refreshSettings];
 }
 
--(NSDictionary *)getSettings
+- (void)handleAppStateNotification:(NSNotification *)note
 {
-    NSURL *file = [SEGAnalytics URLForFileName:@"analytics.settings.v2.plist"];
-    self.cachedSettings = [[NSDictionary alloc] initWithContentsOfURL:file];
-    if (self.cachedSettings == nil) {
-        self.cachedSettings = [self.client settings];
-        if (self.cachedSettings == nil) {
-            // No cached settings. Enable Segment.
-            self.cachedSettings = @{
-                                     @"integrations" : @{
-                                            @"Segment.io": @{
-                                                    @"apiKey" : self.writeKey
-                                            }
-                                     },
-                                     @"plan": @{}
-                                   };
-        }
-    }
-    return [self.cachedSettings copy];
+    SEGLog(@"Application state change notification: %@", note.name);
+    static NSDictionary *selectorMapping;
+    static dispatch_once_t selectorMappingOnce;
+    dispatch_once(&selectorMappingOnce, ^{
+        selectorMapping = @{
+                            UIApplicationDidFinishLaunchingNotification :
+                                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
+                            UIApplicationDidEnterBackgroundNotification :
+                                NSStringFromSelector(@selector(applicationDidEnterBackground)),
+                            UIApplicationWillEnterForegroundNotification :
+                                NSStringFromSelector(@selector(applicationWillEnterForeground)),
+                            UIApplicationWillTerminateNotification :
+                                NSStringFromSelector(@selector(applicationWillTerminate)),
+                            UIApplicationWillResignActiveNotification :
+                                NSStringFromSelector(@selector(applicationWillResignActive)),
+                            UIApplicationDidBecomeActiveNotification :
+                                NSStringFromSelector(@selector(applicationDidBecomeActive))
+                            };
+    });
+    SEL selector = NSSelectorFromString(selectorMapping[note.name]);
+    if (selector)
+        [self callIntegrationsWithSelector:selector arguments:nil options:nil];
 }
+
+#pragma mark - Public API
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<%p:%@, %@>", self, [self class], [self dictionaryWithValuesForKeys:@[ @"configuration" ]]];
+}
+
+#pragma mark - Analytics API
+
+#pragma mark - Identify
 
 - (void)identify:(NSString *)userId
 {
-    [self identify:userId traits:nil];
+    [self identify:userId traits:nil options:nil];
 }
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits
@@ -130,13 +177,18 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    SEGIdentifyPayload *payload = [[SEGIdentifyPayload alloc] initWithUserId:userId traits:traits context:options[@"context"]];
-    // todo:
+    NSCParameterAssert(userId.length > 0 || traits.count > 0);
+    
+    [self callIntegrationsWithSelector:_cmd
+                             arguments:@[ userId ?: [NSNull null], SEGCoerceDictionary(traits), SEGCoerceDictionary(options) ]
+                               options:options];
 }
+
+#pragma mark - Track
 
 - (void)track:(NSString *)event
 {
-    [self track:event properties:nil];
+    [self track:event properties:nil options:nil];
 }
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties
@@ -146,14 +198,39 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:event properties:properties context:options[@"context"]];
-
-    // todo:
+    NSCParameterAssert(event.length > 0);
+    
+    [self callIntegrationsWithSelector:_cmd
+                             arguments:@[ event, SEGCoerceDictionary(properties), SEGCoerceDictionary(options) ]
+                               options:options];
 }
+
+#pragma mark - Screen
+
+- (void)screen:(NSString *)screenTitle
+{
+    [self screen:screenTitle properties:nil options:nil];
+}
+
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties
+{
+    [self screen:screenTitle properties:properties options:nil];
+}
+
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
+{
+    NSCParameterAssert(screenTitle.length > 0);
+    
+    [self callIntegrationsWithSelector:_cmd
+                             arguments:@[ screenTitle, SEGCoerceDictionary(properties), SEGCoerceDictionary(options) ]
+                               options:options];
+}
+
+#pragma mark - Group
 
 - (void)group:(NSString *)groupId
 {
-    [self group:groupId traits:nil];
+    [self group:groupId traits:nil options:nil];
 }
 
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits
@@ -163,24 +240,12 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    SEGGroupPayload *payload = [[SEGGroupPayload alloc] initWithGroupId:groupId traits:traits context:options[@"context"]];
-    // todo:
+    [self callIntegrationsWithSelector:_cmd
+                             arguments:@[ groupId ?: [NSNull null], SEGCoerceDictionary(traits), SEGCoerceDictionary(options) ]
+                               options:options];
 }
 
-- (void)screen:(NSString *)name;
-{
-    [self screen:name properties:nil];
-}
-
-- (void)screen:(NSString *)name properties:(NSDictionary *)properties;
-{
-    [self screen:name properties:properties options:nil];
-}
-
-- (void)screen:(NSString *)name properties:(NSDictionary *)properties options:(NSDictionary *)options
-{
-    SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:name properties:properties context:options[@"context"]];
-}
+#pragma mark - Alias
 
 - (void)alias:(NSString *)newId
 {
@@ -189,8 +254,264 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)alias:(NSString *)newId options:(NSDictionary *)options
 {
-    SEGAliasPayload *payload = [[SEGAliasPayload alloc] initWithNewId:newId context:options[@"context"]];
-    // todo:
+    [self callIntegrationsWithSelector:_cmd
+                             arguments:@[ newId, SEGCoerceDictionary(options) ]
+                               options:options];
 }
+
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [self registerForRemoteNotificationsWithDeviceToken:deviceToken options:nil];
+}
+
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options
+{
+    NSParameterAssert(deviceToken != nil);
+    
+    [self callIntegrationsWithSelector:_cmd arguments:@[ deviceToken ] options:options];
+}
+
+- (void)reset
+{
+    [self callIntegrationsWithSelector:_cmd arguments:nil options:nil];
+}
+
+- (void)flush
+{
+    [self callIntegrationsWithSelector:_cmd arguments:nil options:nil];
+}
+
+- (void)enable
+{
+    _enabled = YES;
+}
+
+- (void)disable
+{
+    _enabled = NO;
+}
+
+#pragma mark - Analytics Settings
+
+- (NSDictionary *)cachedSettings
+{
+    if (!_cachedSettings)
+        _cachedSettings = [[NSDictionary alloc] initWithContentsOfURL:[self settingsURL]] ?: @{};
+    return _cachedSettings;
+}
+
+- (void)setCachedSettings:(NSDictionary *)settings
+{
+    _cachedSettings = [settings copy];
+    NSURL *settingsURL = [self settingsURL];
+    if (!_cachedSettings) {
+        // [@{} writeToURL:settingsURL atomically:YES];
+        return;
+    }
+    [_cachedSettings writeToURL:settingsURL atomically:YES];
+    [self updateIntegrationsWithSettings:settings[@"integrations"]];
+}
+
+- (void)updateIntegrationsWithSettings:(NSDictionary *)settings
+{
+    for (id<SEGIntegration> integration in self.configuration.integrations.allValues) {
+        [integration updateSettings:settings[integration.name]];
+    }
+    
+    seg_dispatch_specific_async(_serialQueue, ^{
+        [self flushMessageQueue];
+    });
+}
+
+- (void)refreshSettings
+{
+    if (_settingsRequest)
+        return;
+    
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://cdn.segment.com/v1/projects/%@/settings", self.configuration.writeKey]]];
+    [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [urlRequest setHTTPMethod:@"GET"];
+    
+    SEGLog(@"%@ Sending API settings request: %@", self, urlRequest);
+    
+    _settingsRequest = [SEGAnalyticsRequest startWithURLRequest:urlRequest
+                                                     completion:^{
+                                                         seg_dispatch_specific_async(_serialQueue, ^{
+                                                             SEGLog(@"%@ Received API settings response: %@", self, _settingsRequest.responseJSON);
+                                                             
+                                                             if (_settingsRequest.error == nil) {
+                                                                 [self setCachedSettings:_settingsRequest.responseJSON];
+                                                             }
+                                                             
+                                                             _settingsRequest = nil;
+                                                         });
+                                                     }];
+}
+
+#pragma mark - Class Methods
+
++ (instancetype)sharedAnalytics
+{
+    NSCParameterAssert(__sharedInstance != nil);
+    return __sharedInstance;
+}
+
++ (void)debug:(BOOL)showDebugLogs
+{
+    SEGSetShowDebugLogs(showDebugLogs);
+}
+
++ (NSString *)version
+{
+    return SEGStringize(ANALYTICS_VERSION);
+}
+
+#pragma mark - Private
+
+- (BOOL)isIntegration:(id<SEGIntegration>)integration enabledInOptions:(NSDictionary *)options
+{
+    if ([@"Segment.io" isEqualToString:integration.name]) {
+        return YES;
+    }
+    if (options[integration.name]) {
+        return [options[integration.name] boolValue];
+    } else if (options[@"All"]) {
+        return [options[@"All"] boolValue];
+    } else if (options[@"all"]) {
+        return [options[@"all"] boolValue];
+    }
+    return YES;
+}
+
+- (BOOL)isTrackEvent:(NSString *)event enabledForIntegration:(id<SEGIntegration>)integration inPlan:(NSDictionary *)plan
+{
+    if (plan[@"track"][event]) {
+        if ([plan[@"track"][event][@"enabled"] boolValue]) {
+            return [self isIntegration:integration enabledInOptions:plan[@"track"][event][@"integrations"]];
+        } else {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+- (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
+{
+    if (!_enabled)
+        return;
+    
+    if (self.configuration.integrations.count == 0)
+        SEGLog(@"Trying to send event, but no integrations found.");
+    
+    for (id<SEGIntegration> integration in self.configuration.integrations.allValues)
+        [self invokeIntegration:integration selector:selector arguments:arguments options:options];
+}
+
+- (void)invokeIntegration:(id<SEGIntegration>)integration selector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
+{
+    if (![integration initialized] && [integration valid]) {
+        SEGLog(@"Not sending call to %@ because it isn't initialized", integration.name);
+    }
+    
+    if (![integration ready]) {
+        SEGLog(@"Not sending call to %@ because it isn't enabled.", integration.name);
+        return;
+    }
+    
+    if (![integration respondsToSelector:selector]) {
+        SEGLog(@"Not sending call to %@ because it doesn't respond to %@.", integration.name, NSStringFromSelector(selector));
+        return;
+    }
+    
+    if (![self isIntegration:integration enabledInOptions:options[@"integrations"]]) {
+        SEGLog(@"Not sending call to %@ because it is disabled in options.", integration.name);
+        return;
+    }
+    
+    NSString *eventType = NSStringFromSelector(selector);
+    if ([eventType hasPrefix:@"track:"]) {
+        BOOL enabled = [self isTrackEvent:arguments[0] enabledForIntegration:integration inPlan:self.cachedSettings[@"plan"]];
+        if (!enabled) {
+            SEGLog(@"Not sending call to %@ because it is disabled in plan.", integration.name);
+            return;
+        }
+    }
+    
+    SEGLog(@"Running: %@ with arguments on integration: %@", eventType, arguments, integration.name);
+    NSInvocation *invocation = [self invocationForSelector:selector arguments:arguments];
+    [invocation invokeWithTarget:integration];
+}
+
+- (NSInvocation *)invocationForSelector:(SEL)selector arguments:(NSArray *)arguments
+{
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[SEGAnalyticsIntegration instanceMethodSignatureForSelector:selector]];
+    invocation.selector = selector;
+    for (int i = 0; i < arguments.count; i++) {
+        id argument = (arguments[i] == [NSNull null]) ? nil : arguments[i];
+        [invocation setArgument:&argument atIndex:i + 2];
+    }
+    return invocation;
+}
+
+- (void)queueSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
+{
+    NSArray *obj = @[ NSStringFromSelector(selector), arguments ?: @[], options ?: @{} ];
+    SEGLog(@"Queueing: %@", obj);
+    [_messageQueue addObject:obj];
+}
+
+- (void)flushMessageQueue
+{
+    if (_messageQueue.count != 0) {
+        for (NSArray *arr in _messageQueue)
+            [self forwardSelector:NSSelectorFromString(arr[0]) arguments:arr[1] options:arr[2]];
+        [_messageQueue removeAllObjects];
+    }
+}
+
+- (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
+{
+    seg_dispatch_specific_async(_serialQueue, ^{
+        if (self.cachedSettings.count == 0 || self.settingsRequest != nil) {
+            // No cached settings, queue the API call
+            [self queueSelector:selector arguments:arguments options:options];
+        } else {
+            // Settings cached, flush message queue & new API call
+            [self flushMessageQueue];
+            [self forwardSelector:selector arguments:arguments options:options];
+        }
+    });
+}
+
+- (NSURL *)settingsURL
+{
+    return SEGAnalyticsURLForFilename(@"analytics.settings.v2.plist");
+}
+
+@end
+
+
+@implementation SEGAnalytics (Deprecated)
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-implementations"
+
++ (void)initializeWithWriteKey:(NSString *)writeKey
+{
+    [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
+}
+
+- (id)initWithWriteKey:(NSString *)writeKey
+{
+    return [self initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
+}
+
+- (void)registerPushDeviceToken:(NSData *)deviceToken
+{
+    [self registerForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
+#pragma clang diagnostic pop
 
 @end

@@ -1,7 +1,14 @@
+// Analytics.h
+// Copyright (c) 2014 Segment.io. All rights reserved.
+// Version 1.0.0 (Do not change this line. It is automatically modified by the build process)
+
 #import <Foundation/Foundation.h>
+#import "SEGIntegration.h"
 #import "SEGIntegrationFactory.h"
 
-/** Provides a set of properties to construct the analytics client. */
+/**
+ * This object provides a set of properties to control various policies of the analytics client. Other than `writeKey`, these properties can be changed at any time.
+ */
 @interface SEGAnalyticsConfiguration : NSObject
 
 /**
@@ -19,9 +26,7 @@
 @property (nonatomic, copy, readonly) NSString *writeKey;
 
 /**
- * Whether the analytics client should use location services.
- * If `YES` and the host app hasn't asked for permission to use location services then
- * the user will be presented with an alert view asking to do so. `NO` by default.
+ * Whether the analytics client should use location services. If `YES` and the host app hasn't asked for permission to use location services then the user will be presented with an alert view asking to do so. `NO` by default.
  */
 @property (nonatomic, assign) BOOL shouldUseLocationServices;
 
@@ -31,17 +36,27 @@
 @property (nonatomic, assign) BOOL enableAdvertisingTracking;
 
 /**
- * The number of queued events that the analytics client should flush at. Setting this
- * to `1` will not queue any events and will use more battery. `20` by default.
+ * The number of queued events that the analytics client should flush at. Setting this to `1` will not queue any events and will use more battery. `20` by default.
  */
 @property (nonatomic, assign) NSUInteger flushAt;
 
-/** Register an integration factory. */
-- (void)use:(id<SEGIntegrationFactory>)factory;
+
+/**
+ * Register a factory that can be used to create an integration.
+ */
+-(void)use:(id<SEGIntegrationFactory>)factory;
 
 @end
 
+/**
+ * This object provides an API for recording analytics.
+ */
 @interface SEGAnalytics : NSObject
+
+/**
+ * Used by the analytics client to configure various options.
+ */
+@property (nonatomic, strong, readonly) SEGAnalyticsConfiguration *configuration;
 
 /**
  * Setup the analytics client.
@@ -50,24 +65,40 @@
  */
 + (void)setupWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
 
+/**
+ * Enabled/disables debug logging to trace your data going through the SDK.
+ *
+ * @param showDebugLogs `YES` to enable logging, `NO` otherwise. `NO` by default.
+ */
++ (void)debug:(BOOL)showDebugLogs;
+
+/**
+ * Returns the shared analytics client.
+ *
+ * @see -setupWithConfiguration:
+ */
++ (instancetype)sharedAnalytics;
+
 /*!
  @method
-
+ 
  @abstract
  Associate a user with their unique ID and record traits about them.
-
+ 
  @param userId        A database ID (or email address) for this user. If you don't have a userId
  but want to record traits, you should pass nil. For more information on how we
  generate the UUID and Apple's policies on IDs, see https://segment.io/libraries/ios#ids
-
+ 
  @param traits        A dictionary of traits you know about the user. Things like: email, name, plan, etc.
-
+ 
  @discussion
  When you learn more about who your user is, you can record that information with identify.
+ 
  */
+- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options;
 - (void)identify:(NSString *)userId;
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits;
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options;
+
 
 /*!
  @method
@@ -83,6 +114,7 @@
  
  @discussion
  When a user performs an action in your app, you'll want to track that action for later analysis. Use the event name to say what the user did, and properties to specify any interesting details of the action.
+ 
  */
 - (void)track:(NSString *)event;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties;
@@ -102,6 +134,7 @@
  
  @discussion
  When a user views a screen in your app, you'll want to record that here. For some tools like Google Analytics and Flurry, screen views are treated specially, and are different from "events" kind of like "page views" on the web. For services that don't treat "screen views" specially, we map "screen" straight to "track" with the same parameters. For example, Mixpanel doesn't treat "screen views" any differently. So a call to "screen" will be tracked as a normal event in Mixpanel, but get sent to Google Analytics and Flurry as a "screen".
+ 
  */
 - (void)screen:(NSString *)screenTitle;
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties;
@@ -114,11 +147,11 @@
  Associate a user with a group, organization, company, project, or w/e *you* call them.
  
  @param groupId       A database ID for this group.
- 
  @param traits        A dictionary of traits you know about the group. Things like: name, employees, etc.
  
  @discussion
  When you learn more about who the group is, you can record that information with group.
+ 
  */
 - (void)group:(NSString *)groupId;
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits;
@@ -136,9 +169,89 @@
  
  @discussion
  When you learn more about who the group is, you can record that information with group.
+ 
  */
 - (void)alias:(NSString *)newId;
 - (void)alias:(NSString *)newId options:(NSDictionary *)options;
 
+/*!
+ @method
+ 
+ @abstract
+ Register the given device to receive push notifications from applicable integrations.
+ 
+ @discussion
+ Some integrations (such as Mixpanel) are capable of sending push notification to users based on
+ their traits and actions. This will associate the device token with the current user in integrations
+ that have this capability. You should call this method with the <code>NSData</code> token passed to
+ <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>.
+ 
+ @param deviceToken     device token as returned <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>
+ */
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options;
+
+
+/*!
+ @method
+ 
+ @abstract
+ Trigger an upload of all queued events.
+ 
+ @discussion
+ This is useful when you want to force all messages queued on the device to be uploaded. Please note that not all integrations
+ respond to this method.
+ */
+- (void)flush;
+
+/*!
+ @method
+ 
+ @abstract
+ Reset any user state that is cached on the device.
+ 
+ @discussion
+ This is useful when a user logs out and you want to clear the identity. It will clear any
+ traits or userId's cached on the device.
+ */
+- (void)reset;
+
+/*!
+ @method
+ 
+ @abstract
+ Enable the sending of analytics data. Enabled by default.
+ 
+ @discussion
+ Occasionally used in conjunction with disable user opt-out handling.
+ */
+- (void)enable;
+
+
+/*!
+ @method
+ 
+ @abstract
+ Completely disable the sending of any analytics data.
+ 
+ @discussion
+ If have a way for users to actively or passively (sometimes based on location) opt-out of
+ analytics data collection, you can use this method to turn off all data collection.
+ */
+- (void)disable;
+
+
+/**
+ * Version of the library.
+ */
++ (NSString *)version;
+
+@end
+
+@interface SEGAnalytics (Deprecated)
+
++ (void)initializeWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use +setupWithConfiguration: instead")));
+- (id)initWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use -initWithConfiguration: instead")));
+- (void)registerPushDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registerForRemoteNotificationsWithDeviceToken: instead")));
 
 @end
