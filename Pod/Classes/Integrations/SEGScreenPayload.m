@@ -2,12 +2,12 @@
 
 @implementation SEGScreenPayload
 
-- (instancetype)initWithEvent:(NSString *)event
+- (instancetype)initWithName:(NSString *)name
                    properties:(NSDictionary *)properties
                       context:(NSDictionary *)context
 {
     if (self = [super initWithContext:context]) {
-        _event = [event copy];
+        _name = [name copy];
         _properties = [properties copy];
     }
     return self;

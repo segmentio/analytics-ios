@@ -1,4 +1,13 @@
 #import "SEGAnalytics.h"
+#import "SEGIdentifyPayload.h"
+#import "SEGTrackPayload.h"
+#import "SEGScreenPayload.h"
+#import "SEGAliasPayload.h"
+#import "SEGIdentifyPayload.h"
+#import "SEGGroupPayload.h"
+#import "SEGExecutor.h"
+#import "SEGSerialExecutor.h"
+#import "SEGClient.h"
 
 static SEGAnalytics *__sharedInstance = nil;
 
@@ -38,7 +47,13 @@ static SEGAnalytics *__sharedInstance = nil;
 
 @property (nonatomic, assign) NSArray *writeKey;
 
-@property (nonatomic, readwrite) NSMutableArray *factories;
+@property (nonatomic, strong) NSArray *factories;
+
+@property (nonatomic, strong) id<SEGExecutor> executor;
+
+@property (nonatomic, strong) SEGClient *client;
+
+@property (nonatomic, strong) NSDictionary *cachedSettings;
 
 @end
 
@@ -54,8 +69,53 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (instancetype)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration {
     if (self = [self init]) {
+        // todo:
+        _executor = [[SEGSerialExecutor alloc] initWithName:@"com.segment.analytics"];
+        _factories = [[configuration factories] copy];
+        _client = [[SEGClient alloc] initWithWriteKey:configuration.writeKey];
+        
+        
     }
     return self;
+}
+
++(NSURL *)URLForFileName:(NSString *)fileName
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(
+                                                         NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString *supportPath = [paths firstObject];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:supportPath
+                                              isDirectory:NULL]) {
+        NSError *error = nil;
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:supportPath
+                                       withIntermediateDirectories:YES
+                                                        attributes:nil
+                                                             error:&error]) {
+            // SEGLog(@"error: %@", error.localizedDescription);
+        }
+    }
+    return [[NSURL alloc] initFileURLWithPath:[supportPath stringByAppendingPathComponent:fileName]];
+}
+
+-(NSDictionary *)getSettings
+{
+    NSURL *file = [SEGAnalytics URLForFileName:@"analytics.settings.v2.plist"];
+    self.cachedSettings = [[NSDictionary alloc] initWithContentsOfURL:file];
+    if (self.cachedSettings == nil) {
+        self.cachedSettings = [self.client settings];
+        if (self.cachedSettings == nil) {
+            // No cached settings. Enable Segment.
+            self.cachedSettings = @{
+                                     @"integrations" : @{
+                                            @"Segment.io": @{
+                                                    @"apiKey" : self.writeKey
+                                            }
+                                     },
+                                     @"plan": @{}
+                                   };
+        }
+    }
+    return [self.cachedSettings copy];
 }
 
 - (void)identify:(NSString *)userId
@@ -70,6 +130,7 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
+    SEGIdentifyPayload *payload = [[SEGIdentifyPayload alloc] initWithUserId:userId traits:traits context:options[@"context"]];
     // todo:
 }
 
@@ -85,6 +146,8 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
+    SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:event properties:properties context:options[@"context"]];
+
     // todo:
 }
 
@@ -100,6 +163,7 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
+    SEGGroupPayload *payload = [[SEGGroupPayload alloc] initWithGroupId:groupId traits:traits context:options[@"context"]];
     // todo:
 }
 
@@ -113,9 +177,9 @@ static SEGAnalytics *__sharedInstance = nil;
     [self screen:name properties:properties options:nil];
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
+- (void)screen:(NSString *)name properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    // todo:
+    SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:name properties:properties context:options[@"context"]];
 }
 
 - (void)alias:(NSString *)newId
@@ -125,6 +189,7 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)alias:(NSString *)newId options:(NSDictionary *)options
 {
+    SEGAliasPayload *payload = [[SEGAliasPayload alloc] initWithNewId:newId context:options[@"context"]];
     // todo:
 }
 

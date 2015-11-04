@@ -3,11 +3,13 @@
 
 @interface SEGScreenPayload : SEGPayload
 
-@property (nonatomic,readonly) NSString* event;
+@property (nonatomic,readonly) NSString* name;
+
+@property (nonatomic,readonly) NSString* category;
 
 @property (nonatomic,readonly) NSDictionary* properties;
 
-- (instancetype)initWithEvent:(NSString *)event
+- (instancetype)initWithName:(NSString *)name
                    properties:(NSDictionary *)properties
                       context:(NSDictionary *)context;
 
