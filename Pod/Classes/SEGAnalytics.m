@@ -183,8 +183,13 @@ static SEGAnalytics *__sharedInstance = nil;
 {
     NSCParameterAssert(userId.length > 0 || traits.count > 0);
     
-    [self callIntegrationsWithSelector:_cmd
-                             arguments:@[ userId ?: [NSNull null], SEGCoerceDictionary(traits), SEGCoerceDictionary(options) ]
+    SEGIdentifyPayload *payload = [[SEGIdentifyPayload alloc] initWithUserId:userId
+                                                                 traits:SEGCoerceDictionary(traits)
+                                                                context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                           integrations:[options objectForKey:@"integrations"]];
+    
+    [self callIntegrationsWithSelector:NSSelectorFromString(@"identify:")
+                             arguments:@[ payload ]
                                options:options];
 }
 
@@ -204,8 +209,13 @@ static SEGAnalytics *__sharedInstance = nil;
 {
     NSCParameterAssert(event.length > 0);
     
-    [self callIntegrationsWithSelector:_cmd
-                             arguments:@[ event, SEGCoerceDictionary(properties), SEGCoerceDictionary(options) ]
+    SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:event
+                 properties:SEGCoerceDictionary(properties)
+                 context:SEGCoerceDictionary([options objectForKey:@"context"])
+                 integrations:[options objectForKey:@"integrations"]];
+    
+    [self callIntegrationsWithSelector:NSSelectorFromString(@"track:")
+                             arguments:@[ payload ]
                                options:options];
 }
 
@@ -225,8 +235,14 @@ static SEGAnalytics *__sharedInstance = nil;
 {
     NSCParameterAssert(screenTitle.length > 0);
     
-    [self callIntegrationsWithSelector:_cmd
-                             arguments:@[ screenTitle, SEGCoerceDictionary(properties), SEGCoerceDictionary(options) ]
+    SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:screenTitle
+                                                                properties:SEGCoerceDictionary(properties)
+                                                                   context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                              integrations:[options objectForKey:@"integrations"]];
+    
+    
+    [self callIntegrationsWithSelector:NSSelectorFromString(@"screen:")
+                             arguments:@[ payload ]
                                options:options];
 }
 
@@ -244,8 +260,13 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    [self callIntegrationsWithSelector:_cmd
-                             arguments:@[ groupId ?: [NSNull null], SEGCoerceDictionary(traits), SEGCoerceDictionary(options) ]
+    SEGGroupPayload *payload = [[SEGGroupPayload alloc] initWithGroupId:groupId
+                            traits:SEGCoerceDictionary(traits)
+                            context:SEGCoerceDictionary([options objectForKey:@"context"])
+                              integrations:[options objectForKey:@"integrations"]];
+    
+    [self callIntegrationsWithSelector:NSSelectorFromString(@"group:")
+                             arguments:@[ payload ]
                                options:options];
 }
 
@@ -258,8 +279,12 @@ static SEGAnalytics *__sharedInstance = nil;
 
 - (void)alias:(NSString *)newId options:(NSDictionary *)options
 {
-    [self callIntegrationsWithSelector:_cmd
-                             arguments:@[ newId, SEGCoerceDictionary(options) ]
+    SEGAliasPayload *payload = [[SEGAliasPayload alloc] initWithNewId:newId
+                                                              context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                           integrations:[options objectForKey:@"integrations"]];
+    
+    [self callIntegrationsWithSelector:NSSelectorFromString(@"alias:")
+                             arguments:@[ payload ]
                                options:options];
 }
 

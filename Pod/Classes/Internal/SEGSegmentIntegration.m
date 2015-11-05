@@ -285,6 +285,11 @@ static BOOL GetAdTrackingEnabled()
     [self enqueueAction:@"identify" dictionary:@{ @"traits" : traits } options:options];
 }
 
+-(void)track:(SEGTrackPayload *)payload
+{
+    SEGLog(@"segment integration received payload %@", payload);
+}
+
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     NSCParameterAssert(event.length > 0);
