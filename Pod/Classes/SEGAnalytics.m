@@ -17,7 +17,7 @@ static SEGAnalytics *__sharedInstance = nil;
 @interface SEGAnalyticsConfiguration ()
 
 @property (nonatomic, copy, readwrite) NSString *writeKey;
-@property (nonatomic, assign, readonly) NSMutableArray *factories;
+@property (nonatomic, strong, readonly) NSMutableArray *factories;
 
 @end
 
@@ -380,11 +380,11 @@ static SEGAnalytics *__sharedInstance = nil;
                                                      completion:^{
                                                          seg_dispatch_specific_async(_serialQueue, ^{
                                                              SEGLog(@"%@ Received API settings response: %@", self, _settingsRequest.responseJSON);
-                                                             
+
                                                              if (_settingsRequest.error == nil) {
                                                                  [self setCachedSettings:_settingsRequest.responseJSON];
                                                              }
-                                                             
+
                                                              _settingsRequest = nil;
                                                          });
                                                      }];
