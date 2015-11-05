@@ -9,7 +9,7 @@ static BOOL kAnalyticsLoggerShowLogs = NO;
 NSURL *SEGAnalyticsURLForFilename(NSString *filename)
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(
-                                                         NSApplicationSupportDirectory, NSUserDomainMask, YES);
+        NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString *supportPath = [paths firstObject];
     if (![[NSFileManager defaultManager] fileExistsAtPath:supportPath
                                               isDirectory:NULL]) {
@@ -88,7 +88,7 @@ void SEGLog(NSString *format, ...)
 {
     if (!kAnalyticsLoggerShowLogs)
         return;
-    
+
     va_list args;
     va_start(args, format);
     NSLogv(format, args);
@@ -106,14 +106,14 @@ static id SEGCoerceJSONObject(id obj)
         [obj isKindOfClass:[NSNull class]]) {
         return obj;
     }
-    
+
     if ([obj isKindOfClass:[NSArray class]]) {
         NSMutableArray *array = [NSMutableArray array];
         for (id i in obj)
             [array addObject:SEGCoerceJSONObject(i)];
         return array;
     }
-    
+
     if ([obj isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         for (NSString *key in obj) {
@@ -125,13 +125,13 @@ static id SEGCoerceJSONObject(id obj)
         }
         return dict;
     }
-    
+
     if ([obj isKindOfClass:[NSDate class]])
         return iso8601FormattedString(obj);
-    
+
     if ([obj isKindOfClass:[NSURL class]])
         return [obj absoluteString];
-    
+
     // default to sending the object's description
     SEGLog(@"warning: dictionary values should be valid json types. got: %@. "
            @"coercing to: %@",
@@ -145,7 +145,7 @@ static void AssertDictionaryTypes(id dict)
     for (id key in dict) {
         assert([key isKindOfClass:[NSString class]]);
         id value = dict[key];
-        
+
         assert([value isKindOfClass:[NSString class]] ||
                [value isKindOfClass:[NSNumber class]] ||
                [value isKindOfClass:[NSNull class]] ||
@@ -173,15 +173,15 @@ NSString *SEGIDFA()
     if (identifierManager) {
         SEL sharedManagerSelector = NSSelectorFromString(@"sharedManager");
         id sharedManager =
-        ((id (*)(id, SEL))
-         [identifierManager methodForSelector:sharedManagerSelector])(
-                                                                      identifierManager, sharedManagerSelector);
+            ((id (*)(id, SEL))
+                 [identifierManager methodForSelector:sharedManagerSelector])(
+                identifierManager, sharedManagerSelector);
         SEL advertisingIdentifierSelector =
-        NSSelectorFromString(@"advertisingIdentifier");
+            NSSelectorFromString(@"advertisingIdentifier");
         NSUUID *uuid =
-        ((NSUUID * (*)(id, SEL))
-         [sharedManager methodForSelector:advertisingIdentifierSelector])(
-                                                                          sharedManager, advertisingIdentifierSelector);
+            ((NSUUID * (*)(id, SEL))
+                 [sharedManager methodForSelector:advertisingIdentifierSelector])(
+                sharedManager, advertisingIdentifierSelector);
         idForAdvertiser = [uuid UUIDString];
     }
     return idForAdvertiser;

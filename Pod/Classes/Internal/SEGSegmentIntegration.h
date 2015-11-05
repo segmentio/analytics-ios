@@ -9,7 +9,7 @@ extern NSString *const SEGSegmentRequestDidSucceedNotification;
 extern NSString *const SEGSegmentRequestDidFailNotification;
 
 
-@interface SEGSegmentIntegration : NSObject<SEGIntegration>
+@interface SEGSegmentIntegration : NSObject <SEGIntegration>
 
 @property (nonatomic, copy) NSString *anonymousId;
 @property (nonatomic, copy) NSString *userId;

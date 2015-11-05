@@ -1,10 +1,11 @@
 #import "SEGScreenPayload.h"
 
+
 @implementation SEGScreenPayload
 
 - (instancetype)initWithName:(NSString *)name
-                   properties:(NSDictionary *)properties
-                      context:(NSDictionary *)context
+                  properties:(NSDictionary *)properties
+                     context:(NSDictionary *)context
                 integrations:(NSDictionary *)integrations
 {
     if (self = [super initWithContext:context integrations:integrations]) {

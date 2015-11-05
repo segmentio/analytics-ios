@@ -111,23 +111,23 @@ static BOOL GetAdTrackingEnabled()
 - (NSDictionary *)staticContext
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    
+
     dict[@"library"] = @{ @"name" : @"analytics-ios",
                           @"version" : SEGStringize(ANALYTICS_VERSION) };
-    
+
     NSMutableDictionary *infoDictionary = [[[NSBundle mainBundle] infoDictionary] mutableCopy];
     [infoDictionary addEntriesFromDictionary:[[NSBundle mainBundle] localizedInfoDictionary]];
     if (infoDictionary.count) {
         dict[@"app"] = @{
-                         @"name" : infoDictionary[@"CFBundleDisplayName"] ?: @"",
-                         @"version" : infoDictionary[@"CFBundleShortVersionString"] ?: @"",
-                         @"build" : infoDictionary[@"CFBundleVersion"] ?: @"",
-                         @"namespace" : [[NSBundle mainBundle] bundleIdentifier] ?: @"",
-                         };
+            @"name" : infoDictionary[@"CFBundleDisplayName"] ?: @"",
+            @"version" : infoDictionary[@"CFBundleShortVersionString"] ?: @"",
+            @"build" : infoDictionary[@"CFBundleVersion"] ?: @"",
+            @"namespace" : [[NSBundle mainBundle] bundleIdentifier] ?: @"",
+        };
     }
-    
+
     UIDevice *device = [UIDevice currentDevice];
-    
+
     dict[@"device"] = ({
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         dict[@"manufacturer"] = @"Apple";
@@ -142,22 +142,22 @@ static BOOL GetAdTrackingEnabled()
         }
         dict;
     });
-    
+
     dict[@"os"] = @{
-                    @"name" : device.systemName,
-                    @"version" : device.systemVersion
-                    };
-    
+        @"name" : device.systemName,
+        @"version" : device.systemVersion
+    };
+
     CTCarrier *carrier = [[[CTTelephonyNetworkInfo alloc] init] subscriberCellularProvider];
     if (carrier.carrierName.length)
         dict[@"network"] = @{ @"carrier" : carrier.carrierName };
-    
+
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     dict[@"screen"] = @{
-                        @"width" : @(screenSize.width),
-                        @"height" : @(screenSize.height)
-                        };
-    
+        @"width" : @(screenSize.width),
+        @"height" : @(screenSize.height)
+    };
+
 #if !(TARGET_IPHONE_SIMULATOR)
     Class adClient = NSClassFromString(SEGADClientClass);
     if (adClient) {
@@ -177,23 +177,23 @@ static BOOL GetAdTrackingEnabled()
 #pragma clang diagnostic pop
     }
 #endif
-    
+
     return dict;
 }
 
 - (NSDictionary *)liveContext
 {
     NSMutableDictionary *context = [[NSMutableDictionary alloc] init];
-    
+
     [context addEntriesFromDictionary:self.context];
-    
+
     context[@"locale"] = [NSString stringWithFormat:
-                          @"%@-%@",
-                          [NSLocale.currentLocale objectForKey:NSLocaleLanguageCode],
-                          [NSLocale.currentLocale objectForKey:NSLocaleCountryCode]];
-    
+                                       @"%@-%@",
+                                       [NSLocale.currentLocale objectForKey:NSLocaleLanguageCode],
+                                       [NSLocale.currentLocale objectForKey:NSLocaleCountryCode]];
+
     context[@"timezone"] = [[NSTimeZone localTimeZone] name];
-    
+
     context[@"network"] = ({
         NSMutableDictionary *network = [[NSMutableDictionary alloc] init];
         
@@ -207,10 +207,10 @@ static BOOL GetAdTrackingEnabled()
         
         network;
     });
-    
+
     if (self.location.hasKnownLocation)
         context[@"location"] = self.location.locationDictionary;
-    
+
     context[@"traits"] = ({
         NSMutableDictionary *traits = [[NSMutableDictionary alloc] initWithDictionary:[self traits]];
         
@@ -219,7 +219,7 @@ static BOOL GetAdTrackingEnabled()
         
         traits;
     });
-    
+
     return [context copy];
 }
 
@@ -236,7 +236,7 @@ static BOOL GetAdTrackingEnabled()
 - (void)beginBackgroundTask
 {
     [self endBackgroundTask];
-    
+
     self.flushTaskID = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
         [self endBackgroundTask];
     }];
@@ -281,11 +281,11 @@ static BOOL GetAdTrackingEnabled()
         [self saveUserId:userId];
         [self addTraits:traits];
     }];
-    
+
     [self enqueueAction:@"identify" dictionary:@{ @"traits" : traits } options:options];
 }
 
--(void)track:(SEGTrackPayload *)payload
+- (void)track:(SEGTrackPayload *)payload
 {
     SEGLog(@"segment integration received payload %@", payload);
 }
@@ -293,51 +293,51 @@ static BOOL GetAdTrackingEnabled()
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     NSCParameterAssert(event.length > 0);
-    
+
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:event forKey:@"event"];
     [dictionary setValue:properties forKey:@"properties"];
-    
+
     [self enqueueAction:@"track" dictionary:dictionary options:options];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     NSCParameterAssert(screenTitle.length > 0);
-    
+
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:screenTitle forKey:@"name"];
     [dictionary setValue:properties forKey:@"properties"];
-    
+
     [self enqueueAction:@"screen" dictionary:dictionary options:options];
 }
 
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     NSCParameterAssert(groupId.length > 0);
-    
+
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:groupId forKey:@"groupId"];
     [dictionary setValue:traits forKey:@"traits"];
-    
+
     [self enqueueAction:@"group" dictionary:dictionary options:options];
 }
 
 - (void)alias:(NSString *)newId options:(NSDictionary *)options
 {
     NSCParameterAssert(newId.length > 0);
-    
+
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:newId forKey:@"userId"];
     [dictionary setValue:self.userId ?: self.anonymousId forKey:@"previousId"];
-    
+
     [self enqueueAction:@"alias" dictionary:dictionary options:options];
 }
 
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options
 {
     NSCParameterAssert(deviceToken != nil);
-    
+
     const unsigned char *buffer = (const unsigned char *)[deviceToken bytes];
     if (!buffer) {
         return;
@@ -368,7 +368,7 @@ static BOOL GetAdTrackingEnabled()
     payload[@"type"] = action;
     payload[@"timestamp"] = iso8601FormattedString([NSDate date]);
     payload[@"messageId"] = GenerateUUIDString();
-    
+
     [self dispatchBackground:^{
         // attach userId and anonymousId inside the dispatch_async in case
         // they've changed (see identify function)
@@ -398,7 +398,7 @@ static BOOL GetAdTrackingEnabled()
         [self.queue addObject:payload];
         [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
         [self flushQueueByLength];
-        
+
     }
     @catch (NSException *exception) {
         SEGLog(@"%@ Error writing payload: %@", self, exception);
@@ -492,7 +492,7 @@ static BOOL GetAdTrackingEnabled()
     [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [urlRequest setHTTPMethod:@"POST"];
     [urlRequest setHTTPBody:data];
-    
+
     SEGLog(@"%@ Sending batch API request.", self);
     self.request = [SEGAnalyticsRequest startWithURLRequest:urlRequest
                                                  completion:^{

@@ -1,5 +1,6 @@
 #import "SEGPayload.h"
 
+
 @implementation SEGPayload
 
 - (instancetype)initWithContext:(NSDictionary *)context integrations:(NSDictionary *)integrations

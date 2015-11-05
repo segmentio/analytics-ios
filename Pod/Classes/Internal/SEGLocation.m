@@ -11,20 +11,20 @@
 #import <CoreLocation/CoreLocation.h>
 
 #define LOCATION_STRING_PROPERTY(NAME, PLACEMARK_PROPERTY)                                      \
--(NSString *)NAME                                                                           \
-{                                                                                           \
-__block NSString *result = nil;                                                         \
-dispatch_sync(self.syncQueue, ^{ result = self.currentPlacemark.PLACEMARK_PROPERTY; }); \
-return result;                                                                          \
-}
+    -(NSString *)NAME                                                                           \
+    {                                                                                           \
+        __block NSString *result = nil;                                                         \
+        dispatch_sync(self.syncQueue, ^{ result = self.currentPlacemark.PLACEMARK_PROPERTY; }); \
+        return result;                                                                          \
+    }
 
 #define LOCATION_NUMBER_PROPERTY(NAME, PLACEMARK_PROPERTY)                                         \
--(NSNumber *)NAME                                                                              \
-{                                                                                              \
-__block NSNumber *result = nil;                                                            \
-dispatch_sync(self.syncQueue, ^{ result = @(self.currentPlacemark.PLACEMARK_PROPERTY); }); \
-return result;                                                                             \
-}
+    -(NSNumber *)NAME                                                                              \
+    {                                                                                              \
+        __block NSNumber *result = nil;                                                            \
+        dispatch_sync(self.syncQueue, ^{ result = @(self.currentPlacemark.PLACEMARK_PROPERTY); }); \
+        return result;                                                                             \
+    }
 
 
 @interface SEGLocation () <CLLocationManagerDelegate>
@@ -42,7 +42,7 @@ return result;                                                                  
 - (id)init
 {
     if (![CLLocationManager locationServicesEnabled]) return nil;
-    
+
     if (self = [super init]) {
         self.geocoder = [[CLGeocoder alloc] init];
         self.locationManager = [[CLLocationManager alloc] init];
@@ -86,7 +86,7 @@ LOCATION_NUMBER_PROPERTY(speed, location.speed);
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     if (!locations.count) return;
-    
+
     __weak typeof(self) weakSelf = self;
     [self.geocoder reverseGeocodeLocation:locations.firstObject
                         completionHandler:^(NSArray *placemarks, NSError *error) {

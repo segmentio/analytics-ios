@@ -1,5 +1,6 @@
 #import "SEGAliasPayload.h"
 
+
 @implementation SEGAliasPayload
 
 - (instancetype)initWithNewId:(NSString *)newId

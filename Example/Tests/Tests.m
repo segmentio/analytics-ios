@@ -8,7 +8,7 @@
 
 // https://github.com/Specta/Specta
 
-SpecBegin(InitialSpecs)
+SpecBegin(InitialSpecs);
 
 describe(@"these will fail", ^{
 
@@ -45,4 +45,3 @@ describe(@"these will pass", ^{
 });
 
 SpecEnd
-

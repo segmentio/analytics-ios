@@ -1,6 +1,7 @@
 #import "SEGSegmentIntegrationFactory.h"
 #import "SEGSegmentIntegration.h"
 
+
 @implementation SEGSegmentIntegrationFactory
 
 + (id)instance
@@ -19,7 +20,7 @@
     return self;
 }
 
--(id<SEGIntegration>) createWithSettings:(NSDictionary *)settings forAnalytics:(SEGAnalytics *)analytics
+- (id<SEGIntegration>)createWithSettings:(NSDictionary *)settings forAnalytics:(SEGAnalytics *)analytics
 {
     return [[SEGSegmentIntegration alloc] initWithAnalytics:analytics];
 }

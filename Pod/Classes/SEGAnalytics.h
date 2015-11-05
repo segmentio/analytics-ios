@@ -45,7 +45,7 @@
 /**
  * Register a factory that can be used to create an integration.
  */
--(void)use:(id<SEGIntegrationFactory>)factory;
+- (void)use:(id<SEGIntegrationFactory>)factory;
 
 @end
 
@@ -257,6 +257,7 @@
 - (SEGAnalyticsConfiguration *)configuration;
 
 @end
+
 
 @interface SEGAnalytics (Deprecated)
 

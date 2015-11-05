@@ -13,6 +13,7 @@
 
 static SEGAnalytics *__sharedInstance = nil;
 
+
 @interface SEGAnalyticsConfiguration ()
 
 @property (nonatomic, copy, readwrite) NSString *writeKey;
@@ -48,7 +49,7 @@ static SEGAnalytics *__sharedInstance = nil;
     return self;
 }
 
--(void)use:(id<SEGIntegrationFactory>)factory
+- (void)use:(id<SEGIntegrationFactory>)factory
 {
     [self.factories addObject:factory];
 }
@@ -91,7 +92,7 @@ static SEGAnalytics *__sharedInstance = nil;
 - (id)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration
 {
     NSCParameterAssert(configuration != nil);
-    
+
     if (self = [self init]) {
         self.configuration = configuration;
         self.enabled = YES;
@@ -103,13 +104,13 @@ static SEGAnalytics *__sharedInstance = nil;
 
         // Update settings on each integration immediately
         [self refreshSettings];
-        
+
         // Attach to application state change hooks
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        
+
         // Update settings on foreground
         [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
-        
+
         // Pass through for application state change events
         for (NSString *name in @[ UIApplicationDidEnterBackgroundNotification,
                                   UIApplicationDidFinishLaunchingNotification,
@@ -182,12 +183,12 @@ static SEGAnalytics *__sharedInstance = nil;
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     NSCParameterAssert(userId.length > 0 || traits.count > 0);
-    
+
     SEGIdentifyPayload *payload = [[SEGIdentifyPayload alloc] initWithUserId:userId
-                                                                 traits:SEGCoerceDictionary(traits)
-                                                                context:SEGCoerceDictionary([options objectForKey:@"context"])
-                                                           integrations:[options objectForKey:@"integrations"]];
-    
+                                                                      traits:SEGCoerceDictionary(traits)
+                                                                     context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                                integrations:[options objectForKey:@"integrations"]];
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"identify:")
                              arguments:@[ payload ]
                                options:options];
@@ -208,12 +209,12 @@ static SEGAnalytics *__sharedInstance = nil;
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     NSCParameterAssert(event.length > 0);
-    
+
     SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:event
-                 properties:SEGCoerceDictionary(properties)
-                 context:SEGCoerceDictionary([options objectForKey:@"context"])
-                 integrations:[options objectForKey:@"integrations"]];
-    
+                                                           properties:SEGCoerceDictionary(properties)
+                                                              context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                         integrations:[options objectForKey:@"integrations"]];
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"track:")
                              arguments:@[ payload ]
                                options:options];
@@ -234,13 +235,13 @@ static SEGAnalytics *__sharedInstance = nil;
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     NSCParameterAssert(screenTitle.length > 0);
-    
+
     SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:screenTitle
-                                                                properties:SEGCoerceDictionary(properties)
-                                                                   context:SEGCoerceDictionary([options objectForKey:@"context"])
-                                                              integrations:[options objectForKey:@"integrations"]];
-    
-    
+                                                            properties:SEGCoerceDictionary(properties)
+                                                               context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                          integrations:[options objectForKey:@"integrations"]];
+
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"screen:")
                              arguments:@[ payload ]
                                options:options];
@@ -261,10 +262,10 @@ static SEGAnalytics *__sharedInstance = nil;
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     SEGGroupPayload *payload = [[SEGGroupPayload alloc] initWithGroupId:groupId
-                            traits:SEGCoerceDictionary(traits)
-                            context:SEGCoerceDictionary([options objectForKey:@"context"])
-                              integrations:[options objectForKey:@"integrations"]];
-    
+                                                                 traits:SEGCoerceDictionary(traits)
+                                                                context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                           integrations:[options objectForKey:@"integrations"]];
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"group:")
                              arguments:@[ payload ]
                                options:options];
@@ -281,8 +282,8 @@ static SEGAnalytics *__sharedInstance = nil;
 {
     SEGAliasPayload *payload = [[SEGAliasPayload alloc] initWithNewId:newId
                                                               context:SEGCoerceDictionary([options objectForKey:@"context"])
-                                                           integrations:[options objectForKey:@"integrations"]];
-    
+                                                         integrations:[options objectForKey:@"integrations"]];
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"alias:")
                              arguments:@[ payload ]
                                options:options];
@@ -296,7 +297,7 @@ static SEGAnalytics *__sharedInstance = nil;
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options
 {
     NSParameterAssert(deviceToken != nil);
-    
+
     [self callIntegrationsWithSelector:_cmd arguments:@[ deviceToken ] options:options];
 }
 
@@ -358,7 +359,7 @@ static SEGAnalytics *__sharedInstance = nil;
             }
         }
     }
-    
+
     seg_dispatch_specific_async(_serialQueue, ^{
         [self flushMessageQueue];
     });
@@ -368,13 +369,13 @@ static SEGAnalytics *__sharedInstance = nil;
 {
     if (_settingsRequest)
         return;
-    
+
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://cdn.segment.com/v1/projects/%@/settings", self.configuration.writeKey]]];
     [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [urlRequest setHTTPMethod:@"GET"];
-    
+
     SEGLog(@"%@ Sending API settings request: %@", self, urlRequest);
-    
+
     _settingsRequest = [SEGAnalyticsRequest startWithURLRequest:urlRequest
                                                      completion:^{
                                                          seg_dispatch_specific_async(_serialQueue, ^{
@@ -433,7 +434,7 @@ static SEGAnalytics *__sharedInstance = nil;
             return NO;
         }
     }
-    
+
     return YES;
 }
 
@@ -441,11 +442,11 @@ static SEGAnalytics *__sharedInstance = nil;
 {
     if (!_enabled)
         return;
-    
+
     if (self.integrations.count == 0)
         SEGLog(@"Trying to send event, but no integrations found.");
-    
-    [self.integrations enumerateKeysAndObjectsUsingBlock:^(NSString *key, id<SEGIntegration> integration, BOOL *stop){
+
+    [self.integrations enumerateKeysAndObjectsUsingBlock:^(NSString *key, id<SEGIntegration> integration, BOOL *stop) {
         [self invokeIntegration:integration key:key selector:selector arguments:arguments options:options];
     }];
 }
@@ -456,12 +457,12 @@ static SEGAnalytics *__sharedInstance = nil;
         SEGLog(@"Not sending call to %@ because it doesn't respond to %@.", key, NSStringFromSelector(selector));
         return;
     }
-    
+
     if (![self isIntegration:key enabledInOptions:options[@"integrations"]]) {
         SEGLog(@"Not sending call to %@ because it is disabled in options.", key);
         return;
     }
-    
+
     NSString *eventType = NSStringFromSelector(selector);
     if ([eventType hasPrefix:@"track:"]) {
         BOOL enabled = [self isTrackEvent:arguments[0] enabledForIntegration:key inPlan:self.cachedSettings[@"plan"]];
@@ -470,7 +471,7 @@ static SEGAnalytics *__sharedInstance = nil;
             return;
         }
     }
-    
+
     SEGLog(@"Running: %@ with arguments on integration: %@", eventType, arguments, key);
     NSInvocation *invocation = [self invocationForSelector:selector arguments:arguments];
     [invocation invokeWithTarget:integration];
@@ -479,7 +480,7 @@ static SEGAnalytics *__sharedInstance = nil;
 - (NSInvocation *)invocationForSelector:(SEL)selector arguments:(NSArray *)arguments
 {
     struct objc_method_description description = protocol_getMethodDescription(@protocol(SEGIntegration), selector, NO, YES);
-    
+
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:description.types];
 
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
@@ -489,7 +490,7 @@ static SEGAnalytics *__sharedInstance = nil;
         [invocation setArgument:&argument atIndex:i + 2];
     }
     return invocation;
- }
+}
 
 - (void)queueSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
 {
