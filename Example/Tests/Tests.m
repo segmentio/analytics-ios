@@ -7,40 +7,26 @@
 //
 
 // https://github.com/Specta/Specta
+#import <Analytics/SEGAnalytics.h>
+#import <Specta/Specta.h>
+#import <Foundation/Foundation.h>
 
-SpecBegin(InitialSpecs);
+SpecBegin(Analytics)
 
-describe(@"these will fail", ^{
-
-    it(@"can do maths", ^{
-        expect(1).to.equal(2);
-    });
-
-    it(@"can read", ^{
-        expect(@"number").to.equal(@"string");
-    });
+describe(@"analytics", ^{
+    __block SEGAnalytics *analytics = nil;
     
-    it(@"will wait for 10 seconds and fail", ^{
-        waitUntil(^(DoneCallback done) {
-        
-        });
+    beforeEach(^{
+        SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"MlTmISmburwl2nN9o3NFpGfElujcfb0q"];
+        [SEGAnalytics setupWithConfiguration:configuration];
+        analytics = [SEGAnalytics sharedAnalytics];
     });
-});
 
-describe(@"these will pass", ^{
-    
-    it(@"can do maths", ^{
-        expect(1).beLessThan(23);
-    });
-    
-    it(@"can read", ^{
-        expect(@"team").toNot.contain(@"I");
-    });
-    
-    it(@"will wait and succeed", ^{
-        waitUntil(^(DoneCallback done) {
-            done();
-        });
+    it(@"initialized correctly", ^{
+        expect(analytics.configuration.flushAt).to.equal(20);
+        expect(analytics.configuration.writeKey).to.equal(@"MlTmISmburwl2nN9o3NFpGfElujcfb0q");
+        expect(analytics.configuration.shouldUseLocationServices).to.equal(@NO);
+        expect(analytics.configuration.enableAdvertisingTracking).to.equal(@YES);
     });
 });
 

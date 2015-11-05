@@ -1,6 +1,6 @@
 XCPRETTY := xcpretty -c && exit ${PIPESTATUS[0]}
 
-SDK ?= "iphonesimulator9.1"
+SDK ?= "iphonesimulator"
 DESTINATION ?= "platform=iOS Simulator,name=iPhone 5"
 PROJECT := Analytics
 XC_ARGS := -scheme $(PROJECT)-Example -workspace Example/$(PROJECT).xcworkspace -sdk $(SDK) -destination $(DESTINATION) ONLY_ACTIVE_ARCH=NO
@@ -15,13 +15,13 @@ build:
 	xcodebuild $(XC_ARGS) | $(XCPRETTY)
 
 test:
-	xcodebuild $(XC_ARGS) test | $(XCPRETTY)
+	xcodebuild test $(XC_ARGS) | $(XCPRETTY)
 
 xcbuild:
 	xctool $(XC_ARGS)
 
 xctest:
-	xctool $(XC_ARGS) test
+	xctool test $(XC_ARGS)
 
 .PHONY: test build clean
 .SILENT:
