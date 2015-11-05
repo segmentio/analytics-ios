@@ -275,63 +275,54 @@ static BOOL GetAdTrackingEnabled()
 
 #pragma mark - Analytics API
 
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
+- (void)identify:(SEGIdentifyPayload *)payload
 {
     [self dispatchBackground:^{
-        [self saveUserId:userId];
-        [self addTraits:traits];
+        [self saveUserId:payload.userId];
+        [self addTraits:payload.traits];
     }];
 
-    [self enqueueAction:@"identify" dictionary:@{ @"traits" : traits } options:options];
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:payload.traits forKey:@"traits"];
+
+    [self enqueueAction:@"identify" dictionary:dictionary context:payload.context integrations:payload.integrations];
 }
 
 - (void)track:(SEGTrackPayload *)payload
 {
     SEGLog(@"segment integration received payload %@", payload);
-}
-
-- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
-{
-    NSCParameterAssert(event.length > 0);
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:event forKey:@"event"];
-    [dictionary setValue:properties forKey:@"properties"];
-
-    [self enqueueAction:@"track" dictionary:dictionary options:options];
+    [dictionary setValue:payload.event forKey:@"event"];
+    [dictionary setValue:payload.properties forKey:@"properties"];
+    [self enqueueAction:@"track" dictionary:dictionary context:payload.context integrations:payload.integrations];
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
+- (void)screen:(SEGScreenPayload *)payload
 {
-    NSCParameterAssert(screenTitle.length > 0);
-
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:screenTitle forKey:@"name"];
-    [dictionary setValue:properties forKey:@"properties"];
+    [dictionary setValue:payload.name forKey:@"name"];
+    [dictionary setValue:payload.properties forKey:@"properties"];
 
-    [self enqueueAction:@"screen" dictionary:dictionary options:options];
+    [self enqueueAction:@"screen" dictionary:dictionary context:payload.context integrations:payload.integrations];
 }
 
-- (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options
+- (void)group:(SEGGroupPayload *)payload
 {
-    NSCParameterAssert(groupId.length > 0);
-
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:groupId forKey:@"groupId"];
-    [dictionary setValue:traits forKey:@"traits"];
+    [dictionary setValue:payload.groupId forKey:@"groupId"];
+    [dictionary setValue:payload.traits forKey:@"traits"];
 
-    [self enqueueAction:@"group" dictionary:dictionary options:options];
+    [self enqueueAction:@"group" dictionary:dictionary context:payload.context integrations:payload.integrations];
 }
 
-- (void)alias:(NSString *)newId options:(NSDictionary *)options
+- (void)alias:(SEGAliasPayload *)payload
 {
-    NSCParameterAssert(newId.length > 0);
-
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:newId forKey:@"userId"];
+    [dictionary setValue:payload.theNewId forKey:@"userId"];
     [dictionary setValue:self.userId ?: self.anonymousId forKey:@"previousId"];
 
-    [self enqueueAction:@"alias" dictionary:dictionary options:options];
+    [self enqueueAction:@"alias" dictionary:dictionary context:payload.context integrations:payload.integrations];
 }
 
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options
@@ -360,11 +351,10 @@ static BOOL GetAdTrackingEnabled()
     return [dict copy];
 }
 
-- (void)enqueueAction:(NSString *)action dictionary:(NSDictionary *)dictionary options:(NSDictionary *)options
+- (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)payload context:(NSDictionary *)context integrations:(NSDictionary *)integrations
 {
     // attach these parts of the payload outside since they are all synchronous
     // and the timestamp will be more accurate.
-    NSMutableDictionary *payload = [dictionary mutableCopy];
     payload[@"type"] = action;
     payload[@"timestamp"] = iso8601FormattedString([NSDate date]);
     payload[@"messageId"] = GenerateUUIDString();
@@ -375,17 +365,14 @@ static BOOL GetAdTrackingEnabled()
         [payload setValue:self.userId forKey:@"userId"];
         [payload setValue:self.anonymousId forKey:@"anonymousId"];
         
-        [payload setValue:[self integrationsDictionary:options[@"integrations"]] forKey:@"integrations"];
+        [payload setValue:[self integrationsDictionary:integrations] forKey:@"integrations"];
         
         NSDictionary *defaultContext = [self liveContext];
-        NSDictionary *customContext = options[@"context"];
-        
-        NSUInteger capacity = customContext.count + defaultContext.count;
-        NSMutableDictionary *context = [NSMutableDictionary dictionaryWithCapacity:capacity];
-        
+        NSDictionary *customContext = context;
+        NSMutableDictionary *context = [NSMutableDictionary dictionaryWithCapacity:customContext.count + defaultContext.count];
         [context addEntriesFromDictionary:defaultContext];
         [context addEntriesFromDictionary:customContext]; // let the custom context override ours
-        [payload setValue:context forKey:@"context"];
+        [payload setValue:[context copy] forKey:@"context"];
         
         SEGLog(@"%@ Enqueueing action: %@", self, payload);
         [self queuePayload:[payload copy]];

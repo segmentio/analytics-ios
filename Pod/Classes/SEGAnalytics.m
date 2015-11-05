@@ -472,7 +472,7 @@ static SEGAnalytics *__sharedInstance = nil;
         }
     }
 
-    SEGLog(@"Running: %@ with arguments on integration: %@", eventType, arguments, key);
+    SEGLog(@"Running: %@ with arguments %@ on integration: %@", eventType, arguments, key);
     NSInvocation *invocation = [self invocationForSelector:selector arguments:arguments];
     [invocation invokeWithTarget:integration];
 }

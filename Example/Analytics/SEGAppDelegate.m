@@ -18,6 +18,12 @@
     [SEGAnalytics debug:YES];
 
     [[SEGAnalytics sharedAnalytics] track:@"Hello World"];
+    [[SEGAnalytics sharedAnalytics] group:@"segment"];
+    [[SEGAnalytics sharedAnalytics] screen:@"home"];
+    [[SEGAnalytics sharedAnalytics] identify:@"prateek"];
+    [[SEGAnalytics sharedAnalytics] alias:@"f2prateek"];
+    [[SEGAnalytics sharedAnalytics] flush];
+
     // Override point for customization after application launch.
     return YES;
 }
