@@ -12,6 +12,7 @@
 #import "SEGSegmentIntegrationFactory.h"
 
 static SEGAnalytics *__sharedInstance = nil;
+NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.did.start";
 
 
 @interface SEGAnalyticsConfiguration ()
@@ -357,6 +358,9 @@ static SEGAnalytics *__sharedInstance = nil;
                 self.integrations[key] = integration;
                 self.registeredIntegrations[key] = @NO;
             }
+            [[NSNotificationCenter defaultCenter] postNotificationName:SEGAnalyticsIntegrationDidStart object:self userInfo:nil];
+        } else {
+            SEGLog(@"No settings for %@. Skipping.", key);
         }
     }
 
