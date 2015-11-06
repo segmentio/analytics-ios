@@ -405,7 +405,7 @@ static SEGAnalytics *__sharedInstance = nil;
 
 + (NSString *)version
 {
-    return SEGStringize(ANALYTICS_VERSION);
+    return @"3.0.1-alpha";
 }
 
 #pragma mark - Private
