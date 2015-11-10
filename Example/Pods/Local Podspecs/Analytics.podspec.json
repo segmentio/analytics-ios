@@ -1,25 +1,23 @@
 {
   "name": "Analytics",
-  "version": "0.1.0",
-  "summary": "A short description of Analytics.",
-  "description": "",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/Analytics",
-  "license": "MIT",
+  "version": "3.0.1-alpha",
+  "summary": "The hassle-free way to add analytics to your iOS app.",
+  "description": "Analytics for iOS provides a single API that lets you\nintegrate with over 100s of tools.",
+  "homepage": "http://segment.com/",
+  "license": {
+    "type": "MIT"
+  },
   "authors": {
-    "Prateek Srivastava": "f2prateek@gmail.com"
+    "Segment": "friends@segment.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/Analytics.git",
-    "tag": "0.1.0"
+    "git": "https://github.com/segmentio/analytics-ios.git",
+    "tag": "3.0.1-alpha"
   },
+  "social_media_url": "https://twitter.com/segment",
   "platforms": {
-    "ios": "7.0"
+    "ios": "8.0"
   },
   "requires_arc": true,
-  "source_files": "Pod/Classes/**/*",
-  "resource_bundles": {
-    "Analytics": [
-      "Pod/Assets/*.png"
-    ]
-  }
+  "source_files": "Pod/Classes/**/*"
 }

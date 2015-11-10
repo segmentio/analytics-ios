@@ -10,6 +10,11 @@
 #import "SEGTrackPayload.h"
 #import "SEGAnalyticsRequest.h"
 #import "SEGAnalyticsUtils.h"
+#import "SEGBluetooth.h"
+#import "SEGLocation.h"
+#import "SEGReachability.h"
+#import "SEGSegmentIntegration.h"
+#import "SEGSegmentIntegrationFactory.h"
 #import "SEGAnalytics.h"
 
 FOUNDATION_EXPORT double AnalyticsVersionNumber;
