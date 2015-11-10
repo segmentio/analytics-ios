@@ -23,5 +23,5 @@ xcbuild:
 xctest:
 	xctool test $(XC_ARGS)
 
-.PHONY: test build clean
+.PHONY: test xctest build xcbuild clean
 .SILENT:
