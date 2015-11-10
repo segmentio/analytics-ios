@@ -27,7 +27,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 
 + (instancetype)configurationWithWriteKey:(NSString *)writeKey
 {
-    return [[self alloc] initWithWriteKey:writeKey];
+    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey];
 }
 
 - (id)initWithWriteKey:(NSString *)writeKey
