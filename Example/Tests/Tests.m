@@ -11,7 +11,7 @@
 #import <Specta/Specta.h>
 #import <Foundation/Foundation.h>
 
-SpecBegin(Analytics)
+SpecBegin(Analytics);
 
 describe(@"analytics", ^{
     __block SEGAnalytics *analytics = nil;
