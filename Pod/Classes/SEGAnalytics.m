@@ -358,7 +358,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
                 self.integrations[key] = integration;
                 self.registeredIntegrations[key] = @NO;
             }
-            [[NSNotificationCenter defaultCenter] postNotificationName:SEGAnalyticsIntegrationDidStart object:self userInfo:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:SEGAnalyticsIntegrationDidStart object:key userInfo:nil];
         } else {
             SEGLog(@"No settings for %@. Skipping.", key);
         }
