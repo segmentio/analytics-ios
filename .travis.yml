@@ -6,7 +6,7 @@ before_install:
   - gem install cocoapods
 
 script:
-  - pod lib lint --allow-warnings
+  - pod lib lint
   - make xctest
 
 notifications:
