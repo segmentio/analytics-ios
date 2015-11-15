@@ -1,7 +1,7 @@
 # Analytics
 
-[![CI Status](http://img.shields.io/travis/segmentio/analytics-ios.svg?style=flat)](https://travis-ci.org/segmentio/analytics-ios)
-[![Version](https://img.shields.io/cocoapods/v/Analytics.svg?style=flat)](http://cocoapods.org/pods/Analytics)
+[![CI Status](https://img.shields.io/travis/segmentio/analytics-ios.svg?style=flat)](https://travis-ci.org/segmentio/analytics-ios)
+[![Version](https://img.shields.io/cocoapods/v/Analytics.svg?style=flat)](https://cocoapods.org//pods/Analytics)
 [![License](https://img.shields.io/cocoapods/l/Analytics.svg?style=flat)](http://cocoapods.org/pods/Analytics)
 
 analytics-ios is an iOS client for Segment.
@@ -19,9 +19,9 @@ pod "Analytics"
 
 ## Usage
 
-Refer to the Quickstart documentation available at [https://segment.com/docs/tutorials/quickstart-ios/](https://segment.com/docs/tutorials/quickstart-ios/).
+Refer to the Quickstart documentation available at [https://segment.com/docs/libraries/ios/quickstart/](https://segment.com/docs/libraries/ios/quickstart/).
 
-More detailed documentation is available at [https://segment.com/libraries/ios](https://segment.com/libraries/ios).
+More detailed documentation is available at [https://segment.com/docs/libraries/ios/](https://segment.com/docs/libraries/ios/).
 
 
 ## License
