@@ -10,7 +10,7 @@
 {
     if (self = [super initWithContext:context integrations:integrations]) {
         _groupId = [groupId copy];
-        _traits = [_traits copy];
+        _traits = [traits copy];
     }
     return self;
 }
