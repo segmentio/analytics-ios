@@ -10,7 +10,7 @@
 {
     if (self = [super initWithContext:context integrations:integrations]) {
         _userId = [userId copy];
-        _traits = [_traits copy];
+        _traits = [traits copy];
     }
     return self;
 }
