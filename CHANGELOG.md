@@ -1,6 +1,30 @@
 Change Log
 ==========
 
+Version 3.0.0 *(10-24-2015)*
+----------------------------------
+
+ * v3 Release. This release restructures bundled integrations, which requires a few additional steps.
+
+Add the integration dependencies.
+```
+pod `Segment`
+pod `Segment-Bugsnag`
+pod `Segment-Branch`
+...
+```
+Register them in your configuration when you initialize the SDK.
+```
+SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY"];
+
+// Add any of your bundled integrations.
+config use:[SEGGoogleAnalyticsIntegrationFactory instance];
+config use:[BNCBranchIntegrationFactory instance];
+...
+
+[SEGAnalytics setupWithConfiguration:config];
+```
+
 Version 3.0.4-alpha *(10-24-2015)*
 ----------------------------------
 
