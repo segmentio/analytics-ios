@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 3.0.4-alpha *(10-24-2015)*
+----------------------------------
+
+ * Adds API to track notification lifecycle.
+
+
 Version 3.0.3-alpha *(10-21-2015)*
 ----------------------------------
 
