@@ -49,7 +49,12 @@
 // Flush is invoked when any queued events should be uploaded.
 - (void)flush;
 
-- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options;
+// Callbacks for notifications changes.
+// ------------------------------------
+- (void)receivedRemoteNotification:(NSDictionary *)userInfo;
+- (void)failedToRegisterForRemoteNotificationsWithError:(NSError *)error;
+- (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
+- (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo;
 
 // Callbacks for app state changes
 // -------------------------------

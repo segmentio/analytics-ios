@@ -290,16 +290,26 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
                                options:options];
 }
 
-- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+- (void)receivedRemoteNotification:(NSDictionary *)userInfo
 {
-    [self registerForRemoteNotificationsWithDeviceToken:deviceToken options:nil];
+    [self callIntegrationsWithSelector:_cmd arguments:@[ userInfo ] options:nil];
 }
 
-- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options
+- (void)failedToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    [self callIntegrationsWithSelector:_cmd arguments:@[ error ] options:nil];
+}
+
+- (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSParameterAssert(deviceToken != nil);
 
-    [self callIntegrationsWithSelector:_cmd arguments:@[ deviceToken ] options:options];
+    [self callIntegrationsWithSelector:_cmd arguments:@[ deviceToken ] options:nil];
+}
+
+- (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo
+{
+    [self callIntegrationsWithSelector:_cmd arguments:@[ identifier, userInfo ] options:nil];
 }
 
 - (void)reset
@@ -536,7 +546,6 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
     return [self.registeredIntegrations copy];
 }
 
-
 @end
 
 
@@ -557,7 +566,17 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 
 - (void)registerPushDeviceToken:(NSData *)deviceToken
 {
-    [self registerForRemoteNotificationsWithDeviceToken:deviceToken];
+    [self registeredForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [self registeredForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options
+{
+    [self registeredForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
 #pragma clang diagnostic pop
