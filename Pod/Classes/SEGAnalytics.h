@@ -171,23 +171,11 @@
 - (void)alias:(NSString *)newId;
 - (void)alias:(NSString *)newId options:(NSDictionary *)options;
 
-/*!
- @method
-
- @abstract
- Register the given device to receive push notifications from applicable integrations.
-
- @discussion
- Some integrations (such as Mixpanel) are capable of sending push notification to users based on
- their traits and actions. This will associate the device token with the current user in integrations
- that have this capability. You should call this method with the <code>NSData</code> token passed to
- <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>.
-
- @param deviceToken     device token as returned <code>application:didRegisterForRemoteNotificationsWithDeviceToken:</code>
- */
-- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
-- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options;
-
+// todo: docs
+- (void)receivedRemoteNotification:(NSDictionary *)userInfo;
+- (void)failedToRegisterForRemoteNotificationsWithError:(NSError *)error;
+- (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
+- (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo;
 
 /*!
  @method
@@ -260,5 +248,8 @@
 + (void)initializeWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use +setupWithConfiguration: instead")));
 - (id)initWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use -initWithConfiguration: instead")));
 - (void)registerPushDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registerForRemoteNotificationsWithDeviceToken: instead")));
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registeredForRemoteNotificationsWithDeviceToken: instead")));
+- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options __attribute__((deprecated("Use -registeredForRemoteNotificationsWithDeviceToken: instead")));
+
 
 @end
