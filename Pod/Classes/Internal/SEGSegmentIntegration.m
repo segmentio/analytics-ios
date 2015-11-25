@@ -30,21 +30,6 @@ static NSString *GenerateUUIDString()
     return UUIDString;
 }
 
-static NSString *GetAnonymousId(BOOL reset)
-{
-    // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
-    // identifierForVendor (iOS6 and later, can't be changed on logout),
-    // or MAC address (blocked in iOS 7). For more info see https://segment.io/libraries/ios#ids
-    NSURL *url = SEGAnalyticsURLForFilename(@"segmentio.anonymousId");
-    NSString *anonymousId = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
-    if (!anonymousId || reset) {
-        anonymousId = GenerateUUIDString();
-        SEGLog(@"New anonymousId: %@", anonymousId);
-        [anonymousId writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:NULL];
-    }
-    return anonymousId;
-}
-
 static NSString *GetDeviceModel()
 {
     size_t size;
@@ -94,7 +79,7 @@ static BOOL GetAdTrackingEnabled()
     if (self = [super init]) {
         self.configuration = [analytics configuration];
         self.apiURL = [NSURL URLWithString:@"https://api.segment.io/v1/import"];
-        self.anonymousId = GetAnonymousId(NO);
+        self.anonymousId = [self getAnonymousId:NO];
         self.userId = [[NSString alloc] initWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
         self.bluetooth = [[SEGBluetooth alloc] init];
         self.reachability = [SEGReachability reachabilityWithHostname:@"http://google.com"];
@@ -265,6 +250,14 @@ static BOOL GetAdTrackingEnabled()
     }];
 }
 
+- (void)saveAnonymousId:(NSString *)anonymousId
+{
+    [self dispatchBackground:^{
+        self.anonymousId = anonymousId;
+        [self.anonymousId writeToURL:self.anonymousIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+    }];
+}
+
 - (void)addTraits:(NSDictionary *)traits
 {
     [self dispatchBackground:^{
@@ -280,6 +273,9 @@ static BOOL GetAdTrackingEnabled()
     [self dispatchBackground:^{
         [self saveUserId:payload.userId];
         [self addTraits:payload.traits];
+        if (payload.anonymousId) {
+            [self saveAnonymousId:payload.anonymousId];
+        }
     }];
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -463,7 +459,7 @@ static BOOL GetAdTrackingEnabled()
         self.userId = nil;
         self.traits = [NSMutableDictionary dictionary];
         self.queue = [NSMutableArray array];
-        self.anonymousId = GetAnonymousId(YES);
+        self.anonymousId = [self getAnonymousId:YES];
         self.request.completion = nil;
         self.request = nil;
     }];
@@ -551,6 +547,11 @@ static BOOL GetAdTrackingEnabled()
     return SEGAnalyticsURLForFilename(@"segmentio.userId");
 }
 
+- (NSURL *)anonymousIDURL
+{
+    return SEGAnalyticsURLForFilename(@"segment.anonymousId");
+}
+
 - (NSURL *)queueURL
 {
     return SEGAnalyticsURLForFilename(@"segmentio.queue.plist");
@@ -559,6 +560,21 @@ static BOOL GetAdTrackingEnabled()
 - (NSURL *)traitsURL
 {
     return SEGAnalyticsURLForFilename(@"segmentio.traits.plist");
+}
+
+- (NSString *)getAnonymousId:(BOOL)reset
+{
+    // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
+    // identifierForVendor (iOS6 and later, can't be changed on logout),
+    // or MAC address (blocked in iOS 7). For more info see https://segment.io/libraries/ios#ids
+    NSURL *url = self.anonymousIDURL;
+    NSString *anonymousId = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
+    if (!anonymousId || reset) {
+        anonymousId = GenerateUUIDString();
+        SEGLog(@"New anonymousId: %@", anonymousId);
+        [anonymousId writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+    }
+    return anonymousId;
 }
 
 @end
