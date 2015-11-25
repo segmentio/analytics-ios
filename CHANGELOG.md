@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.0.1 *(10-24-2015)*
+----------------------------------
+
+ * Fix bug with overriding `userId` in alias calls (this bug would manifest when trying to alias anonymous users).
+
 Version 3.0.0 *(10-24-2015)*
 ----------------------------------
 

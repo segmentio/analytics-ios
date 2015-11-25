@@ -362,9 +362,9 @@ static BOOL GetAdTrackingEnabled()
     [self dispatchBackground:^{
         // attach userId and anonymousId inside the dispatch_async in case
         // they've changed (see identify function)
-        
+
         // Do not override the userId for an 'alias' action. This value is set in [alias:] already.
-        if ( ![action isEqualToString:@"alias"]) {
+        if (![action isEqualToString:@"alias"]) {
             [payload setValue:self.userId forKey:@"userId"];
         }
         [payload setValue:self.anonymousId forKey:@"anonymousId"];
