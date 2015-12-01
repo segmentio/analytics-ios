@@ -186,6 +186,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
     NSCParameterAssert(userId.length > 0 || traits.count > 0);
 
     SEGIdentifyPayload *payload = [[SEGIdentifyPayload alloc] initWithUserId:userId
+                                                                 anonymousId:[options objectForKey:@"anonymousId"]
                                                                       traits:SEGCoerceDictionary(traits)
                                                                      context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                                 integrations:[options objectForKey:@"integrations"]];

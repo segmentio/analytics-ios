@@ -88,6 +88,8 @@
 
  @param traits        A dictionary of traits you know about the user. Things like: email, name, plan, etc.
 
+ @param options       A dictionary of options, such as the `@"anonymousId"` key. If no anonymous ID is specified one will be generated for you.
+
  @discussion
  When you learn more about who your user is, you can record that information with identify.
 
