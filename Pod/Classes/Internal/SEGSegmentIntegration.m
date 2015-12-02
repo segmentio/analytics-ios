@@ -82,7 +82,7 @@ static BOOL GetAdTrackingEnabled()
         self.anonymousId = [self getAnonymousId:NO];
         self.userId = [[NSString alloc] initWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
         self.bluetooth = [[SEGBluetooth alloc] init];
-        self.reachability = [SEGReachability reachabilityWithHostname:@"http://google.com"];
+        self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
         [self.reachability startNotifier];
         self.context = [self staticContext];
         self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
