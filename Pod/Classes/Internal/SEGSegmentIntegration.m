@@ -579,6 +579,7 @@ static BOOL GetAdTrackingEnabled()
     if (!anonymousId || reset) {
         anonymousId = GenerateUUIDString();
         SEGLog(@"New anonymousId: %@", anonymousId);
+        [[NSUserDefaults standardUserDefaults] setObject:anonymousId forKey:SEGAnonymousIdKey];
         [anonymousId writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:NULL];
     }
     return anonymousId;
