@@ -1,12 +1,17 @@
 Change Log
 ==========
 
-Version 3.0.1 *(10-24-2015)*
+Version 3.0.2 *(12-07-2015)*
+----------------------------------
+
+ * Add ability to set a custom anonymous ID.
+
+Version 3.0.1 *(11-24-2015)*
 ----------------------------------
 
  * Fix bug with overriding `userId` in alias calls (this bug would manifest when trying to alias anonymous users).
 
-Version 3.0.0 *(10-24-2015)*
+Version 3.0.0 *(11-24-2015)*
 ----------------------------------
 
  * v3 Release. This release restructures bundled integrations, which requires a few additional steps.

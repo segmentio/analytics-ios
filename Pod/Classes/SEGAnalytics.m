@@ -420,7 +420,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 
 + (NSString *)version
 {
-    return @"3.0.1";
+    return @"3.0.2";
 }
 
 #pragma mark - Private
