@@ -101,6 +101,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
         self.messageQueue = [[NSMutableArray alloc] init];
         self.factories = [configuration.factories copy];
         self.integrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
+        self.registeredIntegrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
         self.configuration = configuration;
 
         // Update settings on each integration immediately
