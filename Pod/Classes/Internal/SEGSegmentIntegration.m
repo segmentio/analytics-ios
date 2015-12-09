@@ -65,7 +65,6 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 @property (nonatomic, strong) NSMutableDictionary *traits;
-@property (nonatomic, assign) BOOL enableAdvertisingTracking;
 @property (nonatomic, assign) SEGAnalytics *analytics;
 @property (nonatomic, assign) SEGAnalyticsConfiguration *configuration;
 
@@ -121,7 +120,7 @@ static BOOL GetAdTrackingEnabled()
         if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
             dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
         }
-        if (self.enableAdvertisingTracking) {
+        if (self.configuration.enableAdvertisingTracking) {
             NSString *idfa = SEGIDFA();
             if (idfa.length) dict[@"advertisingId"] = idfa;
         }
@@ -193,6 +192,7 @@ static BOOL GetAdTrackingEnabled()
         network;
     });
 
+    self.location = [self.configuration shouldUseLocationServices] ? [SEGLocation new] : nil;
     if (self.location.hasKnownLocation)
         context[@"location"] = self.location.locationDictionary;
 
