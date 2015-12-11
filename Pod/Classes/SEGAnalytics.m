@@ -74,6 +74,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 @property (nonatomic, strong) NSArray *factories;
 @property (nonatomic, strong) NSMutableDictionary *integrations;
 @property (nonatomic, strong) NSMutableDictionary *registeredIntegrations;
+@property (nonatomic) volatile BOOL initialized;
 
 @end
 
@@ -158,7 +159,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
     });
     SEL selector = NSSelectorFromString(selectorMapping[note.name]);
     if (selector)
-        [self callIntegrationsWithSelector:selector arguments:nil options:nil];
+        [self callIntegrationsWithSelector:selector arguments:nil options:nil sync:true];
 }
 
 #pragma mark - Public API
@@ -194,7 +195,8 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 
     [self callIntegrationsWithSelector:NSSelectorFromString(@"identify:")
                              arguments:@[ payload ]
-                               options:options];
+                               options:options
+                                  sync:false];
 }
 
 #pragma mark - Track
@@ -220,7 +222,8 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 
     [self callIntegrationsWithSelector:NSSelectorFromString(@"track:")
                              arguments:@[ payload ]
-                               options:options];
+                               options:options
+                                  sync:false];
 }
 
 #pragma mark - Screen
@@ -244,10 +247,10 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
                                                                context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                           integrations:[options objectForKey:@"integrations"]];
 
-
     [self callIntegrationsWithSelector:NSSelectorFromString(@"screen:")
                              arguments:@[ payload ]
-                               options:options];
+                               options:options
+                                  sync:false];
 }
 
 #pragma mark - Group
@@ -271,7 +274,8 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 
     [self callIntegrationsWithSelector:NSSelectorFromString(@"group:")
                              arguments:@[ payload ]
-                               options:options];
+                               options:options
+                                  sync:false];
 }
 
 #pragma mark - Alias
@@ -289,39 +293,40 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 
     [self callIntegrationsWithSelector:NSSelectorFromString(@"alias:")
                              arguments:@[ payload ]
-                               options:options];
+                               options:options
+                                  sync:false];
 }
 
 - (void)receivedRemoteNotification:(NSDictionary *)userInfo
 {
-    [self callIntegrationsWithSelector:_cmd arguments:@[ userInfo ] options:nil];
+    [self callIntegrationsWithSelector:_cmd arguments:@[ userInfo ] options:nil sync:true];
 }
 
 - (void)failedToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
-    [self callIntegrationsWithSelector:_cmd arguments:@[ error ] options:nil];
+    [self callIntegrationsWithSelector:_cmd arguments:@[ error ] options:nil sync:true];
 }
 
 - (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSParameterAssert(deviceToken != nil);
 
-    [self callIntegrationsWithSelector:_cmd arguments:@[ deviceToken ] options:nil];
+    [self callIntegrationsWithSelector:_cmd arguments:@[ deviceToken ] options:nil sync:true];
 }
 
 - (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo
 {
-    [self callIntegrationsWithSelector:_cmd arguments:@[ identifier, userInfo ] options:nil];
+    [self callIntegrationsWithSelector:_cmd arguments:@[ identifier, userInfo ] options:nil sync:true];
 }
 
 - (void)reset
 {
-    [self callIntegrationsWithSelector:_cmd arguments:nil options:nil];
+    [self callIntegrationsWithSelector:_cmd arguments:nil options:nil sync:false];
 }
 
 - (void)flush
 {
-    [self callIntegrationsWithSelector:_cmd arguments:nil options:nil];
+    [self callIntegrationsWithSelector:_cmd arguments:nil options:nil sync:false];
 }
 
 - (void)enable
@@ -378,6 +383,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 
     seg_dispatch_specific_async(_serialQueue, ^{
         [self flushMessageQueue];
+        self.initialized = true;
     });
 }
 
@@ -459,12 +465,14 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
     if (!_enabled)
         return;
 
-    if (self.integrations.count == 0)
-        SEGLog(@"Trying to send event, but no integrations found.");
-
-    [self.integrations enumerateKeysAndObjectsUsingBlock:^(NSString *key, id<SEGIntegration> integration, BOOL *stop) {
-        [self invokeIntegration:integration key:key selector:selector arguments:arguments options:options];
-    }];
+    // If the event has opted in for syncrhonous delivery, this may be called on any thread.
+    // Only allow one to be delivered at a time.
+    @synchronized(self)
+    {
+        [self.integrations enumerateKeysAndObjectsUsingBlock:^(NSString *key, id<SEGIntegration> integration, BOOL *stop) {
+            [self invokeIntegration:integration key:key selector:selector arguments:arguments options:options];
+        }];
+    }
 }
 
 - (void)invokeIntegration:(id<SEGIntegration>)integration key:(NSString *)key selector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
@@ -524,16 +532,19 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
     }
 }
 
-- (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
+- (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options sync:(BOOL)sync
 {
+    if (sync && self.initialized) {
+        [self forwardSelector:selector arguments:arguments options:options];
+        return;
+    }
+
     seg_dispatch_specific_async(_serialQueue, ^{
-        if (self.cachedSettings.count == 0 || self.settingsRequest != nil) {
-            // No cached settings, queue the API call
-            [self queueSelector:selector arguments:arguments options:options];
-        } else {
-            // Settings cached, flush message queue & new API call
+        if (self.initialized) {
             [self flushMessageQueue];
             [self forwardSelector:selector arguments:arguments options:options];
+        } else {
+            [self queueSelector:selector arguments:arguments options:options];
         }
     });
 }
