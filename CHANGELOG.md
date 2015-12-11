@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.0.3 *(12-11-2015)*
+----------------------------------
+
+ * Deliver application lifecycle and push events synchronously to integrations when possible.
+
 Version 3.0.2 *(12-07-2015)*
 ----------------------------------
 
