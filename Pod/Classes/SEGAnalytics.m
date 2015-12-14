@@ -158,8 +158,12 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
                             };
     });
     SEL selector = NSSelectorFromString(selectorMapping[note.name]);
+    NSArray *arguments = nil;
+    if (note.userInfo != nil) {
+      arguments = @[note.userInfo];
+    }
     if (selector)
-        [self callIntegrationsWithSelector:selector arguments:nil options:nil sync:true];
+        [self callIntegrationsWithSelector:selector arguments:arguments options:nil sync:true];
 }
 
 #pragma mark - Public API
