@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+Version 3.0.4 *(01-05-2016)*
+----------------------------------
+
+ * Use NSUserDefaults for persistence where possible.
+ * Fix how we detect whether the device is offline or not.
+ * Correctly send `context.library.version`.
+
+
 Version 3.0.3 *(12-11-2015)*
 ----------------------------------
 
