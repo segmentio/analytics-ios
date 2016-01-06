@@ -96,8 +96,10 @@ static BOOL GetAdTrackingEnabled()
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 
-    dict[@"library"] = @{ @"name" : @"analytics-ios",
-                          @"version" : SEGStringize(ANALYTICS_VERSION) };
+    dict[@"library"] = @{
+        @"name" : @"analytics-ios",
+        @"version" : [SEGAnalytics version]
+    };
 
     NSMutableDictionary *infoDictionary = [[[NSBundle mainBundle] infoDictionary] mutableCopy];
     [infoDictionary addEntriesFromDictionary:[[NSBundle mainBundle] localizedInfoDictionary]];

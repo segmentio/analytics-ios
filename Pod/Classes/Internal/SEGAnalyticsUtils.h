@@ -3,9 +3,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define SEGStringize_helper(x) #x
-#define SEGStringize(x) @SEGStringize_helper(x)
-
 NSURL *SEGAnalyticsURLForFilename(NSString *filename);
 
 // Date Utils
