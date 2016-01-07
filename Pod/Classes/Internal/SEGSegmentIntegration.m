@@ -199,7 +199,8 @@ static BOOL GetAdTrackingEnabled()
         network;
     });
 
-    self.location = [self.configuration shouldUseLocationServices] ? [SEGLocation new] : nil;
+    self.location = !self.location ? [self.configuration shouldUseLocationServices] ? [SEGLocation new] : nil : self.location;
+    [self.location startUpdatingLocation];
     if (self.location.hasKnownLocation)
         context[@"location"] = self.location.locationDictionary;
 
@@ -539,7 +540,7 @@ static BOOL GetAdTrackingEnabled()
 - (NSMutableArray *)queue
 {
     if (!_queue) {
-        _queue = ([[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey] ?: [NSMutableArray arrayWithContentsOfURL:self.queueURL]) ?: [[NSMutableArray alloc] init];
+        _queue = ([[[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey] mutableCopy] ?: [NSMutableArray arrayWithContentsOfURL:self.queueURL]) ?: [[NSMutableArray alloc] init];
     }
     return _queue;
 }
@@ -547,7 +548,7 @@ static BOOL GetAdTrackingEnabled()
 - (NSMutableDictionary *)traits
 {
     if (!_traits) {
-        _traits = ([[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey] ?: [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL]) ?: [[NSMutableDictionary alloc] init];
+        _traits = ([[[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey] mutableCopy] ?: [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL]) ?: [[NSMutableDictionary alloc] init];
     }
     return _traits;
 }

@@ -23,4 +23,6 @@
 @property (nonatomic, copy, readonly) NSDictionary *addressDictionary;
 @property (nonatomic, assign, readonly) BOOL hasKnownLocation;
 
+- (void)startUpdatingLocation;
+
 @end
