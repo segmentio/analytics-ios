@@ -161,16 +161,15 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
     if (selector) {
         if ([note.name isEqualToString:UIApplicationDidFinishLaunchingNotification]) {
             while (!self.initialized) {
-                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow: 1.0]];
+                [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
             }
         }
         NSArray *arguments = nil;
         if (note != nil) {
-            arguments = @[note];
+            arguments = @[ note ];
         }
         [self callIntegrationsWithSelector:selector arguments:arguments options:nil sync:true];
     }
-  
 }
 
 #pragma mark - Public API
@@ -438,7 +437,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 
 + (NSString *)version
 {
-    return @"3.0.4";
+    return @"3.0.5";
 }
 
 #pragma mark - Private

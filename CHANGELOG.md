@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 3.0.5 *(01-08-2016)*
+-----------------------------
+
+ * Fix crash with using NSUserDefaults.
+ * Fix issue with location updates.
+ * Forward notification info to integrations.
+
 Version 3.0.4 *(01-05-2016)*
 ----------------------------------
 
