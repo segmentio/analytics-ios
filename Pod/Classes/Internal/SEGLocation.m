@@ -26,6 +26,7 @@
         return result;                                                                             \
     }
 
+#define LOCATION_AGE 300.0 // 5 minutes
 
 @interface SEGLocation () <CLLocationManagerDelegate>
 
@@ -45,10 +46,12 @@
 
     if (self = [super init]) {
         self.geocoder = [[CLGeocoder alloc] init];
-        self.locationManager = [[CLLocationManager alloc] init];
-        self.locationManager.delegate = self;
-        [self.locationManager startUpdatingLocation];
         self.syncQueue = dispatch_queue_create("io.segment.location.syncQueue", NULL);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.locationManager = [[CLLocationManager alloc] init];
+            self.locationManager.delegate = self;
+            [self.locationManager startUpdatingLocation];
+        });
     }
     return self;
 }
@@ -61,6 +64,19 @@ LOCATION_STRING_PROPERTY(street, thoroughfare);
 LOCATION_NUMBER_PROPERTY(latitude, location.coordinate.latitude);
 LOCATION_NUMBER_PROPERTY(longitude, location.coordinate.longitude);
 LOCATION_NUMBER_PROPERTY(speed, location.speed);
+
+- (void)startUpdatingLocation {
+    if (self.locationManager && self.currentPlacemark) {
+        CLLocation* location = self.currentPlacemark.location;
+        NSDate* eventDate = location.timestamp;
+        NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+        if (fabs(howRecent) > LOCATION_AGE) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.locationManager startUpdatingLocation];
+            });
+        }
+    }
+}
 
 - (BOOL)hasKnownLocation
 {
@@ -87,14 +103,26 @@ LOCATION_NUMBER_PROPERTY(speed, location.speed);
 {
     if (!locations.count) return;
 
-    __weak typeof(self) weakSelf = self;
-    [self.geocoder reverseGeocodeLocation:locations.firstObject
-                        completionHandler:^(NSArray *placemarks, NSError *error) {
-                            __strong typeof(weakSelf) strongSelf = weakSelf;
-                            dispatch_sync(strongSelf.syncQueue, ^{
-                                strongSelf.currentPlacemark = placemarks.firstObject;
-                            });
-                        }];
+    //https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/LocationAwarenessPG/CoreLocation/CoreLocation.html
+    CLLocation* location = [locations lastObject];
+    NSDate* eventDate = location.timestamp;
+    NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
+    if (fabs(howRecent) < LOCATION_AGE) {
+        // If the event is recent, do something with it.
+        __weak typeof(self) weakSelf = self;
+        [self.geocoder reverseGeocodeLocation:location
+                            completionHandler:^(NSArray *placemarks, NSError *error) {
+                                if (error) {
+                                    SEGLog(@"error: %@", error);
+                                } else if (placemarks.count) {
+                                    __strong typeof(weakSelf) strongSelf = weakSelf;
+                                    dispatch_sync(strongSelf.syncQueue, ^{
+                                        strongSelf.currentPlacemark = placemarks.firstObject;
+                                        [strongSelf.locationManager stopUpdatingLocation];
+                                    });
+                                }
+                            }];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error

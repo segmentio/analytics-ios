@@ -199,7 +199,8 @@ static BOOL GetAdTrackingEnabled()
         network;
     });
 
-    self.location = [self.configuration shouldUseLocationServices] ? [SEGLocation new] : nil;
+    self.location = !self.location ? [self.configuration shouldUseLocationServices] ? [SEGLocation new] : nil : self.location;
+    [self.location startUpdatingLocation];
     if (self.location.hasKnownLocation)
         context[@"location"] = self.location.locationDictionary;
 
