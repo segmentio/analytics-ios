@@ -28,6 +28,7 @@
 
 #define LOCATION_AGE 300.0 // 5 minutes
 
+
 @interface SEGLocation () <CLLocationManagerDelegate>
 
 @property (nonatomic, strong) CLLocationManager *locationManager;
@@ -65,10 +66,11 @@ LOCATION_NUMBER_PROPERTY(latitude, location.coordinate.latitude);
 LOCATION_NUMBER_PROPERTY(longitude, location.coordinate.longitude);
 LOCATION_NUMBER_PROPERTY(speed, location.speed);
 
-- (void)startUpdatingLocation {
+- (void)startUpdatingLocation
+{
     if (self.locationManager && self.currentPlacemark) {
-        CLLocation* location = self.currentPlacemark.location;
-        NSDate* eventDate = location.timestamp;
+        CLLocation *location = self.currentPlacemark.location;
+        NSDate *eventDate = location.timestamp;
         NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
         if (fabs(howRecent) > LOCATION_AGE) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -104,8 +106,8 @@ LOCATION_NUMBER_PROPERTY(speed, location.speed);
     if (!locations.count) return;
 
     //https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/LocationAwarenessPG/CoreLocation/CoreLocation.html
-    CLLocation* location = [locations lastObject];
-    NSDate* eventDate = location.timestamp;
+    CLLocation *location = [locations lastObject];
+    NSDate *eventDate = location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
     if (fabs(howRecent) < LOCATION_AGE) {
         // If the event is recent, do something with it.

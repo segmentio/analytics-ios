@@ -164,11 +164,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
                 [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
             }
         }
-        NSArray *arguments = nil;
-        if (note != nil) {
-            arguments = @[ note ];
-        }
-        [self callIntegrationsWithSelector:selector arguments:arguments options:nil sync:true];
+        [self callIntegrationsWithSelector:selector arguments:nil options:nil sync:true];
     }
 }
 

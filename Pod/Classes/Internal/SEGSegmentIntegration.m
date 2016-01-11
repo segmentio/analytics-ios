@@ -601,7 +601,8 @@ static BOOL GetAdTrackingEnabled()
     return anonymousId;
 }
 
-- (NSString *)getUserId {
+- (NSString *)getUserId
+{
     return [[NSUserDefaults standardUserDefaults] valueForKey:SEGUserIdKey] ?: [[NSString alloc] initWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
 }
 
