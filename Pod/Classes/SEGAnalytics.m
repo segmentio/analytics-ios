@@ -520,7 +520,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     invocation.selector = selector;
     for (int i = 0; i < arguments.count; i++) {
-		if (i + 2 <= signature.numberOfArguments) {
+		if (i + 2 < signature.numberOfArguments) {
 			id argument = (arguments[i] == [NSNull null]) ? nil : arguments[i];
 			[invocation setArgument:&argument atIndex:i + 2];
 		}
