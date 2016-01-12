@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.0.6 *(01-12-2016)*
+-----------------------------
+
+ * Fix crash with forwarding notification info to integrations.
+
 Version 3.0.5 *(01-08-2016)*
 -----------------------------
 
