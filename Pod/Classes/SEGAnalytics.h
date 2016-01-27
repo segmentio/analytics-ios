@@ -56,6 +56,13 @@
 @property (nonatomic, strong, readonly) SEGAnalyticsConfiguration *configuration;
 
 /**
+ * Setup this analytics client instance.
+ *
+ * @param configuration The configuration used to setup the client.
+ */
+- (instancetype)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration;
+
+/**
  * Setup the analytics client.
  *
  * @param configuration The configuration used to setup the client.
@@ -248,7 +255,7 @@
 @interface SEGAnalytics (Deprecated)
 
 + (void)initializeWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use +setupWithConfiguration: instead")));
-- (id)initWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use -initWithConfiguration: instead")));
+- (instancetype)initWithWriteKey:(NSString *)writeKey __attribute__((deprecated("Use -initWithConfiguration: instead")));
 - (void)registerPushDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registerForRemoteNotificationsWithDeviceToken: instead")));
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken __attribute__((deprecated("Use -registeredForRemoteNotificationsWithDeviceToken: instead")));
 - (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options __attribute__((deprecated("Use -registeredForRemoteNotificationsWithDeviceToken: instead")));
