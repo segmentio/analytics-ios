@@ -5,6 +5,9 @@ DESTINATION ?= "platform=iOS Simulator,name=iPhone 5"
 PROJECT := Analytics
 XC_ARGS := -scheme $(PROJECT)-Example -workspace Example/$(PROJECT).xcworkspace -sdk $(SDK) -destination $(DESTINATION) ONLY_ACTIVE_ARCH=NO
 
+bootstrap:
+	.buildscript/bootstrap.sh
+
 install: Example/Podfile Analytics.podspec
 	pod install --project-directory=Example
 
@@ -23,5 +26,5 @@ xcbuild:
 xctest:
 	xctool test $(XC_ARGS)
 
-.PHONY: test xctest build xcbuild clean
+.PHONY: bootstrap test xctest build xcbuild clean
 .SILENT:
