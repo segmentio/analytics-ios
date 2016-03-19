@@ -128,6 +128,12 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 }
 
 
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+
 #pragma mark - NSNotificationCenter Callback
 
 
