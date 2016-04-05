@@ -1,6 +1,11 @@
 #import <Foundation/Foundation.h>
 #import "SEGIntegrationFactory.h"
 
+/**
+ * NSNotification name, that is posted after integrations are loaded.
+ */
+extern NSString *SEGAnalyticsIntegrationDidStart;
+
 @protocol SEGIntegrationFactory;
 
 /**
