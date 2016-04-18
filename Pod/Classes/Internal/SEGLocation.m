@@ -10,20 +10,24 @@
 #import "SEGAnalyticsUtils.h"
 #import <CoreLocation/CoreLocation.h>
 
-#define LOCATION_STRING_PROPERTY(NAME, PLACEMARK_PROPERTY)                                      \
-    -(NSString *)NAME                                                                           \
-    {                                                                                           \
-        __block NSString *result = nil;                                                         \
-        dispatch_sync(self.syncQueue, ^{ result = self.currentPlacemark.PLACEMARK_PROPERTY; }); \
-        return result;                                                                          \
+#define LOCATION_STRING_PROPERTY(NAME, PLACEMARK_PROPERTY)     \
+    -(NSString *)NAME                                          \
+    {                                                          \
+        __block NSString *result = nil;                        \
+        dispatch_sync(self.syncQueue, ^{                       \
+            result = self.currentPlacemark.PLACEMARK_PROPERTY; \
+        });                                                    \
+        return result;                                         \
     }
 
-#define LOCATION_NUMBER_PROPERTY(NAME, PLACEMARK_PROPERTY)                                         \
-    -(NSNumber *)NAME                                                                              \
-    {                                                                                              \
-        __block NSNumber *result = nil;                                                            \
-        dispatch_sync(self.syncQueue, ^{ result = @(self.currentPlacemark.PLACEMARK_PROPERTY); }); \
-        return result;                                                                             \
+#define LOCATION_NUMBER_PROPERTY(NAME, PLACEMARK_PROPERTY)        \
+    -(NSNumber *)NAME                                             \
+    {                                                             \
+        __block NSNumber *result = nil;                           \
+        dispatch_sync(self.syncQueue, ^{                          \
+            result = @(self.currentPlacemark.PLACEMARK_PROPERTY); \
+        });                                                       \
+        return result;                                            \
     }
 
 #define LOCATION_AGE 300.0 // 5 minutes

@@ -530,7 +530,7 @@ static BOOL GetAdTrackingEnabled()
 {
     [self dispatchBackgroundAndWait:^{
         if (self.queue.count)
-            
+
             [self persistQueue];
     }];
 }

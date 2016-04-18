@@ -32,3 +32,6 @@ Carthage
 #
 # Pods/
 .clang-format
+
+# AppCode
+*.idea

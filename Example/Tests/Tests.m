@@ -15,7 +15,7 @@ SpecBegin(Analytics);
 
 describe(@"analytics", ^{
     __block SEGAnalytics *analytics = nil;
-    
+
     beforeEach(^{
         SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"MlTmISmburwl2nN9o3NFpGfElujcfb0q"];
         [SEGAnalytics setupWithConfiguration:configuration];

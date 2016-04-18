@@ -128,7 +128,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 }
 
 
-- (void) dealloc
+- (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -149,19 +149,19 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
     static dispatch_once_t selectorMappingOnce;
     dispatch_once(&selectorMappingOnce, ^{
         selectorMapping = @{
-                            UIApplicationDidFinishLaunchingNotification :
-                                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
-                            UIApplicationDidEnterBackgroundNotification :
-                                NSStringFromSelector(@selector(applicationDidEnterBackground)),
-                            UIApplicationWillEnterForegroundNotification :
-                                NSStringFromSelector(@selector(applicationWillEnterForeground)),
-                            UIApplicationWillTerminateNotification :
-                                NSStringFromSelector(@selector(applicationWillTerminate)),
-                            UIApplicationWillResignActiveNotification :
-                                NSStringFromSelector(@selector(applicationWillResignActive)),
-                            UIApplicationDidBecomeActiveNotification :
-                                NSStringFromSelector(@selector(applicationDidBecomeActive))
-                            };
+            UIApplicationDidFinishLaunchingNotification :
+                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
+            UIApplicationDidEnterBackgroundNotification :
+                NSStringFromSelector(@selector(applicationDidEnterBackground)),
+            UIApplicationWillEnterForegroundNotification :
+                NSStringFromSelector(@selector(applicationWillEnterForeground)),
+            UIApplicationWillTerminateNotification :
+                NSStringFromSelector(@selector(applicationWillTerminate)),
+            UIApplicationWillResignActiveNotification :
+                NSStringFromSelector(@selector(applicationWillResignActive)),
+            UIApplicationDidBecomeActiveNotification :
+                NSStringFromSelector(@selector(applicationDidBecomeActive))
+        };
     });
     SEL selector = NSSelectorFromString(selectorMapping[note.name]);
     if (selector) {

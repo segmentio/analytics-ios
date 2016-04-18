@@ -6,7 +6,8 @@
 #import "SEGAnalyticsRequest.h"
 
 
-@interface SEGAnalyticsRequest () <NSURLConnectionDataDelegate> {
+@interface SEGAnalyticsRequest () <NSURLConnectionDataDelegate>
+{
     NSMutableData *_responseData;
 }
 
