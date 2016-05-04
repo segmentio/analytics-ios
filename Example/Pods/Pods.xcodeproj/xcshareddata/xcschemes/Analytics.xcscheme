@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "38A5CB8DD871E0C5D1E09A63048B9E01"
-               BlueprintName = "Analytics"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Analytics.framework">
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = 'BF272F7411A7F97099D3EB46'
+               BlueprintName = 'Analytics'
+               ReferencedContainer = 'container:Pods.xcodeproj'
+               BuildableName = 'Analytics.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
