@@ -4,9 +4,16 @@ Change Log
 Version 3.1.0 *(05-09-2016)*
 -----------------------------
 
+ * Instrument automatic application lifecycle event tracking. Enable this during initialization.
+
+```objc
+SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY"];
+configuration.trackApplicationLifecycleEvents = YES;
+[SEGAnalytics setupWithConfiguration:configuration];
+```
+
  * Make `SEGAnalyticsIntegrationDidStart` public (use this to be notified when an integration is initialized).
  * Fixed crashes due to NSNotificationCenter observers not being removed.
- * Instrument automatic application lifecycle event tracking.
 
 Version 3.0.7 *(02-01-2016)*
 -----------------------------
