@@ -123,6 +123,8 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
                                   UIApplicationDidBecomeActiveNotification ]) {
             [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:nil];
         }
+
+        [self trackApplicationLifecycleEvents:configuration.trackApplicationLifecycleEvents];
     }
     return self;
 }
@@ -135,6 +137,44 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 
 
 #pragma mark - NSNotificationCenter Callback
+NSString *const SEGVersionKey = @"SEGVersionKey";
+NSString *const SEGBuildKey = @"SEGBuildKey";
+
+- (void)trackApplicationLifecycleEvents:(BOOL)trackApplicationLifecycleEvents
+{
+    if (!trackApplicationLifecycleEvents) {
+        return;
+    }
+
+    NSString *previousVersion = [[NSUserDefaults standardUserDefaults] stringForKey:SEGVersionKey];
+    NSInteger previousBuild = [[NSUserDefaults standardUserDefaults] integerForKey:SEGBuildKey];
+
+    NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
+    NSInteger currentBuild = [[[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] integerValue];
+
+    if (!previousBuild) {
+        [self track:@"Application Installed" properties:@{
+            @"version" : currentVersion,
+            @"build" : @(currentBuild)
+        }];
+    } else if (currentBuild != previousBuild) {
+        [self track:@"Application Updated" properties:@{
+            @"previous_version" : previousVersion,
+            @"previous_build" : @(previousBuild),
+            @"version" : currentVersion,
+            @"build" : @(currentBuild)
+        }];
+    }
+
+
+    [self track:@"Application Started" properties:@{
+        @"version" : currentVersion,
+        @"build" : @(currentBuild)
+    }];
+
+    [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:SEGVersionKey];
+    [[NSUserDefaults standardUserDefaults] setInteger:currentBuild forKey:SEGBuildKey];
+}
 
 
 - (void)onAppForeground:(NSNotification *)note

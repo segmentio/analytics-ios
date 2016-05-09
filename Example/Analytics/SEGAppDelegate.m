@@ -14,7 +14,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [SEGAnalytics setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:@"MlTmISmburwl2nN9o3NFpGfElujcfb0q"]];
+    SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"lBsvwzpkVaLE5TwyLU9nwlRMRKja9Wqw"];
+    configuration.trackApplicationLifecycleEvents = YES;
+    [SEGAnalytics setupWithConfiguration:configuration];
     [SEGAnalytics debug:YES];
 
     [[SEGAnalytics sharedAnalytics] track:@"Hello World"];

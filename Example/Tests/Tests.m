@@ -17,14 +17,14 @@ describe(@"analytics", ^{
     __block SEGAnalytics *analytics = nil;
 
     beforeEach(^{
-        SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"MlTmISmburwl2nN9o3NFpGfElujcfb0q"];
+        SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"lBsvwzpkVaLE5TwyLU9nwlRMRKja9Wqw"];
         [SEGAnalytics setupWithConfiguration:configuration];
         analytics = [SEGAnalytics sharedAnalytics];
     });
 
     it(@"initialized correctly", ^{
         expect(analytics.configuration.flushAt).to.equal(20);
-        expect(analytics.configuration.writeKey).to.equal(@"MlTmISmburwl2nN9o3NFpGfElujcfb0q");
+        expect(analytics.configuration.writeKey).to.equal(@"lBsvwzpkVaLE5TwyLU9nwlRMRKja9Wqw");
         expect(analytics.configuration.shouldUseLocationServices).to.equal(@NO);
         expect(analytics.configuration.enableAdvertisingTracking).to.equal(@YES);
     });
