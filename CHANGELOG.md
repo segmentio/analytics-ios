@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 3.1.0 *(05-09-2016)*
+-----------------------------
+
+ * Make `SEGAnalyticsIntegrationDidStart` public (use this to be notified when an integration is initialized).
+ * Fixed crashes due to NSNotificationCenter observers not being removed.
+ * Instrument automatic application lifecycle event tracking.
+
 Version 3.0.7 *(02-01-2016)*
 -----------------------------
 
@@ -53,6 +60,7 @@ pod `Segment-Bugsnag`
 pod `Segment-Branch`
 ...
 ```
+
 Register them in your configuration when you initialize the SDK.
 ```
 SEGAnalyticsConfiguration *config = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY"];

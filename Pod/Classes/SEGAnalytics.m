@@ -474,7 +474,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 + (NSString *)version
 {
-    return @"3.0.7";
+    return @"3.1.0";
 }
 
 #pragma mark - Private
