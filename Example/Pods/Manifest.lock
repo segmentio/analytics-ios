@@ -1,5 +1,5 @@
 PODS:
-  - Analytics (3.0.7)
+  - Analytics (3.1.0)
   - Expecta (1.0.3)
   - Specta (1.0.4)
 
@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Analytics: b342fb4f43fa4f97ca6f4358b44d3295217ba294
+  Analytics: e530ca7e91be699a23afbc7d8f4a20752b2c45d8
   Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
   Specta: 69bb134672aae190a1379ff91df07dad8dd1f869
 

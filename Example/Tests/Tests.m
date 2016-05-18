@@ -17,7 +17,7 @@ describe(@"analytics", ^{
     __block SEGAnalytics *analytics = nil;
 
     beforeEach(^{
-        SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"lBsvwzpkVaLE5TwyLU9nwlRMRKja9Wqw"];
+        SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"dpu3lo79nb"];
         [SEGAnalytics setupWithConfiguration:configuration];
         analytics = [SEGAnalytics sharedAnalytics];
     });
