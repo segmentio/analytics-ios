@@ -1,11 +1,3 @@
-//
-//  SEGAppDelegate.m
-//  Analytics
-//
-//  Created by Prateek Srivastava on 11/02/2015.
-//  Copyright (c) 2015 Prateek Srivastava. All rights reserved.
-//
-
 #import "SEGAppDelegate.h"
 #import <Analytics/SEGAnalytics.h>
 
@@ -14,10 +6,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // https://segment.com/segment-engineering/sources/test-ios
     SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"dpu3lo79nb"];
     configuration.trackApplicationLifecycleEvents = YES;
+    configuration.recordScreenViews = YES;
     [SEGAnalytics setupWithConfiguration:configuration];
-    [SEGAnalytics debug:YES];
+    [SEGAnalytics debug:NO];
 
     [[SEGAnalytics sharedAnalytics] track:@"Hello World"];
     [[SEGAnalytics sharedAnalytics] group:@"segment"];

@@ -24,7 +24,7 @@ describe(@"analytics", ^{
 
     it(@"initialized correctly", ^{
         expect(analytics.configuration.flushAt).to.equal(20);
-        expect(analytics.configuration.writeKey).to.equal(@"lBsvwzpkVaLE5TwyLU9nwlRMRKja9Wqw");
+        expect(analytics.configuration.writeKey).to.equal(@"dpu3lo79nb");
         expect(analytics.configuration.shouldUseLocationServices).to.equal(@NO);
         expect(analytics.configuration.enableAdvertisingTracking).to.equal(@YES);
     });
