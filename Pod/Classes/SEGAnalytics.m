@@ -5,11 +5,11 @@
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalyticsRequest.h"
 #import "SEGAnalytics.h"
-
 #import "SEGIntegrationFactory.h"
 #import "SEGIntegration.h"
-#import <objc/runtime.h>
 #import "SEGSegmentIntegrationFactory.h"
+#import "UIViewController+SEGScreen.h"
+#import <objc/runtime.h>
 
 static SEGAnalytics *__sharedInstance = nil;
 NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.did.start";
@@ -104,6 +104,10 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
         self.integrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
         self.registeredIntegrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
         self.configuration = configuration;
+
+        if (configuration.recordScreenViews) {
+            [UIViewController seg_swizzleViewDidAppear];
+        }
 
         // Update settings on each integration immediately
         [self refreshSettings];

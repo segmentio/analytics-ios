@@ -48,6 +48,11 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
  */
 @property (nonatomic, assign) BOOL trackApplicationLifecycleEvents;
 
+/**
+ * Whether the analytics client should automatically make a screen call when a view controller is added to a view hierarchy. Because the underlying implementation uses method swizzling, we recommend initializing the analytics client as early as possible (before any screens are displayed), ideally during the Application delegate's applicationDidFinishLaunching method.
+ */
+@property (nonatomic, assign) BOOL recordScreenViews;
+
 
 /**
  * Register a factory that can be used to create an integration.

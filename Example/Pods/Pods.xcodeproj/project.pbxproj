@@ -25,6 +25,46 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
+		<key>00E24F1B3F5CCD6ADFDA8A2F0858424E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGIdentifyPayload.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>01E929E40A96C9AD0155BCF696E0BAC5</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SEGAnalytics.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>030E1BB36EF1965650A5DDC153F5A44D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>344D7373540F764575363ED29B888150</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>03ABE255625686EBA733DB76A1B72FCC</key>
 		<dict>
 			<key>containerPortal</key>
@@ -37,20 +77,6 @@
 			<string>B2451C68934FDCC9530B94535C6DA3B7</string>
 			<key>remoteInfo</key>
 			<string>Specta</string>
-		</dict>
-		<key>04462E99F1F5889668D8ABA67056E7B0</key>
-		<dict>
-			<key>fileRef</key>
-			<string>6E2935FE3BFBE9D4232EBEEDC8A10288</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>04BBCCE13322F42620459D20E8DE3673</key>
 		<dict>
@@ -82,6 +108,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>04E28AD0C61206A3BFA71378CD50A92C</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGAnalytics.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>052091EA579B587C09E920A736C2270E</key>
 		<dict>
 			<key>buildConfigurations</key>
@@ -105,7 +144,7 @@
 			<key>proxyType</key>
 			<string>1</string>
 			<key>remoteGlobalIDString</key>
-			<string>38A5CB8DD871E0C5D1E09A63048B9E01</string>
+			<string>9F55BDA77A2E5A78345D6C44317AC97E</string>
 			<key>remoteInfo</key>
 			<string>Analytics</string>
 		</dict>
@@ -130,13 +169,6 @@
 			<string>Specta/Specta/SPTSharedExampleGroups.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>0952DDE7D803AC43FF72BC4791967D53</key>
-		<dict>
-			<key>fileRef</key>
-			<string>0B8251E95CDD2D6B41D53DFEBA523E9F</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>09AFCBF80DDAF7BB9C44B420EB2DE46E</key>
 		<dict>
@@ -199,19 +231,6 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Release</string>
-		</dict>
-		<key>0B8251E95CDD2D6B41D53DFEBA523E9F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SEGAnalytics.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>0BD940E2614D61E77B2AFD7C5F413621</key>
 		<dict>
@@ -382,12 +401,18 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>1101D73C9831F6A464AF8FA282ACDC29</key>
+		<key>10EB981DA4D7C000D4845A1D1C5A346C</key>
 		<dict>
-			<key>fileRef</key>
-			<string>E351727CD07BB90B2A3CAE2C2433F6C5</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SEGReachability.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>113855CF66A69F6876546E978AC2362E</key>
 		<dict>
@@ -417,13 +442,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>123CAE76C82C832EE8E7FBEFF1CF30A3</key>
-		<dict>
-			<key>fileRef</key>
-			<string>2852CAB5465492397CA2C23D40AB906A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>124408F448490BCF39CC1C2AA5297197</key>
 		<dict>
@@ -455,6 +473,13 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
+		<key>12596348049A133AE127BAA0CAADEB85</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2FEA8184C5FE369453D9ECE727CDB73A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>1312A7D381C51428CF481E33E3D37901</key>
 		<dict>
 			<key>fileRef</key>
@@ -481,62 +506,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>13B066E8EDCC73D49218063E427606FC</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>7C5005360D3C32E9BE2CBB50F854E739</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/Analytics/Analytics-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/Analytics/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/Analytics/Analytics.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>YES</string>
-				<key>PRODUCT_NAME</key>
-				<string>Analytics</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Debug</string>
-		</dict>
 		<key>146F19B2C2324623B392F801D1711A1B</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -547,19 +516,6 @@
 			<string>text.plist.xml</string>
 			<key>path</key>
 			<string>Info.plist</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>14B189843BC7580173635A4C53670399</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGIntegrationFactory.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -581,7 +537,7 @@
 		<dict>
 			<key>children</key>
 			<array>
-				<string>D2B508589972B8B737E77E4E0E5CFFF6</string>
+				<string>834C0415E69786BA487CBA79F6D8E046</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -591,6 +547,20 @@
 			<string>Pod</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>169AAFD06DDA2304A0F4FDC1D361D9DE</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7E8E56C5C23DB1636AE0F00F56597439</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>17572374B2AE183C6347C41E8DF8E579</key>
 		<dict>
@@ -634,6 +604,62 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>1825AACA5D21228EED510197A931CE2A</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>7C5005360D3C32E9BE2CBB50F854E739</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/Analytics/Analytics-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/Analytics/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/Analytics/Analytics.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>PRODUCT_NAME</key>
+				<string>Analytics</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
 		<key>186D37D789BDC5806713AC08D0BD0452</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -649,19 +675,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>19ACF67817E6F9422CB53A79BB1D3EC3</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>1101D73C9831F6A464AF8FA282ACDC29</string>
-			</array>
-			<key>isa</key>
-			<string>PBXFrameworksBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
 		<key>1A1AB2EC52323C5EA28DAA99F1E1A90D</key>
 		<dict>
 			<key>fileRef</key>
@@ -675,19 +688,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>1A73ECFAB61C3BE8BA8D7D264F1D998C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGTrackPayload.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>1AB3304B6884F626BC54150AC7565E18</key>
 		<dict>
@@ -725,19 +725,6 @@
 			<string>EXPMatchers+beSupersetOf.m</string>
 			<key>path</key>
 			<string>Expecta/Matchers/EXPMatchers+beSupersetOf.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>1BDA7B237225210CFA6BAE68C368479A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SEGScreenPayload.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -782,6 +769,13 @@
 			<string>PBXFrameworksBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>1F52C8FC5CD090183C7656D029F1F2E9</key>
+		<dict>
+			<key>fileRef</key>
+			<string>EC3F345B9404EC1A56558E45A0B8D338</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>1F5CF0D3894D4FC1B84CF0F527D0D766</key>
 		<dict>
@@ -831,27 +825,6 @@
 			<string>FD3A245D75F8D2D0FFAD5230F5925974</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
-		</dict>
-		<key>2109D1D156B93FE852B4AC4B93F2AB2A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>1BDA7B237225210CFA6BAE68C368479A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>21CB2BDEBA5A3334CD42B9BA362FFEF3</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9AB8672E3D50B601EAE6C4FF518A376C</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>22E858A8EDF9F45357D9A2FA9C9BB6AC</key>
 		<dict>
@@ -910,6 +883,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>25F79B1CCD6F39FE7046237777465B7B</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D0308595FA09470BA74DCA4D72578377</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>260BC7EED9289AF321A6F791964CE472</key>
 		<dict>
 			<key>fileRef</key>
@@ -928,13 +915,6 @@
 		<dict>
 			<key>fileRef</key>
 			<string>7D23EA9CCB1E421678FACAC3D02921A8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>27298223512E49BA8318074ED1B73FC1</key>
-		<dict>
-			<key>fileRef</key>
-			<string>BBB305874350FB40722ACF2655B3064F</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -995,19 +975,6 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>2852CAB5465492397CA2C23D40AB906A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SEGAliasPayload.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>2916A0606136A9DC67F2463AB230868B</key>
 		<dict>
 			<key>fileRef</key>
@@ -1032,6 +999,13 @@
 			<string>Pods-Analytics_Example.modulemap</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2A1D7AA4879EBCB61D1163773A5935E4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>CA657C2A1AC4EFED760444F1ADCB0DF0</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>2A1EC781C67B94698BC0FD79F6926656</key>
 		<dict>
@@ -1114,6 +1088,19 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
+		<key>2D79B8DBE7238803A3254715763CF229</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGAnalyticsUtils.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>2D8E8EC45A3A1A1D94AE762CB5028504</key>
 		<dict>
 			<key>buildConfigurations</key>
@@ -1155,6 +1142,19 @@
 				</array>
 			</dict>
 		</dict>
+		<key>2F19A8C523B61990A416CB21CA7E2360</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SEGAnalyticsRequest.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>2F427490ACABC4408D57CC0592276678</key>
 		<dict>
 			<key>fileRef</key>
@@ -1168,6 +1168,19 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>2FEA8184C5FE369453D9ECE727CDB73A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SEGSegmentIntegrationFactory.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>304B57059BB4044DAE39EA874C73402A</key>
 		<dict>
@@ -1209,6 +1222,32 @@
 			<string>EXPMatchers+raise.h</string>
 			<key>path</key>
 			<string>Expecta/Matchers/EXPMatchers+raise.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>344D7373540F764575363ED29B888150</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGScreenPayload.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>344E6D33B0B071F9B566CE573F2D5D7E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGAliasPayload.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1282,44 +1321,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>3838CED22B8A1DF65F8CB77DE6725B9A</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SEGTrackPayload.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>38A5CB8DD871E0C5D1E09A63048B9E01</key>
-		<dict>
-			<key>buildConfigurationList</key>
-			<string>90F9CA5FC999D8CF8F085813AB2C4AB9</string>
-			<key>buildPhases</key>
-			<array>
-				<string>98003C1BCC7EB2378D383433FF0F029D</string>
-				<string>19ACF67817E6F9422CB53A79BB1D3EC3</string>
-				<string>BABC96CBDB10E1C755070AC44B4CF454</string>
-			</array>
-			<key>buildRules</key>
-			<array/>
-			<key>dependencies</key>
-			<array/>
-			<key>isa</key>
-			<string>PBXNativeTarget</string>
-			<key>name</key>
-			<string>Analytics</string>
-			<key>productName</key>
-			<string>Analytics</string>
-			<key>productReference</key>
-			<string>00988D2C0DCD30DB1BD5DA2561B2FB0D</string>
-			<key>productType</key>
-			<string>com.apple.product-type.framework</string>
-		</dict>
 		<key>393405584126BC701B16CB695FBEC1B0</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1348,19 +1349,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>395437F432EE6840F82E77795A51BDC4</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SEGReachability.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>397B320B7C59C168CC5B62E18ED8DEA0</key>
 		<dict>
 			<key>fileRef</key>
@@ -1374,19 +1362,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>3A30C91F0873AC2FB14139A886E0457B</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGIdentifyPayload.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>3ACF80B5A24CE07B6C736EEF474E7E9C</key>
 		<dict>
@@ -1447,62 +1422,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>3BB84678EEA3F681101ED57F687B8F28</key>
-		<dict>
-			<key>baseConfigurationReference</key>
-			<string>7C5005360D3C32E9BE2CBB50F854E739</string>
-			<key>buildSettings</key>
-			<dict>
-				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
-				<string>iPhone Developer</string>
-				<key>CURRENT_PROJECT_VERSION</key>
-				<string>1</string>
-				<key>DEFINES_MODULE</key>
-				<string>YES</string>
-				<key>DYLIB_COMPATIBILITY_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_CURRENT_VERSION</key>
-				<string>1</string>
-				<key>DYLIB_INSTALL_NAME_BASE</key>
-				<string>@rpath</string>
-				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
-				<string>YES</string>
-				<key>GCC_PREFIX_HEADER</key>
-				<string>Target Support Files/Analytics/Analytics-prefix.pch</string>
-				<key>INFOPLIST_FILE</key>
-				<string>Target Support Files/Analytics/Info.plist</string>
-				<key>INSTALL_PATH</key>
-				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
-				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
-				<string>8.0</string>
-				<key>LD_RUNPATH_SEARCH_PATHS</key>
-				<array>
-					<string>$(inherited)</string>
-					<string>@executable_path/Frameworks</string>
-					<string>@loader_path/Frameworks</string>
-				</array>
-				<key>MODULEMAP_FILE</key>
-				<string>Target Support Files/Analytics/Analytics.modulemap</string>
-				<key>MTL_ENABLE_DEBUG_INFO</key>
-				<string>NO</string>
-				<key>PRODUCT_NAME</key>
-				<string>Analytics</string>
-				<key>SDKROOT</key>
-				<string>iphoneos</string>
-				<key>SKIP_INSTALL</key>
-				<string>YES</string>
-				<key>TARGETED_DEVICE_FAMILY</key>
-				<string>1,2</string>
-				<key>VERSIONING_SYSTEM</key>
-				<string>apple-generic</string>
-				<key>VERSION_INFO_PREFIX</key>
-				<string></string>
-			</dict>
-			<key>isa</key>
-			<string>XCBuildConfiguration</string>
-			<key>name</key>
-			<string>Release</string>
-		</dict>
 		<key>3BC8686AFBDE08EA8FE6E2525B30770E</key>
 		<dict>
 			<key>fileRef</key>
@@ -1531,7 +1450,7 @@
 			<key>name</key>
 			<string>Analytics</string>
 			<key>target</key>
-			<string>38A5CB8DD871E0C5D1E09A63048B9E01</string>
+			<string>9F55BDA77A2E5A78345D6C44317AC97E</string>
 			<key>targetProxy</key>
 			<string>A70C80AD9AE97C9712E962284F8126DD</string>
 		</dict>
@@ -1547,20 +1466,6 @@
 			<string>PBXSourcesBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
-		</dict>
-		<key>3F03A10BFC9EB2FAE76BE5AF58568C90</key>
-		<dict>
-			<key>fileRef</key>
-			<string>8A92A67740CA1D2CC67287B6C5C2D174</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>3F32E405A85135EDBCBF4765A6BB530B</key>
 		<dict>
@@ -1619,19 +1524,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>42F976A3B296FDACA713F41E1ACF1AD8</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGIntegration.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>433CD3331B6C3787F473C941B61FC68F</key>
 		<dict>
 			<key>children</key>
@@ -1645,7 +1537,7 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>43D2CA075417B2B911322C2E5AA97883</key>
+		<key>43A4CACB38B6CA2BEC1BE17A944B526D</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -1654,20 +1546,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>path</key>
-			<string>SEGSegmentIntegration.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>444575DD768D5C392E026693F6E79F01</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SEGLocation.m</string>
+			<string>SEGBluetooth.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -1683,6 +1562,13 @@
 			<string>Pods-Analytics_Tests-frameworks.sh</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>460B57EAD58868358B316C281025E1CC</key>
+		<dict>
+			<key>fileRef</key>
+			<string>10EB981DA4D7C000D4845A1D1C5A346C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>46137F5CC368BF38BAF0D0AF81DD8FFE</key>
 		<dict>
@@ -1712,12 +1598,31 @@
 				</array>
 			</dict>
 		</dict>
-		<key>48C7A47F9F10042E20081F6E7664D224</key>
+		<key>4960F32E8F7002208C22D241778A6D54</key>
 		<dict>
-			<key>fileRef</key>
-			<string>9F9C529D1EE41AEBAE0169D213FD6CC9</string>
+			<key>includeInIndex</key>
+			<string>1</string>
 			<key>isa</key>
-			<string>PBXBuildFile</string>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGGroupPayload.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>4BAF1141904801D1B3A3E935FD3B3868</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>UIViewController+SEGScreen.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>4BBCBB9D8EF0B241A4A4FE4982985481</key>
 		<dict>
@@ -1786,6 +1691,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>5050ED39F2E5F88D80C7514EBA708AF7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E0F94CC55014165EDCFF1A3772BD4869</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>51DDDB0FB4899757CF6A826B531B940D</key>
 		<dict>
 			<key>fileRef</key>
@@ -1830,19 +1749,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>52101033922C49EE201497588571BC23</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGGroupPayload.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>54371815367C40EDB52FBDB27B2DBA70</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -1875,6 +1781,13 @@
 			<string>Development Pods</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5916DEF63DC92119CF761E1BDAA92F5C</key>
+		<dict>
+			<key>fileRef</key>
+			<string>43A4CACB38B6CA2BEC1BE17A944B526D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>592E81109E597E27A3D9DBB86ABBE590</key>
 		<dict>
@@ -1989,6 +1902,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>5D5C9204430D8E44477136FA32961967</key>
+		<dict>
+			<key>fileRef</key>
+			<string>04E28AD0C61206A3BFA71378CD50A92C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>5DD6A05C935D45FE5DDA6F963C527FBB</key>
 		<dict>
 			<key>children</key>
@@ -2061,6 +1988,20 @@
 		<dict>
 			<key>fileRef</key>
 			<string>D61BC75AB795DFB7AE9CF80D79C1B530</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>5F3186AC67B0BDFEE6A7231BC76B72AE</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B9DCE873FAD3FF62BAFEA3D5849C70B2</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -2207,6 +2148,33 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>6545F6455E9798B916B08AFEF7D0BB2D</key>
+		<dict>
+			<key>fileRef</key>
+			<string>6571AFAF38BCEC5F9D77E624F54D476B</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>6571AFAF38BCEC5F9D77E624F54D476B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGSegmentIntegration.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>657CEA8739EA0884C9ED1E79FCDA555C</key>
 		<dict>
 			<key>fileRef</key>
@@ -2220,6 +2188,20 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>65B01B157FE787C80855A56F7DAE80AB</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>E6E8CD3AE3C334FDB40ED9939B32DF99</string>
+				<string>1825AACA5D21228EED510197A931CE2A</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
 		</dict>
 		<key>65BC31095CCDFC80CBF6BBA843751F23</key>
 		<dict>
@@ -2330,6 +2312,13 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>67854849FB05FDE619C108752AC20DB2</key>
+		<dict>
+			<key>fileRef</key>
+			<string>F7561945EB2DCC221D8454C717242E73</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>68F820C46D336F1E6EB733BFC4374C51</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2342,19 +2331,6 @@
 			<string>SPTExample.h</string>
 			<key>path</key>
 			<string>Specta/Specta/SPTExample.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>69320422AF3A7CDD0C93B1D202AB2C22</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGPayload.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2500,19 +2476,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>6E2935FE3BFBE9D4232EBEEDC8A10288</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGAnalyticsRequest.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>6EFC63A5CED45BB39FC79D87F2C47D6B</key>
 		<dict>
 			<key>fileRef</key>
@@ -2539,6 +2502,20 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
+		<key>6FAC06DC438DAB2CEAEA860C17746826</key>
+		<dict>
+			<key>fileRef</key>
+			<string>4960F32E8F7002208C22D241778A6D54</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>704CDA1E2D73288DAC9C4FDBA881844E</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -2551,13 +2528,6 @@
 			<string>Specta-prefix.pch</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>708332708CDA842056A0D3517D2552FF</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9785CA4804F847DFB5EF5B36FFB4661C</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>724AA5B7B61D8953F8A0F8AC8A0F653B</key>
 		<dict>
@@ -2576,39 +2546,6 @@
 			<string>text.xcconfig</string>
 			<key>path</key>
 			<string>Pods-Analytics_Tests.debug.xcconfig</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>7289E211F18D5169ED7031C5179F55A1</key>
-		<dict>
-			<key>fileRef</key>
-			<string>760313749BA4111B50984BD06359E9B5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>759394BA1029C9F28194510E6D63AF60</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SEGPayload.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>760313749BA4111B50984BD06359E9B5</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SEGGroupPayload.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2652,34 +2589,6 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-fno-objc-arc</string>
 			</dict>
-		</dict>
-		<key>76FC594910D1EC5D1334716F5EE8967B</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>BD8811F4C1CD2798C36ECD4B95696214</string>
-				<string>2852CAB5465492397CA2C23D40AB906A</string>
-				<string>52101033922C49EE201497588571BC23</string>
-				<string>760313749BA4111B50984BD06359E9B5</string>
-				<string>3A30C91F0873AC2FB14139A886E0457B</string>
-				<string>9F9C529D1EE41AEBAE0169D213FD6CC9</string>
-				<string>42F976A3B296FDACA713F41E1ACF1AD8</string>
-				<string>14B189843BC7580173635A4C53670399</string>
-				<string>69320422AF3A7CDD0C93B1D202AB2C22</string>
-				<string>759394BA1029C9F28194510E6D63AF60</string>
-				<string>8A92A67740CA1D2CC67287B6C5C2D174</string>
-				<string>1BDA7B237225210CFA6BAE68C368479A</string>
-				<string>1A73ECFAB61C3BE8BA8D7D264F1D998C</string>
-				<string>3838CED22B8A1DF65F8CB77DE6725B9A</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Integrations</string>
-			<key>path</key>
-			<string>Integrations</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>78F5D31437776FFE9BBCAE5FD37C912E</key>
 		<dict>
@@ -2747,6 +2656,13 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>7A85C80154ED35BCAC26A64E24C07CD1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D7BAB500ED952FF3DCA13D4B233A1865</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>7B223B4E6EF14BA12DA113F7EE10B96C</key>
 		<dict>
 			<key>fileRef</key>
@@ -2771,6 +2687,19 @@
 			<string>text.xcconfig</string>
 			<key>path</key>
 			<string>Analytics.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>7C624E59E9C27399D7B382328943E99A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SEGGroupPayload.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -2805,20 +2734,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>7DB7B831DE51DC10D27A24FA289B5379</key>
-		<dict>
-			<key>fileRef</key>
-			<string>3A30C91F0873AC2FB14139A886E0457B</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>7E340557CE610CC622C762B74656A5FA</key>
 		<dict>
 			<key>isa</key>
@@ -2829,6 +2744,19 @@
 			<string>0D888F29E05E498D0CD91A51D28599A5</string>
 			<key>targetProxy</key>
 			<string>304B57059BB4044DAE39EA874C73402A</string>
+		</dict>
+		<key>7E8E56C5C23DB1636AE0F00F56597439</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGPayload.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>7ECE72AD43155832C505F13EE17792AC</key>
 		<dict>
@@ -2911,26 +2839,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>830CB7A55D18825D1B992E30E1253AA4</key>
-		<dict>
-			<key>fileRef</key>
-			<string>D47115EB57BB6EF06589421FF4F0A61B</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
-		<key>83254BA16A6EB11282C2F305C4441A65</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGAnalyticsUtils.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>832799A4B323B60613D70B37F74AE952</key>
 		<dict>
 			<key>children</key>
@@ -2945,24 +2853,28 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>834C0415E69786BA487CBA79F6D8E046</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>04E28AD0C61206A3BFA71378CD50A92C</string>
+				<string>01E929E40A96C9AD0155BCF696E0BAC5</string>
+				<string>C558CA8032019BEA1DE8DD9D39E70F04</string>
+				<string>C9E616C9CDEE72E8649DD522B2E0B950</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Classes</string>
+			<key>path</key>
+			<string>Classes</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>837B593D7C1D01B4EA400247309D6AB0</key>
 		<dict>
 			<key>fileRef</key>
 			<string>D6BE4E35D0AA9FEFC1DA27890CBA2A19</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>838CB2D8282E2299C8FAB093C8FED76A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>FC47CF6608F30D402DF8E658663BF8CA</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -2987,13 +2899,6 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
-		<key>84116C4C9945E5EA40474F07F155C5CD</key>
-		<dict>
-			<key>fileRef</key>
-			<string>F50E877071B91DF4FB2D1AD80BAB2656</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>847A5C6956B4E31C6C348C18D4FDBEEA</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3009,6 +2914,20 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>84C8EFB5F74E12485B491E08E55B1898</key>
+		<dict>
+			<key>fileRef</key>
+			<string>D4A2EA674B0435AB788E89395F75F7D1</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>85894D3BC2F0861559B8F0FB688DAAF9</key>
 		<dict>
 			<key>explicitFileType</key>
@@ -3023,20 +2942,6 @@
 			<string>Specta.framework</string>
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
-		</dict>
-		<key>859BF2A834DFDC49183390F334CB84A7</key>
-		<dict>
-			<key>fileRef</key>
-			<string>52101033922C49EE201497588571BC23</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>85E31076D5530AEEB45ACF16B2B8A983</key>
 		<dict>
@@ -3056,6 +2961,33 @@
 		<dict>
 			<key>fileRef</key>
 			<string>67324AA26715C0742B62E59D0AAB374C</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>86D89F98CF8F8A7C875CCB84336F44B6</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGAnalyticsRequest.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>86E725F5E23328D038094DA7FDA6B99F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>B2FF5D00D40936904596E075E664F56B</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3103,19 +3035,6 @@
 			<string>text.script.sh</string>
 			<key>path</key>
 			<string>Pods-Analytics_Example-frameworks.sh</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>8A92A67740CA1D2CC67287B6C5C2D174</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGScreenPayload.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -3175,12 +3094,25 @@
 				</array>
 			</dict>
 		</dict>
-		<key>8E23CFCB907964F25640A7FC03357B5D</key>
+		<key>8CDEE4D5CF8F8290CE8B9AE1CE55E7F9</key>
 		<dict>
 			<key>fileRef</key>
-			<string>C52381C98DD68871047B2F565B19F127</string>
+			<string>E351727CD07BB90B2A3CAE2C2433F6C5</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>8D906F5D083AB2E9974ED6A75DD09EC3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGSegmentIntegrationFactory.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>8EB3E588331E58FBA4AB611DE3B16A2F</key>
 		<dict>
@@ -3204,20 +3136,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>9058FF886255FE4C2A4F292DD2DA995F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>83254BA16A6EB11282C2F305C4441A65</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>907F073F48A74CC1B58FDD4FB141F1A1</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3231,20 +3149,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>90F9CA5FC999D8CF8F085813AB2C4AB9</key>
-		<dict>
-			<key>buildConfigurations</key>
-			<array>
-				<string>13B066E8EDCC73D49218063E427606FC</string>
-				<string>3BB84678EEA3F681101ED57F687B8F28</string>
-			</array>
-			<key>defaultConfigurationIsVisible</key>
-			<string>0</string>
-			<key>defaultConfigurationName</key>
-			<string>Release</string>
-			<key>isa</key>
-			<string>XCConfigurationList</string>
-		</dict>
 		<key>918E06480F28F27361B19D19432F8538</key>
 		<dict>
 			<key>fileRef</key>
@@ -3256,13 +3160,6 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-fno-objc-arc</string>
 			</dict>
-		</dict>
-		<key>91C27E4E3D72EA9233E1FA0799522215</key>
-		<dict>
-			<key>fileRef</key>
-			<string>759394BA1029C9F28194510E6D63AF60</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
 		</dict>
 		<key>91D17A7188630D4CFFDF216D1B20AD98</key>
 		<dict>
@@ -3362,6 +3259,13 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
+		<key>93418DA910BD057F0C620062D56C81AD</key>
+		<dict>
+			<key>fileRef</key>
+			<string>01E929E40A96C9AD0155BCF696E0BAC5</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>93B613869003A3D21F03ECEADC589822</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3454,43 +3358,30 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
-		<key>9785CA4804F847DFB5EF5B36FFB4661C</key>
+		<key>96D738A417E9B68316339C8408123108</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>86D89F98CF8F8A7C875CCB84336F44B6</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SEGAnalyticsRequest.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
-		<key>98003C1BCC7EB2378D383433FF0F029D</key>
+		<key>97618C99D90AC7F929E7592B3E430BA7</key>
 		<dict>
 			<key>buildActionMask</key>
 			<string>2147483647</string>
 			<key>files</key>
 			<array>
-				<string>8E23CFCB907964F25640A7FC03357B5D</string>
-				<string>123CAE76C82C832EE8E7FBEFF1CF30A3</string>
-				<string>0952DDE7D803AC43FF72BC4791967D53</string>
-				<string>708332708CDA842056A0D3517D2552FF</string>
-				<string>830CB7A55D18825D1B992E30E1253AA4</string>
-				<string>27298223512E49BA8318074ED1B73FC1</string>
-				<string>7289E211F18D5169ED7031C5179F55A1</string>
-				<string>48C7A47F9F10042E20081F6E7664D224</string>
-				<string>DEB38D7681912ACA9C68D7441A1950F8</string>
-				<string>91C27E4E3D72EA9233E1FA0799522215</string>
-				<string>A09BCFDDE5238FE32C00AC8D5062A057</string>
-				<string>2109D1D156B93FE852B4AC4B93F2AB2A</string>
-				<string>DF9C9F9BEB953C0844073DB533281700</string>
-				<string>84116C4C9945E5EA40474F07F155C5CD</string>
-				<string>AA2339E81F9C7F1D647162A0C417B269</string>
+				<string>8CDEE4D5CF8F8290CE8B9AE1CE55E7F9</string>
 			</array>
 			<key>isa</key>
-			<string>PBXSourcesBuildPhase</string>
+			<string>PBXFrameworksBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
@@ -3536,32 +3427,6 @@
 				</array>
 			</dict>
 		</dict>
-		<key>9A875BD5692C569CC90E9CF69E2A99C4</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGSegmentIntegrationFactory.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>9AB8672E3D50B601EAE6C4FF518A376C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGLocation.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>9B143DB3A839EE8D0558F24D2C2F5293</key>
 		<dict>
 			<key>fileRef</key>
@@ -3602,10 +3467,10 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
-		<key>9CA8B84F11ACE728A00879C54D873D27</key>
+		<key>9DA0600549BF731F5E72BE63498D2726</key>
 		<dict>
 			<key>fileRef</key>
-			<string>14B189843BC7580173635A4C53670399</string>
+			<string>8D906F5D083AB2E9974ED6A75DD09EC3</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -3631,23 +3496,35 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>9F9C529D1EE41AEBAE0169D213FD6CC9</key>
+		<key>9F55BDA77A2E5A78345D6C44317AC97E</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>buildConfigurationList</key>
+			<string>65B01B157FE787C80855A56F7DAE80AB</string>
+			<key>buildPhases</key>
+			<array>
+				<string>EC7198833E108A35722531AD8D735942</string>
+				<string>97618C99D90AC7F929E7592B3E430BA7</string>
+				<string>F441BD4B4D9EF79F308A6CC13DBD0783</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SEGIdentifyPayload.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>Analytics</string>
+			<key>productName</key>
+			<string>Analytics</string>
+			<key>productReference</key>
+			<string>00988D2C0DCD30DB1BD5DA2561B2FB0D</string>
+			<key>productType</key>
+			<string>com.apple.product-type.framework</string>
 		</dict>
-		<key>A09BCFDDE5238FE32C00AC8D5062A057</key>
+		<key>A0CE4A3786E82A02FC70D8FB4D50A04B</key>
 		<dict>
 			<key>fileRef</key>
-			<string>395437F432EE6840F82E77795A51BDC4</string>
+			<string>2F19A8C523B61990A416CB21CA7E2360</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
@@ -3696,6 +3573,26 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>A15117715F28C91B9762E05FB13C610E</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SEGTrackPayload.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A1D0EC4FD400DB081338D28E891EB687</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A15117715F28C91B9762E05FB13C610E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>A247BBE6C7AF3197C3D39F17322B5521</key>
 		<dict>
 			<key>fileRef</key>
@@ -3723,6 +3620,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>A2A210E994327D08B8F1F30C5A96B72F</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SEGIdentifyPayload.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>A2ABBE8261195A55ED1DFF9A59897512</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3735,20 +3645,6 @@
 			<string>Specta-umbrella.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>A2ABCE288DC40CFE3A423B9693D94607</key>
-		<dict>
-			<key>fileRef</key>
-			<string>B2FF5D00D40936904596E075E664F56B</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>A31DB2F213B606BBB124F2A6D10D8417</key>
 		<dict>
@@ -3772,34 +3668,6 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>A4853A956CA223A13974A0B4D1126F9F</key>
-		<dict>
-			<key>fileRef</key>
-			<string>1A73ECFAB61C3BE8BA8D7D264F1D998C</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>A5C06C48D613C321BA1DE60D96441B3A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>69320422AF3A7CDD0C93B1D202AB2C22</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>A70C80AD9AE97C9712E962284F8126DD</key>
 		<dict>
 			<key>containerPortal</key>
@@ -3809,7 +3677,7 @@
 			<key>proxyType</key>
 			<string>1</string>
 			<key>remoteGlobalIDString</key>
-			<string>38A5CB8DD871E0C5D1E09A63048B9E01</string>
+			<string>9F55BDA77A2E5A78345D6C44317AC97E</string>
 			<key>remoteInfo</key>
 			<string>Analytics</string>
 		</dict>
@@ -3901,13 +3769,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>AA2339E81F9C7F1D647162A0C417B269</key>
-		<dict>
-			<key>fileRef</key>
-			<string>3838CED22B8A1DF65F8CB77DE6725B9A</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>AA2364F990290F821A2CB900471FBE2A</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -3967,6 +3828,19 @@
 			<string>XCTestCase+Specta.m</string>
 			<key>path</key>
 			<string>Specta/Specta/XCTestCase+Specta.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>ACBE2CDB499997797504A4DF845D2F31</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SEGPayload.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -4072,6 +3946,13 @@
 				</array>
 			</dict>
 		</dict>
+		<key>B0890D666B325A011E22575DF4027B4F</key>
+		<dict>
+			<key>fileRef</key>
+			<string>FEC1A74B30FBDD75272928C78C6BE7B3</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>B08A2F50C778D0ADC10F49F07184E880</key>
 		<dict>
 			<key>baseConfigurationReference</key>
@@ -4127,6 +4008,19 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Debug</string>
+		</dict>
+		<key>B0A5B7B41C6D822ECC04952D2B47C684</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGLocation.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>B0AF658EF017B55F80A728706DBBEA14</key>
 		<dict>
@@ -4189,6 +4083,13 @@
 			<string>Expecta/Matchers/EXPMatchers+respondTo.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>B1A691C7D5298090C91D0E2B5283736E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>A2A210E994327D08B8F1F30C5A96B72F</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>B239BD93C67DE976C7F3A1AD982A0A58</key>
 		<dict>
@@ -4332,6 +4233,19 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
+		<key>B9DCE873FAD3FF62BAFEA3D5849C70B2</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGIntegration.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>BA12B131F10BCE3BE6E9A02FC908FE9D</key>
 		<dict>
 			<key>fileRef</key>
@@ -4361,62 +4275,6 @@
 			<key>xcLanguageSpecificationIdentifier</key>
 			<string>xcode.lang.ruby</string>
 		</dict>
-		<key>BA85DDAD1E2A0B69144CA70E24C151F1</key>
-		<dict>
-			<key>fileRef</key>
-			<string>9A875BD5692C569CC90E9CF69E2A99C4</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>BABC96CBDB10E1C755070AC44B4CF454</key>
-		<dict>
-			<key>buildActionMask</key>
-			<string>2147483647</string>
-			<key>files</key>
-			<array>
-				<string>A2ABCE288DC40CFE3A423B9693D94607</string>
-				<string>ED38F5F0066CDE3C1EBAB76364695405</string>
-				<string>E625099A9CE72889C7781E2453D565C0</string>
-				<string>04462E99F1F5889668D8ABA67056E7B0</string>
-				<string>9058FF886255FE4C2A4F292DD2DA995F</string>
-				<string>C431A7E0C27FAEE322A6043ACE4F41B0</string>
-				<string>859BF2A834DFDC49183390F334CB84A7</string>
-				<string>7DB7B831DE51DC10D27A24FA289B5379</string>
-				<string>D44704ABADF8F29AB92D36C9E111A060</string>
-				<string>9CA8B84F11ACE728A00879C54D873D27</string>
-				<string>21CB2BDEBA5A3334CD42B9BA362FFEF3</string>
-				<string>A5C06C48D613C321BA1DE60D96441B3A</string>
-				<string>FAA10A66749646BEF316E118A209084A</string>
-				<string>3F03A10BFC9EB2FAE76BE5AF58568C90</string>
-				<string>838CB2D8282E2299C8FAB093C8FED76A</string>
-				<string>BA85DDAD1E2A0B69144CA70E24C151F1</string>
-				<string>A4853A956CA223A13974A0B4D1126F9F</string>
-			</array>
-			<key>isa</key>
-			<string>PBXHeadersBuildPhase</string>
-			<key>runOnlyForDeploymentPostprocessing</key>
-			<string>0</string>
-		</dict>
-		<key>BBB305874350FB40722ACF2655B3064F</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
-			<key>path</key>
-			<string>SEGBluetooth.m</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>BC55C8365AEFF8217F6A567607754854</key>
 		<dict>
 			<key>fileRef</key>
@@ -4428,32 +4286,6 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-fno-objc-arc</string>
 			</dict>
-		</dict>
-		<key>BD7E96A5AB18F8B53CEC1FCC4331718C</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGReachability.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>BD8811F4C1CD2798C36ECD4B95696214</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGAliasPayload.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>BEFFE9FFE52E9A0833A7D2D8FB67EB4D</key>
 		<dict>
@@ -4564,18 +4396,19 @@
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 		</dict>
-		<key>C234D81977623EDBB90686F3EA7D6DB5</key>
+		<key>C18BF300FA72CF8E42F004ADB5467AF5</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>E1BD47DEC7A6E2083516CEA7F94E4A2B</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGBluetooth.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>C2D5F98443188468F5CFE556EC251738</key>
 		<dict>
@@ -4592,20 +4425,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>C431A7E0C27FAEE322A6043ACE4F41B0</key>
-		<dict>
-			<key>fileRef</key>
-			<string>C234D81977623EDBB90686F3EA7D6DB5</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>C52381C98DD68871047B2F565B19F127</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -4618,6 +4437,41 @@
 			<string>Analytics-dummy.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C558CA8032019BEA1DE8DD9D39E70F04</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>344E6D33B0B071F9B566CE573F2D5D7E</string>
+				<string>D7BAB500ED952FF3DCA13D4B233A1865</string>
+				<string>4960F32E8F7002208C22D241778A6D54</string>
+				<string>7C624E59E9C27399D7B382328943E99A</string>
+				<string>00E24F1B3F5CCD6ADFDA8A2F0858424E</string>
+				<string>A2A210E994327D08B8F1F30C5A96B72F</string>
+				<string>B9DCE873FAD3FF62BAFEA3D5849C70B2</string>
+				<string>D0308595FA09470BA74DCA4D72578377</string>
+				<string>7E8E56C5C23DB1636AE0F00F56597439</string>
+				<string>ACBE2CDB499997797504A4DF845D2F31</string>
+				<string>344D7373540F764575363ED29B888150</string>
+				<string>FEC1A74B30FBDD75272928C78C6BE7B3</string>
+				<string>E0F94CC55014165EDCFF1A3772BD4869</string>
+				<string>A15117715F28C91B9762E05FB13C610E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Integrations</string>
+			<key>path</key>
+			<string>Integrations</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C59120A172B023FB0EDCC1AF5DD715B8</key>
+		<dict>
+			<key>fileRef</key>
+			<string>ACBE2CDB499997797504A4DF845D2F31</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>C7A1FE2006A967BE06886C450214BDFE</key>
 		<dict>
@@ -4664,6 +4518,50 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>C849DE8C536E443CE977DC84840B3768</key>
+		<dict>
+			<key>fileRef</key>
+			<string>344E6D33B0B071F9B566CE573F2D5D7E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>C9E616C9CDEE72E8649DD522B2E0B950</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>86D89F98CF8F8A7C875CCB84336F44B6</string>
+				<string>2F19A8C523B61990A416CB21CA7E2360</string>
+				<string>2D79B8DBE7238803A3254715763CF229</string>
+				<string>F7561945EB2DCC221D8454C717242E73</string>
+				<string>D4A2EA674B0435AB788E89395F75F7D1</string>
+				<string>43A4CACB38B6CA2BEC1BE17A944B526D</string>
+				<string>B0A5B7B41C6D822ECC04952D2B47C684</string>
+				<string>CA657C2A1AC4EFED760444F1ADCB0DF0</string>
+				<string>E1BD47DEC7A6E2083516CEA7F94E4A2B</string>
+				<string>10EB981DA4D7C000D4845A1D1C5A346C</string>
+				<string>6571AFAF38BCEC5F9D77E624F54D476B</string>
+				<string>EC3F345B9404EC1A56558E45A0B8D338</string>
+				<string>8D906F5D083AB2E9974ED6A75DD09EC3</string>
+				<string>2FEA8184C5FE369453D9ECE727CDB73A</string>
+				<string>E6DE21F35B2EF7F8D9BE176150694C0A</string>
+				<string>4BAF1141904801D1B3A3E935FD3B3868</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Internal</string>
+			<key>path</key>
+			<string>Internal</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>CA32645BF3C45741FE08B6FF41A2A3DA</key>
 		<dict>
 			<key>isa</key>
@@ -4671,9 +4569,22 @@
 			<key>name</key>
 			<string>Analytics</string>
 			<key>target</key>
-			<string>38A5CB8DD871E0C5D1E09A63048B9E01</string>
+			<string>9F55BDA77A2E5A78345D6C44317AC97E</string>
 			<key>targetProxy</key>
 			<string>05E52BD964A7C4C705B2DDA92E11DE24</string>
+		</dict>
+		<key>CA657C2A1AC4EFED760444F1ADCB0DF0</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SEGLocation.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>CDC92BECE41FDD487136814173CB1558</key>
 		<dict>
@@ -4717,40 +4628,25 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
-		<key>CEE8920DC36300EA1B59B4142DEB65AE</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>6E2935FE3BFBE9D4232EBEEDC8A10288</string>
-				<string>9785CA4804F847DFB5EF5B36FFB4661C</string>
-				<string>83254BA16A6EB11282C2F305C4441A65</string>
-				<string>D47115EB57BB6EF06589421FF4F0A61B</string>
-				<string>C234D81977623EDBB90686F3EA7D6DB5</string>
-				<string>BBB305874350FB40722ACF2655B3064F</string>
-				<string>9AB8672E3D50B601EAE6C4FF518A376C</string>
-				<string>444575DD768D5C392E026693F6E79F01</string>
-				<string>BD7E96A5AB18F8B53CEC1FCC4331718C</string>
-				<string>395437F432EE6840F82E77795A51BDC4</string>
-				<string>FC47CF6608F30D402DF8E658663BF8CA</string>
-				<string>43D2CA075417B2B911322C2E5AA97883</string>
-				<string>9A875BD5692C569CC90E9CF69E2A99C4</string>
-				<string>F50E877071B91DF4FB2D1AD80BAB2656</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Internal</string>
-			<key>path</key>
-			<string>Internal</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
 		<key>CFBE3B31648B619043F1177934CB84CD</key>
 		<dict>
 			<key>fileRef</key>
 			<string>3B236E34C19DC967CCE978293BCF8C5E</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+		</dict>
+		<key>D0308595FA09470BA74DCA4D72578377</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGIntegrationFactory.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>D0866F96B65B61D72C6B387A429F507A</key>
 		<dict>
@@ -4772,24 +4668,6 @@
 					<string>Public</string>
 				</array>
 			</dict>
-		</dict>
-		<key>D2B508589972B8B737E77E4E0E5CFFF6</key>
-		<dict>
-			<key>children</key>
-			<array>
-				<string>E4678F3A97E4F21D78CEFF4AB7579DDD</string>
-				<string>0B8251E95CDD2D6B41D53DFEBA523E9F</string>
-				<string>76FC594910D1EC5D1334716F5EE8967B</string>
-				<string>CEE8920DC36300EA1B59B4142DEB65AE</string>
-			</array>
-			<key>isa</key>
-			<string>PBXGroup</string>
-			<key>name</key>
-			<string>Classes</string>
-			<key>path</key>
-			<string>Classes</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
 		</dict>
 		<key>D2F05445312E73A9EF1B210B20A3A2C4</key>
 		<dict>
@@ -4839,37 +4717,23 @@
 			<string></string>
 			<key>targets</key>
 			<array>
-				<string>38A5CB8DD871E0C5D1E09A63048B9E01</string>
+				<string>9F55BDA77A2E5A78345D6C44317AC97E</string>
 				<string>0D888F29E05E498D0CD91A51D28599A5</string>
 				<string>B0AF658EF017B55F80A728706DBBEA14</string>
 				<string>DD86FF8CB559B13118DEEBC9D4AC1664</string>
 				<string>B2451C68934FDCC9530B94535C6DA3B7</string>
 			</array>
 		</dict>
-		<key>D44704ABADF8F29AB92D36C9E111A060</key>
-		<dict>
-			<key>fileRef</key>
-			<string>42F976A3B296FDACA713F41E1ACF1AD8</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
-		<key>D47115EB57BB6EF06589421FF4F0A61B</key>
+		<key>D4A2EA674B0435AB788E89395F75F7D1</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
 			<key>isa</key>
 			<string>PBXFileReference</string>
 			<key>lastKnownFileType</key>
-			<string>sourcecode.c.objc</string>
+			<string>sourcecode.c.h</string>
 			<key>path</key>
-			<string>SEGAnalyticsUtils.m</string>
+			<string>SEGBluetooth.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -4929,6 +4793,19 @@
 					<string>Public</string>
 				</array>
 			</dict>
+		</dict>
+		<key>D7BAB500ED952FF3DCA13D4B233A1865</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SEGAliasPayload.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 		<key>D83677C54D2226C67886A525B0B46FBE</key>
 		<dict>
@@ -5179,6 +5056,20 @@
 			<key>isa</key>
 			<string>XCConfigurationList</string>
 		</dict>
+		<key>DCF15B563732DF0553F212FDFC22C5D4</key>
+		<dict>
+			<key>fileRef</key>
+			<string>00E24F1B3F5CCD6ADFDA8A2F0858424E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>DD86FF8CB559B13118DEEBC9D4AC1664</key>
 		<dict>
 			<key>buildConfigurationList</key>
@@ -5223,13 +5114,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>DEB38D7681912ACA9C68D7441A1950F8</key>
-		<dict>
-			<key>fileRef</key>
-			<string>444575DD768D5C392E026693F6E79F01</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-		</dict>
 		<key>DF4D33F041C8104408EC5CD85F30D247</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -5260,12 +5144,19 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>DF9C9F9BEB953C0844073DB533281700</key>
+		<key>DFFF5651A11E975223A3270DC20EF56C</key>
 		<dict>
 			<key>fileRef</key>
-			<string>43D2CA075417B2B911322C2E5AA97883</string>
+			<string>B0A5B7B41C6D822ECC04952D2B47C684</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
 		</dict>
 		<key>E0371D37D4E2FC1A45256DE64CEEAC3A</key>
 		<dict>
@@ -5307,6 +5198,19 @@
 				</array>
 			</dict>
 		</dict>
+		<key>E0F94CC55014165EDCFF1A3772BD4869</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGTrackPayload.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>E156AF9341293266845AA8774ED518EA</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -5319,6 +5223,19 @@
 			<string>EXPMatchers+beFalsy.m</string>
 			<key>path</key>
 			<string>Expecta/Matchers/EXPMatchers+beFalsy.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E1BD47DEC7A6E2083516CEA7F94E4A2B</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>SEGReachability.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -5364,6 +5281,20 @@
 			<key>sourceTree</key>
 			<string>BUILT_PRODUCTS_DIR</string>
 		</dict>
+		<key>E402122013F711AD5D8861319DAC3CF1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E6DE21F35B2EF7F8D9BE176150694C0A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
 		<key>E4286F5B187014B00F18766782F7018D</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -5376,19 +5307,6 @@
 			<string>SPTExampleGroup.h</string>
 			<key>path</key>
 			<string>Specta/Specta/SPTExampleGroup.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
-		</dict>
-		<key>E4678F3A97E4F21D78CEFF4AB7579DDD</key>
-		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
-			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGAnalytics.h</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -5416,20 +5334,6 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
-		<key>E625099A9CE72889C7781E2453D565C0</key>
-		<dict>
-			<key>fileRef</key>
-			<string>E4678F3A97E4F21D78CEFF4AB7579DDD</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
-		</dict>
 		<key>E64EE1FA2E988E166397F7C5FFFBEBB6</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -5445,6 +5349,13 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>E688F9D42FB513C40B0A667181E47FE1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>7C624E59E9C27399D7B382328943E99A</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>E6B836B352B13C63D3C0FA0E500C98A4</key>
 		<dict>
 			<key>buildActionMask</key>
@@ -5458,6 +5369,75 @@
 			<string>PBXFrameworksBuildPhase</string>
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
+		</dict>
+		<key>E6DE21F35B2EF7F8D9BE176150694C0A</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>UIViewController+SEGScreen.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E6E8CD3AE3C334FDB40ED9939B32DF99</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>7C5005360D3C32E9BE2CBB50F854E739</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>CURRENT_PROJECT_VERSION</key>
+				<string>1</string>
+				<key>DEFINES_MODULE</key>
+				<string>YES</string>
+				<key>DYLIB_COMPATIBILITY_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_CURRENT_VERSION</key>
+				<string>1</string>
+				<key>DYLIB_INSTALL_NAME_BASE</key>
+				<string>@rpath</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_PREFIX_HEADER</key>
+				<string>Target Support Files/Analytics/Analytics-prefix.pch</string>
+				<key>INFOPLIST_FILE</key>
+				<string>Target Support Files/Analytics/Info.plist</string>
+				<key>INSTALL_PATH</key>
+				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.0</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<array>
+					<string>$(inherited)</string>
+					<string>@executable_path/Frameworks</string>
+					<string>@loader_path/Frameworks</string>
+				</array>
+				<key>MODULEMAP_FILE</key>
+				<string>Target Support Files/Analytics/Analytics.modulemap</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>PRODUCT_NAME</key>
+				<string>Analytics</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>SKIP_INSTALL</key>
+				<string>YES</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VERSIONING_SYSTEM</key>
+				<string>apple-generic</string>
+				<key>VERSION_INFO_PREFIX</key>
+				<string></string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
 		</dict>
 		<key>E735386085CE344F6A01178CF4763852</key>
 		<dict>
@@ -5567,6 +5547,47 @@
 			<key>runOnlyForDeploymentPostprocessing</key>
 			<string>0</string>
 		</dict>
+		<key>EC3F345B9404EC1A56558E45A0B8D338</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SEGSegmentIntegration.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>EC7198833E108A35722531AD8D735942</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>F1D874EF8E9FE54B4FC4C539AD63BCC1</string>
+				<string>7A85C80154ED35BCAC26A64E24C07CD1</string>
+				<string>93418DA910BD057F0C620062D56C81AD</string>
+				<string>A0CE4A3786E82A02FC70D8FB4D50A04B</string>
+				<string>67854849FB05FDE619C108752AC20DB2</string>
+				<string>5916DEF63DC92119CF761E1BDAA92F5C</string>
+				<string>E688F9D42FB513C40B0A667181E47FE1</string>
+				<string>B1A691C7D5298090C91D0E2B5283736E</string>
+				<string>2A1D7AA4879EBCB61D1163773A5935E4</string>
+				<string>C59120A172B023FB0EDCC1AF5DD715B8</string>
+				<string>460B57EAD58868358B316C281025E1CC</string>
+				<string>B0890D666B325A011E22575DF4027B4F</string>
+				<string>1F52C8FC5CD090183C7656D029F1F2E9</string>
+				<string>12596348049A133AE127BAA0CAADEB85</string>
+				<string>A1D0EC4FD400DB081338D28E891EB687</string>
+				<string>FD063622B8C2A82E91D68AE960B53A7B</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
 		<key>EC74737ACF691693C7E87619C7284FF5</key>
 		<dict>
 			<key>fileRef</key>
@@ -5595,20 +5616,6 @@
 			<string>Expecta/Matchers/EXPMatchers+beInTheRangeOf.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
-		</dict>
-		<key>ED38F5F0066CDE3C1EBAB76364695405</key>
-		<dict>
-			<key>fileRef</key>
-			<string>BD8811F4C1CD2798C36ECD4B95696214</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>EF6497EE123F6BC0C1B09717437C5908</key>
 		<dict>
@@ -5672,6 +5679,13 @@
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
+		<key>F1D874EF8E9FE54B4FC4C539AD63BCC1</key>
+		<dict>
+			<key>fileRef</key>
+			<string>C52381C98DD68871047B2F565B19F127</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
 		<key>F200767CC48A5B0C4A17442AAC4BD6B4</key>
 		<dict>
 			<key>includeInIndex</key>
@@ -5712,6 +5726,36 @@
 				</array>
 			</dict>
 		</dict>
+		<key>F441BD4B4D9EF79F308A6CC13DBD0783</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>86E725F5E23328D038094DA7FDA6B99F</string>
+				<string>C849DE8C536E443CE977DC84840B3768</string>
+				<string>5D5C9204430D8E44477136FA32961967</string>
+				<string>96D738A417E9B68316339C8408123108</string>
+				<string>F7E4E83CCFD11F1FA50400B234FDEF44</string>
+				<string>84C8EFB5F74E12485B491E08E55B1898</string>
+				<string>6FAC06DC438DAB2CEAEA860C17746826</string>
+				<string>DCF15B563732DF0553F212FDFC22C5D4</string>
+				<string>5F3186AC67B0BDFEE6A7231BC76B72AE</string>
+				<string>25F79B1CCD6F39FE7046237777465B7B</string>
+				<string>DFFF5651A11E975223A3270DC20EF56C</string>
+				<string>169AAFD06DDA2304A0F4FDC1D361D9DE</string>
+				<string>C18BF300FA72CF8E42F004ADB5467AF5</string>
+				<string>030E1BB36EF1965650A5DDC153F5A44D</string>
+				<string>6545F6455E9798B916B08AFEF7D0BB2D</string>
+				<string>9DA0600549BF731F5E72BE63498D2726</string>
+				<string>5050ED39F2E5F88D80C7514EBA708AF7</string>
+				<string>E402122013F711AD5D8861319DAC3CF1</string>
+			</array>
+			<key>isa</key>
+			<string>PBXHeadersBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
 		<key>F50E5DAD3F6CABDC432B68AD8734B405</key>
 		<dict>
 			<key>fileRef</key>
@@ -5726,7 +5770,7 @@
 				</array>
 			</dict>
 		</dict>
-		<key>F50E877071B91DF4FB2D1AD80BAB2656</key>
+		<key>F7561945EB2DCC221D8454C717242E73</key>
 		<dict>
 			<key>includeInIndex</key>
 			<string>1</string>
@@ -5735,7 +5779,7 @@
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>path</key>
-			<string>SEGSegmentIntegrationFactory.m</string>
+			<string>SEGAnalyticsUtils.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -5743,6 +5787,20 @@
 		<dict>
 			<key>fileRef</key>
 			<string>5E20292CF7B63EA8E98399EF2352F73D</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+			<key>settings</key>
+			<dict>
+				<key>ATTRIBUTES</key>
+				<array>
+					<string>Public</string>
+				</array>
+			</dict>
+		</dict>
+		<key>F7E4E83CCFD11F1FA50400B234FDEF44</key>
+		<dict>
+			<key>fileRef</key>
+			<string>2D79B8DBE7238803A3254715763CF229</string>
 			<key>isa</key>
 			<string>PBXBuildFile</string>
 			<key>settings</key>
@@ -5814,20 +5872,6 @@
 			<string>XCBuildConfiguration</string>
 			<key>name</key>
 			<string>Release</string>
-		</dict>
-		<key>FAA10A66749646BEF316E118A209084A</key>
-		<dict>
-			<key>fileRef</key>
-			<string>BD7E96A5AB18F8B53CEC1FCC4331718C</string>
-			<key>isa</key>
-			<string>PBXBuildFile</string>
-			<key>settings</key>
-			<dict>
-				<key>ATTRIBUTES</key>
-				<array>
-					<string>Public</string>
-				</array>
-			</dict>
 		</dict>
 		<key>FADE654284B7DA24BF9DAFE6312C5162</key>
 		<dict>
@@ -5947,18 +5991,12 @@
 				<string>-fno-objc-arc</string>
 			</dict>
 		</dict>
-		<key>FC47CF6608F30D402DF8E658663BF8CA</key>
+		<key>FD063622B8C2A82E91D68AE960B53A7B</key>
 		<dict>
-			<key>includeInIndex</key>
-			<string>1</string>
+			<key>fileRef</key>
+			<string>4BAF1141904801D1B3A3E935FD3B3868</string>
 			<key>isa</key>
-			<string>PBXFileReference</string>
-			<key>lastKnownFileType</key>
-			<string>sourcecode.c.h</string>
-			<key>path</key>
-			<string>SEGSegmentIntegration.h</string>
-			<key>sourceTree</key>
-			<string>&lt;group&gt;</string>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>FD2D4497BC41412128C2D87C1BDE7398</key>
 		<dict>
@@ -6026,6 +6064,19 @@
 				<key>COMPILER_FLAGS</key>
 				<string>-fno-objc-arc</string>
 			</dict>
+		</dict>
+		<key>FEC1A74B30FBDD75272928C78C6BE7B3</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>SEGScreenPayload.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
 		</dict>
 	</dict>
 	<key>rootObject</key>
