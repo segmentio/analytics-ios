@@ -1,6 +1,17 @@
 Change Log
 ==========
 
+Version 3.1.1 *(05-24-2016)*
+-----------------------------
+
+ * Instrument automatic screen view tracking. Enable this during initialization.
+
+```objc
+SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY"];
+configuration.recordScreenViews = YES;
+[SEGAnalytics setupWithConfiguration:configuration];
+```
+
 Version 3.1.0 *(05-09-2016)*
 -----------------------------
 
