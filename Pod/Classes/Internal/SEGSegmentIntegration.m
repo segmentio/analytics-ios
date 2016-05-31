@@ -24,8 +24,6 @@ NSString *const SEGADClientClass = @"ADClient";
 
 NSString *const SEGUserIdKey = @"SEGUserId";
 NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
-NSString *const SEGQueueKey = @"SEGQueue";
-NSString *const SEGTraitsKey = @"SEGTraits";
 
 static NSString *GenerateUUIDString()
 {
@@ -254,7 +252,6 @@ static BOOL GetAdTrackingEnabled()
 {
     [self dispatchBackground:^{
         self.userId = userId;
-        [[NSUserDefaults standardUserDefaults] setValue:userId forKey:SEGUserIdKey];
         [self.userId writeToURL:self.userIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
     }];
 }
@@ -272,7 +269,6 @@ static BOOL GetAdTrackingEnabled()
 {
     [self dispatchBackground:^{
         [self.traits addEntriesFromDictionary:traits];
-        [[NSUserDefaults standardUserDefaults] setObject:[self.traits copy] forKey:SEGTraitsKey];
         [[self.traits copy] writeToURL:self.traitsURL atomically:YES];
     }];
 }
@@ -394,7 +390,7 @@ static BOOL GetAdTrackingEnabled()
 {
     @try {
         [self.queue addObject:payload];
-        [self persistQueue];
+        [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
         [self flushQueueByLength];
 
     }
@@ -466,8 +462,6 @@ static BOOL GetAdTrackingEnabled()
     [self dispatchBackgroundAndWait:^{
         [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGUserIdKey];
         [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGAnonymousIdKey];
-        [[NSUserDefaults standardUserDefaults] setValue:@[] forKey:SEGQueueKey];
-        [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGTraitsKey];
         [[NSFileManager defaultManager] removeItemAtURL:self.userIDURL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:self.traitsURL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:self.queueURL error:NULL];
@@ -506,7 +500,7 @@ static BOOL GetAdTrackingEnabled()
                                                          } else {
                                                              SEGLog(@"%@ API request success 200", self);
                                                              [self.queue removeObjectsInArray:self.batch];
-                                                             [self persistQueue];
+                                                             [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
                                                              [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:self.batch];
                                                          }
 
@@ -530,8 +524,7 @@ static BOOL GetAdTrackingEnabled()
 {
     [self dispatchBackgroundAndWait:^{
         if (self.queue.count)
-
-            [self persistQueue];
+            [[self.queue copy] writeToURL:self.queueURL atomically:YES];
     }];
 }
 
@@ -540,7 +533,7 @@ static BOOL GetAdTrackingEnabled()
 - (NSMutableArray *)queue
 {
     if (!_queue) {
-        _queue = ([[[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey] mutableCopy] ?: [NSMutableArray arrayWithContentsOfURL:self.queueURL]) ?: [[NSMutableArray alloc] init];
+        _queue = [NSMutableArray arrayWithContentsOfURL:self.queueURL] ?: [[NSMutableArray alloc] init];
     }
     return _queue;
 }
@@ -548,7 +541,7 @@ static BOOL GetAdTrackingEnabled()
 - (NSMutableDictionary *)traits
 {
     if (!_traits) {
-        _traits = ([[[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey] mutableCopy] ?: [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL]) ?: [[NSMutableDictionary alloc] init];
+        _traits = [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL] ?: [[NSMutableDictionary alloc] init];
     }
     return _traits;
 }
@@ -577,13 +570,6 @@ static BOOL GetAdTrackingEnabled()
 {
     return SEGAnalyticsURLForFilename(@"segmentio.traits.plist");
 }
-
-- (void)persistQueue
-{
-    [[NSUserDefaults standardUserDefaults] setValue:[self.queue copy] forKey:SEGQueueKey];
-    [[self.queue copy] writeToURL:self.queueURL atomically:YES];
-}
-
 
 - (NSString *)getAnonymousId:(BOOL)reset
 {
