@@ -7,6 +7,7 @@ before_install:
 
 script:
   - pod lib lint
+  - cd Example && pod install
   - make xctest
 
 notifications:
