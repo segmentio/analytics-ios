@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.1.2 *(06-31-2016)*
+-----------------------------
+
+ * Store event queue and traits to disk instead of NSUserDefaults. We will check for queue/traits in NSUserDefaults and copy to disk if they exist.
+
 Version 3.1.1 *(05-24-2016)*
 -----------------------------
 
