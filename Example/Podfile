@@ -1,12 +1,16 @@
 source 'https://github.com/CocoaPods/Specs.git'
-use_frameworks!
 
-target 'Analytics_Example', :exclusive => true do
+platform :ios, '7.0'
+# TODO: We should probably have two test cases. One for iOS 7 and one for iOS 8+
+# iOS 7 projects cannot use frameworks, we will go with lowest common denominator for now
+# use_frameworks!
+
+target 'Analytics_Example' do
   pod "Analytics", :path => "../"
 end
 
-target 'Analytics_Tests', :exclusive => true do
-  pod "Analytics", :path => "../"
+target 'Analytics_Tests' do
+    # pod "Analytics", :path => "../"
 
   pod 'Specta'
   pod 'Expecta'

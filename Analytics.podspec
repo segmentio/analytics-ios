@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Analytics"
-  s.version          = "3.1.2"
+  s.version          = "3.2.0"
   s.summary          = "The hassle-free way to add analytics to your iOS app."
 
   s.description      = <<-DESC
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/segmentio/analytics-ios.git", :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/segment'
 
-  s.platform     = :ios, '8.0'
+  s.platform     = :ios, '7.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'

@@ -1,7 +1,13 @@
 Change Log
 ==========
 
-Version 3.1.2 *(06-31-2016)*
+Version 3.2.0 *(06-01-2016)*
+-----------------------------
+
+ * Analytics-iOS Core SDK now includes support for iOS 7.0+ (Previously 8.0+)
+  * Bundled integrations may have different OS version requirements, please check the specific integration you use for details.
+
+Version 3.1.2 *(05-31-2016)*
 -----------------------------
 
  * Store event queue and traits to disk instead of NSUserDefaults. We will check for queue/traits in NSUserDefaults and copy to disk if they exist.
