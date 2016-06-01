@@ -60,6 +60,7 @@ static BOOL GetAdTrackingEnabled()
 @interface SEGSegmentIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
+@property (nonatomic, strong) NSArray *oldQueue;
 @property (nonatomic, strong) NSDictionary *context;
 @property (nonatomic, strong) NSArray *batch;
 @property (nonatomic, strong) SEGAnalyticsRequest *request;
@@ -70,6 +71,7 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 @property (nonatomic, strong) NSMutableDictionary *traits;
+@property (nonatomic, strong) NSDictionary *oldTraits;
 @property (nonatomic, assign) SEGAnalytics *analytics;
 @property (nonatomic, assign) SEGAnalyticsConfiguration *configuration;
 
@@ -93,6 +95,15 @@ static BOOL GetAdTrackingEnabled()
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         self.flushTaskID = UIBackgroundTaskInvalid;
         self.analytics = analytics;
+        // Check for previous queue/track data in NSUserDefaults and store to disk in background
+        [self dispatchBackground:^{
+            if ([[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey]) {
+                [self transferQueue];
+            }
+            if ([[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey]) {
+                [self transferTraits];
+            }
+        }];
     }
     return self;
 }
@@ -254,7 +265,6 @@ static BOOL GetAdTrackingEnabled()
 {
     [self dispatchBackground:^{
         self.userId = userId;
-        [[NSUserDefaults standardUserDefaults] setValue:userId forKey:SEGUserIdKey];
         [self.userId writeToURL:self.userIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
     }];
 }
@@ -272,7 +282,6 @@ static BOOL GetAdTrackingEnabled()
 {
     [self dispatchBackground:^{
         [self.traits addEntriesFromDictionary:traits];
-        [[NSUserDefaults standardUserDefaults] setObject:[self.traits copy] forKey:SEGTraitsKey];
         [[self.traits copy] writeToURL:self.traitsURL atomically:YES];
     }];
 }
@@ -394,9 +403,22 @@ static BOOL GetAdTrackingEnabled()
 {
     @try {
         [self.queue addObject:payload];
-        [self persistQueue];
+        [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
         [self flushQueueByLength];
 
+    }
+    @catch (NSException *exception) {
+        SEGLog(@"%@ Error writing payload: %@", self, exception);
+    }
+}
+
+- (void)queuePayloadFromArray:(NSArray *)payloadArray
+{
+    @try {
+        [self.queue addObjectsFromArray:payloadArray];
+        [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
+        [self flushQueueByLength];
+        
     }
     @catch (NSException *exception) {
         SEGLog(@"%@ Error writing payload: %@", self, exception);
@@ -466,8 +488,6 @@ static BOOL GetAdTrackingEnabled()
     [self dispatchBackgroundAndWait:^{
         [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGUserIdKey];
         [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGAnonymousIdKey];
-        [[NSUserDefaults standardUserDefaults] setValue:@[] forKey:SEGQueueKey];
-        [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGTraitsKey];
         [[NSFileManager defaultManager] removeItemAtURL:self.userIDURL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:self.traitsURL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:self.queueURL error:NULL];
@@ -506,7 +526,7 @@ static BOOL GetAdTrackingEnabled()
                                                          } else {
                                                              SEGLog(@"%@ API request success 200", self);
                                                              [self.queue removeObjectsInArray:self.batch];
-                                                             [self persistQueue];
+                                                             [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
                                                              [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:self.batch];
                                                          }
 
@@ -530,8 +550,7 @@ static BOOL GetAdTrackingEnabled()
 {
     [self dispatchBackgroundAndWait:^{
         if (self.queue.count)
-
-            [self persistQueue];
+            [[self.queue copy] writeToURL:self.queueURL atomically:YES];
     }];
 }
 
@@ -540,7 +559,7 @@ static BOOL GetAdTrackingEnabled()
 - (NSMutableArray *)queue
 {
     if (!_queue) {
-        _queue = ([[[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey] mutableCopy] ?: [NSMutableArray arrayWithContentsOfURL:self.queueURL]) ?: [[NSMutableArray alloc] init];
+        _queue = [NSMutableArray arrayWithContentsOfURL:self.queueURL] ?: [[NSMutableArray alloc] init];
     }
     return _queue;
 }
@@ -548,7 +567,7 @@ static BOOL GetAdTrackingEnabled()
 - (NSMutableDictionary *)traits
 {
     if (!_traits) {
-        _traits = ([[[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey] mutableCopy] ?: [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL]) ?: [[NSMutableDictionary alloc] init];
+        _traits = [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL] ?: [[NSMutableDictionary alloc] init];
     }
     return _traits;
 }
@@ -578,13 +597,6 @@ static BOOL GetAdTrackingEnabled()
     return SEGAnalyticsURLForFilename(@"segmentio.traits.plist");
 }
 
-- (void)persistQueue
-{
-    [[NSUserDefaults standardUserDefaults] setValue:[self.queue copy] forKey:SEGQueueKey];
-    [[self.queue copy] writeToURL:self.queueURL atomically:YES];
-}
-
-
 - (NSString *)getAnonymousId:(BOOL)reset
 {
     // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
@@ -604,6 +616,38 @@ static BOOL GetAdTrackingEnabled()
 - (NSString *)getUserId
 {
     return [[NSUserDefaults standardUserDefaults] valueForKey:SEGUserIdKey] ?: [[NSString alloc] initWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
+}
+
+- (void)transferQueue
+{
+    NSArray *oldQueue = [self NSUserDefaultQueue];
+    // Remove the old queue from NSUserDefaults and store on disk
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGQueueKey];
+    SEGLog(@"[[NSUserDefaults standardUserDefaults] removeObjectForKey: %@]", SEGQueueKey);
+    // Iterate through payloads in old Queue
+    [self queuePayloadFromArray:oldQueue];
+    SEGLog(@"[self queuePayloadFromArray:%@]", oldQueue);
+}
+
+- (void)transferTraits
+{
+    NSDictionary *oldTraits = [self NSUserDefaultTraits];
+    // Remove the old traits
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGTraitsKey];
+    SEGLog(@"[[NSUserDefaults standardUserDefaults] removeObjectForKey: %@]", SEGTraitsKey);
+    // add old Traits to any existing traits
+    [self addTraits: oldTraits];
+    SEGLog(@"[self addTraits: %@]", oldTraits);
+}
+
+- (NSArray *)NSUserDefaultQueue
+{
+    return [[NSUserDefaults standardUserDefaults] arrayForKey:SEGQueueKey];
+}
+
+-(NSDictionary *)NSUserDefaultTraits
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey];
 }
 
 @end
