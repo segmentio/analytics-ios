@@ -24,6 +24,8 @@ NSString *const SEGADClientClass = @"ADClient";
 
 NSString *const SEGUserIdKey = @"SEGUserId";
 NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
+NSString *const SEGQueueKey = @"SEGQueue";
+NSString *const SEGTraitsKey = @"SEGTraits";
 
 static NSString *GenerateUUIDString()
 {
@@ -58,6 +60,7 @@ static BOOL GetAdTrackingEnabled()
 @interface SEGSegmentIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
+@property (nonatomic, strong) NSArray *oldQueue;
 @property (nonatomic, strong) NSDictionary *context;
 @property (nonatomic, strong) NSArray *batch;
 @property (nonatomic, strong) SEGAnalyticsRequest *request;
@@ -68,6 +71,7 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 @property (nonatomic, strong) NSMutableDictionary *traits;
+@property (nonatomic, strong) NSDictionary *oldTraits;
 @property (nonatomic, assign) SEGAnalytics *analytics;
 @property (nonatomic, assign) SEGAnalyticsConfiguration *configuration;
 
@@ -528,6 +532,17 @@ static BOOL GetAdTrackingEnabled()
     }];
 }
 
+-(void)applicationDidFinishLaunching
+{
+    [self beginBackgroundTask];
+    // We will check if there is a previous build of the app where traits/queue was stored in NSQ
+    // If there is then we will store the existing queue and traits in the new location
+    if ([self hasPreviousVersion]) {
+        [self transferQueue];
+        [self transferTraits];
+    }
+}
+
 #pragma mark - Private
 
 - (NSMutableArray *)queue
@@ -590,6 +605,54 @@ static BOOL GetAdTrackingEnabled()
 - (NSString *)getUserId
 {
     return [[NSUserDefaults standardUserDefaults] valueForKey:SEGUserIdKey] ?: [[NSString alloc] initWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
+}
+
+-(BOOL)hasPreviousVersion
+{
+    NSString *const SEGBuildKey = @"SEGBuildKey";
+    NSInteger previousBuild = [[NSUserDefaults standardUserDefaults] integerForKey:SEGBuildKey];
+    NSInteger currentBuild = [[[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] integerValue];
+    
+    if (currentBuild > previousBuild) {
+        return true;
+    } else {
+        return false;
+    }
+}
+- (void)transferQueue
+{
+    NSArray *oldQueue = [self NSUserDefaultQueue];
+    // If there is a queue Array in NSUserDefaults
+    if (oldQueue) {
+        // Remove the old queue from NSUserDefaults and store on disk
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGQueueKey];
+        SEGLog(@"[[NSUserDefaults standardUserDefaults] removeObjectForKey: %@]", SEGQueueKey);
+        [[oldQueue copy] writeToURL:[self queueURL] atomically:YES];
+        SEGLog(@"[[%@ copy] writeToURL:[%@] atomically:YES]", oldQueue, [self queueURL]);
+    }
+}
+
+- (void)transferTraits
+{
+    NSDictionary *oldTraits = [self NSUserDefaultTraits];
+    // If there is a traits dict in NSUserDefaults
+    if (oldTraits) {
+        // Remove the old traits
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGTraitsKey];
+        SEGLog(@"[[NSUserDefaults standardUserDefaults] removeObjectForKey: %@]", SEGTraitsKey);
+        [[oldTraits copy] writeToURL:[self traitsURL] atomically:YES];
+        SEGLog(@"[[%@ copy] writeToURL:[%@] atomically:YES]", oldTraits, [self traitsURL]);
+    }
+}
+
+- (NSArray *)NSUserDefaultQueue
+{
+    return [[NSUserDefaults standardUserDefaults] arrayForKey:SEGQueueKey];
+}
+
+-(NSDictionary *)NSUserDefaultTraits
+{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey];
 }
 
 @end
