@@ -1,7 +1,8 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) $(inherited) $(DEVELOPER_FRAMEWORKS_DIR) "$(PLATFORM_DIR)/Developer/Library/Frameworks" "$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks"
+FRAMEWORK_SEARCH_PATHS = $(inherited) $(DEVELOPER_FRAMEWORKS_DIR) "$(PLATFORM_DIR)/Developer/Library/Frameworks" "$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks" "$PODS_CONFIGURATION_BUILD_DIR/Analytics" "$PODS_CONFIGURATION_BUILD_DIR/Expecta" "$PODS_CONFIGURATION_BUILD_DIR/Specta"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$CONFIGURATION_BUILD_DIR/Analytics.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Expecta.framework/Headers" -iquote "$CONFIGURATION_BUILD_DIR/Specta.framework/Headers"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/Analytics/Analytics.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Expecta/Expecta.framework/Headers" -iquote "$PODS_CONFIGURATION_BUILD_DIR/Specta/Specta.framework/Headers"
 OTHER_LDFLAGS = $(inherited) -framework "Analytics" -framework "Expecta" -framework "Specta"
-PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-Analytics_Tests
+PODS_BUILD_DIR = $BUILD_DIR
+PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_ROOT = ${SRCROOT}/Pods
