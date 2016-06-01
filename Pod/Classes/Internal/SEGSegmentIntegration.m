@@ -95,13 +95,15 @@ static BOOL GetAdTrackingEnabled()
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         self.flushTaskID = UIBackgroundTaskInvalid;
         self.analytics = analytics;
-        // Check for previous queue/track data in NSUserDefaults and store to disk
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey]) {
-            [self transferQueue];
-        }
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey]) {
-            [self transferTraits];
-        }
+        // Check for previous queue/track data in NSUserDefaults and store to disk in background
+        [self dispatchBackground:^{
+            if ([[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey]) {
+                [self transferQueue];
+            }
+            if ([[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey]) {
+                [self transferTraits];
+            }
+        }];
     }
     return self;
 }
@@ -410,6 +412,19 @@ static BOOL GetAdTrackingEnabled()
     }
 }
 
+- (void)queuePayloadFromArray:(NSArray *)payloadArray
+{
+    @try {
+        [self.queue addObjectsFromArray:payloadArray];
+        [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
+        [self flushQueueByLength];
+        
+    }
+    @catch (NSException *exception) {
+        SEGLog(@"%@ Error writing payload: %@", self, exception);
+    }
+}
+
 - (void)flush
 {
     [self flushWithMaxSize:self.maxBatchSize];
@@ -610,11 +625,8 @@ static BOOL GetAdTrackingEnabled()
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGQueueKey];
     SEGLog(@"[[NSUserDefaults standardUserDefaults] removeObjectForKey: %@]", SEGQueueKey);
     // Iterate through payloads in old Queue
-    for (id payload in oldQueue) {
-        // Queue the Payloads
-        [self queuePayload:payload];
-        SEGLog(@"[self queuePayload:%@]", payload);
-    }
+    [self queuePayloadFromArray:oldQueue];
+    SEGLog(@"[self queuePayloadFromArray:%@]", oldQueue);
 }
 
 - (void)transferTraits
