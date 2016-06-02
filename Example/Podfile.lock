@@ -10,7 +10,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Analytics:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
   Analytics: 8f77915b931d8f4b920deab2a6710303ced611ed
@@ -19,4 +19,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 244c8b6283b535c9cb0a624f80bcc0ebe6fc0b54
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.0.1
