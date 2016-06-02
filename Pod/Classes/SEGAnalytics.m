@@ -171,7 +171,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     }
 
 
-    [self track:@"Application Started" properties:@{
+    [self track:@"Application Opened" properties:@{
         @"version" : currentVersion,
         @"build" : @(currentBuild)
     }];
