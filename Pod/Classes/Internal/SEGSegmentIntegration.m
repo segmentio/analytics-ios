@@ -60,7 +60,6 @@ static BOOL GetAdTrackingEnabled()
 @interface SEGSegmentIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
-@property (nonatomic, strong) NSArray *oldQueue;
 @property (nonatomic, strong) NSDictionary *context;
 @property (nonatomic, strong) NSArray *batch;
 @property (nonatomic, strong) SEGAnalyticsRequest *request;
@@ -71,7 +70,6 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 @property (nonatomic, strong) NSMutableDictionary *traits;
-@property (nonatomic, strong) NSDictionary *oldTraits;
 @property (nonatomic, assign) SEGAnalytics *analytics;
 @property (nonatomic, assign) SEGAnalyticsConfiguration *configuration;
 
@@ -95,13 +93,13 @@ static BOOL GetAdTrackingEnabled()
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         self.flushTaskID = UIBackgroundTaskInvalid;
         self.analytics = analytics;
-        // Check for previous queue/track data in NSUserDefaults and store to disk in background
+        // Check for previous queue/track data in NSUserDefaults and remove if present
         [self dispatchBackground:^{
             if ([[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey]) {
-                [self transferQueue];
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGQueueKey];
             }
             if ([[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey]) {
-                [self transferTraits];
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGTraitsKey];
             }
         }];
     }
@@ -616,38 +614,6 @@ static BOOL GetAdTrackingEnabled()
 - (NSString *)getUserId
 {
     return [[NSUserDefaults standardUserDefaults] valueForKey:SEGUserIdKey] ?: [[NSString alloc] initWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
-}
-
-- (void)transferQueue
-{
-    NSArray *oldQueue = [self NSUserDefaultQueue];
-    // Remove the old queue from NSUserDefaults and store on disk
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGQueueKey];
-    SEGLog(@"[[NSUserDefaults standardUserDefaults] removeObjectForKey: %@]", SEGQueueKey);
-    // Iterate through payloads in old Queue
-    [self queuePayloadFromArray:oldQueue];
-    SEGLog(@"[self queuePayloadFromArray:%@]", oldQueue);
-}
-
-- (void)transferTraits
-{
-    NSDictionary *oldTraits = [self NSUserDefaultTraits];
-    // Remove the old traits
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGTraitsKey];
-    SEGLog(@"[[NSUserDefaults standardUserDefaults] removeObjectForKey: %@]", SEGTraitsKey);
-    // add old Traits to any existing traits
-    [self addTraits: oldTraits];
-    SEGLog(@"[self addTraits: %@]", oldTraits);
-}
-
-- (NSArray *)NSUserDefaultQueue
-{
-    return [[NSUserDefaults standardUserDefaults] arrayForKey:SEGQueueKey];
-}
-
--(NSDictionary *)NSUserDefaultTraits
-{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey];
 }
 
 @end
