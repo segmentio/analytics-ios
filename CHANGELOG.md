@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.2.1 *(06-03-2016)*
+-----------------------------
+
+ * Fix potential duplication of events in queue when there are events queued in NSUserDefaults and on disk.
+
 Version 3.2.0 *(06-01-2016)*
 -----------------------------
 
