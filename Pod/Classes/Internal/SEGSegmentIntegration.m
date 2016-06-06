@@ -106,6 +106,8 @@ static BOOL GetAdTrackingEnabled()
     return self;
 }
 
+static CTTelephonyNetworkInfo* _telephonyNetworkInfo;
+
 - (NSDictionary *)staticContext
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
@@ -147,8 +149,13 @@ static BOOL GetAdTrackingEnabled()
         @"name" : device.systemName,
         @"version" : device.systemVersion
     };
+    
+    static dispatch_once_t networkInfoOnceToken;
+    dispatch_once(&networkInfoOnceToken, ^{
+        _telephonyNetworkInfo = [[CTTelephonyNetworkInfo alloc] init];
+    });
 
-    CTCarrier *carrier = [[[CTTelephonyNetworkInfo alloc] init] subscriberCellularProvider];
+    CTCarrier *carrier = [_telephonyNetworkInfo subscriberCellularProvider];
     if (carrier.carrierName.length)
         dict[@"network"] = @{ @"carrier" : carrier.carrierName };
 
