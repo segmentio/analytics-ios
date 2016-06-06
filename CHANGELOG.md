@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 3.2.2 *(06-06-2016)*
+-----------------------------
+
+ * Improvement: gzip http request body.
+ * Fix: Implement workaround for CTTelephonyNetworkInfo bug.
+
 Version 3.2.1 *(06-03-2016)*
 -----------------------------
 
