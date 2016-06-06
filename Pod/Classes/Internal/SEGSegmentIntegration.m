@@ -107,6 +107,17 @@ static BOOL GetAdTrackingEnabled()
     return self;
 }
 
+/*
+ * There is an iOS bug that causes instances of the CTTelephonyNetworkInfo class to
+ * sometimes get notifications after they have been deallocated.
+ * Instead of instantiating, using, and releasing instances you * must instead retain
+ * and never release them to work around the bug.
+ *
+ * Ref: http://stackoverflow.com/questions/14238586/coretelephony-crash
+ */
+
+static CTTelephonyNetworkInfo* _telephonyNetworkInfo;
+
 - (NSDictionary *)staticContext
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
@@ -148,8 +159,13 @@ static BOOL GetAdTrackingEnabled()
         @"name" : device.systemName,
         @"version" : device.systemVersion
     };
+    
+    static dispatch_once_t networkInfoOnceToken;
+    dispatch_once(&networkInfoOnceToken, ^{
+        _telephonyNetworkInfo = [[CTTelephonyNetworkInfo alloc] init];
+    });
 
-    CTCarrier *carrier = [[[CTTelephonyNetworkInfo alloc] init] subscriberCellularProvider];
+    CTCarrier *carrier = [_telephonyNetworkInfo subscriberCellularProvider];
     if (carrier.carrierName.length)
         dict[@"network"] = @{ @"carrier" : carrier.carrierName };
 
