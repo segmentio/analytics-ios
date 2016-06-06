@@ -13,6 +13,7 @@
 #import "SEGBluetooth.h"
 #import "SEGReachability.h"
 #import "SEGLocation.h"
+#import "NSData+GZIP.h"
 #import <iAd/iAd.h>
 
 NSString *const SEGSegmentDidSendRequestNotification = @"SegmentDidSendRequest";
@@ -416,7 +417,7 @@ static BOOL GetAdTrackingEnabled()
         [self.queue addObjectsFromArray:payloadArray];
         [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
         [self flushQueueByLength];
-        
+
     }
     @catch (NSException *exception) {
         SEGLog(@"%@ Error writing payload: %@", self, exception);
@@ -510,9 +511,10 @@ static BOOL GetAdTrackingEnabled()
 {
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:self.apiURL];
     [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
     [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:data];
+    [urlRequest setHTTPBody:[data gzippedData]];
 
     SEGLog(@"%@ Sending batch API request.", self);
     self.request = [SEGAnalyticsRequest startWithURLRequest:urlRequest
