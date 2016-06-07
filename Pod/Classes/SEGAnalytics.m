@@ -153,8 +153,8 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     NSString *previousVersion = [[NSUserDefaults standardUserDefaults] stringForKey:SEGVersionKey];
     NSInteger previousBuild = [[NSUserDefaults standardUserDefaults] integerForKey:SEGBuildKey];
 
-    NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
-    NSInteger currentBuild = [[[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"] integerValue];
+    NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
+    NSInteger currentBuild = [[[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"] integerValue];
 
     if (!previousBuild) {
         [self track:@"Application Installed" properties:@{
