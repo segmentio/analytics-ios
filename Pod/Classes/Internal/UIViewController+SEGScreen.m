@@ -38,6 +38,19 @@
 + (UIViewController *)seg_topViewController
 {
     UIViewController *root = [UIApplication sharedApplication].delegate.window.rootViewController;
+    
+    if ([root isKindOfClass:[UINavigationController class]]) {
+        UIViewController* presented = root.presentedViewController;
+        
+        if (nil == presented) {
+            presented = ((UINavigationController *)root).viewControllers.lastObject;
+        }
+        
+        if (nil != presented) {
+            root = presented;
+        }
+    }
+    
     return [self seg_topViewController:root];
 }
 
