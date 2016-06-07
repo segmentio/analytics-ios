@@ -93,7 +93,7 @@ static void *seg_libzOpen()
     return output;
 }
 
-- (NSData *)gzippedData
+- (NSData *)seg_gzippedData
 {
     return [self seg_gzippedDataWithCompressionLevel:-1.0f];
 }
