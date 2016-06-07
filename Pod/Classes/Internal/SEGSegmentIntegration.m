@@ -116,7 +116,7 @@ static BOOL GetAdTrackingEnabled()
  * Ref: http://stackoverflow.com/questions/14238586/coretelephony-crash
  */
 
-static CTTelephonyNetworkInfo* _telephonyNetworkInfo;
+static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (NSDictionary *)staticContext
 {
@@ -159,7 +159,7 @@ static CTTelephonyNetworkInfo* _telephonyNetworkInfo;
         @"name" : device.systemName,
         @"version" : device.systemVersion
     };
-    
+
     static dispatch_once_t networkInfoOnceToken;
     dispatch_once(&networkInfoOnceToken, ^{
         _telephonyNetworkInfo = [[CTTelephonyNetworkInfo alloc] init];
@@ -530,7 +530,7 @@ static CTTelephonyNetworkInfo* _telephonyNetworkInfo;
     [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
     [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[data gzippedData]];
+    [urlRequest setHTTPBody:[data seg_gzippedData]];
 
     SEGLog(@"%@ Sending batch API request.", self);
     self.request = [SEGAnalyticsRequest startWithURLRequest:urlRequest

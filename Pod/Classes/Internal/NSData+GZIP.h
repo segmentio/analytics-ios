@@ -36,6 +36,6 @@
 
 @interface NSData (GZIP)
 
-- (nullable NSData *)gzippedData;
+- (nullable NSData *)seg_gzippedData;
 
 @end
