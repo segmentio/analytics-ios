@@ -44,13 +44,13 @@
 + (UIViewController *)seg_topViewController:(UIViewController *)rootViewController
 {
     if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-        UIViewController* presented = rootViewController.presentedViewController;
+        UIViewController *presented = rootViewController.presentedViewController;
         
-        if (nil == presented) {
+        if (presented == nil) {
             presented = ((UINavigationController *)rootViewController).viewControllers.lastObject;
         }
         
-        if (nil != presented) {
+        if (presented != nil) {
             rootViewController = presented;
         }
     }
