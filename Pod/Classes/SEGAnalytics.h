@@ -42,7 +42,6 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
  */
 @property (nonatomic, assign) NSUInteger flushAt;
 
-
 /**
  * Whether the analytics client should automatically make a track call for application lifecycle events, such as "Application Installed", "Application Updated" and "Application Opened".
  */
@@ -53,6 +52,10 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
  */
 @property (nonatomic, assign) BOOL recordScreenViews;
 
+/**
+ * Whether the analytics client should automatically track in-app purchases from the App Store.
+ */
+@property (nonatomic, assign) BOOL trackInAppPurchases;
 
 /**
  * Register a factory that can be used to create an integration.

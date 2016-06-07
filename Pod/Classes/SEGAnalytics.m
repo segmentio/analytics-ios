@@ -9,6 +9,7 @@
 #import "SEGIntegration.h"
 #import "SEGSegmentIntegrationFactory.h"
 #import "UIViewController+SEGScreen.h"
+#import "SEGStoreKitTracker.h"
 #import <objc/runtime.h>
 
 static SEGAnalytics *__sharedInstance = nil;
@@ -75,6 +76,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 @property (nonatomic, strong) NSMutableDictionary *integrations;
 @property (nonatomic, strong) NSMutableDictionary *registeredIntegrations;
 @property (nonatomic) volatile BOOL initialized;
+@property (nonatomic, strong) SEGStoreKitTracker *storeKitTracker;
 
 @end
 
@@ -107,6 +109,10 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 
         if (configuration.recordScreenViews) {
             [UIViewController seg_swizzleViewDidAppear];
+        }
+
+        if (configuration.trackInAppPurchases) {
+            _storeKitTracker = [SEGStoreKitTracker trackTransactionsForAnalytics:self];
         }
 
         // Update settings on each integration immediately
