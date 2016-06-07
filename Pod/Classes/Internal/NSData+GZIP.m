@@ -41,7 +41,7 @@
 
 @implementation NSData (GZIP)
 
-static void *libzOpen()
+static void *seg_libzOpen()
 {
     static void *libz;
     static dispatch_once_t onceToken;
@@ -51,13 +51,13 @@ static void *libzOpen()
     return libz;
 }
 
-- (NSData *)gzippedDataWithCompressionLevel:(float)level
+- (NSData *)seg_gzippedDataWithCompressionLevel:(float)level
 {
-    if (self.length == 0 || [self isGzippedData]) {
+    if (self.length == 0 || [self seg_isGzippedData]) {
         return self;
     }
 
-    void *libz = libzOpen();
+    void *libz = seg_libzOpen();
     int (*deflateInit2_)(z_streamp, int, int, int, int, int, const char *, int) =
         (int (*)(z_streamp, int, int, int, int, int, const char *, int))dlsym(libz, "deflateInit2_");
     int (*deflate)(z_streamp, int) = (int (*)(z_streamp, int))dlsym(libz, "deflate");
@@ -95,10 +95,10 @@ static void *libzOpen()
 
 - (NSData *)gzippedData
 {
-    return [self gzippedDataWithCompressionLevel:-1.0f];
+    return [self seg_gzippedDataWithCompressionLevel:-1.0f];
 }
 
-- (BOOL)isGzippedData
+- (BOOL)seg_isGzippedData
 {
     const UInt8 *bytes = (const UInt8 *)self.bytes;
     return (self.length >= 2 && bytes[0] == 0x1f && bytes[1] == 0x8b);
