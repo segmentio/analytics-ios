@@ -44,19 +44,26 @@
 
 + (UIViewController *)seg_topViewController:(UIViewController *)rootViewController
 {
+    if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+        UIViewController *presented = rootViewController.presentedViewController;
+        
+        if (presented == nil) {
+            presented = ((UINavigationController *)rootViewController).viewControllers.lastObject;
+        }
+        
+        if (presented != nil) {
+            rootViewController = presented;
+        }
+    }
+    
     if (rootViewController.presentedViewController == nil) {
         return rootViewController;
-    }
-
-    if ([rootViewController.presentedViewController isKindOfClass:[UINavigationController class]]) {
-        UINavigationController *navigationController = (UINavigationController *)rootViewController.presentedViewController;
-        UIViewController *lastViewController = [[navigationController viewControllers] lastObject];
-        return [self seg_topViewController:lastViewController];
     }
 
     UIViewController *presentedViewController = (UIViewController *)rootViewController.presentedViewController;
     return [self seg_topViewController:presentedViewController];
 }
+
 
 - (void)seg_viewDidAppear:(BOOL)animated
 {
