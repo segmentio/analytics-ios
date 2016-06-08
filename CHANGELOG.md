@@ -6,7 +6,7 @@ Version 3.2.3 *(06-08-2016)*
 
  * Fix: Handle case when ViewController is named simply "ViewController".
  * Fix: Namespace NSData GZIP extension methods to avoid conflicts.
- * Fix: Build and version were reversed in automatic application lifecyle tracking.
+ * Fix: Build and version were reversed in automatic application lifecycle tracking.
  * Instrument automatic in app purchase tracking. Enable this during initialization.
 
  ```objc
