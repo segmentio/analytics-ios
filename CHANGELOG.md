@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 3.2.4 *(06-08-2016)*
+-----------------------------
+ * Fix: Handle case when ViewController is named simply "ViewController".
+  
 Version 3.2.3 *(06-08-2016)*
 -----------------------------
 

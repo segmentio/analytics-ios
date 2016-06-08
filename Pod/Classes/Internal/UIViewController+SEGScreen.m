@@ -68,8 +68,8 @@
     NSString *name = [top title];
     if (!name) {
         name = [[[top class] description] stringByReplacingOccurrencesOfString:@"ViewController" withString:@""];
-        if (!name) {
-            // Class name could be just "ViewController".
+        // Class name could be just "ViewController".
+        if (name.length == 0) {
             SEGLog(@"Could not infer screen name.");
             name = @"Unknown";
         }
