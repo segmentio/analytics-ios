@@ -1,6 +1,20 @@
 Change Log
 ==========
 
+Version 3.2.3 *(06-08-2016)*
+-----------------------------
+
+ * Fix: Handle case when ViewController is named simply "ViewController".
+ * Fix: Namespace NSData GZIP extension methods to avoid conflicts.
+ * Fix: Build and version were reversed in automatic application lifecyle tracking.
+ * Instrument automatic in app purchase tracking. Enable this during initialization.
+
+ ```objc
+ SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY"];
+ configuration.trackInAppPurchases = YES;
+ [SEGAnalytics setupWithConfiguration:configuration];
+ ```
+
 Version 3.2.2 *(06-06-2016)*
 -----------------------------
 
@@ -15,8 +29,7 @@ Version 3.2.1 *(06-03-2016)*
 Version 3.2.0 *(06-01-2016)*
 -----------------------------
 
- * Analytics-iOS Core SDK now includes support for iOS 7.0+ (Previously 8.0+)
-  * Bundled integrations may have different OS version requirements, please check the specific integration you use for details.
+ * Analytics-iOS Core SDK now includes support for iOS 7.0+ (Previously 8.0+). Bundled integrations may have different OS version requirements, please check the specific integration you use for details.
 
 Version 3.1.2 *(05-31-2016)*
 -----------------------------
