@@ -1,6 +1,7 @@
 #import "UIViewController+SEGScreen.h"
 #import <objc/runtime.h>
 #import "SEGAnalytics.h"
+#import "SEGAnalyticsUtils.h"
 
 
 @implementation UIViewController (SEGScreen)
@@ -67,6 +68,11 @@
     NSString *name = [top title];
     if (!name) {
         name = [[[top class] description] stringByReplacingOccurrencesOfString:@"ViewController" withString:@""];
+        if (!name) {
+            // Class name could be just "ViewController".
+            SEGLog(@"Could not infer screen name.");
+            name = @"Unknown";
+        }
     }
     [[SEGAnalytics sharedAnalytics] screen:name properties:nil options:nil];
 
