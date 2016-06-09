@@ -240,7 +240,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    NSCParameterAssert(userId.length > 0 || traits.count > 0);
+    NSCAssert2(userId.length > 0 > traits.count > 0, @"either userId (%@) or traits (%@) must be provided.", userId, traits);
 
     SEGIdentifyPayload *payload = [[SEGIdentifyPayload alloc] initWithUserId:userId
                                                                  anonymousId:[options objectForKey:@"anonymousId"]
@@ -268,7 +268,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    NSCParameterAssert(event.length > 0);
+    NSCAssert1(event.length > 0, @"event (%@) must not be empty.", event);
 
     SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:event
                                                            properties:SEGCoerceDictionary(properties)
@@ -283,21 +283,21 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 #pragma mark - Screen
 
-- (void)screen:(NSString *)screenTitle
+- (void)screen:(NSString *)name
 {
-    [self screen:screenTitle properties:nil options:nil];
+    [self screen:name properties:nil options:nil];
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties
+- (void)screen:(NSString *)name properties:(NSDictionary *)properties
 {
-    [self screen:screenTitle properties:properties options:nil];
+    [self screen:name properties:properties options:nil];
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
+- (void)screen:(NSString *)name properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    NSCParameterAssert(screenTitle.length > 0);
+    NSCAssert1(name.length > 0, @"screen name (%@) must not be empty.", name);
 
-    SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:screenTitle
+    SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:name
                                                             properties:SEGCoerceDictionary(properties)
                                                                context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                           integrations:[options objectForKey:@"integrations"]];
@@ -471,7 +471,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 + (instancetype)sharedAnalytics
 {
-    NSCParameterAssert(__sharedInstance != nil);
+    NSCAssert(__sharedInstance != nil, @"library must be initialized before calling this method.");
     return __sharedInstance;
 }
 
