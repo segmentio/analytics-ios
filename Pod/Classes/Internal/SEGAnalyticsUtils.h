@@ -4,6 +4,7 @@
 #import <Foundation/Foundation.h>
 
 NSURL *SEGAnalyticsURLForFilename(NSString *filename);
+NSString *GenerateUUIDString();
 
 // Date Utils
 NSString *iso8601FormattedString(NSDate *date);
