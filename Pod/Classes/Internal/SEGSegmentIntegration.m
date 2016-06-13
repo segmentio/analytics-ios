@@ -24,17 +24,8 @@ NSString *const SEGAdvertisingClassIdentifier = @"ASIdentifierManager";
 NSString *const SEGADClientClass = @"ADClient";
 
 NSString *const SEGUserIdKey = @"SEGUserId";
-NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
 NSString *const SEGQueueKey = @"SEGQueue";
 NSString *const SEGTraitsKey = @"SEGTraits";
-
-static NSString *GenerateUUIDString()
-{
-    CFUUIDRef theUUID = CFUUIDCreate(NULL);
-    NSString *UUIDString = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, theUUID);
-    CFRelease(theUUID);
-    return UUIDString;
-}
 
 static NSString *GetDeviceModel()
 {
@@ -84,7 +75,6 @@ static BOOL GetAdTrackingEnabled()
     if (self = [super init]) {
         self.configuration = [analytics configuration];
         self.apiURL = [NSURL URLWithString:@"https://api.segment.io/v1/import"];
-        self.anonymousId = [self getAnonymousId:NO];
         self.userId = [self getUserId];
         self.bluetooth = [[SEGBluetooth alloc] init];
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
@@ -284,15 +274,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     }];
 }
 
-- (void)saveAnonymousId:(NSString *)anonymousId
-{
-    [self dispatchBackground:^{
-        self.anonymousId = anonymousId;
-        [[NSUserDefaults standardUserDefaults] setValue:anonymousId forKey:SEGAnonymousIdKey];
-        [self.anonymousId writeToURL:self.anonymousIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
-    }];
-}
-
 - (void)addTraits:(NSDictionary *)traits
 {
     [self dispatchBackground:^{
@@ -308,9 +289,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     [self dispatchBackground:^{
         [self saveUserId:payload.userId];
         [self addTraits:payload.traits];
-        if (payload.anonymousId) {
-            [self saveAnonymousId:payload.anonymousId];
-        }
     }];
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -351,7 +329,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:payload.theNewId forKey:@"userId"];
-    [dictionary setValue:self.userId ?: self.anonymousId forKey:@"previousId"];
+    [dictionary setValue:self.userId ?: [self.analytics getAnonymousId] forKey:@"previousId"];
 
     [self enqueueAction:@"alias" dictionary:dictionary context:payload.context integrations:payload.integrations];
 }
@@ -402,7 +380,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         if (![action isEqualToString:@"alias"]) {
             [payload setValue:self.userId forKey:@"userId"];
         }
-        [payload setValue:self.anonymousId forKey:@"anonymousId"];
+        [payload setValue:[self.analytics getAnonymousId] forKey:@"anonymousId"];
 
         [payload setValue:[self integrationsDictionary:integrations] forKey:@"integrations"];
 
@@ -506,14 +484,12 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     [self dispatchBackgroundAndWait:^{
         [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGUserIdKey];
-        [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGAnonymousIdKey];
         [[NSFileManager defaultManager] removeItemAtURL:self.userIDURL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:self.traitsURL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:self.queueURL error:NULL];
         self.userId = nil;
         self.traits = [NSMutableDictionary dictionary];
         self.queue = [NSMutableArray array];
-        self.anonymousId = [self getAnonymousId:YES];
         self.request.completion = nil;
         self.request = nil;
     }];
@@ -602,11 +578,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     return SEGAnalyticsURLForFilename(@"segmentio.userId");
 }
 
-- (NSURL *)anonymousIDURL
-{
-    return SEGAnalyticsURLForFilename(@"segment.anonymousId");
-}
-
 - (NSURL *)queueURL
 {
     return SEGAnalyticsURLForFilename(@"segmentio.queue.plist");
@@ -615,22 +586,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (NSURL *)traitsURL
 {
     return SEGAnalyticsURLForFilename(@"segmentio.traits.plist");
-}
-
-- (NSString *)getAnonymousId:(BOOL)reset
-{
-    // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
-    // identifierForVendor (iOS6 and later, can't be changed on logout),
-    // or MAC address (blocked in iOS 7). For more info see https://segment.io/libraries/ios#ids
-    NSURL *url = self.anonymousIDURL;
-    NSString *anonymousId = [[NSUserDefaults standardUserDefaults] valueForKey:SEGAnonymousIdKey] ?: [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
-    if (!anonymousId || reset) {
-        anonymousId = GenerateUUIDString();
-        SEGLog(@"New anonymousId: %@", anonymousId);
-        [[NSUserDefaults standardUserDefaults] setObject:anonymousId forKey:SEGAnonymousIdKey];
-        [anonymousId writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:NULL];
-    }
-    return anonymousId;
 }
 
 - (NSString *)getUserId
