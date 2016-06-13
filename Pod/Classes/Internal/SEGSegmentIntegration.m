@@ -52,7 +52,7 @@ static BOOL GetAdTrackingEnabled()
 @interface SEGSegmentIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
-@property (nonatomic, strong) NSDictionary *context;
+@property (nonatomic, strong) NSDictionary *cachedStaticContext;
 @property (nonatomic, strong) NSArray *batch;
 @property (nonatomic, strong) SEGAnalyticsRequest *request;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
@@ -79,7 +79,7 @@ static BOOL GetAdTrackingEnabled()
         self.bluetooth = [[SEGBluetooth alloc] init];
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
         [self.reachability startNotifier];
-        self.context = [self staticContext];
+        self.cachedStaticContext = [self staticContext];
         self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         self.flushTaskID = UIBackgroundTaskInvalid;
@@ -191,8 +191,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (NSDictionary *)liveContext
 {
     NSMutableDictionary *context = [[NSMutableDictionary alloc] init];
-
-    [context addEntriesFromDictionary:self.context];
 
     context[@"locale"] = [NSString stringWithFormat:
                                        @"%@-%@",
@@ -346,7 +344,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     for (NSUInteger i = 0; i < deviceToken.length; i++) {
         [token appendString:[NSString stringWithFormat:@"%02lx", (unsigned long)buffer[i]]];
     }
-    [self.context[@"device"] setObject:[token copy] forKey:@"token"];
+    [self.cachedStaticContext[@"device"] setObject:[token copy] forKey:@"token"];
 }
 
 #pragma mark - Queueing
@@ -384,11 +382,13 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
         [payload setValue:[self integrationsDictionary:integrations] forKey:@"integrations"];
 
-        NSDictionary *defaultContext = [self liveContext];
+        NSDictionary *staticContext = self.cachedStaticContext;
+        NSDictionary *liveContext = [self liveContext];
         NSDictionary *customContext = context;
-        NSMutableDictionary *context = [NSMutableDictionary dictionaryWithCapacity:customContext.count + defaultContext.count];
-        [context addEntriesFromDictionary:defaultContext];
-        [context addEntriesFromDictionary:customContext]; // let the custom context override ours
+        NSMutableDictionary *context = [NSMutableDictionary dictionaryWithCapacity:(staticContext.count + liveContext.count + customContext.count)];
+        [context addEntriesFromDictionary:staticContext];
+        [context addEntriesFromDictionary:liveContext];
+        [context addEntriesFromDictionary:customContext];
         [payload setValue:[context copy] forKey:@"context"];
 
         SEGLog(@"%@ Enqueueing action: %@", self, payload);
@@ -402,7 +402,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         [self.queue addObject:payload];
         [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
         [self flushQueueByLength];
-
     }
     @catch (NSException *exception) {
         SEGLog(@"%@ Error writing payload: %@", self, exception);
@@ -415,7 +414,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         [self.queue addObjectsFromArray:payloadArray];
         [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
         [self flushQueueByLength];
-
     }
     @catch (NSException *exception) {
         SEGLog(@"%@ Error writing payload: %@", self, exception);
@@ -447,7 +445,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         NSMutableDictionary *payloadDictionary = [[NSMutableDictionary alloc] init];
         [payloadDictionary setObject:self.configuration.writeKey forKey:@"writeKey"];
         [payloadDictionary setObject:iso8601FormattedString([NSDate date]) forKey:@"sentAt"];
-        [payloadDictionary setObject:self.context forKey:@"context"];
         [payloadDictionary setObject:self.batch forKey:@"batch"];
 
         SEGLog(@"Flushing payload %@", payloadDictionary);
