@@ -266,6 +266,9 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
  */
 - (NSDictionary *)bundledIntegrations;
 
+/** Returns the anonymous ID. */
+- (NSString *)getAnonymousId;
+
 /** Returns the configuration used to create the analytics client. */
 - (SEGAnalyticsConfiguration *)configuration;
 
