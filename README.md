@@ -20,7 +20,7 @@ pod "Analytics"
 ### Carthage
 
 ```
-github "segmentio/Analytics"
+github "segmentio/analytics-ios"
 ```
 
 ## Quickstart
