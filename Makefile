@@ -15,6 +15,9 @@ lint:
 carthage:
 	carthage build --no-skip-current
 
+archive:
+	carthage archive Analytics
+
 clean:
 	xcodebuild $(XC_ARGS) clean
 
@@ -39,4 +42,4 @@ xcbuild:
 xctest:
 	xctool test $(XC_ARGS)
 
-.PHONY: bootstrap lint carthage test xctest build xcbuild clean
+.PHONY: bootstrap lint carthage archive test xctest build xcbuild clean
