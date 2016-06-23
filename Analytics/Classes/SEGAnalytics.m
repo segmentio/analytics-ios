@@ -130,6 +130,12 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
             _storeKitTracker = [SEGStoreKitTracker trackTransactionsForAnalytics:self];
         }
         [self trackApplicationLifecycleEvents:configuration.trackApplicationLifecycleEvents];
+        if (configuration.trackPushNotifications && configuration.launchOptions) {
+            NSDictionary *remoteNotification = configuration.launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+            if (remoteNotification) {
+                [self trackPushNotification:remoteNotification fromLaunch:YES];
+            }
+        }
     }
     return self;
 }
@@ -349,8 +355,20 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
                                   sync:false];
 }
 
+- (void)trackPushNotification:(NSDictionary *)properties fromLaunch:(BOOL)launch
+{
+    if (launch) {
+        [self track:@"Push Notification Tapped" properties:properties];
+    } else {
+        [self track:@"Push Notification Received" properties:properties];
+    }
+}
+
 - (void)receivedRemoteNotification:(NSDictionary *)userInfo
 {
+    if (self.configuration.trackPushNotifications) {
+        [self trackPushNotification:userInfo fromLaunch:NO];
+    }
     [self callIntegrationsWithSelector:_cmd arguments:@[ userInfo ] options:nil sync:true];
 }
 
