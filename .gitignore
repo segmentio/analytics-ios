@@ -29,3 +29,4 @@ Carthage
 # Additionally, we NEED to check it in for Carthage support.
 #
 # Pods/
+.clang-format
