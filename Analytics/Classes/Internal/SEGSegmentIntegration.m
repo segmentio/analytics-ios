@@ -416,23 +416,13 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (void)queuePayload:(NSDictionary *)payload
 {
     @try {
+        if (self.queue.count > 1000) {
+            // Remove the oldest element.
+            [self.queue removeObjectAtIndex:0];
+        }
         [self.queue addObject:payload];
         [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
         [self flushQueueByLength];
-        
-    }
-    @catch (NSException *exception) {
-        SEGLog(@"%@ Error writing payload: %@", self, exception);
-    }
-}
-
-- (void)queuePayloadFromArray:(NSArray *)payloadArray
-{
-    @try {
-        [self.queue addObjectsFromArray:payloadArray];
-        [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
-        [self flushQueueByLength];
-        
     }
     @catch (NSException *exception) {
         SEGLog(@"%@ Error writing payload: %@", self, exception);
