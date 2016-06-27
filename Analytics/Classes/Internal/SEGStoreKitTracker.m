@@ -23,7 +23,7 @@
         _analytics = analytics;
         _productRequests = [NSMutableDictionary dictionaryWithCapacity:1];
         _transactions = [NSMutableDictionary dictionaryWithCapacity:1];
-        
+
         [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
     }
     return self;
@@ -41,7 +41,7 @@
         if (transaction.transactionState != SKPaymentTransactionStatePurchased) {
             continue;
         }
-        
+
         SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithObject:transaction.payment.productIdentifier]];
         @synchronized(self)
         {
@@ -71,21 +71,21 @@
 - (void)trackTransaction:(SKPaymentTransaction *)transaction forProduct:(SKProduct *)product
 {
     NSString *currency = [product.priceLocale objectForKey:NSLocaleCurrencyCode];
-    
+
     [self.analytics track:@"Order Completed" properties:@{
-                                                          @"orderId" : transaction.transactionIdentifier,
-                                                          @"affiliation" : @"App Store",
-                                                          @"currency" : currency,
-                                                          @"products" : @[
-                                                                  @{
-                                                                      @"productId" : product.productIdentifier,
-                                                                      @"quantity" : @(transaction.payment.quantity),
-                                                                      @"sku" : transaction.transactionIdentifier,
-                                                                      @"price" : product.price,
-                                                                      @"name" : product.localizedTitle
-                                                                      }
-                                                                  ]
-                                                          }];
+        @"orderId" : transaction.transactionIdentifier,
+        @"affiliation" : @"App Store",
+        @"currency" : currency,
+        @"products" : @[
+            @{
+               @"productId" : product.productIdentifier,
+               @"quantity" : @(transaction.payment.quantity),
+               @"sku" : transaction.transactionIdentifier,
+               @"price" : product.price,
+               @"name" : product.localizedTitle
+            }
+        ]
+    }];
 }
 
 @end
