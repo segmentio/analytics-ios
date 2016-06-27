@@ -165,23 +165,23 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
     if (!previousBuild) {
         [self track:@"Application Installed" properties:@{
-                                                          @"version" : currentVersion,
-                                                          @"build" : @(currentBuild)
-                                                          }];
+            @"version" : currentVersion,
+            @"build" : @(currentBuild)
+        }];
     } else if (currentBuild != previousBuild) {
         [self track:@"Application Updated" properties:@{
-                                                        @"previous_version" : previousVersion,
-                                                        @"previous_build" : @(previousBuild),
-                                                        @"version" : currentVersion,
-                                                        @"build" : @(currentBuild)
-                                                        }];
+            @"previous_version" : previousVersion,
+            @"previous_build" : @(previousBuild),
+            @"version" : currentVersion,
+            @"build" : @(currentBuild)
+        }];
     }
 
 
     [self track:@"Application Opened" properties:@{
-                                                   @"version" : currentVersion,
-                                                   @"build" : @(currentBuild)
-                                                   }];
+        @"version" : currentVersion,
+        @"build" : @(currentBuild)
+    }];
 
     [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:SEGVersionKey];
     [[NSUserDefaults standardUserDefaults] setInteger:currentBuild forKey:SEGBuildKey];
@@ -200,19 +200,19 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     static dispatch_once_t selectorMappingOnce;
     dispatch_once(&selectorMappingOnce, ^{
         selectorMapping = @{
-                            UIApplicationDidFinishLaunchingNotification :
-                                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
-                            UIApplicationDidEnterBackgroundNotification :
-                                NSStringFromSelector(@selector(applicationDidEnterBackground)),
-                            UIApplicationWillEnterForegroundNotification :
-                                NSStringFromSelector(@selector(applicationWillEnterForeground)),
-                            UIApplicationWillTerminateNotification :
-                                NSStringFromSelector(@selector(applicationWillTerminate)),
-                            UIApplicationWillResignActiveNotification :
-                                NSStringFromSelector(@selector(applicationWillResignActive)),
-                            UIApplicationDidBecomeActiveNotification :
-                                NSStringFromSelector(@selector(applicationDidBecomeActive))
-                            };
+            UIApplicationDidFinishLaunchingNotification :
+                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
+            UIApplicationDidEnterBackgroundNotification :
+                NSStringFromSelector(@selector(applicationDidEnterBackground)),
+            UIApplicationWillEnterForegroundNotification :
+                NSStringFromSelector(@selector(applicationWillEnterForeground)),
+            UIApplicationWillTerminateNotification :
+                NSStringFromSelector(@selector(applicationWillTerminate)),
+            UIApplicationWillResignActiveNotification :
+                NSStringFromSelector(@selector(applicationWillResignActive)),
+            UIApplicationDidBecomeActiveNotification :
+                NSStringFromSelector(@selector(applicationDidBecomeActive))
+        };
     });
     SEL selector = NSSelectorFromString(selectorMapping[note.name]);
     if (selector) {
