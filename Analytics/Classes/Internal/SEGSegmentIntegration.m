@@ -102,6 +102,10 @@ static BOOL GetAdTrackingEnabled()
         dispatch_sync(dispatch_get_main_queue(), ^{
             self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
         });
+        [self addSkipBackupAttributeToItemAtPath:self.userIDURL];
+        [self addSkipBackupAttributeToItemAtPath:self.anonymousIDURL];
+        [self addSkipBackupAttributeToItemAtPath:self.traitsURL];
+        [self addSkipBackupAttributeToItemAtPath:self.queueURL];
     }
     return self;
 }
@@ -503,6 +507,24 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         self.request = nil;
     }];
 }
+
+- (void)addSkipBackupAttributeToItemAtPath:(NSURL *)url
+{
+    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path]];
+    if (!exists) {
+        return;
+    }
+
+    NSError *error = nil;
+    BOOL success = [url setResourceValue:[NSNumber numberWithBool:YES]
+                                  forKey:NSURLIsExcludedFromBackupKey
+                                   error:&error];
+    if (!success) {
+        SEGLog(@"Error excluding %@ from backup %@", [url lastPathComponent], error);
+    }
+    return;
+}
+
 
 - (void)notifyForName:(NSString *)name userInfo:(id)userInfo
 {
