@@ -1,8 +1,6 @@
 #include <sys/sysctl.h>
 
 #import <UIKit/UIKit.h>
-#import <CoreTelephony/CTCarrier.h>
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalyticsRequest.h"
@@ -11,7 +9,11 @@
 #import "SEGReachability.h"
 #import "SEGLocation.h"
 #import "NSData+GZIP.h"
-#import <iAd/iAd.h>
+
+#if TARGET_OS_IOS
+#import <CoreTelephony/CTCarrier.h>
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#endif
 
 NSString *const SEGSegmentDidSendRequestNotification = @"SegmentDidSendRequest";
 NSString *const SEGSegmentRequestDidSucceedNotification = @"SegmentRequestDidSucceed";
@@ -113,7 +115,9 @@ static BOOL GetAdTrackingEnabled()
  * Ref: http://stackoverflow.com/questions/14238586/coretelephony-crash
  */
 
+#if TARGET_OS_IOS
 static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
+#endif
 
 - (NSDictionary *)staticContext
 {
@@ -156,16 +160,18 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
                     @"name" : device.systemName,
                     @"version" : device.systemVersion
                     };
-    
+
+#if TARGET_OS_IOS
     static dispatch_once_t networkInfoOnceToken;
     dispatch_once(&networkInfoOnceToken, ^{
         _telephonyNetworkInfo = [[CTTelephonyNetworkInfo alloc] init];
     });
-    
+
     CTCarrier *carrier = [_telephonyNetworkInfo subscriberCellularProvider];
     if (carrier.carrierName.length)
         dict[@"network"] = @{ @"carrier" : carrier.carrierName };
-    
+#endif
+
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     dict[@"screen"] = @{
                         @"width" : @(screenSize.width),
@@ -302,10 +308,12 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     [self dispatchBackground:^{
         [self.traits addEntriesFromDictionary:traits];
-        [[self.traits copy] writeToURL:self.traitsURL atomically:YES];
+
+        NSDictionary *traitsCopy = [self.traits copy];
+        [traitsCopy writeToURL:self.traitsURL atomically:YES];
 
 #if TARGET_OS_TV
-        [[NSUserDefaults standardUserDefaults] setValue:[traits copy] forKey:SEGTraitsKey];
+        [[NSUserDefaults standardUserDefaults] setValue:traitsCopy forKey:SEGTraitsKey];
 #endif
     }];
 }
@@ -585,6 +593,10 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (NSMutableArray *)queue
 {
+    if (!_queue) {
+        _queue = [NSMutableArray arrayWithContentsOfURL:self.queueURL] ?: [[NSMutableArray alloc] init];
+    }
+
 #if TARGET_OS_TV
     if (!_queue) {
         // On tvOS, check NSUserDefaults first
@@ -592,25 +604,21 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     }
 #endif
 
-    if (!_queue) {
-        _queue = [NSMutableArray arrayWithContentsOfURL:self.queueURL] ?: [[NSMutableArray alloc] init];
-    }
-
     return _queue;
 }
 
 - (NSMutableDictionary *)traits
 {
+    if (!_traits) {
+        _traits = [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL] ?: [[NSMutableDictionary alloc] init];
+    }
+
 #if TARGET_OS_TV
     if (!_traits) {
         // On tvOS, check NSUserDefaults first
         _traits = [[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey];
     }
 #endif
-
-    if (!_traits) {
-        _traits = [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL] ?: [[NSMutableDictionary alloc] init];
-    }
 
     return _traits;
 }
@@ -663,10 +671,11 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (void)persistQueue
 {
-    [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
+    NSArray *queueCopy = [self.queue copy];
+    [queueCopy writeToURL:[self queueURL] atomically:YES];
 
 #if TARGET_OS_TV
-    [[NSUserDefaults standardUserDefaults] setValue:anonymousId forKey:SEGAnonymousIdKey];
+    [[NSUserDefaults standardUserDefaults] setValue:queueCopy forKey:SEGQueueKey];
 #endif
 }
 

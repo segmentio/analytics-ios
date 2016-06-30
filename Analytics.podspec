@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Analytics"
-  s.version          = "3.2.5"
+  s.version          = "3.2.6"
   s.summary          = "The hassle-free way to add analytics to your iOS app."
 
   s.description      = <<-DESC
@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/segment'
 
   s.ios.deployment_target = '7.0'
+  s.tvos.deployment_target = '9.0'
 
   s.source_files = 'Analytics/Classes/**/*'
 end

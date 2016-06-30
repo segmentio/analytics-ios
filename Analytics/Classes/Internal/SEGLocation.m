@@ -47,7 +47,9 @@ return result;                                            \
         dispatch_async(dispatch_get_main_queue(), ^{
             self.locationManager = [[CLLocationManager alloc] init];
             self.locationManager.delegate = self;
+#if TARGET_OS_IOS
             [self.locationManager startUpdatingLocation];
+#endif
         });
     }
     return self;
@@ -60,10 +62,13 @@ LOCATION_STRING_PROPERTY(postalCode, postalCode);
 LOCATION_STRING_PROPERTY(street, thoroughfare);
 LOCATION_NUMBER_PROPERTY(latitude, location.coordinate.latitude);
 LOCATION_NUMBER_PROPERTY(longitude, location.coordinate.longitude);
+
+#if TARGET_OS_IOS || (TARGET_OS_MAC && !TARGET_OS_IPHONE)
 LOCATION_NUMBER_PROPERTY(speed, location.speed);
 
 - (void)startUpdatingLocation
 {
+
     if (self.locationManager && self.currentPlacemark) {
         CLLocation *location = self.currentPlacemark.location;
         NSDate *eventDate = location.timestamp;
@@ -75,6 +80,7 @@ LOCATION_NUMBER_PROPERTY(speed, location.speed);
         }
     }
 }
+#endif
 
 - (BOOL)hasKnownLocation
 {
