@@ -544,7 +544,8 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
     NSString *eventType = NSStringFromSelector(selector);
     if ([eventType hasPrefix:@"track:"]) {
-        BOOL enabled = [self isTrackEvent:arguments[0] enabledForIntegration:key inPlan:self.cachedSettings[@"plan"]];
+        SEGTrackPayload *eventPayload = arguments[0];
+        BOOL enabled = [self isTrackEvent:eventPayload.event enabledForIntegration:key inPlan:self.cachedSettings[@"plan"]];
         if (!enabled) {
             SEGLog(@"Not sending call to %@ because it is disabled in plan.", key);
             return;
