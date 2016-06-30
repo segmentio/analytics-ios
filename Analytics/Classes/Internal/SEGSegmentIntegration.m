@@ -283,10 +283,11 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     [self dispatchBackground:^{
         self.userId = userId;
-        [self.userId writeToURL:self.userIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
 
 #if TARGET_OS_TV
         [[NSUserDefaults standardUserDefaults] setValue:userId forKey:SEGUserIdKey];
+#else
+        [self.userId writeToURL:self.userIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
 #endif
     }];
 }
@@ -295,11 +296,10 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     [self dispatchBackground:^{
         self.anonymousId = anonymousId;
-        [[NSUserDefaults standardUserDefaults] setValue:anonymousId forKey:SEGAnonymousIdKey];
-        [self.anonymousId writeToURL:self.anonymousIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
-
 #if TARGET_OS_TV
         [[NSUserDefaults standardUserDefaults] setValue:anonymousId forKey:SEGAnonymousIdKey];
+#else
+        [self.anonymousId writeToURL:self.anonymousIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
 #endif
     }];
 }
@@ -309,11 +309,10 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     [self dispatchBackground:^{
         [self.traits addEntriesFromDictionary:traits];
 
-        NSDictionary *traitsCopy = [self.traits copy];
-        [traitsCopy writeToURL:self.traitsURL atomically:YES];
-
 #if TARGET_OS_TV
-        [[NSUserDefaults standardUserDefaults] setValue:traitsCopy forKey:SEGTraitsKey];
+        [[NSUserDefaults standardUserDefaults] setValue:[self.traits copy] forKey:SEGTraitsKey];
+#else
+        [[self.traits copy] writeToURL:self.traitsURL atomically:YES];
 #endif
     }];
 }
@@ -594,15 +593,12 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (NSMutableArray *)queue
 {
     if (!_queue) {
-        _queue = [NSMutableArray arrayWithContentsOfURL:self.queueURL] ?: [[NSMutableArray alloc] init];
-    }
-
 #if TARGET_OS_TV
-    if (!_queue) {
-        // On tvOS, check NSUserDefaults first
         _queue = [[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey];
-    }
+#else
+        _queue = [NSMutableArray arrayWithContentsOfURL:self.queueURL] ?: [[NSMutableArray alloc] init];
 #endif
+    }
 
     return _queue;
 }
@@ -610,15 +606,12 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (NSMutableDictionary *)traits
 {
     if (!_traits) {
-        _traits = [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL] ?: [[NSMutableDictionary alloc] init];
-    }
-
 #if TARGET_OS_TV
-    if (!_traits) {
-        // On tvOS, check NSUserDefaults first
         _traits = [[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey];
-    }
+#else
+        _traits = [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL] ?: [[NSMutableDictionary alloc] init];
 #endif
+    }
 
     return _traits;
 }
@@ -654,13 +647,24 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     // identifierForVendor (iOS6 and later, can't be changed on logout),
     // or MAC address (blocked in iOS 7). For more info see https://segment.io/libraries/ios#ids
     NSURL *url = self.anonymousIDURL;
-    NSString *anonymousId = [[NSUserDefaults standardUserDefaults] valueForKey:SEGAnonymousIdKey] ?: [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
+
+#if TARGET_OS_TV
+    NSString *anonymousId = [[NSUserDefaults standardUserDefaults] valueForKey:SEGAnonymousIdKey];
+#else
+    NSString *anonymousId = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
+#endif
+
     if (!anonymousId || reset) {
         anonymousId = GenerateUUIDString();
         SEGLog(@"New anonymousId: %@", anonymousId);
+
+#if TARGET_OS_TV
         [[NSUserDefaults standardUserDefaults] setObject:anonymousId forKey:SEGAnonymousIdKey];
+#else
         [anonymousId writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+#endif
     }
+
     return anonymousId;
 }
 
@@ -671,11 +675,10 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (void)persistQueue
 {
-    NSArray *queueCopy = [self.queue copy];
-    [queueCopy writeToURL:[self queueURL] atomically:YES];
-
 #if TARGET_OS_TV
-    [[NSUserDefaults standardUserDefaults] setValue:queueCopy forKey:SEGQueueKey];
+    [[NSUserDefaults standardUserDefaults] setValue:[self.queue copy] forKey:SEGQueueKey];
+#else
+    [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
 #endif
 }
 
