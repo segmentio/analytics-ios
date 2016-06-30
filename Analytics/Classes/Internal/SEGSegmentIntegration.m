@@ -278,6 +278,10 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     [self dispatchBackground:^{
         self.userId = userId;
         [self.userId writeToURL:self.userIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+
+#if TARGET_OS_TV
+        [[NSUserDefaults standardUserDefaults] setValue:userId forKey:SEGUserIdKey];
+#endif
     }];
 }
 
@@ -287,6 +291,10 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         self.anonymousId = anonymousId;
         [[NSUserDefaults standardUserDefaults] setValue:anonymousId forKey:SEGAnonymousIdKey];
         [self.anonymousId writeToURL:self.anonymousIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+
+#if TARGET_OS_TV
+        [[NSUserDefaults standardUserDefaults] setValue:anonymousId forKey:SEGAnonymousIdKey];
+#endif
     }];
 }
 
@@ -295,6 +303,10 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     [self dispatchBackground:^{
         [self.traits addEntriesFromDictionary:traits];
         [[self.traits copy] writeToURL:self.traitsURL atomically:YES];
+
+#if TARGET_OS_TV
+        [[NSUserDefaults standardUserDefaults] setValue:[traits copy] forKey:SEGTraitsKey];
+#endif
     }];
 }
 
@@ -415,7 +427,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     @try {
         [self.queue addObject:payload];
-        [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
+        [self persistQueue];
         [self flushQueueByLength];
         
     }
@@ -500,6 +512,8 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     [self dispatchBackgroundAndWait:^{
         [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGUserIdKey];
         [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGAnonymousIdKey];
+        [[NSUserDefaults standardUserDefaults] setValue:@[] forKey:SEGQueueKey];
+        [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGTraitsKey];
         [[NSFileManager defaultManager] removeItemAtURL:self.userIDURL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:self.traitsURL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:self.queueURL error:NULL];
@@ -539,7 +553,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
                                                          } else {
                                                              SEGLog(@"%@ API request success 200", self);
                                                              [self.queue removeObjectsInArray:self.batch];
-                                                             [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
+                                                             [self persistQueue];
                                                              [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:self.batch];
                                                          }
                                                          
@@ -563,7 +577,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     [self dispatchBackgroundAndWait:^{
         if (self.queue.count)
-            [[self.queue copy] writeToURL:self.queueURL atomically:YES];
+            [self persistQueue];
     }];
 }
 
@@ -571,17 +585,33 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (NSMutableArray *)queue
 {
+#if TARGET_OS_TV
+    if (!_queue) {
+        // On tvOS, check NSUserDefaults first
+        _queue = [[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey];
+    }
+#endif
+
     if (!_queue) {
         _queue = [NSMutableArray arrayWithContentsOfURL:self.queueURL] ?: [[NSMutableArray alloc] init];
     }
+
     return _queue;
 }
 
 - (NSMutableDictionary *)traits
 {
+#if TARGET_OS_TV
+    if (!_traits) {
+        // On tvOS, check NSUserDefaults first
+        _traits = [[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey];
+    }
+#endif
+
     if (!_traits) {
         _traits = [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL] ?: [[NSMutableDictionary alloc] init];
     }
+
     return _traits;
 }
 
@@ -629,6 +659,15 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (NSString *)getUserId
 {
     return [[NSUserDefaults standardUserDefaults] valueForKey:SEGUserIdKey] ?: [[NSString alloc] initWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
+}
+
+- (void)persistQueue
+{
+    [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
+
+#if TARGET_OS_TV
+    [[NSUserDefaults standardUserDefaults] setValue:anonymousId forKey:SEGAnonymousIdKey];
+#endif
 }
 
 @end
