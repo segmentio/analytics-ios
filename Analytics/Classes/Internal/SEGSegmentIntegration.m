@@ -525,11 +525,16 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     [self dispatchBackgroundAndWait:^{
         [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGUserIdKey];
         [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGAnonymousIdKey];
+
+#if TARGET_OS_TV
         [[NSUserDefaults standardUserDefaults] setValue:@[] forKey:SEGQueueKey];
-        [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGTraitsKey];
+        [[NSUserDefaults standardUserDefaults] setValue:@{} forKey:SEGTraitsKey];
+#else
         [[NSFileManager defaultManager] removeItemAtURL:self.userIDURL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:self.traitsURL error:NULL];
         [[NSFileManager defaultManager] removeItemAtURL:self.queueURL error:NULL];
+#endif
+
         self.userId = nil;
         self.traits = [NSMutableDictionary dictionary];
         self.queue = [NSMutableArray array];
@@ -618,7 +623,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     if (!_queue) {
 #if TARGET_OS_TV
-        _queue = [[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey] ?: [[NSMutableArray alloc] init];
+        _queue = [[[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey] mutableCopy] ?: [[NSMutableArray alloc] init];
 #else
         _queue = [NSMutableArray arrayWithContentsOfURL:self.queueURL] ?: [[NSMutableArray alloc] init];
 #endif
@@ -631,7 +636,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     if (!_traits) {
 #if TARGET_OS_TV
-        _traits = [[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey] ?: [[NSMutableDictionary alloc] init];
+        _traits = [[[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey] mutableCopy] ?: [[NSMutableDictionary alloc] init];
 #else
         _traits = [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL] ?: [[NSMutableDictionary alloc] init];
 #endif
