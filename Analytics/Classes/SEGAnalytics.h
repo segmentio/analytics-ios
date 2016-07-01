@@ -59,6 +59,16 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
 @property (nonatomic, assign) BOOL trackInAppPurchases;
 
 /**
+ * Whether the analytics client should automatically track push notifications.
+ */
+@property (nonatomic, assign) BOOL trackPushNotifications;
+
+/**
+ * Dictionary indicating the options the app was launched with.
+ */
+@property (nonatomic, assign) NSDictionary *launchOptions;
+
+/**
  * Register a factory that can be used to create an integration.
  */
 - (void)use:(id<SEGIntegrationFactory>)factory;

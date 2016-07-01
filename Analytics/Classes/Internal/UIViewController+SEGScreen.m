@@ -11,19 +11,19 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         Class class = [self class];
-        
+
         SEL originalSelector = @selector(viewDidAppear:);
         SEL swizzledSelector = @selector(seg_viewDidAppear:);
-        
+
         Method originalMethod = class_getInstanceMethod(class, originalSelector);
         Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-        
+
         BOOL didAddMethod =
-        class_addMethod(class,
-                        originalSelector,
-                        method_getImplementation(swizzledMethod),
-                        method_getTypeEncoding(swizzledMethod));
-        
+            class_addMethod(class,
+                            originalSelector,
+                            method_getImplementation(swizzledMethod),
+                            method_getTypeEncoding(swizzledMethod));
+
         if (didAddMethod) {
             class_replaceMethod(class,
                                 swizzledSelector,
@@ -47,13 +47,13 @@
     if (rootViewController.presentedViewController == nil) {
         return rootViewController;
     }
-    
+
     if ([rootViewController.presentedViewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *navigationController = (UINavigationController *)rootViewController.presentedViewController;
         UIViewController *lastViewController = [[navigationController viewControllers] lastObject];
         return [self seg_topViewController:lastViewController];
     }
-    
+
     UIViewController *presentedViewController = (UIViewController *)rootViewController.presentedViewController;
     return [self seg_topViewController:presentedViewController];
 }
@@ -64,7 +64,7 @@
     if (!top) {
         return;
     }
-    
+
     NSString *name = [top title];
     if (name.length == 0) {
         name = [[[top class] description] stringByReplacingOccurrencesOfString:@"ViewController" withString:@""];
@@ -75,7 +75,7 @@
         }
     }
     [[SEGAnalytics sharedAnalytics] screen:name properties:nil options:nil];
-    
+
     [self seg_viewDidAppear:animated];
 }
 
