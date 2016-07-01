@@ -93,7 +93,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 - (instancetype)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration
 {
     NSCParameterAssert(configuration != nil);
-    
+
     if (self = [self init]) {
         self.configuration = configuration;
         self.enabled = YES;
@@ -103,16 +103,16 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
         self.integrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
         self.registeredIntegrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
         self.configuration = configuration;
-        
+
         // Update settings on each integration immediately
         [self refreshSettings];
-        
+
         // Attach to application state change hooks
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        
+
         // Update settings on foreground
         [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
-        
+
         // Pass through for application state change events
         for (NSString *name in @[ UIApplicationDidEnterBackgroundNotification,
                                   UIApplicationDidFinishLaunchingNotification,
@@ -122,7 +122,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
                                   UIApplicationDidBecomeActiveNotification ]) {
             [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:nil];
         }
-        
+
         if (configuration.recordScreenViews) {
             [UIViewController seg_swizzleViewDidAppear];
         }
@@ -130,6 +130,12 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
             _storeKitTracker = [SEGStoreKitTracker trackTransactionsForAnalytics:self];
         }
         [self trackApplicationLifecycleEvents:configuration.trackApplicationLifecycleEvents];
+        if (configuration.trackPushNotifications && configuration.launchOptions) {
+            NSDictionary *remoteNotification = configuration.launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+            if (remoteNotification) {
+                [self trackPushNotification:remoteNotification fromLaunch:YES];
+            }
+        }
     }
     return self;
 }
@@ -150,33 +156,33 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     if (!trackApplicationLifecycleEvents) {
         return;
     }
-    
+
     NSString *previousVersion = [[NSUserDefaults standardUserDefaults] stringForKey:SEGVersionKey];
     NSInteger previousBuild = [[NSUserDefaults standardUserDefaults] integerForKey:SEGBuildKey];
-    
+
     NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
     NSInteger currentBuild = [[[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"] integerValue];
-    
+
     if (!previousBuild) {
         [self track:@"Application Installed" properties:@{
-                                                          @"version" : currentVersion,
-                                                          @"build" : @(currentBuild)
-                                                          }];
+            @"version" : currentVersion,
+            @"build" : @(currentBuild)
+        }];
     } else if (currentBuild != previousBuild) {
         [self track:@"Application Updated" properties:@{
-                                                        @"previous_version" : previousVersion,
-                                                        @"previous_build" : @(previousBuild),
-                                                        @"version" : currentVersion,
-                                                        @"build" : @(currentBuild)
-                                                        }];
+            @"previous_version" : previousVersion,
+            @"previous_build" : @(previousBuild),
+            @"version" : currentVersion,
+            @"build" : @(currentBuild)
+        }];
     }
-    
-    
+
+
     [self track:@"Application Opened" properties:@{
-                                                   @"version" : currentVersion,
-                                                   @"build" : @(currentBuild)
-                                                   }];
-    
+        @"version" : currentVersion,
+        @"build" : @(currentBuild)
+    }];
+
     [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:SEGVersionKey];
     [[NSUserDefaults standardUserDefaults] setInteger:currentBuild forKey:SEGBuildKey];
 }
@@ -194,19 +200,19 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     static dispatch_once_t selectorMappingOnce;
     dispatch_once(&selectorMappingOnce, ^{
         selectorMapping = @{
-                            UIApplicationDidFinishLaunchingNotification :
-                                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
-                            UIApplicationDidEnterBackgroundNotification :
-                                NSStringFromSelector(@selector(applicationDidEnterBackground)),
-                            UIApplicationWillEnterForegroundNotification :
-                                NSStringFromSelector(@selector(applicationWillEnterForeground)),
-                            UIApplicationWillTerminateNotification :
-                                NSStringFromSelector(@selector(applicationWillTerminate)),
-                            UIApplicationWillResignActiveNotification :
-                                NSStringFromSelector(@selector(applicationWillResignActive)),
-                            UIApplicationDidBecomeActiveNotification :
-                                NSStringFromSelector(@selector(applicationDidBecomeActive))
-                            };
+            UIApplicationDidFinishLaunchingNotification :
+                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
+            UIApplicationDidEnterBackgroundNotification :
+                NSStringFromSelector(@selector(applicationDidEnterBackground)),
+            UIApplicationWillEnterForegroundNotification :
+                NSStringFromSelector(@selector(applicationWillEnterForeground)),
+            UIApplicationWillTerminateNotification :
+                NSStringFromSelector(@selector(applicationWillTerminate)),
+            UIApplicationWillResignActiveNotification :
+                NSStringFromSelector(@selector(applicationWillResignActive)),
+            UIApplicationDidBecomeActiveNotification :
+                NSStringFromSelector(@selector(applicationDidBecomeActive))
+        };
     });
     SEL selector = NSSelectorFromString(selectorMapping[note.name]);
     if (selector) {
@@ -238,13 +244,13 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     NSCParameterAssert(userId.length > 0 || traits.count > 0);
-    
+
     SEGIdentifyPayload *payload = [[SEGIdentifyPayload alloc] initWithUserId:userId
                                                                  anonymousId:[options objectForKey:@"anonymousId"]
                                                                       traits:SEGCoerceDictionary(traits)
                                                                      context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                                 integrations:[options objectForKey:@"integrations"]];
-    
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"identify:")
                              arguments:@[ payload ]
                                options:options
@@ -266,12 +272,12 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     NSCParameterAssert(event.length > 0);
-    
+
     SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:event
                                                            properties:SEGCoerceDictionary(properties)
                                                               context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                          integrations:[options objectForKey:@"integrations"]];
-    
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"track:")
                              arguments:@[ payload ]
                                options:options
@@ -293,12 +299,12 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     NSCParameterAssert(screenTitle.length > 0);
-    
+
     SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:screenTitle
                                                             properties:SEGCoerceDictionary(properties)
                                                                context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                           integrations:[options objectForKey:@"integrations"]];
-    
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"screen:")
                              arguments:@[ payload ]
                                options:options
@@ -323,7 +329,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
                                                                  traits:SEGCoerceDictionary(traits)
                                                                 context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                            integrations:[options objectForKey:@"integrations"]];
-    
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"group:")
                              arguments:@[ payload ]
                                options:options
@@ -342,15 +348,27 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     SEGAliasPayload *payload = [[SEGAliasPayload alloc] initWithNewId:newId
                                                               context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                          integrations:[options objectForKey:@"integrations"]];
-    
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"alias:")
                              arguments:@[ payload ]
                                options:options
                                   sync:false];
 }
 
+- (void)trackPushNotification:(NSDictionary *)properties fromLaunch:(BOOL)launch
+{
+    if (launch) {
+        [self track:@"Push Notification Tapped" properties:properties];
+    } else {
+        [self track:@"Push Notification Received" properties:properties];
+    }
+}
+
 - (void)receivedRemoteNotification:(NSDictionary *)userInfo
 {
+    if (self.configuration.trackPushNotifications) {
+        [self trackPushNotification:userInfo fromLaunch:NO];
+    }
     [self callIntegrationsWithSelector:_cmd arguments:@[ userInfo ] options:nil sync:true];
 }
 
@@ -362,7 +380,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 - (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSParameterAssert(deviceToken != nil);
-    
+
     [self callIntegrationsWithSelector:_cmd arguments:@[ deviceToken ] options:nil sync:true];
 }
 
@@ -409,7 +427,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
         return;
     }
     [_cachedSettings writeToURL:settingsURL atomically:YES];
-    
+
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         [self updateIntegrationsWithSettings:settings[@"integrations"]];
@@ -432,7 +450,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
             SEGLog(@"No settings for %@. Skipping.", key);
         }
     }
-    
+
     seg_dispatch_specific_async(_serialQueue, ^{
         [self flushMessageQueue];
         self.initialized = true;
@@ -443,22 +461,22 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 {
     if (_settingsRequest)
         return;
-    
+
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://cdn.segment.com/v1/projects/%@/settings", self.configuration.writeKey]]];
     [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [urlRequest setHTTPMethod:@"GET"];
-    
+
     SEGLog(@"%@ Sending API settings request: %@", self, urlRequest);
-    
+
     _settingsRequest = [SEGAnalyticsRequest startWithURLRequest:urlRequest
                                                      completion:^{
                                                          seg_dispatch_specific_async(_serialQueue, ^{
                                                              SEGLog(@"%@ Received API settings response: %@", self, _settingsRequest.responseJSON);
-                                                             
+
                                                              if (_settingsRequest.error == nil) {
                                                                  [self setCachedSettings:_settingsRequest.responseJSON];
                                                              }
-                                                             
+
                                                              _settingsRequest = nil;
                                                          });
                                                      }];
@@ -508,7 +526,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
             return NO;
         }
     }
-    
+
     return YES;
 }
 
@@ -516,7 +534,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 {
     if (!_enabled)
         return;
-    
+
     // If the event has opted in for syncrhonous delivery, this may be called on any thread.
     // Only allow one to be delivered at a time.
     @synchronized(self)
@@ -533,12 +551,12 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
         SEGLog(@"Not sending call to %@ because it doesn't respond to %@.", key, NSStringFromSelector(selector));
         return;
     }
-    
+
     if (![self isIntegration:key enabledInOptions:options[@"integrations"]]) {
         SEGLog(@"Not sending call to %@ because it is disabled in options.", key);
         return;
     }
-    
+
     NSString *eventType = NSStringFromSelector(selector);
     if ([eventType hasPrefix:@"track:"]) {
         SEGTrackPayload *eventPayload = arguments[0];
@@ -548,7 +566,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
             return;
         }
     }
-    
+
     SEGLog(@"Running: %@ with arguments %@ on integration: %@", eventType, arguments, key);
     NSInvocation *invocation = [self invocationForSelector:selector arguments:arguments];
     [invocation invokeWithTarget:integration];
@@ -557,9 +575,9 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 - (NSInvocation *)invocationForSelector:(SEL)selector arguments:(NSArray *)arguments
 {
     struct objc_method_description description = protocol_getMethodDescription(@protocol(SEGIntegration), selector, NO, YES);
-    
+
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:description.types];
-    
+
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     invocation.selector = selector;
     for (int i = 0; i < arguments.count; i++) {
@@ -591,7 +609,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
         [self forwardSelector:selector arguments:arguments options:options];
         return;
     }
-    
+
     seg_dispatch_specific_async(_serialQueue, ^{
         if (self.initialized) {
             [self flushMessageQueue];
