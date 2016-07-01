@@ -235,7 +235,11 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     });
 
     self.location = !self.location ? [self.configuration shouldUseLocationServices] ? [SEGLocation new] : nil : self.location;
+
+#if TARGET_OS_IOS || (TARGET_OS_MAC && !TARGET_OS_IPHONE)
     [self.location startUpdatingLocation];
+#endif
+
     if (self.location.hasKnownLocation)
         context[@"location"] = self.location.locationDictionary;
 
@@ -660,11 +664,11 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
     // identifierForVendor (iOS6 and later, can't be changed on logout),
     // or MAC address (blocked in iOS 7). For more info see https://segment.io/libraries/ios#ids
-    NSURL *url = self.anonymousIDURL;
 
 #if TARGET_OS_TV
     NSString *anonymousId = [[NSUserDefaults standardUserDefaults] valueForKey:SEGAnonymousIdKey];
 #else
+    NSURL *url = self.anonymousIDURL;
     NSString *anonymousId = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
 #endif
 

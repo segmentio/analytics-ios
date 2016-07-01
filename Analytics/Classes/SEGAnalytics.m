@@ -129,13 +129,17 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
         if (configuration.trackInAppPurchases) {
             _storeKitTracker = [SEGStoreKitTracker trackTransactionsForAnalytics:self];
         }
+
         [self trackApplicationLifecycleEvents:configuration.trackApplicationLifecycleEvents];
+
+#if !TARGET_OS_TV
         if (configuration.trackPushNotifications && configuration.launchOptions) {
             NSDictionary *remoteNotification = configuration.launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
             if (remoteNotification) {
                 [self trackPushNotification:remoteNotification fromLaunch:YES];
             }
         }
+#endif
     }
     return self;
 }
