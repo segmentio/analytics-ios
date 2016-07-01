@@ -92,6 +92,8 @@ static BOOL GetAdTrackingEnabled()
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         self.flushTaskID = UIBackgroundTaskInvalid;
         self.analytics = analytics;
+
+#if !TARGET_OS_TV
         // Check for previous queue/track data in NSUserDefaults and remove if present
         [self dispatchBackground:^{
             if ([[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey]) {
@@ -101,13 +103,17 @@ static BOOL GetAdTrackingEnabled()
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGTraitsKey];
             }
         }];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
-        });
+
+
         [self addSkipBackupAttributeToItemAtPath:self.userIDURL];
         [self addSkipBackupAttributeToItemAtPath:self.anonymousIDURL];
         [self addSkipBackupAttributeToItemAtPath:self.traitsURL];
         [self addSkipBackupAttributeToItemAtPath:self.queueURL];
+#endif
+
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
+        });
     }
     return self;
 }
@@ -612,7 +618,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     if (!_queue) {
 #if TARGET_OS_TV
-        _queue = [[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey];
+        _queue = [[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey] ?: [[NSMutableArray alloc] init];
 #else
         _queue = [NSMutableArray arrayWithContentsOfURL:self.queueURL] ?: [[NSMutableArray alloc] init];
 #endif
@@ -625,7 +631,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     if (!_traits) {
 #if TARGET_OS_TV
-        _traits = [[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey];
+        _traits = [[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey] ?: [[NSMutableDictionary alloc] init];
 #else
         _traits = [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL] ?: [[NSMutableDictionary alloc] init];
 #endif
