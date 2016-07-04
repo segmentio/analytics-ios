@@ -68,7 +68,6 @@ LOCATION_NUMBER_PROPERTY(speed, location.speed);
 
 - (void)startUpdatingLocation
 {
-
     if (self.locationManager && self.currentPlacemark) {
         CLLocation *location = self.currentPlacemark.location;
         NSDate *eventDate = location.timestamp;
