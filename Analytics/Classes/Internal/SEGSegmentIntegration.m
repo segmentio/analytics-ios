@@ -672,16 +672,16 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (NSString *)getAnonymousId:(BOOL)reset
 {
-    // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
-    // identifierForVendor (iOS6 and later, can't be changed on logout),
-    // or MAC address (blocked in iOS 7). For more info see https://segment.io/libraries/ios#ids
-
 #if TARGET_OS_TV
     NSString *anonymousId = [[NSUserDefaults standardUserDefaults] valueForKey:SEGAnonymousIdKey];
 #else
     NSURL *url = self.anonymousIDURL;
     NSString *anonymousId = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
 #endif
+
+    // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
+    // identifierForVendor (iOS6 and later, can't be changed on logout),
+    // or MAC address (blocked in iOS 7). For more info see https://segment.io/libraries/ios#ids
 
     if (!anonymousId || reset) {
         anonymousId = GenerateUUIDString();
