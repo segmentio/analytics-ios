@@ -64,6 +64,11 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
 @property (nonatomic, assign) BOOL trackPushNotifications;
 
 /**
+ * Whether the analytics client should automatically track deep links. You'll still need to call the continueUserActivity and openURL methods on the analytics client.
+ */
+@property (nonatomic, assign) BOOL trackDeepLinks;
+
+/**
  * Dictionary indicating the options the app was launched with.
  */
 @property (nonatomic, assign) NSDictionary *launchOptions;
@@ -215,6 +220,8 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
 - (void)failedToRegisterForRemoteNotificationsWithError:(NSError *)error;
 - (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
 - (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo;
+- (void)continueUserActivity:(NSUserActivity *)activity;
+- (void)openURL:(NSURL *)url options:(NSDictionary *)options;
 
 /*!
  @method
