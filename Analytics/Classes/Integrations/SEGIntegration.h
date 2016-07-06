@@ -49,6 +49,8 @@
 // Flush is invoked when any queued events should be uploaded.
 - (void)flush;
 
+// App Delegate Callbacks
+
 // Callbacks for notifications changes.
 // ------------------------------------
 - (void)receivedRemoteNotification:(NSDictionary *)userInfo;
@@ -65,5 +67,8 @@
 - (void)applicationWillTerminate;
 - (void)applicationWillResignActive;
 - (void)applicationDidBecomeActive;
+
+- (void)continueUserActivity:(NSUserActivity *)activity;
+- (void)openURL:(NSURL *)url options:(NSDictionary *)options;
 
 @end
