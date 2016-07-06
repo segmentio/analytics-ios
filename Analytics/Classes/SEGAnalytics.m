@@ -393,6 +393,37 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     [self callIntegrationsWithSelector:_cmd arguments:@[ identifier, userInfo ] options:nil sync:true];
 }
 
+- (void)continueUserActivity:(NSUserActivity *)activity
+{
+    [self callIntegrationsWithSelector:_cmd arguments:@[ activity ] options:nil sync:true];
+
+    if (!self.configuration.trackDeepLinks) {
+        return;
+    }
+
+    if ([activity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
+        NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithCapacity:activity.userInfo.count + 2];
+        [properties addEntriesFromDictionary:activity.userInfo];
+        properties[@"url"] = activity.webpageURL;
+        properties[@"title"] = activity.title ?: @"";
+        [self track:@"Deep Link Opened" properties:[properties copy]];
+    }
+}
+
+- (void)openURL:(NSURL *)url options:(NSDictionary *)options
+{
+    [self callIntegrationsWithSelector:_cmd arguments:@[ url, options ] options:nil sync:true];
+
+    if (!self.configuration.trackDeepLinks) {
+        return;
+    }
+
+    NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithCapacity:options.count + 2];
+    [properties addEntriesFromDictionary:options];
+    properties[@"url"] = url.absoluteString;
+    [self track:@"Deep Link Opened" properties:[properties copy]];
+}
+
 - (void)reset
 {
     [self callIntegrationsWithSelector:_cmd arguments:nil options:nil sync:false];
