@@ -72,6 +72,7 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, strong) NSMutableDictionary *traits;
 @property (nonatomic, assign) SEGAnalytics *analytics;
 @property (nonatomic, assign) SEGAnalyticsConfiguration *configuration;
+@property (nonatomic, assign) NSDictionary *referrer;
 
 @end
 
@@ -258,6 +259,10 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         traits;
     });
 
+    if (self.referrer) {
+        context[@"referrer"] = [self.referrer copy];
+    }
+
     return [context copy];
 }
 
@@ -401,6 +406,22 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         [token appendString:[NSString stringWithFormat:@"%02lx", (unsigned long)buffer[i]]];
     }
     [self.context[@"device"] setObject:[token copy] forKey:@"token"];
+}
+
+- (void)continueUserActivity:(NSUserActivity *)activity
+{
+    if ([activity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
+        self.referrer = @{
+            @"url" : activity.webpageURL,
+        };
+    }
+}
+
+- (void)openURL:(NSURL *)url options:(NSDictionary *)options
+{
+    self.referrer = @{
+        @"url" : url.absoluteString,
+    };
 }
 
 #pragma mark - Queueing
