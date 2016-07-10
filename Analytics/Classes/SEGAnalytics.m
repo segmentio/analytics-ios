@@ -129,7 +129,17 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
         if (configuration.trackInAppPurchases) {
             _storeKitTracker = [SEGStoreKitTracker trackTransactionsForAnalytics:self];
         }
+
         [self trackApplicationLifecycleEvents:configuration.trackApplicationLifecycleEvents];
+
+#if !TARGET_OS_TV
+        if (configuration.trackPushNotifications && configuration.launchOptions) {
+            NSDictionary *remoteNotification = configuration.launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+            if (remoteNotification) {
+                [self trackPushNotification:remoteNotification fromLaunch:YES];
+            }
+        }
+#endif
     }
     return self;
 }
@@ -159,23 +169,23 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
     if (!previousBuild) {
         [self track:@"Application Installed" properties:@{
-                                                          @"version" : currentVersion,
-                                                          @"build" : @(currentBuild)
-                                                          }];
+            @"version" : currentVersion,
+            @"build" : @(currentBuild)
+        }];
     } else if (currentBuild != previousBuild) {
         [self track:@"Application Updated" properties:@{
-                                                        @"previous_version" : previousVersion,
-                                                        @"previous_build" : @(previousBuild),
-                                                        @"version" : currentVersion,
-                                                        @"build" : @(currentBuild)
-                                                        }];
+            @"previous_version" : previousVersion,
+            @"previous_build" : @(previousBuild),
+            @"version" : currentVersion,
+            @"build" : @(currentBuild)
+        }];
     }
 
 
     [self track:@"Application Opened" properties:@{
-                                                   @"version" : currentVersion,
-                                                   @"build" : @(currentBuild)
-                                                   }];
+        @"version" : currentVersion,
+        @"build" : @(currentBuild)
+    }];
 
     [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:SEGVersionKey];
     [[NSUserDefaults standardUserDefaults] setInteger:currentBuild forKey:SEGBuildKey];
@@ -194,19 +204,19 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     static dispatch_once_t selectorMappingOnce;
     dispatch_once(&selectorMappingOnce, ^{
         selectorMapping = @{
-                            UIApplicationDidFinishLaunchingNotification :
-                                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
-                            UIApplicationDidEnterBackgroundNotification :
-                                NSStringFromSelector(@selector(applicationDidEnterBackground)),
-                            UIApplicationWillEnterForegroundNotification :
-                                NSStringFromSelector(@selector(applicationWillEnterForeground)),
-                            UIApplicationWillTerminateNotification :
-                                NSStringFromSelector(@selector(applicationWillTerminate)),
-                            UIApplicationWillResignActiveNotification :
-                                NSStringFromSelector(@selector(applicationWillResignActive)),
-                            UIApplicationDidBecomeActiveNotification :
-                                NSStringFromSelector(@selector(applicationDidBecomeActive))
-                            };
+            UIApplicationDidFinishLaunchingNotification :
+                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
+            UIApplicationDidEnterBackgroundNotification :
+                NSStringFromSelector(@selector(applicationDidEnterBackground)),
+            UIApplicationWillEnterForegroundNotification :
+                NSStringFromSelector(@selector(applicationWillEnterForeground)),
+            UIApplicationWillTerminateNotification :
+                NSStringFromSelector(@selector(applicationWillTerminate)),
+            UIApplicationWillResignActiveNotification :
+                NSStringFromSelector(@selector(applicationWillResignActive)),
+            UIApplicationDidBecomeActiveNotification :
+                NSStringFromSelector(@selector(applicationDidBecomeActive))
+        };
     });
     SEL selector = NSSelectorFromString(selectorMapping[note.name]);
     if (selector) {
@@ -349,8 +359,20 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
                                   sync:false];
 }
 
+- (void)trackPushNotification:(NSDictionary *)properties fromLaunch:(BOOL)launch
+{
+    if (launch) {
+        [self track:@"Push Notification Tapped" properties:properties];
+    } else {
+        [self track:@"Push Notification Received" properties:properties];
+    }
+}
+
 - (void)receivedRemoteNotification:(NSDictionary *)userInfo
 {
+    if (self.configuration.trackPushNotifications) {
+        [self trackPushNotification:userInfo fromLaunch:NO];
+    }
     [self callIntegrationsWithSelector:_cmd arguments:@[ userInfo ] options:nil sync:true];
 }
 
@@ -369,6 +391,37 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 - (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo
 {
     [self callIntegrationsWithSelector:_cmd arguments:@[ identifier, userInfo ] options:nil sync:true];
+}
+
+- (void)continueUserActivity:(NSUserActivity *)activity
+{
+    [self callIntegrationsWithSelector:_cmd arguments:@[ activity ] options:nil sync:true];
+
+    if (!self.configuration.trackDeepLinks) {
+        return;
+    }
+
+    if ([activity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
+        NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithCapacity:activity.userInfo.count + 2];
+        [properties addEntriesFromDictionary:activity.userInfo];
+        properties[@"url"] = activity.webpageURL;
+        properties[@"title"] = activity.title ?: @"";
+        [self track:@"Deep Link Opened" properties:[properties copy]];
+    }
+}
+
+- (void)openURL:(NSURL *)url options:(NSDictionary *)options
+{
+    [self callIntegrationsWithSelector:_cmd arguments:@[ url, options ] options:nil sync:true];
+
+    if (!self.configuration.trackDeepLinks) {
+        return;
+    }
+
+    NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithCapacity:options.count + 2];
+    [properties addEntriesFromDictionary:options];
+    properties[@"url"] = url.absoluteString;
+    [self track:@"Deep Link Opened" properties:[properties copy]];
 }
 
 - (void)reset
