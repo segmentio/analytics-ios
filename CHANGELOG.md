@@ -1,6 +1,20 @@
 Change Log
 ==========
 
+Version 3.2.6 *(07-10-2016)*
+-----------------------------
+ * Improvement: Handle case when root view is a navigation controller.
+ * Improvement: More user friendly assert messages.
+ * New: Add method to retrieve anonymousID.
+ * New: Carthage support.
+ * Fix: Case when ViewController title is an empty string.
+ * Improvement: Fixes the following static analyzer warnings.
+
+ ```
+ SEGReachability.m:115:9: Potential leak of an object stored into 'ref'
+ SEGReachability.m:131:9: Potential leak of an object stored into 'ref'
+ ```
+
 Version 3.2.5 *(06-30-2016)*
 -----------------------------
  * Fix: Correctly skip sending events for disabled events in the tracking plan.
