@@ -23,17 +23,8 @@ NSString *const SEGAdvertisingClassIdentifier = @"ASIdentifierManager";
 NSString *const SEGADClientClass = @"ADClient";
 
 NSString *const SEGUserIdKey = @"SEGUserId";
-NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
 NSString *const SEGQueueKey = @"SEGQueue";
 NSString *const SEGTraitsKey = @"SEGTraits";
-
-static NSString *GenerateUUIDString()
-{
-    CFUUIDRef theUUID = CFUUIDCreate(NULL);
-    NSString *UUIDString = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, theUUID);
-    CFRelease(theUUID);
-    return UUIDString;
-}
 
 static NSString *GetDeviceModel()
 {
@@ -60,7 +51,7 @@ static BOOL GetAdTrackingEnabled()
 @interface SEGSegmentIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
-@property (nonatomic, strong) NSDictionary *context;
+@property (nonatomic, strong) NSDictionary *cachedStaticContext;
 @property (nonatomic, strong) NSArray *batch;
 @property (nonatomic, strong) SEGAnalyticsRequest *request;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
@@ -84,12 +75,11 @@ static BOOL GetAdTrackingEnabled()
     if (self = [super init]) {
         self.configuration = [analytics configuration];
         self.apiURL = [NSURL URLWithString:@"https://api.segment.io/v1/import"];
-        self.anonymousId = [self getAnonymousId:NO];
         self.userId = [self getUserId];
         self.bluetooth = [[SEGBluetooth alloc] init];
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
         [self.reachability startNotifier];
-        self.context = [self staticContext];
+        self.cachedStaticContext = [self staticContext];
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         self.flushTaskID = UIBackgroundTaskInvalid;
         self.analytics = analytics;
@@ -105,9 +95,7 @@ static BOOL GetAdTrackingEnabled()
             }
         }];
 
-
         [self addSkipBackupAttributeToItemAtPath:self.userIDURL];
-        [self addSkipBackupAttributeToItemAtPath:self.anonymousIDURL];
         [self addSkipBackupAttributeToItemAtPath:self.traitsURL];
         [self addSkipBackupAttributeToItemAtPath:self.queueURL];
 #endif
@@ -217,9 +205,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (NSDictionary *)liveContext
 {
     NSMutableDictionary *context = [[NSMutableDictionary alloc] init];
-
-    [context addEntriesFromDictionary:self.context];
-
     context[@"locale"] = [NSString stringWithFormat:
                                        @"%@-%@",
                                        [NSLocale.currentLocale objectForKey:NSLocaleLanguageCode],
@@ -313,18 +298,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     }];
 }
 
-- (void)saveAnonymousId:(NSString *)anonymousId
-{
-    [self dispatchBackground:^{
-        self.anonymousId = anonymousId;
-#if TARGET_OS_TV
-        [[NSUserDefaults standardUserDefaults] setValue:anonymousId forKey:SEGAnonymousIdKey];
-#else
-        [self.anonymousId writeToURL:self.anonymousIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
-#endif
-    }];
-}
-
 - (void)addTraits:(NSDictionary *)traits
 {
     [self dispatchBackground:^{
@@ -345,9 +318,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     [self dispatchBackground:^{
         [self saveUserId:payload.userId];
         [self addTraits:payload.traits];
-        if (payload.anonymousId) {
-            [self saveAnonymousId:payload.anonymousId];
-        }
     }];
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -388,7 +358,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:payload.theNewId forKey:@"userId"];
-    [dictionary setValue:self.userId ?: self.anonymousId forKey:@"previousId"];
+    [dictionary setValue:self.userId ?: [self.analytics getAnonymousId] forKey:@"previousId"];
 
     [self enqueueAction:@"alias" dictionary:dictionary context:payload.context integrations:payload.integrations];
 }
@@ -405,7 +375,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     for (NSUInteger i = 0; i < deviceToken.length; i++) {
         [token appendString:[NSString stringWithFormat:@"%02lx", (unsigned long)buffer[i]]];
     }
-    [self.context[@"device"] setObject:[token copy] forKey:@"token"];
+    [self.cachedStaticContext[@"device"] setObject:[token copy] forKey:@"token"];
 }
 
 - (void)continueUserActivity:(NSUserActivity *)activity
@@ -426,10 +396,15 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 #pragma mark - Queueing
 
+// Merges user provided integration options with bundled integrations.
 - (NSDictionary *)integrationsDictionary:(NSDictionary *)integrations
 {
     NSMutableDictionary *dict = [integrations ?: @{} mutableCopy];
     for (NSString *integration in self.analytics.bundledIntegrations) {
+        // Don't record Segment.io in the dictionary. It is always enabled.
+        if ([integration isEqualToString:@"Segment.io"]) {
+            continue;
+        }
         dict[integration] = @NO;
     }
     return [dict copy];
@@ -451,15 +426,17 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         if (![action isEqualToString:@"alias"]) {
             [payload setValue:self.userId forKey:@"userId"];
         }
-        [payload setValue:self.anonymousId forKey:@"anonymousId"];
+        [payload setValue:[self.analytics getAnonymousId] forKey:@"anonymousId"];
 
         [payload setValue:[self integrationsDictionary:integrations] forKey:@"integrations"];
 
-        NSDictionary *defaultContext = [self liveContext];
+        NSDictionary *staticContext = self.cachedStaticContext;
+        NSDictionary *liveContext = [self liveContext];
         NSDictionary *customContext = context;
-        NSMutableDictionary *context = [NSMutableDictionary dictionaryWithCapacity:customContext.count + defaultContext.count];
-        [context addEntriesFromDictionary:defaultContext];
-        [context addEntriesFromDictionary:customContext]; // let the custom context override ours
+        NSMutableDictionary *context = [NSMutableDictionary dictionaryWithCapacity:staticContext.count + liveContext.count + customContext.count];
+        [context addEntriesFromDictionary:staticContext];
+        [context addEntriesFromDictionary:liveContext];
+        [context addEntriesFromDictionary:customContext];
         [payload setValue:[context copy] forKey:@"context"];
 
         SEGLog(@"%@ Enqueueing action: %@", self, payload);
@@ -508,7 +485,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         NSMutableDictionary *payloadDictionary = [[NSMutableDictionary alloc] init];
         [payloadDictionary setObject:self.configuration.writeKey forKey:@"writeKey"];
         [payloadDictionary setObject:iso8601FormattedString([NSDate date]) forKey:@"sentAt"];
-        [payloadDictionary setObject:self.context forKey:@"context"];
         [payloadDictionary setObject:self.batch forKey:@"batch"];
 
         SEGLog(@"Flushing payload %@", payloadDictionary);
@@ -545,7 +521,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     [self dispatchBackgroundAndWait:^{
         [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGUserIdKey];
-        [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGAnonymousIdKey];
 
 #if TARGET_OS_TV
         [[NSUserDefaults standardUserDefaults] setValue:@[] forKey:SEGQueueKey];
@@ -559,7 +534,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         self.userId = nil;
         self.traits = [NSMutableDictionary dictionary];
         self.queue = [NSMutableArray array];
-        self.anonymousId = [self getAnonymousId:YES];
         self.request.completion = nil;
         self.request = nil;
     }];
@@ -676,11 +650,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     return SEGAnalyticsURLForFilename(@"segmentio.userId");
 }
 
-- (NSURL *)anonymousIDURL
-{
-    return SEGAnalyticsURLForFilename(@"segment.anonymousId");
-}
-
 - (NSURL *)queueURL
 {
     return SEGAnalyticsURLForFilename(@"segmentio.queue.plist");
@@ -689,33 +658,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (NSURL *)traitsURL
 {
     return SEGAnalyticsURLForFilename(@"segmentio.traits.plist");
-}
-
-- (NSString *)getAnonymousId:(BOOL)reset
-{
-#if TARGET_OS_TV
-    NSString *anonymousId = [[NSUserDefaults standardUserDefaults] valueForKey:SEGAnonymousIdKey];
-#else
-    NSURL *url = self.anonymousIDURL;
-    NSString *anonymousId = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
-#endif
-
-    // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
-    // identifierForVendor (iOS6 and later, can't be changed on logout),
-    // or MAC address (blocked in iOS 7). For more info see https://segment.io/libraries/ios#ids
-
-    if (!anonymousId || reset) {
-        anonymousId = GenerateUUIDString();
-        SEGLog(@"New anonymousId: %@", anonymousId);
-
-#if TARGET_OS_TV
-        [[NSUserDefaults standardUserDefaults] setObject:anonymousId forKey:SEGAnonymousIdKey];
-#else
-        [anonymousId writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:NULL];
-#endif
-    }
-
-    return anonymousId;
 }
 
 - (NSString *)getUserId
