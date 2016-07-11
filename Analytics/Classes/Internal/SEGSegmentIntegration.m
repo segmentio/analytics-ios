@@ -426,10 +426,15 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 #pragma mark - Queueing
 
+// Merges user provided integration options with bundled integrations.
 - (NSDictionary *)integrationsDictionary:(NSDictionary *)integrations
 {
     NSMutableDictionary *dict = [integrations ?: @{} mutableCopy];
     for (NSString *integration in self.analytics.bundledIntegrations) {
+        // Don't record Segment.io in the dictionary. It is always enabled.
+        if ([integration isEqualToString:@"Segment.io"]) {
+            continue;
+        }
         dict[integration] = @NO;
     }
     return [dict copy];
