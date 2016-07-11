@@ -11,6 +11,7 @@
 
 static SEGAnalytics *__sharedInstance = nil;
 NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.did.start";
+NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
 
 
 @interface SEGAnalyticsConfiguration ()
@@ -74,6 +75,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 @property (nonatomic, strong) NSMutableDictionary *registeredIntegrations;
 @property (nonatomic) volatile BOOL initialized;
 @property (nonatomic, strong) SEGStoreKitTracker *storeKitTracker;
+@property (nonatomic, copy) NSString *cachedAnonymousId;
 
 @end
 
@@ -103,6 +105,11 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
         self.integrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
         self.registeredIntegrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
         self.configuration = configuration;
+        self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
+
+#if !TARGET_OS_TV
+        [self addSkipBackupAttributeToItemAtPath:self.anonymousIDURL];
+#endif
 
         // Update settings on each integration immediately
         [self refreshSettings];
@@ -247,10 +254,17 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    NSCParameterAssert(userId.length > 0 || traits.count > 0);
+    NSCAssert2(userId.length > 0 > traits.count > 0, @"either userId (%@) or traits (%@) must be provided.", userId, traits);
+
+    NSString *anonymousId = [options objectForKey:@"anonymousId"];
+    if (anonymousId) {
+        [self saveAnonymousId:anonymousId];
+    } else {
+        anonymousId = self.cachedAnonymousId;
+    }
 
     SEGIdentifyPayload *payload = [[SEGIdentifyPayload alloc] initWithUserId:userId
-                                                                 anonymousId:[options objectForKey:@"anonymousId"]
+                                                                 anonymousId:anonymousId
                                                                       traits:SEGCoerceDictionary(traits)
                                                                      context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                                 integrations:[options objectForKey:@"integrations"]];
@@ -275,7 +289,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    NSCParameterAssert(event.length > 0);
+    NSCAssert1(event.length > 0, @"event (%@) must not be empty.", event);
 
     SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:event
                                                            properties:SEGCoerceDictionary(properties)
@@ -290,21 +304,21 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 #pragma mark - Screen
 
-- (void)screen:(NSString *)screenTitle
+- (void)screen:(NSString *)name
 {
-    [self screen:screenTitle properties:nil options:nil];
+    [self screen:name properties:nil options:nil];
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties
+- (void)screen:(NSString *)name properties:(NSDictionary *)properties
 {
-    [self screen:screenTitle properties:properties options:nil];
+    [self screen:name properties:properties options:nil];
 }
 
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
+- (void)screen:(NSString *)name properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    NSCParameterAssert(screenTitle.length > 0);
+    NSCAssert1(name.length > 0, @"screen name (%@) must not be empty.", name);
 
-    SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:screenTitle
+    SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:name
                                                             properties:SEGCoerceDictionary(properties)
                                                                context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                           integrations:[options objectForKey:@"integrations"]];
@@ -426,7 +440,74 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 - (void)reset
 {
+    [self resetAnonymousId];
     [self callIntegrationsWithSelector:_cmd arguments:nil options:nil sync:false];
+}
+
+- (void)resetAnonymousId
+{
+    self.cachedAnonymousId = [self loadOrGenerateAnonymousID:YES];
+}
+
+- (NSString *)getAnonymousId;
+{
+    return self.cachedAnonymousId;
+}
+
+- (NSURL *)anonymousIDURL
+{
+    return SEGAnalyticsURLForFilename(@"segment.anonymousId");
+}
+
+- (void)addSkipBackupAttributeToItemAtPath:(NSURL *)url
+{
+    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path]];
+    if (!exists) {
+        return;
+    }
+
+    NSError *error = nil;
+    BOOL success = [url setResourceValue:[NSNumber numberWithBool:YES]
+                                  forKey:NSURLIsExcludedFromBackupKey
+                                   error:&error];
+    if (!success) {
+        SEGLog(@"Error excluding %@ from backup %@", [url lastPathComponent], error);
+    }
+    return;
+}
+
+- (NSString *)loadOrGenerateAnonymousID:(BOOL)reset
+{
+#if TARGET_OS_TV
+    NSString *anonymousId = [[NSUserDefaults standardUserDefaults] valueForKey:SEGAnonymousIdKey];
+#else
+    NSURL *url = self.anonymousIDURL;
+    NSString *anonymousId = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
+#endif
+
+    if (!anonymousId || reset) {
+        // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
+        // identifierForVendor (iOS6 and later, can't be changed on logout),
+        // or MAC address (blocked in iOS 7). For more info see https://segment.io/libraries/ios#ids
+        anonymousId = GenerateUUIDString();
+        SEGLog(@"New anonymousId: %@", anonymousId);
+#if TARGET_OS_TV
+        [[NSUserDefaults standardUserDefaults] setObject:anonymousId forKey:SEGAnonymousIdKey];
+#else
+        [anonymousId writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+#endif
+    }
+    return anonymousId;
+}
+
+- (void)saveAnonymousId:(NSString *)anonymousId
+{
+    self.cachedAnonymousId = anonymousId;
+#if TARGET_OS_TV
+    [[NSUserDefaults standardUserDefaults] setValue:anonymousId forKey:SEGAnonymousIdKey];
+#else
+    [self.cachedAnonymousId writeToURL:self.anonymousIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+#endif
 }
 
 - (void)flush
@@ -521,7 +602,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 + (instancetype)sharedAnalytics
 {
-    NSCParameterAssert(__sharedInstance != nil);
+    NSCAssert(__sharedInstance != nil, @"library must be initialized before calling this method.");
     return __sharedInstance;
 }
 
