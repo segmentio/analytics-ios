@@ -6,7 +6,7 @@ before_install:
   - make bootstrap
 
 script:
-  - make build test lint carthage
+  - make build-pretty test-pretty lint carthage
 
 before_deploy:
   - make archive
