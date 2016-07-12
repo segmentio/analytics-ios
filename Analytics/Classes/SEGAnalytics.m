@@ -304,21 +304,21 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 #pragma mark - Screen
 
-- (void)screen:(NSString *)name
+- (void)screen:(NSString *)screenTitle
 {
-    [self screen:name properties:nil options:nil];
+    [self screen:screenTitle properties:nil options:nil];
 }
 
-- (void)screen:(NSString *)name properties:(NSDictionary *)properties
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties
 {
-    [self screen:name properties:properties options:nil];
+    [self screen:screenTitle properties:properties options:nil];
 }
 
-- (void)screen:(NSString *)name properties:(NSDictionary *)properties options:(NSDictionary *)options
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
-    NSCAssert1(name.length > 0, @"screen name (%@) must not be empty.", name);
+    NSCAssert1(screenTitle.length > 0, @"screen name (%@) must not be empty.", screenTitle);
 
-    SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:name
+    SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:screenTitle
                                                             properties:SEGCoerceDictionary(properties)
                                                                context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                           integrations:[options objectForKey:@"integrations"]];
