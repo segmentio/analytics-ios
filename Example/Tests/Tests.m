@@ -1,5 +1,4 @@
 #import <Analytics/SEGAnalytics.h>
-#import <Specta/Specta.h>
 #import <Foundation/Foundation.h>
 
 SpecBegin(Analytics);
