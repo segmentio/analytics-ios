@@ -1,12 +1,12 @@
 #import <UIKit/UIKit.h>
 #import "SEGAnalyticsUtils.h"
-#import "SEGAnalyticsRequest.h"
 #import "SEGAnalytics.h"
 #import "SEGIntegrationFactory.h"
 #import "SEGIntegration.h"
 #import "SEGSegmentIntegrationFactory.h"
 #import "UIViewController+SEGScreen.h"
 #import "SEGStoreKitTracker.h"
+#import "SEGHTTPClient.h"
 #import <objc/runtime.h>
 
 static SEGAnalytics *__sharedInstance = nil;
@@ -68,7 +68,6 @@ NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
 @property (nonatomic, strong) SEGAnalyticsConfiguration *configuration;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 @property (nonatomic, strong) NSMutableArray *messageQueue;
-@property (nonatomic, strong) SEGAnalyticsRequest *settingsRequest;
 @property (nonatomic, assign) BOOL enabled;
 @property (nonatomic, strong) NSArray *factories;
 @property (nonatomic, strong) NSMutableDictionary *integrations;
@@ -76,6 +75,8 @@ NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
 @property (nonatomic) volatile BOOL initialized;
 @property (nonatomic, strong) SEGStoreKitTracker *storeKitTracker;
 @property (nonatomic, copy) NSString *cachedAnonymousId;
+@property (nonatomic, strong) SEGHTTPClient *httpClient;
+@property (nonatomic, strong) NSURLSessionDataTask *settingsRequest;
 
 @end
 
@@ -106,6 +107,7 @@ NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
         self.registeredIntegrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
         self.configuration = configuration;
         self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
+        self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
 
 #if !TARGET_OS_TV
         [self addSkipBackupAttributeToItemAtPath:self.anonymousIDURL];
@@ -575,27 +577,17 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 - (void)refreshSettings
 {
-    if (_settingsRequest)
+    if (self.settingsRequest) {
         return;
+    }
 
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://cdn.segment.com/v1/projects/%@/settings", self.configuration.writeKey]]];
-    [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [urlRequest setHTTPMethod:@"GET"];
+    self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey completionHandler:^(BOOL success, NSDictionary *settings) {
+        if (success) {
+            [self setCachedSettings:settings];
+        }
 
-    SEGLog(@"%@ Sending API settings request: %@", self, urlRequest);
-
-    _settingsRequest = [SEGAnalyticsRequest startWithURLRequest:urlRequest
-                                                     completion:^{
-                                                         seg_dispatch_specific_async(_serialQueue, ^{
-                                                             SEGLog(@"%@ Received API settings response: %@", self, _settingsRequest.responseJSON);
-
-                                                             if (_settingsRequest.error == nil) {
-                                                                 [self setCachedSettings:_settingsRequest.responseJSON];
-                                                             }
-
-                                                             _settingsRequest = nil;
-                                                         });
-                                                     }];
+        self.settingsRequest = nil;
+    }];
 }
 
 #pragma mark - Class Methods

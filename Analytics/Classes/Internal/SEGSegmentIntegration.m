@@ -3,12 +3,12 @@
 #import <UIKit/UIKit.h>
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
-#import "SEGAnalyticsRequest.h"
 #import "SEGSegmentIntegration.h"
 #import "SEGBluetooth.h"
 #import "SEGReachability.h"
 #import "SEGLocation.h"
 #import "NSData+GZIP.h"
+#import "SEGHTTPClient.h"
 
 #if TARGET_OS_IOS
 #import <CoreTelephony/CTCarrier.h>
@@ -52,8 +52,7 @@ static BOOL GetAdTrackingEnabled()
 
 @property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, strong) NSDictionary *cachedStaticContext;
-@property (nonatomic, strong) NSArray *batch;
-@property (nonatomic, strong) SEGAnalyticsRequest *request;
+@property (nonatomic, strong) NSURLSessionUploadTask *batchRequest;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
 @property (nonatomic, strong) SEGBluetooth *bluetooth;
 @property (nonatomic, strong) SEGReachability *reachability;
@@ -64,6 +63,16 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, assign) SEGAnalytics *analytics;
 @property (nonatomic, assign) SEGAnalyticsConfiguration *configuration;
 @property (nonatomic, assign) NSDictionary *referrer;
+@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, strong) NSURL *apiURL;
+@property (nonatomic, strong) SEGHTTPClient *httpClient;
+
+@end
+
+
+@interface SEGAnalytics ()
+
+@property (nonatomic, strong) SEGHTTPClient *httpClient;
 
 @end
 
@@ -73,7 +82,9 @@ static BOOL GetAdTrackingEnabled()
 - (id)initWithAnalytics:(SEGAnalytics *)analytics
 {
     if (self = [super init]) {
-        self.configuration = [analytics configuration];
+        self.analytics = analytics;
+        self.configuration = analytics.configuration;
+        self.httpClient = analytics.httpClient;
         self.apiURL = [NSURL URLWithString:@"https://api.segment.io/v1/import"];
         self.userId = [self getUserId];
         self.bluetooth = [[SEGBluetooth alloc] init];
@@ -82,7 +93,6 @@ static BOOL GetAdTrackingEnabled()
         self.cachedStaticContext = [self staticContext];
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         self.flushTaskID = UIBackgroundTaskInvalid;
-        self.analytics = analytics;
 
 #if !TARGET_OS_TV
         // Check for previous queue/track data in NSUserDefaults and remove if present
@@ -471,38 +481,20 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         if ([self.queue count] == 0) {
             SEGLog(@"%@ No queued API calls to flush.", self);
             return;
-        } else if (self.request != nil) {
+        }
+        if (self.batchRequest != nil) {
             SEGLog(@"%@ API request already in progress, not flushing again.", self);
             return;
-        } else if ([self.queue count] >= maxBatchSize) {
-            self.batch = [self.queue subarrayWithRange:NSMakeRange(0, maxBatchSize)];
+        }
+
+        NSArray *batch;
+        if ([self.queue count] >= maxBatchSize) {
+            batch = [self.queue subarrayWithRange:NSMakeRange(0, maxBatchSize)];
         } else {
-            self.batch = [NSArray arrayWithArray:self.queue];
+            batch = [NSArray arrayWithArray:self.queue];
         }
 
-        SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)self.batch.count, (unsigned long)self.queue.count);
-
-        NSMutableDictionary *payloadDictionary = [[NSMutableDictionary alloc] init];
-        [payloadDictionary setObject:self.configuration.writeKey forKey:@"writeKey"];
-        [payloadDictionary setObject:iso8601FormattedString([NSDate date]) forKey:@"sentAt"];
-        [payloadDictionary setObject:self.batch forKey:@"batch"];
-
-        SEGLog(@"Flushing payload %@", payloadDictionary);
-
-        NSError *error = nil;
-        NSException *exception = nil;
-        NSData *payload = nil;
-        @try {
-            payload = [NSJSONSerialization dataWithJSONObject:payloadDictionary options:0 error:&error];
-        }
-        @catch (NSException *exc) {
-            exception = exc;
-        }
-        if (error || exception) {
-            SEGLog(@"%@ Error serializing JSON: %@", self, error);
-        } else {
-            [self sendData:payload];
-        }
+        [self sendData:batch];
     }];
 }
 
@@ -511,7 +503,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     [self dispatchBackground:^{
         SEGLog(@"%@ Length is %lu.", self, (unsigned long)self.queue.count);
 
-        if (self.request == nil && [self.queue count] >= self.configuration.flushAt) {
+        if (self.batchRequest == nil && [self.queue count] >= self.configuration.flushAt) {
             [self flush];
         }
     }];
@@ -534,8 +526,8 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         self.userId = nil;
         self.traits = [NSMutableDictionary dictionary];
         self.queue = [NSMutableArray array];
-        self.request.completion = nil;
-        self.request = nil;
+        [self.batchRequest cancel];
+        self.batchRequest = nil;
     }];
 }
 
@@ -565,35 +557,29 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     });
 }
 
-- (void)sendData:(NSData *)data
+- (void)sendData:(NSArray *)batch
 {
-    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:self.apiURL];
-    [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [urlRequest setValue:@"gzip" forHTTPHeaderField:@"Content-Encoding"];
-    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [urlRequest setHTTPMethod:@"POST"];
-    [urlRequest setHTTPBody:[data seg_gzippedData]];
+    NSMutableDictionary *payload = [[NSMutableDictionary alloc] init];
+    [payload setObject:iso8601FormattedString([NSDate date]) forKey:@"sentAt"];
+    [payload setObject:batch forKey:@"batch"];
 
-    SEGLog(@"%@ Sending batch API request.", self);
-    self.request = [SEGAnalyticsRequest startWithURLRequest:urlRequest
-                                                 completion:^{
-                                                     [self dispatchBackground:^{
-                                                         if (self.request.error) {
-                                                             SEGLog(@"%@ API request had an error: %@", self, self.request.error);
-                                                             [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:self.batch];
-                                                         } else {
-                                                             SEGLog(@"%@ API request success 200", self);
-                                                             [self.queue removeObjectsInArray:self.batch];
-                                                             [self persistQueue];
-                                                             [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:self.batch];
-                                                         }
+    SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)batch.count, (unsigned long)self.queue.count);
+    SEGLog(@"Flushing batch %@.", payload);
 
-                                                         self.batch = nil;
-                                                         self.request = nil;
-                                                         [self endBackgroundTask];
-                                                     }];
-                                                 }];
-    [self notifyForName:SEGSegmentDidSendRequestNotification userInfo:self.batch];
+    self.batchRequest = [self.analytics.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
+        if (retry) {
+            [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
+            self.batchRequest = nil;
+            return;
+        }
+
+        [self.queue removeObjectsInArray:batch];
+        [self persistQueue];
+        [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
+        self.batchRequest = nil;
+    }];
+
+    [self notifyForName:SEGSegmentDidSendRequestNotification userInfo:batch];
 }
 
 - (void)applicationDidEnterBackground

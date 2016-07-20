@@ -6,6 +6,8 @@
  */
 extern NSString *SEGAnalyticsIntegrationDidStart;
 
+typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
+
 @protocol SEGIntegrationFactory;
 
 /**
@@ -72,6 +74,11 @@ extern NSString *SEGAnalyticsIntegrationDidStart;
  * Dictionary indicating the options the app was launched with.
  */
 @property (nonatomic, assign) NSDictionary *launchOptions;
+
+/**
+ * Set a custom request factory.
+ */
+@property (nonatomic, strong) SEGRequestFactory requestFactory;
 
 /**
  * Register a factory that can be used to create an integration.
