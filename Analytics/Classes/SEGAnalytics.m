@@ -256,7 +256,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    NSCAssert2(userId.length > 0 > traits.count > 0, @"either userId (%@) or traits (%@) must be provided.", userId, traits);
+    NSCAssert2(userId.length > 0 || traits.count > 0, @"either userId (%@) or traits (%@) must be provided.", userId, traits);
 
     NSString *anonymousId = [options objectForKey:@"anonymousId"];
     if (anonymousId) {
