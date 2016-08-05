@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <Analytics/SEGHTTPClient.h>
-#import <Analytics/NSData+GZIP.h>
+#import <Analytics/NSData+SEGGZIP.h>
 #import <Nocilla/Nocilla.h>
 
 SpecBegin(SEGHTTPClient);

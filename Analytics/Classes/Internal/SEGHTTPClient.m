@@ -1,5 +1,5 @@
 #import "SEGHTTPClient.h"
-#import "NSData+GZIP.h"
+#import "NSData+SEGGZIP.h"
 #import "SEGAnalyticsUtils.h"
 
 
