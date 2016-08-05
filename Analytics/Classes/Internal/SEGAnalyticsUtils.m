@@ -21,6 +21,14 @@ NSURL *SEGAnalyticsURLForFilename(NSString *filename)
     return [[NSURL alloc] initFileURLWithPath:[supportPath stringByAppendingPathComponent:filename]];
 }
 
+NSString *GenerateUUIDString()
+{
+    CFUUIDRef theUUID = CFUUIDCreate(NULL);
+    NSString *UUIDString = (__bridge_transfer NSString *)CFUUIDCreateString(NULL, theUUID);
+    CFRelease(theUUID);
+    return UUIDString;
+}
+
 // Date Utils
 NSString *iso8601FormattedString(NSDate *date)
 {
