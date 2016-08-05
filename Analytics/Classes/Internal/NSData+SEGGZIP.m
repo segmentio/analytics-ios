@@ -31,7 +31,7 @@
 //
 
 
-#import "NSData+GZIP.h"
+#import "NSData+SEGGZIP.h"
 #import <zlib.h>
 #import <dlfcn.h>
 
@@ -56,13 +56,13 @@ static void *seg_libzOpen()
     if (self.length == 0 || [self seg_isGzippedData]) {
         return self;
     }
-
+    
     void *libz = seg_libzOpen();
     int (*deflateInit2_)(z_streamp, int, int, int, int, int, const char *, int) =
-        (int (*)(z_streamp, int, int, int, int, int, const char *, int))dlsym(libz, "deflateInit2_");
+    (int (*)(z_streamp, int, int, int, int, int, const char *, int))dlsym(libz, "deflateInit2_");
     int (*deflate)(z_streamp, int) = (int (*)(z_streamp, int))dlsym(libz, "deflate");
     int (*deflateEnd)(z_streamp) = (int (*)(z_streamp))dlsym(libz, "deflateEnd");
-
+    
     z_stream stream;
     stream.zalloc = Z_NULL;
     stream.zfree = Z_NULL;
@@ -71,9 +71,9 @@ static void *seg_libzOpen()
     stream.next_in = (Bytef *)(void *)self.bytes;
     stream.total_out = 0;
     stream.avail_out = 0;
-
+    
     static const NSUInteger ChunkSize = 16384;
-
+    
     NSMutableData *output = nil;
     int compression = (level < 0.0f) ? Z_DEFAULT_COMPRESSION : (int)(roundf(level * 9));
     if (deflateInit2(&stream, compression, Z_DEFLATED, 31, 8, Z_DEFAULT_STRATEGY) == Z_OK) {
@@ -89,7 +89,7 @@ static void *seg_libzOpen()
         deflateEnd(&stream);
         output.length = stream.total_out;
     }
-
+    
     return output;
 }
 

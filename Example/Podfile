@@ -7,6 +7,7 @@ target 'Analytics_Example' do
     inherit! :search_paths
 
     pod 'Specta'
-  pod 'Expecta'
+    pod 'Expecta'
+    pod 'Nocilla'
   end
 end
