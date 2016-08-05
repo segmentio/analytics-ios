@@ -1,6 +1,32 @@
 Change Log
 ==========
 
+Version 3.3.0 *(08-05-2016)*
+-----------------------------
+ * New: Add Carthage support.
+ * Fix: Flush timer behaviour. Previously it was not being invoked periodically as expected.
+ * [New](https://github.com/segmentio/analytics-ios/pull/557): Automatically track campaign data.
+
+ ```objc
+ SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY"];
+ configuration.trackPushNotifications = YES;
+ [SEGAnalytics setupWithConfiguration:configuration];
+ ```
+
+ * [New](https://github.com/segmentio/analytics-ios/pull/573): Automatically track deep links. Please note that you'll still need to call the `continueUserActivity` and `openURL` methods on the analytics client.
+
+ ```objc
+ SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY"];
+ configuration.trackDeepLinks = YES;
+ [SEGAnalytics setupWithConfiguration:configuration];
+ ```
+
+ * [Improvement](https://github.com/segmentio/analytics-ios/pull/565): Limit queue size to 1000. This will prevent crashes/memory issues from the queue being too large.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/563): Replace Foundation import with UIKit import.
+ * [Improvement](https://github.com/segmentio/analytics-ios/pull/567): Exclude cache files from backup.
+ * [New](https://github.com/segmentio/analytics-ios/pull/572): Add tvOS support.
+ * [New](https://github.com/segmentio/analytics-ios/pull/575): Update context object with referrer information.
+
 Version 3.2.6 *(07-10-2016)*
 -----------------------------
  * Improvement: Handle case when root view is a navigation controller.
