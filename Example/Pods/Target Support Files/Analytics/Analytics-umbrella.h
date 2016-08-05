@@ -8,7 +8,7 @@
 #import "SEGPayload.h"
 #import "SEGScreenPayload.h"
 #import "SEGTrackPayload.h"
-#import "NSData+GZIP.h"
+#import "NSData+SEGGZIP.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGBluetooth.h"
 #import "SEGHTTPClient.h"

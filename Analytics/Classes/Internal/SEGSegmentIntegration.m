@@ -7,7 +7,6 @@
 #import "SEGBluetooth.h"
 #import "SEGReachability.h"
 #import "SEGLocation.h"
-#import "NSData+GZIP.h"
 #import "SEGHTTPClient.h"
 
 #if TARGET_OS_IOS
