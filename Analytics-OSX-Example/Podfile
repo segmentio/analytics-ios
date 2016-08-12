@@ -1,0 +1,13 @@
+use_frameworks!
+
+target 'Analytics-OSX-Example' do
+  pod 'Analytics', :path => '../'
+
+#  target 'Analytics_Tests' do
+#    inherit! :search_paths
+#
+#    pod 'Specta'
+#    pod 'Expecta'
+#    pod 'Nocilla'
+#  end
+end

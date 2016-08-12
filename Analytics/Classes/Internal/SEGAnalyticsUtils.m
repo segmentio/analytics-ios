@@ -1,5 +1,7 @@
 #import "SEGAnalyticsUtils.h"
+#if TARGET_OS_IOS
 #import <AdSupport/ASIdentifierManager.h>
+#endif
 
 static BOOL kAnalyticsLoggerShowLogs = NO;
 
@@ -48,22 +50,38 @@ seg_dispatch_queue_create_specific(const char *label,
                                    dispatch_queue_attr_t attr)
 {
     dispatch_queue_t queue = dispatch_queue_create(label, attr);
+#if OS_OBJECT_HAVE_OBJC_SUPPORT == 0
+    dispatch_queue_set_specific(queue, (const void *)queue, (void *)queue, NULL);
+#else
     dispatch_queue_set_specific(queue, (__bridge const void *)queue,
-                                (__bridge void *)queue, NULL);
+                              (__bridge void *)queue, NULL);
+#endif
     return queue;
 }
 
 BOOL seg_dispatch_is_on_specific_queue(dispatch_queue_t queue)
 {
+#if OS_OBJECT_HAVE_OBJC_SUPPORT == 0
+    return dispatch_get_specific((const void *)queue) != NULL;
+#else
     return dispatch_get_specific((__bridge const void *)queue) != NULL;
+#endif
 }
 
 void seg_dispatch_specific(dispatch_queue_t queue, dispatch_block_t block,
                            BOOL waitForCompletion)
 {
+#if OS_OBJECT_HAVE_OBJC_SUPPORT == 0
+    if (dispatch_get_specific((const void *)queue)) {
+        block();
+    }
+#else
     if (dispatch_get_specific((__bridge const void *)queue)) {
         block();
-    } else if (waitForCompletion) {
+    }
+#endif
+
+    if (waitForCompletion) {
         dispatch_sync(queue, block);
     } else {
         dispatch_async(queue, block);

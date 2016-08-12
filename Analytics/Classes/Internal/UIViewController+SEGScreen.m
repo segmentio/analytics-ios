@@ -3,7 +3,7 @@
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
 
-
+#if TARGET_OS_IOS
 @implementation UIViewController (SEGScreen)
 
 + (void)seg_swizzleViewDidAppear
@@ -80,3 +80,4 @@
 }
 
 @end
+#endif
