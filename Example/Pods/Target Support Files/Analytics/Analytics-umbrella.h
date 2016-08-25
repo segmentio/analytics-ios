@@ -22,6 +22,7 @@
 #import "SEGStorage.h"
 #import "SEGStoreKitTracker.h"
 #import "SEGUserDefaultsStorage.h"
+#import "SEGUtils.h"
 #import "UIViewController+SEGScreen.h"
 #import "SEGAnalytics.h"
 

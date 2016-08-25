@@ -19,5 +19,6 @@
     "ios": "7.0",
     "tvos": "9.0"
   },
+  "frameworks": "Security",
   "source_files": "Analytics/Classes/**/*"
 }
