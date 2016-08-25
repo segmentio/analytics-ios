@@ -204,6 +204,8 @@
 		E6244759759A63A6B7AA79CCCD95585A /* SEGHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 115C0E18A718F1337FBC29AFD121C748 /* SEGHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E735386085CE344F6A01178CF4763852 /* EXPMatchers+beNil.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FC38653C71A4252F1FD159BB4D1EE4F /* EXPMatchers+beNil.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E767258F228D76CD4FB31CFB1D9291DB /* SEGAliasPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = 0026E10BE78C331213680588C62CB71B /* SEGAliasPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAE98A8C1D6EC310005DE5EC /* SEGUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EAE98A8A1D6EC310005DE5EC /* SEGUtils.h */; };
+		EAE98A8D1D6EC310005DE5EC /* SEGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EAE98A8B1D6EC310005DE5EC /* SEGUtils.m */; };
 		EB767D9E119F9F068A0D59419B7E64A2 /* SEGFileStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = B0DD7AE4347A4D54BBF8EC938D37F230 /* SEGFileStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EF6497EE123F6BC0C1B09717437C5908 /* EXPUnsupportedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 00407E6E2F0E736DD106AAD3EDD009C6 /* EXPUnsupportedObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F02DD600D0016E342CAC44E674A6CDFE /* SEGAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = E52C9ED6D39C725532056E984880C023 /* SEGAnalytics.m */; };
@@ -486,6 +488,8 @@
 		EA0B4D0A1C53C864E5FBB5AD62ACFBA5 /* Pods-Analytics_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Analytics_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		EA4C6FC11C1430748A8424DE661C017A /* LSHTTPRequestDSLRepresentation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LSHTTPRequestDSLRepresentation.m; path = Nocilla/DSL/LSHTTPRequestDSLRepresentation.m; sourceTree = "<group>"; };
 		EAA0B0D8410A748100182967B6BD8E5D /* ExpectaSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ExpectaSupport.h; path = Expecta/ExpectaSupport.h; sourceTree = "<group>"; };
+		EAE98A8A1D6EC310005DE5EC /* SEGUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGUtils.h; sourceTree = "<group>"; };
+		EAE98A8B1D6EC310005DE5EC /* SEGUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGUtils.m; sourceTree = "<group>"; };
 		EAEEC0CE4F05D24E0928BD1776E06892 /* NSString+Nocilla.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+Nocilla.h"; path = "Nocilla/Categories/NSString+Nocilla.h"; sourceTree = "<group>"; };
 		EB6E879A49A59A04DF43FA52A7B9ABC5 /* SPTSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SPTSpec.h; path = Specta/Specta/SPTSpec.h; sourceTree = "<group>"; };
 		ECF26B74CC2081100643793D5A3CB1CF /* LSHTTPStubURLProtocol.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LSHTTPStubURLProtocol.m; path = Nocilla/Hooks/NSURLRequest/LSHTTPStubURLProtocol.m; sourceTree = "<group>"; };
@@ -646,6 +650,8 @@
 				F184B01D6A96CB4808C3484B1D00B865 /* SEGUserDefaultsStorage.m */,
 				D96918DE0AB29D04EACDF94D60C96AA9 /* UIViewController+SEGScreen.h */,
 				949646B3A20DC780D6F134C7AD369FDC /* UIViewController+SEGScreen.m */,
+				EAE98A8A1D6EC310005DE5EC /* SEGUtils.h */,
+				EAE98A8B1D6EC310005DE5EC /* SEGUtils.m */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -1122,6 +1128,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAE98A8C1D6EC310005DE5EC /* SEGUtils.h in Headers */,
 				FC98A7B43B6696F363A457B780BEDE04 /* Analytics-umbrella.h in Headers */,
 				AB21978C64A342666F3241963C654E51 /* NSData+SEGGZIP.h in Headers */,
 				472AFE1FF9F6A2A0DE21C13BFF5794D3 /* SEGAES256Crypto.h in Headers */,
@@ -1363,6 +1370,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74621117C12DD7E4DC255A95F6B7DAED /* Analytics-dummy.m in Sources */,
+				EAE98A8D1D6EC310005DE5EC /* SEGUtils.m in Sources */,
 				B4A0C0650E33C0B6E0A9692899F17807 /* NSData+SEGGZIP.m in Sources */,
 				778B4CBA372921D2591D6ACFD8EAB3FE /* SEGAES256Crypto.m in Sources */,
 				46F69774086BA13EF9861E4FFBC4F3FF /* SEGAliasPayload.m in Sources */,

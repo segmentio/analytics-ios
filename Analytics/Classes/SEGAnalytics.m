@@ -7,6 +7,9 @@
 #import "UIViewController+SEGScreen.h"
 #import "SEGStoreKitTracker.h"
 #import "SEGHTTPClient.h"
+#import "SEGStorage.h"
+#import "SEGFileStorage.h"
+#import "SEGUserDefaultsStorage.h"
 #import <objc/runtime.h>
 
 static SEGAnalytics *__sharedInstance = nil;
@@ -77,6 +80,7 @@ NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
 @property (nonatomic, copy) NSString *cachedAnonymousId;
 @property (nonatomic, strong) SEGHTTPClient *httpClient;
 @property (nonatomic, strong) NSURLSessionDataTask *settingsRequest;
+@property (nonatomic, strong) id<SEGStorage> storage;
 
 @end
 
@@ -108,6 +112,11 @@ NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
         self.configuration = configuration;
         self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
         self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
+#if TARGET_OS_TV
+        self.storage = [[SEGUserDefaultsStorage alloc] initWithDefaults:[NSUserDefaults standardUserDefaults] namespacePrefix:nil crypto:configuration.crypto];
+#else
+        self.storage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:configuration.crypto];
+#endif
 
 #if !TARGET_OS_TV
         [self addSkipBackupAttributeToItemAtPath:self.anonymousIDURL];
@@ -494,9 +503,9 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
         anonymousId = GenerateUUIDString();
         SEGLog(@"New anonymousId: %@", anonymousId);
 #if TARGET_OS_TV
-        [[NSUserDefaults standardUserDefaults] setObject:anonymousId forKey:SEGAnonymousIdKey];
+        [self.storage setString:anonymousId forKey:SEGAnonymousIdKey];
 #else
-        [anonymousId writeToURL:url atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+        [self.storage setString:anonymousId forKey:@"segment.anonymousId"];
 #endif
     }
     return anonymousId;
@@ -506,9 +515,9 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 {
     self.cachedAnonymousId = anonymousId;
 #if TARGET_OS_TV
-    [[NSUserDefaults standardUserDefaults] setValue:anonymousId forKey:SEGAnonymousIdKey];
+    [self.storage setString:anonymousId forKey:SEGAnonymousIdKey];
 #else
-    [self.cachedAnonymousId writeToURL:self.anonymousIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+    [self.storage setString:anonymousId forKey:@"segment.anonymousId"];
 #endif
 }
 
@@ -532,19 +541,18 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 - (NSDictionary *)cachedSettings
 {
     if (!_cachedSettings)
-        _cachedSettings = [[NSDictionary alloc] initWithContentsOfURL:[self settingsURL]] ?: @{};
+        _cachedSettings = [self.storage dictionaryForKey:@"analytics.settings.v2.plist"] ?: @{};
     return _cachedSettings;
 }
 
 - (void)setCachedSettings:(NSDictionary *)settings
 {
     _cachedSettings = [settings copy];
-    NSURL *settingsURL = [self settingsURL];
     if (!_cachedSettings) {
         // [@{} writeToURL:settingsURL atomically:YES];
         return;
     }
-    [_cachedSettings writeToURL:settingsURL atomically:YES];
+    [self.storage setDictionary:_cachedSettings forKey:@"analytics.settings.v2.plist"];
 
     static dispatch_once_t once;
     dispatch_once(&once, ^{
@@ -726,11 +734,6 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
             [self queueSelector:selector arguments:arguments options:options];
         }
     });
-}
-
-- (NSURL *)settingsURL
-{
-    return SEGAnalyticsURLForFilename(@"analytics.settings.v2.plist");
 }
 
 - (NSDictionary *)bundledIntegrations
