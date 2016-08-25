@@ -15,7 +15,7 @@
 static SEGAnalytics *__sharedInstance = nil;
 NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.did.start";
 NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
-
+NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 @interface SEGAnalyticsConfiguration ()
 
@@ -116,10 +116,6 @@ NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
         self.storage = [[SEGUserDefaultsStorage alloc] initWithDefaults:[NSUserDefaults standardUserDefaults] namespacePrefix:nil crypto:configuration.crypto];
 #else
         self.storage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:configuration.crypto];
-#endif
-
-#if !TARGET_OS_TV
-        [self addSkipBackupAttributeToItemAtPath:self.anonymousIDURL];
 #endif
 
         // Update settings on each integration immediately
@@ -465,35 +461,12 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     return self.cachedAnonymousId;
 }
 
-- (NSURL *)anonymousIDURL
-{
-    return SEGAnalyticsURLForFilename(@"segment.anonymousId");
-}
-
-- (void)addSkipBackupAttributeToItemAtPath:(NSURL *)url
-{
-    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path]];
-    if (!exists) {
-        return;
-    }
-
-    NSError *error = nil;
-    BOOL success = [url setResourceValue:[NSNumber numberWithBool:YES]
-                                  forKey:NSURLIsExcludedFromBackupKey
-                                   error:&error];
-    if (!success) {
-        SEGLog(@"Error excluding %@ from backup %@", [url lastPathComponent], error);
-    }
-    return;
-}
-
 - (NSString *)loadOrGenerateAnonymousID:(BOOL)reset
 {
 #if TARGET_OS_TV
-    NSString *anonymousId = [[NSUserDefaults standardUserDefaults] valueForKey:SEGAnonymousIdKey];
+    NSString *anonymousId = [self.storage stringForKey:SEGAnonymousIdKey];
 #else
-    NSURL *url = self.anonymousIDURL;
-    NSString *anonymousId = [[NSString alloc] initWithContentsOfURL:url encoding:NSUTF8StringEncoding error:NULL];
+    NSString *anonymousId = [self.storage stringForKey:kSEGAnonymousIdFilename];
 #endif
 
     if (!anonymousId || reset) {
@@ -505,7 +478,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 #if TARGET_OS_TV
         [self.storage setString:anonymousId forKey:SEGAnonymousIdKey];
 #else
-        [self.storage setString:anonymousId forKey:@"segment.anonymousId"];
+        [self.storage setString:anonymousId forKey:kSEGAnonymousIdFilename];
 #endif
     }
     return anonymousId;
