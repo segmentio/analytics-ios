@@ -3,24 +3,6 @@
 
 static BOOL kAnalyticsLoggerShowLogs = NO;
 
-NSURL *SEGAnalyticsURLForFilename(NSString *filename)
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(
-        NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *supportPath = [paths firstObject];
-    if (![[NSFileManager defaultManager] fileExistsAtPath:supportPath
-                                              isDirectory:NULL]) {
-        NSError *error = nil;
-        if (![[NSFileManager defaultManager] createDirectoryAtPath:supportPath
-                                       withIntermediateDirectories:YES
-                                                        attributes:nil
-                                                             error:&error]) {
-            SEGLog(@"error: %@", error.localizedDescription);
-        }
-    }
-    return [[NSURL alloc] initFileURLWithPath:[supportPath stringByAppendingPathComponent:filename]];
-}
-
 NSString *GenerateUUIDString()
 {
     CFUUIDRef theUUID = CFUUIDCreate(NULL);

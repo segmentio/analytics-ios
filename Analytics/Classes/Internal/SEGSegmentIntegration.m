@@ -8,6 +8,7 @@
 #import "SEGReachability.h"
 #import "SEGLocation.h"
 #import "SEGHTTPClient.h"
+#import "SEGStorage.h"
 
 #if TARGET_OS_IOS
 #import <CoreTelephony/CTCarrier.h>
@@ -24,6 +25,10 @@ NSString *const SEGADClientClass = @"ADClient";
 NSString *const SEGUserIdKey = @"SEGUserId";
 NSString *const SEGQueueKey = @"SEGQueue";
 NSString *const SEGTraitsKey = @"SEGTraits";
+
+NSString *const kSEGUserIdFilename = @"segmentio.userId";
+NSString *const kSEGQueueFilename = @"segmentio.queue.plist";
+NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
 static NSString *GetDeviceModel()
 {
@@ -45,6 +50,12 @@ static BOOL GetAdTrackingEnabled()
     result = ((BOOL (*)(id, SEL))[sharedManager methodForSelector:adTrackingEnabledSEL])(sharedManager, adTrackingEnabledSEL);
     return result;
 }
+
+@interface SEGAnalytics (Private)
+
+@property (nonatomic, readonly) id<SEGStorage> storage;
+
+@end
 
 
 @interface SEGSegmentIntegration ()
@@ -104,9 +115,6 @@ static BOOL GetAdTrackingEnabled()
             }
         }];
 
-        [self addSkipBackupAttributeToItemAtPath:self.userIDURL];
-        [self addSkipBackupAttributeToItemAtPath:self.traitsURL];
-        [self addSkipBackupAttributeToItemAtPath:self.queueURL];
 #endif
 
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -298,11 +306,11 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     [self dispatchBackground:^{
         self.userId = userId;
-
+        
 #if TARGET_OS_TV
-        [[NSUserDefaults standardUserDefaults] setValue:userId forKey:SEGUserIdKey];
+        [self.analytics.storage setString:userId forKey:SEGUserIdKey];
 #else
-        [self.userId writeToURL:self.userIDURL atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+        [self.analytics.storage setString:userId forKey:kSEGUserIdFilename];
 #endif
     }];
 }
@@ -313,9 +321,9 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         [self.traits addEntriesFromDictionary:traits];
 
 #if TARGET_OS_TV
-        [[NSUserDefaults standardUserDefaults] setValue:[self.traits copy] forKey:SEGTraitsKey];
+        [self.analytics.storage setDictionary:[self.traits copy] forKey:SEGTraitsKey];
 #else
-        [[self.traits copy] writeToURL:self.traitsURL atomically:YES];
+        [self.analytics.storage setDictionary:[self.traits copy] forKey:kSEGTraitsFilename];
 #endif
     }];
 }
@@ -511,15 +519,14 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (void)reset
 {
     [self dispatchBackgroundAndWait:^{
-        [[NSUserDefaults standardUserDefaults] setValue:nil forKey:SEGUserIdKey];
-
+        [self.analytics.storage removeKey:SEGUserIdKey];
 #if TARGET_OS_TV
-        [[NSUserDefaults standardUserDefaults] setValue:@[] forKey:SEGQueueKey];
-        [[NSUserDefaults standardUserDefaults] setValue:@{} forKey:SEGTraitsKey];
+        [self.analytics.storage removeKey:SEGTraitsKey];
+        [self.analytics.storage removeKey:SEGQueueKey];
 #else
-        [[NSFileManager defaultManager] removeItemAtURL:self.userIDURL error:NULL];
-        [[NSFileManager defaultManager] removeItemAtURL:self.traitsURL error:NULL];
-        [[NSFileManager defaultManager] removeItemAtURL:self.queueURL error:NULL];
+        [self.analytics.storage removeKey:kSEGUserIdFilename];
+        [self.analytics.storage removeKey:kSEGTraitsFilename];
+        [self.analytics.storage removeKey:kSEGQueueFilename];
 #endif
 
         self.userId = nil;
@@ -529,24 +536,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         self.batchRequest = nil;
     }];
 }
-
-- (void)addSkipBackupAttributeToItemAtPath:(NSURL *)url
-{
-    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:[url path]];
-    if (!exists) {
-        return;
-    }
-
-    NSError *error = nil;
-    BOOL success = [url setResourceValue:[NSNumber numberWithBool:YES]
-                                  forKey:NSURLIsExcludedFromBackupKey
-                                   error:&error];
-    if (!success) {
-        SEGLog(@"Error excluding %@ from backup %@", [url lastPathComponent], error);
-    }
-    return;
-}
-
 
 - (void)notifyForName:(NSString *)name userInfo:(id)userInfo
 {
@@ -603,9 +592,9 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     if (!_queue) {
 #if TARGET_OS_TV
-        _queue = [[[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey] mutableCopy] ?: [[NSMutableArray alloc] init];
+        _queue = [[self.analytics.storage arrayForKey:SEGQueueKey] ?: @[] mutableCopy];
 #else
-        _queue = [NSMutableArray arrayWithContentsOfURL:self.queueURL] ?: [[NSMutableArray alloc] init];
+        _queue = [[self.analytics.storage arrayForKey:kSEGQueueFilename] ?: @[] mutableCopy];
 #endif
     }
 
@@ -616,9 +605,9 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     if (!_traits) {
 #if TARGET_OS_TV
-        _traits = [[[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey] mutableCopy] ?: [[NSMutableDictionary alloc] init];
+        _traits = [[self.analytics.storage dictionaryForKey:SEGTraitsKey] ?: @{} mutableCopy];
 #else
-        _traits = [NSMutableDictionary dictionaryWithContentsOfURL:self.traitsURL] ?: [[NSMutableDictionary alloc] init];
+        _traits = [[self.analytics.storage dictionaryForKey:kSEGTraitsFilename] ?: @{} mutableCopy];
 #endif
     }
 
@@ -630,32 +619,17 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     return 100;
 }
 
-- (NSURL *)userIDURL
-{
-    return SEGAnalyticsURLForFilename(@"segmentio.userId");
-}
-
-- (NSURL *)queueURL
-{
-    return SEGAnalyticsURLForFilename(@"segmentio.queue.plist");
-}
-
-- (NSURL *)traitsURL
-{
-    return SEGAnalyticsURLForFilename(@"segmentio.traits.plist");
-}
-
 - (NSString *)getUserId
 {
-    return [[NSUserDefaults standardUserDefaults] valueForKey:SEGUserIdKey] ?: [[NSString alloc] initWithContentsOfURL:self.userIDURL encoding:NSUTF8StringEncoding error:NULL];
+    return [[NSUserDefaults standardUserDefaults] valueForKey:SEGUserIdKey] ?: [self.analytics.storage stringForKey:kSEGUserIdFilename];
 }
 
 - (void)persistQueue
 {
 #if TARGET_OS_TV
-    [[NSUserDefaults standardUserDefaults] setValue:[self.queue copy] forKey:SEGQueueKey];
+    [self.analytics.storage setArray:[self.queue copy] forKey:SEGQueueKey];
 #else
-    [[self.queue copy] writeToURL:[self queueURL] atomically:YES];
+    [self.analytics.storage setArray:[self.queue copy] forKey:kSEGQueueFilename];
 #endif
 }
 
