@@ -8,6 +8,7 @@
 
 #import "SEGUtils.h"
 #import "SEGUserDefaultsStorage.h"
+#import "SEGCrypto.h"
 
 @implementation SEGUserDefaultsStorage
 

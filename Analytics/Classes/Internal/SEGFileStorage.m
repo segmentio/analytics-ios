@@ -7,6 +7,7 @@
 
 #import "SEGUtils.h"
 #import "SEGFileStorage.h"
+#import "SEGCrypto.h"
 
 @interface SEGFileStorage ()
 
