@@ -1,5 +1,7 @@
 #import <UIKit/UIKit.h>
 
+#import "SEGAES256Crypto.h"
+#import "SEGCrypto.h"
 #import "SEGAliasPayload.h"
 #import "SEGGroupPayload.h"
 #import "SEGIdentifyPayload.h"
@@ -9,10 +11,8 @@
 #import "SEGScreenPayload.h"
 #import "SEGTrackPayload.h"
 #import "NSData+SEGGZIP.h"
-#import "SEGAES256Crypto.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGBluetooth.h"
-#import "SEGCrypto.h"
 #import "SEGFileStorage.h"
 #import "SEGHTTPClient.h"
 #import "SEGLocation.h"
