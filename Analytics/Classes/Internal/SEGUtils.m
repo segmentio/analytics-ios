@@ -5,9 +5,11 @@
 
 #import "SEGUtils.h"
 
+
 @implementation SEGUtils
 
-+ (NSData * _Nullable)dataFromPlist:(nonnull id)plist {
++ (NSData *_Nullable)dataFromPlist:(nonnull id)plist
+{
     NSError *error = nil;
     NSData *data = [NSPropertyListSerialization dataWithPropertyList:plist
                                                               format:NSPropertyListXMLFormat_v1_0
@@ -19,7 +21,8 @@
     return data;
 }
 
-+ (id _Nullable)plistFromData:(NSData * _Nonnull)data {
++ (id _Nullable)plistFromData:(NSData *_Nonnull)data
+{
     NSError *error = nil;
     id plist = [NSPropertyListSerialization propertyListWithData:data
                                                          options:0

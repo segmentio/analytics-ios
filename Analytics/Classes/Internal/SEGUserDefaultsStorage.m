@@ -10,9 +10,11 @@
 #import "SEGUserDefaultsStorage.h"
 #import "SEGCrypto.h"
 
+
 @implementation SEGUserDefaultsStorage
 
-- (instancetype)initWithDefaults:(NSUserDefaults *)defaults namespacePrefix:(NSString *)namespacePrefix crypto:(id<SEGCrypto>)crypto {
+- (instancetype)initWithDefaults:(NSUserDefaults *)defaults namespacePrefix:(NSString *)namespacePrefix crypto:(id<SEGCrypto>)crypto
+{
     if (self = [super init]) {
         _defaults = defaults;
         _namespacePrefix = namespacePrefix;
@@ -21,11 +23,13 @@
     return self;
 }
 
-- (void)removeKey:(NSString *)key {
+- (void)removeKey:(NSString *)key
+{
     [self.defaults removeObjectForKey:[self namespacedKey:key]];
 }
 
-- (void)resetAll {
+- (void)resetAll
+{
     // Courtesy of http://stackoverflow.com/questions/6358737/nsuserdefaults-reset
     if (!self.namespacePrefix) {
         NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
@@ -42,7 +46,8 @@
     [self.defaults synchronize];
 }
 
-- (void)setData:(NSData *)data forKey:(NSString *)key {
+- (void)setData:(NSData *)data forKey:(NSString *)key
+{
     key = [self namespacedKey:key];
     if (!self.crypto) {
         [self.defaults setObject:data forKey:key];
@@ -52,7 +57,8 @@
     [self.defaults setObject:encryptedData forKey:key];
 }
 
-- (NSData *)dataForKey:(NSString *)key {
+- (NSData *)dataForKey:(NSString *)key
+{
     key = [self namespacedKey:key];
     if (!self.crypto) {
         return [self.defaults objectForKey:key];
@@ -65,7 +71,8 @@
     return [self.crypto decrypt:data];
 }
 
-- (NSDictionary *)dictionaryForKey:(NSString *)key {
+- (NSDictionary *)dictionaryForKey:(NSString *)key
+{
     if (!self.crypto) {
         key = [self namespacedKey:key];
         return [self.defaults dictionaryForKey:key];
@@ -73,7 +80,8 @@
     return [self plistForKey:key];
 }
 
-- (void)setDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
+- (void)setDictionary:(NSDictionary *)dictionary forKey:(NSString *)key
+{
     if (!self.crypto) {
         key = [self namespacedKey:key];
         [self.defaults setObject:dictionary forKey:key];
@@ -82,7 +90,8 @@
     [self setPlist:dictionary forKey:key];
 }
 
-- (NSArray *)arrayForKey:(NSString *)key {
+- (NSArray *)arrayForKey:(NSString *)key
+{
     if (!self.crypto) {
         key = [self namespacedKey:key];
         return [self.defaults arrayForKey:key];
@@ -90,7 +99,8 @@
     return [self plistForKey:key];
 }
 
-- (void)setArray:(NSArray *)array forKey:(NSString *)key {
+- (void)setArray:(NSArray *)array forKey:(NSString *)key
+{
     if (!self.crypto) {
         key = [self namespacedKey:key];
         [self.defaults setObject:array forKey:key];
@@ -99,7 +109,8 @@
     [self setPlist:array forKey:key];
 }
 
-- (NSString *)stringForKey:(NSString *)key {
+- (NSString *)stringForKey:(NSString *)key
+{
     if (!self.crypto) {
         key = [self namespacedKey:key];
         return [self.defaults stringForKey:key];
@@ -107,7 +118,8 @@
     return [self plistForKey:key];
 }
 
-- (void)setString:(NSString *)string forKey:(NSString *)key {
+- (void)setString:(NSString *)string forKey:(NSString *)key
+{
     if (!self.crypto) {
         key = [self namespacedKey:key];
         [self.defaults setObject:string forKey:key];
@@ -118,19 +130,22 @@
 
 #pragma mark - Helpers
 
-- (id _Nullable)plistForKey:(NSString *)key {
+- (id _Nullable)plistForKey:(NSString *)key
+{
     NSData *data = [self dataForKey:key];
     return data ? [SEGUtils plistFromData:data] : nil;
 }
 
-- (void)setPlist:(id _Nonnull)plist forKey:(NSString *)key {
+- (void)setPlist:(id _Nonnull)plist forKey:(NSString *)key
+{
     NSData *data = [SEGUtils dataFromPlist:plist];
     if (data) {
         [self setData:data forKey:key];
     }
 }
 
-- (NSString *)namespacedKey:(NSString *)key {
+- (NSString *)namespacedKey:(NSString *)key
+{
     if (self.namespacePrefix) {
         return [NSString stringWithFormat:@"%@.%@", self.namespacePrefix, key];
     }

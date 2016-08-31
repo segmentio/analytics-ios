@@ -17,6 +17,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
 NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
+
 @interface SEGAnalyticsConfiguration ()
 
 @property (nonatomic, copy, readwrite) NSString *writeKey;
