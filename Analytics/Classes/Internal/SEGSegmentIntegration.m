@@ -51,6 +51,7 @@ static BOOL GetAdTrackingEnabled()
     return result;
 }
 
+
 @interface SEGAnalytics (Private)
 
 @property (nonatomic, readonly) id<SEGStorage> storage;
@@ -306,7 +307,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     [self dispatchBackground:^{
         self.userId = userId;
-        
+
 #if TARGET_OS_TV
         [self.analytics.storage setString:userId forKey:SEGUserIdKey];
 #else
