@@ -237,6 +237,92 @@ describe(@"SEGHTTPClient", ^{
         });
     });
 
+    describe(@"attribution", ^{
+        it(@"fails for json error", ^{
+            NSDictionary *device = @{
+                // Dates cannot be serialized as is so the json serialzation will fail.
+                @"sentAt" : [NSDate date]
+            };
+
+            SEGHTTPClient *client = [[SEGHTTPClient alloc] initWithRequestFactory:nil];
+
+            waitUntil(^(DoneCallback done) {
+                NSURLSessionDataTask *task = [client attributionWithWriteKey:@"bar" forDevice:device completionHandler:^(BOOL success, NSDictionary *properties) {
+                    expect(success).to.equal(NO);
+                    done();
+                }];
+                expect(task).to.equal(nil);
+            });
+        });
+
+        it(@"succeeds for 2xx response", ^{
+            NSDictionary *context = @{
+                @"os" : @{
+                    @"name" : @"iPhone OS",
+                    @"version" : @"8.1.3"
+                },
+                @"ip" : @"8.8.8.8"
+            };
+
+            stubRequest(@"POST", @"https://mobile-service.segment.com/v1/attribution")
+                .withHeaders(@{
+                    @"Accept-Encoding" : @"gzip",
+                    @"Authorization" : @"Basic Zm9vOg==",
+                    @"Content-Encoding" : @"gzip",
+                    @"Content-Length" : @"72",
+                    @"Content-Type" : @"application/json"
+                })
+                .andReturn(200)
+                .withBody(@"{\"provider\": \"mock\"}");
+
+            SEGHTTPClient *client = [[SEGHTTPClient alloc] initWithRequestFactory:nil];
+
+
+            waitUntil(^(DoneCallback done) {
+                NSURLSessionDataTask *task = [client attributionWithWriteKey:@"foo" forDevice:context completionHandler:^(BOOL success, NSDictionary *properties) {
+                    expect(success).to.equal(YES);
+                    expect(properties).to.equal(@{
+                        @"provider" : @"mock"
+                    });
+                    done();
+                }];
+                expect(task.state).will.equal(NSURLSessionTaskStateCompleted);
+            });
+        });
+
+        it(@"fails for non 2xx response", ^{
+            NSDictionary *context = @{
+                @"os" : @{
+                    @"name" : @"iPhone OS",
+                    @"version" : @"8.1.3"
+                },
+                @"ip" : @"8.8.8.8"
+            };
+
+            stubRequest(@"POST", @"https://mobile-service.segment.com/v1/attribution")
+                .withHeaders(@{
+                    @"Accept-Encoding" : @"gzip",
+                    @"Authorization" : @"Basic Zm9vOg==",
+                    @"Content-Encoding" : @"gzip",
+                    @"Content-Length" : @"72",
+                    @"Content-Type" : @"application/json"
+                })
+                .andReturn(404)
+                .withBody(@"not found");
+
+            SEGHTTPClient *client = [[SEGHTTPClient alloc] initWithRequestFactory:nil];
+
+            waitUntil(^(DoneCallback done) {
+                NSURLSessionDataTask *task = [client attributionWithWriteKey:@"foo" forDevice:context completionHandler:^(BOOL success, NSDictionary *properties) {
+                    expect(success).to.equal(NO);
+                    expect(properties).to.equal(nil);
+                    done();
+                }];
+                expect(task.state).will.equal(NSURLSessionTaskStateCompleted);
+            });
+        });
+    });
+
 });
 
 SpecEnd

@@ -165,8 +165,6 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
-#pragma mark - NSNotificationCenter Callback
 NSString *const SEGVersionKey = @"SEGVersionKey";
 NSString *const SEGBuildKey = @"SEGBuildKey";
 
@@ -196,7 +194,6 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
         }];
     }
 
-
     [self track:@"Application Opened" properties:@{
         @"version" : currentVersion,
         @"build" : @(currentBuild)
@@ -205,7 +202,6 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:SEGVersionKey];
     [[NSUserDefaults standardUserDefaults] setInteger:currentBuild forKey:SEGBuildKey];
 }
-
 
 - (void)onAppForeground:(NSNotification *)note
 {

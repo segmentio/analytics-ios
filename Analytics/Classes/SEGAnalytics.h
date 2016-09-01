@@ -72,6 +72,11 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
 @property (nonatomic, assign) BOOL trackDeepLinks;
 
 /**
+ * Whether the analytics client should automatically track attribution data from enabled providers using the mobile service.
+ */
+@property (nonatomic, assign) BOOL trackAttributionData;
+
+/**
  * Dictionary indicating the options the app was launched with.
  */
 @property (nonatomic, assign) NSDictionary *launchOptions;
