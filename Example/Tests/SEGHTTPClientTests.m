@@ -6,14 +6,19 @@
 SpecBegin(SEGHTTPClient);
 
 describe(@"SEGHTTPClient", ^{
+    __block SEGHTTPClient *client = nil;
+
     beforeAll(^{
         [[LSNocilla sharedInstance] start];
     });
-    afterAll(^{
-        [[LSNocilla sharedInstance] stop];
+    beforeEach(^{
+        client = [[SEGHTTPClient alloc] initWithRequestFactory:nil];
     });
     afterEach(^{
         [[LSNocilla sharedInstance] clearStubs];
+    });
+    afterAll(^{
+        [[LSNocilla sharedInstance] stop];
     });
 
     describe(@"defaultRequestFactory", ^{
@@ -32,8 +37,6 @@ describe(@"SEGHTTPClient", ^{
                 .andReturn(200)
                 .withHeaders(@{ @"Content-Type" : @"application/json" })
                 .withBody(@"{\"integrations\":{\"Segment.io\":{\"apiKey\":\"foo\"}},\"plan\":{\"track\":{}}}");
-
-            SEGHTTPClient *client = [[SEGHTTPClient alloc] initWithRequestFactory:nil];
 
             waitUntil(^(DoneCallback done) {
                 NSURLSessionDataTask *task = [client settingsForWriteKey:@"foo" completionHandler:^(BOOL success, NSDictionary *settings) {
@@ -61,8 +64,6 @@ describe(@"SEGHTTPClient", ^{
                 .withHeaders(@{ @"Content-Type" : @"application/json" })
                 .withBody(@"{\"integrations\":{\"Segment.io\":{\"apiKey\":\"foo\"}},\"plan\":{\"track\":{}}}");
 
-            SEGHTTPClient *client = [[SEGHTTPClient alloc] initWithRequestFactory:nil];
-
             waitUntil(^(DoneCallback done) {
                 NSURLSessionDataTask *task = [client settingsForWriteKey:@"foo" completionHandler:^(BOOL success, NSDictionary *settings) {
                     expect(success).to.equal(NO);
@@ -79,8 +80,6 @@ describe(@"SEGHTTPClient", ^{
                 .andReturn(200)
                 .withHeaders(@{ @"Content-Type" : @"application/json" })
                 .withBody(@"{\"integrations");
-
-            SEGHTTPClient *client = [[SEGHTTPClient alloc] initWithRequestFactory:nil];
 
             waitUntil(^(DoneCallback done) {
                 NSURLSessionDataTask *task = [client settingsForWriteKey:@"foo" completionHandler:^(BOOL success, NSDictionary *settings) {
@@ -100,8 +99,6 @@ describe(@"SEGHTTPClient", ^{
                 @"sentAt" : [NSDate date],
                 @"batch" : @[ @{@"type" : @"track", @"event" : @"foo"} ]
             };
-
-            SEGHTTPClient *client = [[SEGHTTPClient alloc] initWithRequestFactory:nil];
 
             waitUntil(^(DoneCallback done) {
                 NSURLSessionDataTask *task = [client upload:batch forWriteKey:@"bar" completionHandler:^(BOOL retry) {
@@ -132,8 +129,6 @@ describe(@"SEGHTTPClient", ^{
                 .andReturn(200)
                 .withBody(@"{\"success\": true");
 
-            SEGHTTPClient *client = [[SEGHTTPClient alloc] initWithRequestFactory:nil];
-
             waitUntil(^(DoneCallback done) {
                 NSURLSessionDataTask *task = [client upload:batch forWriteKey:@"bar" completionHandler:^(BOOL retry) {
                     expect(retry).to.equal(NO);
@@ -162,8 +157,6 @@ describe(@"SEGHTTPClient", ^{
                 .withBody(body)
                 .andReturn(304)
                 .withBody(@"{\"success\": true");
-
-            SEGHTTPClient *client = [[SEGHTTPClient alloc] initWithRequestFactory:nil];
 
             waitUntil(^(DoneCallback done) {
                 NSURLSessionDataTask *task = [client upload:batch forWriteKey:@"bar" completionHandler:^(BOOL retry) {
@@ -194,8 +187,6 @@ describe(@"SEGHTTPClient", ^{
                 .andReturn(401)
                 .withBody(@"{\"success\": true");
 
-            SEGHTTPClient *client = [[SEGHTTPClient alloc] initWithRequestFactory:nil];
-
             waitUntil(^(DoneCallback done) {
                 NSURLSessionDataTask *task = [client upload:batch forWriteKey:@"bar" completionHandler:^(BOOL retry) {
                     expect(retry).to.equal(NO);
@@ -225,11 +216,88 @@ describe(@"SEGHTTPClient", ^{
                 .andReturn(504)
                 .withBody(@"{\"success\": true");
 
-            SEGHTTPClient *client = [[SEGHTTPClient alloc] initWithRequestFactory:nil];
-
             waitUntil(^(DoneCallback done) {
                 NSURLSessionDataTask *task = [client upload:batch forWriteKey:@"bar" completionHandler:^(BOOL retry) {
                     expect(retry).to.equal(YES);
+                    done();
+                }];
+                expect(task.state).will.equal(NSURLSessionTaskStateCompleted);
+            });
+        });
+    });
+
+    describe(@"attribution", ^{
+        it(@"fails for json error", ^{
+            NSDictionary *device = @{
+                // Dates cannot be serialized as is so the json serialzation will fail.
+                @"sentAt" : [NSDate date]
+            };
+
+            waitUntil(^(DoneCallback done) {
+                NSURLSessionDataTask *task = [client attributionWithWriteKey:@"bar" forDevice:device completionHandler:^(BOOL success, NSDictionary *properties) {
+                    expect(success).to.equal(NO);
+                    done();
+                }];
+                expect(task).to.equal(nil);
+            });
+        });
+
+        it(@"succeeds for 2xx response", ^{
+            NSDictionary *context = @{
+                @"os" : @{
+                    @"name" : @"iPhone OS",
+                    @"version" : @"8.1.3"
+                },
+                @"ip" : @"8.8.8.8"
+            };
+
+            stubRequest(@"POST", @"https://mobile-service.segment.com/v1/attribution")
+                .withHeaders(@{
+                    @"Accept-Encoding" : @"gzip",
+                    @"Authorization" : @"Basic Zm9vOg==",
+                    @"Content-Encoding" : @"gzip",
+                    @"Content-Length" : @"72",
+                    @"Content-Type" : @"application/json"
+                })
+                .andReturn(200)
+                .withBody(@"{\"provider\": \"mock\"}");
+
+            waitUntil(^(DoneCallback done) {
+                NSURLSessionDataTask *task = [client attributionWithWriteKey:@"foo" forDevice:context completionHandler:^(BOOL success, NSDictionary *properties) {
+                    expect(success).to.equal(YES);
+                    expect(properties).to.equal(@{
+                        @"provider" : @"mock"
+                    });
+                    done();
+                }];
+                expect(task.state).will.equal(NSURLSessionTaskStateCompleted);
+            });
+        });
+
+        it(@"fails for non 2xx response", ^{
+            NSDictionary *context = @{
+                @"os" : @{
+                    @"name" : @"iPhone OS",
+                    @"version" : @"8.1.3"
+                },
+                @"ip" : @"8.8.8.8"
+            };
+
+            stubRequest(@"POST", @"https://mobile-service.segment.com/v1/attribution")
+                .withHeaders(@{
+                    @"Accept-Encoding" : @"gzip",
+                    @"Authorization" : @"Basic Zm9vOg==",
+                    @"Content-Encoding" : @"gzip",
+                    @"Content-Length" : @"72",
+                    @"Content-Type" : @"application/json"
+                })
+                .andReturn(404)
+                .withBody(@"not found");
+
+            waitUntil(^(DoneCallback done) {
+                NSURLSessionDataTask *task = [client attributionWithWriteKey:@"foo" forDevice:context completionHandler:^(BOOL success, NSDictionary *properties) {
+                    expect(success).to.equal(NO);
+                    expect(properties).to.equal(nil);
                     done();
                 }];
                 expect(task.state).will.equal(NSURLSessionTaskStateCompleted);

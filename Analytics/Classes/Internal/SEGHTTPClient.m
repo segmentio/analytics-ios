@@ -56,7 +56,7 @@
         exception = exc;
     }
     if (error || exception) {
-        SEGLog(@"%@ Error serializing JSON for batch upload %@", self, error);
+        SEGLog(@"Error serializing JSON for batch upload %@", error);
         completionHandler(NO); // Don't retry this batch.
         return nil;
     }
@@ -131,7 +131,66 @@
             return;
         }
 
-        // 2xx response codes.
+        completionHandler(YES, responseJson);
+    }];
+    [task resume];
+    return task;
+}
+
+- (NSURLSessionDataTask *)attributionWithWriteKey:(NSString *)writeKey forDevice:(NSDictionary *)context completionHandler:(void (^)(BOOL success, NSDictionary *properties))completionHandler;
+
+{
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.HTTPAdditionalHeaders = @{
+        @"Accept-Encoding" : @"gzip",
+        @"Content-Encoding" : @"gzip",
+        @"Content-Type" : @"application/json",
+        @"Authorization" : [@"Basic " stringByAppendingString:[self authorizationHeader:writeKey]],
+    };
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+
+    NSURL *url = [NSURL URLWithString:@"https://mobile-service.segment.com/v1/attribution"];
+    NSMutableURLRequest *request = self.requestFactory(url);
+    [request setHTTPMethod:@"POST"];
+
+    NSError *error = nil;
+    NSException *exception = nil;
+    NSData *payload = nil;
+    @try {
+        payload = [NSJSONSerialization dataWithJSONObject:context options:0 error:&error];
+    }
+    @catch (NSException *exc) {
+        exception = exc;
+    }
+    if (error || exception) {
+        SEGLog(@"Error serializing context to JSON %@", error);
+        completionHandler(NO, nil);
+        return nil;
+    }
+    NSData *gzippedPayload = [payload seg_gzippedData];
+
+    NSURLSessionUploadTask *task = [session uploadTaskWithRequest:request fromData:gzippedPayload completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
+        if (error) {
+            SEGLog(@"Error making request %@.", error);
+            completionHandler(NO, nil);
+            return;
+        }
+
+        NSInteger code = ((NSHTTPURLResponse *)response).statusCode;
+        if (code > 300) {
+            SEGLog(@"Server responded with unexpected HTTP code %d.", code);
+            completionHandler(NO, nil);
+            return;
+        }
+
+        NSError *jsonError = nil;
+        id responseJson = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        if (jsonError != nil) {
+            SEGLog(@"Error deserializing response body %@.", jsonError);
+            completionHandler(NO, nil);
+            return;
+        }
+
         completionHandler(YES, responseJson);
     }];
     [task resume];

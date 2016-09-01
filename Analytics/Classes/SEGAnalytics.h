@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import "SEGIntegrationFactory.h"
+#import "SEGCrypto.h"
 
 /**
  * NSNotification name, that is posted after integrations are loaded.
@@ -71,6 +72,11 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
 @property (nonatomic, assign) BOOL trackDeepLinks;
 
 /**
+ * Whether the analytics client should automatically track attribution data from enabled providers using the mobile service.
+ */
+@property (nonatomic, assign) BOOL trackAttributionData;
+
+/**
  * Dictionary indicating the options the app was launched with.
  */
 @property (nonatomic, assign) NSDictionary *launchOptions;
@@ -79,6 +85,11 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
  * Set a custom request factory.
  */
 @property (nonatomic, strong) SEGRequestFactory requestFactory;
+
+/**
+ * Set a custom crypto
+ */
+@property (nonatomic, strong) id<SEGCrypto> crypto;
 
 /**
  * Register a factory that can be used to create an integration.
@@ -295,6 +306,7 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
 
 /** Returns the configuration used to create the analytics client. */
 - (SEGAnalyticsConfiguration *)configuration;
+
 
 @end
 
