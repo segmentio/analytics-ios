@@ -1,6 +1,54 @@
 Change Log
 ==========
 
+Version 3.4.0 *(1st September, 2016)*
+-------------------------------------
+
+ * [New](https://github.com/segmentio/analytics-ios/commit/d5db28ab9d15aa06b4e3a5c91f813d5c12a419a8): Adds a `SEGRequestFactory` API that can be used to configure the HTTP requests made by Segment.
+
+ ```objc
+ SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY"];
+
+ // Set a custom request factory which allows you to modify the way the library creates an HTTP request.
+ // In this case, we're transforming the URL to point to our own custom non-Segment host.
+ configuration.requestFactory = ^(NSURL *url) {
+     NSURLComponents \*components = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:NO];
+     // Replace YOUR_PROXY_HOST with the address of your proxy, e.g. aba64da6.ngrok.io.
+     components.host = @"YOUR_PROXY_HOST";
+     NSURL \*transformedURL = components.URL;
+     return [NSMutableURLRequest requestWithURL:transformedURL];
+ };
+
+ // Set any other custom configuration options.
+ ...
+
+ // Initialize the SDK with the configuration.
+ [SEGAnalytics setupWithConfiguration:configuration]
+ ```
+
+
+ * [New](https://github.com/segmentio/analytics-ios/commit/b8aed9692e82ad1dbbecfae0ad5fc353a9eb2220): Add method to retrieve anonymous ID.
+
+ ```objc
+ [[SEGAnalytics sharedAnalytics] getAnonymousId];
+ ```
+
+ * [Improvement](https://github.com/segmentio/analytics-ios/commit/98a467292de62eb6179107b6ebbc59f13caf16a2): Store `context` object with every event. This makes it more accurate collecting the context at the time the event was observed, rather than uploaded.
+
+ * [Improvement](https://github.com/segmentio/analytics-ios/commit/66fdd8c25fbd28311cc99c0d6ccf8884e065d8b3): Automatic screen tracking improvements, specifically in the case when the root view is a `UINavigationController`.
+
+ * [Improvement](https://github.com/segmentio/analytics-ios/commit/1ddcf615942125ecf791a8001794a27f7cb0385c): Don't send `Segment.io: false` in integration dictionary.
+
+ * [Improvement](https://github.com/segmentio/analytics-ios/commit/0125804698f5e7087ca49f79f4ad99cc78aa2437): Friendly assert messages.
+
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/585): Namespace GZIP extension to avoid conflicts.
+
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/583/files): Fix assertion in `identify` method.
+
+ * [Fix](https://github.com/segmentio/analytics-ios/commit/bad7259ed649f48629fda5373c0f4100b52537ed): Static analyzer warnings for reachability implementation.
+
+ * [Fix](https://github.com/segmentio/analytics-ios/commit/3ac7115dde4fe0fc97fde61ac548111ddf76f694): Handle case where screen name is empty.
+
 Version 3.3.0 *(08-05-2016)*
 -----------------------------
  * New: Add Carthage support.
