@@ -77,6 +77,7 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, strong) NSURL *apiURL;
 @property (nonatomic, strong) SEGHTTPClient *httpClient;
+@property (nonatomic, strong) NSURLSessionDataTask *attributionRequest;
 
 @end
 
@@ -115,8 +116,10 @@ static BOOL GetAdTrackingEnabled()
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGTraitsKey];
             }
         }];
-
 #endif
+        [self dispatchBackground:^{
+            [self trackAttributionData:self.configuration.trackAttributionData];
+        }];
 
         dispatch_sync(dispatch_get_main_queue(), ^{
             self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
@@ -631,6 +634,37 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     [self.analytics.storage setArray:[self.queue copy] forKey:SEGQueueKey];
 #else
     [self.analytics.storage setArray:[self.queue copy] forKey:kSEGQueueFilename];
+#endif
+}
+
+NSString *const SEGTrackedAttributionKey = @"SEGTrackedAttributionKey";
+
+- (void)trackAttributionData:(BOOL)trackAttributionData
+{
+#if TARGET_OS_IPHONE
+    if (!trackAttributionData) {
+        return;
+    }
+
+    BOOL trackedAttribution = [[NSUserDefaults standardUserDefaults] boolForKey:SEGTrackedAttributionKey];
+    if (trackedAttribution) {
+        return;
+    }
+
+    NSDictionary *staticContext = self.cachedStaticContext;
+    NSDictionary *liveContext = [self liveContext];
+    NSMutableDictionary *context = [NSMutableDictionary dictionaryWithCapacity:staticContext.count + liveContext.count];
+    [context addEntriesFromDictionary:staticContext];
+    [context addEntriesFromDictionary:liveContext];
+
+    self.attributionRequest = [self.httpClient attributionWithWriteKey:self.configuration.writeKey forDevice:[context copy] completionHandler:^(BOOL success, NSDictionary *properties) {
+        if (success) {
+            [self.analytics track:@"Install Attributed" properties:properties];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:SEGTrackedAttributionKey];
+        }
+
+        self.attributionRequest = nil;
+    }];
 #endif
 }
 

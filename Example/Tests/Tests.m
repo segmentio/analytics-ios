@@ -7,14 +7,14 @@ describe(@"analytics", ^{
     __block SEGAnalytics *analytics = nil;
 
     beforeEach(^{
-        SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"dpu3lo79nb"];
+        SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE"];
         [SEGAnalytics setupWithConfiguration:configuration];
         analytics = [SEGAnalytics sharedAnalytics];
     });
 
     it(@"initialized correctly", ^{
         expect(analytics.configuration.flushAt).to.equal(20);
-        expect(analytics.configuration.writeKey).to.equal(@"dpu3lo79nb");
+        expect(analytics.configuration.writeKey).to.equal(@"QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE");
         expect(analytics.configuration.shouldUseLocationServices).to.equal(@NO);
         expect(analytics.configuration.enableAdvertisingTracking).to.equal(@YES);
     });
