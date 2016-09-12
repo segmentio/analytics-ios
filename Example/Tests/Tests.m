@@ -17,6 +17,7 @@ describe(@"analytics", ^{
         expect(analytics.configuration.writeKey).to.equal(@"QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE");
         expect(analytics.configuration.shouldUseLocationServices).to.equal(@NO);
         expect(analytics.configuration.enableAdvertisingTracking).to.equal(@YES);
+        expect(analytics.configuration.shouldUseBluetooth).to.equal(@NO);
     });
 });
 

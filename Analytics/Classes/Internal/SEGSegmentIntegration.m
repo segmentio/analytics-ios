@@ -99,7 +99,9 @@ static BOOL GetAdTrackingEnabled()
         self.httpClient = analytics.httpClient;
         self.apiURL = [NSURL URLWithString:@"https://api.segment.io/v1/import"];
         self.userId = [self getUserId];
-        self.bluetooth = [[SEGBluetooth alloc] init];
+        if (self.configuration.shouldUseBluetooth) {
+            self.bluetooth = [[SEGBluetooth alloc] init];
+        }
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
         [self.reachability startNotifier];
         self.cachedStaticContext = [self staticContext];
@@ -236,7 +238,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     context[@"network"] = ({
         NSMutableDictionary *network = [[NSMutableDictionary alloc] init];
 
-        if (self.bluetooth.hasKnownState)
+        if (self.bluetooth && self.bluetooth.hasKnownState)
             network[@"bluetooth"] = @(self.bluetooth.isEnabled);
 
         if (self.reachability.isReachable) {
