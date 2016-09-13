@@ -30,8 +30,11 @@
 @property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLPlacemark *currentPlacemark;
 @property (nonatomic, strong) CLGeocoder *geocoder;
+#if OS_OBJECT_HAVE_OBJC_SUPPORT == 1
 @property (nonatomic, strong) dispatch_queue_t syncQueue;
-
+#else
+@property (nonatomic, assign) dispatch_queue_t syncQueue;
+#endif
 @end
 
 

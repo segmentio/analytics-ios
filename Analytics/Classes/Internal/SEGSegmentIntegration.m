@@ -1,6 +1,7 @@
 #include <sys/sysctl.h>
-
+#if TARGET_OS_IOS
 #import <UIKit/UIKit.h>
+#endif
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGSegmentIntegration.h"
@@ -51,6 +52,11 @@ static BOOL GetAdTrackingEnabled()
     return result;
 }
 
+#if TARGET_OS_IOS
+typedef UIBackgroundTaskIdentifier SEGBackgroundTaskIdentifier;
+#else
+typedef id SEGBackgroundTaskIdentifier;
+#endif
 
 @interface SEGAnalytics (Private)
 
@@ -64,12 +70,16 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, strong) NSDictionary *cachedStaticContext;
 @property (nonatomic, strong) NSURLSessionUploadTask *batchRequest;
-@property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
+@property (nonatomic, assign) SEGBackgroundTaskIdentifier flushTaskID;
 @property (nonatomic, strong) SEGBluetooth *bluetooth;
 @property (nonatomic, strong) SEGReachability *reachability;
 @property (nonatomic, strong) SEGLocation *location;
 @property (nonatomic, strong) NSTimer *flushTimer;
+#if OS_OBJECT_HAVE_OBJC_SUPPORT == 1
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
+#else
+@property (nonatomic, assign) dispatch_queue_t serialQueue;
+#endif
 @property (nonatomic, strong) NSMutableDictionary *traits;
 @property (nonatomic, assign) SEGAnalytics *analytics;
 @property (nonatomic, assign) SEGAnalyticsConfiguration *configuration;
@@ -106,7 +116,9 @@ static BOOL GetAdTrackingEnabled()
         [self.reachability startNotifier];
         self.cachedStaticContext = [self staticContext];
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
+#if TARGET_OS_IOS
         self.flushTaskID = UIBackgroundTaskInvalid;
+#endif
 
 #if !TARGET_OS_TV
         // Check for previous queue/track data in NSUserDefaults and remove if present
@@ -163,12 +175,14 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         };
     }
 
-    UIDevice *device = [UIDevice currentDevice];
 
     dict[@"device"] = ({
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         dict[@"manufacturer"] = @"Apple";
         dict[@"model"] = GetDeviceModel();
+
+#if TARGET_OS_IOS
+        UIDevice *device = [UIDevice currentDevice];
         dict[@"id"] = [[device identifierForVendor] UUIDString];
         if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
             dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
@@ -177,13 +191,24 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
             NSString *idfa = SEGIDFA();
             if (idfa.length) dict[@"advertisingId"] = idfa;
         }
+#endif
+
         dict;
     });
 
+#if !TARGET_OS_IOS
+    NSDictionary * info = [NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"];
     dict[@"os"] = @{
-        @"name" : device.systemName,
-        @"version" : device.systemVersion
-    };
+                    @"name" : [info objectForKey:@"ProductName"],
+                    @"version" : [info objectForKey:@"ProductVersion"]
+                    };
+#else
+    UIDevice *device = [UIDevice currentDevice];
+    dict[@"os"] = @{
+                    @"name" : device.systemName,
+                    @"version" : device.systemVersion
+                    };
+#endif
 
 #if TARGET_OS_IOS
     static dispatch_once_t networkInfoOnceToken;
@@ -196,7 +221,11 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         dict[@"network"] = @{ @"carrier" : carrier.carrierName };
 #endif
 
+#if !TARGET_OS_IOS
+    CGSize screenSize = [NSScreen mainScreen].frame.size;
+#else
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
+#endif
     dict[@"screen"] = @{
         @"width" : @(screenSize.width),
         @"height" : @(screenSize.height)
@@ -288,19 +317,23 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     [self endBackgroundTask];
 
+#if TARGET_OS_IOS
     self.flushTaskID = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
         [self endBackgroundTask];
     }];
+#endif
 }
 
 - (void)endBackgroundTask
 {
     [self dispatchBackgroundAndWait:^{
+#if TARGET_OS_IOS
         if (self.flushTaskID != UIBackgroundTaskInvalid) {
             [[UIApplication sharedApplication] endBackgroundTask:self.flushTaskID];
             self.flushTaskID = UIBackgroundTaskInvalid;
         }
-    }];
+#endif
+      }];
 }
 
 - (NSString *)description

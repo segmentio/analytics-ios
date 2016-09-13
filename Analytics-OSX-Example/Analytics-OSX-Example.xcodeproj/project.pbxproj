@@ -1,0 +1,310 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		112336B45A924457773A2699 /* Pods_Analytics_OSX_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB1D5EDFEC312CF7F0B4B21A /* Pods_Analytics_OSX_Example.framework */; };
+		AC53D49F1D5E58B7004172F5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AC53D49E1D5E58B7004172F5 /* main.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AC53D4991D5E58B7004172F5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		398CE78FEEC0842350426D85 /* Pods-Analytics-OSX-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics-OSX-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Analytics-OSX-Example/Pods-Analytics-OSX-Example.debug.xcconfig"; sourceTree = "<group>"; };
+		4B6AC063D7951AF4C050256F /* Pods-Analytics-OSX-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics-OSX-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Analytics-OSX-Example/Pods-Analytics-OSX-Example.release.xcconfig"; sourceTree = "<group>"; };
+		AC53D49B1D5E58B7004172F5 /* Analytics-OSX-Example */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Analytics-OSX-Example"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC53D49E1D5E58B7004172F5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		AC53D4A51D5E6441004172F5 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		CB1D5EDFEC312CF7F0B4B21A /* Pods_Analytics_OSX_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Analytics_OSX_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AC53D4981D5E58B7004172F5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				112336B45A924457773A2699 /* Pods_Analytics_OSX_Example.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		429828A931A627CA37A52F17 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				398CE78FEEC0842350426D85 /* Pods-Analytics-OSX-Example.debug.xcconfig */,
+				4B6AC063D7951AF4C050256F /* Pods-Analytics-OSX-Example.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8B7CE4675612560953D3CC02 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AC53D4A51D5E6441004172F5 /* CoreBluetooth.framework */,
+				CB1D5EDFEC312CF7F0B4B21A /* Pods_Analytics_OSX_Example.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC53D4921D5E58B7004172F5 = {
+			isa = PBXGroup;
+			children = (
+				AC53D49D1D5E58B7004172F5 /* Analytics-OSX-Example */,
+				AC53D49C1D5E58B7004172F5 /* Products */,
+				429828A931A627CA37A52F17 /* Pods */,
+				8B7CE4675612560953D3CC02 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AC53D49C1D5E58B7004172F5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AC53D49B1D5E58B7004172F5 /* Analytics-OSX-Example */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AC53D49D1D5E58B7004172F5 /* Analytics-OSX-Example */ = {
+			isa = PBXGroup;
+			children = (
+				AC53D49E1D5E58B7004172F5 /* main.m */,
+			);
+			path = "Analytics-OSX-Example";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AC53D49A1D5E58B7004172F5 /* Analytics-OSX-Example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AC53D4A21D5E58B7004172F5 /* Build configuration list for PBXNativeTarget "Analytics-OSX-Example" */;
+			buildPhases = (
+				B7D0DF84E3AF507C0AFCA114 /* [CP] Check Pods Manifest.lock */,
+				AC53D4971D5E58B7004172F5 /* Sources */,
+				AC53D4981D5E58B7004172F5 /* Frameworks */,
+				AC53D4991D5E58B7004172F5 /* CopyFiles */,
+				A8996AA74590154CF017E4BE /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Analytics-OSX-Example";
+			productName = "Analytics-OSX-Example";
+			productReference = AC53D49B1D5E58B7004172F5 /* Analytics-OSX-Example */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AC53D4931D5E58B7004172F5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Segment;
+				TargetAttributes = {
+					AC53D49A1D5E58B7004172F5 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+				};
+			};
+			buildConfigurationList = AC53D4961D5E58B7004172F5 /* Build configuration list for PBXProject "Analytics-OSX-Example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AC53D4921D5E58B7004172F5;
+			productRefGroup = AC53D49C1D5E58B7004172F5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AC53D49A1D5E58B7004172F5 /* Analytics-OSX-Example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A8996AA74590154CF017E4BE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Analytics-OSX-Example/Pods-Analytics-OSX-Example-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B7D0DF84E3AF507C0AFCA114 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AC53D4971D5E58B7004172F5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC53D49F1D5E58B7004172F5 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AC53D4A01D5E58B7004172F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		AC53D4A11D5E58B7004172F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		AC53D4A31D5E58B7004172F5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 398CE78FEEC0842350426D85 /* Pods-Analytics-OSX-Example.debug.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		AC53D4A41D5E58B7004172F5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B6AC063D7951AF4C050256F /* Pods-Analytics-OSX-Example.release.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AC53D4961D5E58B7004172F5 /* Build configuration list for PBXProject "Analytics-OSX-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC53D4A01D5E58B7004172F5 /* Debug */,
+				AC53D4A11D5E58B7004172F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AC53D4A21D5E58B7004172F5 /* Build configuration list for PBXNativeTarget "Analytics-OSX-Example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AC53D4A31D5E58B7004172F5 /* Debug */,
+				AC53D4A41D5E58B7004172F5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AC53D4931D5E58B7004172F5 /* Project object */;
+}
