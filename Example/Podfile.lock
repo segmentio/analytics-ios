@@ -1,5 +1,5 @@
 PODS:
-  - Analytics (3.4.0)
+  - Analytics (3.5.0)
   - Expecta (1.0.5)
   - Nimble (4.1.0)
   - Nocilla (0.10.0)
@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Analytics: 3efde438f4f1e03f20525a0552784551a2e6037f
+  Analytics: 79046b34f62a861622fbb6d1af5b0e705d6aba2e
   Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
   Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
   Nocilla: ae0a2b05f3087b473624ac2b25903695df51246a
