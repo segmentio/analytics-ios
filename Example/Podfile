@@ -9,10 +9,10 @@ target 'Analytics_Example' do
 
     pod 'Specta'
     pod 'Expecta'
-    pod 'Nocilla'
+    
     pod 'Quick' # runner lib
     pod 'Nimble' # Matcher lib
-    pod 'Mockingjay'
+    pod 'Nocilla' # HTTP Mocking Library
 
   end
 end
