@@ -12,6 +12,7 @@ target 'Analytics_Example' do
     pod 'Nocilla'
     pod 'Quick' # runner lib
     pod 'Nimble' # Matcher lib
+    pod 'Mockingjay'
 
   end
 end
