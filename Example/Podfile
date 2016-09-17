@@ -3,15 +3,17 @@ use_frameworks!
 target 'Analytics_Example' do
   pod 'Analytics', :path => '../'
 
-  target 'Analytics_Tests' do
-    use_frameworks!
-    inherit! :search_paths
+  end
 
+target 'Analytics_Tests' do
+    use_frameworks!
+    pod 'Analytics', :path => '../'
+    
     pod 'Specta'
     pod 'Expecta'
-    pod 'Nocilla'
+    
     pod 'Quick' # runner lib
     pod 'Nimble' # Matcher lib
-
-  end
+    pod 'Nocilla' # HTTP Mocking Library
+    
 end
