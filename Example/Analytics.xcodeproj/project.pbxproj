@@ -30,16 +30,6 @@
 		EA8BB62B1D8CFD08001D5D5F /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8BB62A1D8CFD08001D5D5F /* AnalyticsTests.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		6003F5B3195388D20070C39A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6003F582195388D10070C39A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6003F589195388D20070C39A;
-			remoteInfo = Analytics;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		45CF19013EEE877E48F7228F /* Pods-Analytics_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Analytics_Tests/Pods-Analytics_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		50D64207C7C0360E54185351 /* Pods-Analytics_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Analytics_Tests/Pods-Analytics_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -247,7 +237,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				6003F5B4195388D20070C39A /* PBXTargetDependency */,
 			);
 			name = Analytics_Tests;
 			productName = AnalyticsTests;
@@ -429,14 +418,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		6003F5B4195388D20070C39A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6003F589195388D20070C39A /* Analytics_Example */;
-			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		6003F596195388D20070C39A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -571,7 +552,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 45CF19013EEE877E48F7228F /* Pods-Analytics_Tests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -590,7 +570,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Analytics_Tests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Analytics_Example.app/Analytics_Example";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -599,7 +578,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 50D64207C7C0360E54185351 /* Pods-Analytics_Tests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -613,7 +591,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/Analytics_Tests-Bridging-Header.h";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Analytics_Example.app/Analytics_Example";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;

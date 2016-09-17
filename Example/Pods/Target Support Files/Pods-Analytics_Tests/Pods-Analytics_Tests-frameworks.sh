@@ -84,6 +84,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Analytics/Analytics.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Expecta/Expecta.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nimble/Nimble.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nocilla/Nocilla.framework"
@@ -91,6 +92,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/Specta/Specta.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "$BUILT_PRODUCTS_DIR/Analytics/Analytics.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Expecta/Expecta.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nimble/Nimble.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nocilla/Nocilla.framework"

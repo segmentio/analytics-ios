@@ -16,16 +16,12 @@ class HTTPClientTest: QuickSpec {
     
     var client: SEGHTTPClient!
     
-    beforeSuite { 
-      LSNocilla.sharedInstance().start()
-    }
     beforeEach {
+      LSNocilla.sharedInstance().start()
       client = SEGHTTPClient(requestFactory: nil)
     }
     afterEach { 
       LSNocilla.sharedInstance().clearStubs()
-    }
-    afterSuite { 
       LSNocilla.sharedInstance().stop()
     }
 
