@@ -109,6 +109,22 @@ class HTTPClientTest: QuickSpec {
         expect(task).to(beNil())
         expect(done).toEventually(beTrue())
       }
+      
+      it("does not ask to retry for 2xx response") {
+        let batch: [NSObject : AnyObject] = ["sentAt":"2016-07-19'T'19:25:06Z", "batch":[["type":"track", "event":"foo"]]]
+        let base64Body: String = "H4sIAAAAAAAAA6tWSkosSc5QsoquViqpLEhVslIqKUpMzlbSUUotS80rAfLT8vOVamN1lIqBXEeQgJGBoZmugbmuoaV6iLqhpZWRqZWBWZRSLQB8HDmdTAAAAA=="
+        let body: NSData? = NSData(base64EncodedString: base64Body, options: [])
+        stubRequest("POST", "https://api.segment.io/v1/batch").withHeaders(["Accept-Encoding":"gzip", "Authorization":"Basic YmFyOg==", "Content-Encoding":"gzip", "Content-Length":"91", "Content-Type":"application/json"]).withBody(body).andReturn(200).withBody("{\"success\": true")
+        
+        var done = false
+        let task = client.upload(batch, forWriteKey: "bar", completionHandler: { (retry) in
+          expect(retry) == false
+          done = true
+        })
+        expect(done).toEventually(beTrue())
+        expect(task.state).toEventually(equal(NSURLSessionTaskState.Completed))
+      }
+
     }
   }
 }
