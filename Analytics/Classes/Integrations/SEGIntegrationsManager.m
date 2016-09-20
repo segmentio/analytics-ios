@@ -502,8 +502,8 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 // Combine context and integrations to form options
 - (NSDictionary *)options {
     return @{
-        @"context": self.context,
-        @"integrations": self.integrations
+         @"context": self.context ?: @{},
+         @"integrations": self.integrations ?: @{}
     };
 }
 
