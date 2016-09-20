@@ -18,55 +18,6 @@ NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
 NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 
-@interface SEGAnalyticsConfiguration ()
-
-@property (nonatomic, copy, readwrite) NSString *writeKey;
-@property (nonatomic, strong, readonly) NSMutableArray *factories;
-
-@end
-
-
-@implementation SEGAnalyticsConfiguration
-
-+ (instancetype)configurationWithWriteKey:(NSString *)writeKey
-{
-    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey];
-}
-
-- (instancetype)initWithWriteKey:(NSString *)writeKey
-{
-    if (self = [self init]) {
-        self.writeKey = writeKey;
-    }
-    return self;
-}
-
-- (instancetype)init
-{
-    if (self = [super init]) {
-        self.shouldUseLocationServices = NO;
-        self.enableAdvertisingTracking = YES;
-        self.shouldUseBluetooth = NO;
-        self.flushAt = 20;
-        _factories = [NSMutableArray array];
-        [_factories addObject:[SEGSegmentIntegrationFactory instance]];
-    }
-    return self;
-}
-
-- (void)use:(id<SEGIntegrationFactory>)factory
-{
-    [self.factories addObject:factory];
-}
-
-- (NSString *)description
-{
-    return [NSString stringWithFormat:@"<%p:%@, %@>", self, self.class, [self dictionaryWithValuesForKeys:@[ @"writeKey", @"shouldUseLocationServices", @"flushAt" ]]];
-}
-
-@end
-
-
 @interface SEGAnalytics ()
 
 @property (nonatomic, strong) NSDictionary *cachedSettings;
@@ -108,7 +59,7 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         self.enabled = YES;
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         self.messageQueue = [[NSMutableArray alloc] init];
-        self.factories = [configuration.factories copy];
+        self.factories = [[(id)configuration factories] copy];
         self.integrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
         self.registeredIntegrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
         self.configuration = configuration;
