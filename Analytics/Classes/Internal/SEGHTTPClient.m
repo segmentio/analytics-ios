@@ -45,7 +45,7 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSURL *url = [NSURL URLWithString:@"https://api.segment.io/v1/batch"];
+    NSURL *url = [NSURL URLWithString:[SEGMENT_API_BASE stringByAppendingPathComponent:@"batch"]];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"POST"];
 

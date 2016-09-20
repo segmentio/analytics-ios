@@ -82,7 +82,7 @@ static BOOL GetAdTrackingEnabled()
         self.configuration = analytics.configuration;
         self.httpClient = httpClient;
         self.storage = storage;
-        self.apiURL = [NSURL URLWithString:@"https://api.segment.io/v1/import"];
+        self.apiURL = [NSURL URLWithString:[SEGMENT_API_BASE stringByAppendingPathComponent:@"import"]];
         self.userId = [self getUserId];
         if (self.configuration.shouldUseBluetooth) {
             self.bluetooth = [[SEGBluetooth alloc] init];

@@ -1,6 +1,9 @@
 #import <Foundation/Foundation.h>
 #import "SEGAnalytics.h"
 
+// TODO: Make this configurable
+//#define SEGMENT_API_BASE @"https://api-segment-io-5fsaj1xnikhp.runscope.net/v1/"
+#define SEGMENT_API_BASE @"https://api.segment.io/v1/"
 
 @interface SEGHTTPClient : NSObject
 
