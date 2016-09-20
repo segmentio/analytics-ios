@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="whP-gf-Uak">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="whP-gf-Uak">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,12 +16,36 @@
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Segment_stacked_2C_reverse_RGB_rgb_600_397" translatesAutoresizingMaskIntoConstraints="NO" id="dBI-mz-xpu">
+                                <rect key="frame" x="150" y="201" width="300" height="198"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="pKw-n3-hJW"/>
+                                    <constraint firstAttribute="height" constant="198" id="rPq-gY-TOy"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Analytics for the modern world" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEb-BW-phq">
+                                <rect key="frame" x="166" y="426" width="268" height="23"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
+                                <color key="textColor" red="0.0" green="0.21406674385070801" blue="0.43007642030715942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.26340898871421814" green="0.72593146562576294" blue="0.50370573997497559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dBI-mz-xpu" firstAttribute="centerY" secondItem="TpU-gO-2f1" secondAttribute="centerY" id="CYn-Vj-Efg"/>
+                            <constraint firstItem="dBI-mz-xpu" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="Zpd-1D-V2h"/>
+                            <constraint firstItem="nEb-BW-phq" firstAttribute="centerX" secondItem="dBI-mz-xpu" secondAttribute="centerX" id="alQ-8K-AFZ"/>
+                            <constraint firstItem="nEb-BW-phq" firstAttribute="top" secondItem="dBI-mz-xpu" secondAttribute="bottom" constant="27" id="iIX-jw-r00"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="433"/>
+            <point key="canvasLocation" x="350" y="520"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Segment_stacked_2C_reverse_RGB_rgb_600_397" width="599" height="397"/>
+    </resources>
 </document>
