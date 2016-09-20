@@ -7,6 +7,7 @@
 @property (nonatomic, strong) SEGRequestFactory requestFactory;
 
 + (SEGRequestFactory)defaultRequestFactory;
++ (NSString *)authorizationHeader:(NSString *)writeKey;
 
 - (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory;
 

@@ -12,6 +12,14 @@
     };
 }
 
++ (NSString *)authorizationHeader:(NSString *)writeKey
+{
+    NSString *rawHeader = [writeKey stringByAppendingString:@":"];
+    NSData *userPasswordData = [rawHeader dataUsingEncoding:NSUTF8StringEncoding];
+    return [userPasswordData base64EncodedStringWithOptions:0];
+}
+
+
 - (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory
 {
     if (self = [self init]) {
@@ -24,21 +32,16 @@
     return self;
 }
 
-- (NSString *)authorizationHeader:(NSString *)writeKey
-{
-    NSString *rawHeader = [writeKey stringByAppendingString:@":"];
-    NSData *userPasswordData = [rawHeader dataUsingEncoding:NSUTF8StringEncoding];
-    return [userPasswordData base64EncodedStringWithOptions:0];
-}
 
 - (NSURLSessionUploadTask *)upload:(NSDictionary *)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler
 {
+//    batch = SEGCoerceDictionary(batch);
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.HTTPAdditionalHeaders = @{
         @"Accept-Encoding" : @"gzip",
         @"Content-Encoding" : @"gzip",
         @"Content-Type" : @"application/json",
-        @"Authorization" : [@"Basic " stringByAppendingString:[self authorizationHeader:writeKey]],
+        @"Authorization" : [@"Basic " stringByAppendingString:[[self class] authorizationHeader:writeKey]],
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
@@ -145,7 +148,7 @@
         @"Accept-Encoding" : @"gzip",
         @"Content-Encoding" : @"gzip",
         @"Content-Type" : @"application/json",
-        @"Authorization" : [@"Basic " stringByAppendingString:[self authorizationHeader:writeKey]],
+        @"Authorization" : [@"Basic " stringByAppendingString:[[self class] authorizationHeader:writeKey]],
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 

@@ -24,7 +24,6 @@ class HTTPClientTest: QuickSpec {
       LSNocilla.sharedInstance().clearStubs()
       LSNocilla.sharedInstance().stop()
     }
-
     
     describe("defaultRequestFactory") { 
       it("preserves url") {
@@ -109,6 +108,23 @@ class HTTPClientTest: QuickSpec {
         expect(task).to(beNil())
         expect(done).toEventually(beTrue())
       }
+      
+      it("does not ask to retry for 2xx response") {
+        let batch: [NSObject : AnyObject] = ["sentAt":"2016-07-19'T'19:25:06Z", "batch":[["type":"track", "event":"foo"]]]
+        stubRequest("POST", "https://api.segment.io/v1/batch")
+          .withJsonGzippedBody(batch)
+          .withWriteKey("bar")
+          .andReturn(200)
+        
+        var done = false
+        let task = client.upload(batch, forWriteKey: "bar", completionHandler: { (retry) in
+          expect(retry) == false
+          done = true
+        })
+        expect(done).toEventually(beTrue())
+        expect(task.state).toEventually(equal(NSURLSessionTaskState.Completed))
+      }
+
     }
   }
 }
