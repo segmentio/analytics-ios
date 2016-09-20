@@ -2,12 +2,13 @@
 #import "SEGAnalytics.h"
 
 // TODO: Make this configurable via SEGAnalyticsConfiguration
-//#define SEGMENT_API_BASE @"https://api-segment-io-5fsaj1xnikhp.runscope.net/v1/"
-//#define SEGMENT_CDN_BASE @"https://cdn-segment-com-5fsaj1xnikhp.runscope.net/v1/"
-//#define MOBILE_SERVICE_BASE @"https://mobile--service-segment-com-5fsaj1xnikhp.runscope.net/v1/"
-#define SEGMENT_API_BASE @"https://api.segment.io/v1/"
-#define SEGMENT_CDN_BASE @"https://cdn.segment.com/v1/"
-#define MOBILE_SERVICE_BASE @"https://mobile-service.segment.com/v1/"
+// NOTE: `/` at the end kind of screws things up. So don't use it 
+//#define SEGMENT_API_BASE [NSURL URLWithString:@"https://api-segment-io-5fsaj1xnikhp.runscope.net/v1"]
+//#define SEGMENT_CDN_BASE [NSURL URLWithString:@"https://cdn-segment-com-5fsaj1xnikhp.runscope.net/v1"]
+//#define MOBILE_SERVICE_BASE [NSURL URLWithString:@"https://mobile--service-segment-com-5fsaj1xnikhp.runscope.net/v1"]
+#define SEGMENT_API_BASE [NSURL URLWithString:@"https://api.segment.io/v1"]
+#define SEGMENT_CDN_BASE [NSURL URLWithString:@"https://cdn.segment.com/v1"]
+#define MOBILE_SERVICE_BASE [NSURL URLWithString:@"https://mobile-service.segment.com/v1"]
 
 @interface SEGHTTPClient : NSObject
 

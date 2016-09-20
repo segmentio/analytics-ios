@@ -45,7 +45,7 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSURL *url = [NSURL URLWithString:[SEGMENT_API_BASE stringByAppendingPathComponent:@"batch"]];
+    NSURL *url = [SEGMENT_API_BASE URLByAppendingPathComponent:@"batch"];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"POST"];
 
@@ -107,8 +107,7 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSString *rawURL = [SEGMENT_CDN_BASE stringByAppendingPathComponent:[NSString stringWithFormat:@"/projects/%@/settings", writeKey]];
-    NSURL *url = [NSURL URLWithString:rawURL];
+    NSString *url = [SEGMENT_CDN_BASE URLByAppendingPathComponent:[NSString stringWithFormat:@"/projects/%@/settings", writeKey]];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"GET"];
 
@@ -152,7 +151,7 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSURL *url = [NSURL URLWithString:[MOBILE_SERVICE_BASE stringByAppendingPathComponent:@"/attribution"]];
+    NSURL *url = [MOBILE_SERVICE_BASE URLByAppendingPathComponent:@"/attribution"];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"POST"];
 
