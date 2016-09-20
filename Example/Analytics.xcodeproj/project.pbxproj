@@ -21,6 +21,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		64E04EDF96525073D7D8D34E /* Pods_Analytics_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E05C973F89287FDE47C6992 /* Pods_Analytics_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		EA1B1C7F1D91199A008527E6 /* ContextTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1B1C7E1D91199A008527E6 /* ContextTest.swift */; };
 		EA2E214A1D7520AF00269F70 /* FileStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E21441D75209E00269F70 /* FileStorageTest.swift */; };
 		EA2E214B1D7520AF00269F70 /* UserDefaultsStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E21451D75209E00269F70 /* UserDefaultsStorageTest.swift */; };
 		EA2E214C1D7520AF00269F70 /* CryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E21461D75209E00269F70 /* CryptoTest.swift */; };
@@ -58,6 +59,7 @@
 		9758DD8BB1764DFFD7D77856 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		BAD32EE64997FAA302C3B9C9 /* Pods_Analytics_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Analytics_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0161DAF0DE8CFA94AFA1B0D /* Pods-Analytics_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Analytics_Example/Pods-Analytics_Example.release.xcconfig"; sourceTree = "<group>"; };
+		EA1B1C7E1D91199A008527E6 /* ContextTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = ContextTest.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EA2E21391D751D8D00269F70 /* Analytics_Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Analytics_Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		EA2E21441D75209E00269F70 /* FileStorageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileStorageTest.swift; sourceTree = "<group>"; };
 		EA2E21451D75209E00269F70 /* UserDefaultsStorageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorageTest.swift; sourceTree = "<group>"; };
@@ -179,10 +181,13 @@
 				EA2E21461D75209E00269F70 /* CryptoTest.swift */,
 				EA8BB6281D8CFB27001D5D5F /* HTTPClientTest.swift */,
 				EA8BB62A1D8CFD08001D5D5F /* AnalyticsTests.swift */,
+				EA1B1C7E1D91199A008527E6 /* ContextTest.swift */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 			);
+			indentWidth = 2;
 			path = Tests;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		6003F5B6195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -267,7 +272,7 @@
 				CLASSPREFIX = SEG;
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = "Segment";
+				ORGANIZATIONNAME = Segment;
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
@@ -423,6 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA8BB62B1D8CFD08001D5D5F /* AnalyticsTests.swift in Sources */,
+				EA1B1C7F1D91199A008527E6 /* ContextTest.swift in Sources */,
 				EA8BB6291D8CFB27001D5D5F /* HTTPClientTest.swift in Sources */,
 				EACC26111D90C2390034BFA8 /* NSData+SEGGUNZIPP.m in Sources */,
 				EACC26121D90C2390034BFA8 /* TestUtils.swift in Sources */,

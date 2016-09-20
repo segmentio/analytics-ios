@@ -10,6 +10,8 @@
 #import "SEGIntegration.h"
 
 typedef NS_ENUM(NSInteger, SEGEventType) {
+    // Should not happen, but default state
+    SEGEventTypeUndefined,
     // Core Tracking Methods
     SEGEventTypeIdentify,
     SEGEventTypeTrack,
@@ -51,17 +53,18 @@ typedef NS_ENUM(NSInteger, SEGEventType) {
 // reference and logic (Thus prefixing with underscore). But
 // Right now it is required for integrations to work so I guess we'll leave it in.
 @property (nonatomic, readonly, nonnull) SEGAnalytics *_analytics;
-
 @property (nonatomic, readonly) SEGEventType eventType;
+
 @property (nonatomic, readonly, nullable) NSString *userId;
 @property (nonatomic, readonly, nullable) NSString *anonymousId;
 @property (nonatomic, readonly, nullable) SEGPayload *payload;
 @property (nonatomic, readonly, nullable) NSError *error;
 @property (nonatomic, readonly) BOOL debug;
 
+- (instancetype _Nonnull)initWithAnalytics:(SEGAnalytics * _Nonnull)analytics;
+
 - (SEGContext * _Nonnull)modify:(void(^_Nonnull)(id<SEGMutableContext> _Nonnull))modify;
 
-- (instancetype _Nonnull)initWithAnalytics:(SEGAnalytics * _Nonnull)analytics;
 
 @end
 

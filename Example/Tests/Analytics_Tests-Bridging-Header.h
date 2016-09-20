@@ -8,6 +8,7 @@
 #import <Analytics/SEGStorage.h>
 #import <Analytics/SEGFileStorage.h>
 #import <Analytics/SEGUserDefaultsStorage.h>
+#import <Analytics/SEGContext.h>
 
 #import "NSData+SEGGUNZIPP.h"
 // Temp hack. We should fix the LSNocilla podspec to make this header publicly available

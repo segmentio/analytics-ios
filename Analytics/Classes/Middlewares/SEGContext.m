@@ -21,9 +21,23 @@
 
 @implementation SEGContext
 
+- (instancetype)init {
+    @throw [NSException exceptionWithName:@"Bad Initization"
+                                   reason:@"Please use initWithAnalytics:"
+                                 userInfo:nil];
+}
+
 - (instancetype)initWithAnalytics:(SEGAnalytics *)analytics {
     if (self = [super init]) {
         __analytics = analytics;
+        // TODO: Have some other way of indicating the debug flag is on too.
+        // Also, for logging it'd be damn nice to implement a logging protocol
+        // such as CocoalumberJack and allow developers to pipe logs to wherever they want
+        // Of course we wouldn't us depend on it. it'd be like a soft dependency where
+        // analytics-ios would totally work without it but works even better with it!
+#ifdef DEBUG
+        _debug = YES;
+#endif
     }
     return self;
 }
@@ -37,6 +51,9 @@
     // objects over and over again.
     SEGContext *context = self.debug ? [self copy] : self;
     modify(context);
+    // TODO: We could probably add some validation here that the newly modified context
+    // is actualy valid. For example, `eventType` should match `paylaod` class.
+    // or anonymousId should never be null.
     return self;
 }
 
