@@ -93,7 +93,7 @@ class HTTPClientTest: QuickSpec {
       }
     }
     
-    describe("upload") { 
+    describe("upload") {
       it("does not ask to retry for json error") {
         let batch = [
           // Dates cannot be serialized as is so the json serialzation will fail.
@@ -101,30 +101,134 @@ class HTTPClientTest: QuickSpec {
           "batch": [["type": "track", "event": "foo"]],
         ]
         var done = false
-        let task = client.upload(batch, forWriteKey: "bar", completionHandler: { retry in
+        let task = client.upload(batch, forWriteKey: "bar") { retry in
           expect(retry) == false
           done = true
-        })
+        }
         expect(task).to(beNil())
         expect(done).toEventually(beTrue())
       }
       
+      let batch = ["sentAt":"2016-07-19'T'19:25:06Z", "batch":[["type":"track", "event":"foo"]]]
+      
+      
       it("does not ask to retry for 2xx response") {
-        let batch: [NSObject : AnyObject] = ["sentAt":"2016-07-19'T'19:25:06Z", "batch":[["type":"track", "event":"foo"]]]
         stubRequest("POST", "https://api.segment.io/v1/batch")
           .withJsonGzippedBody(batch)
           .withWriteKey("bar")
           .andReturn(200)
         
         var done = false
-        let task = client.upload(batch, forWriteKey: "bar", completionHandler: { (retry) in
+        let task = client.upload(batch, forWriteKey: "bar") { retry in
           expect(retry) == false
           done = true
-        })
+        }
+        expect(done).toEventually(beTrue())
+        expect(task.state).toEventually(equal(NSURLSessionTaskState.Completed))
+      }
+      
+      it("asks to retry for 3xx response") {
+        stubRequest("POST", "https://api.segment.io/v1/batch")
+          .withJsonGzippedBody(batch)
+          .withWriteKey("bar")
+          .andReturn(304)
+        
+        var done = false
+        let task = client.upload(batch, forWriteKey: "bar") { retry in
+          expect(retry) == true
+          done = true
+        }
         expect(done).toEventually(beTrue())
         expect(task.state).toEventually(equal(NSURLSessionTaskState.Completed))
       }
 
+      it("does not ask to retry for 4xx response") {
+        stubRequest("POST", "https://api.segment.io/v1/batch")
+          .withJsonGzippedBody(batch)
+          .withWriteKey("bar")
+          .andReturn(401)
+        
+        var done = false
+        let task = client.upload(batch, forWriteKey: "bar") { retry in
+          expect(retry) == false
+          done = true
+        }
+        expect(done).toEventually(beTrue())
+        expect(task.state).toEventually(equal(NSURLSessionTaskState.Completed))
+      }
+
+      it("asks to retry for 5xx response") {
+        stubRequest("POST", "https://api.segment.io/v1/batch")
+          .withJsonGzippedBody(batch)
+          .withWriteKey("bar")
+          .andReturn(504)
+        
+        var done = false
+        let task = client.upload(batch, forWriteKey: "bar") { retry in
+          expect(retry) == true
+          done = true
+        }
+        expect(done).toEventually(beTrue())
+        expect(task.state).toEventually(equal(NSURLSessionTaskState.Completed))
+      }
+    }
+    
+    describe("attribution") {
+      it("fails for json error") {
+        let device = [
+          // Dates cannot be serialized as is so the json serialzation will fail.
+          "sentAt": NSDate(),
+        ]
+        var done = false
+        let task = client.attributionWithWriteKey("bar", forDevice: device) { success, properties in
+          expect(success) == false
+          done = true
+        }
+        expect(task).to(beNil())
+        expect(done).toEventually(beTrue())
+      }
+      
+      let context = [
+        "os": [
+          "name": "iPhone OS",
+          "version" : "8.1.3",
+        ],
+        "ip": "8.8.8.8",
+      ]
+      
+      it("succeeds for 2xx response") {
+        stubRequest("POST", "https://mobile-service.segment.com/v1/attribution")
+          .withWriteKey("foo")
+          .andReturn(200)
+          .withBody("{\"provider\": \"mock\"}")
+        
+        var done = false
+        let task = client.attributionWithWriteKey("foo", forDevice: context) { success, properties in
+          expect(success) == true
+          expect(properties as? [String: String]) == [
+            "provider": "mock"
+          ]
+          done = true
+        }
+        expect(task.state).toEventually(equal(NSURLSessionTaskState.Completed))
+        expect(done).toEventually(beTrue())
+      }
+      
+      it("fails for non 2xx response") {
+        stubRequest("POST", "https://mobile-service.segment.com/v1/attribution")
+          .withWriteKey("foo")
+          .andReturn(404)
+          .withBody("not found")
+        
+        var done = false
+        let task = client.attributionWithWriteKey("foo", forDevice: context) { success, properties in
+          expect(success) == false
+          expect(properties).to(beNil())
+          done = true
+        }
+        expect(task.state).toEventually(equal(NSURLSessionTaskState.Completed))
+        expect(done).toEventually(beTrue())
+      }
     }
   }
 }

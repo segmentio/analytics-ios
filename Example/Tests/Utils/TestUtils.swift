@@ -25,7 +25,7 @@ class JsonGzippedBody : LSMatcher, LSMatcheable {
         let failureMessage = FailureMessage()
         let location = SourceLocation()
         let matches = Nimble.equal(expectedJson).matches(actualValue, failureMessage: failureMessage, location: location)
-        print("matches=\(matches) expected \(expectedJson) actual \(json)")
+//        print("matches=\(matches) expected \(expectedJson) actual \(json)")
         return matches
     }
     
