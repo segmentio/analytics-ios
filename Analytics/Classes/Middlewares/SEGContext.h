@@ -30,12 +30,13 @@ typedef NS_ENUM(NSInteger, SEGEventType) {
     SEGEventTypeHandleActionWithForRemoteNotification,
     
     // Application Lifecycle
-    SEGEventTypeApplicationDidFinishLaunching,
-    SEGEventTypeApplicationDidEnterBackground,
-    SEGEventTypeApplicationWillEnterForeground,
-    SEGEventTypeApplicationWillTerminate,
-    SEGEventTypeApplicationWillResignActive,
-    SEGEventTypeApplicationDidBecomeActive,
+    SEGEventTypeApplicationLifecycle,
+//    DidFinishLaunching,
+//    SEGEventTypeApplicationDidEnterBackground,
+//    SEGEventTypeApplicationWillEnterForeground,
+//    SEGEventTypeApplicationWillTerminate,
+//    SEGEventTypeApplicationWillResignActive,
+//    SEGEventTypeApplicationDidBecomeActive,
     
     // Misc.
     SEGEventTypeContinueUserActivity,
@@ -57,8 +58,8 @@ typedef NS_ENUM(NSInteger, SEGEventType) {
 
 @property (nonatomic, readonly, nullable) NSString *userId;
 @property (nonatomic, readonly, nullable) NSString *anonymousId;
-@property (nonatomic, readonly, nullable) SEGPayload *payload;
 @property (nonatomic, readonly, nullable) NSError *error;
+@property (nonatomic, readonly, nullable) SEGPayload *payload;
 @property (nonatomic, readonly) BOOL debug;
 
 - (instancetype _Nonnull)initWithAnalytics:(SEGAnalytics * _Nonnull)analytics;

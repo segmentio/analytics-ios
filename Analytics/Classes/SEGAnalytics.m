@@ -1,3 +1,4 @@
+#import <objc/runtime.h>
 #import <UIKit/UIKit.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
@@ -10,10 +11,9 @@
 #import "SEGStorage.h"
 #import "SEGFileStorage.h"
 #import "SEGUserDefaultsStorage.h"
-#import <objc/runtime.h>
+#import "SEGMiddleware.h"
 
 static SEGAnalytics *__sharedInstance = nil;
-NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.did.start";
 NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
 NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
@@ -22,6 +22,8 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 @property (nonatomic, strong) NSDictionary *cachedSettings;
 @property (nonatomic, strong) SEGAnalyticsConfiguration *configuration;
+@property (nonnull, nonatomic, strong) NSMutableArray<id<SEGMiddleware>> *middlewares;
+
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 @property (nonatomic, strong) NSMutableArray *messageQueue;
 @property (nonatomic, assign) BOOL enabled;
@@ -116,6 +118,8 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
+
+#pragma mark -
 
 NSString *const SEGVersionKey = @"SEGVersionKey";
 NSString *const SEGBuildKey = @"SEGBuildKey";
@@ -493,7 +497,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
                 self.integrations[key] = integration;
                 self.registeredIntegrations[key] = @NO;
             }
-            [[NSNotificationCenter defaultCenter] postNotificationName:SEGAnalyticsIntegrationDidStart object:key userInfo:nil];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:SEGAnalyticsIntegrationDidStart object:key userInfo:nil];
         } else {
             SEGLog(@"No settings for %@. Skipping.", key);
         }

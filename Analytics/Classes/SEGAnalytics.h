@@ -4,11 +4,6 @@
 #import "SEGAnalyticsConfiguration.h"
 
 /**
- * NSNotification name, that is posted after integrations are loaded.
- */
-extern NSString *SEGAnalyticsIntegrationDidStart;
-
-/**
  * This object provides an API for recording analytics.
  */
 @class SEGAnalyticsConfiguration;
