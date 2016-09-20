@@ -8,6 +8,7 @@
 
 import Quick
 import Nimble
+import SwiftTryCatch
 import Analytics
 
 class ContextTests: QuickSpec {
@@ -20,6 +21,21 @@ class ContextTests: QuickSpec {
       SEGAnalytics.setupWithConfiguration(config)
       analytics = SEGAnalytics.sharedAnalytics()
     }
+    
+    it("throws when used incorrectly") {
+      var context: SEGContext?
+      var exception: NSException?
+      
+      SwiftTryCatch.tryRun({
+        context = SEGContext()
+      }, catchRun: { e in
+        exception = e
+      }, finallyRun: nil)
+      
+      expect(context).to(beNil())
+      expect(exception).toNot(beNil())
+    }
+
     
     it("initialized correctly") {
       let context = SEGContext(analytics: analytics)
