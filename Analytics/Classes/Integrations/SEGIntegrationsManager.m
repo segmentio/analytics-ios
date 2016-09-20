@@ -16,6 +16,7 @@
 #import "SEGFileStorage.h"
 #import "SEGUserDefaultsStorage.h"
 #import "SEGIntegrationsManager.h"
+#import "SEGSegmentIntegrationFactory.h"
 #import "SEGPayload.h"
 #import "SEGIdentifyPayload.h"
 #import "SEGTrackPayload.h"
@@ -64,10 +65,6 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         self.configuration = configuration;
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         self.messageQueue = [[NSMutableArray alloc] init];
-        self.factories = [configuration.factories copy];
-        self.integrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
-        self.registeredIntegrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
-        self.configuration = configuration;
         self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
         self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
 #if TARGET_OS_TV
@@ -75,6 +72,11 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 #else
         self.storage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:configuration.crypto];
 #endif
+        NSMutableArray *factories = [configuration factories];
+        [factories addObject:[[SEGSegmentIntegrationFactory alloc] initWithHTTPClient:self.httpClient storage:self.storage]];
+        self.factories = [factories copy];
+        self.integrations = [NSMutableDictionary dictionaryWithCapacity:factories.count];
+        self.registeredIntegrations = [NSMutableDictionary dictionaryWithCapacity:factories.count];
         
         // Update settings on each integration immediately
         [self refreshSettings];

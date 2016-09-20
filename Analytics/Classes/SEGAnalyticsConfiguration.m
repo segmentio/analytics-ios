@@ -6,9 +6,7 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-#import "SEGSegmentIntegrationFactory.h"
 #import "SEGAnalyticsConfiguration.h"
-#import "SEGIntegrationFactory.h"
 #import "SEGCrypto.h"
 
 @interface SEGAnalyticsConfiguration ()
@@ -42,7 +40,6 @@
         self.shouldUseBluetooth = NO;
         self.flushAt = 20;
         _factories = [NSMutableArray array];
-        [_factories addObject:[SEGSegmentIntegrationFactory instance]];
     }
     return self;
 }

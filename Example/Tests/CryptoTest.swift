@@ -40,6 +40,7 @@ class CryptoTest : QuickSpec {
       expect(dataOut) != dataIn
       
       let strOut = String(data: dataOut!, encoding: NSUTF8StringEncoding)
+      // XXX TODO: This sometimes indeterministically fails. We should figure out why.
       expect(strOut).to(beNil())
     }
     

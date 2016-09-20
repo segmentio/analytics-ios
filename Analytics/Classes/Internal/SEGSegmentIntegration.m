@@ -51,14 +51,6 @@ static BOOL GetAdTrackingEnabled()
     return result;
 }
 
-
-@interface SEGAnalytics (Private)
-
-@property (nonatomic, readonly) id<SEGStorage> storage;
-
-@end
-
-
 @interface SEGSegmentIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
@@ -77,26 +69,19 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, strong) NSURL *apiURL;
 @property (nonatomic, strong) SEGHTTPClient *httpClient;
+@property (nonatomic, strong) id<SEGStorage> storage;
 @property (nonatomic, strong) NSURLSessionDataTask *attributionRequest;
 
 @end
 
-
-@interface SEGAnalytics ()
-
-@property (nonatomic, strong) SEGHTTPClient *httpClient;
-
-@end
-
-
 @implementation SEGSegmentIntegration
 
-- (id)initWithAnalytics:(SEGAnalytics *)analytics
-{
+- (id)initWithAnalytics:(SEGAnalytics *)analytics httpClient:(SEGHTTPClient *)httpClient storage:(id<SEGStorage>)storage {
     if (self = [super init]) {
         self.analytics = analytics;
         self.configuration = analytics.configuration;
-        self.httpClient = analytics.httpClient;
+        self.httpClient = httpClient;
+        self.storage = storage;
         self.apiURL = [NSURL URLWithString:@"https://api.segment.io/v1/import"];
         self.userId = [self getUserId];
         if (self.configuration.shouldUseBluetooth) {
@@ -314,9 +299,9 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         self.userId = userId;
 
 #if TARGET_OS_TV
-        [self.analytics.storage setString:userId forKey:SEGUserIdKey];
+        [self.storage setString:userId forKey:SEGUserIdKey];
 #else
-        [self.analytics.storage setString:userId forKey:kSEGUserIdFilename];
+        [self.storage setString:userId forKey:kSEGUserIdFilename];
 #endif
     }];
 }
@@ -327,9 +312,9 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         [self.traits addEntriesFromDictionary:traits];
 
 #if TARGET_OS_TV
-        [self.analytics.storage setDictionary:[self.traits copy] forKey:SEGTraitsKey];
+        [self.storage setDictionary:[self.traits copy] forKey:SEGTraitsKey];
 #else
-        [self.analytics.storage setDictionary:[self.traits copy] forKey:kSEGTraitsFilename];
+        [self.storage setDictionary:[self.traits copy] forKey:kSEGTraitsFilename];
 #endif
     }];
 }
@@ -525,14 +510,14 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (void)reset
 {
     [self dispatchBackgroundAndWait:^{
-        [self.analytics.storage removeKey:SEGUserIdKey];
+        [self.storage removeKey:SEGUserIdKey];
 #if TARGET_OS_TV
-        [self.analytics.storage removeKey:SEGTraitsKey];
-        [self.analytics.storage removeKey:SEGQueueKey];
+        [self.storage removeKey:SEGTraitsKey];
+        [self.storage removeKey:SEGQueueKey];
 #else
-        [self.analytics.storage removeKey:kSEGUserIdFilename];
-        [self.analytics.storage removeKey:kSEGTraitsFilename];
-        [self.analytics.storage removeKey:kSEGQueueFilename];
+        [self.storage removeKey:kSEGUserIdFilename];
+        [self.storage removeKey:kSEGTraitsFilename];
+        [self.storage removeKey:kSEGQueueFilename];
 #endif
 
         self.userId = nil;
@@ -560,7 +545,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)batch.count, (unsigned long)self.queue.count);
     SEGLog(@"Flushing batch %@.", payload);
 
-    self.batchRequest = [self.analytics.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
+    self.batchRequest = [self.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
         if (retry) {
             [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
             self.batchRequest = nil;
@@ -598,9 +583,9 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     if (!_queue) {
 #if TARGET_OS_TV
-        _queue = [[self.analytics.storage arrayForKey:SEGQueueKey] ?: @[] mutableCopy];
+        _queue = [[self.storage arrayForKey:SEGQueueKey] ?: @[] mutableCopy];
 #else
-        _queue = [[self.analytics.storage arrayForKey:kSEGQueueFilename] ?: @[] mutableCopy];
+        _queue = [[self.storage arrayForKey:kSEGQueueFilename] ?: @[] mutableCopy];
 #endif
     }
 
@@ -611,9 +596,9 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     if (!_traits) {
 #if TARGET_OS_TV
-        _traits = [[self.analytics.storage dictionaryForKey:SEGTraitsKey] ?: @{} mutableCopy];
+        _traits = [[self.storage dictionaryForKey:SEGTraitsKey] ?: @{} mutableCopy];
 #else
-        _traits = [[self.analytics.storage dictionaryForKey:kSEGTraitsFilename] ?: @{} mutableCopy];
+        _traits = [[self.storage dictionaryForKey:kSEGTraitsFilename] ?: @{} mutableCopy];
 #endif
     }
 
@@ -627,15 +612,15 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (NSString *)getUserId
 {
-    return [[NSUserDefaults standardUserDefaults] valueForKey:SEGUserIdKey] ?: [self.analytics.storage stringForKey:kSEGUserIdFilename];
+    return [[NSUserDefaults standardUserDefaults] valueForKey:SEGUserIdKey] ?: [self.storage stringForKey:kSEGUserIdFilename];
 }
 
 - (void)persistQueue
 {
 #if TARGET_OS_TV
-    [self.analytics.storage setArray:[self.queue copy] forKey:SEGQueueKey];
+    [self.storage setArray:[self.queue copy] forKey:SEGQueueKey];
 #else
-    [self.analytics.storage setArray:[self.queue copy] forKey:kSEGQueueFilename];
+    [self.storage setArray:[self.queue copy] forKey:kSEGQueueFilename];
 #endif
 }
 

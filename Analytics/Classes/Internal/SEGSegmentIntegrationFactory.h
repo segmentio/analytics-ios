@@ -1,9 +1,13 @@
 #import <Foundation/Foundation.h>
 #import "SEGIntegrationFactory.h"
-
+#import "SEGHTTPClient.h"
+#import "SEGStorage.h"
 
 @interface SEGSegmentIntegrationFactory : NSObject <SEGIntegrationFactory>
 
-+ (id)instance;
+@property (nonatomic, strong) SEGHTTPClient *client;
+@property (nonatomic, strong) id<SEGStorage> storage;
+
+- (instancetype)initWithHTTPClient:(SEGHTTPClient *)client storage:(id<SEGStorage>)storage;
 
 @end
