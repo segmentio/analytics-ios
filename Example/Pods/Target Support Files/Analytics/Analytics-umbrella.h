@@ -24,6 +24,8 @@
 #import "SEGUserDefaultsStorage.h"
 #import "SEGUtils.h"
 #import "UIViewController+SEGScreen.h"
+#import "SEGContext.h"
+#import "SEGMiddleware.h"
 #import "SEGAnalytics.h"
 
 FOUNDATION_EXPORT double AnalyticsVersionNumber;
