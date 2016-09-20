@@ -107,7 +107,7 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSString *rawURL = [SEGMENT_CDN_BASE stringByAppendingPathComponent:[NSString stringWithFormat:@"/v1/projects/%@/settings", writeKey]];
+    NSString *rawURL = [SEGMENT_CDN_BASE stringByAppendingPathComponent:[NSString stringWithFormat:@"/projects/%@/settings", writeKey]];
     NSURL *url = [NSURL URLWithString:rawURL];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"GET"];
@@ -152,7 +152,7 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSURL *url = [NSURL URLWithString:@"https://mobile-service.segment.com/v1/attribution"];
+    NSURL *url = [NSURL URLWithString:[MOBILE_SERVICE_BASE stringByAppendingPathComponent:@"/attribution"]];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"POST"];
 

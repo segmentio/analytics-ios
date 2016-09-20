@@ -4,8 +4,10 @@
 // TODO: Make this configurable via SEGAnalyticsConfiguration
 //#define SEGMENT_API_BASE @"https://api-segment-io-5fsaj1xnikhp.runscope.net/v1/"
 //#define SEGMENT_CDN_BASE @"https://cdn-segment-com-5fsaj1xnikhp.runscope.net/v1/"
+//#define MOBILE_SERVICE_BASE @"https://mobile--service-segment-com-5fsaj1xnikhp.runscope.net/v1/"
 #define SEGMENT_API_BASE @"https://api.segment.io/v1/"
 #define SEGMENT_CDN_BASE @"https://cdn.segment.com/v1/"
+#define MOBILE_SERVICE_BASE @"https://mobile-service.segment.com/v1/"
 
 @interface SEGHTTPClient : NSObject
 
