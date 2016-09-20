@@ -71,8 +71,6 @@ extension LSStubRequestDSL {
     var withJsonGzippedBody: AndJsonGzippedBodyMethod {
         return { json in
             let body = JsonGzippedBody(json)
-//            let headers = body.expectedHeaders()
-//            print("Headers", headers)
             return self
                 .withHeaders(body.expectedHeaders())
                 .withBody(body)
