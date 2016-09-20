@@ -54,7 +54,7 @@
     // TODO: We could probably add some validation here that the newly modified context
     // is actualy valid. For example, `eventType` should match `paylaod` class.
     // or anonymousId should never be null.
-    return self;
+    return context;
 }
 
 #pragma mark - NSCopying

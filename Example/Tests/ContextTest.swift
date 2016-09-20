@@ -27,7 +27,7 @@ class ContextTests: QuickSpec {
       expect(context.eventType) == SEGEventType.Undefined
     }
     
-    xit("accepts modifications") {
+    it("accepts modifications") {
       let context = SEGContext(analytics: analytics)
       let newContext = context.modify { context in
         context.userId = "sloth"
@@ -36,6 +36,8 @@ class ContextTests: QuickSpec {
       expect(newContext.userId) == "sloth"
       expect(newContext.eventType) == SEGEventType.Track;
     }
+    
+    
   }
   
 }
