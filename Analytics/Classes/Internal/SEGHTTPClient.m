@@ -33,6 +33,7 @@
 
 - (NSURLSessionUploadTask *)upload:(NSDictionary *)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler
 {
+//    batch = SEGCoerceDictionary(batch);
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     config.HTTPAdditionalHeaders = @{
         @"Accept-Encoding" : @"gzip",

@@ -90,7 +90,7 @@
 		3DF21CC8B1540FC57080402578510573 /* SEGTrackPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = 32159F0B2293399896F70ED6E3E8538F /* SEGTrackPayload.m */; };
 		3EDF6A877923CA3D380A27BA221A3693 /* LSNSURLSessionHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B5ECEE8F4FB020B7FA66EA9F69D4A64 /* LSNSURLSessionHook.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		403292D82DA62291204BF59524BC4EDB /* EXPMatchers+haveCountOf.m in Sources */ = {isa = PBXBuildFile; fileRef = F069D8DB4989FA02ADA57AF29059BEB0 /* EXPMatchers+haveCountOf.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4064CF661F3AD87993F7BFD4AD26C45D /* LSMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E82E06036771A97E6FCA3D47E48BAEB /* LSMatcher.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4064CF661F3AD87993F7BFD4AD26C45D /* LSMatcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 2E82E06036771A97E6FCA3D47E48BAEB /* LSMatcher.h */; settings = {ATTRIBUTES = (Project, Public, ); }; };
 		419337F96F030CBD20D4168EF2772905 /* QuickSelectedTestSuiteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610398E398706C3A86F14D095798E56C /* QuickSelectedTestSuiteBuilder.swift */; };
 		41EE5E3698CC1A17046AC74B36A279E0 /* RaisesException.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F0B729EA46F41106481339E7C239F4 /* RaisesException.swift */; };
 		43271DD951A1049D87FF064A1FD87175 /* LSDataMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = C2F1F4A3850DE69BC154AC15438441E1 /* LSDataMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -1416,8 +1416,8 @@
 				A460983620B3719092C5217CCC57A699 /* LSHTTPRequestDSLRepresentation.h in Headers */,
 				B7B6C386D18C61D236CE7B92C62DC4F4 /* LSHTTPResponse.h in Headers */,
 				15A7217C749314E8423F3C36A99BAF7A /* LSHTTPStubURLProtocol.h in Headers */,
-				CA303CF6D30D41F05C81DF35576B6C34 /* LSMatcheable.h in Headers */,
 				4064CF661F3AD87993F7BFD4AD26C45D /* LSMatcher.h in Headers */,
+				CA303CF6D30D41F05C81DF35576B6C34 /* LSMatcheable.h in Headers */,
 				2070701995190A07047F664492D7F156 /* LSNocilla.h in Headers */,
 				C4F4C8EF4A764C0FDEB5789F9207FFF2 /* LSNSURLHook.h in Headers */,
 				0D96C808906230C689C8310AC8E7DF5B /* LSNSURLSessionHook.h in Headers */,
