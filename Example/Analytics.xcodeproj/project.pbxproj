@@ -26,6 +26,7 @@
 		EA2E214C1D7520AF00269F70 /* CryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2E21461D75209E00269F70 /* CryptoTest.swift */; };
 		EA8BB6291D8CFB27001D5D5F /* HTTPClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8BB6281D8CFB27001D5D5F /* HTTPClientTest.swift */; };
 		EA8BB62B1D8CFD08001D5D5F /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8BB62A1D8CFD08001D5D5F /* AnalyticsTests.swift */; };
+		EABF81571D90D0E50043E2EC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EABF81561D90D0E50043E2EC /* LaunchScreen.xib */; };
 		EACC26111D90C2390034BFA8 /* NSData+SEGGUNZIPP.m in Sources */ = {isa = PBXBuildFile; fileRef = EACC260F1D90C2390034BFA8 /* NSData+SEGGUNZIPP.m */; };
 		EACC26121D90C2390034BFA8 /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EACC26101D90C2390034BFA8 /* TestUtils.swift */; };
 /* End PBXBuildFile section */
@@ -63,6 +64,7 @@
 		EA2E21461D75209E00269F70 /* CryptoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoTest.swift; sourceTree = "<group>"; };
 		EA8BB6281D8CFB27001D5D5F /* HTTPClientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = HTTPClientTest.swift; sourceTree = "<group>"; tabWidth = 2; };
 		EA8BB62A1D8CFD08001D5D5F /* AnalyticsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = AnalyticsTests.swift; sourceTree = "<group>"; tabWidth = 2; };
+		EABF81561D90D0E50043E2EC /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		EACC26071D90AEF00034BFA8 /* LSMatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LSMatcher.h; path = ../Pods/Nocilla/Nocilla/Matchers/LSMatcher.h; sourceTree = "<group>"; };
 		EACC260E1D90C2390034BFA8 /* NSData+SEGGUNZIPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SEGGUNZIPP.h"; sourceTree = "<group>"; };
 		EACC260F1D90C2390034BFA8 /* NSData+SEGGUNZIPP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SEGGUNZIPP.m"; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				6003F59C195388D20070C39A /* SEGAppDelegate.h */,
 				6003F59D195388D20070C39A /* SEGAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
+				EABF81561D90D0E50043E2EC /* LaunchScreen.xib */,
 				6003F5A5195388D20070C39A /* SEGViewController.h */,
 				6003F5A6195388D20070C39A /* SEGViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
@@ -295,6 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EABF81571D90D0E50043E2EC /* LaunchScreen.xib in Resources */,
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -520,7 +524,6 @@
 			baseConfigurationReference = 734218FFCC49C7717424050E /* Pods-Analytics_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Analytics/Analytics-Prefix.pch";
@@ -539,7 +542,6 @@
 			baseConfigurationReference = E0161DAF0DE8CFA94AFA1B0D /* Pods-Analytics_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Analytics/Analytics-Prefix.pch";
