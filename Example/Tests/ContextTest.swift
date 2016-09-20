@@ -29,14 +29,43 @@ class ContextTests: QuickSpec {
     
     it("accepts modifications") {
       let context = SEGContext(analytics: analytics)
+      
       let newContext = context.modify { context in
         context.userId = "sloth"
         context.eventType = .Track;
       }
       expect(newContext.userId) == "sloth"
       expect(newContext.eventType) == SEGEventType.Track;
+      
     }
     
+    it("modifies copy in debug mode to catch bugs") {
+      let context = SEGContext(analytics: analytics).modify { context in
+        context.debug = true
+      }
+      expect(context.debug) == true
+      
+      let newContext = context.modify { context in
+        context.userId = "123"
+      }
+      expect(context) !== newContext
+      expect(newContext.userId) == "123"
+      expect(context.userId).to(beNil())
+    }
+    
+    it("modifies self in non-debug mode to optimize perf.") {
+      let context = SEGContext(analytics: analytics).modify { context in
+        context.debug = false
+      }
+      expect(context.debug) == false
+      
+      let newContext = context.modify { context in
+        context.userId = "123"
+      }
+      expect(context) === newContext
+      expect(newContext.userId) == "123"
+      expect(context.userId) == "123"
+    }
     
   }
   
