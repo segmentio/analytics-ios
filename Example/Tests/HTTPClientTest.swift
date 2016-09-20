@@ -111,8 +111,10 @@ class HTTPClientTest: QuickSpec {
       
       it("does not ask to retry for 2xx response") {
         let batch: [NSObject : AnyObject] = ["sentAt":"2016-07-19'T'19:25:06Z", "batch":[["type":"track", "event":"foo"]]]
-        let body = JSONGzippedBody(batch)
-        stubRequest("POST", "https://api.segment.io/v1/batch").withHeaders(["Accept-Encoding":"gzip", "Authorization":"Basic YmFyOg==", "Content-Encoding":"gzip", "Content-Length":"91", "Content-Type":"application/json"]).withBody(body).andReturn(200)
+        stubRequest("POST", "https://api.segment.io/v1/batch")
+          .withJsonGzippedBody(batch)
+          .withWriteKey("bar")
+          .andReturn(200)
         
         var done = false
         let task = client.upload(batch, forWriteKey: "bar", completionHandler: { (retry) in
