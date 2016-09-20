@@ -210,6 +210,8 @@
 		E8170803327397E07035CBF7C79DE45A /* UIViewController+SEGScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 82E1EDF118C2C2235BEAB7E424B3EA12 /* UIViewController+SEGScreen.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8DE03684C234604E472C27ECD8F6B70 /* BeAnInstanceOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C69E7CB610ABD8E4D06F80BA22BB2A /* BeAnInstanceOf.swift */; };
 		E935A0C80E57D4400942CA1296897A48 /* SEGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 35CF92693914742FE8852F9DBF08EBC6 /* SEGUtils.m */; };
+		EA1B1C861D9122B2008527E6 /* SEGIntegrationsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA1B1C841D9122B2008527E6 /* SEGIntegrationsManager.h */; };
+		EA1B1C871D9122B2008527E6 /* SEGIntegrationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1B1C851D9122B2008527E6 /* SEGIntegrationsManager.m */; };
 		EB9C4D2E388805F9157AA356D4A857D5 /* DSL.h in Headers */ = {isa = PBXBuildFile; fileRef = DCC05F968C1DEEACEC7D375DAF9B8BF2 /* DSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE676156762D1F6D3777EB3E20E2B839 /* QuickSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B4EE8C76C28A35214C9E5A45CCEA1E0 /* QuickSpec.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EFE20ADE81CBE47F13D76267285C4A35 /* FailureMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8229A8FF9913565C12C89F60E7A1AC9C /* FailureMessage.swift */; };
@@ -496,6 +498,8 @@
 		E62394DDB3AB915FBBD83243A8B71230 /* Pods-Analytics_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Analytics_Tests.modulemap"; sourceTree = "<group>"; };
 		E7AB55987C10340C4B02FBDAE880AB21 /* Match.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Match.swift; path = Sources/Nimble/Matchers/Match.swift; sourceTree = "<group>"; };
 		EA0B4D0A1C53C864E5FBB5AD62ACFBA5 /* Pods-Analytics_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Analytics_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		EA1B1C841D9122B2008527E6 /* SEGIntegrationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGIntegrationsManager.h; sourceTree = "<group>"; };
+		EA1B1C851D9122B2008527E6 /* SEGIntegrationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGIntegrationsManager.m; sourceTree = "<group>"; };
 		EB35E29E9F767F1C79D71D5FF9898DF4 /* LSHTTPStubURLProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LSHTTPStubURLProtocol.h; path = Nocilla/Hooks/NSURLRequest/LSHTTPStubURLProtocol.h; sourceTree = "<group>"; };
 		EBA063EE2731FB439B757972FB71D3CE /* BeGreaterThan.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeGreaterThan.swift; path = Sources/Nimble/Matchers/BeGreaterThan.swift; sourceTree = "<group>"; };
 		EC832CDDA4C68B7B9F6A208EE7C6FEFE /* BeCloseTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeCloseTo.swift; path = Sources/Nimble/Matchers/BeCloseTo.swift; sourceTree = "<group>"; };
@@ -666,6 +670,8 @@
 		0E8EFE4575F56FD86D76AE8B705D6AD0 /* Integrations */ = {
 			isa = PBXGroup;
 			children = (
+				EA1B1C841D9122B2008527E6 /* SEGIntegrationsManager.h */,
+				EA1B1C851D9122B2008527E6 /* SEGIntegrationsManager.m */,
 				5C6978A834AF54EF0268E25ED12203E4 /* SEGAliasPayload.h */,
 				54D97D92999F2574BC6A95AD2B3D101B /* SEGAliasPayload.m */,
 				AD8988D65063BAE4CBD1908518600E5C /* SEGGroupPayload.h */,
@@ -1099,6 +1105,7 @@
 			files = (
 				B9848154F0FB639AD3E9D3F9C4A7EC57 /* Analytics-umbrella.h in Headers */,
 				7F93C11389E90E7F59396B172CBE9DF7 /* NSData+SEGGZIP.h in Headers */,
+				EA1B1C861D9122B2008527E6 /* SEGIntegrationsManager.h in Headers */,
 				E33C7AA292F07FC251AF40E21A781EA3 /* SEGAES256Crypto.h in Headers */,
 				E515AD65B63DCEB3A33173266FED77AC /* SEGAliasPayload.h in Headers */,
 				CF02AE1CC2E4D05F77FA6E295C555361 /* SEGAnalytics.h in Headers */,
@@ -1486,6 +1493,7 @@
 				51D27DE4397DE5E5C5680B0F449E96EF /* Analytics-dummy.m in Sources */,
 				CEEC491F56D030B0FCDE55B47A085CE5 /* NSData+SEGGZIP.m in Sources */,
 				7BA4E212EAF85D998BBE857DF745FAC1 /* SEGAES256Crypto.m in Sources */,
+				EA1B1C871D9122B2008527E6 /* SEGIntegrationsManager.m in Sources */,
 				ADEEE0FB091BC338011E0E2B8959CF5A /* SEGAliasPayload.m in Sources */,
 				1B92E4F8CDFAB6B64AFE51AE2551DAA7 /* SEGAnalytics.m in Sources */,
 				5D7BEFF541579696C6770C3086BB1065 /* SEGAnalyticsUtils.m in Sources */,

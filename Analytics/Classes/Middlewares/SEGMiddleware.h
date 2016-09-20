@@ -21,6 +21,14 @@
 
 @end
 
+// Middleware in general should **always** call `next`. Only avoid calling
+// next if the intention is to explicitly filter out events from downstream.
+// Since the `next` param of `SEGMiddleware` protocol is guaranteed to be
+// nonnull, we use a noop middleware to signify the end of the middleware chain.
+// Of course Noop won't have and won't call next
+@interface SEGNoopMiddleware : NSObject<SEGMiddleware>
+@end
+
 @interface SEGMiddlewareManager : NSObject
 
 @property (nonnull, nonatomic, strong) NSMutableArray<id<SEGMiddleware>> *middlewares;

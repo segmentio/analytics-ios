@@ -65,7 +65,6 @@ typedef NS_ENUM(NSInteger, SEGEventType) {
 
 - (SEGContext * _Nonnull)modify:(void(^_Nonnull)(id<SEGMutableContext> _Nonnull))modify;
 
-
 @end
 
 @protocol SEGMutableContext <NSObject>
