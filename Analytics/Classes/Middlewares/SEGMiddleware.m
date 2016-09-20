@@ -9,14 +9,35 @@
 #import "SEGUtils.h"
 #import "SEGMiddleware.h"
 
-@implementation SEGNoopMiddleware
+@implementation SEGMiddlewareRunner
 
-- (void)context:(SEGContext *)context next:(id<SEGMiddleware>)next {
-    SEGLog(@"[Noop] Middleware received event %d", context.eventType);
+- (instancetype)initWithMiddlewares:(NSArray<id<SEGMiddleware>> * _Nonnull)middlewares {
+    if (self = [super init]) {
+        _middlewares = middlewares;
+    }
+    return self;
 }
 
-@end
+- (void)run:(SEGContext * _Nonnull)context callback:(RunMiddlewaresCallback _Nullable)callback {
+    [self runMiddlewares:self.middlewares context:context callback:callback];
+}
 
-@implementation SEGMiddlewareManager
+// TODO: Rename SEGContext to SEGEvent to be a bit more clear wouldn't hurt
+- (void)runMiddlewares:(NSArray<id<SEGMiddleware>> * _Nonnull)middlewares
+               context:(SEGContext * _Nonnull)context
+              callback:(RunMiddlewaresCallback _Nullable)callback {
+    BOOL earlyExit = context == nil;
+    if (middlewares.count == 0 || earlyExit) {
+        if (callback) {
+            callback(earlyExit, middlewares);
+        }
+        return;
+    }
+    
+    [middlewares[0] context:context next:^(SEGContext * _Nullable newContext) {
+        NSArray *remainingMiddlewares = [middlewares subarrayWithRange:NSMakeRange(1, middlewares.count - 1)];
+        [self runMiddlewares:remainingMiddlewares context:newContext callback:callback];
+    }];
+}
 
 @end

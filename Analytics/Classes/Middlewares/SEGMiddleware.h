@@ -17,20 +17,26 @@
 // as mutable objects under the hood for performance optimization.
 // The behavior of keeping reference to a context AFTER passing it to the next middleware
 // is strictly undefined.
-- (void)context:(SEGContext * _Nonnull)context next:(id<SEGMiddleware> _Nonnull)next;
+
+// Middleware should **always** call `next`. If the intention is to explicitly filter out
+// events from downstream, call `next` with `nil` as the param.
+// It's ok to save next callback until a more convenient time, but it should always always be done.
+// We'll probably actually add tests to sure it is so.
+- (void)context:(SEGContext * _Nonnull)context next:(void(^_Nonnull)(SEGContext * _Nullable newContext))next;
 
 @end
 
-// Middleware in general should **always** call `next`. Only avoid calling
-// next if the intention is to explicitly filter out events from downstream.
-// Since the `next` param of `SEGMiddleware` protocol is guaranteed to be
-// nonnull, we use a noop middleware to signify the end of the middleware chain.
-// Of course Noop won't have and won't call next
-@interface SEGNoopMiddleware : NSObject<SEGMiddleware>
-@end
+typedef void (^RunMiddlewaresCallback)(BOOL earlyExit, NSArray<id<SEGMiddleware>> * _Nonnull remainingMiddlewares);
 
-@interface SEGMiddlewareManager : NSObject
+// TODO: Add some tests for SEGMiddlewareRunner
+@interface SEGMiddlewareRunner : NSObject
 
-@property (nonnull, nonatomic, strong) NSMutableArray<id<SEGMiddleware>> *middlewares;
+// While it is certainly technically possible to change middlewares dynamically on the fly. we're explicitly NOT
+// gonna support that for now to keep things simple. If there is a real need later we'll see then.
+@property (nonnull, nonatomic, readonly) NSArray<id<SEGMiddleware>> *middlewares;
+
+- (void)run:(SEGContext * _Nonnull)context callback:(RunMiddlewaresCallback _Nullable)callback;
+
+- (instancetype _Nonnull)initWithMiddlewares:(NSArray<id<SEGMiddleware>> * _Nonnull)middlewares;
 
 @end
