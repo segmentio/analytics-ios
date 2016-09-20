@@ -22,7 +22,8 @@
     [self runMiddlewares:self.middlewares context:context callback:callback];
 }
 
-// TODO: Rename SEGContext to SEGEvent to be a bit more clear wouldn't hurt
+// TODO: Maybe rename SEGContext to SEGEvent to be a bit more clear?
+// We could also use some sanity check / other types of logging here.
 - (void)runMiddlewares:(NSArray<id<SEGMiddleware>> * _Nonnull)middlewares
                context:(SEGContext * _Nonnull)context
               callback:(RunMiddlewaresCallback _Nullable)callback {

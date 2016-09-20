@@ -12,40 +12,40 @@
 
 @interface SEGApplicationLifecyclePayload : SEGPayload
 
-@property (nonatomic, readonly) NSString *notificationName;
+@property (nonatomic, strong) NSString *notificationName;
 
 // ApplicationDidFinishLaunching only
-@property (nonatomic, readonly) NSDictionary *launchOptions;
+@property (nonatomic, strong) NSDictionary *launchOptions;
 
 @end
 
 @interface SEGRemoteNotificationPayload : SEGPayload
 
 // SEGEventTypeHandleActionWithForRemoteNotification
-@property (nonatomic, readonly) NSString *actionIdentifier;
+@property (nonatomic, strong) NSString *actionIdentifier;
 
 // SEGEventTypeHandleActionWithForRemoteNotification
 // SEGEventTypeReceivedRemoteNotification
-@property (nonatomic, readonly) NSDictionary *userInfo;
+@property (nonatomic, strong) NSDictionary *userInfo;
 
 // SEGEventTypeFailedToRegisterForRemoteNotifications
-@property (nonatomic, readonly) NSError *error;
+@property (nonatomic, strong) NSError *error;
 
 // SEGEventTypeRegisteredForRemoteNotifications
-@property (nonatomic, readonly) NSData *deviceToken;
+@property (nonatomic, strong) NSData *deviceToken;
 
 @end
 
 @interface SEGContinueUserActivityPayload : SEGPayload
 
-@property (nonatomic, readonly) NSUserActivity *activity;
+@property (nonatomic, strong) NSUserActivity *activity;
 
 @end
 
 @interface SEGOpenURLPayload : SEGPayload
 
-@property (nonatomic, readonly) NSURL *url;
-@property (nonatomic, readonly) NSDictionary *options;
+@property (nonatomic, strong) NSURL *url;
+@property (nonatomic, strong) NSDictionary *options;
 
 @end
 

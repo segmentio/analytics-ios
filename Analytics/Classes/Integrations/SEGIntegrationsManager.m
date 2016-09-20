@@ -489,11 +489,6 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     });
 }
 
-- (NSDictionary *)bundledIntegrations
-{
-    return [self.registeredIntegrations copy];
-}
-
 @end
 
 @interface SEGPayload (Options)

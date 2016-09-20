@@ -42,7 +42,7 @@
     return self;
 }
 
-- (SEGContext * _Nonnull)modify:(void(^_Nonnull)(id<SEGMutableContext> _Nonnull))modify {
+- (SEGContext * _Nonnull)modify:(void(^_Nonnull)(id<SEGMutableContext> _Nonnull ctx))modify {
     // We're also being a bit clever here by implementing SEGContext actually as a mutable
     // object but hiding that implementation detail from consumer of the API.
     // In production also instead of copying self we simply just return self

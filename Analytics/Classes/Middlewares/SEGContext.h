@@ -64,7 +64,7 @@ typedef NS_ENUM(NSInteger, SEGEventType) {
 
 - (instancetype _Nonnull)initWithAnalytics:(SEGAnalytics * _Nonnull)analytics;
 
-- (SEGContext * _Nonnull)modify:(void(^_Nonnull)(id<SEGMutableContext> _Nonnull))modify;
+- (SEGContext * _Nonnull)modify:(void(^_Nonnull)(id<SEGMutableContext> _Nonnull ctx))modify;
 
 @end
 

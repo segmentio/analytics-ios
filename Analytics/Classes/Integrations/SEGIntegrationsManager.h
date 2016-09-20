@@ -17,7 +17,13 @@ extern NSString *_Nonnull SEGAnalyticsIntegrationDidStart;
 @class SEGAnalytics;
 @interface SEGIntegrationsManager : NSObject
 
+// @Deprecated - Exposing for backward API compat reasons only
+@property (nonatomic, readonly) NSMutableDictionary * _Nonnull registeredIntegrations;
+
 - (instancetype _Nonnull)initWithAnalytics:(SEGAnalytics * _Nonnull)analytics;
+
+// @Deprecated - Exposing for backward API compat reasons only
+- (NSString * _Nonnull)getAnonymousId;
 
 @end
 
