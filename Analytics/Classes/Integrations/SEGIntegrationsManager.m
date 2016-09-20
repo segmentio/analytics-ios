@@ -72,7 +72,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 #else
         self.storage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:configuration.crypto];
 #endif
-        NSMutableArray *factories = [configuration factories];
+        NSMutableArray *factories = [[configuration factories] mutableCopy];
         [factories addObject:[[SEGSegmentIntegrationFactory alloc] initWithHTTPClient:self.httpClient storage:self.storage]];
         self.factories = [factories copy];
         self.integrations = [NSMutableDictionary dictionaryWithCapacity:factories.count];
