@@ -13,7 +13,6 @@
 #import "SEGTrackPayload.h"
 #import "NSData+SEGGZIP.h"
 #import "SEGAnalyticsUtils.h"
-#import "SEGBluetooth.h"
 #import "SEGFileStorage.h"
 #import "SEGHTTPClient.h"
 #import "SEGLocation.h"
