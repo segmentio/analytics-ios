@@ -22,7 +22,6 @@
 		122C9B689949F35D5A262CC83DB61B74 /* SEGAliasPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = 98F3ABC87F48FE925DFD0E6629964642 /* SEGAliasPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1277359C8D8BB837B24617969BAAC9DF /* NSRegularExpression+Matcheable.m in Sources */ = {isa = PBXBuildFile; fileRef = F6263108315CEF4B68DE6E67B2C48B08 /* NSRegularExpression+Matcheable.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		128B9A07E9D0F95B28E5F1F3483CB7EA /* LSASIHTTPRequestAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AC281AA453E5DD781A9A66A441FDD20 /* LSASIHTTPRequestAdapter.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1506857073C82B36917FBB4F9CF01068 /* SEGBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = D829E368118B61FFA584C01DF74C0B67 /* SEGBluetooth.m */; };
 		15A7217C749314E8423F3C36A99BAF7A /* LSHTTPStubURLProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 08314F0A05248A11EF6611D2B9A850AE /* LSHTTPStubURLProtocol.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		1605F8488EA2281B38AAFED554B9DD9C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68984A71C488CFBF3D3D9AF14B9722A /* Foundation.framework */; };
 		16325200AF77954D55A5F9F56A6433F5 /* LSRegexMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 586F3316DA54A80ADF2512A3A8D1AC61 /* LSRegexMatcher.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -211,7 +210,6 @@
 		FCB4158D0A7BB2032A5D13F0D3758642 /* LSHTTPClientHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AB1F4469C62459BEB77D4C08FCA106 /* LSHTTPClientHook.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		FCFC2208684969E5BDF9F439AEE58162 /* NSString+Matcheable.h in Headers */ = {isa = PBXBuildFile; fileRef = 75900854FC7419B36702D6B17DC2A302 /* NSString+Matcheable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FF0366DFC597745127A6D92AB83F0D60 /* BeIdenticalTo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86D06FB8A81E2179FA654681AA379D3 /* BeIdenticalTo.swift */; };
-		FFE7215A5741457A29C202637D96182E /* SEGBluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = C91FB89B7A8EC27E012D80F6791CD14E /* SEGBluetooth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -443,7 +441,6 @@
 		C83FE0C9B82CD682A1442DED993CCD92 /* LSStubRequestDSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LSStubRequestDSL.h; path = Nocilla/DSL/LSStubRequestDSL.h; sourceTree = "<group>"; };
 		C8A0D75C33BE150DA62CD8DB1B2E4941 /* SEGAnalytics.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SEGAnalytics.m; sourceTree = "<group>"; };
 		C8F56AA173B6F56F92292200DA542C31 /* HaveCount.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HaveCount.swift; path = Sources/Nimble/Matchers/HaveCount.swift; sourceTree = "<group>"; };
-		C91FB89B7A8EC27E012D80F6791CD14E /* SEGBluetooth.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SEGBluetooth.h; sourceTree = "<group>"; };
 		C95FC0E1E5C1F4056F6D19ED03108E9F /* UIViewController+SEGScreen.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SEGScreen.m"; sourceTree = "<group>"; };
 		CAC3C34C25AFBD15E66DAAD6AAC10332 /* SEGSegmentIntegrationFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SEGSegmentIntegrationFactory.m; sourceTree = "<group>"; };
 		CC298FDFD70268763644A6AB10661D7C /* LSStubResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LSStubResponse.h; path = Nocilla/Stubs/LSStubResponse.h; sourceTree = "<group>"; };
@@ -456,7 +453,6 @@
 		D5A921B286C5A15FD38BBC03AAEF4BF5 /* Quick.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Quick.h; path = Sources/Quick/Quick.h; sourceTree = "<group>"; };
 		D75ECAAC4723C4F82E4906E25298776D /* QuickSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QuickSpec.h; path = Sources/Quick/QuickSpec.h; sourceTree = "<group>"; };
 		D78040608A1DCAAFF42DB83B172C3655 /* MatcherFunc.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MatcherFunc.swift; path = Sources/Nimble/Matchers/MatcherFunc.swift; sourceTree = "<group>"; };
-		D829E368118B61FFA584C01DF74C0B67 /* SEGBluetooth.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SEGBluetooth.m; sourceTree = "<group>"; };
 		D9B88F78DCC30320B400A7DD656E337E /* Pods-Analytics_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Analytics_Example.release.xcconfig"; sourceTree = "<group>"; };
 		D9C3F42CF3A06C1E082C7CCC116DE867 /* Pods-Analytics_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Analytics_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D9D984E86E80DE171F45AC28A7A31B68 /* NMBExceptionCapture.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = NMBExceptionCapture.m; path = Sources/Nimble/Adapters/ObjectiveC/NMBExceptionCapture.m; sourceTree = "<group>"; };
@@ -656,8 +652,6 @@
 				F6483E5A4C32F0B2EF01B13781DDF053 /* NSData+SEGGZIP.m */,
 				2877CEC45417EE0FA8C0860CDB81E406 /* SEGAnalyticsUtils.h */,
 				E9685D775719CFF07A71008E3254E248 /* SEGAnalyticsUtils.m */,
-				C91FB89B7A8EC27E012D80F6791CD14E /* SEGBluetooth.h */,
-				D829E368118B61FFA584C01DF74C0B67 /* SEGBluetooth.m */,
 				E3FEC101C287C9FF2F6A85EA5E5FE737 /* SEGFileStorage.h */,
 				6FEE332359D52339B0C29B2B7BA6DE1D /* SEGFileStorage.m */,
 				18B74443611FA38FDF357B94FE71B117 /* SEGHTTPClient.h */,
@@ -982,7 +976,6 @@
 				122C9B689949F35D5A262CC83DB61B74 /* SEGAliasPayload.h in Headers */,
 				DB6D2821AB7CBFD6172F5B056B433817 /* SEGAnalytics.h in Headers */,
 				2474E0A98C87052E42D94530502284FC /* SEGAnalyticsUtils.h in Headers */,
-				FFE7215A5741457A29C202637D96182E /* SEGBluetooth.h in Headers */,
 				2CF2E077B4AF5A7FAB68FC48CEBB67B3 /* SEGCrypto.h in Headers */,
 				809B6E1B7AE17AA0960F34C7E7B6FA7F /* SEGFileStorage.h in Headers */,
 				F959A6CF53615062E807298586D58C7E /* SEGGroupPayload.h in Headers */,
@@ -1375,7 +1368,6 @@
 				7D6EF993DC800FDF67D48A896A8091A9 /* SEGAliasPayload.m in Sources */,
 				F999210356B9A16D84AEB43DB9DD2028 /* SEGAnalytics.m in Sources */,
 				83CCFCC61E294245A1DA67AA7F7A9B11 /* SEGAnalyticsUtils.m in Sources */,
-				1506857073C82B36917FBB4F9CF01068 /* SEGBluetooth.m in Sources */,
 				D34DC675E0E0E4B7A9E935F9CBD48C00 /* SEGFileStorage.m in Sources */,
 				A6231D0599B690684E18F181DCC91AC5 /* SEGGroupPayload.m in Sources */,
 				B2C7BAB65FBB9443F4020111459B534B /* SEGHTTPClient.m in Sources */,
