@@ -181,7 +181,6 @@
 		8929941F0C7A48971332804FD69CC3CA /* LSASIHTTPRequestHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5B5E8DF688DFA4F8FB19477C61D886 /* LSASIHTTPRequestHook.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		8B7B17CE41673C814845B679DC0A418E /* SEGSegmentIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AE5253250E6F02E9BD69B1886F87F24 /* SEGSegmentIntegrationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8C8C1B0D83FE6A4352F15154DB16372C /* EXPMatcherHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = F5728155B0477E51E763695B211A515D /* EXPMatcherHelpers.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8DE9336C9EF7F96A60A2A024B5A9B361 /* SEGLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = B16937B8762009D6195A83A815079ABF /* SEGLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DFE23F2C7973BC8A159168AFC2FB8C3 /* MatcherFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC378557D24589C0F07C634FE2E2295 /* MatcherFunc.swift */; };
 		8E5F8BAF1D27F8F0CF242C8B508A2F84 /* SEGStoreKitTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0382CEE8C33D5132C9CD5B925453B8 /* SEGStoreKitTracker.m */; };
 		8E791C68E33E99B1FA91193235900342 /* SEGHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 18B74443611FA38FDF357B94FE71B117 /* SEGHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -232,7 +231,6 @@
 		B2FCB65574A9C12D8A8F0BC234F683F5 /* SPTCallSite.h in Headers */ = {isa = PBXBuildFile; fileRef = D8F53ED18C86031D791E7F5800323117 /* SPTCallSite.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B30D380B5EFCD54FEE04D3C4F1988262 /* NSString+Nocilla.h in Headers */ = {isa = PBXBuildFile; fileRef = B2EC2AF041868B0F9F3068AB8BCB7C92 /* NSString+Nocilla.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B47F2B1F7F5FEC4CE62F09832392E842 /* Nimble-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 908985A408C0B8823BE41281B2E2FEA1 /* Nimble-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B64FAA3D5441304EB98DD624C59C9101 /* SEGLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DA7AAD66B59A8EE9FAEB0FE9B6598D /* SEGLocation.m */; };
 		B7185ADC751C1C1B68DCE07933CF0CB5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68984A71C488CFBF3D3D9AF14B9722A /* Foundation.framework */; };
 		B78A3DF47B5FEF7D9BE0B7660500211B /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921F59A9554D1E890C562C801BC3CAF8 /* Equal.swift */; };
 		B7B6C386D18C61D236CE7B92C62DC4F4 /* LSHTTPResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 86224DF80662542C916F93AEC2C4E76A /* LSHTTPResponse.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -492,7 +490,6 @@
 		61DA9C35CCC5DAF7296DE86A00B197D4 /* EXPMatchers+beKindOf.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beKindOf.m"; path = "Expecta/Matchers/EXPMatchers+beKindOf.m"; sourceTree = "<group>"; };
 		62302E213EF24A64B1F160C5FA6CE7CE /* EXPUnsupportedObject.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EXPUnsupportedObject.m; path = Expecta/EXPUnsupportedObject.m; sourceTree = "<group>"; };
 		625F163C7CDF82D20B08B95FCF5B8117 /* NSRegularExpression+Matcheable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSRegularExpression+Matcheable.h"; path = "Nocilla/Matchers/NSRegularExpression+Matcheable.h"; sourceTree = "<group>"; };
-		62DA7AAD66B59A8EE9FAEB0FE9B6598D /* SEGLocation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SEGLocation.m; sourceTree = "<group>"; };
 		645EA5733D74BB5E63F2E1F212C6CAAE /* EXPMatchers+beInTheRangeOf.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beInTheRangeOf.m"; path = "Expecta/Matchers/EXPMatchers+beInTheRangeOf.m"; sourceTree = "<group>"; };
 		653676CFF689B20E529DCB0A9CBE17D8 /* BeLessThan.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeLessThan.swift; path = Sources/Nimble/Matchers/BeLessThan.swift; sourceTree = "<group>"; };
 		659841D06F271E1B3AEC0180392484C0 /* SpectaUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SpectaUtility.m; path = Specta/Specta/SpectaUtility.m; sourceTree = "<group>"; };
@@ -610,7 +607,6 @@
 		B06DEA8ACE152C866264DF4374FB8C2A /* LSNocilla.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LSNocilla.m; path = Nocilla/LSNocilla.m; sourceTree = "<group>"; };
 		B07616B05D0BDD100676E13B77C6C7B7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		B082312CD9ACED5871DD3C874EA85D94 /* LSDataMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LSDataMatcher.h; path = Nocilla/Matchers/LSDataMatcher.h; sourceTree = "<group>"; };
-		B16937B8762009D6195A83A815079ABF /* SEGLocation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SEGLocation.h; sourceTree = "<group>"; };
 		B2EC2AF041868B0F9F3068AB8BCB7C92 /* NSString+Nocilla.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSString+Nocilla.h"; path = "Nocilla/Categories/NSString+Nocilla.h"; sourceTree = "<group>"; };
 		B32CF9062D7050124FAD3BC06ECD3EA9 /* EXPMatchers+beLessThanOrEqualTo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beLessThanOrEqualTo.m"; path = "Expecta/Matchers/EXPMatchers+beLessThanOrEqualTo.m"; sourceTree = "<group>"; };
 		B3AAE7410FABF2409B8FD5704469BEDF /* Functional.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Functional.swift; path = Sources/Nimble/Utils/Functional.swift; sourceTree = "<group>"; };
@@ -873,8 +869,6 @@
 				6FEE332359D52339B0C29B2B7BA6DE1D /* SEGFileStorage.m */,
 				18B74443611FA38FDF357B94FE71B117 /* SEGHTTPClient.h */,
 				39A8D07DDC4089D441DA2C31A063D0FD /* SEGHTTPClient.m */,
-				B16937B8762009D6195A83A815079ABF /* SEGLocation.h */,
-				62DA7AAD66B59A8EE9FAEB0FE9B6598D /* SEGLocation.m */,
 				9BCCD26FC76A1CD48A0151148EF5D595 /* SEGReachability.h */,
 				6CABC82843926E7FD4E81B8226B58E4D /* SEGReachability.m */,
 				03ADC218D66C726B20FDCECDAD7688A8 /* SEGSegmentIntegration.h */,
@@ -1395,7 +1389,6 @@
 				5E5D4CD1C177D1FFCE5B269A7F9A716B /* SEGIdentifyPayload.h in Headers */,
 				A59C249CFA9EECF11074C606BF9FFA4F /* SEGIntegration.h in Headers */,
 				E42A9529A3E6A7D082F9149A86501FB2 /* SEGIntegrationFactory.h in Headers */,
-				8DE9336C9EF7F96A60A2A024B5A9B361 /* SEGLocation.h in Headers */,
 				D4728557E77D960CBA943631C1F39536 /* SEGPayload.h in Headers */,
 				09A544025DBC53E36DB6C6520AF15C27 /* SEGReachability.h in Headers */,
 				96D47B4C32B8255C4A03DA84E0D112A2 /* SEGScreenPayload.h in Headers */,
@@ -1928,7 +1921,6 @@
 				A6231D0599B690684E18F181DCC91AC5 /* SEGGroupPayload.m in Sources */,
 				B2C7BAB65FBB9443F4020111459B534B /* SEGHTTPClient.m in Sources */,
 				59726981E63CD066FAB20F5A137A21C2 /* SEGIdentifyPayload.m in Sources */,
-				B64FAA3D5441304EB98DD624C59C9101 /* SEGLocation.m in Sources */,
 				AF261211293DBFA884E8690DE9A29F97 /* SEGPayload.m in Sources */,
 				73D2E569B1EC0D07050355451FD069AA /* SEGReachability.m in Sources */,
 				EDB58B25143813E758202F21A88DDC6F /* SEGScreenPayload.m in Sources */,
