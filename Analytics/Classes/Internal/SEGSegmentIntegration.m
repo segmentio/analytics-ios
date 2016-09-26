@@ -5,7 +5,6 @@
 #import "SEGAnalyticsUtils.h"
 #import "SEGSegmentIntegration.h"
 #import "SEGReachability.h"
-#import "SEGLocation.h"
 #import "SEGHTTPClient.h"
 #import "SEGStorage.h"
 
@@ -57,7 +56,6 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, strong) NSURLSessionUploadTask *batchRequest;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
 @property (nonatomic, strong) SEGReachability *reachability;
-@property (nonatomic, strong) SEGLocation *location;
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 @property (nonatomic, strong) NSMutableDictionary *traits;
@@ -226,21 +224,8 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         network;
     });
 
-    self.location = !self.location ? [self.configuration shouldUseLocationServices] ? [SEGLocation new] : nil : self.location;
-
-#if TARGET_OS_IOS || (TARGET_OS_MAC && !TARGET_OS_IPHONE)
-    [self.location startUpdatingLocation];
-#endif
-
-    if (self.location.hasKnownLocation)
-        context[@"location"] = self.location.locationDictionary;
-
     context[@"traits"] = ({
         NSMutableDictionary *traits = [[NSMutableDictionary alloc] initWithDictionary:[self traits]];
-
-        if (self.location.hasKnownLocation)
-            traits[@"address"] = self.location.addressDictionary;
-
         traits;
     });
 

@@ -15,7 +15,6 @@
 #import "SEGAnalyticsUtils.h"
 #import "SEGFileStorage.h"
 #import "SEGHTTPClient.h"
-#import "SEGLocation.h"
 #import "SEGReachability.h"
 #import "SEGSegmentIntegration.h"
 #import "SEGSegmentIntegrationFactory.h"
