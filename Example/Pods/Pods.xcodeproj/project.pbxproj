@@ -123,7 +123,6 @@
 		8929941F0C7A48971332804FD69CC3CA /* LSASIHTTPRequestHook.m in Sources */ = {isa = PBXBuildFile; fileRef = 8FF11C97907B8E7FDA029B611493B942 /* LSASIHTTPRequestHook.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		8B7B17CE41673C814845B679DC0A418E /* SEGSegmentIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AE5253250E6F02E9BD69B1886F87F24 /* SEGSegmentIntegrationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8B9159206B992397C28281974D86CAC9 /* World+DSL.h in Headers */ = {isa = PBXBuildFile; fileRef = E1A06F60B50A0B1E40A23668C0335BE2 /* World+DSL.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8DE9336C9EF7F96A60A2A024B5A9B361 /* SEGLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = B16937B8762009D6195A83A815079ABF /* SEGLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8DFE23F2C7973BC8A159168AFC2FB8C3 /* MatcherFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78040608A1DCAAFF42DB83B172C3655 /* MatcherFunc.swift */; };
 		8E5F8BAF1D27F8F0CF242C8B508A2F84 /* SEGStoreKitTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0382CEE8C33D5132C9CD5B925453B8 /* SEGStoreKitTracker.m */; };
 		8E791C68E33E99B1FA91193235900342 /* SEGHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 18B74443611FA38FDF357B94FE71B117 /* SEGHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -158,7 +157,6 @@
 		B2C7BAB65FBB9443F4020111459B534B /* SEGHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 39A8D07DDC4089D441DA2C31A063D0FD /* SEGHTTPClient.m */; };
 		B30D380B5EFCD54FEE04D3C4F1988262 /* NSString+Nocilla.h in Headers */ = {isa = PBXBuildFile; fileRef = E92600F44829B4ACE8DF879354140965 /* NSString+Nocilla.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B47F2B1F7F5FEC4CE62F09832392E842 /* Nimble-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DA4572706F2EAAD2C15B6EC16538EA2A /* Nimble-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B64FAA3D5441304EB98DD624C59C9101 /* SEGLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DA7AAD66B59A8EE9FAEB0FE9B6598D /* SEGLocation.m */; };
 		B78A3DF47B5FEF7D9BE0B7660500211B /* Equal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F843C8DED03680031EC7AF1C23226F5B /* Equal.swift */; };
 		B7B6C386D18C61D236CE7B92C62DC4F4 /* LSHTTPResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = C41075324E4F876AF96E1D260B1A92C7 /* LSHTTPResponse.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		B7BAA1610C192270DE28D6F9ACE95542 /* LSStubResponseDSL.h in Headers */ = {isa = PBXBuildFile; fileRef = D122AB070DEEBA0C275E2E2EE3C23DEF /* LSStubResponseDSL.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -340,7 +338,6 @@
 		5C5B668E2210E73223387E32637C6D01 /* LSHTTPRequestDiff.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LSHTTPRequestDiff.m; path = Nocilla/Diff/LSHTTPRequestDiff.m; sourceTree = "<group>"; };
 		5C8DA1BF37A226EB1BB08A9821A9A0F1 /* CurrentTestCaseTracker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CurrentTestCaseTracker.h; path = Sources/Nimble/Adapters/ObjectiveC/CurrentTestCaseTracker.h; sourceTree = "<group>"; };
 		610AB0CE528115E1C048EDE147E12422 /* BeGreaterThan.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeGreaterThan.swift; path = Sources/Nimble/Matchers/BeGreaterThan.swift; sourceTree = "<group>"; };
-		62DA7AAD66B59A8EE9FAEB0FE9B6598D /* SEGLocation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SEGLocation.m; sourceTree = "<group>"; };
 		63FCA0C5FDD459BC702C5CCB96704FB4 /* BeAKindOf.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeAKindOf.swift; path = Sources/Nimble/Matchers/BeAKindOf.swift; sourceTree = "<group>"; };
 		65AC36A394843DE7183C1ABDCB546439 /* Quick-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Quick-prefix.pch"; sourceTree = "<group>"; };
 		67D7F7DCA3E4396E47075991468FFDD3 /* NSString+Matcheable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+Matcheable.m"; path = "Nocilla/Matchers/NSString+Matcheable.m"; sourceTree = "<group>"; };
@@ -420,7 +417,6 @@
 		AD699C755F3D15843EE1B08FD8183FF4 /* NSString+QCKSelectorName.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+QCKSelectorName.m"; path = "Sources/Quick/NSString+QCKSelectorName.m"; sourceTree = "<group>"; };
 		B07616B05D0BDD100676E13B77C6C7B7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
 		B0787C0D6C4C6861DE053B9761EFB406 /* QuickSpec.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QuickSpec.m; path = Sources/Quick/QuickSpec.m; sourceTree = "<group>"; };
-		B16937B8762009D6195A83A815079ABF /* SEGLocation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SEGLocation.h; sourceTree = "<group>"; };
 		B4C38673C1033E0723F2F8E6B3E587BB /* SEGUserDefaultsStorage.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SEGUserDefaultsStorage.m; sourceTree = "<group>"; };
 		B86D06FB8A81E2179FA654681AA379D3 /* BeIdenticalTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeIdenticalTo.swift; path = Sources/Nimble/Matchers/BeIdenticalTo.swift; sourceTree = "<group>"; };
 		BA1E20A83654031651F3F0955D07FC88 /* BeGreaterThanOrEqualTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeGreaterThanOrEqualTo.swift; path = Sources/Nimble/Matchers/BeGreaterThanOrEqualTo.swift; sourceTree = "<group>"; };
@@ -656,8 +652,6 @@
 				6FEE332359D52339B0C29B2B7BA6DE1D /* SEGFileStorage.m */,
 				18B74443611FA38FDF357B94FE71B117 /* SEGHTTPClient.h */,
 				39A8D07DDC4089D441DA2C31A063D0FD /* SEGHTTPClient.m */,
-				B16937B8762009D6195A83A815079ABF /* SEGLocation.h */,
-				62DA7AAD66B59A8EE9FAEB0FE9B6598D /* SEGLocation.m */,
 				9BCCD26FC76A1CD48A0151148EF5D595 /* SEGReachability.h */,
 				6CABC82843926E7FD4E81B8226B58E4D /* SEGReachability.m */,
 				03ADC218D66C726B20FDCECDAD7688A8 /* SEGSegmentIntegration.h */,
@@ -983,7 +977,6 @@
 				5E5D4CD1C177D1FFCE5B269A7F9A716B /* SEGIdentifyPayload.h in Headers */,
 				A59C249CFA9EECF11074C606BF9FFA4F /* SEGIntegration.h in Headers */,
 				E42A9529A3E6A7D082F9149A86501FB2 /* SEGIntegrationFactory.h in Headers */,
-				8DE9336C9EF7F96A60A2A024B5A9B361 /* SEGLocation.h in Headers */,
 				D4728557E77D960CBA943631C1F39536 /* SEGPayload.h in Headers */,
 				09A544025DBC53E36DB6C6520AF15C27 /* SEGReachability.h in Headers */,
 				96D47B4C32B8255C4A03DA84E0D112A2 /* SEGScreenPayload.h in Headers */,
@@ -1372,7 +1365,6 @@
 				A6231D0599B690684E18F181DCC91AC5 /* SEGGroupPayload.m in Sources */,
 				B2C7BAB65FBB9443F4020111459B534B /* SEGHTTPClient.m in Sources */,
 				59726981E63CD066FAB20F5A137A21C2 /* SEGIdentifyPayload.m in Sources */,
-				B64FAA3D5441304EB98DD624C59C9101 /* SEGLocation.m in Sources */,
 				AF261211293DBFA884E8690DE9A29F97 /* SEGPayload.m in Sources */,
 				73D2E569B1EC0D07050355451FD069AA /* SEGReachability.m in Sources */,
 				EDB58B25143813E758202F21A88DDC6F /* SEGScreenPayload.m in Sources */,
