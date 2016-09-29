@@ -9,6 +9,7 @@
 #import "SEGLocation.h"
 #import "SEGHTTPClient.h"
 #import "SEGStorage.h"
+#import "SEGTimerProxy.h"
 
 #if TARGET_OS_IOS
 #import <CoreTelephony/CTCarrier.h>
@@ -124,10 +125,18 @@ static BOOL GetAdTrackingEnabled()
         }];
 
         dispatch_sync(dispatch_get_main_queue(), ^{
-            self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
+            
+            SEGTimerProxy *weakTarget = [[SEGTimerProxy alloc] initWithTimerTarget:self];
+            
+            self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:weakTarget selector:@selector(flush) userInfo:nil repeats:YES];
         });
     }
     return self;
+}
+
+- (void)dealloc {
+    
+    [self.flushTimer invalidate];
 }
 
 /*
