@@ -30,13 +30,31 @@
                                 <color key="textColor" red="0.0" green="0.21406674385070801" blue="0.43007642030715942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Wf-V0-TSe">
+                                <rect key="frame" x="222" y="468" width="156" height="30"/>
+                                <state key="normal" title="Middlewares Deployed"/>
+                                <connections>
+                                    <action selector="orderCompleted:" destination="whP-gf-Uak" eventType="touchUpInside" id="MRq-aM-X6a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trD-QX-nCm">
+                                <rect key="frame" x="282" y="506" width="37" height="30"/>
+                                <state key="normal" title="Flush"/>
+                                <connections>
+                                    <action selector="flush:" destination="whP-gf-Uak" eventType="touchUpInside" id="MA3-1z-8Ya"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.26340898871421814" green="0.72593146562576294" blue="0.50370573997497559" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="trD-QX-nCm" firstAttribute="top" secondItem="3Wf-V0-TSe" secondAttribute="bottom" constant="8" id="22Q-Jf-SzE"/>
                             <constraint firstItem="dBI-mz-xpu" firstAttribute="centerY" secondItem="TpU-gO-2f1" secondAttribute="centerY" id="CYn-Vj-Efg"/>
+                            <constraint firstItem="3Wf-V0-TSe" firstAttribute="centerX" secondItem="nEb-BW-phq" secondAttribute="centerX" id="FFW-XN-Jqr"/>
+                            <constraint firstItem="trD-QX-nCm" firstAttribute="centerX" secondItem="3Wf-V0-TSe" secondAttribute="centerX" id="QNz-b7-LOG"/>
                             <constraint firstItem="dBI-mz-xpu" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="Zpd-1D-V2h"/>
                             <constraint firstItem="nEb-BW-phq" firstAttribute="centerX" secondItem="dBI-mz-xpu" secondAttribute="centerX" id="alQ-8K-AFZ"/>
                             <constraint firstItem="nEb-BW-phq" firstAttribute="top" secondItem="dBI-mz-xpu" secondAttribute="bottom" constant="27" id="iIX-jw-r00"/>
+                            <constraint firstItem="3Wf-V0-TSe" firstAttribute="top" secondItem="nEb-BW-phq" secondAttribute="bottom" constant="19" id="oOo-HO-04b"/>
                         </constraints>
                     </view>
                 </viewController>

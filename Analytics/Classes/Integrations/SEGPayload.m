@@ -13,3 +13,19 @@
 }
 
 @end
+
+@implementation SEGApplicationLifecyclePayload
+
+@end
+
+@implementation SEGRemoteNotificationPayload
+
+@end
+
+@implementation SEGContinueUserActivityPayload
+
+@end
+
+@implementation SEGOpenURLPayload
+
+@end
