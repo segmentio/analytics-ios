@@ -2,6 +2,7 @@ Change Log
 ==========
 
 Version 3.5.1 *(5th October, 2016)*
+-------------------------------------
 
 * Removed automatic bluetooth and location info collection to workaround app submission issues.
 
