@@ -111,7 +111,6 @@
 		7A9882F4F876BB8E15EA44A70F2118E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F68984A71C488CFBF3D3D9AF14B9722A /* Foundation.framework */; };
 		7B43DAAF3279F93BC47804104C5A83D2 /* ExampleMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6299357481EC21AC65419025DB0798A /* ExampleMetadata.swift */; };
 		7D4F2E9B89042760BDE3BB46EEDDA6EF /* SEGGroupPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = F908B72326DE68FCDC79FF475901A74E /* SEGGroupPayload.m */; };
-		7E067115B86308E0BC67C600D474DF8D /* SEGLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A559F37470659141FF5DC8CE83C8824 /* SEGLocation.m */; };
 		7F8AC53F92F56C3319DD733CAFB9DD58 /* BeAKindOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = F001114575B150BE5877345C9418AFEB /* BeAKindOf.swift */; };
 		80867095AACDE711F1FE1374897B00AA /* NSBundle+CurrentTestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDE466456531171F32A24251F90ECB4 /* NSBundle+CurrentTestBundle.swift */; };
 		80AE49E7B669DBD8040F1064D75972F8 /* SEGPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = E2D9A50A020A229D682E2E6C0FC7EF08 /* SEGPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -175,7 +174,6 @@
 		BEA76FA499D5899BD98DBD891FF921D4 /* SatisfyAnyOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E7E6BD3DD9269277AD9618481A60C4 /* SatisfyAnyOf.swift */; };
 		C02B90A1869F1971E5DADF4C07C5F38D /* World.h in Headers */ = {isa = PBXBuildFile; fileRef = D5FA5C2FCE9F1C9CBC9389154ED53764 /* World.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C10ED5EE6C57FD239D5D28CE9EDD5D18 /* SEGIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 47CBC9FE446DDB6407930A01BEE5558C /* SEGIntegration.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C3EB56A2E2DFDFC88CA5A429E926DB8F /* SEGLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = C48EF027897A3B797DFBC1AFDAF36018 /* SEGLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C410E88339C22945ABF285DA54E886B2 /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4E63F6BAF1CEB2BF63D5A4B908388F /* NSData+SEGGZIP.m */; };
 		C4F4C8EF4A764C0FDEB5789F9207FFF2 /* LSNSURLHook.h in Headers */ = {isa = PBXBuildFile; fileRef = D1241DF965F2E72F67CDE3B7FD8FCF47 /* LSNSURLHook.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		C6B1AECA74F601617F8329EB45FB0265 /* NSString+Matcheable.m in Sources */ = {isa = PBXBuildFile; fileRef = 62BB5C33DC4BD0CA6479E7139637D44B /* NSString+Matcheable.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
@@ -408,7 +406,6 @@
 		899191AFA3A8A520683BDEB6DDA405B3 /* NSData+Matcheable.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSData+Matcheable.m"; path = "Nocilla/Matchers/NSData+Matcheable.m"; sourceTree = "<group>"; };
 		89C5D8A8204224B87E1F6A95FDB8E531 /* Pods-Analytics_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Analytics_Example-frameworks.sh"; sourceTree = "<group>"; };
 		8A5539E48D1626888290B653FC54D2C3 /* SEGAliasPayload.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SEGAliasPayload.m; sourceTree = "<group>"; };
-		8A559F37470659141FF5DC8CE83C8824 /* SEGLocation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SEGLocation.m; sourceTree = "<group>"; };
 		8A61FC690A98E74553756F70BA82935E /* BeGreaterThanOrEqualTo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeGreaterThanOrEqualTo.swift; path = Sources/Nimble/Matchers/BeGreaterThanOrEqualTo.swift; sourceTree = "<group>"; };
 		8B7312294E9B470337AE0534AB389220 /* LSStringMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LSStringMatcher.h; path = Nocilla/Matchers/LSStringMatcher.h; sourceTree = "<group>"; };
 		8DE31BD63AB3F4FFA274C3B0D21E54D6 /* LSHTTPStubURLProtocol.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LSHTTPStubURLProtocol.m; path = Nocilla/Hooks/NSURLRequest/LSHTTPStubURLProtocol.m; sourceTree = "<group>"; };
@@ -464,7 +461,6 @@
 		BEEC31880A7C49BBB76F9DEB02687332 /* LSHTTPRequestDSLRepresentation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LSHTTPRequestDSLRepresentation.m; path = Nocilla/DSL/LSHTTPRequestDSLRepresentation.m; sourceTree = "<group>"; };
 		C0B7BF6A953CD1F8C457F866BFC88151 /* UIViewController+SEGScreen.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SEGScreen.h"; sourceTree = "<group>"; };
 		C39084590F65EF07CEB50F71324CE1B8 /* Analytics-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Analytics-prefix.pch"; sourceTree = "<group>"; };
-		C48EF027897A3B797DFBC1AFDAF36018 /* SEGLocation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SEGLocation.h; sourceTree = "<group>"; };
 		C4FA0983AB584CD9064598555D138845 /* SEGFileStorage.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SEGFileStorage.h; sourceTree = "<group>"; };
 		C58D8BDA4AC32458C0631055044A1E56 /* LSRegexMatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LSRegexMatcher.h; path = Nocilla/Matchers/LSRegexMatcher.h; sourceTree = "<group>"; };
 		C7738AD5A0DE7D8F0B1615B70E2322BA /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -954,8 +950,6 @@
 				6D3BA291D5877C8D9A4A0C70131C2347 /* SEGFileStorage.m */,
 				AF5A7207AB200E92FDC0E0692DD0ADBE /* SEGHTTPClient.h */,
 				846D6290B11BFB7ED9076B259107D70E /* SEGHTTPClient.m */,
-				C48EF027897A3B797DFBC1AFDAF36018 /* SEGLocation.h */,
-				8A559F37470659141FF5DC8CE83C8824 /* SEGLocation.m */,
 				12A90AE79E09D651CE914BB7542DE03C /* SEGReachability.h */,
 				B802E7302B652AF6E2BC0A1D6B39AD81 /* SEGReachability.m */,
 				CC9150BDAF8153E0D10D6AD524AA60D1 /* SEGSegmentIntegration.h */,
@@ -1111,7 +1105,6 @@
 				C10ED5EE6C57FD239D5D28CE9EDD5D18 /* SEGIntegration.h in Headers */,
 				C77B98D1E43BA56FAA451D3B0062C7D7 /* SEGIntegrationFactory.h in Headers */,
 				D3EE8484FACF4D8271791E3E6C46BD8E /* SEGIntegrationsManager.h in Headers */,
-				C3EB56A2E2DFDFC88CA5A429E926DB8F /* SEGLocation.h in Headers */,
 				A5DD397203850CF78CE021EA2683CFD6 /* SEGMiddleware.h in Headers */,
 				80AE49E7B669DBD8040F1064D75972F8 /* SEGPayload.h in Headers */,
 				D22755FA610C3F51E71C129562945243 /* SEGReachability.h in Headers */,
@@ -1495,7 +1488,6 @@
 				68BB73F6DDAE288BF8476010A5562EAC /* SEGHTTPClient.m in Sources */,
 				2792E5E00866609A9BA55BDFC5271BE4 /* SEGIdentifyPayload.m in Sources */,
 				BA67B09C0213ADC97A47DB3260043D64 /* SEGIntegrationsManager.m in Sources */,
-				7E067115B86308E0BC67C600D474DF8D /* SEGLocation.m in Sources */,
 				24AB265601B4790814AB2561BC0463DE /* SEGMiddleware.m in Sources */,
 				938E12A976C0646B983026C987BB5E97 /* SEGPayload.m in Sources */,
 				5FEE129D93EB177A8FED16FA61D512AC /* SEGReachability.m in Sources */,
