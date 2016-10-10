@@ -1,10 +1,16 @@
 Change Log
 ==========
 
+Version 3.5.2 *(10th October, 2016)*
+-------------------------------------
+
+* [Fix](https://github.com/segmentio/analytics-ios/pull/615): Fixed regression introduced in 3.5.0 that would generate a new anonymousId on every app launch.
+
+
 Version 3.5.1 *(5th October, 2016)*
 -------------------------------------
 
-* Removed automatic bluetooth and location info collection to workaround app submission issues.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/613): Removed automatic bluetooth and location info collection to workaround app submission issues.
 
 Version 3.5.0 *(12th September, 2016)*
 -------------------------------------
