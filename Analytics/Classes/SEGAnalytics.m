@@ -111,14 +111,13 @@ NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         self.factories = [configuration.factories copy];
         self.integrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
         self.registeredIntegrations = [NSMutableDictionary dictionaryWithCapacity:self.factories.count];
-        self.configuration = configuration;
-        self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
-        self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
 #if TARGET_OS_TV
         self.storage = [[SEGUserDefaultsStorage alloc] initWithDefaults:[NSUserDefaults standardUserDefaults] namespacePrefix:nil crypto:configuration.crypto];
 #else
         self.storage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:configuration.crypto];
 #endif
+        self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
+        self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
 
         // Update settings on each integration immediately
         [self refreshSettings];
