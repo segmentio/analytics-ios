@@ -5,7 +5,7 @@
 @implementation SEGAppDelegate
 
 // https://segment.com/segment-engineering/sources/ios/overview
-NSString *const SEGMENT_WRITE_KEY = @"Ad056ODmzqJo9wU4v40sfeh8h1dlUcpP";
+NSString *const SEGMENT_WRITE_KEY = @"QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
