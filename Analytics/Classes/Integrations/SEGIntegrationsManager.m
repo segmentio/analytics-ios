@@ -28,11 +28,13 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 static NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
 static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
+
 @interface SEGAnalyticsConfiguration (Private)
 
 @property (nonatomic, strong) NSArray *factories;
 
 @end
+
 
 @interface SEGIntegrationsManager ()
 
@@ -52,38 +54,40 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 @end
 
+
 @implementation SEGIntegrationsManager
 
 @synthesize cachedSettings = _cachedSettings;
 
-- (instancetype _Nonnull)initWithAnalytics:(SEGAnalytics * _Nonnull)analytics {
+- (instancetype _Nonnull)initWithAnalytics:(SEGAnalytics *_Nonnull)analytics
+{
     SEGAnalyticsConfiguration *configuration = analytics.configuration;
     NSCParameterAssert(configuration != nil);
-    
+
     if (self = [super init]) {
         self.analytics = analytics;
         self.configuration = configuration;
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         self.messageQueue = [[NSMutableArray alloc] init];
-        self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
         self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
 #if TARGET_OS_TV
         self.storage = [[SEGUserDefaultsStorage alloc] initWithDefaults:[NSUserDefaults standardUserDefaults] namespacePrefix:nil crypto:configuration.crypto];
 #else
         self.storage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:configuration.crypto];
 #endif
+        self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
         NSMutableArray *factories = [[configuration factories] mutableCopy];
         [factories addObject:[[SEGSegmentIntegrationFactory alloc] initWithHTTPClient:self.httpClient storage:self.storage]];
         self.factories = [factories copy];
         self.integrations = [NSMutableDictionary dictionaryWithCapacity:factories.count];
         self.registeredIntegrations = [NSMutableDictionary dictionaryWithCapacity:factories.count];
-        
+
         // Update settings on each integration immediately
         [self refreshSettings];
-        
+
         // Attach to application state change hooks
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        
+
         // Update settings on foreground
         [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
     }
@@ -143,20 +147,20 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     NSCAssert2(userId.length > 0 || traits.count > 0, @"either userId (%@) or traits (%@) must be provided.", userId, traits);
-    
+
     NSString *anonymousId = [options objectForKey:@"anonymousId"];
     if (anonymousId) {
         [self saveAnonymousId:anonymousId];
     } else {
         anonymousId = self.cachedAnonymousId;
     }
-    
+
     SEGIdentifyPayload *payload = [[SEGIdentifyPayload alloc] initWithUserId:userId
                                                                  anonymousId:anonymousId
                                                                       traits:SEGCoerceDictionary(traits)
                                                                      context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                                 integrations:[options objectForKey:@"integrations"]];
-    
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"identify:")
                              arguments:@[ payload ]
                                options:options
@@ -168,12 +172,12 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     NSCAssert1(event.length > 0, @"event (%@) must not be empty.", event);
-    
+
     SEGTrackPayload *payload = [[SEGTrackPayload alloc] initWithEvent:event
                                                            properties:SEGCoerceDictionary(properties)
                                                               context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                          integrations:[options objectForKey:@"integrations"]];
-    
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"track:")
                              arguments:@[ payload ]
                                options:options
@@ -185,12 +189,12 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     NSCAssert1(screenTitle.length > 0, @"screen name (%@) must not be empty.", screenTitle);
-    
+
     SEGScreenPayload *payload = [[SEGScreenPayload alloc] initWithName:screenTitle
                                                             properties:SEGCoerceDictionary(properties)
                                                                context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                           integrations:[options objectForKey:@"integrations"]];
-    
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"screen:")
                              arguments:@[ payload ]
                                options:options
@@ -205,7 +209,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
                                                                  traits:SEGCoerceDictionary(traits)
                                                                 context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                            integrations:[options objectForKey:@"integrations"]];
-    
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"group:")
                              arguments:@[ payload ]
                                options:options
@@ -219,7 +223,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     SEGAliasPayload *payload = [[SEGAliasPayload alloc] initWithNewId:newId
                                                               context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                          integrations:[options objectForKey:@"integrations"]];
-    
+
     [self callIntegrationsWithSelector:NSSelectorFromString(@"alias:")
                              arguments:@[ payload ]
                                options:options
@@ -239,7 +243,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 - (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     NSParameterAssert(deviceToken != nil);
-    
+
     [self callIntegrationsWithSelector:_cmd arguments:@[ deviceToken ] options:nil sync:true];
 }
 
@@ -281,7 +285,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 #else
     NSString *anonymousId = [self.storage stringForKey:kSEGAnonymousIdFilename];
 #endif
-    
+
     if (!anonymousId || reset) {
         // We've chosen to generate a UUID rather than use the UDID (deprecated in iOS 5),
         // identifierForVendor (iOS6 and later, can't be changed on logout),
@@ -329,7 +333,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         return;
     }
     [self.storage setDictionary:_cachedSettings forKey:@"analytics.settings.v2.plist"];
-    
+
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         [self updateIntegrationsWithSettings:settings[@"integrations"]];
@@ -352,7 +356,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
             SEGLog(@"No settings for %@. Skipping.", key);
         }
     }
-    
+
     seg_dispatch_specific_async(_serialQueue, ^{
         [self flushMessageQueue];
         self.initialized = true;
@@ -364,12 +368,12 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     if (self.settingsRequest) {
         return;
     }
-    
+
     self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey completionHandler:^(BOOL success, NSDictionary *settings) {
         if (success) {
             [self setCachedSettings:settings];
         }
-        
+
         self.settingsRequest = nil;
     }];
 }
@@ -400,7 +404,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
             return NO;
         }
     }
-    
+
     return YES;
 }
 
@@ -422,12 +426,12 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         SEGLog(@"Not sending call to %@ because it doesn't respond to %@.", key, NSStringFromSelector(selector));
         return;
     }
-    
+
     if (![self isIntegration:key enabledInOptions:options[@"integrations"]]) {
         SEGLog(@"Not sending call to %@ because it is disabled in options.", key);
         return;
     }
-    
+
     NSString *eventType = NSStringFromSelector(selector);
     if ([eventType hasPrefix:@"track:"]) {
         SEGTrackPayload *eventPayload = arguments[0];
@@ -437,7 +441,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
             return;
         }
     }
-    
+
     SEGLog(@"Running: %@ with arguments %@ on integration: %@", eventType, arguments, key);
     NSInvocation *invocation = [self invocationForSelector:selector arguments:arguments];
     [invocation invokeWithTarget:integration];
@@ -446,9 +450,9 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 - (NSInvocation *)invocationForSelector:(SEL)selector arguments:(NSArray *)arguments
 {
     struct objc_method_description description = protocol_getMethodDescription(@protocol(SEGIntegration), selector, NO, YES);
-    
+
     NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:description.types];
-    
+
     NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     invocation.selector = selector;
     for (int i = 0; i < arguments.count; i++) {
@@ -480,7 +484,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         [self forwardSelector:selector arguments:arguments options:options];
         return;
     }
-    
+
     seg_dispatch_specific_async(_serialQueue, ^{
         if (self.initialized) {
             [self flushMessageQueue];
@@ -493,25 +497,30 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 @end
 
+
 @interface SEGPayload (Options)
 @property (readonly) NSDictionary *options;
 @end
 
+
 @implementation SEGPayload (Options)
 
 // Combine context and integrations to form options
-- (NSDictionary *)options {
+- (NSDictionary *)options
+{
     return @{
-         @"context": self.context ?: @{},
-         @"integrations": self.integrations ?: @{}
+        @"context" : self.context ?: @{},
+        @"integrations" : self.integrations ?: @{}
     };
 }
 
 @end
 
+
 @implementation SEGIntegrationsManager (SEGMiddleware)
 
-- (void)context:(SEGContext *)context next:(void (^ _Nonnull)(SEGContext * _Nullable))next {
+- (void)context:(SEGContext *)context next:(void (^_Nonnull)(SEGContext *_Nullable))next
+{
     switch (context.eventType) {
         case SEGEventTypeIdentify: {
             SEGIdentifyPayload *p = (SEGIdentifyPayload *)context.payload;
@@ -546,15 +555,15 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
             break;
         case SEGEventTypeReceivedRemoteNotification:
             [self receivedRemoteNotification:
-                [(SEGRemoteNotificationPayload *)context.payload userInfo]];
+                      [(SEGRemoteNotificationPayload *)context.payload userInfo]];
             break;
         case SEGEventTypeFailedToRegisterForRemoteNotifications:
             [self failedToRegisterForRemoteNotificationsWithError:
-                [(SEGRemoteNotificationPayload *)context.payload error]];
+                      [(SEGRemoteNotificationPayload *)context.payload error]];
             break;
         case SEGEventTypeRegisteredForRemoteNotifications:
             [self registeredForRemoteNotificationsWithDeviceToken:
-                [(SEGRemoteNotificationPayload *)context.payload deviceToken]];
+                      [(SEGRemoteNotificationPayload *)context.payload deviceToken]];
             break;
         case SEGEventTypeHandleActionWithForRemoteNotification: {
             SEGRemoteNotificationPayload *payload = (SEGRemoteNotificationPayload *)context.payload;
@@ -564,11 +573,11 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         }
         case SEGEventTypeApplicationLifecycle:
             [self handleAppStateNotification:
-                [(SEGApplicationLifecyclePayload *)context.payload notificationName]];
+                      [(SEGApplicationLifecyclePayload *)context.payload notificationName]];
             break;
         case SEGEventTypeContinueUserActivity:
             [self continueUserActivity:
-                [(SEGContinueUserActivityPayload *)context.payload activity]];
+                      [(SEGContinueUserActivityPayload *)context.payload activity]];
             break;
         case SEGEventTypeOpenURL: {
             SEGOpenURLPayload *payload = (SEGOpenURLPayload *)context.payload;
