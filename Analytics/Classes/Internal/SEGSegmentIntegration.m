@@ -49,6 +49,7 @@ static BOOL GetAdTrackingEnabled()
     return result;
 }
 
+
 @interface SEGSegmentIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
@@ -70,9 +71,11 @@ static BOOL GetAdTrackingEnabled()
 
 @end
 
+
 @implementation SEGSegmentIntegration
 
-- (id)initWithAnalytics:(SEGAnalytics *)analytics httpClient:(SEGHTTPClient *)httpClient storage:(id<SEGStorage>)storage {
+- (id)initWithAnalytics:(SEGAnalytics *)analytics httpClient:(SEGHTTPClient *)httpClient storage:(id<SEGStorage>)storage
+{
     if (self = [super init]) {
         self.analytics = analytics;
         self.configuration = analytics.configuration;

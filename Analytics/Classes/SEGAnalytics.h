@@ -7,6 +7,8 @@
  * This object provides an API for recording analytics.
  */
 @class SEGAnalyticsConfiguration;
+
+
 @interface SEGAnalytics : NSObject
 
 /**

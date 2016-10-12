@@ -17,6 +17,7 @@
 
 static SEGAnalytics *__sharedInstance = nil;
 
+
 @interface SEGAnalytics ()
 
 @property (nonatomic, assign) BOOL enabled;
@@ -26,6 +27,7 @@ static SEGAnalytics *__sharedInstance = nil;
 @property (nonatomic, strong) SEGMiddlewareRunner *runner;
 
 @end
+
 
 @implementation SEGAnalytics
 
@@ -44,11 +46,11 @@ static SEGAnalytics *__sharedInstance = nil;
     if (self = [self init]) {
         self.configuration = configuration;
         self.enabled = YES;
-        
+
         // In swift this would not have been OK... But hey.. It's objc
         // TODO: Figure out if this is really the best way to do things here.
         self.integrationsManager = [[SEGIntegrationsManager alloc] initWithAnalytics:self];
-        self.runner = [[SEGMiddlewareRunner alloc] initWithMiddlewares:@[self.integrationsManager]];
+        self.runner = [[SEGMiddlewareRunner alloc] initWithMiddlewares:@[ self.integrationsManager ]];
 
         // Attach to application state change hooks
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -159,12 +161,11 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 {
     NSCAssert2(userId.length > 0 || traits.count > 0, @"either userId (%@) or traits (%@) must be provided.", userId, traits);
     [self run:SEGEventTypeIdentify payload:
-     [[SEGIdentifyPayload alloc] initWithUserId:userId
-                                    anonymousId:nil
-                                         traits:SEGCoerceDictionary(traits)
-                                        context:SEGCoerceDictionary([options objectForKey:@"context"])
-                                   integrations:[options objectForKey:@"integrations"]]
-    ];
+                                       [[SEGIdentifyPayload alloc] initWithUserId:userId
+                                                                      anonymousId:nil
+                                                                           traits:SEGCoerceDictionary(traits)
+                                                                          context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                                     integrations:[options objectForKey:@"integrations"]]];
 }
 
 #pragma mark - Track
@@ -183,11 +184,10 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 {
     NSCAssert1(event.length > 0, @"event (%@) must not be empty.", event);
     [self run:SEGEventTypeTrack payload:
-     [[SEGTrackPayload alloc] initWithEvent:event
-                                 properties:SEGCoerceDictionary(properties)
-                                    context:SEGCoerceDictionary([options objectForKey:@"context"])
-                               integrations:[options objectForKey:@"integrations"]]
-     ];
+                                    [[SEGTrackPayload alloc] initWithEvent:event
+                                                                properties:SEGCoerceDictionary(properties)
+                                                                   context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                              integrations:[options objectForKey:@"integrations"]]];
 }
 
 #pragma mark - Screen
@@ -207,11 +207,10 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     NSCAssert1(screenTitle.length > 0, @"screen name (%@) must not be empty.", screenTitle);
 
     [self run:SEGEventTypeScreen payload:
-     [[SEGScreenPayload alloc] initWithName:screenTitle
-                                 properties:SEGCoerceDictionary(properties)
-                                    context:SEGCoerceDictionary([options objectForKey:@"context"])
-                               integrations:[options objectForKey:@"integrations"]]
-     ];
+                                     [[SEGScreenPayload alloc] initWithName:screenTitle
+                                                                 properties:SEGCoerceDictionary(properties)
+                                                                    context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                               integrations:[options objectForKey:@"integrations"]]];
 }
 
 #pragma mark - Group
@@ -229,11 +228,10 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     [self run:SEGEventTypeGroup payload:
-     [[SEGGroupPayload alloc] initWithGroupId:groupId
-                                       traits:SEGCoerceDictionary(traits)
-                                      context:SEGCoerceDictionary([options objectForKey:@"context"])
-                                 integrations:[options objectForKey:@"integrations"]]
-     ];
+                                    [[SEGGroupPayload alloc] initWithGroupId:groupId
+                                                                      traits:SEGCoerceDictionary(traits)
+                                                                     context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                                integrations:[options objectForKey:@"integrations"]]];
 }
 
 #pragma mark - Alias
@@ -246,10 +244,9 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 - (void)alias:(NSString *)newId options:(NSDictionary *)options
 {
     [self run:SEGEventTypeAlias payload:
-     [[SEGAliasPayload alloc] initWithNewId:newId
-                                    context:SEGCoerceDictionary([options objectForKey:@"context"])
-                               integrations:[options objectForKey:@"integrations"]]
-     ];
+                                    [[SEGAliasPayload alloc] initWithNewId:newId
+                                                                   context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                              integrations:[options objectForKey:@"integrations"]]];
 }
 
 - (void)trackPushNotification:(NSDictionary *)properties fromLaunch:(BOOL)launch
@@ -350,7 +347,8 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     _enabled = NO;
 }
 
-- (NSString *)getAnonymousId {
+- (NSString *)getAnonymousId
+{
     return [self.integrationsManager getAnonymousId];
 }
 
@@ -379,7 +377,8 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 #pragma mark - Helpers
 
-- (void)run:(SEGEventType)eventType payload:(SEGPayload *)payload {
+- (void)run:(SEGEventType)eventType payload:(SEGPayload *)payload
+{
     if (!self.enabled) {
         return;
     }

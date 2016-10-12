@@ -10,6 +10,7 @@
 
 @end
 
+
 @interface SEGApplicationLifecyclePayload : SEGPayload
 
 @property (nonatomic, strong) NSString *notificationName;
@@ -18,6 +19,7 @@
 @property (nonatomic, strong) NSDictionary *launchOptions;
 
 @end
+
 
 @interface SEGRemoteNotificationPayload : SEGPayload
 
@@ -36,11 +38,13 @@
 
 @end
 
+
 @interface SEGContinueUserActivityPayload : SEGPayload
 
 @property (nonatomic, strong) NSUserActivity *activity;
 
 @end
+
 
 @interface SEGOpenURLPayload : SEGPayload
 
@@ -48,4 +52,3 @@
 @property (nonatomic, strong) NSDictionary *options;
 
 @end
-

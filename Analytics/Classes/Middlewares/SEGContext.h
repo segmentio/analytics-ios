@@ -18,34 +18,36 @@ typedef NS_ENUM(NSInteger, SEGEventType) {
     SEGEventTypeScreen,
     SEGEventTypeGroup,
     SEGEventTypeAlias,
-    
+
     // General utility
     SEGEventTypeReset,
     SEGEventTypeFlush,
-    
+
     // Remote Notification
     SEGEventTypeReceivedRemoteNotification,
     SEGEventTypeFailedToRegisterForRemoteNotifications,
     SEGEventTypeRegisteredForRemoteNotifications,
     SEGEventTypeHandleActionWithForRemoteNotification,
-    
+
     // Application Lifecycle
     SEGEventTypeApplicationLifecycle,
-//    DidFinishLaunching,
-//    SEGEventTypeApplicationDidEnterBackground,
-//    SEGEventTypeApplicationWillEnterForeground,
-//    SEGEventTypeApplicationWillTerminate,
-//    SEGEventTypeApplicationWillResignActive,
-//    SEGEventTypeApplicationDidBecomeActive,
-    
+    //    DidFinishLaunching,
+    //    SEGEventTypeApplicationDidEnterBackground,
+    //    SEGEventTypeApplicationWillEnterForeground,
+    //    SEGEventTypeApplicationWillTerminate,
+    //    SEGEventTypeApplicationWillResignActive,
+    //    SEGEventTypeApplicationDidBecomeActive,
+
     // Misc.
     SEGEventTypeContinueUserActivity,
     SEGEventTypeOpenURL,
-    
+
 };
 
 @class SEGAnalytics;
 @protocol SEGMutableContext;
+
+
 @interface SEGContext : NSObject <NSCopying>
 
 // Loopback reference to the top level SEGAnalytics object.
@@ -62,9 +64,9 @@ typedef NS_ENUM(NSInteger, SEGEventType) {
 @property (nonatomic, readonly, nullable) SEGPayload *payload;
 @property (nonatomic, readonly) BOOL debug;
 
-- (instancetype _Nonnull)initWithAnalytics:(SEGAnalytics * _Nonnull)analytics;
+- (instancetype _Nonnull)initWithAnalytics:(SEGAnalytics *_Nonnull)analytics;
 
-- (SEGContext * _Nonnull)modify:(void(^_Nonnull)(id<SEGMutableContext> _Nonnull ctx))modify;
+- (SEGContext *_Nonnull)modify:(void (^_Nonnull)(id<SEGMutableContext> _Nonnull ctx))modify;
 
 @end
 

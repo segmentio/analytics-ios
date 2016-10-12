@@ -23,11 +23,11 @@
 // It's ok to save next callback until a more convenient time, but it should always always be done.
 // We'll probably actually add tests to sure it is so.
 // TODO: Should we add error as second param to next?
-- (void)context:(SEGContext * _Nonnull)context next:(void(^_Nonnull)(SEGContext * _Nullable newContext))next;
+- (void)context:(SEGContext *_Nonnull)context next:(void (^_Nonnull)(SEGContext *_Nullable newContext))next;
 
 @end
 
-typedef void (^RunMiddlewaresCallback)(BOOL earlyExit, NSArray<id<SEGMiddleware>> * _Nonnull remainingMiddlewares);
+typedef void (^RunMiddlewaresCallback)(BOOL earlyExit, NSArray<id<SEGMiddleware>> *_Nonnull remainingMiddlewares);
 
 // XXX TODO: Add some tests for SEGMiddlewareRunner
 @interface SEGMiddlewareRunner : NSObject
@@ -36,8 +36,8 @@ typedef void (^RunMiddlewaresCallback)(BOOL earlyExit, NSArray<id<SEGMiddleware>
 // gonna support that for now to keep things simple. If there is a real need later we'll see then.
 @property (nonnull, nonatomic, readonly) NSArray<id<SEGMiddleware>> *middlewares;
 
-- (void)run:(SEGContext * _Nonnull)context callback:(RunMiddlewaresCallback _Nullable)callback;
+- (void)run:(SEGContext *_Nonnull)context callback:(RunMiddlewaresCallback _Nullable)callback;
 
-- (instancetype _Nonnull)initWithMiddlewares:(NSArray<id<SEGMiddleware>> * _Nonnull)middlewares;
+- (instancetype _Nonnull)initWithMiddlewares:(NSArray<id<SEGMiddleware>> *_Nonnull)middlewares;
 
 @end

@@ -22,11 +22,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)orderCompleted:(id)sender {
+- (IBAction)orderCompleted:(id)sender
+{
     [[SEGAnalytics sharedAnalytics] track:@"Middlewares Deployed"];
 }
 
-- (IBAction)flush:(id)sender {
+- (IBAction)flush:(id)sender
+{
     [[SEGAnalytics sharedAnalytics] flush];
 }
 

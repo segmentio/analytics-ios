@@ -4,7 +4,8 @@
 
 @implementation SEGSegmentIntegrationFactory
 
-- (id)initWithHTTPClient:(SEGHTTPClient *)client storage:(id<SEGStorage>)storage {
+- (id)initWithHTTPClient:(SEGHTTPClient *)client storage:(id<SEGStorage>)storage
+{
     if (self = [super init]) {
         _client = client;
         _storage = storage;

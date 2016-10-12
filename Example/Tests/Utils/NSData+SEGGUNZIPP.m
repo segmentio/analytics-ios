@@ -12,18 +12,18 @@
 #import <Analytics/NSData+SEGGZIP.h>
 #import "NSData+SEGGUNZIPP.h"
 
+
 @implementation NSData (SEGGUNZIPP)
 
 - (NSData *)seg_gunzippedData
 {
-    if (self.length == 0 || ![self seg_isGzippedData])
-    {
+    if (self.length == 0 || ![self seg_isGzippedData]) {
         return self;
     }
 
     void *libz = seg_libzOpen();
     int (*inflateInit2_)(z_streamp, int, const char *, int) =
-    (int (*)(z_streamp, int, const char *, int))dlsym(libz, "inflateInit2_");
+        (int (*)(z_streamp, int, const char *, int))dlsym(libz, "inflateInit2_");
     int (*inflate)(z_streamp, int) = (int (*)(z_streamp, int))dlsym(libz, "inflate");
     int (*inflateEnd)(z_streamp) = (int (*)(z_streamp))dlsym(libz, "inflateEnd");
 
@@ -36,24 +36,19 @@
     stream.avail_out = 0;
 
     NSMutableData *output = nil;
-    if (inflateInit2(&stream, 47) == Z_OK)
-    {
+    if (inflateInit2(&stream, 47) == Z_OK) {
         int status = Z_OK;
         output = [NSMutableData dataWithCapacity:self.length * 2];
-        while (status == Z_OK)
-        {
-            if (stream.total_out >= output.length)
-            {
+        while (status == Z_OK) {
+            if (stream.total_out >= output.length) {
                 output.length += self.length / 2;
             }
             stream.next_out = (uint8_t *)output.mutableBytes + stream.total_out;
             stream.avail_out = (uInt)(output.length - stream.total_out);
-            status = inflate (&stream, Z_SYNC_FLUSH);
+            status = inflate(&stream, Z_SYNC_FLUSH);
         }
-        if (inflateEnd(&stream) == Z_OK)
-        {
-            if (status == Z_STREAM_END)
-            {
+        if (inflateEnd(&stream) == Z_OK) {
+            if (status == Z_STREAM_END) {
                 output.length = stream.total_out;
             }
         }

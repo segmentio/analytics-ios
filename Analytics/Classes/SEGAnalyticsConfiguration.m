@@ -9,6 +9,7 @@
 #import "SEGAnalyticsConfiguration.h"
 #import "SEGCrypto.h"
 
+
 @interface SEGAnalyticsConfiguration ()
 
 @property (nonatomic, copy, readwrite) NSString *writeKey;

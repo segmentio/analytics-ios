@@ -8,6 +8,7 @@
 
 #import "SEGContext.h"
 
+
 @interface SEGContext () <SEGMutableContext>
 
 @property (nonatomic) SEGEventType eventType;
@@ -19,22 +20,25 @@
 
 @end
 
+
 @implementation SEGContext
 
-- (instancetype)init {
+- (instancetype)init
+{
     @throw [NSException exceptionWithName:@"Bad Initization"
                                    reason:@"Please use initWithAnalytics:"
                                  userInfo:nil];
 }
 
-- (instancetype)initWithAnalytics:(SEGAnalytics *)analytics {
+- (instancetype)initWithAnalytics:(SEGAnalytics *)analytics
+{
     if (self = [super init]) {
         __analytics = analytics;
-        // TODO: Have some other way of indicating the debug flag is on too.
-        // Also, for logging it'd be damn nice to implement a logging protocol
-        // such as CocoalumberJack and allow developers to pipe logs to wherever they want
-        // Of course we wouldn't us depend on it. it'd be like a soft dependency where
-        // analytics-ios would totally work without it but works even better with it!
+// TODO: Have some other way of indicating the debug flag is on too.
+// Also, for logging it'd be damn nice to implement a logging protocol
+// such as CocoalumberJack and allow developers to pipe logs to wherever they want
+// Of course we wouldn't us depend on it. it'd be like a soft dependency where
+// analytics-ios would totally work without it but works even better with it!
 #ifdef DEBUG
         _debug = YES;
 #endif
@@ -42,7 +46,8 @@
     return self;
 }
 
-- (SEGContext * _Nonnull)modify:(void(^_Nonnull)(id<SEGMutableContext> _Nonnull ctx))modify {
+- (SEGContext *_Nonnull)modify:(void (^_Nonnull)(id<SEGMutableContext> _Nonnull ctx))modify
+{
     // We're also being a bit clever here by implementing SEGContext actually as a mutable
     // object but hiding that implementation detail from consumer of the API.
     // In production also instead of copying self we simply just return self
@@ -59,7 +64,8 @@
 
 #pragma mark - NSCopying
 
-- (id)copyWithZone:(NSZone *)zone {
+- (id)copyWithZone:(NSZone *)zone
+{
     SEGContext *ctx = [[SEGContext allocWithZone:zone] initWithAnalytics:self._analytics];
     ctx.eventType = self.eventType;
     ctx.userId = self.userId;

@@ -9,8 +9,9 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface NSData (SEGGUNZIPP)
 
-- (NSData * _Nullable)seg_gunzippedData;
+- (NSData *_Nullable)seg_gunzippedData;
 
 @end

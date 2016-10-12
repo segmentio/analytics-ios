@@ -3,6 +3,7 @@
 #import "SEGHTTPClient.h"
 #import "SEGStorage.h"
 
+
 @interface SEGSegmentIntegrationFactory : NSObject <SEGIntegrationFactory>
 
 @property (nonatomic, strong) SEGHTTPClient *client;
