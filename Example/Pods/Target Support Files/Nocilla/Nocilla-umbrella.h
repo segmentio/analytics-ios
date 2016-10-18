@@ -1,4 +1,6 @@
+#ifdef __OBJC__
 #import <UIKit/UIKit.h>
+#endif
 
 #import "NSData+Nocilla.h"
 #import "NSString+Nocilla.h"
@@ -6,6 +8,7 @@
 #import "LSStubResponseDSL.h"
 #import "LSNocilla.h"
 #import "LSMatcheable.h"
+#import "LSMatcher.h"
 #import "NSData+Matcheable.h"
 #import "NSRegularExpression+Matcheable.h"
 #import "NSString+Matcheable.h"
