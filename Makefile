@@ -1,7 +1,7 @@
 SDK ?= "iphonesimulator"
 DESTINATION ?= "platform=iOS Simulator,OS=10.0,name=iPhone 7"
 PROJECT := Analytics
-XC_ARGS := -scheme $(PROJECT)-Example -workspace Example/$(PROJECT).xcworkspace -sdk $(SDK) -destination $(DESTINATION) ONLY_ACTIVE_ARCH=NO
+XC_ARGS := -scheme $(PROJECT)-Example -workspace Example/$(PROJECT).xcworkspace -sdk $(SDK) -destination $(DESTINATION) ONLY_ACTIVE_ARCH=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 
 bootstrap:
 	.buildscript/bootstrap.sh

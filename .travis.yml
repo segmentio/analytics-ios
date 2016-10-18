@@ -8,6 +8,9 @@ before_install:
 script:
   - make build-pretty test-pretty lint carthage
 
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
 before_deploy:
   - make archive
 
