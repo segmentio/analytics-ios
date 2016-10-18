@@ -85,7 +85,7 @@ typealias AndSegmentWriteKeyMethod = (String) -> LSStubRequestDSL
 extension LSStubRequestDSL {
     var withWriteKey: AndSegmentWriteKeyMethod {
         return { writeKey in
-            let base64Token = SEGHTTPClient.authorizationHeader(writeKey)
+            let base64Token = SEGHTTPClient.authorizationHeader(writeKey)!
             return self.withHeaders([
                 "Authorization": "Basic \(base64Token)",
             ])!

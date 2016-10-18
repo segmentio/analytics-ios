@@ -45,16 +45,16 @@ class HTTPClientTest: QuickSpec {
         var done = false
         let task = client.settings(forWriteKey: "foo", completionHandler: { success, settings in
           expect(success) == true
-//          expect(settings as? Any) == [
-//            "integrations": [
-//              "Segment.io": [
-//                "apiKey":"foo"
-//              ]
-//            ],
-//            "plan":[
-//              "track": [:]
-//            ]
-//          ] as Any
+          expect((settings as? NSDictionary)) == [
+            "integrations": [
+              "Segment.io": [
+                "apiKey":"foo"
+              ]
+            ],
+            "plan":[
+              "track": [:]
+            ]
+          ] as NSDictionary
           done = true
         })
         expect(task!.state).toEventually(equal(URLSessionTask.State.completed))
@@ -92,7 +92,7 @@ class HTTPClientTest: QuickSpec {
         expect(done).toEventually(beTrue())
       }
     }
-    
+
     describe("upload") {
       it("does not ask to retry for json error") {
         let batch: [String: Any] = [
@@ -110,7 +110,7 @@ class HTTPClientTest: QuickSpec {
       }
       
       let batch: [String: Any] = ["sentAt":"2016-07-19'T'19:25:06Z", "batch":[["type":"track", "event":"foo"]]]
-      
+
       
       it("does not ask to retry for 2xx response") {
         _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)!
@@ -125,7 +125,7 @@ class HTTPClientTest: QuickSpec {
         expect(done).toEventually(beTrue())
         expect(task?.state).toEventually(equal(URLSessionTask.State.completed))
       }
-      
+
       it("asks to retry for 3xx response") {
         _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)!
           .withJsonGzippedBody(batch as AnyObject)
