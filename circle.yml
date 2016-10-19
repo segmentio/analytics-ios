@@ -5,8 +5,8 @@ machine:
 dependencies:
   pre:
     # - brew install xctool # Homebrew is actually not used on circle at the moment
-    - sudo gem install xcpretty
-    - sudo gem install cocoapods -v $(var=$(tail -1 Example/Podfile.lock); echo ${var##COCOAPODS:})
+    - gem install xcpretty
+    - gem install cocoapods -v $(var=$(tail -1 Example/Podfile.lock); echo ${var##COCOAPODS:})
     - if cd ~/.cocoapods/repos/master; then git pull; else git clone https://github.com/CocoaPods/Specs.git ~/.cocoapods/repos/master; fi
     - pod setup --verbose
   override:
