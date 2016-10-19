@@ -1,3 +1,4 @@
+[![Circle CI](https://circleci.com/gh/segmentio/analytics-ios.svg?style=svg&circle-token=31c5b3e5edeb404b30141ead9dcef3eb37d16d4d)](https://circleci.com/gh/segmentio/analytics-ios)
 # Analytics
 
 [![Version](https://img.shields.io/cocoapods/v/Analytics.svg?style=flat)](https://cocoapods.org//pods/Analytics)
