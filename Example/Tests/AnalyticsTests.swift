@@ -18,8 +18,8 @@ class AnalyticsTests: QuickSpec {
     
     beforeEach {
       let config = SEGAnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
-      SEGAnalytics.setupWithConfiguration(config)
-      analytics = SEGAnalytics.sharedAnalytics()
+      SEGAnalytics.setup(with: config)
+      analytics = SEGAnalytics.shared()
     }
     
     it("initialized correctly") {

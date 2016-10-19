@@ -18,7 +18,7 @@ class JsonGzippedBody : LSMatcher, LSMatcheable {
         self.expectedJson = json
     }
     
-    func matchesJson(json: AnyObject) -> Bool {
+    func matchesJson(_ json: AnyObject) -> Bool {
         let actualValue : () -> NSObject! = {
             return json as! NSObject
         }
@@ -29,18 +29,18 @@ class JsonGzippedBody : LSMatcher, LSMatcheable {
         return matches
     }
     
-    override func matches(string: String!) -> Bool {
-        if let data = string.dataUsingEncoding(NSUTF8StringEncoding),
-            let json = try? NSJSONSerialization.JSONObjectWithData(data, options: []) {
-            return matchesJson(json)
+    override func matches(_ string: String!) -> Bool {
+        if let data = string.data(using: String.Encoding.utf8),
+            let json = try? JSONSerialization.jsonObject(with: data, options: []) {
+            return matchesJson(json as AnyObject)
         }
         return false
     }
     
-    override func matchesData(data: NSData!) -> Bool {
-        if let data = data.seg_gunzippedData(),
-            let json = try? NSJSONSerialization.JSONObjectWithData(data, options: []) {
-            return matchesJson(json)
+    override func matchesData(_ data: Data!) -> Bool {
+        if let data = (data as NSData).seg_gunzipped(),
+            let json = try? JSONSerialization.jsonObject(with: data, options: []) {
+            return matchesJson(json as AnyObject)
         }
         return false
     }
@@ -50,8 +50,8 @@ class JsonGzippedBody : LSMatcher, LSMatcheable {
     }
     
     func expectedHeaders() -> [String:String] {
-        let data = try? NSJSONSerialization.dataWithJSONObject(expectedJson, options: [])
-        let contentLength = data?.seg_gzippedData()?.length ?? 0
+        let data = try? JSONSerialization.data(withJSONObject: expectedJson, options: [])
+        let contentLength = (data as NSData?)?.seg_gzipped()?.count ?? 0
         return [
             "Content-Encoding": "gzip",
             "Content-Type": "application/json",
@@ -72,8 +72,8 @@ extension LSStubRequestDSL {
         return { json in
             let body = JsonGzippedBody(json)
             return self
-                .withHeaders(body.expectedHeaders())
-                .withBody(body)
+                .withHeaders(body.expectedHeaders())!
+                .withBody(body)!
         }
     }
 }
@@ -85,10 +85,10 @@ typealias AndSegmentWriteKeyMethod = (String) -> LSStubRequestDSL
 extension LSStubRequestDSL {
     var withWriteKey: AndSegmentWriteKeyMethod {
         return { writeKey in
-            let base64Token = SEGHTTPClient.authorizationHeader(writeKey)
+            let base64Token = SEGHTTPClient.authorizationHeader(writeKey)!
             return self.withHeaders([
                 "Authorization": "Basic \(base64Token)",
-            ])
+            ])!
         }
     }
 }

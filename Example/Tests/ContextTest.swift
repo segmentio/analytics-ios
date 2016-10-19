@@ -18,8 +18,8 @@ class ContextTests: QuickSpec {
     
     beforeEach {
       let config = SEGAnalyticsConfiguration(writeKey: "foobar")
-      SEGAnalytics.setupWithConfiguration(config)
-      analytics = SEGAnalytics.sharedAnalytics()
+      SEGAnalytics.setup(with: config)
+      analytics = SEGAnalytics.shared()
     }
     
     it("throws when used incorrectly") {
@@ -40,7 +40,7 @@ class ContextTests: QuickSpec {
     it("initialized correctly") {
       let context = SEGContext(analytics: analytics)
       expect(context._analytics) == analytics
-      expect(context.eventType) == SEGEventType.Undefined
+      expect(context.eventType) == SEGEventType.undefined
     }
     
     it("accepts modifications") {
@@ -48,10 +48,10 @@ class ContextTests: QuickSpec {
       
       let newContext = context.modify { context in
         context.userId = "sloth"
-        context.eventType = .Track;
+        context.eventType = .track;
       }
       expect(newContext.userId) == "sloth"
-      expect(newContext.eventType) == SEGEventType.Track;
+      expect(newContext.eventType) == SEGEventType.track;
       
     }
     
