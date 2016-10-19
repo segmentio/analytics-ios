@@ -10,7 +10,7 @@ dependencies:
     - if cd ~/.cocoapods/repos/master; then git pull; else git clone https://github.com/CocoaPods/Specs.git ~/.cocoapods/repos/master; fi
     - pod setup --verbose
   override:
-    - cd Example && pod install --verbose
+    - make install
   cache_directories:
     - Example/Pods
     - ~/.cocoapods
