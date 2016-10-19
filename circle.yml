@@ -21,6 +21,6 @@ test:
     - make test-pretty
     - make lint
     - make carthage
-  # post:
-    # - mv build/reports $CIRCLE_TEST_REPORTS/xcode # TODO: Turn me back on
-    # - bash <(curl -s https://codecov.io/bash) #: TODO: Turn me back on
+  post:
+    - mv build/reports $CIRCLE_TEST_REPORTS/xcode
+    - bash <(curl -s https://codecov.io/bash)
