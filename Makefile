@@ -34,7 +34,7 @@ build-pretty:
 	set -o pipefail && xcodebuild $(XC_ARGS) | xcpretty
 
 test-pretty:
-	set -o pipefail && xcodebuild test $(XC_ARGS) | xcpretty
+	set -o pipefail && xcodebuild test $(XC_ARGS) | xcpretty --report junit
 
 xcbuild:
 	xctool $(XC_ARGS)

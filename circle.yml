@@ -22,5 +22,5 @@ test:
     - make lint
     - make carthage
   post:
-    - mv build/reports $CIRCLE_TEST_REPORTS/xcode
+    - mv build/reports $CIRCLE_TEST_REPORTS/xcode # relies on xcpretty --report junit
     - bash <(curl -s https://codecov.io/bash)
