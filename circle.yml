@@ -16,8 +16,8 @@ dependencies:
 #     - Example/Pods
 #     - ~/.cocoapods
 # So we get to skip all the crazy pod installs
-  override:
-    - gem install xcpretty
+  # override:
+    # - gem install xcpretty
 
 test:
   override:
