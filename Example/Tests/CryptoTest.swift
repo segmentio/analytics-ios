@@ -38,10 +38,10 @@ class CryptoTest : QuickSpec {
       let crypto2 = SEGAES256Crypto(password: "wolf", salt: crypto.salt, iv: crypto.iv)
       let dataOut = crypto2.decrypt(encryptedData!)
       expect(dataOut) != dataIn
-      
       let strOut = String(data: dataOut!, encoding: String.Encoding.utf8)
-      // XXX TODO: This sometimes indeterministically fails. We should figure out why.
-      expect(strOut).to(beNil())
+      // no built in way to check password correctness
+      // http://stackoverflow.com/questions/27712173/determine-if-key-is-incorrect-with-cccrypt-kccoptionpkcs7padding-objective-c
+      expect(strOut ?? "") != strIn
     }
     
     it("fails for incorrect iv and sault") {
@@ -55,7 +55,7 @@ class CryptoTest : QuickSpec {
       expect(dataOut) != dataIn
       
       let strOut = String(data: dataOut!, encoding: String.Encoding.utf8)
-      expect(strOut).to(beNil())
+      expect(strOut ?? "") != strIn
     }
   }
 }
