@@ -18,6 +18,7 @@ dependencies:
 # So we get to skip all the crazy pod installs
   override:
     - sudo gem install xcpretty
+    - sudo gem install cocoapods -v $(var=$(tail -1 Example/Podfile.lock); echo ${var##COCOAPODS:})
 
 test:
   override:

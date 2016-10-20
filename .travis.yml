@@ -3,6 +3,7 @@ language: objective-c
 osx_image: xcode8
 
 before_install:
+  - sudo gem install cocoapods -v $(var=$(tail -1 Example/Podfile.lock); echo ${var##COCOAPODS:})
   - make bootstrap
 
 script:
