@@ -13,7 +13,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    NSUserActivity *userActivity = [[NSUserActivity alloc] initWithActivityType:NSUserActivityTypeBrowsingWeb];
+    userActivity.webpageURL = [NSURL URLWithString:@"http://www.segment.com"];
+    [[SEGAnalytics sharedAnalytics] continueUserActivity:userActivity];
+    [[SEGAnalytics sharedAnalytics] track:@"test"];
+    [[SEGAnalytics sharedAnalytics] flush];
 }
 
 - (void)didReceiveMemoryWarning
