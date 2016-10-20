@@ -69,7 +69,7 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, strong) NSMutableDictionary *traits;
 @property (nonatomic, assign) SEGAnalytics *analytics;
 @property (nonatomic, assign) SEGAnalyticsConfiguration *configuration;
-@property (nonatomic, assign) NSDictionary *referrer;
+@property (atomic, copy) NSDictionary *referrer;
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, strong) NSURL *apiURL;
 @property (nonatomic, strong) SEGHTTPClient *httpClient;
