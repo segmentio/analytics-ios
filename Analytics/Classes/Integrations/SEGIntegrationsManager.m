@@ -334,30 +334,29 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     }
     [self.storage setDictionary:_cachedSettings forKey:@"analytics.settings.v2.plist"];
 
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        [self updateIntegrationsWithSettings:settings[@"integrations"]];
-    });
+    [self updateIntegrationsWithSettings:settings[@"integrations"]];
 }
 
 - (void)updateIntegrationsWithSettings:(NSDictionary *)projectSettings
 {
-    for (id<SEGIntegrationFactory> factory in self.factories) {
-        NSString *key = [factory key];
-        NSDictionary *integrationSettings = [projectSettings objectForKey:key];
-        if (integrationSettings) {
-            id<SEGIntegration> integration = [factory createWithSettings:integrationSettings forAnalytics:self.analytics];
-            if (integration != nil) {
-                self.integrations[key] = integration;
-                self.registeredIntegrations[key] = @NO;
-            }
-            [[NSNotificationCenter defaultCenter] postNotificationName:SEGAnalyticsIntegrationDidStart object:key userInfo:nil];
-        } else {
-            SEGLog(@"No settings for %@. Skipping.", key);
+    seg_dispatch_specific_sync(_serialQueue, ^{
+        if (self.initialized) {
+            return;
         }
-    }
-
-    seg_dispatch_specific_async(_serialQueue, ^{
+        for (id<SEGIntegrationFactory> factory in self.factories) {
+            NSString *key = [factory key];
+            NSDictionary *integrationSettings = [projectSettings objectForKey:key];
+            if (integrationSettings) {
+                id<SEGIntegration> integration = [factory createWithSettings:integrationSettings forAnalytics:self.analytics];
+                if (integration != nil) {
+                    self.integrations[key] = integration;
+                    self.registeredIntegrations[key] = @NO;
+                }
+                [[NSNotificationCenter defaultCenter] postNotificationName:SEGAnalyticsIntegrationDidStart object:key userInfo:nil];
+            } else {
+                SEGLog(@"No settings for %@. Skipping.", key);
+            }
+        }
         [self flushMessageQueue];
         self.initialized = true;
     });
