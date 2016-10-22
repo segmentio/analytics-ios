@@ -104,11 +104,19 @@ static BOOL GetAdTrackingEnabled()
             [self trackAttributionData:self.configuration.trackAttributionData];
         }];
 
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
-        });
+        if ([NSThread isMainThread]) {
+            [self setupFlushTimer];
+        } else {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self setupFlushTimer];
+            });
+        }
     }
     return self;
+}
+    
+- (void)setupFlushTimer {
+    self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
 }
 
 /*
