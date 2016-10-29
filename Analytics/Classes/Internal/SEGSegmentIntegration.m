@@ -539,6 +539,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         if (retry) {
             [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
             self.batchRequest = nil;
+            [self endBackgroundTask];
             return;
         }
 
