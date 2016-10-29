@@ -471,7 +471,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         }
         if (self.batchRequest != nil) {
             SEGLog(@"%@ API request already in progress, not flushing again.", self);
-            [self endBackgroundTask];
             return;
         }
 
