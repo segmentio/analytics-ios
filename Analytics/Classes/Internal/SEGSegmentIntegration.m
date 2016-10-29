@@ -466,10 +466,12 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     [self dispatchBackground:^{
         if ([self.queue count] == 0) {
             SEGLog(@"%@ No queued API calls to flush.", self);
+            [self endBackgroundTask];
             return;
         }
         if (self.batchRequest != nil) {
             SEGLog(@"%@ API request already in progress, not flushing again.", self);
+            [self endBackgroundTask];
             return;
         }
 
@@ -544,6 +546,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         [self persistQueue];
         [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
         self.batchRequest = nil;
+        [self endBackgroundTask];
     }];
 
     [self notifyForName:SEGSegmentDidSendRequestNotification userInfo:batch];
