@@ -364,17 +364,20 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 - (void)refreshSettings
 {
-    if (self.settingsRequest) {
-        return;
-    }
-
-    self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey completionHandler:^(BOOL success, NSDictionary *settings) {
-        if (success) {
-            [self setCachedSettings:settings];
+    seg_dispatch_specific_async(_serialQueue, ^{
+        if (self.settingsRequest) {
+            return;
         }
-
-        self.settingsRequest = nil;
-    }];
+        
+        self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey completionHandler:^(BOOL success, NSDictionary *settings) {
+            seg_dispatch_specific_async(_serialQueue, ^{
+                if (success) {
+                    [self setCachedSettings:settings];
+                }
+                self.settingsRequest = nil;
+            });
+        }];
+    });
 }
 
 #pragma mark - Private

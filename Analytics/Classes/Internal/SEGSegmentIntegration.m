@@ -535,18 +535,20 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     SEGLog(@"Flushing batch %@.", payload);
 
     self.batchRequest = [self.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
-        if (retry) {
-            [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
+        [self dispatchBackground:^{
+            if (retry) {
+                [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
+                self.batchRequest = nil;
+                [self endBackgroundTask];
+                return;
+            }
+            
+            [self.queue removeObjectsInArray:batch];
+            [self persistQueue];
+            [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
             self.batchRequest = nil;
             [self endBackgroundTask];
-            return;
-        }
-
-        [self.queue removeObjectsInArray:batch];
-        [self persistQueue];
-        [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
-        self.batchRequest = nil;
-        [self endBackgroundTask];
+        }];
     }];
 
     [self notifyForName:SEGSegmentDidSendRequestNotification userInfo:batch];
@@ -636,12 +638,13 @@ NSString *const SEGTrackedAttributionKey = @"SEGTrackedAttributionKey";
     [context addEntriesFromDictionary:liveContext];
 
     self.attributionRequest = [self.httpClient attributionWithWriteKey:self.configuration.writeKey forDevice:[context copy] completionHandler:^(BOOL success, NSDictionary *properties) {
-        if (success) {
-            [self.analytics track:@"Install Attributed" properties:properties];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:SEGTrackedAttributionKey];
-        }
-
-        self.attributionRequest = nil;
+        [self dispatchBackground:^{
+            if (success) {
+                [self.analytics track:@"Install Attributed" properties:properties];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:SEGTrackedAttributionKey];
+            }
+            self.attributionRequest = nil;
+        }];
     }];
 #endif
 }
