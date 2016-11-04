@@ -1,4 +1,5 @@
 #import "SEGViewController.h"
+#import "SEGAnalytics.h"
 
 
 @interface SEGViewController ()
