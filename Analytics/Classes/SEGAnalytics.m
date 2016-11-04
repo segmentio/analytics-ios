@@ -560,11 +560,12 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     }
 
     self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey completionHandler:^(BOOL success, NSDictionary *settings) {
-        if (success) {
-            [self setCachedSettings:settings];
-        }
-
-        self.settingsRequest = nil;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (success) {
+                [self setCachedSettings:settings];
+            }
+            self.settingsRequest = nil;
+        });
     }];
 }
 
@@ -583,7 +584,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 + (NSString *)version
 {
-    return @"3.5.1";
+    return @"3.5.3";
 }
 
 #pragma mark - Private

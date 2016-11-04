@@ -32,7 +32,7 @@ describe(@"SEGHTTPClient", ^{
 
     describe(@"settingsForWriteKey", ^{
         it(@"succeeds for 2xx response", ^{
-            stubRequest(@"GET", @"https://cdn.segment.com/v1/projects/foo/settings")
+            stubRequest(@"GET", @"https://cdn-settings.segment.com/v1/projects/foo/settings")
                 .withHeaders(@{ @"Accept-Encoding" : @"gzip" })
                 .andReturn(200)
                 .withHeaders(@{ @"Content-Type" : @"application/json" })
@@ -58,7 +58,7 @@ describe(@"SEGHTTPClient", ^{
         });
 
         it(@"fails for for non 2xx response", ^{
-            stubRequest(@"GET", @"https://cdn.segment.com/v1/projects/foo/settings")
+            stubRequest(@"GET", @"https://cdn-settings.segment.com/v1/projects/foo/settings")
                 .withHeaders(@{ @"Accept-Encoding" : @"gzip" })
                 .andReturn(400)
                 .withHeaders(@{ @"Content-Type" : @"application/json" })
@@ -75,7 +75,7 @@ describe(@"SEGHTTPClient", ^{
         });
 
         it(@"fails for json error", ^{
-            stubRequest(@"GET", @"https://cdn.segment.com/v1/projects/foo/settings")
+            stubRequest(@"GET", @"https://cdn-settings.segment.com/v1/projects/foo/settings")
                 .withHeaders(@{ @"Accept-Encoding" : @"gzip" })
                 .andReturn(200)
                 .withHeaders(@{ @"Content-Type" : @"application/json" })

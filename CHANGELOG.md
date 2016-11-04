@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+Version 3.5.3 *(4th November, 2016)*
+-------------------------------------
+
+* Make referrer access thread safe
+* End background task as soon as flushing is complete
+* Redispatch callback from SEGHTTPClient for thread safety
+* Update cdn hostname from cdn.segment.com to cdn-settings.segment.com
+
 Version 3.5.2 *(10th October, 2016)*
 -------------------------------------
 
