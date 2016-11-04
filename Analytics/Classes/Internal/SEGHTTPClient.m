@@ -104,7 +104,7 @@
     };
     NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
 
-    NSString *rawURL = [NSString stringWithFormat:@"https://cdn.segment.com/v1/projects/%@/settings", writeKey];
+    NSString *rawURL = [NSString stringWithFormat:@"https://cdn-settings.segment.com/v1/projects/%@/settings", writeKey];
     NSURL *url = [NSURL URLWithString:rawURL];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"GET"];
