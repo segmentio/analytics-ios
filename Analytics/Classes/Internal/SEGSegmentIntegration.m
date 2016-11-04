@@ -115,12 +115,22 @@ static BOOL GetAdTrackingEnabled()
         [self dispatchBackground:^{
             [self trackAttributionData:self.configuration.trackAttributionData];
         }];
-
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
-        });
+        
+        // Necessary to avoid deadlock when initializing from main thread.
+        if ([NSThread isMainThread]) {
+            [self setupFlushTimer];
+        } else {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self setupFlushTimer];
+            });
+        }
+        
     }
     return self;
+}
+
+- (void)setupFlushTimer {
+    self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
 }
 
 /*
@@ -537,17 +547,19 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)batch.count, (unsigned long)self.queue.count);
     SEGLog(@"Flushing batch %@.", payload);
 
-    self.batchRequest = [self.analytics.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
-        if (retry) {
-            [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
+    self.batchRequest = [self.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
+        [self dispatchBackground:^{
+            if (retry) {
+                [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
+                self.batchRequest = nil;
+                return;
+            }
+            
+            [self.queue removeObjectsInArray:batch];
+            [self persistQueue];
+            [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
             self.batchRequest = nil;
-            return;
-        }
-
-        [self.queue removeObjectsInArray:batch];
-        [self persistQueue];
-        [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
-        self.batchRequest = nil;
+        }];
     }];
 
     [self notifyForName:SEGSegmentDidSendRequestNotification userInfo:batch];
@@ -637,12 +649,13 @@ NSString *const SEGTrackedAttributionKey = @"SEGTrackedAttributionKey";
     [context addEntriesFromDictionary:liveContext];
 
     self.attributionRequest = [self.httpClient attributionWithWriteKey:self.configuration.writeKey forDevice:[context copy] completionHandler:^(BOOL success, NSDictionary *properties) {
-        if (success) {
-            [self.analytics track:@"Install Attributed" properties:properties];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:SEGTrackedAttributionKey];
-        }
-
-        self.attributionRequest = nil;
+        [self dispatchBackground:^{
+            if (success) {
+                [self.analytics track:@"Install Attributed" properties:properties];
+                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:SEGTrackedAttributionKey];
+            }
+            self.attributionRequest = nil;
+        }];
     }];
 #endif
 }
