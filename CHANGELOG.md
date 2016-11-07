@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 3.5.3 *(7th November, 2016)*
+-------------------------------------
+* Update cdn hostname from cdn.segment.com to cdn-settings.segment.com
+
 Version 3.5.2 *(10th October, 2016)*
 -------------------------------------
 
