@@ -47,6 +47,7 @@
 
     NSURL *url = [SEGMENT_API_BASE URLByAppendingPathComponent:@"batch"];
     NSMutableURLRequest *request = self.requestFactory(url);
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPMethod:@"POST"];
 
     NSError *error = nil;
