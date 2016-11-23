@@ -562,8 +562,16 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey completionHandler:^(BOOL success, NSDictionary *settings) {
         if (success) {
             [self setCachedSettings:settings];
+        } else {
+            // Hotfix: If settings request fail, fall back to using just Segment integration
+            // Won't catch situation where this callback never gets called - that will get addressed separately in regular dev 
+            [self setCachedSettings:@{
+                @"integrations": @{
+                    @"Segment.io": @{ @"apiKey": self.configuration.writeKey },
+                },
+                @"plan": @{ @"track": @{} }
+            }];
         }
-
         self.settingsRequest = nil;
     }];
 }
