@@ -1,6 +1,69 @@
 Change Log
 ==========
 
+Version 3.5.3 *(7th November, 2016)*
+-------------------------------------
+* Update cdn hostname from cdn.segment.com to cdn-settings.segment.com
+
+Version 3.5.2 *(10th October, 2016)*
+-------------------------------------
+
+* [Fix](https://github.com/segmentio/analytics-ios/pull/615): Fixed regression introduced in 3.5.0 that would generate a new anonymousId on every app launch.
+
+
+Version 3.5.1 *(5th October, 2016)*
+-------------------------------------
+
+* [Fix](https://github.com/segmentio/analytics-ios/pull/613): Removed automatic bluetooth and location info collection to workaround app submission issues.
+
+Version 3.5.0 *(12th September, 2016)*
+-------------------------------------
+
+ * [New](https://github.com/segmentio/analytics-ios/pull/592): Adds a `SEGCrypto` API that can be used to configure the at rest encryption strategy for the client.
+
+ ```objc
+ SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY"];
+
+ // Set a custom crypto implementation. An AES-256 implementation is provided out of the box.
+ configuration.crypto = [SEGAES256Crypto initWithPassword:"YOUR_PRIVATE_PASSWORD"];
+
+ // Set any other custom configuration options.
+ ...
+
+ // Initialize the SDK with the configuration.
+ [SEGAnalytics setupWithConfiguration:configuration]
+ ```
+
+ * [New](https://github.com/segmentio/analytics-ios/commit/0c646e1c44df4134a984f1fcb741f5b1d418ab30): Add the ability for the SDK to natively report attribution information via Segment integrations enabled for your project, without needing to bundle their SDKs. Attribution information is sent as a track call as documented in the [mobile lifecycle spec](https://segment.com/docs/spec/mobile/#install-attributed).
+
+ ```objc
+ SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY"];
+
+ // Enable attribution tracking.
+ configuration.trackAttributionData = @YES;
+
+ // Set any other custom configuration options.
+ ...
+
+ // Initialize the SDK with the configuration.
+ [SEGAnalytics setupWithConfiguration:configuration]
+ ```
+
+ * [New](https://github.com/segmentio/analytics-ios/pull/597): Add the ability for the SDK to disable bluetooth collection. Going forwards, bluetooth information will **not** be collected by default. This is because iOS 10 requires [explicit documentation](https://developer.apple.com/library/prerelease/content/releasenotes/General/WhatsNewIniOS/Articles/iOS10.html) on why the CoreBluetooth APIs are accessed. If you enable this flag, your app's Info.plist must contain an [`NSBluetoothPeripheralUsageDescription` key](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW20) with a string value explaining to the user how the app uses this data. On this note, you should do the same for [`NSLocationAlwaysUsageDescription`](https://developer.apple.com/library/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW18) if you have `shouldUseLocationServices` set to `@YES`. If you are linking against iOS 10, you'll want to update to this version to prevent your app submission from being rejected (or provide `NSBluetoothPeripheralUsageDescription` and/or `NSLocationAlwaysUsageDescription` descriptions in your app's Info.plist).
+
+ ```objc
+ SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY"];
+
+ // Enable bluetooth collection.
+ configuration.shouldUseBluetooth = @YES;
+
+ // Set any other custom configuration options.
+ ...
+
+ // Initialize the SDK with the configuration.
+ [SEGAnalytics setupWithConfiguration:configuration]
+ ```
+
 Version 3.4.0 *(1st September, 2016)*
 -------------------------------------
 

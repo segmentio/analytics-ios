@@ -36,7 +36,7 @@ class HTTPClientTest: QuickSpec {
     
     describe("settingsForWriteKey") { 
       it("succeeds for 2xx response") {
-        _ = stubRequest("GET", "https://cdn.segment.com/v1/projects/foo/settings" as NSString)!
+        _ = stubRequest("GET", "https://cdn-settings.segment.com/v1/projects/foo/settings" as NSString)!
           .withHeaders(["Accept-Encoding" : "gzip" ])!
           .andReturn(200)!
           .withHeaders(["Content-Type" : "application/json"])!
@@ -62,7 +62,7 @@ class HTTPClientTest: QuickSpec {
       }
       
       it("fails for non 2xx response") {
-        _ = stubRequest("GET", "https://cdn.segment.com/v1/projects/foo/settings" as NSString)!
+        _ = stubRequest("GET", "https://cdn-settings.segment.com/v1/projects/foo/settings" as NSString)!
           .withHeaders(["Accept-Encoding" : "gzip" ])!
           .andReturn(400)!
           .withHeaders(["Content-Type" : "application/json" ])!
@@ -77,7 +77,7 @@ class HTTPClientTest: QuickSpec {
       }
       
       it("fails for json error") {
-        _ = stubRequest("GET", "https://cdn.segment.com/v1/projects/foo/settings" as NSString)!
+        _ = stubRequest("GET", "https://cdn-settings.segment.com/v1/projects/foo/settings" as NSString)!
           .withHeaders(["Accept-Encoding":"gzip"])!
           .andReturn(200)!
           .withHeaders(["Content-Type":"application/json"])!
