@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 3.5.4 *(28th November, 2016)*
+-------------------------------------
+* [Fix](https://github.com/segmentio/analytics-ios/commit/7d4cecbd723b6086f7d7a1df8cb0f4a1951539f3): Fall back to using Segment integration when we cannot get settings.
+
 Version 3.5.3 *(7th November, 2016)*
 -------------------------------------
 * Update cdn hostname from cdn.segment.com to cdn-settings.segment.com
