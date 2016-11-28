@@ -6,6 +6,7 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
