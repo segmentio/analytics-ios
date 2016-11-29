@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8FFD3B7BE7C033686575C3BB53822FF0"
+               BlueprintIdentifier = "3C8CBB351D3FAEF32F4F92DCF899C9D5"
                BuildableName = "Analytics.framework"
                BlueprintName = "Analytics"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -28,7 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6003F5AD195388D20070C39A"
+               BuildableName = "Analytics_Tests.xctest"
+               BlueprintName = "Analytics_Tests"
+               ReferencedContainer = "container:../Analytics.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "3C8CBB351D3FAEF32F4F92DCF899C9D5"
+            BuildableName = "Analytics.framework"
+            BlueprintName = "Analytics"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -45,7 +64,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8FFD3B7BE7C033686575C3BB53822FF0"
+            BlueprintIdentifier = "3C8CBB351D3FAEF32F4F92DCF899C9D5"
             BuildableName = "Analytics.framework"
             BlueprintName = "Analytics"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -60,6 +79,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "3C8CBB351D3FAEF32F4F92DCF899C9D5"
+            BuildableName = "Analytics.framework"
+            BlueprintName = "Analytics"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

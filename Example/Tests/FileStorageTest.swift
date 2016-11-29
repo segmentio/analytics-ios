@@ -21,35 +21,36 @@ class FileStorageTest : QuickSpec {
     
     it("creates folder if none exists") {
       let tempDir = NSURL(fileURLWithPath: NSTemporaryDirectory())
-      let url = tempDir.URLByAppendingPathComponent(NSUUID().UUIDString)
-      expect(url.checkResourceIsReachableAndReturnError(nil)) == false
-      _ = SEGFileStorage(folder: url, crypto: nil)
+      let url = tempDir.appendingPathComponent(NSUUID().uuidString)
+      
+      expect(try? url?.checkResourceIsReachable()).to(beNil())
+      _ = SEGFileStorage(folder: url!, crypto: nil)
       
       var isDir: ObjCBool = false
-      let exists = NSFileManager.defaultManager().fileExistsAtPath(url.path!, isDirectory: &isDir)
+      let exists = FileManager.default.fileExists(atPath: url!.path, isDirectory: &isDir)
       
       expect(exists) == true
-      expect(Bool(isDir)) == true
+      expect(isDir.boolValue) == true
     }
     
     it("persists and loads data") {
-      let dataIn = "segment".dataUsingEncoding(NSUTF8StringEncoding)!
+      let dataIn = "segment".data(using: String.Encoding.utf8)!
       storage.setData(dataIn, forKey: "mydata")
       
-      let dataOut = storage.dataForKey("mydata")
+      let dataOut = storage.data(forKey: "mydata")
       expect(dataOut) == dataIn
       
-      let strOut = String(data: dataOut!, encoding: NSUTF8StringEncoding)
+      let strOut = String(data: dataOut!, encoding: String.Encoding.utf8)
       expect(strOut) == "segment"
     }
     
     it("persists and loads string") {
       let str = "san francisco"
       storage.setString(str, forKey: "city")
-      expect(storage.stringForKey("city")) == str
+      expect(storage.string(forKey: "city")) == str
       
       storage.removeKey("city")
-      expect(storage.stringForKey("city")).to(beNil())
+      expect(storage.string(forKey: "city")).to(beNil())
     }
     
     it("persists and loads array") {
@@ -59,10 +60,10 @@ class FileStorageTest : QuickSpec {
         "tallinn",
       ]
       storage.setArray(array, forKey: "cities")
-      expect(storage.arrayForKey("cities") as? Array<String>) == array
+      expect(storage.array(forKey: "cities") as? Array<String>) == array
       
       storage.removeKey("cities")
-      expect(storage.arrayForKey("cities")).to(beNil())
+      expect(storage.array(forKey: "cities")).to(beNil())
     }
     
     it("persists and loads dictionary") {
@@ -72,20 +73,20 @@ class FileStorageTest : QuickSpec {
         "paris": "fashion",
       ]
       storage.setDictionary(dict, forKey: "cityMap")
-      expect(storage.dictionaryForKey("cityMap") as? Dictionary<String, String>) == dict
+      expect(storage.dictionary(forKey: "cityMap") as? Dictionary<String, String>) == dict
       
       storage.removeKey("cityMap")
-      expect(storage.dictionaryForKey("cityMap")).to(beNil())
+      expect(storage.dictionary(forKey: "cityMap")).to(beNil())
     }
     
     it("saves file to disk and removes from disk") {
       let key = "input.txt"
-      let url = storage.urlForKey(key)
-      expect(url.checkResourceIsReachableAndReturnError(nil)) == false
+      let url = storage.url(forKey: key)
+      expect(try? url.checkResourceIsReachable()).to(beNil())
       storage.setString("sloth", forKey: key)
-      expect(url.checkResourceIsReachableAndReturnError(nil)) == true
+      expect(try! url.checkResourceIsReachable()) == true
       storage.removeKey(key)
-      expect(url.checkResourceIsReachableAndReturnError(nil)) == false
+      expect(try? url.checkResourceIsReachable()).to(beNil())
     }
     
     it("should be binary compatible with old SDKs") {
@@ -95,8 +96,9 @@ class FileStorageTest : QuickSpec {
         "new york": "finance",
         "paris": "fashion",
       ]
-      (dictIn as NSDictionary).writeToURL(storage.urlForKey(key), atomically: true)
-      let dictOut = storage.dictionaryForKey(key)
+      
+      (dictIn as NSDictionary).write(to: storage.url(forKey: key), atomically: true)
+      let dictOut = storage.dictionary(forKey: key)
       expect(dictOut as? [String: String]) == dictIn
     }
     
@@ -110,10 +112,10 @@ class FileStorageTest : QuickSpec {
         "paris": "fashion",
       ]
       s.setDictionary(dict, forKey: "cityMap")
-      expect(s.dictionaryForKey("cityMap") as? Dictionary<String, String>) == dict
+      expect(s.dictionary(forKey: "cityMap") as? Dictionary<String, String>) == dict
       
       s.removeKey("cityMap")
-      expect(s.dictionaryForKey("cityMap")).to(beNil())
+      expect(s.dictionary(forKey: "cityMap")).to(beNil())
     }
     
     afterEach {

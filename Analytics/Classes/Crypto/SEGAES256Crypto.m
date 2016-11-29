@@ -101,7 +101,7 @@ static const NSUInteger kPBKDFRounds = 10000; // ~80ms on an iPhone 4
         NSError *error = [NSError errorWithDomain:kRNCryptManagerErrorDomain
                                              code:result
                                          userInfo:nil];
-        SEGLog(@"Unable to encrypt data", error);
+        SEGLog(@"Unable to decrypt data", error);
         return nil;
     }
     return decryptedData;
