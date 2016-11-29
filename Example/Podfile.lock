@@ -1,35 +1,16 @@
 PODS:
-  - Analytics (3.5.3)
-  - Nimble (5.0.0)
-  - Nocilla (0.11.0)
-  - Quick (0.10.0)
-  - SwiftTryCatch (0.0.1)
+  - Analytics (3.5.4)
 
 DEPENDENCIES:
   - Analytics (from `../`)
-  - Nimble
-  - Nocilla
-  - Quick
-  - SwiftTryCatch (from `https://github.com/segmentio/SwiftTryCatch.git`)
 
 EXTERNAL SOURCES:
   Analytics:
     :path: "../"
-  SwiftTryCatch:
-    :git: https://github.com/segmentio/SwiftTryCatch.git
-
-CHECKOUT OPTIONS:
-  SwiftTryCatch:
-    :commit: dcdc954cb0945faaf33800b4b913e04d2ebdd965
-    :git: https://github.com/segmentio/SwiftTryCatch.git
 
 SPEC CHECKSUMS:
-  Analytics: e9f07fe57d1d5d14c47e72e719d1f30c6d0ec548
-  Nimble: 56fc9f5020effa2206de22c3dd910f4fb011b92f
-  Nocilla: 7af7a386071150cc8aa5da4da97d060f049dd61c
-  Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
-  SwiftTryCatch: fb6d2b34abe48efd69578dac919293a44f95b481
+  Analytics: b462a87eb6e3609e5fb38416117b58011aa57ff8
 
-PODFILE CHECKSUM: 4c3bf4941b37e4105c0819824cd838b132d19519
+PODFILE CHECKSUM: b5ac855d191bea98b51f8a1b777031e4dddf5b6e
 
 COCOAPODS: 1.1.0
