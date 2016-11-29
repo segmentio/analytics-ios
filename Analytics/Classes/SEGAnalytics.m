@@ -564,12 +564,12 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
             [self setCachedSettings:settings];
         } else {
             // TODO: If settings request fail, fall back to using just Segment integration
-            // Won't catch situation where this callback never gets called - that will get addressed separately in regular dev 
+            // Won't catch situation where this callback never gets called - that will get addressed separately in regular dev
             [self setCachedSettings:@{
-                @"integrations": @{
-                    @"Segment.io": @{ @"apiKey": self.configuration.writeKey },
+                @"integrations" : @{
+                    @"Segment.io" : @{@"apiKey" : self.configuration.writeKey},
                 },
-                @"plan": @{ @"track": @{} }
+                @"plan" : @{@"track" : @{}}
             }];
         }
         self.settingsRequest = nil;
@@ -591,7 +591,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
 
 + (NSString *)version
 {
-    return @"3.5.4";
+    return @"3.5.5";
 }
 
 #pragma mark - Private
