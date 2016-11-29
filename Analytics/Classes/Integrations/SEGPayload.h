@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface SEGPayload : NSObject
 
@@ -16,25 +17,7 @@
 @property (nonatomic, strong) NSString *notificationName;
 
 // ApplicationDidFinishLaunching only
-@property (nonatomic, strong) NSDictionary *launchOptions;
-
-@end
-
-
-@interface SEGRemoteNotificationPayload : SEGPayload
-
-// SEGEventTypeHandleActionWithForRemoteNotification
-@property (nonatomic, strong) NSString *actionIdentifier;
-
-// SEGEventTypeHandleActionWithForRemoteNotification
-// SEGEventTypeReceivedRemoteNotification
-@property (nonatomic, strong) NSDictionary *userInfo;
-
-// SEGEventTypeFailedToRegisterForRemoteNotifications
-@property (nonatomic, strong) NSError *error;
-
-// SEGEventTypeRegisteredForRemoteNotifications
-@property (nonatomic, strong) NSData *deviceToken;
+@property (nonatomic, strong, nullable) NSDictionary *launchOptions;
 
 @end
 
@@ -50,5 +33,25 @@
 
 @property (nonatomic, strong) NSURL *url;
 @property (nonatomic, strong) NSDictionary *options;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+
+@interface SEGRemoteNotificationPayload : SEGPayload
+
+// SEGEventTypeHandleActionWithForRemoteNotification
+@property (nonatomic, strong, nullable) NSString *actionIdentifier;
+
+// SEGEventTypeHandleActionWithForRemoteNotification
+// SEGEventTypeReceivedRemoteNotification
+@property (nonatomic, strong, nullable) NSDictionary *userInfo;
+
+// SEGEventTypeFailedToRegisterForRemoteNotifications
+@property (nonatomic, strong, nullable) NSError *error;
+
+// SEGEventTypeRegisteredForRemoteNotifications
+@property (nonatomic, strong, nullable) NSData *deviceToken;
 
 @end

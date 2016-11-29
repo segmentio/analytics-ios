@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "SEGPayload.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface SEGAliasPayload : SEGPayload
 
@@ -11,3 +12,5 @@
                  integrations:(NSDictionary *)integrations;
 
 @end
+
+NS_ASSUME_NONNULL_END

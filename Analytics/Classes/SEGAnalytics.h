@@ -3,6 +3,8 @@
 #import "SEGCrypto.h"
 #import "SEGAnalyticsConfiguration.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * This object provides an API for recording analytics.
  */
@@ -62,9 +64,9 @@
  When you learn more about who your user is, you can record that information with identify.
 
  */
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options;
+- (void)identify:(NSString *)userId traits:(NSDictionary * _Nullable)traits options:(NSDictionary * _Nullable)options;
+- (void)identify:(NSString *)userId traits:(NSDictionary * _Nullable)traits;
 - (void)identify:(NSString *)userId;
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits;
 
 
 /*!
@@ -83,8 +85,8 @@
  When a user performs an action in your app, you'll want to track that action for later analysis. Use the event name to say what the user did, and properties to specify any interesting details of the action.
 
  */
-- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options;
-- (void)track:(NSString *)event properties:(NSDictionary *)properties;
+- (void)track:(NSString *)event properties:(NSDictionary * _Nullable)properties options:(NSDictionary * _Nullable)options;
+- (void)track:(NSString *)event properties:(NSDictionary * _Nullable)properties;
 - (void)track:(NSString *)event;
 
 /*!
@@ -103,8 +105,8 @@
  When a user views a screen in your app, you'll want to record that here. For some tools like Google Analytics and Flurry, screen views are treated specially, and are different from "events" kind of like "page views" on the web. For services that don't treat "screen views" specially, we map "screen" straight to "track" with the same parameters. For example, Mixpanel doesn't treat "screen views" any differently. So a call to "screen" will be tracked as a normal event in Mixpanel, but get sent to Google Analytics and Flurry as a "screen".
 
  */
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options;
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties;
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary * _Nullable)properties options:(NSDictionary * _Nullable)options;
+- (void)screen:(NSString *)screenTitle properties:(NSDictionary * _Nullable)properties;
 - (void)screen:(NSString *)screenTitle;
 
 /*!
@@ -120,8 +122,8 @@
  When you learn more about who the group is, you can record that information with group.
 
  */
-- (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options;
-- (void)group:(NSString *)groupId traits:(NSDictionary *)traits;
+- (void)group:(NSString *)groupId traits:(NSDictionary * _Nullable)traits options:(NSDictionary * _Nullable)options;
+- (void)group:(NSString *)groupId traits:(NSDictionary * _Nullable)traits;
 - (void)group:(NSString *)groupId;
 
 /*!
@@ -138,7 +140,7 @@
  When you learn more about who the group is, you can record that information with group.
 
  */
-- (void)alias:(NSString *)newId options:(NSDictionary *)options;
+- (void)alias:(NSString *)newId options:(NSDictionary * _Nullable)options;
 - (void)alias:(NSString *)newId;
 
 // todo: docs
@@ -229,3 +231,5 @@
 
 
 @end
+
+NS_ASSUME_NONNULL_END
