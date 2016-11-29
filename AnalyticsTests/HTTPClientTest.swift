@@ -29,8 +29,8 @@ class HTTPClientTest: QuickSpec {
       it("preserves url") {
         let factory = SEGHTTPClient.defaultRequestFactory()!
         let url = URL(string: "https://api.segment.io/v1/batch")
-        let request = factory(url)
-        expect(request?.url) == url
+        let request = factory(url!)
+        expect(request.url) == url
       }
     }
     
