@@ -382,7 +382,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     if ([activity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
         self.referrer = @{
-            @"url" : activity.webpageURL,
+            @"url" : activity.webpageURL.absoluteString,
         };
     }
 }

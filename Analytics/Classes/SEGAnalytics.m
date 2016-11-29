@@ -422,7 +422,7 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
     if ([activity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
         NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithCapacity:activity.userInfo.count + 2];
         [properties addEntriesFromDictionary:activity.userInfo];
-        properties[@"url"] = activity.webpageURL;
+        properties[@"url"] = activity.webpageURL.absoluteString;
         properties[@"title"] = activity.title ?: @"";
         [self track:@"Deep Link Opened" properties:[properties copy]];
     }
