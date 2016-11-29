@@ -25,9 +25,11 @@ DerivedData
 Carthage
 
 Example/Pods/
-# CocoaPods recommends against ignoring the Pods directory. See
+# CocoaPods typically recommends against ignoring the Pods directory
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control.
-# Additionally, we NEED to check it in for Carthage support.
-#
-# Pods/
+# However since we only use Pods for tests it's not as important to check dependencies in
+# Instead we can archive the Pods repo for dependency backup purposes
+# We don't need to check Pods in it for Carthage support because Analytics framework
+# itself has no pod dependencies, only our tests do.
+Pods/
 .clang-format

@@ -12,7 +12,7 @@ dependencies:
   override:
     - make install
   cache_directories:
-    - Example/Pods
+    - ./Pods
     - ~/.cocoapods
 
 test:
@@ -24,3 +24,5 @@ test:
   post:
     - mv build/reports $CIRCLE_TEST_REPORTS/xcode # relies on xcpretty --report junit
     - bash <(curl -s https://codecov.io/bash)
+    # Save Pods to artifacts in case we need to dig up dependencies later
+    - zip -FSr $CIRCLE_ARTIFACTS/Pods.zip ./Pods/
