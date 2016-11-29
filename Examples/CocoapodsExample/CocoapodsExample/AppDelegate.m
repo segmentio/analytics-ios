@@ -6,7 +6,8 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-#import <Analytics/SEGAnalytics.h>
+// #import <Analytics/SEGAnalytics.h>
+@import Analytics;
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
