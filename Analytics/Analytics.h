@@ -16,3 +16,4 @@ FOUNDATION_EXPORT const unsigned char AnalyticsVersionString[];
 
 #import "SEGAnalytics.h"
 #import "SEGSegmentIntegration.h"
+#import "SEGSegmentIntegrationFactory.h"
