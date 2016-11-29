@@ -38,6 +38,7 @@ extension SEGSegmentIntegration {
   }
 }
 
+
 class AnalyticsTests: QuickSpec {
   override func spec() {
     let config = SEGAnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
@@ -65,6 +66,12 @@ class AnalyticsTests: QuickSpec {
       expect(analytics.configuration.enableAdvertisingTracking) == true
       expect(analytics.configuration.shouldUseBluetooth) == false
       expect(analytics.getAnonymousId()).toNot(beNil())
+      
+      analytics.track("", properties: [
+        "sadfads": 232,
+        "dffd": "dfdf",
+        "fsdfds": false,
+      ])
     }
     
     it("persists anonymousId") {
