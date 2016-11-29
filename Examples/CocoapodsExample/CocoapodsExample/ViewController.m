@@ -6,8 +6,9 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-// #import <Analytics/SEGAnalytics.h>
-@import Analytics;
+#import <Analytics/SEGAnalytics.h>
+// TODO: Test and see if this works
+// @import Analytics;
 #import "ViewController.h"
 
 @interface ViewController ()
@@ -25,6 +26,12 @@
     [[SEGAnalytics sharedAnalytics] track:@"test"];
     [[SEGAnalytics sharedAnalytics] flush];
 }
+
+- (IBAction)fireEvent:(id)sender {
+    [[SEGAnalytics sharedAnalytics] track:@"Cocoapods Example Button"];
+    [[SEGAnalytics sharedAnalytics] flush];
+}
+
 
 
 - (void)didReceiveMemoryWarning {

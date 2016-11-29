@@ -6,8 +6,7 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-// #import <Analytics/SEGAnalytics.h>
-@import Analytics;
+#import <Analytics/SEGAnalytics.h>
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
@@ -27,6 +26,8 @@ NSString *const SEGMENT_WRITE_KEY = @"zr5x22gUVBDM3hO3uHkbMkVe6Pd6sCna";
     configuration.trackAttributionData = YES;
     configuration.flushAt = 1;
     [SEGAnalytics setupWithConfiguration:configuration];
+    [[SEGAnalytics sharedAnalytics] track:@"Cocoapods Example Launched"];
+    [[SEGAnalytics sharedAnalytics] flush];
     return YES;
 }
 
