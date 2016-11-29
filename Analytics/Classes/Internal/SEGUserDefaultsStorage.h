@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SEGStorage.h"
 
-
 @interface SEGUserDefaultsStorage : NSObject <SEGStorage>
 
 @property (nonatomic, strong, nullable) id<SEGCrypto> crypto;

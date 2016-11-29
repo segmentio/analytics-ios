@@ -8,8 +8,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) NSString *theNewId;
 
 - (instancetype)initWithNewId:(NSString *)newId
-                      context:(NSDictionary *)context
-                 integrations:(NSDictionary *)integrations;
+                      context:(JSON_DICT)context
+                 integrations:(JSON_DICT)integrations;
 
 @end
 

@@ -1,13 +1,14 @@
 #import <Foundation/Foundation.h>
+#import "SEGSerializableValue.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SEGPayload : NSObject
 
-@property (nonatomic, readonly) NSDictionary *context;
-@property (nonatomic, readonly) NSDictionary *integrations;
+@property (nonatomic, readonly) JSON_DICT context;
+@property (nonatomic, readonly) JSON_DICT integrations;
 
-- (instancetype)initWithContext:(NSDictionary *)context integrations:(NSDictionary *)integrations;
+- (instancetype)initWithContext:(JSON_DICT)context integrations:(JSON_DICT)integrations;
 
 @end
 

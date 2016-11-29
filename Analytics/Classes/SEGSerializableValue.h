@@ -20,3 +20,12 @@
  */
 #define SERIALIZABLE_DICT NSDictionary<NSString *, id> *
 
+/*
+ Acceptable dictionary values are
+ NSString (String)
+ NSNumber (Int, Float, Bool)
+ NSNull
+ NSArray of the above
+ NSDictionary of the above
+ */
+#define JSON_DICT NSDictionary<NSString *, id> *

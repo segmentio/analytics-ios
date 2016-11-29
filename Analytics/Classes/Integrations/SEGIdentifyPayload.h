@@ -9,13 +9,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly, nullable) NSString *anonymousId;
 
-@property (nonatomic, readonly, nullable) NSDictionary *traits;
+@property (nonatomic, readonly, nullable) JSON_DICT traits;
 
 - (instancetype)initWithUserId:(NSString *)userId
                    anonymousId:(NSString * _Nullable)anonymousId
-                        traits:(NSDictionary * _Nullable)traits
-                       context:(NSDictionary *)context
-                  integrations:(NSDictionary *)integrations;
+                        traits:(JSON_DICT _Nullable)traits
+                       context:(JSON_DICT)context
+                  integrations:(JSON_DICT)integrations;
 
 @end
 

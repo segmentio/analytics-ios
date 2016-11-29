@@ -7,12 +7,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) NSString *groupId;
 
-@property (nonatomic, readonly, nullable) NSDictionary *traits;
+@property (nonatomic, readonly, nullable) JSON_DICT traits;
 
 - (instancetype)initWithGroupId:(NSString *)groupId
-                         traits:(NSDictionary * _Nullable)traits
-                        context:(NSDictionary *)context
-                   integrations:(NSDictionary *)integrations;
+                         traits:(JSON_DICT _Nullable)traits
+                        context:(JSON_DICT)context
+                   integrations:(JSON_DICT)integrations;
 
 @end
 
