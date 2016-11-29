@@ -24,7 +24,6 @@ DerivedData
 
 Carthage
 
-Example/Pods/
 # CocoaPods typically recommends against ignoring the Pods directory
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control.
 # However since we only use Pods for tests it's not as important to check dependencies in

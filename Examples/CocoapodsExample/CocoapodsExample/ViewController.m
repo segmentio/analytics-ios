@@ -1,18 +1,23 @@
+//
+//  ViewController.m
+//  CocoapodsExample
+//
+//  Created by Tony Xiao on 11/28/16.
+//  Copyright © 2016 Segment. All rights reserved.
+//
 
 #import <Analytics/SEGAnalytics.h>
-#import "SEGViewController.h"
+#import "ViewController.h"
 
-
-@interface SEGViewController ()
+@interface ViewController ()
 
 @end
 
+@implementation ViewController
 
-@implementation SEGViewController
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    // Do any additional setup after loading the view, typically from a nib.
     NSUserActivity *userActivity = [[NSUserActivity alloc] initWithActivityType:NSUserActivityTypeBrowsingWeb];
     userActivity.webpageURL = [NSURL URLWithString:@"http://www.segment.com"];
     [[SEGAnalytics sharedAnalytics] continueUserActivity:userActivity];
@@ -20,20 +25,11 @@
     [[SEGAnalytics sharedAnalytics] flush];
 }
 
-- (void)didReceiveMemoryWarning
-{
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)orderCompleted:(id)sender
-{
-    [[SEGAnalytics sharedAnalytics] track:@"Middlewares Deployed"];
-}
-
-- (IBAction)flush:(id)sender
-{
-    [[SEGAnalytics sharedAnalytics] flush];
-}
 
 @end
