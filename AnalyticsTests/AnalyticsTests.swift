@@ -30,6 +30,9 @@ extension SEGIntegrationsManager {
 }
 
 extension SEGSegmentIntegration {
+  func test_referrer() -> [String: AnyObject]? {
+    return self.value(forKey: "referrer") as? [String: AnyObject]
+  }
   func test_userId() -> String? {
     return self.value(forKey: "userId") as? String
   }
@@ -77,6 +80,14 @@ class AnalyticsTests: QuickSpec {
 
       expect(analytics.test_integrationsManager()?.test_segmentIntegration()?.test_userId()) == "testUserId1"
       expect(analytics2?.test_integrationsManager()?.test_segmentIntegration()?.test_userId()) == "testUserId1"
+    }
+    
+    it("continues user activity") {
+      let activity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
+      activity.webpageURL = URL(string: "http://www.segment.com")
+      analytics.continue(activity)
+      let referrer = analytics.test_integrationsManager()?.test_segmentIntegration()?.test_referrer()
+      expect(referrer?["url"] as? String) == "http://www.segment.com"
     }
   }
 

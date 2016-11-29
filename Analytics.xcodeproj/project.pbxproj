@@ -237,8 +237,10 @@
 				EADEB8EA1DECD335005322DA /* Info.plist */,
 				EADEB8EC1DECD335005322DA /* AnalyticsTests-Bridging-Header.h */,
 			);
+			indentWidth = 2;
 			path = AnalyticsTests;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		EADEB8751DECD12B005322DA /* Classes */ = {
 			isa = PBXGroup;
