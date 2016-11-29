@@ -27,7 +27,7 @@ class HTTPClientTest: QuickSpec {
     
     describe("defaultRequestFactory") { 
       it("preserves url") {
-        let factory = SEGHTTPClient.defaultRequestFactory()!
+        let factory = SEGHTTPClient.defaultRequestFactory()
         let url = URL(string: "https://api.segment.io/v1/batch")
         let request = factory(url!)
         expect(request.url) == url
@@ -45,7 +45,7 @@ class HTTPClientTest: QuickSpec {
         var done = false
         let task = client.settings(forWriteKey: "foo", completionHandler: { success, settings in
           expect(success) == true
-          expect((settings as? NSDictionary)) == [
+          expect((settings as NSDictionary)) == [
             "integrations": [
               "Segment.io": [
                 "apiKey":"foo"
@@ -57,7 +57,7 @@ class HTTPClientTest: QuickSpec {
           ] as NSDictionary
           done = true
         })
-        expect(task!.state).toEventually(equal(URLSessionTask.State.completed))
+        expect(task.state).toEventually(equal(URLSessionTask.State.completed))
         expect(done).toEventually(beTrue())
       }
       
@@ -123,7 +123,7 @@ class HTTPClientTest: QuickSpec {
           done = true
         }
         expect(done).toEventually(beTrue())
-        expect(task?.state).toEventually(equal(URLSessionTask.State.completed))
+        expect(task.state).toEventually(equal(URLSessionTask.State.completed))
       }
 
       it("asks to retry for 3xx response") {
@@ -137,7 +137,7 @@ class HTTPClientTest: QuickSpec {
           done = true
         }
         expect(done).toEventually(beTrue())
-        expect(task?.state).toEventually(equal(URLSessionTask.State.completed))
+        expect(task.state).toEventually(equal(URLSessionTask.State.completed))
       }
 
       it("does not ask to retry for 4xx response") {
@@ -151,7 +151,7 @@ class HTTPClientTest: QuickSpec {
           done = true
         }
         expect(done).toEventually(beTrue())
-        expect(task?.state).toEventually(equal(URLSessionTask.State.completed))
+        expect(task.state).toEventually(equal(URLSessionTask.State.completed))
       }
 
       it("asks to retry for 5xx response") {
@@ -165,7 +165,7 @@ class HTTPClientTest: QuickSpec {
           done = true
         }
         expect(done).toEventually(beTrue())
-        expect(task?.state).toEventually(equal(URLSessionTask.State.completed))
+        expect(task.state).toEventually(equal(URLSessionTask.State.completed))
       }
     }
     
@@ -206,7 +206,7 @@ class HTTPClientTest: QuickSpec {
           ]
           done = true
         }
-        expect(task?.state).toEventually(equal(URLSessionTask.State.completed))
+        expect(task.state).toEventually(equal(URLSessionTask.State.completed))
         expect(done).toEventually(beTrue())
       }
       
@@ -221,7 +221,7 @@ class HTTPClientTest: QuickSpec {
           expect(properties).to(beNil())
           done = true
         }
-        expect(task?.state).toEventually(equal(URLSessionTask.State.completed))
+        expect(task.state).toEventually(equal(URLSessionTask.State.completed))
         expect(done).toEventually(beTrue())
       }
     }

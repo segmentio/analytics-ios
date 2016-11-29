@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (SEGRequestFactory)defaultRequestFactory;
 + (NSString *)authorizationHeader:(NSString *)writeKey;
 
-- (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory;
+- (instancetype)initWithRequestFactory:(SEGRequestFactory _Nullable)requestFactory;
 
 /**
  * Upload dictionary formatted as per https://segment.com/docs/sources/server/http/#batch.

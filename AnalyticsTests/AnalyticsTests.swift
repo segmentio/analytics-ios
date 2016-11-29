@@ -66,12 +66,6 @@ class AnalyticsTests: QuickSpec {
       expect(analytics.configuration.enableAdvertisingTracking) == true
       expect(analytics.configuration.shouldUseBluetooth) == false
       expect(analytics.getAnonymousId()).toNot(beNil())
-      
-      analytics.track("", properties: [
-        "sadfads": 232,
-        "dffd": "dfdf",
-        "fsdfds": false,
-      ])
     }
     
     it("persists anonymousId") {
