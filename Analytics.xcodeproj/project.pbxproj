@@ -12,22 +12,22 @@
 		EADEB86F1DECD0EF005322DA /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEB85B1DECD080005322DA /* Analytics.framework */; };
 		EADEB8AE1DECD12B005322DA /* SEGAES256Crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8781DECD12B005322DA /* SEGAES256Crypto.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8AF1DECD12B005322DA /* SEGAES256Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8791DECD12B005322DA /* SEGAES256Crypto.m */; };
-		EADEB8B01DECD12B005322DA /* SEGCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB87A1DECD12B005322DA /* SEGCrypto.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EADEB8B11DECD12B005322DA /* SEGAliasPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB87C1DECD12B005322DA /* SEGAliasPayload.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8B01DECD12B005322DA /* SEGCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB87A1DECD12B005322DA /* SEGCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADEB8B11DECD12B005322DA /* SEGAliasPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB87C1DECD12B005322DA /* SEGAliasPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8B21DECD12B005322DA /* SEGAliasPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB87D1DECD12B005322DA /* SEGAliasPayload.m */; };
-		EADEB8B31DECD12B005322DA /* SEGGroupPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB87E1DECD12B005322DA /* SEGGroupPayload.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8B31DECD12B005322DA /* SEGGroupPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB87E1DECD12B005322DA /* SEGGroupPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8B41DECD12B005322DA /* SEGGroupPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB87F1DECD12B005322DA /* SEGGroupPayload.m */; };
-		EADEB8B51DECD12B005322DA /* SEGIdentifyPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8801DECD12B005322DA /* SEGIdentifyPayload.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8B51DECD12B005322DA /* SEGIdentifyPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8801DECD12B005322DA /* SEGIdentifyPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8B61DECD12B005322DA /* SEGIdentifyPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8811DECD12B005322DA /* SEGIdentifyPayload.m */; };
-		EADEB8B71DECD12B005322DA /* SEGIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8821DECD12B005322DA /* SEGIntegration.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EADEB8B81DECD12B005322DA /* SEGIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8831DECD12B005322DA /* SEGIntegrationFactory.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8B71DECD12B005322DA /* SEGIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8821DECD12B005322DA /* SEGIntegration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EADEB8B81DECD12B005322DA /* SEGIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8831DECD12B005322DA /* SEGIntegrationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8B91DECD12B005322DA /* SEGIntegrationsManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8841DECD12B005322DA /* SEGIntegrationsManager.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8BA1DECD12B005322DA /* SEGIntegrationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8851DECD12B005322DA /* SEGIntegrationsManager.m */; };
-		EADEB8BB1DECD12B005322DA /* SEGPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8861DECD12B005322DA /* SEGPayload.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8BB1DECD12B005322DA /* SEGPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8861DECD12B005322DA /* SEGPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8BC1DECD12B005322DA /* SEGPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8871DECD12B005322DA /* SEGPayload.m */; };
-		EADEB8BD1DECD12B005322DA /* SEGScreenPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8881DECD12B005322DA /* SEGScreenPayload.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8BD1DECD12B005322DA /* SEGScreenPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8881DECD12B005322DA /* SEGScreenPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8BE1DECD12B005322DA /* SEGScreenPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8891DECD12B005322DA /* SEGScreenPayload.m */; };
-		EADEB8BF1DECD12B005322DA /* SEGTrackPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB88A1DECD12B005322DA /* SEGTrackPayload.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8BF1DECD12B005322DA /* SEGTrackPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB88A1DECD12B005322DA /* SEGTrackPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8C01DECD12B005322DA /* SEGTrackPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB88B1DECD12B005322DA /* SEGTrackPayload.m */; };
 		EADEB8C11DECD12B005322DA /* NSData+SEGGZIP.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB88D1DECD12B005322DA /* NSData+SEGGZIP.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8C21DECD12B005322DA /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB88E1DECD12B005322DA /* NSData+SEGGZIP.m */; };
@@ -35,13 +35,13 @@
 		EADEB8C41DECD12B005322DA /* SEGAnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8901DECD12B005322DA /* SEGAnalyticsUtils.m */; };
 		EADEB8C51DECD12B005322DA /* SEGFileStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8911DECD12B005322DA /* SEGFileStorage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8C61DECD12B005322DA /* SEGFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8921DECD12B005322DA /* SEGFileStorage.m */; };
-		EADEB8C71DECD12B005322DA /* SEGHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8931DECD12B005322DA /* SEGHTTPClient.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8C71DECD12B005322DA /* SEGHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8931DECD12B005322DA /* SEGHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8C81DECD12B005322DA /* SEGHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8941DECD12B005322DA /* SEGHTTPClient.m */; };
 		EADEB8C91DECD12B005322DA /* SEGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8951DECD12B005322DA /* SEGReachability.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8CA1DECD12B005322DA /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8961DECD12B005322DA /* SEGReachability.m */; };
-		EADEB8CB1DECD12B005322DA /* SEGSegmentIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8971DECD12B005322DA /* SEGSegmentIntegration.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8CB1DECD12B005322DA /* SEGSegmentIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8971DECD12B005322DA /* SEGSegmentIntegration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8CC1DECD12B005322DA /* SEGSegmentIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8981DECD12B005322DA /* SEGSegmentIntegration.m */; };
-		EADEB8CD1DECD12B005322DA /* SEGSegmentIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8991DECD12B005322DA /* SEGSegmentIntegrationFactory.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8CD1DECD12B005322DA /* SEGSegmentIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8991DECD12B005322DA /* SEGSegmentIntegrationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8CE1DECD12B005322DA /* SEGSegmentIntegrationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB89A1DECD12B005322DA /* SEGSegmentIntegrationFactory.m */; };
 		EADEB8CF1DECD12B005322DA /* SEGStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB89B1DECD12B005322DA /* SEGStorage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8D01DECD12B005322DA /* SEGStoreKitTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB89C1DECD12B005322DA /* SEGStoreKitTracker.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -58,7 +58,7 @@
 		EADEB8DB1DECD12B005322DA /* SEGMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8A81DECD12B005322DA /* SEGMiddleware.m */; };
 		EADEB8DC1DECD12B005322DA /* SEGAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8A91DECD12B005322DA /* SEGAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8DD1DECD12B005322DA /* SEGAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8AA1DECD12B005322DA /* SEGAnalytics.m */; };
-		EADEB8DE1DECD12B005322DA /* SEGAnalyticsConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8AB1DECD12B005322DA /* SEGAnalyticsConfiguration.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8DE1DECD12B005322DA /* SEGAnalyticsConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8AB1DECD12B005322DA /* SEGAnalyticsConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8DF1DECD12B005322DA /* SEGAnalyticsConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8AC1DECD12B005322DA /* SEGAnalyticsConfiguration.m */; };
 		EADEB8EE1DECD335005322DA /* HTTPClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E01DECD335005322DA /* HTTPClientTest.swift */; };
 		EADEB8EF1DECD335005322DA /* NSData+SEGGUNZIPP.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E31DECD335005322DA /* NSData+SEGGUNZIPP.m */; };
@@ -68,7 +68,6 @@
 		EADEB8F31DECD335005322DA /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E71DECD335005322DA /* AnalyticsTests.swift */; };
 		EADEB8F41DECD335005322DA /* ContextTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E81DECD335005322DA /* ContextTest.swift */; };
 		EADEB8F51DECD335005322DA /* CryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E91DECD335005322DA /* CryptoTest.swift */; };
-		EADEB8F61DECD335005322DA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EADEB8EA1DECD335005322DA /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +150,9 @@
 		EADEB8EA1DECD335005322DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EADEB8EC1DECD335005322DA /* AnalyticsTests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AnalyticsTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		EADEB8FB1DECD521005322DA /* LSMatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LSMatcher.h; path = Pods/Nocilla/Nocilla/Matchers/LSMatcher.h; sourceTree = SOURCE_ROOT; };
+		EADEB8FF1DED3711005322DA /* circle.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
+		EADEB9001DED3711005322DA /* Analytics.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Analytics.podspec; sourceTree = "<group>"; };
+		EADEB9011DED3711005322DA /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +200,7 @@
 				EADEB85C1DECD080005322DA /* Products */,
 				131288D363FD2289356A68FD /* Pods */,
 				057A31C6B74BD265DD06663B /* Frameworks */,
+				EADEB8FE1DED36ED005322DA /* Supporting Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -336,6 +339,16 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		EADEB8FE1DED36ED005322DA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EADEB8FF1DED3711005322DA /* circle.yml */,
+				EADEB9001DED3711005322DA /* Analytics.podspec */,
+				EADEB9011DED3711005322DA /* Podfile.lock */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -343,32 +356,32 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EADEB8B81DECD12B005322DA /* SEGIntegrationFactory.h in Headers */,
 				EADEB8DC1DECD12B005322DA /* SEGAnalytics.h in Headers */,
-				EADEB8D61DECD12B005322DA /* UIViewController+SEGScreen.h in Headers */,
+				EADEB8B81DECD12B005322DA /* SEGIntegrationFactory.h in Headers */,
+				EADEB8CB1DECD12B005322DA /* SEGSegmentIntegration.h in Headers */,
+				EADEB8CD1DECD12B005322DA /* SEGSegmentIntegrationFactory.h in Headers */,
+				EADEB8B71DECD12B005322DA /* SEGIntegration.h in Headers */,
+				EADEB8B51DECD12B005322DA /* SEGIdentifyPayload.h in Headers */,
+				EADEB8BB1DECD12B005322DA /* SEGPayload.h in Headers */,
+				EADEB8B11DECD12B005322DA /* SEGAliasPayload.h in Headers */,
+				EADEB8BD1DECD12B005322DA /* SEGScreenPayload.h in Headers */,
 				EADEB8BF1DECD12B005322DA /* SEGTrackPayload.h in Headers */,
-				EADEB8D01DECD12B005322DA /* SEGStoreKitTracker.h in Headers */,
+				EADEB8C71DECD12B005322DA /* SEGHTTPClient.h in Headers */,
+				EADEB8B31DECD12B005322DA /* SEGGroupPayload.h in Headers */,
+				EADEB8B01DECD12B005322DA /* SEGCrypto.h in Headers */,
 				EADEB8DE1DECD12B005322DA /* SEGAnalyticsConfiguration.h in Headers */,
+				EADEB8D61DECD12B005322DA /* UIViewController+SEGScreen.h in Headers */,
+				EADEB8D01DECD12B005322DA /* SEGStoreKitTracker.h in Headers */,
 				EADEB8D21DECD12B005322DA /* SEGUserDefaultsStorage.h in Headers */,
 				EADEB8D81DECD12B005322DA /* SEGContext.h in Headers */,
 				EADEB8DA1DECD12B005322DA /* SEGMiddleware.h in Headers */,
 				EADEB8D41DECD12B005322DA /* SEGUtils.h in Headers */,
 				EADEB8601DECD080005322DA /* Analytics.h in Headers */,
-				EADEB8C71DECD12B005322DA /* SEGHTTPClient.h in Headers */,
 				EADEB8C31DECD12B005322DA /* SEGAnalyticsUtils.h in Headers */,
-				EADEB8B51DECD12B005322DA /* SEGIdentifyPayload.h in Headers */,
 				EADEB8CF1DECD12B005322DA /* SEGStorage.h in Headers */,
 				EADEB8B91DECD12B005322DA /* SEGIntegrationsManager.h in Headers */,
-				EADEB8CB1DECD12B005322DA /* SEGSegmentIntegration.h in Headers */,
-				EADEB8CD1DECD12B005322DA /* SEGSegmentIntegrationFactory.h in Headers */,
 				EADEB8AE1DECD12B005322DA /* SEGAES256Crypto.h in Headers */,
-				EADEB8BB1DECD12B005322DA /* SEGPayload.h in Headers */,
 				EADEB8C51DECD12B005322DA /* SEGFileStorage.h in Headers */,
-				EADEB8B11DECD12B005322DA /* SEGAliasPayload.h in Headers */,
-				EADEB8BD1DECD12B005322DA /* SEGScreenPayload.h in Headers */,
-				EADEB8B71DECD12B005322DA /* SEGIntegration.h in Headers */,
-				EADEB8B31DECD12B005322DA /* SEGGroupPayload.h in Headers */,
-				EADEB8B01DECD12B005322DA /* SEGCrypto.h in Headers */,
 				EADEB8C11DECD12B005322DA /* NSData+SEGGZIP.h in Headers */,
 				EADEB8C91DECD12B005322DA /* SEGReachability.h in Headers */,
 			);
@@ -466,7 +479,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EADEB8F61DECD335005322DA /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
