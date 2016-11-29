@@ -10,6 +10,7 @@
 #define SEGMENT_CDN_BASE [NSURL URLWithString:@"https://cdn-settings.segment.com/v1"]
 #define MOBILE_SERVICE_BASE [NSURL URLWithString:@"https://mobile-service.segment.com/v1"]
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface SEGHTTPClient : NSObject
 
@@ -18,7 +19,7 @@
 + (SEGRequestFactory)defaultRequestFactory;
 + (NSString *)authorizationHeader:(NSString *)writeKey;
 
-- (instancetype)initWithRequestFactory:(SEGRequestFactory)requestFactory;
+- (instancetype)initWithRequestFactory:(SEGRequestFactory _Nullable)requestFactory;
 
 /**
  * Upload dictionary formatted as per https://segment.com/docs/sources/server/http/#batch.
@@ -28,10 +29,12 @@
  * NOTE: You need to re-dispatch within the completionHandler onto a desired queue to avoid threading issues.
  * Completion handlers are called on a dispatch queue internal to SEGHTTPClient. 
  */
-- (NSURLSessionUploadTask *)upload:(NSDictionary *)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler;
+- (NSURLSessionUploadTask *)upload:(JSON_DICT)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler;
 
-- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL success, NSDictionary *settings))completionHandler;
+- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL success, JSON_DICT _Nullable settings))completionHandler;
 
-- (NSURLSessionDataTask *)attributionWithWriteKey:(NSString *)writeKey forDevice:(NSDictionary *)context completionHandler:(void (^)(BOOL success, NSDictionary *properties))completionHandler;
+- (NSURLSessionDataTask *)attributionWithWriteKey:(NSString *)writeKey forDevice:(JSON_DICT)context completionHandler:(void (^)(BOOL success, JSON_DICT _Nullable properties))completionHandler;
 
 @end
+
+NS_ASSUME_NONNULL_END

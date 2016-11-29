@@ -3,6 +3,7 @@
 #import "SEGHTTPClient.h"
 #import "SEGStorage.h"
 
+NS_ASSUME_NONNULL_BEGIN
 
 @interface SEGSegmentIntegrationFactory : NSObject <SEGIntegrationFactory>
 
@@ -12,3 +13,5 @@
 - (instancetype)initWithHTTPClient:(SEGHTTPClient *)client storage:(id<SEGStorage>)storage;
 
 @end
+
+NS_ASSUME_NONNULL_END

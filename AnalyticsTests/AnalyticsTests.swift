@@ -38,6 +38,7 @@ extension SEGSegmentIntegration {
   }
 }
 
+
 class AnalyticsTests: QuickSpec {
   override func spec() {
     let config = SEGAnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
@@ -69,17 +70,17 @@ class AnalyticsTests: QuickSpec {
     
     it("persists anonymousId") {
       let analytics2 = SEGAnalytics(configuration: config)
-      expect(analytics.getAnonymousId()) == analytics2?.getAnonymousId()
+      expect(analytics.getAnonymousId()) == analytics2.getAnonymousId()
     }
     
     it("persists userId") {
       analytics.identify("testUserId1")
       
       let analytics2 = SEGAnalytics(configuration: config)
-      analytics2?.test_integrationsManager()?.test_setCachedSettings(settings: cachedSettings)
+      analytics2.test_integrationsManager()?.test_setCachedSettings(settings: cachedSettings)
 
       expect(analytics.test_integrationsManager()?.test_segmentIntegration()?.test_userId()) == "testUserId1"
-      expect(analytics2?.test_integrationsManager()?.test_segmentIntegration()?.test_userId()) == "testUserId1"
+      expect(analytics2.test_integrationsManager()?.test_segmentIntegration()?.test_userId()) == "testUserId1"
     }
     
     it("continues user activity") {

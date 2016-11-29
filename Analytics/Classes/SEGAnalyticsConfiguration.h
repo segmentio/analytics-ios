@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
+typedef NSMutableURLRequest * _Nonnull(^SEGRequestFactory)(NSURL * _Nonnull);
 
 @protocol SEGIntegrationFactory;
 @protocol SEGCrypto;
@@ -23,14 +23,14 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
  *
  * @param writeKey Your project's write key from segment.io.
  */
-+ (instancetype)configurationWithWriteKey:(NSString *)writeKey;
++ (_Nonnull instancetype)configurationWithWriteKey:(NSString * _Nonnull)writeKey;
 
 /**
  * Your project's write key from segment.io.
  *
  * @see +configurationWithWriteKey:
  */
-@property (nonatomic, copy, readonly) NSString *writeKey;
+@property (nonatomic, copy, readonly, nonnull) NSString *writeKey;
 
 /**
  * Whether the analytics client should use location services.
@@ -89,21 +89,21 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
 /**
  * Dictionary indicating the options the app was launched with.
  */
-@property (nonatomic, assign) NSDictionary *launchOptions;
+@property (nonatomic, strong, nullable) NSDictionary *launchOptions;
 
 /**
  * Set a custom request factory.
  */
-@property (nonatomic, strong) SEGRequestFactory requestFactory;
+@property (nonatomic, strong, nullable) SEGRequestFactory requestFactory;
 
 /**
  * Set a custom crypto
  */
-@property (nonatomic, strong) id<SEGCrypto> crypto;
+@property (nonatomic, strong, nullable) id<SEGCrypto> crypto;
 
 /**
  * Register a factory that can be used to create an integration.
  */
-- (void)use:(id<SEGIntegrationFactory>)factory;
+- (void)use:(id<SEGIntegrationFactory> _Nonnull)factory;
 
 @end
