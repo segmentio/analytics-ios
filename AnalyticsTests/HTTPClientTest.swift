@@ -45,7 +45,7 @@ class HTTPClientTest: QuickSpec {
         var done = false
         let task = client.settings(forWriteKey: "foo", completionHandler: { success, settings in
           expect(success) == true
-          expect((settings as NSDictionary)) == [
+          expect((settings as? NSDictionary)) == [
             "integrations": [
               "Segment.io": [
                 "apiKey":"foo"
