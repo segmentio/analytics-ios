@@ -1,0 +1,28 @@
+machine:
+  xcode:
+    version: "8.0"
+
+dependencies:
+  pre:
+#     # - brew install xctool # Homebrew is actually not used on circle at the moment
+    - gem install xcpretty
+    - gem install cocoapods -v $(var=$(tail -1 Podfile.lock); echo ${var##COCOAPODS:})
+#     - if cd ~/.cocoapods/repos/master; then git pull; else git clone https://github.com/CocoaPods/Specs.git ~/.cocoapods/repos/master; fi
+#     - pod setup --verbose
+  override:
+    - make install
+  cache_directories:
+    - ./Pods
+    - ~/.cocoapods
+
+test:
+  override:
+    - make build-pretty
+    - make test-pretty
+    - make lint
+    - make carthage
+  post:
+    - mv build/reports $CIRCLE_TEST_REPORTS/xcode # relies on xcpretty --report junit
+    - bash <(curl -s https://codecov.io/bash)
+    # Save Pods to artifacts in case we need to dig up dependencies later
+    - zip -FSr $CIRCLE_ARTIFACTS/Pods.zip ./Pods/

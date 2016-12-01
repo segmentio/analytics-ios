@@ -1,114 +1,17 @@
 #import <Foundation/Foundation.h>
 #import "SEGIntegrationFactory.h"
 #import "SEGCrypto.h"
+#import "SEGAnalyticsConfiguration.h"
+#import "SEGSerializableValue.h"
 
-/**
- * NSNotification name, that is posted after integrations are loaded.
- */
-extern NSString *SEGAnalyticsIntegrationDidStart;
-
-typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
-
-@protocol SEGIntegrationFactory;
-
-/**
- * This object provides a set of properties to control various policies of the analytics client. Other than `writeKey`, these properties can be changed at any time.
- */
-@interface SEGAnalyticsConfiguration : NSObject
-
-/**
- * Creates and returns a configuration with default settings and the given write key.
- *
- * @param writeKey Your project's write key from segment.io.
- */
-+ (instancetype)configurationWithWriteKey:(NSString *)writeKey;
-
-/**
- * Your project's write key from segment.io.
- *
- * @see +configurationWithWriteKey:
- */
-@property (nonatomic, copy, readonly) NSString *writeKey;
-
-/**
- * Whether the analytics client should use location services.
- * If `YES` and the host app hasn't asked for permission to use location services then the user will be presented with an alert view asking to do so. `NO` by default.
- * If `YES`, please make sure to add a description for `NSLocationAlwaysUsageDescription` in your `Info.plist` explaining why your app is accessing Location APIs.
- */
-@property (nonatomic, assign) BOOL shouldUseLocationServices;
-
-/**
- * Whether the analytics client should track advertisting info. `YES` by default.
- */
-@property (nonatomic, assign) BOOL enableAdvertisingTracking;
-
-/**
- * The number of queued events that the analytics client should flush at. Setting this to `1` will not queue any events and will use more battery. `20` by default.
- */
-@property (nonatomic, assign) NSUInteger flushAt;
-
-
-/**
- * Whether the analytics client should automatically make a track call for application lifecycle events, such as "Application Installed", "Application Updated" and "Application Opened".
- */
-@property (nonatomic, assign) BOOL trackApplicationLifecycleEvents;
-
-
-/**
- * Whether the analytics client should record bluetooth information. If `YES`, please make sure to add a description for `NSBluetoothPeripheralUsageDescription` in your `Info.plist` explaining explaining why your app is accessing Bluetooth APIs. `NO` by default.
- */
-@property (nonatomic, assign) BOOL shouldUseBluetooth;
-
-/**
- * Whether the analytics client should automatically make a screen call when a view controller is added to a view hierarchy. Because the underlying implementation uses method swizzling, we recommend initializing the analytics client as early as possible (before any screens are displayed), ideally during the Application delegate's applicationDidFinishLaunching method.
- */
-@property (nonatomic, assign) BOOL recordScreenViews;
-
-/**
- * Whether the analytics client should automatically track in-app purchases from the App Store.
- */
-@property (nonatomic, assign) BOOL trackInAppPurchases;
-
-/**
- * Whether the analytics client should automatically track push notifications.
- */
-@property (nonatomic, assign) BOOL trackPushNotifications;
-
-/**
- * Whether the analytics client should automatically track deep links. You'll still need to call the continueUserActivity and openURL methods on the analytics client.
- */
-@property (nonatomic, assign) BOOL trackDeepLinks;
-
-/**
- * Whether the analytics client should automatically track attribution data from enabled providers using the mobile service.
- */
-@property (nonatomic, assign) BOOL trackAttributionData;
-
-/**
- * Dictionary indicating the options the app was launched with.
- */
-@property (nonatomic, assign) NSDictionary *launchOptions;
-
-/**
- * Set a custom request factory.
- */
-@property (nonatomic, strong) SEGRequestFactory requestFactory;
-
-/**
- * Set a custom crypto
- */
-@property (nonatomic, strong) id<SEGCrypto> crypto;
-
-/**
- * Register a factory that can be used to create an integration.
- */
-- (void)use:(id<SEGIntegrationFactory>)factory;
-
-@end
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  * This object provides an API for recording analytics.
  */
+@class SEGAnalyticsConfiguration;
+
+
 @interface SEGAnalytics : NSObject
 
 /**
@@ -162,9 +65,9 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
  When you learn more about who your user is, you can record that information with identify.
 
  */
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options;
+- (void)identify:(NSString *)userId traits:(SERIALIZABLE_DICT _Nullable)traits options:(SERIALIZABLE_DICT _Nullable)options;
+- (void)identify:(NSString *)userId traits:(SERIALIZABLE_DICT _Nullable)traits;
 - (void)identify:(NSString *)userId;
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits;
 
 
 /*!
@@ -183,9 +86,9 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
  When a user performs an action in your app, you'll want to track that action for later analysis. Use the event name to say what the user did, and properties to specify any interesting details of the action.
 
  */
+- (void)track:(NSString *)event properties:(SERIALIZABLE_DICT _Nullable)properties options:(SERIALIZABLE_DICT _Nullable)options;
+- (void)track:(NSString *)event properties:(SERIALIZABLE_DICT _Nullable)properties;
 - (void)track:(NSString *)event;
-- (void)track:(NSString *)event properties:(NSDictionary *)properties;
-- (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options;
 
 /*!
  @method
@@ -203,9 +106,9 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
  When a user views a screen in your app, you'll want to record that here. For some tools like Google Analytics and Flurry, screen views are treated specially, and are different from "events" kind of like "page views" on the web. For services that don't treat "screen views" specially, we map "screen" straight to "track" with the same parameters. For example, Mixpanel doesn't treat "screen views" any differently. So a call to "screen" will be tracked as a normal event in Mixpanel, but get sent to Google Analytics and Flurry as a "screen".
 
  */
+- (void)screen:(NSString *)screenTitle properties:(SERIALIZABLE_DICT _Nullable)properties options:(SERIALIZABLE_DICT _Nullable)options;
+- (void)screen:(NSString *)screenTitle properties:(SERIALIZABLE_DICT _Nullable)properties;
 - (void)screen:(NSString *)screenTitle;
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties;
-- (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options;
 
 /*!
  @method
@@ -220,9 +123,9 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
  When you learn more about who the group is, you can record that information with group.
 
  */
+- (void)group:(NSString *)groupId traits:(SERIALIZABLE_DICT _Nullable)traits options:(SERIALIZABLE_DICT _Nullable)options;
+- (void)group:(NSString *)groupId traits:(SERIALIZABLE_DICT _Nullable)traits;
 - (void)group:(NSString *)groupId;
-- (void)group:(NSString *)groupId traits:(NSDictionary *)traits;
-- (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options;
 
 /*!
  @method
@@ -238,8 +141,8 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
  When you learn more about who the group is, you can record that information with group.
 
  */
+- (void)alias:(NSString *)newId options:(SERIALIZABLE_DICT _Nullable)options;
 - (void)alias:(NSString *)newId;
-- (void)alias:(NSString *)newId options:(NSDictionary *)options;
 
 // todo: docs
 - (void)receivedRemoteNotification:(NSDictionary *)userInfo;
@@ -329,3 +232,5 @@ typedef NSMutableURLRequest * (^SEGRequestFactory)(NSURL *);
 
 
 @end
+
+NS_ASSUME_NONNULL_END

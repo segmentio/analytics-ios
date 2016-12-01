@@ -4,25 +4,18 @@
 
 @implementation SEGSegmentIntegrationFactory
 
-+ (id)instance
+- (id)initWithHTTPClient:(SEGHTTPClient *)client storage:(id<SEGStorage>)storage
 {
-    static dispatch_once_t once;
-    static SEGSegmentIntegrationFactory *sharedInstance;
-    dispatch_once(&once, ^{
-        sharedInstance = [[self alloc] init];
-    });
-    return sharedInstance;
-}
-
-- (id)init
-{
-    self = [super init];
+    if (self = [super init]) {
+        _client = client;
+        _storage = storage;
+    }
     return self;
 }
 
 - (id<SEGIntegration>)createWithSettings:(NSDictionary *)settings forAnalytics:(SEGAnalytics *)analytics
 {
-    return [[SEGSegmentIntegration alloc] initWithAnalytics:analytics];
+    return [[SEGSegmentIntegration alloc] initWithAnalytics:analytics httpClient:self.client storage:self.storage];
 }
 
 - (NSString *)key

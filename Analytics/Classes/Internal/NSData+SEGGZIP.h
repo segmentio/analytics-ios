@@ -33,9 +33,12 @@
 
 #import <Foundation/Foundation.h>
 
+extern void *_Nullable seg_libzOpen();
+
 
 @interface NSData (GZIP)
 
 - (nullable NSData *)seg_gzippedData;
+- (BOOL)seg_isGzippedData;
 
 @end
