@@ -546,7 +546,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         }
         case SEGEventTypeScreen: {
             SEGScreenPayload *p = (SEGScreenPayload *)context.payload;
-            [self track:p.name properties:p.properties options:p.options];
+            [self screen:p.name properties:p.properties options:p.options];
             break;
         }
         case SEGEventTypeGroup: {
