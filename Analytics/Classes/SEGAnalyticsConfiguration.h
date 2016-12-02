@@ -12,6 +12,7 @@ typedef NSMutableURLRequest * _Nonnull(^SEGRequestFactory)(NSURL * _Nonnull);
 
 @protocol SEGIntegrationFactory;
 @protocol SEGCrypto;
+@protocol SEGMiddleware;
 
 /**
  * This object provides a set of properties to control various policies of the analytics client. Other than `writeKey`, these properties can be changed at any time.
@@ -100,6 +101,11 @@ typedef NSMutableURLRequest * _Nonnull(^SEGRequestFactory)(NSURL * _Nonnull);
  * Set a custom crypto
  */
 @property (nonatomic, strong, nullable) id<SEGCrypto> crypto;
+
+/**
+ * Set custom middlewares. Will be run before all integrations
+ */
+@property (nonatomic, strong, nullable) NSArray<id<SEGMiddleware>> *middlewares;
 
 /**
  * Register a factory that can be used to create an integration.
