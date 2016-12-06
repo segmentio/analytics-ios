@@ -100,15 +100,18 @@ static BOOL GetAdTrackingEnabled()
             }
         }];
 #endif
+        __weak typeof(self) weakSelf = self;
         [self dispatchBackground:^{
-            [self trackAttributionData:self.configuration.trackAttributionData];
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf trackAttributionData:strongSelf.configuration.trackAttributionData];
         }];
 
         if ([NSThread isMainThread]) {
             [self setupFlushTimer];
         } else {
             dispatch_sync(dispatch_get_main_queue(), ^{
-                [self setupFlushTimer];
+                __strong typeof(weakSelf) strongSelf = weakSelf;
+                [strongSelf setupFlushTimer];
             });
         }
     }
@@ -261,17 +264,21 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     [self endBackgroundTask];
 
+    __weak typeof(self) weakSelf = self;
     self.flushTaskID = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-        [self endBackgroundTask];
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf endBackgroundTask];
     }];
 }
 
 - (void)endBackgroundTask
 {
+    __weak typeof(self) weakSelf = self;
     [self dispatchBackgroundAndWait:^{
-        if (self.flushTaskID != UIBackgroundTaskInvalid) {
-            [[UIApplication sharedApplication] endBackgroundTask:self.flushTaskID];
-            self.flushTaskID = UIBackgroundTaskInvalid;
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (strongSelf.flushTaskID != UIBackgroundTaskInvalid) {
+            [[UIApplication sharedApplication] endBackgroundTask:strongSelf.flushTaskID];
+            strongSelf.flushTaskID = UIBackgroundTaskInvalid;
         }
     }];
 }
@@ -283,26 +290,30 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (void)saveUserId:(NSString *)userId
 {
+    __weak typeof(self) weakSelf = self;
     [self dispatchBackground:^{
-        self.userId = userId;
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        strongSelf.userId = userId;
 
 #if TARGET_OS_TV
-        [self.storage setString:userId forKey:SEGUserIdKey];
+        [strongSelf.storage setString:userId forKey:SEGUserIdKey];
 #else
-        [self.storage setString:userId forKey:kSEGUserIdFilename];
+        [strongSelf.storage setString:userId forKey:kSEGUserIdFilename];
 #endif
     }];
 }
 
 - (void)addTraits:(NSDictionary *)traits
 {
+    __weak typeof(self) weakSelf = self;
     [self dispatchBackground:^{
-        [self.traits addEntriesFromDictionary:traits];
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf.traits addEntriesFromDictionary:traits];
 
 #if TARGET_OS_TV
-        [self.storage setDictionary:[self.traits copy] forKey:SEGTraitsKey];
+        [strongSelf.storage setDictionary:[strongSelf.traits copy] forKey:SEGTraitsKey];
 #else
-        [self.storage setDictionary:[self.traits copy] forKey:kSEGTraitsFilename];
+        [strongSelf.storage setDictionary:[strongSelf.traits copy] forKey:kSEGTraitsFilename];
 #endif
     }];
 }
@@ -311,9 +322,11 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (void)identify:(SEGIdentifyPayload *)payload
 {
+    __weak typeof(self) weakSelf = self;
     [self dispatchBackground:^{
-        [self saveUserId:payload.userId];
-        [self addTraits:payload.traits];
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf saveUserId:payload.userId];
+        [strongSelf addTraits:payload.traits];
     }];
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -414,20 +427,22 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     payload[@"timestamp"] = iso8601FormattedString([NSDate date]);
     payload[@"messageId"] = GenerateUUIDString();
 
+    __weak typeof(self) weakSelf = self;
     [self dispatchBackground:^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
         // attach userId and anonymousId inside the dispatch_async in case
         // they've changed (see identify function)
 
         // Do not override the userId for an 'alias' action. This value is set in [alias:] already.
         if (![action isEqualToString:@"alias"]) {
-            [payload setValue:self.userId forKey:@"userId"];
+            [payload setValue:strongSelf.userId forKey:@"userId"];
         }
-        [payload setValue:[self.analytics getAnonymousId] forKey:@"anonymousId"];
+        [payload setValue:[strongSelf.analytics getAnonymousId] forKey:@"anonymousId"];
 
-        [payload setValue:[self integrationsDictionary:integrations] forKey:@"integrations"];
+        [payload setValue:[strongSelf integrationsDictionary:integrations] forKey:@"integrations"];
 
-        NSDictionary *staticContext = self.cachedStaticContext;
-        NSDictionary *liveContext = [self liveContext];
+        NSDictionary *staticContext = strongSelf.cachedStaticContext;
+        NSDictionary *liveContext = [strongSelf liveContext];
         NSDictionary *customContext = context;
         NSMutableDictionary *context = [NSMutableDictionary dictionaryWithCapacity:staticContext.count + liveContext.count + customContext.count];
         [context addEntriesFromDictionary:staticContext];
@@ -435,8 +450,8 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         [context addEntriesFromDictionary:customContext];
         [payload setValue:[context copy] forKey:@"context"];
 
-        SEGLog(@"%@ Enqueueing action: %@", self, payload);
-        [self queuePayload:[payload copy]];
+        SEGLog(@"%@ Enqueueing action: %@", strongSelf, payload);
+        [strongSelf queuePayload:[payload copy]];
     }];
 }
 
@@ -463,64 +478,72 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (void)flushWithMaxSize:(NSUInteger)maxBatchSize
 {
+    __weak typeof(self) weakSelf = self;
     [self dispatchBackground:^{
-        if ([self.queue count] == 0) {
-            SEGLog(@"%@ No queued API calls to flush.", self);
-            [self endBackgroundTask];
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if ([strongSelf.queue count] == 0) {
+            SEGLog(@"%@ No queued API calls to flush.", strongSelf);
+            [strongSelf endBackgroundTask];
             return;
         }
-        if (self.batchRequest != nil) {
-            SEGLog(@"%@ API request already in progress, not flushing again.", self);
+        if (strongSelf.batchRequest != nil) {
+            SEGLog(@"%@ API request already in progress, not flushing again.", strongSelf);
             return;
         }
 
         NSArray *batch;
-        if ([self.queue count] >= maxBatchSize) {
-            batch = [self.queue subarrayWithRange:NSMakeRange(0, maxBatchSize)];
+        if ([strongSelf.queue count] >= maxBatchSize) {
+            batch = [strongSelf.queue subarrayWithRange:NSMakeRange(0, maxBatchSize)];
         } else {
-            batch = [NSArray arrayWithArray:self.queue];
+            batch = [NSArray arrayWithArray:strongSelf.queue];
         }
 
-        [self sendData:batch];
+        [strongSelf sendData:batch];
     }];
 }
 
 - (void)flushQueueByLength
 {
+    __weak typeof(self) weakSelf = self;
     [self dispatchBackground:^{
-        SEGLog(@"%@ Length is %lu.", self, (unsigned long)self.queue.count);
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        SEGLog(@"%@ Length is %lu.", strongSelf, (unsigned long)strongSelf.queue.count);
 
-        if (self.batchRequest == nil && [self.queue count] >= self.configuration.flushAt) {
-            [self flush];
+        if (strongSelf.batchRequest == nil && [strongSelf.queue count] >= strongSelf.configuration.flushAt) {
+            [strongSelf flush];
         }
     }];
 }
 
 - (void)reset
 {
+    __weak typeof(self) weakSelf = self;
     [self dispatchBackgroundAndWait:^{
-        [self.storage removeKey:SEGUserIdKey];
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf.storage removeKey:SEGUserIdKey];
 #if TARGET_OS_TV
-        [self.storage removeKey:SEGTraitsKey];
-        [self.storage removeKey:SEGQueueKey];
+        [strongSelf.storage removeKey:SEGTraitsKey];
+        [strongSelf.storage removeKey:SEGQueueKey];
 #else
-        [self.storage removeKey:kSEGUserIdFilename];
-        [self.storage removeKey:kSEGTraitsFilename];
-        [self.storage removeKey:kSEGQueueFilename];
+        [strongSelf.storage removeKey:kSEGUserIdFilename];
+        [strongSelf.storage removeKey:kSEGTraitsFilename];
+        [strongSelf.storage removeKey:kSEGQueueFilename];
 #endif
 
-        self.userId = nil;
-        self.traits = [NSMutableDictionary dictionary];
-        self.queue = [NSMutableArray array];
-        [self.batchRequest cancel];
-        self.batchRequest = nil;
+        strongSelf.userId = nil;
+        strongSelf.traits = [NSMutableDictionary dictionary];
+        strongSelf.queue = [NSMutableArray array];
+        [strongSelf.batchRequest cancel];
+        strongSelf.batchRequest = nil;
     }];
 }
 
 - (void)notifyForName:(NSString *)name userInfo:(id)userInfo
 {
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:name object:self];
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [[NSNotificationCenter defaultCenter] postNotificationName:name object:strongSelf];
         SEGLog(@"sent notification %@", name);
     });
 }
@@ -534,20 +557,23 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)batch.count, (unsigned long)self.queue.count);
     SEGLog(@"Flushing batch %@.", payload);
 
+    __weak typeof(self) weakSelf = self;
     self.batchRequest = [self.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
-        [self dispatchBackground:^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf dispatchBackground:^{
+            __strong typeof(weakSelf) strongSelf = weakSelf;
             if (retry) {
-                [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
-                self.batchRequest = nil;
-                [self endBackgroundTask];
+                [strongSelf notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
+                strongSelf.batchRequest = nil;
+                [strongSelf endBackgroundTask];
                 return;
             }
             
-            [self.queue removeObjectsInArray:batch];
-            [self persistQueue];
-            [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
-            self.batchRequest = nil;
-            [self endBackgroundTask];
+            [strongSelf.queue removeObjectsInArray:batch];
+            [strongSelf persistQueue];
+            [strongSelf notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
+            strongSelf.batchRequest = nil;
+            [strongSelf endBackgroundTask];
         }];
     }];
 
@@ -564,9 +590,12 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (void)applicationWillTerminate
 {
+    __weak typeof(self) weakSelf = self;
     [self dispatchBackgroundAndWait:^{
-        if (self.queue.count)
-            [self persistQueue];
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (strongSelf.queue.count) {
+            [strongSelf persistQueue];
+        }
     }];
 }
 
@@ -637,13 +666,16 @@ NSString *const SEGTrackedAttributionKey = @"SEGTrackedAttributionKey";
     [context addEntriesFromDictionary:staticContext];
     [context addEntriesFromDictionary:liveContext];
 
+    __weak typeof(self) weakSelf = self;
     self.attributionRequest = [self.httpClient attributionWithWriteKey:self.configuration.writeKey forDevice:[context copy] completionHandler:^(BOOL success, NSDictionary *properties) {
-        [self dispatchBackground:^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        [strongSelf dispatchBackground:^{
+            __strong typeof(weakSelf) strongSelf = weakSelf;
             if (success) {
-                [self.analytics track:@"Install Attributed" properties:properties];
+                [strongSelf.analytics track:@"Install Attributed" properties:properties];
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:SEGTrackedAttributionKey];
             }
-            self.attributionRequest = nil;
+            strongSelf.attributionRequest = nil;
         }];
     }];
 #endif

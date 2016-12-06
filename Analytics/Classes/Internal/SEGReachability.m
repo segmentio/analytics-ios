@@ -481,9 +481,11 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
     }
 
     // this makes sure the change notification happens on the MAIN THREAD
+    __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
         [[NSNotificationCenter defaultCenter] postNotificationName:kSEGReachabilityChangedNotification
-                                                            object:self];
+                                                            object:strongSelf];
     });
 }
 
