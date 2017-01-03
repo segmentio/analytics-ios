@@ -94,7 +94,8 @@ static SEGAnalytics *__sharedInstance = nil;
 #pragma mark -
 
 NSString *const SEGVersionKey = @"SEGVersionKey";
-NSString *const SEGBuildKey = @"SEGBuildKey";
+NSString *const SEGBuildKeyV1 = @"SEGBuildKey";
+NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 - (void)trackApplicationLifecycleEvents:(BOOL)trackApplicationLifecycleEvents
 {
@@ -102,33 +103,41 @@ NSString *const SEGBuildKey = @"SEGBuildKey";
         return;
     }
 
+    // Previously SEGBuildKey was stored an integer. This was incorrect because the CFBundleVersion
+    // can be a string. This migrates SEGBuildKey to be stored as a string.
+    NSInteger previousBuildV1 = [[NSUserDefaults standardUserDefaults] integerForKey:SEGBuildKeyV1];
+    if (previousBuildV1) {
+        [[NSUserDefaults standardUserDefaults] setObject:[@(previousBuildV1) stringValue] forKey:SEGBuildKeyV2];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGBuildKeyV1];
+    }
+
     NSString *previousVersion = [[NSUserDefaults standardUserDefaults] stringForKey:SEGVersionKey];
-    NSInteger previousBuild = [[NSUserDefaults standardUserDefaults] integerForKey:SEGBuildKey];
+    NSString *previousBuildV2 = [[NSUserDefaults standardUserDefaults] stringForKey:SEGBuildKeyV2];
 
     NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
-    NSInteger currentBuild = [[[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"] integerValue];
+    NSString *currentBuild = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
 
-    if (!previousBuild) {
+    if (!previousBuildV2) {
         [self track:@"Application Installed" properties:@{
             @"version" : currentVersion,
-            @"build" : @(currentBuild)
+            @"build" : currentBuild
         }];
-    } else if (currentBuild != previousBuild) {
+    } else if (currentBuild != previousBuildV2) {
         [self track:@"Application Updated" properties:@{
             @"previous_version" : previousVersion,
-            @"previous_build" : @(previousBuild),
+            @"previous_build" : previousBuildV2,
             @"version" : currentVersion,
-            @"build" : @(currentBuild)
+            @"build" : currentBuild
         }];
     }
 
     [self track:@"Application Opened" properties:@{
         @"version" : currentVersion,
-        @"build" : @(currentBuild)
+        @"build" : currentBuild
     }];
 
     [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:SEGVersionKey];
-    [[NSUserDefaults standardUserDefaults] setInteger:currentBuild forKey:SEGBuildKey];
+    [[NSUserDefaults standardUserDefaults] setObject:currentBuild forKey:SEGBuildKeyV2];
 }
 
 - (void)handleAppStateNotification:(NSNotification *)note
