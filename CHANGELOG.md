@@ -1,9 +1,13 @@
 Change Log
 ==========
 
+Version 3.5.6 *(3rd January, 2016)*
+-------------------------------------
+* [Fix](https://github.com/segmentio/analytics-ios/commit/48f9ef9ab53d774a31145bc21636026d7fb01679): Fix issue where automatically tracked application lifecycle events (`Application Opened` and `Application Updated`) reported truncated build numbers. So if the build number was `1.0.0`, the SDK would collect it as `1`. This fix ensures that the full build is reported.
+
 Version 3.5.5 *(30th November, 2016)*
 -------------------------------------
-* [Fix](1eeafe261887877b24b7197c991457b72379fc7e): Fix issue where calling `[analytics continueUserActivity:activity]` would cause events in the application session to be dropped. Events from prior and future sessions will be unaffected.
+* [Fix](https://github.com/segmentio/analytics-ios/commit/1eeafe261887877b24b7197c991457b72379fc7e): Fix issue where calling `[analytics continueUserActivity:activity]` would cause events in the application session to be dropped. Events from prior and future sessions were unaffected.
 
 Version 3.5.4 *(28th November, 2016)*
 -------------------------------------
