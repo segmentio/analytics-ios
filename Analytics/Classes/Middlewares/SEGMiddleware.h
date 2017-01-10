@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "SEGContext.h"
 
+typedef void (^SEGMiddlewareNext)(SEGContext *_Nullable newContext);
+
 @protocol SEGMiddleware
+@required
 
 // NOTE: If you want to hold onto references of context AFTER passing it through to the next
 // middleware, you should explicitly create a copy via `[context copy]` to guarantee
@@ -23,9 +26,20 @@
 // It's ok to save next callback until a more convenient time, but it should always always be done.
 // We'll probably actually add tests to sure it is so.
 // TODO: Should we add error as second param to next?
-- (void)context:(SEGContext *_Nonnull)context next:(void (^_Nonnull)(SEGContext *_Nullable newContext))next;
+- (void)context:(SEGContext *_Nonnull)context next:(SEGMiddlewareNext _Nonnull)next;
 
 @end
+
+typedef void (^SEGMiddlewareBlock)(SEGContext *_Nonnull context, SEGMiddlewareNext _Nonnull next);
+
+@interface SEGBlockMiddleware : NSObject <SEGMiddleware>
+
+@property (nonnull, nonatomic, readonly) SEGMiddlewareBlock block;
+
+- (instancetype _Nonnull)initWithBlock:(SEGMiddlewareBlock _Nonnull)block;
+
+@end
+
 
 typedef void (^RunMiddlewaresCallback)(BOOL earlyExit, NSArray<id<SEGMiddleware>> *_Nonnull remainingMiddlewares);
 

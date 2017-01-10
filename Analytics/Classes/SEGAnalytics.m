@@ -50,7 +50,9 @@ static SEGAnalytics *__sharedInstance = nil;
         // In swift this would not have been OK... But hey.. It's objc
         // TODO: Figure out if this is really the best way to do things here.
         self.integrationsManager = [[SEGIntegrationsManager alloc] initWithAnalytics:self];
-        self.runner = [[SEGMiddlewareRunner alloc] initWithMiddlewares:@[ self.integrationsManager ]];
+        
+        self.runner = [[SEGMiddlewareRunner alloc] initWithMiddlewares:
+                       [configuration.middlewares ?: @[] arrayByAddingObject:self.integrationsManager]];
 
         // Attach to application state change hooks
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
