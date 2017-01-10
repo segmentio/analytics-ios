@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.6.0-rc *(10th January, 2017)*
+-------------------------------------
+* Publicly exposing the middleware API, allowing custom middlewares to be inserted into the chain
+* Added `SEGBlockMiddleware` helper to make it easier to create middleware out of anonymous functions
+
 Version 3.6.0-beta *(1st December, 2016)*
 -------------------------------------
 * Major refactor laying the groundwork for a new middleware based architecture that will enable a whole new class of capabilities for analytics-ios
