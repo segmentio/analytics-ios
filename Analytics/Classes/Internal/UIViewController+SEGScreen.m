@@ -53,6 +53,14 @@
         UIViewController *lastViewController = [[(UINavigationController *)rootViewController viewControllers] lastObject];
         return [self seg_topViewController:lastViewController];
     }
+    else if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+        UIViewController *lastViewController = ((UITabBarController *)rootViewController).selectedViewController;
+        return [self seg_topViewController:lastViewController];
+    }
+    else if ([rootViewController isKindOfClass:[UISplitViewController class]]) {
+        UIViewController *lastViewController = [[(UISplitViewController *)rootViewController viewControllers] lastObject];
+        return [self seg_topViewController:lastViewController];
+    }
 
     return rootViewController;
 }
