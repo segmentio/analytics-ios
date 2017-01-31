@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.5.7 *(31st January, 2017)*
+-------------------------------------
+* [Fix](https://github.com/segmentio/analytics-ios/commit/93118227429bf7097050f756f2c0ddbbcc1897b1): 3.5.6 introduced a regression causing `Application Updated` events to be over-reported due to a mismatched comparison. This fixes that regression.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/663/commits/64acd50e9b91bb5b71ab1b859adfa971b926da96): Ensure network.carrier is populated.
+
 Version 3.5.6 *(3rd January, 2017)*
 -------------------------------------
 * [Fix](https://github.com/segmentio/analytics-ios/commit/48f9ef9ab53d774a31145bc21636026d7fb01679): Fix issue where automatically tracked application lifecycle events (`Application Opened` and `Application Updated`) reported truncated build numbers. So if the build number was `1.0.0`, the SDK would collect it as `1`. This fix ensures that the full build is reported.
