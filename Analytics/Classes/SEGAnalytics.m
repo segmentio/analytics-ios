@@ -124,7 +124,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
             @"version" : currentVersion,
             @"build" : currentBuild
         }];
-    } else if (![currentBuild isEqualToString:previousBuildV2]) {
+    } else if (currentBuild != previousBuildV2) {
         [self track:@"Application Updated" properties:@{
             @"previous_version" : previousVersion,
             @"previous_build" : previousBuildV2,
@@ -140,6 +140,8 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
     [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:SEGVersionKey];
     [[NSUserDefaults standardUserDefaults] setObject:currentBuild forKey:SEGBuildKeyV2];
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)handleAppStateNotification:(NSNotification *)note

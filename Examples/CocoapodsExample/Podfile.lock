@@ -1,5 +1,5 @@
 PODS:
-  - Analytics (3.5.4)
+  - Analytics (3.6.0-rc)
 
 DEPENDENCIES:
   - Analytics (from `../../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  Analytics: b462a87eb6e3609e5fb38416117b58011aa57ff8
+  Analytics: 40d3b441105b670b4242612317bd3add4779f949
 
 PODFILE CHECKSUM: 20b258e875ed60a69591787e49bdc3ca9f7c4ad3
 
-COCOAPODS: 1.1.0
+COCOAPODS: 1.2.0.beta.1
