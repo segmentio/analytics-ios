@@ -194,7 +194,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
             @"version" : currentVersion,
             @"build" : currentBuild
         }];
-    } else if (currentBuild != previousBuildV2) {
+    } else if (![currentBuild isEqualToString:previousBuildV2]) {
         [self track:@"Application Updated" properties:@{
             @"previous_version" : previousVersion,
             @"previous_build" : previousBuildV2,
@@ -600,7 +600,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 + (NSString *)version
 {
-    return @"3.5.6";
+    return @"3.5.7";
 }
 
 #pragma mark - Private
