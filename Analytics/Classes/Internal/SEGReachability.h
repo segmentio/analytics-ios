@@ -72,9 +72,9 @@ typedef void (^SEGNetworkUnreachable)(SEGReachability *reachability);
 
 @property (nonatomic, assign) BOOL reachableOnWWAN;
 
-+ (SEGReachability *)reachabilityWithHostname:(NSString *)hostname;
-+ (SEGReachability *)reachabilityForInternetConnection;
-+ (SEGReachability *)reachabilityForLocalWiFi;
++ (SEGReachability * _Nullable)reachabilityWithHostname:(NSString *)hostname;
++ (SEGReachability * _Nullable)reachabilityForInternetConnection;
++ (SEGReachability * _Nullable)reachabilityForLocalWiFi;
 
 - (SEGReachability *)initWithReachabilityRef:(SCNetworkReachabilityRef)ref;
 
