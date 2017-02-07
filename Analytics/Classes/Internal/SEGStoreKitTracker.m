@@ -70,6 +70,10 @@
 #pragma mark - Track
 - (void)trackTransaction:(SKPaymentTransaction *)transaction forProduct:(SKProduct *)product
 {
+    if (transaction.transactionIdentifier == nil) {
+        return;
+    }
+
     NSString *currency = [product.priceLocale objectForKey:NSLocaleCurrencyCode];
 
     [self.analytics track:@"Order Completed" properties:@{
