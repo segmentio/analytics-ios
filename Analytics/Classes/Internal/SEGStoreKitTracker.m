@@ -70,6 +70,9 @@
 #pragma mark - Track
 - (void)trackTransaction:(SKPaymentTransaction *)transaction forProduct:(SKProduct *)product
 {
+    // it seems the identifier is nil for renewable subscriptions
+    // see http://stackoverflow.com/questions/14827059/skpaymenttransactions-originaltransaction-transactionreceipt-nil-for-restore-on
+    // there isn't a spec'd event for this case ( https://segment.com/docs/spec/ecommerce/v2/ ) so ignoring it for now
     if (transaction.transactionIdentifier == nil) {
         return;
     }
