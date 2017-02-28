@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+
+Version 3.6.0 *(28th February, 2017)*
+-------------------------------------
+* Promoting `3.6.0-rc` to stable release `3.6.0` after sufficient time and exposure in pre-release. 
+
 Version 3.6.0-rc *(10th January, 2017)*
 -------------------------------------
 * Publicly exposing the middleware API, allowing custom middlewares to be inserted into the chain
