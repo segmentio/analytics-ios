@@ -74,8 +74,6 @@ static SEGAnalytics *__sharedInstance = nil;
             _storeKitTracker = [SEGStoreKitTracker trackTransactionsForAnalytics:self];
         }
 
-        [self trackApplicationLifecycleEvents:configuration.trackApplicationLifecycleEvents];
-
 #if !TARGET_OS_TV
         if (configuration.trackPushNotifications && configuration.launchOptions) {
             NSDictionary *remoteNotification = configuration.launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -99,13 +97,25 @@ NSString *const SEGVersionKey = @"SEGVersionKey";
 NSString *const SEGBuildKeyV1 = @"SEGBuildKey";
 NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
-- (void)trackApplicationLifecycleEvents:(BOOL)trackApplicationLifecycleEvents
+- (void)handleAppStateNotification:(NSNotification *)note
 {
-    if (!trackApplicationLifecycleEvents) {
+    SEGApplicationLifecyclePayload *payload = [[SEGApplicationLifecyclePayload alloc] init];
+    payload.notificationName = note.name;
+    [self run:SEGEventTypeApplicationLifecycle payload:payload];
+    
+    if ([note.name isEqualToString:UIApplicationDidFinishLaunchingNotification]) {
+        NSLog(@"note.userInfo %@", note.userInfo);
+        [self _applicationDidFinishLaunchingWithOptions:note.userInfo];
+    } else if ([note.name isEqualToString:UIApplicationWillEnterForegroundNotification]) {
+        [self _applicationWillEnterForeground];
+    }
+}
+
+- (void)_applicationDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    if (!self.configuration.trackApplicationLifecycleEvents) {
         return;
     }
-
-    // Previously SEGBuildKey was stored an integer. This was incorrect because the CFBundleVersion
+        // Previously SEGBuildKey was stored an integer. This was incorrect because the CFBundleVersion
     // can be a string. This migrates SEGBuildKey to be stored as a string.
     NSInteger previousBuildV1 = [[NSUserDefaults standardUserDefaults] integerForKey:SEGBuildKeyV1];
     if (previousBuildV1) {
@@ -144,12 +154,18 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)handleAppStateNotification:(NSNotification *)note
-{
-    SEGApplicationLifecyclePayload *payload = [[SEGApplicationLifecyclePayload alloc] init];
-    payload.notificationName = note.name;
-    [self run:SEGEventTypeApplicationLifecycle payload:payload];
+- (void)_applicationWillEnterForeground {
+    if (!self.configuration.trackApplicationLifecycleEvents) {
+        return;
+    }
+    NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
+    NSString *currentBuild = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
+    [self track:@"Application Opened" properties:@{
+        @"version" : currentVersion,
+        @"build" : currentBuild
+    }];
 }
+
 
 #pragma mark - Public API
 
@@ -196,6 +212,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     NSCAssert1(event.length > 0, @"event (%@) must not be empty.", event);
+    NSLog(@"SEGAnalytics - track: %@ properties: %@ options: %@", event, properties, options);
     [self run:SEGEventTypeTrack payload:
                                     [[SEGTrackPayload alloc] initWithEvent:event
                                                                 properties:SEGCoerceDictionary(properties)
