@@ -26,7 +26,7 @@ NSString *const SEGMENT_WRITE_KEY = @"zr5x22gUVBDM3hO3uHkbMkVe6Pd6sCna";
     configuration.trackAttributionData = YES;
     configuration.flushAt = 1;
     [SEGAnalytics setupWithConfiguration:configuration];
-    [[SEGAnalytics sharedAnalytics] track:@"Cocoapods Example Launched"];
+    [[SEGAnalytics sharedAnalytics] track:@"Teresa"];
     [[SEGAnalytics sharedAnalytics] flush];
     NSLog(@"application:didFinishLaunchingWithOptions: %@", launchOptions);
     return YES;

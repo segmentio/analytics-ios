@@ -142,11 +142,15 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
             @"build" : currentBuild
         }];
     }
-
+    
     [self track:@"Application Opened" properties:@{
+        @"from_background": @NO,
         @"version" : currentVersion,
-        @"build" : currentBuild
+        @"build" : currentBuild,
+        @"referring_application": launchOptions[UIApplicationLaunchOptionsSourceApplicationKey] ?: [NSNull null],
+        @"url": launchOptions[UIApplicationLaunchOptionsURLKey] ?: [NSNull null],
     }];
+
 
     [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:SEGVersionKey];
     [[NSUserDefaults standardUserDefaults] setObject:currentBuild forKey:SEGBuildKeyV2];
@@ -161,8 +165,9 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
     NSString *currentBuild = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
     [self track:@"Application Opened" properties:@{
+        @"from_background": @YES,
         @"version" : currentVersion,
-        @"build" : currentBuild
+        @"build" : currentBuild,
     }];
 }
 
