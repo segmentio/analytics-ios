@@ -104,7 +104,6 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     [self run:SEGEventTypeApplicationLifecycle payload:payload];
     
     if ([note.name isEqualToString:UIApplicationDidFinishLaunchingNotification]) {
-        NSLog(@"note.userInfo %@", note.userInfo);
         [self _applicationDidFinishLaunchingWithOptions:note.userInfo];
     } else if ([note.name isEqualToString:UIApplicationWillEnterForegroundNotification]) {
         [self _applicationWillEnterForeground];
