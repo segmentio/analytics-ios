@@ -20,13 +20,13 @@ NSString *const SEGMENT_WRITE_KEY = @"zr5x22gUVBDM3hO3uHkbMkVe6Pd6sCna";
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    [SEGAnalytics debug:NO];
+    [SEGAnalytics debug:YES];
     SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:SEGMENT_WRITE_KEY];
     configuration.trackApplicationLifecycleEvents = YES;
     configuration.trackAttributionData = YES;
     configuration.flushAt = 1;
     [SEGAnalytics setupWithConfiguration:configuration];
-    [[SEGAnalytics sharedAnalytics] track:@"Teresa"];
+    [[SEGAnalytics sharedAnalytics] track:@"Cocoapods Example Launched"];
     [[SEGAnalytics sharedAnalytics] flush];
     NSLog(@"application:didFinishLaunchingWithOptions: %@", launchOptions);
     return YES;

@@ -217,7 +217,6 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 - (void)track:(NSString *)event properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     NSCAssert1(event.length > 0, @"event (%@) must not be empty.", event);
-    NSLog(@"SEGAnalytics - track: %@ properties: %@ options: %@", event, properties, options);
     [self run:SEGEventTypeTrack payload:
                                     [[SEGTrackPayload alloc] initWithEvent:event
                                                                 properties:SEGCoerceDictionary(properties)

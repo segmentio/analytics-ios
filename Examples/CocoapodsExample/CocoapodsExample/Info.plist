@@ -25,7 +25,7 @@
 			<string>segment.cocoapodsexample</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>segment-cocapods</string>
+				<string>segment-cocoapods</string>
 			</array>
 		</dict>
 	</array>
