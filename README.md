@@ -15,7 +15,7 @@ Analytics is available through [CocoaPods](http://cocoapods.org) and [Carthage](
 ### CocoaPods
 
 ```ruby
-pod "Analytics", "3.6.0-rc"
+pod "Analytics", "3.6.0"
 ```
 
 If you'd rather have a version that lags behind but has been field tested longer, you may use
