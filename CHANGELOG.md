@@ -35,13 +35,15 @@ Version 3.5.2 *(10th October, 2016)*
 
 Version 3.5.1 *(5th October, 2016)*
 -------------------------------------
+* Not a recommended version.  Regression introduced in 3.5.0 will generate a new anonymousId on every app launch.
 
 * [Fix](https://github.com/segmentio/analytics-ios/pull/613): Removed automatic bluetooth and location info collection to workaround app submission issues.
 
 Version 3.5.0 *(12th September, 2016)*
 -------------------------------------
+* Not a recommended version.  Regression introduced in 3.5.0 will generate a new anonymousId on every app launch.
 
- * [New](https://github.com/segmentio/analytics-ios/pull/592): Adds a `SEGCrypto` API that can be used to configure the at rest encryption strategy for the client.
+* [New](https://github.com/segmentio/analytics-ios/pull/592): Adds a `SEGCrypto` API that can be used to configure the at rest encryption strategy for the client.
 
  ```objc
  SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:@"YOUR_WRITE_KEY"];
