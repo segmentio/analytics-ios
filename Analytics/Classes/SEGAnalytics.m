@@ -42,21 +42,21 @@ static SEGAnalytics *__sharedInstance = nil;
 - (instancetype)initWithConfiguration:(SEGAnalyticsConfiguration *)configuration
 {
     NSCParameterAssert(configuration != nil);
-    
+
     if (self = [self init]) {
         self.configuration = configuration;
         self.enabled = YES;
-        
+
         // In swift this would not have been OK... But hey.. It's objc
         // TODO: Figure out if this is really the best way to do things here.
         self.integrationsManager = [[SEGIntegrationsManager alloc] initWithAnalytics:self];
         
         self.runner = [[SEGMiddlewareRunner alloc] initWithMiddlewares:
                        [configuration.middlewares ?: @[] arrayByAddingObject:self.integrationsManager]];
-        
+
         // Attach to application state change hooks
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        
+
         // Pass through for application state change events
         for (NSString *name in @[ UIApplicationDidEnterBackgroundNotification,
                                   UIApplicationDidFinishLaunchingNotification,
@@ -66,14 +66,14 @@ static SEGAnalytics *__sharedInstance = nil;
                                   UIApplicationDidBecomeActiveNotification ]) {
             [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:nil];
         }
-        
+
         if (configuration.recordScreenViews) {
             [UIViewController seg_swizzleViewDidAppear];
         }
         if (configuration.trackInAppPurchases) {
             _storeKitTracker = [SEGStoreKitTracker trackTransactionsForAnalytics:self];
         }
-        
+
 #if !TARGET_OS_TV
         if (configuration.trackPushNotifications && configuration.launchOptions) {
             NSDictionary *remoteNotification = configuration.launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -114,43 +114,43 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     if (!self.configuration.trackApplicationLifecycleEvents) {
         return;
     }
-    // Previously SEGBuildKey was stored an integer. This was incorrect because the CFBundleVersion
+        // Previously SEGBuildKey was stored an integer. This was incorrect because the CFBundleVersion
     // can be a string. This migrates SEGBuildKey to be stored as a string.
     NSInteger previousBuildV1 = [[NSUserDefaults standardUserDefaults] integerForKey:SEGBuildKeyV1];
     if (previousBuildV1) {
         [[NSUserDefaults standardUserDefaults] setObject:[@(previousBuildV1) stringValue] forKey:SEGBuildKeyV2];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGBuildKeyV1];
     }
-    
+
     NSString *previousVersion = [[NSUserDefaults standardUserDefaults] stringForKey:SEGVersionKey];
     NSString *previousBuildV2 = [[NSUserDefaults standardUserDefaults] stringForKey:SEGBuildKeyV2];
-    
+
     NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
     NSString *currentBuild = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
-    
+
     if (!previousBuildV2) {
         [self track:@"Application Installed" properties:@{
-                                                          @"version" : currentVersion,
-                                                          @"build" : currentBuild
-                                                          }];
+            @"version" : currentVersion,
+            @"build" : currentBuild
+        }];
     } else if (currentBuild != previousBuildV2) {
         [self track:@"Application Updated" properties:@{
-                                                        @"previous_version" : previousVersion,
-                                                        @"previous_build" : previousBuildV2,
-                                                        @"version" : currentVersion,
-                                                        @"build" : currentBuild
-                                                        }];
+            @"previous_version" : previousVersion,
+            @"previous_build" : previousBuildV2,
+            @"version" : currentVersion,
+            @"build" : currentBuild
+        }];
     }
     
     [self track:@"Application Opened" properties:@{
-                                                   @"from_background": @NO,
-                                                   @"version" : currentVersion,
-                                                   @"build" : currentBuild,
-                                                   @"referring_application": launchOptions[UIApplicationLaunchOptionsSourceApplicationKey] ?: [NSNull null],
-                                                   @"url": launchOptions[UIApplicationLaunchOptionsURLKey] ?: [NSNull null],
-                                                   }];
-    
-    
+        @"from_background": @NO,
+        @"version" : currentVersion,
+        @"build" : currentBuild,
+        @"referring_application": launchOptions[UIApplicationLaunchOptionsSourceApplicationKey] ?: [NSNull null],
+        @"url": launchOptions[UIApplicationLaunchOptionsURLKey] ?: [NSNull null],
+    }];
+
+
     [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:SEGVersionKey];
     [[NSUserDefaults standardUserDefaults] setObject:currentBuild forKey:SEGBuildKeyV2];
     
@@ -164,10 +164,10 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
     NSString *currentBuild = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
     [self track:@"Application Opened" properties:@{
-                                                   @"from_background": @YES,
-                                                   @"version" : currentVersion,
-                                                   @"build" : currentBuild,
-                                                   }];
+        @"from_background": @YES,
+        @"version" : currentVersion,
+        @"build" : currentBuild,
+    }];
 }
 
 
@@ -194,11 +194,11 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 {
     NSCAssert2(userId.length > 0 || traits.count > 0, @"either userId (%@) or traits (%@) must be provided.", userId, traits);
     [self run:SEGEventTypeIdentify payload:
-     [[SEGIdentifyPayload alloc] initWithUserId:userId
-                                    anonymousId:nil
-                                         traits:SEGCoerceDictionary(traits)
-                                        context:SEGCoerceDictionary([options objectForKey:@"context"])
-                                   integrations:[options objectForKey:@"integrations"]]];
+                                       [[SEGIdentifyPayload alloc] initWithUserId:userId
+                                                                      anonymousId:nil
+                                                                           traits:SEGCoerceDictionary(traits)
+                                                                          context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                                     integrations:[options objectForKey:@"integrations"]]];
 }
 
 #pragma mark - Track
@@ -217,10 +217,10 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 {
     NSCAssert1(event.length > 0, @"event (%@) must not be empty.", event);
     [self run:SEGEventTypeTrack payload:
-     [[SEGTrackPayload alloc] initWithEvent:event
-                                 properties:SEGCoerceDictionary(properties)
-                                    context:SEGCoerceDictionary([options objectForKey:@"context"])
-                               integrations:[options objectForKey:@"integrations"]]];
+                                    [[SEGTrackPayload alloc] initWithEvent:event
+                                                                properties:SEGCoerceDictionary(properties)
+                                                                   context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                              integrations:[options objectForKey:@"integrations"]]];
 }
 
 #pragma mark - Screen
@@ -238,12 +238,12 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
 {
     NSCAssert1(screenTitle.length > 0, @"screen name (%@) must not be empty.", screenTitle);
-    
+
     [self run:SEGEventTypeScreen payload:
-     [[SEGScreenPayload alloc] initWithName:screenTitle
-                                 properties:SEGCoerceDictionary(properties)
-                                    context:SEGCoerceDictionary([options objectForKey:@"context"])
-                               integrations:[options objectForKey:@"integrations"]]];
+                                     [[SEGScreenPayload alloc] initWithName:screenTitle
+                                                                 properties:SEGCoerceDictionary(properties)
+                                                                    context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                               integrations:[options objectForKey:@"integrations"]]];
 }
 
 #pragma mark - Group
@@ -261,10 +261,10 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 - (void)group:(NSString *)groupId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
     [self run:SEGEventTypeGroup payload:
-     [[SEGGroupPayload alloc] initWithGroupId:groupId
-                                       traits:SEGCoerceDictionary(traits)
-                                      context:SEGCoerceDictionary([options objectForKey:@"context"])
-                                 integrations:[options objectForKey:@"integrations"]]];
+                                    [[SEGGroupPayload alloc] initWithGroupId:groupId
+                                                                      traits:SEGCoerceDictionary(traits)
+                                                                     context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                                integrations:[options objectForKey:@"integrations"]]];
 }
 
 #pragma mark - Alias
@@ -277,9 +277,9 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 - (void)alias:(NSString *)newId options:(NSDictionary *)options
 {
     [self run:SEGEventTypeAlias payload:
-     [[SEGAliasPayload alloc] initWithNewId:newId
-                                    context:SEGCoerceDictionary([options objectForKey:@"context"])
-                               integrations:[options objectForKey:@"integrations"]]];
+                                    [[SEGAliasPayload alloc] initWithNewId:newId
+                                                                   context:SEGCoerceDictionary([options objectForKey:@"context"])
+                                                              integrations:[options objectForKey:@"integrations"]]];
 }
 
 - (void)trackPushNotification:(NSDictionary *)properties fromLaunch:(BOOL)launch
@@ -329,11 +329,11 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     SEGContinueUserActivityPayload *payload = [[SEGContinueUserActivityPayload alloc] init];
     payload.activity = activity;
     [self run:SEGEventTypeContinueUserActivity payload:payload];
-    
+
     if (!self.configuration.trackDeepLinks) {
         return;
     }
-    
+
     if ([activity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {
         NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithCapacity:activity.userInfo.count + 2];
         [properties addEntriesFromDictionary:activity.userInfo];
@@ -349,11 +349,11 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     payload.url = url;
     payload.options = options;
     [self run:SEGEventTypeOpenURL payload:payload];
-    
+
     if (!self.configuration.trackDeepLinks) {
         return;
     }
-    
+
     NSMutableDictionary *properties = [NSMutableDictionary dictionaryWithCapacity:options.count + 2];
     [properties addEntriesFromDictionary:options];
     properties[@"url"] = url.absoluteString;
