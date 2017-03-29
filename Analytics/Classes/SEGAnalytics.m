@@ -130,23 +130,22 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
     if (!previousBuildV2) {
         [self track:@"Application Installed" properties:@{
-            @"version" : currentVersion,
-            @"build" : currentBuild
+            @"version" : currentVersion ?: [NSNull null],
+            @"build" : currentBuild ?: [NSNull null],
         }];
-    } else if (currentBuild != previousBuildV2) {
     } else if (![currentBuild isEqualToString:previousBuildV2]) {
         [self track:@"Application Updated" properties:@{
-            @"previous_version" : previousVersion,
-            @"previous_build" : previousBuildV2,
-            @"version" : currentVersion,
-            @"build" : currentBuild
+            @"previous_version" : previousVersion ?: [NSNull null],
+            @"previous_build" : previousBuildV2 ?: [NSNull null],
+            @"version" : currentVersion ?: [NSNull null],
+            @"build" : currentBuild ?: [NSNull null],
         }];
     }
     
     [self track:@"Application Opened" properties:@{
         @"from_background": @NO,
-        @"version" : currentVersion,
-        @"build" : currentBuild,
+        @"version" : currentVersion ?: [NSNull null],
+        @"build" : currentBuild ?: [NSNull null],
         @"referring_application": launchOptions[UIApplicationLaunchOptionsSourceApplicationKey] ?: [NSNull null],
         @"url": launchOptions[UIApplicationLaunchOptionsURLKey] ?: [NSNull null],
     }];
@@ -166,8 +165,8 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     NSString *currentBuild = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
     [self track:@"Application Opened" properties:@{
         @"from_background": @YES,
-        @"version" : currentVersion,
-        @"build" : currentBuild,
+        @"version" : currentVersion ?: [NSNull null],
+        @"build" : currentBuild  ?: [NSNull null],
     }];
 }
 
