@@ -74,8 +74,6 @@ static SEGAnalytics *__sharedInstance = nil;
             _storeKitTracker = [SEGStoreKitTracker trackTransactionsForAnalytics:self];
         }
 
-        [self trackApplicationLifecycleEvents:configuration.trackApplicationLifecycleEvents];
-
 #if !TARGET_OS_TV
         if (configuration.trackPushNotifications && configuration.launchOptions) {
             NSDictionary *remoteNotification = configuration.launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -99,13 +97,24 @@ NSString *const SEGVersionKey = @"SEGVersionKey";
 NSString *const SEGBuildKeyV1 = @"SEGBuildKey";
 NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
-- (void)trackApplicationLifecycleEvents:(BOOL)trackApplicationLifecycleEvents
+- (void)handleAppStateNotification:(NSNotification *)note
 {
-    if (!trackApplicationLifecycleEvents) {
+    SEGApplicationLifecyclePayload *payload = [[SEGApplicationLifecyclePayload alloc] init];
+    payload.notificationName = note.name;
+    [self run:SEGEventTypeApplicationLifecycle payload:payload];
+    
+    if ([note.name isEqualToString:UIApplicationDidFinishLaunchingNotification]) {
+        [self _applicationDidFinishLaunchingWithOptions:note.userInfo];
+    } else if ([note.name isEqualToString:UIApplicationWillEnterForegroundNotification]) {
+        [self _applicationWillEnterForeground];
+    }
+}
+
+- (void)_applicationDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    if (!self.configuration.trackApplicationLifecycleEvents) {
         return;
     }
-
-    // Previously SEGBuildKey was stored an integer. This was incorrect because the CFBundleVersion
+        // Previously SEGBuildKey was stored an integer. This was incorrect because the CFBundleVersion
     // can be a string. This migrates SEGBuildKey to be stored as a string.
     NSInteger previousBuildV1 = [[NSUserDefaults standardUserDefaults] integerForKey:SEGBuildKeyV1];
     if (previousBuildV1) {
@@ -121,22 +130,26 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
     if (!previousBuildV2) {
         [self track:@"Application Installed" properties:@{
-            @"version" : currentVersion,
-            @"build" : currentBuild
+            @"version" : currentVersion ?: [NSNull null],
+            @"build" : currentBuild ?: [NSNull null],
         }];
-    } else if (currentBuild != previousBuildV2) {
+    } else if (![currentBuild isEqualToString:previousBuildV2]) {
         [self track:@"Application Updated" properties:@{
-            @"previous_version" : previousVersion,
-            @"previous_build" : previousBuildV2,
-            @"version" : currentVersion,
-            @"build" : currentBuild
+            @"previous_version" : previousVersion ?: [NSNull null],
+            @"previous_build" : previousBuildV2 ?: [NSNull null],
+            @"version" : currentVersion ?: [NSNull null],
+            @"build" : currentBuild ?: [NSNull null],
         }];
     }
-
+    
     [self track:@"Application Opened" properties:@{
-        @"version" : currentVersion,
-        @"build" : currentBuild
+        @"from_background": @NO,
+        @"version" : currentVersion ?: [NSNull null],
+        @"build" : currentBuild ?: [NSNull null],
+        @"referring_application": launchOptions[UIApplicationLaunchOptionsSourceApplicationKey] ?: [NSNull null],
+        @"url": launchOptions[UIApplicationLaunchOptionsURLKey] ?: [NSNull null],
     }];
+
 
     [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:SEGVersionKey];
     [[NSUserDefaults standardUserDefaults] setObject:currentBuild forKey:SEGBuildKeyV2];
@@ -144,12 +157,19 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)handleAppStateNotification:(NSNotification *)note
-{
-    SEGApplicationLifecyclePayload *payload = [[SEGApplicationLifecyclePayload alloc] init];
-    payload.notificationName = note.name;
-    [self run:SEGEventTypeApplicationLifecycle payload:payload];
+- (void)_applicationWillEnterForeground {
+    if (!self.configuration.trackApplicationLifecycleEvents) {
+        return;
+    }
+    NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
+    NSString *currentBuild = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
+    [self track:@"Application Opened" properties:@{
+        @"from_background": @YES,
+        @"version" : currentVersion ?: [NSNull null],
+        @"build" : currentBuild  ?: [NSNull null],
+    }];
 }
+
 
 #pragma mark - Public API
 
