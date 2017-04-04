@@ -3,12 +3,26 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+@interface SEGPayloadBuilder : NSObject
+
+@property (nonatomic, copy, nullable) JSON_DICT context;
+
+@property (nonatomic, copy, nullable) JSON_DICT integrations;
+
+- (instancetype)init;
+
+@end
+
+
 @interface SEGPayload : NSObject
 
 @property (nonatomic, readonly) JSON_DICT context;
 @property (nonatomic, readonly) JSON_DICT integrations;
 
 - (instancetype)initWithContext:(JSON_DICT)context integrations:(JSON_DICT)integrations;
+
+- (instancetype)initWithBuilder:(SEGPayloadBuilder *)builder;
 
 @end
 
