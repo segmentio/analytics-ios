@@ -32,8 +32,8 @@ github "segmentio/analytics-ios"
 
 ## Quickstart
 
-Refer to the Quickstart documentation at [https://segment.com/docs/libraries/ios/quickstart](https://segment.com/docs/libraries/ios/quickstart/).
+Refer to the Quickstart documentation at [https://segment.com/docs/libraries/ios/quickstart](https://segment.com/docs/sources/mobile/ios/quickstart/).
 
 ## Documentation
 
-More detailed documentation is available at [https://segment.com/docs/libraries/ios](https://segment.com/docs/libraries/ios/).
+More detailed documentation is available at [https://segment.com/docs/libraries/ios](https://segment.com/docs/sources/mobile/ios/).
