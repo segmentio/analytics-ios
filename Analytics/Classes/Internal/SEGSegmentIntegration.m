@@ -273,6 +273,11 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (void)endBackgroundTask
 {
+    // endBackgroundTask and beginBackgroundTask can be called from main thread
+    // We should not dispatch to the same queue we use to flush events because it can cause deadlock
+    // inside @synchronized(self) block for SEGIntegrationsManager as both events queue and main queue
+    // attempt to call forwardSelector:arguments:options:
+    // See https://github.com/segmentio/analytics-ios/issues/683
     seg_dispatch_specific_sync(_backgroundTaskQueue, ^{
         if (self.flushTaskID != UIBackgroundTaskInvalid) {
             [[UIApplication sharedApplication] endBackgroundTask:self.flushTaskID];
