@@ -10,6 +10,54 @@
 import Nocilla
 import Analytics
 
+class SEGPassthroughMiddleware: SEGMiddleware {
+  var lastContext: SEGContext?
+  
+  func context(_ context: SEGContext, next: @escaping SEGMiddlewareNext) {
+    lastContext = context;
+    next(context)
+  }
+}
+
+class TestMiddleware: SEGMiddleware {
+  var lastContext: SEGContext?
+  var swallowEvent = false
+  func context(_ context: SEGContext, next: @escaping SEGMiddlewareNext) {
+    lastContext = context
+    if !swallowEvent {
+      next(context)
+    }
+  }
+}
+
+extension SEGAnalytics {
+  func test_integrationsManager() -> SEGIntegrationsManager? {
+    return self.value(forKey: "integrationsManager") as? SEGIntegrationsManager
+  }
+}
+
+extension SEGIntegrationsManager {
+  func test_integrations() -> [String: SEGIntegration]? {
+    return self.value(forKey: "integrations") as? [String: SEGIntegration]
+  }
+  func test_segmentIntegration() -> SEGSegmentIntegration? {
+    return self.test_integrations()?["Segment.io"] as? SEGSegmentIntegration
+  }
+  func test_setCachedSettings(settings: NSDictionary) {
+    self.perform(Selector(("setCachedSettings:")), with: settings)
+  }
+}
+
+extension SEGSegmentIntegration {
+  func test_referrer() -> [String: AnyObject]? {
+    return self.value(forKey: "referrer") as? [String: AnyObject]
+  }
+  func test_userId() -> String? {
+    return self.value(forKey: "userId") as? String
+  }
+}
+
+
 class JsonGzippedBody : LSMatcher, LSMatcheable {
     
     let expectedJson: AnyObject
