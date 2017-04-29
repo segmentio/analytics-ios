@@ -1,5 +1,8 @@
 
+
 target 'AnalyticsTests' do
+    platform :ios, '10.1'
+    
     use_frameworks!
     
     pod 'Quick' # runner lib
