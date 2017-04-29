@@ -59,6 +59,7 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, strong) SEGReachability *reachability;
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
+@property (nonatomic, strong) dispatch_queue_t backgroundTaskQueue;
 @property (nonatomic, strong) NSMutableDictionary *traits;
 @property (nonatomic, assign) SEGAnalytics *analytics;
 @property (nonatomic, assign) SEGAnalyticsConfiguration *configuration;
@@ -87,6 +88,7 @@ static BOOL GetAdTrackingEnabled()
         [self.reachability startNotifier];
         self.cachedStaticContext = [self staticContext];
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
+        self.backgroundTaskQueue = seg_dispatch_queue_create_specific("io.segment.analytics.backgroundTask", DISPATCH_QUEUE_SERIAL);
         self.flushTaskID = UIBackgroundTaskInvalid;
 
 #if !TARGET_OS_TV
@@ -261,20 +263,28 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (void)beginBackgroundTask
 {
     [self endBackgroundTask];
-
-    self.flushTaskID = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-        [self endBackgroundTask];
-    }];
+    
+    seg_dispatch_specific_sync(_backgroundTaskQueue, ^{
+        self.flushTaskID = [[UIApplication sharedApplication] beginBackgroundTaskWithName:@"Segmentio.Flush"
+                                                                        expirationHandler:^{
+            [self endBackgroundTask];
+        }];
+    });
 }
 
 - (void)endBackgroundTask
 {
-    [self dispatchBackgroundAndWait:^{
+    // endBackgroundTask and beginBackgroundTask can be called from main thread
+    // We should not dispatch to the same queue we use to flush events because it can cause deadlock
+    // inside @synchronized(self) block for SEGIntegrationsManager as both events queue and main queue
+    // attempt to call forwardSelector:arguments:options:
+    // See https://github.com/segmentio/analytics-ios/issues/683
+    seg_dispatch_specific_sync(_backgroundTaskQueue, ^{
         if (self.flushTaskID != UIBackgroundTaskInvalid) {
             [[UIApplication sharedApplication] endBackgroundTask:self.flushTaskID];
             self.flushTaskID = UIBackgroundTaskInvalid;
         }
-    }];
+    });
 }
 
 - (NSString *)description
