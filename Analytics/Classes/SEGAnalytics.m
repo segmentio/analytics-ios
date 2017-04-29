@@ -424,38 +424,3 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 }
 
 @end
-
-
-@implementation SEGAnalytics (Deprecated)
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-implementations"
-
-+ (void)initializeWithWriteKey:(NSString *)writeKey
-{
-    [self setupWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
-}
-
-- (instancetype)initWithWriteKey:(NSString *)writeKey
-{
-    return [self initWithConfiguration:[SEGAnalyticsConfiguration configurationWithWriteKey:writeKey]];
-}
-
-- (void)registerPushDeviceToken:(NSData *)deviceToken
-{
-    [self registeredForRemoteNotificationsWithDeviceToken:deviceToken];
-}
-
-- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
-    [self registeredForRemoteNotificationsWithDeviceToken:deviceToken];
-}
-
-- (void)registerForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken options:(NSDictionary *)options
-{
-    [self registeredForRemoteNotificationsWithDeviceToken:deviceToken];
-}
-
-#pragma clang diagnostic pop
-
-@end
