@@ -82,14 +82,14 @@
     [self.analytics track:@"Order Completed" properties:@{
         @"orderId" : transaction.transactionIdentifier,
         @"affiliation" : @"App Store",
-        @"currency" : currency,
+        @"currency" : currency ?: [NSNull null],
         @"products" : @[
             @{
-               @"productId" : product.productIdentifier,
-               @"quantity" : @(transaction.payment.quantity),
                @"sku" : transaction.transactionIdentifier,
-               @"price" : product.price,
-               @"name" : product.localizedTitle
+               @"quantity" : @(transaction.payment.quantity),
+               @"productId" : product.productIdentifier ?: [NSNull null],
+               @"price" : product.price ?: [NSNull null],
+               @"name" : product.localizedTitle ?: [NSNull null],
             }
         ]
     }];

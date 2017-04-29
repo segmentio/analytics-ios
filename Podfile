@@ -8,7 +8,6 @@ target 'AnalyticsTests' do
     pod 'Quick' # runner lib
     pod 'Nimble' # Matcher lib
     pod 'Nocilla' # HTTP Mocking Library
-    pod 'OCMockito' # Mocking library
     pod 'SwiftTryCatch',  :git => 'https://github.com/segmentio/SwiftTryCatch.git' # Utils lib
     
 end
