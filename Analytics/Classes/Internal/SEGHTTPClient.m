@@ -100,6 +100,7 @@
         completionHandler(YES);
     }];
     [task resume];
+    [session finishTasksAndInvalidate];
     return task;
 }
 
@@ -140,6 +141,7 @@
         completionHandler(YES, responseJson);
     }];
     [task resume];
+    [session finishTasksAndInvalidate];
     return task;
 }
 
@@ -200,6 +202,7 @@
         completionHandler(YES, responseJson);
     }];
     [task resume];
+    [session finishTasksAndInvalidate];
     return task;
 }
 

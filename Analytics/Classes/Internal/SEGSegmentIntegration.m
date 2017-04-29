@@ -114,8 +114,9 @@ static BOOL GetAdTrackingEnabled()
     }
     return self;
 }
-    
-- (void)setupFlushTimer {
+
+- (void)setupFlushTimer
+{
     self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:30.0 target:self selector:@selector(flush) userInfo:nil repeats:YES];
 }
 
@@ -174,17 +175,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         @"version" : device.systemVersion
     };
 
-#if TARGET_OS_IOS
-    static dispatch_once_t networkInfoOnceToken;
-    dispatch_once(&networkInfoOnceToken, ^{
-        _telephonyNetworkInfo = [[CTTelephonyNetworkInfo alloc] init];
-    });
-
-    CTCarrier *carrier = [_telephonyNetworkInfo subscriberCellularProvider];
-    if (carrier.carrierName.length)
-        dict[@"network"] = @{ @"carrier" : carrier.carrierName };
-#endif
-
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     dict[@"screen"] = @{
         @"width" : @(screenSize.width),
@@ -231,6 +221,17 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
             network[@"wifi"] = @(self.reachability.isReachableViaWiFi);
             network[@"cellular"] = @(self.reachability.isReachableViaWWAN);
         }
+
+#if TARGET_OS_IOS
+        static dispatch_once_t networkInfoOnceToken;
+        dispatch_once(&networkInfoOnceToken, ^{
+            _telephonyNetworkInfo = [[CTTelephonyNetworkInfo alloc] init];
+        });
+
+        CTCarrier *carrier = [_telephonyNetworkInfo subscriberCellularProvider];
+        if (carrier.carrierName.length)
+            network[@"carrier"] = carrier.carrierName;
+#endif
 
         network;
     });
@@ -542,7 +543,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
                 [self endBackgroundTask];
                 return;
             }
-            
+
             [self.queue removeObjectsInArray:batch];
             [self persistQueue];
             [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];

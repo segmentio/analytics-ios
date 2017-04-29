@@ -5,7 +5,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SEGIdentifyPayload : SEGPayload
 
-@property (nonatomic, readonly) NSString *userId;
+@property (nonatomic, readonly, nullable) NSString *userId;
 
 @property (nonatomic, readonly, nullable) NSString *anonymousId;
 

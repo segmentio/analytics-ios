@@ -25,9 +25,9 @@ void SEGLog(NSString *format, ...);
 
 // JSON Utils
 
-JSON_DICT SEGCoerceDictionary(NSDictionary *dict);
+JSON_DICT SEGCoerceDictionary(NSDictionary * _Nullable dict);
 
-NSString *SEGIDFA(void);
+NSString * _Nullable SEGIDFA(void);
 
 NSString *SEGEventNameForScreenTitle(NSString *title);
 
