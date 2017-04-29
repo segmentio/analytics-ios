@@ -59,7 +59,7 @@
 
 - (void)seg_viewDidAppear:(BOOL)animated
 {
-    UIViewController *top = [UIViewController seg_topViewController];
+    UIViewController *top = [[self class] seg_topViewController];
     if (!top) {
         SEGLog(@"Could not infer screen.");
         return;
