@@ -25,3 +25,4 @@ comment:
 
 ignore:
   - Pods
+  - Analytics/Vendor

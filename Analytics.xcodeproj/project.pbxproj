@@ -11,6 +11,8 @@
 		EA88A5981DED7608009FB66A /* SEGSerializableValue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA88A5971DED7608009FB66A /* SEGSerializableValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8F09741E24C5C600B8B93F /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */; };
 		EAA542771EB4035400945DA7 /* TrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA542761EB4035400945DA7 /* TrackingTests.swift */; };
+		EAA5427D1EB42B8C00945DA7 /* SEGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = EAA5427B1EB42B8C00945DA7 /* SEGReachability.h */; };
+		EAA5427E1EB42B8C00945DA7 /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA5427C1EB42B8C00945DA7 /* SEGReachability.m */; };
 		EADEB8601DECD080005322DA /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB85E1DECD080005322DA /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB86F1DECD0EF005322DA /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEB85B1DECD080005322DA /* Analytics.framework */; };
 		EADEB8AE1DECD12B005322DA /* SEGAES256Crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8781DECD12B005322DA /* SEGAES256Crypto.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -40,8 +42,6 @@
 		EADEB8C61DECD12B005322DA /* SEGFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8921DECD12B005322DA /* SEGFileStorage.m */; };
 		EADEB8C71DECD12B005322DA /* SEGHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8931DECD12B005322DA /* SEGHTTPClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8C81DECD12B005322DA /* SEGHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8941DECD12B005322DA /* SEGHTTPClient.m */; };
-		EADEB8C91DECD12B005322DA /* SEGReachability.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8951DECD12B005322DA /* SEGReachability.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EADEB8CA1DECD12B005322DA /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8961DECD12B005322DA /* SEGReachability.m */; };
 		EADEB8CB1DECD12B005322DA /* SEGSegmentIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8971DECD12B005322DA /* SEGSegmentIntegration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8CC1DECD12B005322DA /* SEGSegmentIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8981DECD12B005322DA /* SEGSegmentIntegration.m */; };
 		EADEB8CD1DECD12B005322DA /* SEGSegmentIntegrationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8991DECD12B005322DA /* SEGSegmentIntegrationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -90,6 +90,8 @@
 		EA88A5971DED7608009FB66A /* SEGSerializableValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGSerializableValue.h; sourceTree = "<group>"; };
 		EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
 		EAA542761EB4035400945DA7 /* TrackingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingTests.swift; sourceTree = "<group>"; };
+		EAA5427B1EB42B8C00945DA7 /* SEGReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGReachability.h; sourceTree = "<group>"; };
+		EAA5427C1EB42B8C00945DA7 /* SEGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGReachability.m; sourceTree = "<group>"; };
 		EADEB85B1DECD080005322DA /* Analytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Analytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADEB85E1DECD080005322DA /* Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		EADEB85F1DECD080005322DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,8 +123,6 @@
 		EADEB8921DECD12B005322DA /* SEGFileStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGFileStorage.m; sourceTree = "<group>"; };
 		EADEB8931DECD12B005322DA /* SEGHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGHTTPClient.h; sourceTree = "<group>"; };
 		EADEB8941DECD12B005322DA /* SEGHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGHTTPClient.m; sourceTree = "<group>"; };
-		EADEB8951DECD12B005322DA /* SEGReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGReachability.h; sourceTree = "<group>"; };
-		EADEB8961DECD12B005322DA /* SEGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGReachability.m; sourceTree = "<group>"; };
 		EADEB8971DECD12B005322DA /* SEGSegmentIntegration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGSegmentIntegration.h; sourceTree = "<group>"; };
 		EADEB8981DECD12B005322DA /* SEGSegmentIntegration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGSegmentIntegration.m; sourceTree = "<group>"; };
 		EADEB8991DECD12B005322DA /* SEGSegmentIntegrationFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGSegmentIntegrationFactory.h; sourceTree = "<group>"; };
@@ -198,6 +198,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		EAA5427A1EB42B8C00945DA7 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				EAA5427B1EB42B8C00945DA7 /* SEGReachability.h */,
+				EAA5427C1EB42B8C00945DA7 /* SEGReachability.m */,
+			);
+			name = Vendor;
+			path = Analytics/Vendor;
+			sourceTree = SOURCE_ROOT;
+		};
 		EADEB8511DECD080005322DA = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +263,7 @@
 		EADEB8751DECD12B005322DA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				EAA5427A1EB42B8C00945DA7 /* Vendor */,
 				EADEB8771DECD12B005322DA /* Crypto */,
 				EADEB87B1DECD12B005322DA /* Integrations */,
 				EADEB88C1DECD12B005322DA /* Internal */,
@@ -310,8 +321,6 @@
 				EADEB8921DECD12B005322DA /* SEGFileStorage.m */,
 				EADEB8931DECD12B005322DA /* SEGHTTPClient.h */,
 				EADEB8941DECD12B005322DA /* SEGHTTPClient.m */,
-				EADEB8951DECD12B005322DA /* SEGReachability.h */,
-				EADEB8961DECD12B005322DA /* SEGReachability.m */,
 				EADEB8971DECD12B005322DA /* SEGSegmentIntegration.h */,
 				EADEB8981DECD12B005322DA /* SEGSegmentIntegration.m */,
 				EADEB8991DECD12B005322DA /* SEGSegmentIntegrationFactory.h */,
@@ -394,8 +403,8 @@
 				EADEB8B91DECD12B005322DA /* SEGIntegrationsManager.h in Headers */,
 				EADEB8AE1DECD12B005322DA /* SEGAES256Crypto.h in Headers */,
 				EADEB8C51DECD12B005322DA /* SEGFileStorage.h in Headers */,
+				EAA5427D1EB42B8C00945DA7 /* SEGReachability.h in Headers */,
 				EADEB8C11DECD12B005322DA /* NSData+SEGGZIP.h in Headers */,
-				EADEB8C91DECD12B005322DA /* SEGReachability.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,7 +560,6 @@
 			files = (
 				EADEB8DD1DECD12B005322DA /* SEGAnalytics.m in Sources */,
 				EADEB8BE1DECD12B005322DA /* SEGScreenPayload.m in Sources */,
-				EADEB8CA1DECD12B005322DA /* SEGReachability.m in Sources */,
 				EADEB8B61DECD12B005322DA /* SEGIdentifyPayload.m in Sources */,
 				EADEB8CE1DECD12B005322DA /* SEGSegmentIntegrationFactory.m in Sources */,
 				EADEB8C01DECD12B005322DA /* SEGTrackPayload.m in Sources */,
@@ -569,6 +577,7 @@
 				EADEB8DB1DECD12B005322DA /* SEGMiddleware.m in Sources */,
 				EADEB8DF1DECD12B005322DA /* SEGAnalyticsConfiguration.m in Sources */,
 				EADEB8D51DECD12B005322DA /* SEGUtils.m in Sources */,
+				EAA5427E1EB42B8C00945DA7 /* SEGReachability.m in Sources */,
 				EADEB8B41DECD12B005322DA /* SEGGroupPayload.m in Sources */,
 				EADEB8D71DECD12B005322DA /* UIViewController+SEGScreen.m in Sources */,
 				EADEB8D11DECD12B005322DA /* SEGStoreKitTracker.m in Sources */,
