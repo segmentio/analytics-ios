@@ -50,7 +50,6 @@ class StoreKitTrackerTests: QuickSpec {
       let config = SEGAnalyticsConfiguration(writeKey: "foobar")
       test = TestMiddleware()
       config.middlewares = [test]
-      SEGAnalytics.setup(with: config)
       analytics = SEGAnalytics(configuration: config)
       tracker = SEGStoreKitTracker.trackTransactions(for: analytics)
     }

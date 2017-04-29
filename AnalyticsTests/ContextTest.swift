@@ -18,8 +18,7 @@ class ContextTests: QuickSpec {
     
     beforeEach {
       let config = SEGAnalyticsConfiguration(writeKey: "foobar")
-      SEGAnalytics.setup(with: config)
-      analytics = SEGAnalytics.shared()
+      analytics = SEGAnalytics(configuration: config)
     }
     
     it("throws when used incorrectly") {
