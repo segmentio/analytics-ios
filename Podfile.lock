@@ -1,12 +1,16 @@
 PODS:
   - Nimble (5.1.1)
   - Nocilla (0.11.0)
+  - OCHamcrest (6.1.1)
+  - OCMockito (4.1.0):
+    - OCHamcrest (~> 6.0)
   - Quick (1.0.0)
   - SwiftTryCatch (0.0.1)
 
 DEPENDENCIES:
   - Nimble
   - Nocilla
+  - OCMockito
   - Quick
   - SwiftTryCatch (from `https://github.com/segmentio/SwiftTryCatch.git`)
 
@@ -22,9 +26,11 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Nocilla: 7af7a386071150cc8aa5da4da97d060f049dd61c
+  OCHamcrest: 363e1bf738c3e8a94abe7c2c415f70d671adde38
+  OCMockito: bceefcd365252bcdf8b59c1b2bd23890805fc0d8
   Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
   SwiftTryCatch: fb6d2b34abe48efd69578dac919293a44f95b481
 
-PODFILE CHECKSUM: e7aa6926a6e0b35e28a27b2d03de5957d7a8f09a
+PODFILE CHECKSUM: 99233486b0035690e00abf3ec153459fa8f01acd
 
 COCOAPODS: 1.2.1
