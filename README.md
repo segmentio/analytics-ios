@@ -18,12 +18,6 @@ Analytics is available through [CocoaPods](http://cocoapods.org) and [Carthage](
 pod "Analytics", "3.6.0"
 ```
 
-If you'd rather have a version that lags behind but has been field tested longer, you may use
-
-```ruby
-pod "Analytics", "3.5.5"
-```
-
 ### Carthage
 
 ```
