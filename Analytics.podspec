@@ -19,5 +19,8 @@ Pod::Spec.new do |s|
 
   s.framework = 'Security'
 
-  s.source_files = 'Analytics/Classes/**/*'
+  s.source_files = [
+    'Analytics/Classes/**/*',
+    'Analytics/Vendor/**/*'
+  ]
 end
