@@ -37,16 +37,6 @@ let customizeAllTrackCalls = SEGBlockMiddleware { (context, next) in
 let eatAllCalls = SEGBlockMiddleware { (context, next) in
 }
 
-class SEGPassthroughMiddleware: SEGMiddleware {
-  var lastContext: SEGContext?
-  
-  func context(_ context: SEGContext, next: @escaping SEGMiddlewareNext) {
-    lastContext = context;
-    next(context)
-  }
-}
-
-
 class MiddlewareTests: QuickSpec {
   override func spec() {
     it("receives events") {
