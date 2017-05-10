@@ -55,6 +55,9 @@ extension SEGSegmentIntegration {
   func test_userId() -> String? {
     return self.value(forKey: "userId") as? String
   }
+  func test_traits() -> [String: AnyObject]? {
+    return self.value(forKey: "traits") as? [String: AnyObject]
+  }
 }
 
 
