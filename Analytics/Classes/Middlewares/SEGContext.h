@@ -21,6 +21,7 @@ typedef NS_ENUM(NSInteger, SEGEventType) {
 
     // General utility
     SEGEventTypeReset,
+    SEGEventTypeClearUserData,
     SEGEventTypeFlush,
 
     // Remote Notification
