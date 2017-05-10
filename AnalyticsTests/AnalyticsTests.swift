@@ -68,6 +68,13 @@ class AnalyticsTests: QuickSpec {
       expect(referrer?["url"] as? String) == "http://www.segment.com"
     }
     
+    it("clear user data") {
+      analytics.identify("testUserId1", traits: [ "Test trait key" : "Test trait value"])
+      analytics.clearUserData()
+      expect(analytics.test_integrationsManager()?.test_segmentIntegration()?.test_userId()).toEventually(beNil())
+      expect(analytics.test_integrationsManager()?.test_segmentIntegration()?.test_traits()?.count).toEventually(equal(0))
+    }
+
     it("fires Application Opened for UIApplicationDidFinishLaunching") {
       testMiddleware.swallowEvent = true
       NotificationCenter.default.post(name: .UIApplicationDidFinishLaunching, object: nil, userInfo: [
