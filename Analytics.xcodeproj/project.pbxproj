@@ -57,9 +57,9 @@
 		EADEB8D51DECD12B005322DA /* SEGUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8A11DECD12B005322DA /* SEGUtils.m */; };
 		EADEB8D61DECD12B005322DA /* UIViewController+SEGScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8A21DECD12B005322DA /* UIViewController+SEGScreen.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8D71DECD12B005322DA /* UIViewController+SEGScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8A31DECD12B005322DA /* UIViewController+SEGScreen.m */; };
-		EADEB8D81DECD12B005322DA /* SEGContext.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8A51DECD12B005322DA /* SEGContext.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8D81DECD12B005322DA /* SEGContext.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8A51DECD12B005322DA /* SEGContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8D91DECD12B005322DA /* SEGContext.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8A61DECD12B005322DA /* SEGContext.m */; };
-		EADEB8DA1DECD12B005322DA /* SEGMiddleware.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8A71DECD12B005322DA /* SEGMiddleware.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8DA1DECD12B005322DA /* SEGMiddleware.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8A71DECD12B005322DA /* SEGMiddleware.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8DB1DECD12B005322DA /* SEGMiddleware.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8A81DECD12B005322DA /* SEGMiddleware.m */; };
 		EADEB8DC1DECD12B005322DA /* SEGAnalytics.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8A91DECD12B005322DA /* SEGAnalytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8DD1DECD12B005322DA /* SEGAnalytics.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8AA1DECD12B005322DA /* SEGAnalytics.m */; };
@@ -392,6 +392,8 @@
 				EADEB8B11DECD12B005322DA /* SEGAliasPayload.h in Headers */,
 				EADEB8BD1DECD12B005322DA /* SEGScreenPayload.h in Headers */,
 				EA88A5981DED7608009FB66A /* SEGSerializableValue.h in Headers */,
+				EADEB8D81DECD12B005322DA /* SEGContext.h in Headers */,
+				EADEB8DA1DECD12B005322DA /* SEGMiddleware.h in Headers */,
 				EADEB8BF1DECD12B005322DA /* SEGTrackPayload.h in Headers */,
 				EADEB8C71DECD12B005322DA /* SEGHTTPClient.h in Headers */,
 				EADEB8B31DECD12B005322DA /* SEGGroupPayload.h in Headers */,
@@ -399,10 +401,8 @@
 				EADEB8DE1DECD12B005322DA /* SEGAnalyticsConfiguration.h in Headers */,
 				EADEB8D61DECD12B005322DA /* UIViewController+SEGScreen.h in Headers */,
 				EADEB8CF1DECD12B005322DA /* SEGStorage.h in Headers */,
-				EADEB8D01DECD12B005322DA /* SEGStoreKitTracker.h in Headers */,
 				EADEB8D21DECD12B005322DA /* SEGUserDefaultsStorage.h in Headers */,
-				EADEB8D81DECD12B005322DA /* SEGContext.h in Headers */,
-				EADEB8DA1DECD12B005322DA /* SEGMiddleware.h in Headers */,
+				EADEB8D01DECD12B005322DA /* SEGStoreKitTracker.h in Headers */,
 				EADEB8D41DECD12B005322DA /* SEGUtils.h in Headers */,
 				EADEB8601DECD080005322DA /* Analytics.h in Headers */,
 				EADEB8C31DECD12B005322DA /* SEGAnalyticsUtils.h in Headers */,
