@@ -30,13 +30,10 @@
 
 - (void)resetAll
 {
-    // Courtesy of http://stackoverflow.com/questions/6358737/nsuserdefaults-reset
-    if (!self.namespacePrefix) {
-        NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
-        if (domainName) {
-            [self.defaults removePersistentDomainForName:domainName];
-            return;
-        }
+    NSString *domainName = [[NSBundle mainBundle] bundleIdentifier];
+    if (!self.namespacePrefix && domainName) {
+        [self.defaults removePersistentDomainForName:domainName];
+        return;
     }
     for (NSString *key in self.defaults.dictionaryRepresentation.allKeys) {
         if (!self.namespacePrefix || [key hasPrefix:self.namespacePrefix]) {
