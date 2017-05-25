@@ -1,10 +1,22 @@
 Change Log
 ==========
 
+Version 3.6.1 *(24th May, 2017)*
+-------------------------------------
+* Pass through userInfo when posting NSNotification
+* Fix `Application Updated` event #685
+* Fix `Application Opened` event #675
+ * Fire during applicationWillEnterForeground, not just applicationDidFinishLaunching
+ * Adding from_background, referring_application and url to Application Opened event
+* Add [session finishTasksAndInvalidate] to SEGHTTPClient.m to prevent memory leak #679
+* Use a separate queue for endBackgroundTask to fix deadlock (#684)
+* Exposing SEGMiddleware and SEGContext header publicly
+* Removing deprecated APIs
+* Adding several test suites - reaching 70% coverage
 
 Version 3.6.0 *(28th February, 2017)*
 -------------------------------------
-* Promoting `3.6.0-rc` to stable release `3.6.0` after sufficient time and exposure in pre-release. 
+* Promoting `3.6.0-rc` to stable release `3.6.0` after sufficient time and exposure in pre-release.
 
 Version 3.6.0-rc *(10th January, 2017)*
 -------------------------------------

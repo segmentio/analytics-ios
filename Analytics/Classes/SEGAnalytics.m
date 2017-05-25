@@ -50,7 +50,7 @@ static SEGAnalytics *__sharedInstance = nil;
         // In swift this would not have been OK... But hey.. It's objc
         // TODO: Figure out if this is really the best way to do things here.
         self.integrationsManager = [[SEGIntegrationsManager alloc] initWithAnalytics:self];
-        
+
         self.runner = [[SEGMiddlewareRunner alloc] initWithMiddlewares:
                        [configuration.middlewares ?: @[] arrayByAddingObject:self.integrationsManager]];
 
@@ -102,7 +102,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     SEGApplicationLifecyclePayload *payload = [[SEGApplicationLifecyclePayload alloc] init];
     payload.notificationName = note.name;
     [self run:SEGEventTypeApplicationLifecycle payload:payload];
-    
+
     if ([note.name isEqualToString:UIApplicationDidFinishLaunchingNotification]) {
         [self _applicationDidFinishLaunchingWithOptions:note.userInfo];
     } else if ([note.name isEqualToString:UIApplicationWillEnterForegroundNotification]) {
@@ -141,7 +141,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
             @"build" : currentBuild ?: [NSNull null],
         }];
     }
-    
+
     [self track:@"Application Opened" properties:@{
         @"from_background": @NO,
         @"version" : currentVersion ?: [NSNull null],
@@ -153,7 +153,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
     [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:SEGVersionKey];
     [[NSUserDefaults standardUserDefaults] setObject:currentBuild forKey:SEGBuildKeyV2];
-    
+
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -405,7 +405,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 + (NSString *)version
 {
-    return @"3.6.1-SNAPSHOT";
+    return @"3.6.1";
 }
 
 #pragma mark - Helpers
