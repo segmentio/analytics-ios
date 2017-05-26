@@ -360,6 +360,11 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     [self track:@"Deep Link Opened" properties:[properties copy]];
 }
 
+- (void)clearUserData
+{
+    [self run:SEGEventTypeClearUserData payload:nil];
+}
+
 - (void)reset
 {
     [self run:SEGEventTypeReset payload:nil];

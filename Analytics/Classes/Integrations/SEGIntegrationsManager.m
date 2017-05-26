@@ -263,6 +263,12 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     [self callIntegrationsWithSelector:_cmd arguments:@[ url, options ] options:nil sync:true];
 }
 
+- (void)clearUserData
+{
+    [self resetAnonymousId];
+    [self callIntegrationsWithSelector:_cmd arguments:nil options:nil sync:false];
+}
+
 - (void)reset
 {
     [self resetAnonymousId];
@@ -561,6 +567,9 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         }
         case SEGEventTypeReset:
             [self reset];
+            break;
+        case SEGEventTypeClearUserData:
+            [self clearUserData];
             break;
         case SEGEventTypeFlush:
             [self flush];

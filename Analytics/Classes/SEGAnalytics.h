@@ -168,13 +168,29 @@ NS_ASSUME_NONNULL_BEGIN
  @method
 
  @abstract
+ Reset any user state that is cached on the device and cancel/clear any ongoing/cached requests.
+
+ @discussion
+ This is useful when a user logs out and you want to have clear state of analytics. It will: 
+ - Clear any traits or userId's cached on the device.
+ - Cancel any ongoing/queued requests.
+ - Clear any cached requests.
+
+ If you want to only clear user state see `clearUserData` method.
+ */
+- (void)reset;
+
+/*!
+ @method
+
+ @abstract
  Reset any user state that is cached on the device.
 
  @discussion
  This is useful when a user logs out and you want to clear the identity. It will clear any
  traits or userId's cached on the device.
  */
-- (void)reset;
+- (void)clearUserData;
 
 /*!
  @method

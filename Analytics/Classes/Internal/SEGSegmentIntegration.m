@@ -510,21 +510,23 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (void)reset
 {
     [self dispatchBackgroundAndWait:^{
-        [self.storage removeKey:SEGUserIdKey];
 #if TARGET_OS_TV
-        [self.storage removeKey:SEGTraitsKey];
         [self.storage removeKey:SEGQueueKey];
 #else
-        [self.storage removeKey:kSEGUserIdFilename];
-        [self.storage removeKey:kSEGTraitsFilename];
         [self.storage removeKey:kSEGQueueFilename];
 #endif
 
-        self.userId = nil;
-        self.traits = [NSMutableDictionary dictionary];
+        [self clearUserDataWithoutDispatching];
         self.queue = [NSMutableArray array];
         [self.batchRequest cancel];
         self.batchRequest = nil;
+    }];
+}
+
+- (void)clearUserData
+{
+    [self dispatchBackgroundAndWait:^{
+        [self clearUserDataWithoutDispatching];
     }];
 }
 
@@ -658,6 +660,19 @@ NSString *const SEGTrackedAttributionKey = @"SEGTrackedAttributionKey";
         }];
     }];
 #endif
+}
+
+- (void)clearUserDataWithoutDispatching {
+    [self.storage removeKey:SEGUserIdKey];
+#if TARGET_OS_TV
+    [self.storage removeKey:SEGTraitsKey];
+#else
+    [self.storage removeKey:kSEGUserIdFilename];
+    [self.storage removeKey:kSEGTraitsFilename];
+#endif
+
+    self.userId = nil;
+    self.traits = [NSMutableDictionary dictionary];
 }
 
 @end
