@@ -513,18 +513,13 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         [self.storage removeKey:SEGUserIdKey];
 #if TARGET_OS_TV
         [self.storage removeKey:SEGTraitsKey];
-        [self.storage removeKey:SEGQueueKey];
 #else
         [self.storage removeKey:kSEGUserIdFilename];
         [self.storage removeKey:kSEGTraitsFilename];
-        [self.storage removeKey:kSEGQueueFilename];
 #endif
 
         self.userId = nil;
         self.traits = [NSMutableDictionary dictionary];
-        self.queue = [NSMutableArray array];
-        [self.batchRequest cancel];
-        self.batchRequest = nil;
     }];
 }
 
