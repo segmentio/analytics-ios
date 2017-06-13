@@ -91,6 +91,13 @@ class AnalyticsTests: QuickSpec {
       expect(event?.event) == "Application Opened"
       expect(event?.properties?["from_background"] as? Bool) == true
     }
+    
+    it("flushes when UIApplicationDidEnterBackgroundNotification is fired") {
+      analytics.track("test")
+      NotificationCenter.default.post(name: .UIApplicationDidEnterBackground, object: testApplication)
+      expect(testApplication.backgroundTasks.count).toEventually(equal(1))
+      expect(testApplication.backgroundTasks[0].isEnded).toEventually(beFalse())
+    }
   }
 
 }

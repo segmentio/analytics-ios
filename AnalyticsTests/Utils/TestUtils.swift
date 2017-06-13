@@ -142,11 +142,27 @@ extension LSStubRequestDSL {
 }
 
 class TestApplication: NSObject, SEGApplicationProtocol {
+  class BackgroundTask {
+    let identifier: UInt
+    var isEnded = false
+    
+    init(identifier: UInt) {
+      self.identifier = identifier
+    }
+  }
+  
+  var backgroundTasks = [BackgroundTask]()
+  
+  // MARK: - SEGApplicationProtocol
   var delegate: UIApplicationDelegate? = nil
   func beginBackgroundTask(withName taskName: String?, expirationHandler handler: (() -> Void)? = nil) -> UInt {
-    return 0
+    let backgroundTask = BackgroundTask(identifier: (backgroundTasks.map({ $0.identifier }).max() ?? 0) + 1)
+    backgroundTasks.append(backgroundTask)
+    return backgroundTask.identifier
   }
   
   func endBackgroundTask(_ identifier: UInt) {
+    guard let index = backgroundTasks.index(where: { $0.identifier == identifier }) else { return }
+    backgroundTasks[index].isEnded = true
   }
 }
