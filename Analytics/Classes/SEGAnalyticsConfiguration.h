@@ -7,6 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+@protocol SEGApplicationProtocol <NSObject>
+@property (nullable, nonatomic, assign) id<UIApplicationDelegate> delegate;
+- (UIBackgroundTaskIdentifier)beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void(^ __nullable)(void))handler;
+- (void)endBackgroundTask:(UIBackgroundTaskIdentifier)identifier;
+@end
+
+@interface UIApplication ()<SEGApplicationProtocol>
+@end
 
 typedef NSMutableURLRequest * _Nonnull(^SEGRequestFactory)(NSURL * _Nonnull);
 
@@ -111,5 +121,10 @@ typedef NSMutableURLRequest * _Nonnull(^SEGRequestFactory)(NSURL * _Nonnull);
  * Register a factory that can be used to create an integration.
  */
 - (void)use:(id<SEGIntegrationFactory> _Nonnull)factory;
+
+/**
+ * Leave this nil for iOS extensions, otherwise set to UIApplication.sharedApplication.
+ */
+@property (nonatomic, strong, nullable) id<SEGApplicationProtocol> application;
 
 @end

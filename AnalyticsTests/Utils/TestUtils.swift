@@ -140,3 +140,13 @@ extension LSStubRequestDSL {
         }
     }
 }
+
+class TestApplication: NSObject, SEGApplicationProtocol {
+  var delegate: UIApplicationDelegate? = nil
+  func beginBackgroundTask(withName taskName: String?, expirationHandler handler: (() -> Void)? = nil) -> UInt {
+    return 0
+  }
+  
+  func endBackgroundTask(_ identifier: UInt) {
+  }
+}

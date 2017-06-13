@@ -38,7 +38,7 @@
 
 + (UIViewController *)seg_topViewController
 {
-    UIViewController *root = [UIApplication sharedApplication].delegate.window.rootViewController;
+    UIViewController *root = [[SEGAnalytics sharedAnalytics] configuration].application.delegate.window.rootViewController;
     return [self seg_topViewController:root];
 }
 
