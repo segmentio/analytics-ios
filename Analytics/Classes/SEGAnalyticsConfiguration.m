@@ -41,6 +41,13 @@
         self.shouldUseBluetooth = NO;
         self.flushAt = 20;
         _factories = [NSMutableArray array];
+        Class applicationClass = NSClassFromString(@"UIApplication");
+        if (applicationClass) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            _application = [applicationClass performSelector:NSSelectorFromString(@"sharedApplication")];
+#pragma clang diagnostic pop
+        }
     }
     return self;
 }
