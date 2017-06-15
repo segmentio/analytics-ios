@@ -265,10 +265,13 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     [self endBackgroundTask];
     
     seg_dispatch_specific_sync(_backgroundTaskQueue, ^{
-        self.flushTaskID = [[UIApplication sharedApplication] beginBackgroundTaskWithName:@"Segmentio.Flush"
-                                                                        expirationHandler:^{
-            [self endBackgroundTask];
-        }];
+        id<SEGApplicationProtocol> application = [self.analytics configuration].application;
+        if (application) {
+            self.flushTaskID = [application beginBackgroundTaskWithName:@"Segmentio.Flush"
+                                                      expirationHandler:^{
+                [self endBackgroundTask];
+            }];
+        }
     });
 }
 
@@ -281,7 +284,11 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     // See https://github.com/segmentio/analytics-ios/issues/683
     seg_dispatch_specific_sync(_backgroundTaskQueue, ^{
         if (self.flushTaskID != UIBackgroundTaskInvalid) {
-            [[UIApplication sharedApplication] endBackgroundTask:self.flushTaskID];
+            id<SEGApplicationProtocol> application = [self.analytics configuration].application;
+            if (application) {
+                [application endBackgroundTask:self.flushTaskID];
+            }
+            
             self.flushTaskID = UIBackgroundTaskInvalid;
         }
     });

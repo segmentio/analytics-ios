@@ -22,10 +22,13 @@ class AnalyticsTests: QuickSpec {
     ] as NSDictionary
     var analytics: SEGAnalytics!
     var testMiddleware: TestMiddleware!
+    var testApplication: TestApplication!
     
     beforeEach {
       testMiddleware = TestMiddleware()
       config.middlewares = [testMiddleware]
+      testApplication = TestApplication()
+      config.application = testApplication
       config.trackApplicationLifecycleEvents = true
       
       analytics = SEGAnalytics(configuration: config)
@@ -77,7 +80,7 @@ class AnalyticsTests: QuickSpec {
 
     it("fires Application Opened for UIApplicationDidFinishLaunching") {
       testMiddleware.swallowEvent = true
-      NotificationCenter.default.post(name: .UIApplicationDidFinishLaunching, object: nil, userInfo: [
+      NotificationCenter.default.post(name: .UIApplicationDidFinishLaunching, object: testApplication, userInfo: [
         UIApplicationLaunchOptionsKey.sourceApplication: "testApp",
         UIApplicationLaunchOptionsKey.url: "test://test",
       ])
@@ -90,10 +93,17 @@ class AnalyticsTests: QuickSpec {
     
     it("fires Application Opened during UIApplicationWillEnterForeground") {
       testMiddleware.swallowEvent = true
-      NotificationCenter.default.post(name: .UIApplicationWillEnterForeground, object: nil)
+      NotificationCenter.default.post(name: .UIApplicationWillEnterForeground, object: testApplication)
       let event = testMiddleware.lastContext?.payload as? SEGTrackPayload
       expect(event?.event) == "Application Opened"
       expect(event?.properties?["from_background"] as? Bool) == true
+    }
+    
+    it("flushes when UIApplicationDidEnterBackgroundNotification is fired") {
+      analytics.track("test")
+      NotificationCenter.default.post(name: .UIApplicationDidEnterBackground, object: testApplication)
+      expect(testApplication.backgroundTasks.count).toEventually(equal(1))
+      expect(testApplication.backgroundTasks[0].isEnded).toEventually(beFalse())
     }
   }
 
