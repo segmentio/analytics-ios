@@ -30,7 +30,7 @@
         }
         _sessionsByWriteKey = [NSMutableDictionary dictionary];
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-        config.HTTPAdditionalHeaders = @{@"Accept-Encoding" : @"gzip"};
+        config.HTTPAdditionalHeaders = @{ @"Accept-Encoding" : @"gzip" };
         _genericSession = [NSURLSession sessionWithConfiguration:config];
     }
     return self;
