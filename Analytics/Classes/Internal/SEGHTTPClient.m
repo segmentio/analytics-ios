@@ -28,7 +28,7 @@
         } else {
             self.requestFactory = requestFactory;
         }
-        _sessionByWriteKey = [NSMutableDictionary dictionary];
+        _sessionsByWriteKey = [NSMutableDictionary dictionary];
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
         config.HTTPAdditionalHeaders = @{@"Accept-Encoding" : @"gzip"};
         _genericSession = [NSURLSession sessionWithConfiguration:config];
