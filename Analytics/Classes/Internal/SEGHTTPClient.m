@@ -28,22 +28,42 @@
         } else {
             self.requestFactory = requestFactory;
         }
+        _sessionsByWriteKey = [NSMutableDictionary dictionary];
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        config.HTTPAdditionalHeaders = @{ @"Accept-Encoding" : @"gzip" };
+        _genericSession = [NSURLSession sessionWithConfiguration:config];
     }
     return self;
+}
+
+- (NSURLSession *)sessionForWriteKey:(NSString *)writeKey {
+    NSURLSession *session = self.sessionsByWriteKey[writeKey];
+    if (!session) {
+        NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+        config.HTTPAdditionalHeaders = @{
+            @"Accept-Encoding" : @"gzip",
+            @"Content-Encoding" : @"gzip",
+            @"Content-Type" : @"application/json",
+            @"Authorization" : [@"Basic " stringByAppendingString:[[self class] authorizationHeader:writeKey]],
+        };
+        session = [NSURLSession sessionWithConfiguration:config];
+        self.sessionsByWriteKey[writeKey] = session;
+    }
+    return session;
+}
+
+- (void)dealloc {
+    for (NSURLSession *session in self.sessionsByWriteKey.allValues) {
+        [session finishTasksAndInvalidate];
+    }
+    [self.genericSession finishTasksAndInvalidate];
 }
 
 
 - (NSURLSessionUploadTask *)upload:(NSDictionary *)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler
 {
     //    batch = SEGCoerceDictionary(batch);
-    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    config.HTTPAdditionalHeaders = @{
-        @"Accept-Encoding" : @"gzip",
-        @"Content-Encoding" : @"gzip",
-        @"Content-Type" : @"application/json",
-        @"Authorization" : [@"Basic " stringByAppendingString:[[self class] authorizationHeader:writeKey]],
-    };
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    NSURLSession *session = [self sessionForWriteKey:writeKey];
 
     NSURL *url = [SEGMENT_API_BASE URLByAppendingPathComponent:@"batch"];
     NSMutableURLRequest *request = self.requestFactory(url);
@@ -106,11 +126,7 @@
 
 - (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL success, JSON_DICT _Nullable settings))completionHandler
 {
-    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    config.HTTPAdditionalHeaders = @{
-        @"Accept-Encoding" : @"gzip"
-    };
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    NSURLSession *session = self.genericSession;
 
     NSURL *url = [SEGMENT_CDN_BASE URLByAppendingPathComponent:[NSString stringWithFormat:@"/projects/%@/settings", writeKey]];
     NSMutableURLRequest *request = self.requestFactory(url);
@@ -148,14 +164,7 @@
 - (NSURLSessionDataTask *)attributionWithWriteKey:(NSString *)writeKey forDevice:(JSON_DICT)context completionHandler:(void (^)(BOOL success, JSON_DICT _Nullable properties))completionHandler;
 
 {
-    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    config.HTTPAdditionalHeaders = @{
-        @"Accept-Encoding" : @"gzip",
-        @"Content-Encoding" : @"gzip",
-        @"Content-Type" : @"application/json",
-        @"Authorization" : [@"Basic " stringByAppendingString:[[self class] authorizationHeader:writeKey]],
-    };
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
+    NSURLSession *session = [self sessionForWriteKey:writeKey];
 
     NSURL *url = [MOBILE_SERVICE_BASE URLByAppendingPathComponent:@"/attribution"];
     NSMutableURLRequest *request = self.requestFactory(url);
