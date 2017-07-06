@@ -408,7 +408,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 + (NSString *)version
 {
-    return @"3.6.2-SNAPSHOT";
+    return @"3.6.2";
 }
 
 #pragma mark - Helpers

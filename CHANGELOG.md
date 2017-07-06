@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 3.6.2 *(6th July, 2017)*
+-------------------------------------
+* Remove canceling ongoing requests in reset method. (#691)
+* Extract UIApplication to permit linkage with iOS extensions. (#698)
+* Add missing includes to umbrella header (#696)
+* Reuse NSURLSession in SEGHTTPCLient (#699)
+
 Version 3.6.1 *(24th May, 2017)*
 -------------------------------------
 * Pass through userInfo when posting NSNotification
