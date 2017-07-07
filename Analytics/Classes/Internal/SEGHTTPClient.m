@@ -67,7 +67,7 @@
 
     NSURL *url = [SEGMENT_API_BASE URLByAppendingPathComponent:@"batch"];
     NSMutableURLRequest *request = self.requestFactory(url);
-    
+
     // This is a workaround for an IOS 8.3 bug that causes Content-Type to be incorrectly set
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
@@ -120,7 +120,6 @@
         completionHandler(YES);
     }];
     [task resume];
-    [session finishTasksAndInvalidate];
     return task;
 }
 
@@ -157,7 +156,6 @@
         completionHandler(YES, responseJson);
     }];
     [task resume];
-    [session finishTasksAndInvalidate];
     return task;
 }
 
@@ -211,7 +209,6 @@
         completionHandler(YES, responseJson);
     }];
     [task resume];
-    [session finishTasksAndInvalidate];
     return task;
 }
 
