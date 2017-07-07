@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 3.6.3 *(7th July, 2017)*
+-------------------------------------
+* Fix NSURLSession being prematurely invalidated (#702)
+
 Version 3.6.2 *(6th July, 2017)*
 -------------------------------------
 * Remove canceling ongoing requests in reset method. (#691)
