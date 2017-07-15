@@ -267,8 +267,8 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     seg_dispatch_specific_sync(_backgroundTaskQueue, ^{
         id<SEGApplicationProtocol> application = [self.analytics configuration].application;
         if (application) {
-            self.flushTaskID = [application beginBackgroundTaskWithName:@"Segmentio.Flush"
-                                                      expirationHandler:^{
+            self.flushTaskID = [application seg_beginBackgroundTaskWithName:@"Segmentio.Flush"
+                                                          expirationHandler:^{
                 [self endBackgroundTask];
             }];
         }
@@ -286,7 +286,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         if (self.flushTaskID != UIBackgroundTaskInvalid) {
             id<SEGApplicationProtocol> application = [self.analytics configuration].application;
             if (application) {
-                [application endBackgroundTask:self.flushTaskID];
+                [application seg_endBackgroundTask:self.flushTaskID];
             }
             
             self.flushTaskID = UIBackgroundTaskInvalid;

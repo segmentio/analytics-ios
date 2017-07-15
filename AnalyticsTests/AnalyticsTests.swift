@@ -105,6 +105,19 @@ class AnalyticsTests: QuickSpec {
       expect(testApplication.backgroundTasks.count).toEventually(equal(1))
       expect(testApplication.backgroundTasks[0].isEnded).toEventually(beFalse())
     }
+    
+    it("protocol conformance should not interfere with UIApplication interface") {
+      // In Xcode8/iOS10, UIApplication.h typedefs UIBackgroundTaskIdentifier as NSUInteger,
+      // whereas Swift has UIBackgroundTaskIdentifier typealiaed to Int.
+      // This is likely due to a custom Swift mapping for UIApplication which got out of sync.
+      // If we extract the exact UIApplication method names in SEGApplicationProtocol,
+      // it will cause a type mismatch between the return value from beginBackgroundTask
+      // and the argument for endBackgroundTask.
+      // This would impact all code in a project that imports the Segment framework.
+      // Note that this doesn't appear to be an issue any longer in Xcode9b3.
+      let task = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
+      UIApplication.shared.endBackgroundTask(task)
+    }
   }
 
 }

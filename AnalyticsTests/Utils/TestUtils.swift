@@ -158,13 +158,13 @@ class TestApplication: NSObject, SEGApplicationProtocol {
   
   // MARK: - SEGApplicationProtocol
   var delegate: UIApplicationDelegate? = nil
-  func beginBackgroundTask(withName taskName: String?, expirationHandler handler: (() -> Void)? = nil) -> UInt {
+  func seg_beginBackgroundTask(withName taskName: String?, expirationHandler handler: (() -> Void)? = nil) -> UInt {
     let backgroundTask = BackgroundTask(identifier: (backgroundTasks.map({ $0.identifier }).max() ?? 0) + 1)
     backgroundTasks.append(backgroundTask)
     return backgroundTask.identifier
   }
   
-  func endBackgroundTask(_ identifier: UInt) {
+  func seg_endBackgroundTask(_ identifier: UInt) {
     guard let index = backgroundTasks.index(where: { $0.identifier == identifier }) else { return }
     backgroundTasks[index].isEnded = true
   }
