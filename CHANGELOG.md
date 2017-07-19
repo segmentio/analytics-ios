@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 3.6.4 *(19th July, 2017)*
+-------------------------------------
+* Add workaround for UIApplication type mismatch with Swift mapping. #704
+
 Version 3.6.3 *(7th July, 2017)*
 -------------------------------------
 * Fix NSURLSession being prematurely invalidated (#702)
