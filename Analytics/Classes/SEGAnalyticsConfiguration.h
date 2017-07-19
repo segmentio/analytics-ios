@@ -11,11 +11,11 @@
 
 @protocol SEGApplicationProtocol <NSObject>
 @property (nullable, nonatomic, assign) id<UIApplicationDelegate> delegate;
-- (UIBackgroundTaskIdentifier)beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void(^ __nullable)(void))handler;
-- (void)endBackgroundTask:(UIBackgroundTaskIdentifier)identifier;
+- (UIBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void(^ __nullable)(void))handler;
+- (void)seg_endBackgroundTask:(UIBackgroundTaskIdentifier)identifier;
 @end
 
-@interface UIApplication ()<SEGApplicationProtocol>
+@interface UIApplication (SEGApplicationProtocol)<SEGApplicationProtocol>
 @end
 
 typedef NSMutableURLRequest * _Nonnull(^SEGRequestFactory)(NSURL * _Nonnull);
