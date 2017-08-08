@@ -133,24 +133,24 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
     if (!previousBuildV2) {
         [self track:@"Application Installed" properties:@{
-            @"version" : currentVersion ?: [NSNull null],
-            @"build" : currentBuild ?: [NSNull null],
+            @"version" : currentVersion ?: @"",
+            @"build" : currentBuild ?: @"",
         }];
     } else if (![currentBuild isEqualToString:previousBuildV2]) {
         [self track:@"Application Updated" properties:@{
-            @"previous_version" : previousVersion ?: [NSNull null],
-            @"previous_build" : previousBuildV2 ?: [NSNull null],
-            @"version" : currentVersion ?: [NSNull null],
-            @"build" : currentBuild ?: [NSNull null],
+            @"previous_version" : previousVersion ?: @"",
+            @"previous_build" : previousBuildV2 ?: @"",
+            @"version" : currentVersion ?: @"",
+            @"build" : currentBuild ?: @"",
         }];
     }
 
     [self track:@"Application Opened" properties:@{
         @"from_background": @NO,
-        @"version" : currentVersion ?: [NSNull null],
-        @"build" : currentBuild ?: [NSNull null],
-        @"referring_application": launchOptions[UIApplicationLaunchOptionsSourceApplicationKey] ?: [NSNull null],
-        @"url": launchOptions[UIApplicationLaunchOptionsURLKey] ?: [NSNull null],
+        @"version" : currentVersion ?: @"",
+        @"build" : currentBuild ?: @"",
+        @"referring_application": launchOptions[UIApplicationLaunchOptionsSourceApplicationKey] ?: @"",
+        @"url": launchOptions[UIApplicationLaunchOptionsURLKey] ?: @"",
     }];
 
 
@@ -168,8 +168,8 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     NSString *currentBuild = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
     [self track:@"Application Opened" properties:@{
         @"from_background": @YES,
-        @"version" : currentVersion ?: [NSNull null],
-        @"build" : currentBuild  ?: [NSNull null],
+        @"version" : currentVersion ?: @"",
+        @"build" : currentBuild  ?: @"",
     }];
 }
 
