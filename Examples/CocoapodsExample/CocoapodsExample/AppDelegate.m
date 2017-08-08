@@ -20,7 +20,6 @@ NSString *const SEGMENT_WRITE_KEY = @"zr5x22gUVBDM3hO3uHkbMkVe6Pd6sCna";
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSLog(@"%@",[[NSNull null] description]);
     [SEGAnalytics debug:YES];
     SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:SEGMENT_WRITE_KEY];
     configuration.trackApplicationLifecycleEvents = YES;
