@@ -91,24 +91,37 @@ void SEGLog(NSString *format, ...)
 
 static id SEGCoerceJSONObject(id obj)
 {
-    // if the object is a NSString, NSNumber or NSNull
+    // Hotfix: Storage format should support NSNull instead
+    if ([obj isKindOfClass:[NSNull class]]) {
+        return @"<null>";
+    }
+    // if the object is a NSString, NSNumber
     // then we're good
     if ([obj isKindOfClass:[NSString class]] ||
-        [obj isKindOfClass:[NSNumber class]] ||
-        [obj isKindOfClass:[NSNull class]]) {
+        [obj isKindOfClass:[NSNumber class]]) {
         return obj;
     }
 
     if ([obj isKindOfClass:[NSArray class]]) {
         NSMutableArray *array = [NSMutableArray array];
-        for (id i in obj)
+        for (id i in obj) {
+            // Hotfix: Storage format should support NSNull instead
+            if ([i isKindOfClass:[NSNull class]]) {
+                continue;
+            }
             [array addObject:SEGCoerceJSONObject(i)];
+        }
         return array;
     }
 
     if ([obj isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         for (NSString *key in obj) {
+            // Hotfix for issue where SEGFileStorage uses plist which does NOT support NSNull
+            // So when `[NSNull null]` gets passed in as track property values the queue serialization fails
+            if ([obj[key] isKindOfClass:[NSNull class]]) {
+                continue;
+            }
             if (![key isKindOfClass:[NSString class]])
                 SEGLog(@"warning: dictionary keys should be strings. got: %@. coercing "
                        @"to: %@",
