@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 3.6.5 *(7th August, 2017)*
+-------------------------------------
+* Default to empty values rather than `NSNull` for automatically tracked events #706
+* Fix events not persisting to disk when `NSNull` values are sent by removing keys containing `NSNull` values from events #707
+  * Note this will remove `NSNull` values from dictionaries and arrays, modifying the tracked data
+
 Version 3.6.4 *(19th July, 2017)*
 -------------------------------------
 * Add workaround for UIApplication type mismatch with Swift mapping. #704
