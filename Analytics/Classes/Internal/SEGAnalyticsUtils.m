@@ -91,18 +91,26 @@ void SEGLog(NSString *format, ...)
 
 static id SEGCoerceJSONObject(id obj)
 {
-    // if the object is a NSString, NSNumber or NSNull
+    // Hotfix: Storage format should support NSNull instead
+    if ([obj isKindOfClass:[NSNull class]]) {
+        return @"<null>";
+    }
+    // if the object is a NSString, NSNumber
     // then we're good
     if ([obj isKindOfClass:[NSString class]] ||
-        [obj isKindOfClass:[NSNumber class]] ||
-        [obj isKindOfClass:[NSNull class]]) {
+        [obj isKindOfClass:[NSNumber class]]) {
         return obj;
     }
 
     if ([obj isKindOfClass:[NSArray class]]) {
         NSMutableArray *array = [NSMutableArray array];
-        for (id i in obj)
+        for (id i in obj) {
+            // Hotfix: Storage format should support NSNull instead
+            if ([i isKindOfClass:[NSNull class]]) {
+                continue;
+            }
             [array addObject:SEGCoerceJSONObject(i)];
+        }
         return array;
     }
 
