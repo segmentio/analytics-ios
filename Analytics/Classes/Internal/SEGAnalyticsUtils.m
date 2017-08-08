@@ -109,11 +109,6 @@ static id SEGCoerceJSONObject(id obj)
     if ([obj isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary *dict = [NSMutableDictionary dictionary];
         for (NSString *key in obj) {
-            // Hotfix for issue where SEGFileStorage uses plist which does NOT support NSNull
-            // So when `[NSNull null]` gets passed in as track property values the queue serialization fails
-            if ([obj[key] isKindOfClass:[NSNull class]]) {
-                continue;
-            }
             if (![key isKindOfClass:[NSString class]])
                 SEGLog(@"warning: dictionary keys should be strings. got: %@. coercing "
                        @"to: %@",
