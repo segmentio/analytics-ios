@@ -3,7 +3,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NSString *GenerateUUIDString();
+NSString *GenerateUUIDString(void);
 
 // Date Utils
 NSString *iso8601FormattedString(NSDate *date);
