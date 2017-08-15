@@ -11,7 +11,7 @@ import Analytics
 
 // https://segment.com/segment-mobile/sources/ios_carthage_example/overview
 // Use your own writekey people :)
-let Analytics = SEGAnalytics(configuration: SEGAnalyticsConfiguration(writeKey: "b2XoQDHA5YhWQAjr2FZ4qIckgyEqXyY8"))!
+let Analytics = SEGAnalytics(configuration: SEGAnalyticsConfiguration(writeKey: "b2XoQDHA5YhWQAjr2FZ4qIckgyEqXyY8"))
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
