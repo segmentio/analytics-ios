@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+Version 3.6.7 *(24th August, 2017)*
+-------------------------------------
+* Use DEBUG preprocessor flag to conditionally disable assertions in prod #711
+
+Version 3.6.6 *(15th August, 2017)*
+-------------------------------------
+* Update Info.plist version with library version. Add Makefile for building dynamic framework via Carthage. Explicitly distributing frameworks for installation outside of dependency managers.
+
 Version 3.6.5 *(7th August, 2017)*
 -------------------------------------
 * Default to empty values rather than `NSNull` for automatically tracked events #706

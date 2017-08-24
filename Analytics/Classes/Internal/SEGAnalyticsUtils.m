@@ -146,6 +146,7 @@ static id SEGCoerceJSONObject(id obj)
 
 static void AssertDictionaryTypes(id dict)
 {
+#ifdef DEBUG
     assert([dict isKindOfClass:[NSDictionary class]]);
     for (id key in dict) {
         assert([key isKindOfClass:[NSString class]]);
@@ -159,6 +160,7 @@ static void AssertDictionaryTypes(id dict)
                [value isKindOfClass:[NSDate class]] ||
                [value isKindOfClass:[NSURL class]]);
     }
+#endif
 }
 
 NSDictionary *SEGCoerceDictionary(NSDictionary *dict)
