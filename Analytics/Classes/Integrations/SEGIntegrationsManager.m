@@ -425,14 +425,9 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 - (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
 {
-    // If the event has opted in for syncrhonous delivery, this may be called on any thread.
-    // Only allow one to be delivered at a time.
-    @synchronized(self)
-    {
-        [self.integrations enumerateKeysAndObjectsUsingBlock:^(NSString *key, id<SEGIntegration> integration, BOOL *stop) {
-            [self invokeIntegration:integration key:key selector:selector arguments:arguments options:options];
-        }];
-    }
+    [self.integrations enumerateKeysAndObjectsUsingBlock:^(NSString *key, id<SEGIntegration> integration, BOOL *stop) {
+        [self invokeIntegration:integration key:key selector:selector arguments:arguments options:options];
+    }];
 }
 
 - (void)invokeIntegration:(id<SEGIntegration>)integration key:(NSString *)key selector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
@@ -496,7 +491,9 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 - (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options sync:(BOOL)sync
 {
     if (sync && self.initialized) {
-        [self forwardSelector:selector arguments:arguments options:options];
+        seg_dispatch_specific_sync(_serialQueue, ^{
+            [self forwardSelector:selector arguments:arguments options:options];
+        });
         return;
     }
 
