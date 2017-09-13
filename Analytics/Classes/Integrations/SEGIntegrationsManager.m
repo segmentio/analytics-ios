@@ -372,14 +372,14 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         if (self.settingsRequest) {
             return;
         }
-        
+
         self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey completionHandler:^(BOOL success, NSDictionary *settings) {
             seg_dispatch_specific_async(_serialQueue, ^{
                 if (success) {
                     [self setCachedSettings:settings];
                 } else {
                     // Hotfix: If settings request fail, fall back to using just Segment integration
-                    // Won't catch situation where this callback never gets called - that will get addressed separately in regular dev 
+                    // Won't catch situation where this callback never gets called - that will get addressed separately in regular dev
                     [self setCachedSettings:@{
                         @"integrations": @{
                             @"Segment.io": @{ @"apiKey": self.configuration.writeKey },
@@ -425,14 +425,9 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 - (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
 {
-    // If the event has opted in for syncrhonous delivery, this may be called on any thread.
-    // Only allow one to be delivered at a time.
-    @synchronized(self)
-    {
-        [self.integrations enumerateKeysAndObjectsUsingBlock:^(NSString *key, id<SEGIntegration> integration, BOOL *stop) {
-            [self invokeIntegration:integration key:key selector:selector arguments:arguments options:options];
-        }];
-    }
+    [self.integrations enumerateKeysAndObjectsUsingBlock:^(NSString *key, id<SEGIntegration> integration, BOOL *stop) {
+        [self invokeIntegration:integration key:key selector:selector arguments:arguments options:options];
+    }];
 }
 
 - (void)invokeIntegration:(id<SEGIntegration>)integration key:(NSString *)key selector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
@@ -495,11 +490,10 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 - (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options sync:(BOOL)sync
 {
-    if (sync && self.initialized) {
-        [self forwardSelector:selector arguments:arguments options:options];
-        return;
-    }
-
+    // TODO: Currently we ignore the `sync` argument and queue the event asynchronously.
+    // For integrations that need events to be on the main thread, they'll have to do so
+    // manually and hop back on to the main thread.
+    // Eventually we should figure out a way to handle this in analytics-ios itself.
     seg_dispatch_specific_async(_serialQueue, ^{
         if (self.initialized) {
             [self flushMessageQueue];
