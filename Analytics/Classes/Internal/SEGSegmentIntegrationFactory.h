@@ -5,6 +5,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface SEGSegmentIntegrationFactory : NSObject <SEGIntegrationFactory>
 
 @property (nonatomic, strong) SEGHTTPClient *client;

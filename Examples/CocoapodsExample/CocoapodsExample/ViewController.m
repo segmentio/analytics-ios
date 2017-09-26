@@ -11,13 +11,16 @@
 // @import Analytics;
 #import "ViewController.h"
 
+
 @interface ViewController ()
 
 @end
 
+
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     NSUserActivity *userActivity = [[NSUserActivity alloc] initWithActivityType:NSUserActivityTypeBrowsingWeb];
@@ -27,14 +30,15 @@
     [[SEGAnalytics sharedAnalytics] flush];
 }
 
-- (IBAction)fireEvent:(id)sender {
+- (IBAction)fireEvent:(id)sender
+{
     [[SEGAnalytics sharedAnalytics] track:@"Cocoapods Example Button"];
     [[SEGAnalytics sharedAnalytics] flush];
 }
 
 
-
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
