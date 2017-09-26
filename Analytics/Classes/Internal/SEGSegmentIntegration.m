@@ -263,14 +263,14 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (void)beginBackgroundTask
 {
     [self endBackgroundTask];
-    
+
     seg_dispatch_specific_sync(_backgroundTaskQueue, ^{
         id<SEGApplicationProtocol> application = [self.analytics configuration].application;
         if (application) {
             self.flushTaskID = [application seg_beginBackgroundTaskWithName:@"Segmentio.Flush"
                                                           expirationHandler:^{
-                [self endBackgroundTask];
-            }];
+                                                              [self endBackgroundTask];
+                                                          }];
         }
     });
 }
@@ -288,7 +288,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
             if (application) {
                 [application seg_endBackgroundTask:self.flushTaskID];
             }
-            
+
             self.flushTaskID = UIBackgroundTaskInvalid;
         }
     });

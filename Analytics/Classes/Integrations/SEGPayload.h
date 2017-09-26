@@ -3,6 +3,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface SEGPayload : NSObject
 
 @property (nonatomic, readonly) JSON_DICT context;

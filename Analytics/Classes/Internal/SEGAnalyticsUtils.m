@@ -44,9 +44,10 @@ void seg_dispatch_specific(dispatch_queue_t queue, dispatch_block_t block,
                            BOOL waitForCompletion)
 {
     dispatch_block_t autoreleasing_block = ^{
-      @autoreleasepool {
-        block();
-      }
+        @autoreleasepool
+        {
+            block();
+        }
     };
     if (dispatch_get_specific((__bridge const void *)queue)) {
         autoreleasing_block();

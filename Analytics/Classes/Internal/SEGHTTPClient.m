@@ -36,7 +36,8 @@
     return self;
 }
 
-- (NSURLSession *)sessionForWriteKey:(NSString *)writeKey {
+- (NSURLSession *)sessionForWriteKey:(NSString *)writeKey
+{
     NSURLSession *session = self.sessionsByWriteKey[writeKey];
     if (!session) {
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -52,7 +53,8 @@
     return session;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
     for (NSURLSession *session in self.sessionsByWriteKey.allValues) {
         [session finishTasksAndInvalidate];
     }
@@ -70,7 +72,7 @@
 
     // This is a workaround for an IOS 8.3 bug that causes Content-Type to be incorrectly set
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
+
     [request setHTTPMethod:@"POST"];
 
     NSError *error = nil;

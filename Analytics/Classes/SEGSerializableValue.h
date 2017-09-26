@@ -10,8 +10,8 @@
 
 /*
  Acceptable dictionary values are
- NSString (String)
- NSNumber (Int, Float, Bool)
+ NSString (String);
+ NSNumber (Int, Float, Bool);
  NSNull
  NSDate => ISO8601 String
  NSURL => absoluteURL String
@@ -22,8 +22,8 @@
 
 /*
  Acceptable dictionary values are
- NSString (String)
- NSNumber (Int, Float, Bool)
+ NSString (String);
+ NSNumber (Int, Float, Bool);
  NSNull
  NSArray of the above
  NSDictionary of the above

@@ -12,11 +12,13 @@
 
 @implementation UIApplication (SEGApplicationProtocol)
 
-- (UIBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void(^ __nullable)(void))handler {
+- (UIBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void (^__nullable)(void))handler
+{
     return [self beginBackgroundTaskWithName:taskName expirationHandler:handler];
 }
 
-- (void)seg_endBackgroundTask:(UIBackgroundTaskIdentifier)identifier {
+- (void)seg_endBackgroundTask:(UIBackgroundTaskIdentifier)identifier
+{
     [self endBackgroundTask:identifier];
 }
 

@@ -3,6 +3,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface SEGScreenPayload : SEGPayload
 
 @property (nonatomic, readonly) NSString *name;
@@ -12,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, nullable) NSDictionary *properties;
 
 - (instancetype)initWithName:(NSString *)name
-                  properties:(NSDictionary * _Nullable)properties
+                  properties:(NSDictionary *_Nullable)properties
                      context:(NSDictionary *)context
                 integrations:(NSDictionary *)integrations;
 
