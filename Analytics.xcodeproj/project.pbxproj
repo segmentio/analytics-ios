@@ -73,6 +73,7 @@
 		EADEB8F31DECD335005322DA /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E71DECD335005322DA /* AnalyticsTests.swift */; };
 		EADEB8F41DECD335005322DA /* ContextTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E81DECD335005322DA /* ContextTest.swift */; };
 		EADEB8F51DECD335005322DA /* CryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E91DECD335005322DA /* CryptoTest.swift */; };
+		F61EB4AF1F996DEF0038C8C0 /* AnalyticsUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61EB4AE1F996DEF0038C8C0 /* AnalyticsUtilTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,7 @@
 		EADEB8FF1DED3711005322DA /* circle.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
 		EADEB9001DED3711005322DA /* Analytics.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Analytics.podspec; sourceTree = "<group>"; };
 		EADEB9011DED3711005322DA /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
+		F61EB4AE1F996DEF0038C8C0 /* AnalyticsUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUtilTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +257,7 @@
 				EADEB8E61DECD335005322DA /* UserDefaultsStorageTest.swift */,
 				EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */,
 				EADEB8E71DECD335005322DA /* AnalyticsTests.swift */,
+				F61EB4AE1F996DEF0038C8C0 /* AnalyticsUtilTests.swift */,
 				EAA542761EB4035400945DA7 /* TrackingTests.swift */,
 				EADEB8E81DECD335005322DA /* ContextTest.swift */,
 				EADEB8E91DECD335005322DA /* CryptoTest.swift */,
@@ -613,6 +616,7 @@
 				EADEB8EE1DECD335005322DA /* HTTPClientTest.swift in Sources */,
 				EADEB8F31DECD335005322DA /* AnalyticsTests.swift in Sources */,
 				EADEB8F11DECD335005322DA /* FileStorageTest.swift in Sources */,
+				F61EB4AF1F996DEF0038C8C0 /* AnalyticsUtilTests.swift in Sources */,
 				EAA542801EB4382100945DA7 /* StoreKitTrackerTests.swift in Sources */,
 				EA8F09741E24C5C600B8B93F /* MiddlewareTests.swift in Sources */,
 				EADEB8EF1DECD335005322DA /* NSData+SEGGUNZIPP.m in Sources */,
