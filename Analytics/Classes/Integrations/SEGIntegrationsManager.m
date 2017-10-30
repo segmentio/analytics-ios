@@ -397,6 +397,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 - (BOOL)isIntegration:(NSString *)key enabledInOptions:(NSDictionary *)options
 {
+    // If the event is in the tracking plan, it should always be sent to api.segment.io.
     if ([@"Segment.io" isEqualToString:key]) {
         return YES;
     }
@@ -412,6 +413,11 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 - (BOOL)isTrackEvent:(NSString *)event enabledForIntegration:(NSString *)key inPlan:(NSDictionary *)plan
 {
+    // Whether the event is enabled or disabled, it should always be sent to api.segment.io.
+    if ([key isEqualToString:@"Segment.io"]) {
+        return YES;
+    }
+    
     if (plan[@"track"][event]) {
         if ([plan[@"track"][event][@"enabled"] boolValue]) {
             return [self isIntegration:key enabledInOptions:plan[@"track"][event][@"integrations"]];
