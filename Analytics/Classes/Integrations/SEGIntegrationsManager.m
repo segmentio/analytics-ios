@@ -395,7 +395,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 #pragma mark - Private
 
-- (BOOL)isIntegration:(NSString *)key enabledInOptions:(NSDictionary *)options
++ (BOOL)isIntegration:(NSString *)key enabledInOptions:(NSDictionary *)options
 {
     // If the event is in the tracking plan, it should always be sent to api.segment.io.
     if ([@"Segment.io" isEqualToString:key]) {
@@ -411,7 +411,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     return YES;
 }
 
-- (BOOL)isTrackEvent:(NSString *)event enabledForIntegration:(NSString *)key inPlan:(NSDictionary *)plan
++ (BOOL)isTrackEvent:(NSString *)event enabledForIntegration:(NSString *)key inPlan:(NSDictionary *)plan
 {
     // Whether the event is enabled or disabled, it should always be sent to api.segment.io.
     if ([key isEqualToString:@"Segment.io"]) {
@@ -443,7 +443,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         return;
     }
 
-    if (![self isIntegration:key enabledInOptions:options[@"integrations"]]) {
+    if (![[self class] isIntegration:key enabledInOptions:options[@"integrations"]]) {
         SEGLog(@"Not sending call to %@ because it is disabled in options.", key);
         return;
     }
@@ -451,7 +451,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     NSString *eventType = NSStringFromSelector(selector);
     if ([eventType hasPrefix:@"track:"]) {
         SEGTrackPayload *eventPayload = arguments[0];
-        BOOL enabled = [self isTrackEvent:eventPayload.event enabledForIntegration:key inPlan:self.cachedSettings[@"plan"]];
+        BOOL enabled = [[self class] isTrackEvent:eventPayload.event enabledForIntegration:key inPlan:self.cachedSettings[@"plan"]];
         if (!enabled) {
             SEGLog(@"Not sending call to %@ because it is disabled in plan.", key);
             return;
