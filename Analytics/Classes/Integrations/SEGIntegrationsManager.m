@@ -424,6 +424,8 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         } else {
             return NO;
         }
+    } else if (plan[@"track"][@"__default"]) {
+        return [plan[@"track"][@"__default"][@"enabled"] boolValue];
     }
 
     return YES;
