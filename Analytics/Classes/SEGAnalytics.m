@@ -52,7 +52,7 @@ static SEGAnalytics *__sharedInstance = nil;
         self.integrationsManager = [[SEGIntegrationsManager alloc] initWithAnalytics:self];
 
         self.runner = [[SEGMiddlewareRunner alloc] initWithMiddlewares:
-                       [configuration.middlewares ?: @[] arrayByAddingObject:self.integrationsManager]];
+                                                       [configuration.middlewares ?: @[] arrayByAddingObject:self.integrationsManager]];
 
         // Attach to application state change hooks
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -113,11 +113,12 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     }
 }
 
-- (void)_applicationDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (void)_applicationDidFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
     if (!self.configuration.trackApplicationLifecycleEvents) {
         return;
     }
-        // Previously SEGBuildKey was stored an integer. This was incorrect because the CFBundleVersion
+    // Previously SEGBuildKey was stored an integer. This was incorrect because the CFBundleVersion
     // can be a string. This migrates SEGBuildKey to be stored as a string.
     NSInteger previousBuildV1 = [[NSUserDefaults standardUserDefaults] integerForKey:SEGBuildKeyV1];
     if (previousBuildV1) {
@@ -146,11 +147,11 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     }
 
     [self track:@"Application Opened" properties:@{
-        @"from_background": @NO,
+        @"from_background" : @NO,
         @"version" : currentVersion ?: @"",
         @"build" : currentBuild ?: @"",
-        @"referring_application": launchOptions[UIApplicationLaunchOptionsSourceApplicationKey] ?: @"",
-        @"url": launchOptions[UIApplicationLaunchOptionsURLKey] ?: @"",
+        @"referring_application" : launchOptions[UIApplicationLaunchOptionsSourceApplicationKey] ?: @"",
+        @"url" : launchOptions[UIApplicationLaunchOptionsURLKey] ?: @"",
     }];
 
 
@@ -160,16 +161,17 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)_applicationWillEnterForeground {
+- (void)_applicationWillEnterForeground
+{
     if (!self.configuration.trackApplicationLifecycleEvents) {
         return;
     }
     NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
     NSString *currentBuild = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
     [self track:@"Application Opened" properties:@{
-        @"from_background": @YES,
+        @"from_background" : @YES,
         @"version" : currentVersion ?: @"",
-        @"build" : currentBuild  ?: @"",
+        @"build" : currentBuild ?: @"",
     }];
 }
 

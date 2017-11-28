@@ -23,22 +23,22 @@ class AnalyticsTests: QuickSpec {
     var analytics: SEGAnalytics!
     var testMiddleware: TestMiddleware!
     var testApplication: TestApplication!
-    
+
     beforeEach {
       testMiddleware = TestMiddleware()
       config.middlewares = [testMiddleware]
       testApplication = TestApplication()
       config.application = testApplication
       config.trackApplicationLifecycleEvents = true
-      
+
       analytics = SEGAnalytics(configuration: config)
       analytics.test_integrationsManager()?.test_setCachedSettings(settings: cachedSettings)
     }
-    
+
     afterEach {
       analytics.reset()
     }
-    
+
     it("initialized correctly") {
       expect(analytics.configuration.flushAt) == 20
       expect(analytics.configuration.writeKey) == "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE"
@@ -47,30 +47,30 @@ class AnalyticsTests: QuickSpec {
       expect(analytics.configuration.shouldUseBluetooth) == false
       expect(analytics.getAnonymousId()).toNot(beNil())
     }
-    
+
     it("persists anonymousId") {
       let analytics2 = SEGAnalytics(configuration: config)
       expect(analytics.getAnonymousId()) == analytics2.getAnonymousId()
     }
-    
+
     it("persists userId") {
       analytics.identify("testUserId1")
-      
+
       let analytics2 = SEGAnalytics(configuration: config)
       analytics2.test_integrationsManager()?.test_setCachedSettings(settings: cachedSettings)
 
       expect(analytics.test_integrationsManager()?.test_segmentIntegration()?.test_userId()) == "testUserId1"
       expect(analytics2.test_integrationsManager()?.test_segmentIntegration()?.test_userId()) == "testUserId1"
     }
-    
+
     it("continues user activity") {
       let activity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
       activity.webpageURL = URL(string: "http://www.segment.com")
       analytics.continue(activity)
       let referrer = analytics.test_integrationsManager()?.test_segmentIntegration()?.test_referrer()
-      expect(referrer?["url"] as? String) == "http://www.segment.com"
+      expect(referrer?["url"] as? String).toEventually(equal("http://www.segment.com"))
     }
-    
+
     it("clears user data") {
       analytics.identify("testUserId1", traits: [ "Test trait key" : "Test trait value"])
       analytics.reset()
@@ -90,7 +90,7 @@ class AnalyticsTests: QuickSpec {
       expect(event?.properties?["referring_application"] as? String) == "testApp"
       expect(event?.properties?["url"] as? String) == "test://test"
     }
-    
+
     it("fires Application Opened during UIApplicationWillEnterForeground") {
       testMiddleware.swallowEvent = true
       NotificationCenter.default.post(name: .UIApplicationWillEnterForeground, object: testApplication)
@@ -98,14 +98,14 @@ class AnalyticsTests: QuickSpec {
       expect(event?.event) == "Application Opened"
       expect(event?.properties?["from_background"] as? Bool) == true
     }
-    
+
     it("flushes when UIApplicationDidEnterBackgroundNotification is fired") {
       analytics.track("test")
       NotificationCenter.default.post(name: .UIApplicationDidEnterBackground, object: testApplication)
       expect(testApplication.backgroundTasks.count).toEventually(equal(1))
       expect(testApplication.backgroundTasks[0].isEnded).toEventually(beFalse())
     }
-    
+
     it("protocol conformance should not interfere with UIApplication interface") {
       // In Xcode8/iOS10, UIApplication.h typedefs UIBackgroundTaskIdentifier as NSUInteger,
       // whereas Swift has UIBackgroundTaskIdentifier typealiaed to Int.

@@ -95,11 +95,8 @@ class HTTPClientTest: QuickSpec {
 
     describe("upload") {
       it("does not ask to retry for json error") {
-        let batch: [String: Any] = [
-          // Dates cannot be serialized as is so the json serialzation will fail.
-          "sentAt": NSDate(),
-          "batch": [["type": "track", "event": "foo"]],
-        ]
+        // Dates cannot be serialized as is so the json serialzation will fail.
+        let batch = [[ "foo" : NSDate() ] ]
         var done = false
         let task = client.upload(batch, forWriteKey: "bar") { retry in
           expect(retry) == false
@@ -109,7 +106,7 @@ class HTTPClientTest: QuickSpec {
         expect(done).toEventually(beTrue())
       }
       
-      let batch: [String: Any] = ["sentAt":"2016-07-19'T'19:25:06Z", "batch":[["type":"track", "event":"foo"]]]
+      let batch = [["type":"track", "event":"foo"]]
 
       
       it("does not ask to retry for 2xx response") {

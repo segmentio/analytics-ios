@@ -3,6 +3,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
 @interface SEGTrackPayload : SEGPayload
 
 @property (nonatomic, readonly) NSString *event;
@@ -10,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, nullable) NSDictionary *properties;
 
 - (instancetype)initWithEvent:(NSString *)event
-                   properties:(NSDictionary * _Nullable)properties
+                   properties:(NSDictionary *_Nullable)properties
                       context:(NSDictionary *)context
                  integrations:(NSDictionary *)integrations;
 

@@ -9,20 +9,24 @@
 #import "SEGUtils.h"
 #import "SEGMiddleware.h"
 
+
 @implementation SEGBlockMiddleware
 
-- (instancetype)initWithBlock:(SEGMiddlewareBlock)block {
+- (instancetype)initWithBlock:(SEGMiddlewareBlock)block
+{
     if (self = [super init]) {
         _block = block;
     }
     return self;
 }
 
-- (void)context:(SEGContext *)context next:(SEGMiddlewareNext)next {
+- (void)context:(SEGContext *)context next:(SEGMiddlewareNext)next
+{
     self.block(context, next);
 }
 
 @end
+
 
 @implementation SEGMiddlewareRunner
 

@@ -3,7 +3,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-NSString *GenerateUUIDString();
+NSString *GenerateUUIDString(void);
 
 // Date Utils
 NSString *iso8601FormattedString(NSDate *date);
@@ -25,9 +25,9 @@ void SEGLog(NSString *format, ...);
 
 // JSON Utils
 
-JSON_DICT SEGCoerceDictionary(NSDictionary * _Nullable dict);
+JSON_DICT SEGCoerceDictionary(NSDictionary *_Nullable dict);
 
-NSString * _Nullable SEGIDFA(void);
+NSString *_Nullable SEGIDFA(void);
 
 NSString *SEGEventNameForScreenTitle(NSString *title);
 

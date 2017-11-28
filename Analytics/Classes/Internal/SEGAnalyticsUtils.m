@@ -19,7 +19,8 @@ NSString *iso8601FormattedString(NSDate *date)
     dispatch_once(&onceToken, ^{
         dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
-        dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+        dateFormatter.dateFormat = @"yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'";
+        dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     });
     return [dateFormatter stringFromDate:date];
 }
@@ -44,9 +45,10 @@ void seg_dispatch_specific(dispatch_queue_t queue, dispatch_block_t block,
                            BOOL waitForCompletion)
 {
     dispatch_block_t autoreleasing_block = ^{
-      @autoreleasepool {
-        block();
-      }
+        @autoreleasepool
+        {
+            block();
+        }
     };
     if (dispatch_get_specific((__bridge const void *)queue)) {
         autoreleasing_block();

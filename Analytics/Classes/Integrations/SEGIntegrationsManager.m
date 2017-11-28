@@ -372,19 +372,19 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         if (self.settingsRequest) {
             return;
         }
-        
+
         self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey completionHandler:^(BOOL success, NSDictionary *settings) {
             seg_dispatch_specific_async(_serialQueue, ^{
                 if (success) {
                     [self setCachedSettings:settings];
                 } else {
                     // Hotfix: If settings request fail, fall back to using just Segment integration
-                    // Won't catch situation where this callback never gets called - that will get addressed separately in regular dev 
+                    // Won't catch situation where this callback never gets called - that will get addressed separately in regular dev
                     [self setCachedSettings:@{
-                        @"integrations": @{
-                            @"Segment.io": @{ @"apiKey": self.configuration.writeKey },
+                        @"integrations" : @{
+                            @"Segment.io" : @{@"apiKey" : self.configuration.writeKey},
                         },
-                        @"plan": @{ @"track": @{} }
+                        @"plan" : @{@"track" : @{}}
                     }];
                 }
                 self.settingsRequest = nil;
@@ -395,8 +395,9 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 #pragma mark - Private
 
-- (BOOL)isIntegration:(NSString *)key enabledInOptions:(NSDictionary *)options
++ (BOOL)isIntegration:(NSString *)key enabledInOptions:(NSDictionary *)options
 {
+    // If the event is in the tracking plan, it should always be sent to api.segment.io.
     if ([@"Segment.io" isEqualToString:key]) {
         return YES;
     }
@@ -410,14 +411,21 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     return YES;
 }
 
-- (BOOL)isTrackEvent:(NSString *)event enabledForIntegration:(NSString *)key inPlan:(NSDictionary *)plan
++ (BOOL)isTrackEvent:(NSString *)event enabledForIntegration:(NSString *)key inPlan:(NSDictionary *)plan
 {
+    // Whether the event is enabled or disabled, it should always be sent to api.segment.io.
+    if ([key isEqualToString:@"Segment.io"]) {
+        return YES;
+    }
+    
     if (plan[@"track"][event]) {
         if ([plan[@"track"][event][@"enabled"] boolValue]) {
             return [self isIntegration:key enabledInOptions:plan[@"track"][event][@"integrations"]];
         } else {
             return NO;
         }
+    } else if (plan[@"track"][@"__default"]) {
+        return [plan[@"track"][@"__default"][@"enabled"] boolValue];
     }
 
     return YES;
@@ -425,14 +433,9 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 - (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
 {
-    // If the event has opted in for syncrhonous delivery, this may be called on any thread.
-    // Only allow one to be delivered at a time.
-    @synchronized(self)
-    {
-        [self.integrations enumerateKeysAndObjectsUsingBlock:^(NSString *key, id<SEGIntegration> integration, BOOL *stop) {
-            [self invokeIntegration:integration key:key selector:selector arguments:arguments options:options];
-        }];
-    }
+    [self.integrations enumerateKeysAndObjectsUsingBlock:^(NSString *key, id<SEGIntegration> integration, BOOL *stop) {
+        [self invokeIntegration:integration key:key selector:selector arguments:arguments options:options];
+    }];
 }
 
 - (void)invokeIntegration:(id<SEGIntegration>)integration key:(NSString *)key selector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
@@ -442,7 +445,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         return;
     }
 
-    if (![self isIntegration:key enabledInOptions:options[@"integrations"]]) {
+    if (![[self class] isIntegration:key enabledInOptions:options[@"integrations"]]) {
         SEGLog(@"Not sending call to %@ because it is disabled in options.", key);
         return;
     }
@@ -450,7 +453,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     NSString *eventType = NSStringFromSelector(selector);
     if ([eventType hasPrefix:@"track:"]) {
         SEGTrackPayload *eventPayload = arguments[0];
-        BOOL enabled = [self isTrackEvent:eventPayload.event enabledForIntegration:key inPlan:self.cachedSettings[@"plan"]];
+        BOOL enabled = [[self class] isTrackEvent:eventPayload.event enabledForIntegration:key inPlan:self.cachedSettings[@"plan"]];
         if (!enabled) {
             SEGLog(@"Not sending call to %@ because it is disabled in plan.", key);
             return;
@@ -495,11 +498,10 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 - (void)callIntegrationsWithSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options sync:(BOOL)sync
 {
-    if (sync && self.initialized) {
-        [self forwardSelector:selector arguments:arguments options:options];
-        return;
-    }
-
+    // TODO: Currently we ignore the `sync` argument and queue the event asynchronously.
+    // For integrations that need events to be on the main thread, they'll have to do so
+    // manually and hop back on to the main thread.
+    // Eventually we should figure out a way to handle this in analytics-ios itself.
     seg_dispatch_specific_async(_serialQueue, ^{
         if (self.initialized) {
             [self flushMessageQueue];

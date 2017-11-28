@@ -36,7 +36,8 @@
     return self;
 }
 
-- (NSURLSession *)sessionForWriteKey:(NSString *)writeKey {
+- (NSURLSession *)sessionForWriteKey:(NSString *)writeKey
+{
     NSURLSession *session = self.sessionsByWriteKey[writeKey];
     if (!session) {
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -52,7 +53,8 @@
     return session;
 }
 
-- (void)dealloc {
+- (void)dealloc
+{
     for (NSURLSession *session in self.sessionsByWriteKey.allValues) {
         [session finishTasksAndInvalidate];
     }
@@ -60,7 +62,7 @@
 }
 
 
-- (NSURLSessionUploadTask *)upload:(NSDictionary *)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler
+- (NSURLSessionUploadTask *)upload:(NSArray *)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler
 {
     //    batch = SEGCoerceDictionary(batch);
     NSURLSession *session = [self sessionForWriteKey:writeKey];
@@ -70,14 +72,19 @@
 
     // This is a workaround for an IOS 8.3 bug that causes Content-Type to be incorrectly set
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    
+
     [request setHTTPMethod:@"POST"];
+
+    // In particular, set the sentAt after the requestFactory is invoked so that it can be as up to date as possible.
+    NSMutableDictionary *payload = [[NSMutableDictionary alloc] init];
+    [payload setObject:iso8601FormattedString([NSDate date]) forKey:@"sentAt"];
+    [payload setObject:batch forKey:@"batch"];
 
     NSError *error = nil;
     NSException *exception = nil;
-    NSData *payload = nil;
+    NSData *payloadData = nil;
     @try {
-        payload = [NSJSONSerialization dataWithJSONObject:batch options:0 error:&error];
+        payloadData = [NSJSONSerialization dataWithJSONObject:batch options:0 error:&error];
     }
     @catch (NSException *exc) {
         exception = exc;
@@ -87,7 +94,7 @@
         completionHandler(NO); // Don't retry this batch.
         return nil;
     }
-    NSData *gzippedPayload = [payload seg_gzippedData];
+    NSData *gzippedPayload = [payloadData seg_gzippedData];
 
     NSURLSessionUploadTask *task = [session uploadTaskWithRequest:request fromData:gzippedPayload completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
         if (error) {

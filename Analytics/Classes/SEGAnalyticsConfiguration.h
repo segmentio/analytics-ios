@@ -11,14 +11,15 @@
 
 @protocol SEGApplicationProtocol <NSObject>
 @property (nullable, nonatomic, assign) id<UIApplicationDelegate> delegate;
-- (UIBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void(^ __nullable)(void))handler;
+- (UIBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void (^__nullable)(void))handler;
 - (void)seg_endBackgroundTask:(UIBackgroundTaskIdentifier)identifier;
 @end
 
-@interface UIApplication (SEGApplicationProtocol)<SEGApplicationProtocol>
+
+@interface UIApplication (SEGApplicationProtocol) <SEGApplicationProtocol>
 @end
 
-typedef NSMutableURLRequest * _Nonnull(^SEGRequestFactory)(NSURL * _Nonnull);
+typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
 
 @protocol SEGIntegrationFactory;
 @protocol SEGCrypto;
@@ -34,7 +35,7 @@ typedef NSMutableURLRequest * _Nonnull(^SEGRequestFactory)(NSURL * _Nonnull);
  *
  * @param writeKey Your project's write key from segment.io.
  */
-+ (_Nonnull instancetype)configurationWithWriteKey:(NSString * _Nonnull)writeKey;
++ (_Nonnull instancetype)configurationWithWriteKey:(NSString *_Nonnull)writeKey;
 
 /**
  * Your project's write key from segment.io.

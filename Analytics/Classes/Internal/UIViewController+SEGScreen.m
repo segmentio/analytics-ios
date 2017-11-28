@@ -66,7 +66,7 @@
     }
 
     NSString *name = [top title];
-    if (!name) {
+    if (!name || name.length == 0) {
         name = [[[top class] description] stringByReplacingOccurrencesOfString:@"ViewController" withString:@""];
         // Class name could be just "ViewController".
         if (name.length == 0) {
