@@ -1,6 +1,16 @@
 Change Log
 ==========
 
+Version 3.6.8 *(28th October, 2017)*
+-------------------------------------
+* [Fix](https://github.com/segmentio/analytics-ios/pull/700): Fixes some compiler warnings seen when importing analytics-ios via Swift in a Carthage project.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/730): Fix crash when trying to get screen name in some cases.
+* [New](https://github.com/segmentio/analytics-ios/pull/727): Support schema defaults.
+* [New](https://github.com/segmentio/analytics-ios/pull/724): Send disabled events to Segment so they can be surfaced in the debugger. This won't be sent to any destinations.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/723): Fix date formatting to be RFC 3339 compliant.
+* [Improvement](https://github.com/segmentio/analytics-ios/pull/720): Run connection factory asynchronously so it doesn't block queuing events.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/715): Always deliver events asynchronously to integrations.
+
 Version 3.6.7 *(24th August, 2017)*
 -------------------------------------
 * Use DEBUG preprocessor flag to conditionally disable assertions in prod #711
