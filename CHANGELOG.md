@@ -1,15 +1,23 @@
 Change Log
 ==========
 
+Version 3.6.9 *(3rd December, 2017)*
+-------------------------------------
+
+* [Fix](https://github.com/segmentio/analytics-ios/pull/736): Reverts [ability to run connection factories asynchronously](https://github.com/segmentio/analytics-ios/pull/720). This fixes a bug in 3.6.9 that caused the library to not send events to the Segment API.
+
 Version 3.6.8 *(28th October, 2017)*
 -------------------------------------
+
+This version included a bug that caused the library to not send events to the Segment API. We recommend using version `3.6.9` which fixes this bug and includes all the other improvements available in this release.
+
 * [Fix](https://github.com/segmentio/analytics-ios/pull/700): Fixes some compiler warnings seen when importing analytics-ios via Swift in a Carthage project.
 * [Fix](https://github.com/segmentio/analytics-ios/pull/730): Fix crash when trying to get screen name in some cases.
 * [New](https://github.com/segmentio/analytics-ios/pull/727): Support schema defaults.
 * [New](https://github.com/segmentio/analytics-ios/pull/724): Send disabled events to Segment so they can be surfaced in the debugger. This won't be sent to any destinations.
 * [Fix](https://github.com/segmentio/analytics-ios/pull/723): Fix date formatting to be RFC 3339 compliant.
-* [Improvement](https://github.com/segmentio/analytics-ios/pull/720): Run connection factory asynchronously so it doesn't block queuing events.
 * [Fix](https://github.com/segmentio/analytics-ios/pull/715): Always deliver events asynchronously to integrations.
+~~* [Improvement](https://github.com/segmentio/analytics-ios/pull/720): Run connection factory asynchronously so it doesn't block queuing events.~~
 
 Version 3.6.7 *(24th August, 2017)*
 -------------------------------------
