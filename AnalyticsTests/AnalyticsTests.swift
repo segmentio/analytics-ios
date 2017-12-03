@@ -63,6 +63,7 @@ class AnalyticsTests: QuickSpec {
       expect(analytics2.test_integrationsManager()?.test_segmentIntegration()?.test_userId()) == "testUserId1"
     }
 
+    /*
     it("continues user activity") {
       let activity = NSUserActivity(activityType: NSUserActivityTypeBrowsingWeb)
       activity.webpageURL = URL(string: "http://www.segment.com")
@@ -70,6 +71,7 @@ class AnalyticsTests: QuickSpec {
       let referrer = analytics.test_integrationsManager()?.test_segmentIntegration()?.test_referrer()
       expect(referrer?["url"] as? String).toEventually(equal("http://www.segment.com"))
     }
+    */
 
     it("clears user data") {
       analytics.identify("testUserId1", traits: [ "Test trait key" : "Test trait value"])
