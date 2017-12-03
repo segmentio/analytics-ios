@@ -62,7 +62,7 @@
 }
 
 
-- (NSURLSessionUploadTask *)upload:(NSArray *)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler
+- (NSURLSessionUploadTask *)upload:(NSDictionary *)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler
 {
     //    batch = SEGCoerceDictionary(batch);
     NSURLSession *session = [self sessionForWriteKey:writeKey];
@@ -75,16 +75,11 @@
 
     [request setHTTPMethod:@"POST"];
 
-    // In particular, set the sentAt after the requestFactory is invoked so that it can be as up to date as possible.
-    NSMutableDictionary *payload = [[NSMutableDictionary alloc] init];
-    [payload setObject:iso8601FormattedString([NSDate date]) forKey:@"sentAt"];
-    [payload setObject:batch forKey:@"batch"];
-
     NSError *error = nil;
     NSException *exception = nil;
-    NSData *payloadData = nil;
+    NSData *payload = nil;
     @try {
-        payloadData = [NSJSONSerialization dataWithJSONObject:batch options:0 error:&error];
+        payload = [NSJSONSerialization dataWithJSONObject:batch options:0 error:&error];
     }
     @catch (NSException *exc) {
         exception = exc;
@@ -94,7 +89,7 @@
         completionHandler(NO); // Don't retry this batch.
         return nil;
     }
-    NSData *gzippedPayload = [payloadData seg_gzippedData];
+    NSData *gzippedPayload = [payload seg_gzippedData];
 
     NSURLSessionUploadTask *task = [session uploadTaskWithRequest:request fromData:gzippedPayload completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
         if (error) {
