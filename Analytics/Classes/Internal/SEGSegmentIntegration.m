@@ -55,12 +55,10 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, strong) NSDictionary *cachedStaticContext;
 @property (nonatomic, strong) NSURLSessionUploadTask *batchRequest;
-@property (nonatomic, assign) BOOL batchRequestInProgress; // Thread confined to serialQueue.
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
 @property (nonatomic, strong) SEGReachability *reachability;
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
-@property (nonatomic, strong) dispatch_queue_t networkQueue;
 @property (nonatomic, strong) dispatch_queue_t backgroundTaskQueue;
 @property (nonatomic, strong) NSMutableDictionary *traits;
 @property (nonatomic, assign) SEGAnalytics *analytics;
@@ -89,9 +87,8 @@ static BOOL GetAdTrackingEnabled()
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
         [self.reachability startNotifier];
         self.cachedStaticContext = [self staticContext];
-        self.serialQueue = seg_dispatch_queue_create_specific("com.segment.analytics.segment", DISPATCH_QUEUE_SERIAL);
-        self.networkQueue = seg_dispatch_queue_create_specific("com.segment.analytics.segment.network", DISPATCH_QUEUE_SERIAL);
-        self.backgroundTaskQueue = seg_dispatch_queue_create_specific("com.segment.analytics.segment.backgroundTask", DISPATCH_QUEUE_SERIAL);
+        self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
+        self.backgroundTaskQueue = seg_dispatch_queue_create_specific("io.segment.analytics.backgroundTask", DISPATCH_QUEUE_SERIAL);
         self.flushTaskID = UIBackgroundTaskInvalid;
 
 #if !TARGET_OS_TV
@@ -490,7 +487,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
             [self endBackgroundTask];
             return;
         }
-        if (self.batchRequestInProgress) {
+        if (self.batchRequest != nil) {
             SEGLog(@"%@ API request already in progress, not flushing again.", self);
             return;
         }
@@ -511,7 +508,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     [self dispatchBackground:^{
         SEGLog(@"%@ Length is %lu.", self, (unsigned long)self.queue.count);
 
-        if (!self.batchRequestInProgress && [self.queue count] >= self.configuration.flushAt) {
+        if (self.batchRequest == nil && [self.queue count] >= self.configuration.flushAt) {
             [self flush];
         }
     }];
@@ -543,37 +540,31 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (void)sendData:(NSArray *)batch
 {
-    if (self.batchRequestInProgress) {
-        SEGLog(@"API request already in progress, not flushing again.");
-        return;
-    }
+    NSMutableDictionary *payload = [[NSMutableDictionary alloc] init];
+    [payload setObject:iso8601FormattedString([NSDate date]) forKey:@"sentAt"];
+    [payload setObject:batch forKey:@"batch"];
 
-    self.batchRequestInProgress = true;
+    SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)batch.count, (unsigned long)self.queue.count);
+    SEGLog(@"Flushing batch %@.", payload);
 
-    seg_dispatch_specific_async(self.networkQueue, ^{
-        SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)batch.count, (unsigned long)self.queue.count);
-
-        self.batchRequest = [self.httpClient upload:batch forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
-            [self dispatchBackground:^{
-                self.batchRequestInProgress = false;
-
-                if (retry) {
-                    [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
-                    self.batchRequest = nil;
-                    [self endBackgroundTask];
-                    return;
-                }
-
-                [self.queue removeObjectsInArray:batch];
-                [self persistQueue];
-                [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
+    self.batchRequest = [self.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
+        [self dispatchBackground:^{
+            if (retry) {
+                [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
                 self.batchRequest = nil;
                 [self endBackgroundTask];
-            }];
-        }];
+                return;
+            }
 
-        [self notifyForName:SEGSegmentDidSendRequestNotification userInfo:batch];
-    });
+            [self.queue removeObjectsInArray:batch];
+            [self persistQueue];
+            [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
+            self.batchRequest = nil;
+            [self endBackgroundTask];
+        }];
+    }];
+
+    [self notifyForName:SEGSegmentDidSendRequestNotification userInfo:batch];
 }
 
 - (void)applicationDidEnterBackground
