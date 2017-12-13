@@ -15,7 +15,7 @@ lint:
 carthage:
 	carthage build --no-skip-current
 
-archive:
+archive: carthage
 	carthage archive Analytics
 
 clean:
