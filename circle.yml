@@ -1,6 +1,7 @@
+# TODO: Upgrade to circle 2.0 syntax
 machine:
   xcode:
-    version: "8.2.1"
+    version: "9.0"
 
 dependencies:
   pre:
