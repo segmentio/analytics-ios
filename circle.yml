@@ -18,6 +18,8 @@ dependencies:
 
 test:
   override:
+    - sed -i -e 's/RUN_E2E_TESTS = false/RUN_E2E_TESTS = '"$RUN_E2E_TESTS"'/g' AnalyticsTests/EndToEndTests.swift
+    - sed -i -e 's/RUNSCOPE_TOKEN = "{RUNSCOPE_TOKEN}"/RUNSCOPE_TOKEN = "'"$RUNSCOPE_TOKEN"'"/g' AnalyticsTests/EndToEndTests.swift
     - make build-pretty
     - make test-pretty
     - make lint
