@@ -1,10 +1,12 @@
 PODS:
+  - GZIP (1.2.1)
   - Nimble (7.0.3)
   - Nocilla (0.11.0)
   - Quick (1.2.0)
   - SwiftTryCatch (1.0.0)
 
 DEPENDENCIES:
+  - GZIP (~> 1.2)
   - Nimble (~> 7.0.3)
   - Nocilla (~> 0.11.0)
   - Quick (~> 1.2.0)
@@ -20,11 +22,12 @@ CHECKOUT OPTIONS:
     :git: https://github.com/segmentio/SwiftTryCatch.git
 
 SPEC CHECKSUMS:
+  GZIP: 7ee835f989fb3c6ea79005fc90b8fa6af710a70d
   Nimble: 7f5a9c447a33002645a071bddafbfb24ea70e0ac
   Nocilla: 7af7a386071150cc8aa5da4da97d060f049dd61c
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   SwiftTryCatch: 2f4ef36cf5396bdb450006b70633dbce5260d3b3
 
-PODFILE CHECKSUM: ceb786c99293d3658014513be0e69ec381216acd
+PODFILE CHECKSUM: e26789caacf71a49180b07c3d82f9595bed2c39a
 
-COCOAPODS: 1.4.0.rc.1
+COCOAPODS: 1.4.0
