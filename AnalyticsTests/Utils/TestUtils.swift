@@ -89,7 +89,7 @@ class JsonGzippedBody : LSMatcher, LSMatcheable {
     }
     
     override func matchesData(_ data: Data!) -> Bool {
-        if let data = (data as NSData).seg_gunzipped(),
+        if let data = (data as NSData).gunzipped(),
             let json = try? JSONSerialization.jsonObject(with: data, options: []) {
             return matchesJson(json as AnyObject)
         }
@@ -102,7 +102,7 @@ class JsonGzippedBody : LSMatcher, LSMatcheable {
     
     func expectedHeaders() -> [String:String] {
         let data = try? JSONSerialization.data(withJSONObject: expectedJson, options: [])
-        let contentLength = (data as NSData?)?.seg_gzipped()?.count ?? 0
+        let contentLength = (data as NSData?)?.gzipped()?.count ?? 0
         return [
             "Content-Encoding": "gzip",
             "Content-Type": "application/json",

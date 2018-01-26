@@ -19,6 +19,8 @@ Pod::Spec.new do |s|
 
   s.framework = 'Security'
 
+  s.dependency 'GZIP', '~> 1.2'
+
   s.source_files = [
     'Analytics/Classes/**/*',
     'Analytics/Vendor/**/*'

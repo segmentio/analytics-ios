@@ -37,8 +37,6 @@
 		EADEB8BE1DECD12B005322DA /* SEGScreenPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8891DECD12B005322DA /* SEGScreenPayload.m */; };
 		EADEB8BF1DECD12B005322DA /* SEGTrackPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB88A1DECD12B005322DA /* SEGTrackPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8C01DECD12B005322DA /* SEGTrackPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB88B1DECD12B005322DA /* SEGTrackPayload.m */; };
-		EADEB8C11DECD12B005322DA /* NSData+SEGGZIP.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB88D1DECD12B005322DA /* NSData+SEGGZIP.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EADEB8C21DECD12B005322DA /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB88E1DECD12B005322DA /* NSData+SEGGZIP.m */; };
 		EADEB8C31DECD12B005322DA /* SEGAnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB88F1DECD12B005322DA /* SEGAnalyticsUtils.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8C41DECD12B005322DA /* SEGAnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8901DECD12B005322DA /* SEGAnalyticsUtils.m */; };
 		EADEB8C51DECD12B005322DA /* SEGFileStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8911DECD12B005322DA /* SEGFileStorage.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -67,13 +65,13 @@
 		EADEB8DE1DECD12B005322DA /* SEGAnalyticsConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8AB1DECD12B005322DA /* SEGAnalyticsConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8DF1DECD12B005322DA /* SEGAnalyticsConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8AC1DECD12B005322DA /* SEGAnalyticsConfiguration.m */; };
 		EADEB8EE1DECD335005322DA /* HTTPClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E01DECD335005322DA /* HTTPClientTest.swift */; };
-		EADEB8EF1DECD335005322DA /* NSData+SEGGUNZIPP.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E31DECD335005322DA /* NSData+SEGGUNZIPP.m */; };
 		EADEB8F01DECD335005322DA /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E41DECD335005322DA /* TestUtils.swift */; };
 		EADEB8F11DECD335005322DA /* FileStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E51DECD335005322DA /* FileStorageTest.swift */; };
 		EADEB8F21DECD335005322DA /* UserDefaultsStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E61DECD335005322DA /* UserDefaultsStorageTest.swift */; };
 		EADEB8F31DECD335005322DA /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E71DECD335005322DA /* AnalyticsTests.swift */; };
 		EADEB8F41DECD335005322DA /* ContextTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E81DECD335005322DA /* ContextTest.swift */; };
 		EADEB8F51DECD335005322DA /* CryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E91DECD335005322DA /* CryptoTest.swift */; };
+		F006DD10B29A708721C03E54 /* Pods_Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2CD547293B7788249C7323 /* Pods_Analytics.framework */; };
 		F61EB4AF1F996DEF0038C8C0 /* AnalyticsUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61EB4AE1F996DEF0038C8C0 /* AnalyticsUtilTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,9 +86,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000A118B24C6C86FD438F0A4 /* Pods-Analytics.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics.release.xcconfig"; path = "Pods/Target Support Files/Pods-Analytics/Pods-Analytics.release.xcconfig"; sourceTree = "<group>"; };
 		1DF03A6929EEFE7158913224 /* Pods-AnalyticsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationsManagerTest.swift; sourceTree = "<group>"; };
 		89033CBF22319674E6CE7E61 /* Pods_AnalyticsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnalyticsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6141F57011DF7900A2929F8 /* Pods-Analytics.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Analytics.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Analytics/Pods-Analytics.debug.xcconfig"; sourceTree = "<group>"; };
 		D3BF8AE673FE0FD91DF5B503 /* Pods-AnalyticsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests.release.xcconfig"; sourceTree = "<group>"; };
 		EA88A5971DED7608009FB66A /* SEGSerializableValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGSerializableValue.h; sourceTree = "<group>"; };
 		EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
@@ -122,8 +122,6 @@
 		EADEB8891DECD12B005322DA /* SEGScreenPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGScreenPayload.m; sourceTree = "<group>"; };
 		EADEB88A1DECD12B005322DA /* SEGTrackPayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGTrackPayload.h; sourceTree = "<group>"; };
 		EADEB88B1DECD12B005322DA /* SEGTrackPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGTrackPayload.m; sourceTree = "<group>"; };
-		EADEB88D1DECD12B005322DA /* NSData+SEGGZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SEGGZIP.h"; sourceTree = "<group>"; };
-		EADEB88E1DECD12B005322DA /* NSData+SEGGZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SEGGZIP.m"; sourceTree = "<group>"; };
 		EADEB88F1DECD12B005322DA /* SEGAnalyticsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAnalyticsUtils.h; sourceTree = "<group>"; };
 		EADEB8901DECD12B005322DA /* SEGAnalyticsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGAnalyticsUtils.m; sourceTree = "<group>"; };
 		EADEB8911DECD12B005322DA /* SEGFileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGFileStorage.h; sourceTree = "<group>"; };
@@ -152,8 +150,6 @@
 		EADEB8AB1DECD12B005322DA /* SEGAnalyticsConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAnalyticsConfiguration.h; sourceTree = "<group>"; };
 		EADEB8AC1DECD12B005322DA /* SEGAnalyticsConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGAnalyticsConfiguration.m; sourceTree = "<group>"; };
 		EADEB8E01DECD335005322DA /* HTTPClientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientTest.swift; sourceTree = "<group>"; };
-		EADEB8E21DECD335005322DA /* NSData+SEGGUNZIPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SEGGUNZIPP.h"; sourceTree = "<group>"; };
-		EADEB8E31DECD335005322DA /* NSData+SEGGUNZIPP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SEGGUNZIPP.m"; sourceTree = "<group>"; };
 		EADEB8E41DECD335005322DA /* TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		EADEB8E51DECD335005322DA /* FileStorageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileStorageTest.swift; sourceTree = "<group>"; };
 		EADEB8E61DECD335005322DA /* UserDefaultsStorageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorageTest.swift; sourceTree = "<group>"; };
@@ -167,6 +163,7 @@
 		EADEB9001DED3711005322DA /* Analytics.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Analytics.podspec; sourceTree = "<group>"; };
 		EADEB9011DED3711005322DA /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
 		F61EB4AE1F996DEF0038C8C0 /* AnalyticsUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUtilTests.swift; sourceTree = "<group>"; };
+		FA2CD547293B7788249C7323 /* Pods_Analytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Analytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +171,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F006DD10B29A708721C03E54 /* Pods_Analytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				89033CBF22319674E6CE7E61 /* Pods_AnalyticsTests.framework */,
+				FA2CD547293B7788249C7323 /* Pods_Analytics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -202,6 +201,8 @@
 			children = (
 				1DF03A6929EEFE7158913224 /* Pods-AnalyticsTests.debug.xcconfig */,
 				D3BF8AE673FE0FD91DF5B503 /* Pods-AnalyticsTests.release.xcconfig */,
+				A6141F57011DF7900A2929F8 /* Pods-Analytics.debug.xcconfig */,
+				000A118B24C6C86FD438F0A4 /* Pods-Analytics.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -325,8 +326,6 @@
 		EADEB88C1DECD12B005322DA /* Internal */ = {
 			isa = PBXGroup;
 			children = (
-				EADEB88D1DECD12B005322DA /* NSData+SEGGZIP.h */,
-				EADEB88E1DECD12B005322DA /* NSData+SEGGZIP.m */,
 				EADEB88F1DECD12B005322DA /* SEGAnalyticsUtils.h */,
 				EADEB8901DECD12B005322DA /* SEGAnalyticsUtils.m */,
 				EADEB8911DECD12B005322DA /* SEGFileStorage.h */,
@@ -364,8 +363,6 @@
 		EADEB8E11DECD335005322DA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				EADEB8E21DECD335005322DA /* NSData+SEGGUNZIPP.h */,
-				EADEB8E31DECD335005322DA /* NSData+SEGGUNZIPP.m */,
 				EADEB8E41DECD335005322DA /* TestUtils.swift */,
 			);
 			path = Utils;
@@ -416,7 +413,6 @@
 				EADEB8AE1DECD12B005322DA /* SEGAES256Crypto.h in Headers */,
 				EADEB8C51DECD12B005322DA /* SEGFileStorage.h in Headers */,
 				EAA5427D1EB42B8C00945DA7 /* SEGReachability.h in Headers */,
-				EADEB8C11DECD12B005322DA /* NSData+SEGGZIP.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,10 +423,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EADEB8631DECD080005322DA /* Build configuration list for PBXNativeTarget "Analytics" */;
 			buildPhases = (
+				78AAF6C411F0B889B2FB18B7 /* [CP] Check Pods Manifest.lock */,
 				EADEB8561DECD080005322DA /* Sources */,
 				EADEB8571DECD080005322DA /* Frameworks */,
 				EADEB8581DECD080005322DA /* Headers */,
 				EADEB8591DECD080005322DA /* Resources */,
+				89DF49B748393B60AA287DCC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -536,6 +534,39 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		78AAF6C411F0B889B2FB18B7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Analytics-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89DF49B748393B60AA287DCC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Analytics/Pods-Analytics-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B179A3824C53C87809396267 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -562,6 +593,7 @@
 				"${BUILT_PRODUCTS_DIR}/Nocilla/Nocilla.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftTryCatch/SwiftTryCatch.framework",
+				"${BUILT_PRODUCTS_DIR}/GZIP/GZIP.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -569,6 +601,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nocilla.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftTryCatch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GZIP.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -596,7 +629,6 @@
 				EADEB8C61DECD12B005322DA /* SEGFileStorage.m in Sources */,
 				EADEB8D31DECD12B005322DA /* SEGUserDefaultsStorage.m in Sources */,
 				EADEB8BC1DECD12B005322DA /* SEGPayload.m in Sources */,
-				EADEB8C21DECD12B005322DA /* NSData+SEGGZIP.m in Sources */,
 				EADEB8D91DECD12B005322DA /* SEGContext.m in Sources */,
 				EADEB8DB1DECD12B005322DA /* SEGMiddleware.m in Sources */,
 				EADEB8DF1DECD12B005322DA /* SEGAnalyticsConfiguration.m in Sources */,
@@ -623,7 +655,6 @@
 				EAA542801EB4382100945DA7 /* StoreKitTrackerTests.swift in Sources */,
 				EA8F09741E24C5C600B8B93F /* MiddlewareTests.swift in Sources */,
 				6E265C791FB1178C0030E08E /* IntegrationsManagerTest.swift in Sources */,
-				EADEB8EF1DECD335005322DA /* NSData+SEGGUNZIPP.m in Sources */,
 				EAA542821EB4410A00945DA7 /* ScreenTrackerTests.swift in Sources */,
 				EADEB8F01DECD335005322DA /* TestUtils.swift in Sources */,
 			);
@@ -755,6 +786,7 @@
 		};
 		EADEB8641DECD080005322DA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6141F57011DF7900A2929F8 /* Pods-Analytics.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
@@ -778,6 +810,7 @@
 		};
 		EADEB8651DECD080005322DA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 000A118B24C6C86FD438F0A4 /* Pods-Analytics.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
