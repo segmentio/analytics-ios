@@ -517,8 +517,8 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (void)reset
 {
     [self dispatchBackgroundAndWait:^{
-        [self.storage removeKey:SEGUserIdKey];
 #if TARGET_OS_TV
+        [self.storage removeKey:SEGUserIdKey];
         [self.storage removeKey:SEGTraitsKey];
 #else
         [self.storage removeKey:kSEGUserIdFilename];
