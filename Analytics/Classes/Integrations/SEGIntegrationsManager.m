@@ -417,7 +417,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     if ([key isEqualToString:@"Segment.io"]) {
         return YES;
     }
-    
+
     if (plan[@"track"][event]) {
         if ([plan[@"track"][event][@"enabled"] boolValue]) {
             return [self isIntegration:key enabledInOptions:plan[@"track"][event][@"integrations"]];
