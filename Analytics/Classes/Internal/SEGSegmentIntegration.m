@@ -461,10 +461,9 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (void)queuePayload:(NSDictionary *)payload
 {
     @try {
-        if (self.queue.count > 1000) {
-            // Remove the oldest element.
-            [self.queue removeObjectAtIndex:0];
-        }
+        // We only queue upto 1000 items, so trim the queue to 1000-1=999
+        // before we add a new element.
+        trimQueue(self.queue, 999);
         [self.queue addObject:payload];
         [self persistQueue];
         [self flushQueueByLength];
