@@ -378,8 +378,8 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
                 if (success) {
                     [self setCachedSettings:settings];
                 } else {
-                    // Hotfix: If settings request fail, fall back to using just Segment integration
-                    // Won't catch situation where this callback never gets called - that will get addressed separately in regular dev
+                    // If settings request fail, fall back to using just Segment integration.
+                    // Doesn't address situations where this callback never gets called (though we don't expect that to ever happen).
                     [self setCachedSettings:@{
                         @"integrations" : @{
                             @"Segment.io" : @{@"apiKey" : self.configuration.writeKey},
