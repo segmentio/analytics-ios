@@ -30,7 +30,10 @@
         }
         _sessionsByWriteKey = [NSMutableDictionary dictionary];
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
-        config.HTTPAdditionalHeaders = @{ @"Accept-Encoding" : @"gzip" };
+        config.HTTPAdditionalHeaders = @{
+            @"Accept-Encoding" : @"gzip",
+            @"User-Agent" : [NSString stringWithFormat:@"analytics-ios/%@", [SEGAnalytics version]],
+        };
         _genericSession = [NSURLSession sessionWithConfiguration:config];
     }
     return self;
@@ -46,6 +49,7 @@
             @"Content-Encoding" : @"gzip",
             @"Content-Type" : @"application/json",
             @"Authorization" : [@"Basic " stringByAppendingString:[[self class] authorizationHeader:writeKey]],
+            @"User-Agent" : [NSString stringWithFormat:@"analytics-ios/%@", [SEGAnalytics version]],
         };
         session = [NSURLSession sessionWithConfiguration:config];
         self.sessionsByWriteKey[writeKey] = session;
