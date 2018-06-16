@@ -13,19 +13,19 @@ import Analytics
 
 class HTTPClientTest: QuickSpec {
   override func spec() {
-    
+
     var client: SEGHTTPClient!
-    
+
     beforeEach {
       LSNocilla.sharedInstance().start()
       client = SEGHTTPClient(requestFactory: nil)
     }
-    afterEach { 
+    afterEach {
       LSNocilla.sharedInstance().clearStubs()
       LSNocilla.sharedInstance().stop()
     }
-    
-    describe("defaultRequestFactory") { 
+
+    describe("defaultRequestFactory") {
       it("preserves url") {
         let factory = SEGHTTPClient.defaultRequestFactory()
         let url = URL(string: "https://api.segment.io/v1/batch")
@@ -33,8 +33,8 @@ class HTTPClientTest: QuickSpec {
         expect(request.url) == url
       }
     }
-    
-    describe("settingsForWriteKey") { 
+
+    describe("settingsForWriteKey") {
       it("succeeds for 2xx response") {
         _ = stubRequest("GET", "https://cdn-settings.segment.com/v1/projects/foo/settings" as NSString)
           .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
@@ -61,7 +61,7 @@ class HTTPClientTest: QuickSpec {
         expect(task.state).toEventually(equal(URLSessionTask.State.completed))
         expect(done).toEventually(beTrue())
       }
-      
+
       it("fails for non 2xx response") {
         _ = stubRequest("GET", "https://cdn-settings.segment.com/v1/projects/foo/settings" as NSString)
           .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
@@ -77,7 +77,7 @@ class HTTPClientTest: QuickSpec {
         })
         expect(done).toEventually(beTrue())
       }
-      
+
       it("fails for json error") {
         _ = stubRequest("GET", "https://cdn-settings.segment.com/v1/projects/foo/settings" as NSString)
           .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
@@ -111,10 +111,10 @@ class HTTPClientTest: QuickSpec {
         expect(task).to(beNil())
         expect(done).toEventually(beTrue())
       }
-      
+
       let batch: [String: Any] = ["sentAt":"2016-07-19'T'19:25:06Z", "batch":[["type":"track", "event":"foo"]]]
 
-      
+
       it("does not ask to retry for 2xx response") {
         _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
           .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
@@ -160,6 +160,21 @@ class HTTPClientTest: QuickSpec {
         expect(task.state).toEventually(equal(URLSessionTask.State.completed))
       }
 
+      it("asks to retry for 429 response") {
+        _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
+          .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
+          .withJsonGzippedBody(batch as AnyObject)
+          .withWriteKey("bar")
+          .andReturn(429)
+        var done = false
+        let task = client.upload(batch, forWriteKey: "bar") { retry in
+          expect(retry) == true
+          done = true
+        }
+        expect(done).toEventually(beTrue())
+        expect(task.state).toEventually(equal(URLSessionTask.State.completed))
+      }
+
       it("asks to retry for 5xx response") {
         _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
           .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
@@ -175,7 +190,7 @@ class HTTPClientTest: QuickSpec {
         expect(task.state).toEventually(equal(URLSessionTask.State.completed))
       }
     }
-    
+
     describe("attribution") {
       it("fails for json error") {
         let device = [
@@ -190,7 +205,7 @@ class HTTPClientTest: QuickSpec {
         expect(task).to(beNil())
         expect(done).toEventually(beTrue())
       }
-      
+
       let context: [String: Any] = [
         "os": [
           "name": "iPhone OS",
@@ -198,14 +213,14 @@ class HTTPClientTest: QuickSpec {
         ],
         "ip": "8.8.8.8",
       ]
-      
+
       it("succeeds for 2xx response") {
         _ = stubRequest("POST", "https://mobile-service.segment.com/v1/attribution" as NSString)
           .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
           .withWriteKey("foo")
           .andReturn(200)!
           .withBody("{\"provider\": \"mock\"}" as NSString)
-        
+
         var done = false
         let task = client.attribution(withWriteKey: "foo", forDevice: context) { success, properties in
           expect(success) == true
@@ -217,7 +232,7 @@ class HTTPClientTest: QuickSpec {
         expect(task.state).toEventually(equal(URLSessionTask.State.completed))
         expect(done).toEventually(beTrue())
       }
-      
+
       it("fails for non 2xx response") {
         _ = stubRequest("POST", "https://mobile-service.segment.com/v1/attribution" as NSString)
           .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
