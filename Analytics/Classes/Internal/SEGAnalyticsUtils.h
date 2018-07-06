@@ -8,7 +8,7 @@ NSString *GenerateUUIDString(void);
 // Date Utils
 NSString *iso8601FormattedString(NSDate *date);
 
-void trimQueue(NSMutableArray *array, int size);
+void trimQueue(NSMutableArray *array, NSUInteger size);
 
 // Async Utils
 dispatch_queue_t seg_dispatch_queue_create_specific(const char *label,

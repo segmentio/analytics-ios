@@ -64,6 +64,12 @@ extension SEGSegmentIntegration {
   func test_batchRequest() -> URLSessionUploadTask? {
     return self.value(forKey: "batchRequest") as? URLSessionUploadTask
   }
+  func test_queue() -> [AnyObject]? {
+    return self.value(forKey: "queue") as? [AnyObject]
+  }
+  func test_dispatchBackground(block: @convention(block) () -> Void) {
+    self.perform(Selector(("dispatchBackground:")), with: block)
+  }
 }
 
 

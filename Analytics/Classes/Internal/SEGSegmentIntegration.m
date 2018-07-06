@@ -465,9 +465,8 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (void)queuePayload:(NSDictionary *)payload
 {
     @try {
-        // We only queue upto 1000 items, so trim the queue to 1000-1=999
-        // before we add a new element.
-        trimQueue(self.queue, 999);
+        // Trim the queue to maxQueueSize - 1 before we add a new element.
+        trimQueue(self.queue, self.analytics.configuration.maxQueueSize - 1);
         [self.queue addObject:payload];
         [self persistQueue];
         [self flushQueueByLength];

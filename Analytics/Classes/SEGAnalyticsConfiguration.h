@@ -70,6 +70,11 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
 @property (nonatomic, assign) NSTimeInterval flushInterval;
 
 /**
+ * The maximum number of items to queue before starting to drop old ones. This should be a value greater than zero, the behaviour is undefined otherwise. `1000` by default.
+ */
+@property (nonatomic, assign) NSUInteger maxQueueSize;
+
+/**
  * Whether the analytics client should automatically make a track call for application lifecycle events, such as "Application Installed", "Application Updated" and "Application Opened".
  */
 @property (nonatomic, assign) BOOL trackApplicationLifecycleEvents;
