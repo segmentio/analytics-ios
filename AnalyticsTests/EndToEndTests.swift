@@ -7,30 +7,30 @@ import Alamofire_Synchronous
 // End to End tests require some private credentials, so we can't embed them in source.
 // On CI, we inject these values with sed (see circle config for exact command).
 let RUN_E2E_TESTS = false
-let RUNSCOPE_TOKEN = "{RUNSCOPE_TOKEN}"
+let WEBHOOK_AUTH_USERNAME = "{WEBHOOK_AUTH_USERNAME}"
 
 func hasMatchingId(messageId: String) -> Bool {
   if !RUN_E2E_TESTS {
     return true
   }
-  
+
+  let base64Token = SEGHTTPClient.authorizationHeader(WEBHOOK_AUTH_USERNAME)
+
   let headers: HTTPHeaders = [
-    "Authorization": "Bearer \(RUNSCOPE_TOKEN)",
+    "Authorization": "Basic \(base64Token)",
   ]
-  
-  // Runscope Bucket for https://www.runscope.com/stream/uh9834m87jz5
-  let response = Alamofire.request("https://api.runscope.com/buckets/uh9834m87jz5/messages?count=10", headers: headers).responseJSON()
-  for message in (response.result.value as! [String: Any])["data"] as! [[String: Any]] {
-    let uuid = message["uuid"] as! String
-    
-    let response = Alamofire.request("https://api.runscope.com/buckets/uh9834m87jz5/messages/\(uuid)", headers: headers).responseJSON()
-    let body = (((response.result.value as! [String: Any])["data"] as! [String: Any])["request"] as! [String: Any])["body"] as! String
-    
-    if (body.contains("\"properties\":{\"id\":\"\(messageId)\"}")) {
+
+  let response = Alamofire.request("https://webhook-e2e.segment.com/buckets/ios?limit=10", headers: headers).responseJSON()
+
+  // TODO: This should be more strongly typed.
+  let messages = response.result.value as! [String]
+
+  for message in messages {
+    if (message.contains("\"properties\":{\"id\":\"\(messageId)\"}")) {
       return true
     }
   }
-  
+
   return false
 }
 
@@ -40,36 +40,36 @@ func hasMatchingId(messageId: String) -> Bool {
 class AnalyticsE2ETests: QuickSpec {
   override func spec() {
     var analytics: SEGAnalytics!
-    
+
     beforeEach {
       // Write Key for https://app.segment.com/segment-libraries/sources/analytics_ios_e2e_test/overview
       let config = SEGAnalyticsConfiguration(writeKey: "3VxTfPsVOoEOSbbzzbFqVNcYMNu2vjnr")
       config.flushAt = 1
-      
+
       SEGAnalytics.setup(with: config)
-      
+
       analytics = SEGAnalytics.shared()
     }
-    
+
     afterEach {
       analytics.reset()
     }
-    
+
     it("track") {
       let uuid = UUID().uuidString
       self.expectation(forNotification: NSNotification.Name("SegmentRequestDidSucceed"), object: nil, handler: nil)
-      
+
       analytics.track("E2E Test", properties: ["id": uuid])
-      
+
       self.waitForExpectations(timeout: 20)
-      
+
       for _ in 1...5 {
         sleep(2)
         if hasMatchingId(messageId: uuid) {
           return
         }
       }
-      
+
       fail("could not find message with id \(uuid) in Runscope")
     }
   }
