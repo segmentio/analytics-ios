@@ -38,10 +38,7 @@ build-pretty:
 test-pretty:
 	set -o pipefail && xcodebuild test $(XC_ARGS) $(XC_TEST_ARGS) | xcpretty --report junit
 
-xcbuild:
-	xctool $(XC_ARGS)
-
 xctest:
-	xctool test $(XC_ARGS)
+	xctool $(XC_ARGS) run-tests
 
-.PHONY: bootstrap lint carthage archive test xctest build xcbuild clean
+.PHONY: bootstrap lint carthage archive build test xctest clean
