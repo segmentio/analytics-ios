@@ -58,6 +58,12 @@ extension SEGSegmentIntegration {
   func test_traits() -> [String: AnyObject]? {
     return self.value(forKey: "traits") as? [String: AnyObject]
   }
+  func test_flushTimer() -> Timer? {
+    return self.value(forKey: "flushTimer") as? Timer
+  }
+  func test_batchRequest() -> URLSessionUploadTask? {
+    return self.value(forKey: "batchRequest") as? URLSessionUploadTask
+  }
 }
 
 
