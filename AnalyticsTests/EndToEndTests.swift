@@ -4,17 +4,21 @@ import Analytics
 import Alamofire
 import Alamofire_Synchronous
 
-// End to End tests require some private credentials, so we can't embed them in source.
-// On CI, we inject these values with sed (see circle config for exact command).
-let RUN_E2E_TESTS = false
-let WEBHOOK_AUTH_USERNAME = "{WEBHOOK_AUTH_USERNAME}"
-
 func hasMatchingId(messageId: String) -> Bool {
-  if !RUN_E2E_TESTS {
+  // End to End tests require some private credentials, so we can't embed them in source.
+  // On CI, we inject these values with build settings (see Makefile test task).
+  let runE2E = ProcessInfo.processInfo.environment["RUN_E2E_TESTS"]
+
+  if runE2E != "true" {
     return true
   }
 
-  let base64Token = SEGHTTPClient.authorizationHeader(WEBHOOK_AUTH_USERNAME)
+  guard let auth = ProcessInfo.processInfo.environment["WEBHOOK_AUTH_USERNAME"] else {
+    fail("Cannot find webhook username")
+    return false
+  }
+
+  let base64Token = SEGHTTPClient.authorizationHeader(auth)
 
   let headers: HTTPHeaders = [
     "Authorization": "Basic \(base64Token)",
