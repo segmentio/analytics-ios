@@ -41,6 +41,7 @@ class AnalyticsTests: QuickSpec {
 
     it("initialized correctly") {
       expect(analytics.configuration.flushAt) == 20
+      expect(analytics.configuration.flushInterval) == 30
       expect(analytics.configuration.writeKey) == "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE"
       expect(analytics.configuration.shouldUseLocationServices) == false
       expect(analytics.configuration.enableAdvertisingTracking) == true
@@ -119,6 +120,29 @@ class AnalyticsTests: QuickSpec {
       // Note that this doesn't appear to be an issue any longer in Xcode9b3.
       let task = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
       UIApplication.shared.endBackgroundTask(task)
+    }
+    
+    it("flushes using flushTimer") {
+      let integration = analytics.test_integrationsManager()?.test_segmentIntegration()
+
+      analytics.track("test")
+
+      expect(integration?.test_flushTimer()).toEventuallyNot(beNil())
+      expect(integration?.test_batchRequest()).to(beNil())
+
+      integration?.test_flushTimer()?.fire()
+      
+      expect(integration?.test_batchRequest()).toEventuallyNot(beNil())
+    }
+
+    it("respects flushInterval") {
+      let timer = analytics
+        .test_integrationsManager()?
+        .test_segmentIntegration()?
+        .test_flushTimer()
+      
+      expect(timer).toNot(beNil())
+      expect(timer?.timeInterval) == config.flushInterval
     }
   }
 
