@@ -26,7 +26,7 @@ NSString *iso8601FormattedString(NSDate *date)
 }
 
 /** trim the queue so that it contains only upto `max` number of elements. */
-void trimQueue(NSMutableArray *queue, int max)
+void trimQueue(NSMutableArray *queue, NSUInteger max)
 {
     if (queue.count < max) {
         return;

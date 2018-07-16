@@ -56,6 +56,7 @@
         self.shouldUseBluetooth = NO;
         self.flushAt = 20;
         self.flushInterval = 30;
+        self.maxQueueSize = 1000;
         _factories = [NSMutableArray array];
         Class applicationClass = NSClassFromString(@"UIApplication");
         if (applicationClass) {

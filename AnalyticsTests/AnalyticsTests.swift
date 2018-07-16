@@ -42,6 +42,7 @@ class AnalyticsTests: QuickSpec {
     it("initialized correctly") {
       expect(analytics.configuration.flushAt) == 20
       expect(analytics.configuration.flushInterval) == 30
+      expect(analytics.configuration.maxQueueSize) == 1000
       expect(analytics.configuration.writeKey) == "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE"
       expect(analytics.configuration.shouldUseLocationServices) == false
       expect(analytics.configuration.enableAdvertisingTracking) == true
@@ -107,6 +108,32 @@ class AnalyticsTests: QuickSpec {
       NotificationCenter.default.post(name: .UIApplicationDidEnterBackground, object: testApplication)
       expect(testApplication.backgroundTasks.count).toEventually(equal(1))
       expect(testApplication.backgroundTasks[0].isEnded).toEventually(beFalse())
+    }
+    
+    it("respects maxQueueSize") {
+      let max = 72
+      config.maxQueueSize = UInt(max)
+
+      for i in 1...max * 2 {
+        analytics.track("test #\(i)")
+      }
+
+      let integration = analytics.test_integrationsManager()?.test_segmentIntegration()
+      expect(integration).notTo(beNil())
+      
+      var sent = 0
+
+      analytics.flush()
+      integration?.test_dispatchBackground {
+        if let count = integration?.test_queue()?.count {
+          sent = count
+        }
+        else {
+          sent = -1
+        }
+      }
+      
+      expect(sent).toEventually(be(max))
     }
 
     it("protocol conformance should not interfere with UIApplication interface") {
