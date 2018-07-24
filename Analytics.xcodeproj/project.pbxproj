@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3481C14AEC76E5A8DA64DA59 /* Pods_AnalyticsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89033CBF22319674E6CE7E61 /* Pods_AnalyticsTests.framework */; };
+		630FC8EA2107F2A500A759C5 /* SEGScreenReporting.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E265C791FB1178C0030E08E /* IntegrationsManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */; };
 		6EEC1C712017EA370089C478 /* EndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC1C702017EA370089C478 /* EndToEndTests.swift */; };
 		EA88A5981DED7608009FB66A /* SEGSerializableValue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA88A5971DED7608009FB66A /* SEGSerializableValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -89,6 +90,7 @@
 
 /* Begin PBXFileReference section */
 		1DF03A6929EEFE7158913224 /* Pods-AnalyticsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGScreenReporting.h; sourceTree = "<group>"; };
 		6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationsManagerTest.swift; sourceTree = "<group>"; };
 		6EEC1C702017EA370089C478 /* EndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndToEndTests.swift; sourceTree = "<group>"; };
 		89033CBF22319674E6CE7E61 /* Pods_AnalyticsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnalyticsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -346,6 +348,7 @@
 				EADEB8A11DECD12B005322DA /* SEGUtils.m */,
 				EADEB8A21DECD12B005322DA /* UIViewController+SEGScreen.h */,
 				EADEB8A31DECD12B005322DA /* UIViewController+SEGScreen.m */,
+				5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				EADEB8601DECD080005322DA /* Analytics.h in Headers */,
 				EADEB8C31DECD12B005322DA /* SEGAnalyticsUtils.h in Headers */,
 				EADEB8B91DECD12B005322DA /* SEGIntegrationsManager.h in Headers */,
+				630FC8EA2107F2A500A759C5 /* SEGScreenReporting.h in Headers */,
 				EADEB8AE1DECD12B005322DA /* SEGAES256Crypto.h in Headers */,
 				EADEB8C51DECD12B005322DA /* SEGFileStorage.h in Headers */,
 				EAA5427D1EB42B8C00945DA7 /* SEGReachability.h in Headers */,

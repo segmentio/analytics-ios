@@ -2,6 +2,7 @@
 #import <objc/runtime.h>
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
+#import "SEGScreenReporting.h"
 
 
 @implementation UIViewController (SEGScreen)
@@ -65,7 +66,22 @@
         return;
     }
 
-    NSString *name = [top title];
+    SERIALIZABLE_DICT properties = nil;
+    NSString *name = nil;
+
+    if ([top conformsToProtocol:@protocol(SEGScreenReporting)]) {
+        __auto_type screenReporting = (UIViewController<SEGScreenReporting>*)top;
+
+        if ([screenReporting respondsToSelector:@selector(seg_screenProperties)]) {
+            properties = screenReporting.seg_screenProperties;
+        }
+
+        if ([top respondsToSelector:@selector(seg_screenName)]) {
+            name = screenReporting.seg_screenName;
+        }
+    }
+
+    name = name ?: [top title];
     if (!name || name.length == 0) {
         name = [[[top class] description] stringByReplacingOccurrencesOfString:@"ViewController" withString:@""];
         // Class name could be just "ViewController".
@@ -74,7 +90,8 @@
             name = @"Unknown";
         }
     }
-    [[SEGAnalytics sharedAnalytics] screen:name properties:nil options:nil];
+
+    [[SEGAnalytics sharedAnalytics] screen:name properties:properties options:nil];
 
     [self seg_viewDidAppear:animated];
 }
