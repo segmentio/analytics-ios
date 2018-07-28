@@ -28,8 +28,15 @@
         } else {
             self.requestFactory = requestFactory;
         }
-        _sessionsByWriteKey = [NSMutableDictionary dictionary];
+        
+        NSUInteger megabyte = 1024 * 1024;
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+
+        _sessionsByWriteKey = [NSMutableDictionary dictionary];
+        _cache = [NSURLCache.alloc initWithMemoryCapacity:1 * megabyte
+                                             diskCapacity:5 * megabyte
+                                                 diskPath:@"seg_http_cache"];
+        config.URLCache = _cache;
         config.HTTPAdditionalHeaders = @{
             @"Accept-Encoding" : @"gzip",
             @"User-Agent" : [NSString stringWithFormat:@"analytics-ios/%@", [SEGAnalytics version]],
@@ -153,6 +160,13 @@
 
         NSInteger code = ((NSHTTPURLResponse *)response).statusCode;
         if (code > 300) {
+            if(response && data && code < 500 && ![self.cache cachedResponseForRequest:request]) {
+                // Cache 4xx responses
+                NSCachedURLResponse* cached = [NSCachedURLResponse.alloc initWithResponse:response
+                                                                                     data:data];
+                [self.cache storeCachedResponse:cached forRequest:request];
+            }
+
             SEGLog(@"Server responded with unexpected HTTP code %d.", code);
             completionHandler(NO, nil);
             return;
