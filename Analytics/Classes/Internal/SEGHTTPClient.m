@@ -160,10 +160,14 @@
 
         NSInteger code = ((NSHTTPURLResponse *)response).statusCode;
         if (code > 300) {
+            // Look for a non-cached valid 4xx response
             if(response && data && code < 500 && ![self.cache cachedResponseForRequest:request]) {
-                // Cache 4xx responses
                 NSCachedURLResponse* cached = [NSCachedURLResponse.alloc initWithResponse:response
                                                                                      data:data];
+                
+                // Manually store the response onto the cache.
+                // self.genericSession will take care of storing cacheable 2xx responses,
+                // and checking the cache next time dataWithRequest is called.
                 [self.cache storeCachedResponse:cached forRequest:request];
             }
 
