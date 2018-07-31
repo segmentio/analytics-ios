@@ -19,6 +19,7 @@ class HTTPClientTest: QuickSpec {
     beforeEach {
       LSNocilla.sharedInstance().start()
       client = SEGHTTPClient(requestFactory: nil)
+      client.cache.removeAllCachedResponses()
     }
     afterEach {
       LSNocilla.sharedInstance().clearStubs()
@@ -247,6 +248,43 @@ class HTTPClientTest: QuickSpec {
         }
         expect(task.state).toEventually(equal(URLSessionTask.State.completed))
         expect(done).toEventually(beTrue())
+      }
+    }
+    
+    describe("cache") {
+      let settingsUrl = URL(string: "https://cdn-settings.segment.com/v1/projects/foo/settings")!
+      var request = URLRequest(url: settingsUrl)
+      
+      request.httpMethod = "GET"
+
+      it("caches 4xx response") {
+        _ = stubRequest("GET", settingsUrl.absoluteString as LSMatcheable)
+          .andReturn(404)!
+
+        var done = false
+        let task = client.settings(forWriteKey: "foo", completionHandler: { success, settings in
+          done = true
+        })
+        expect(task.state).toEventually(equal(URLSessionTask.State.completed))
+        expect(done).toEventually(beTrue())
+        
+        expect(client.cache.cachedResponse(for: request)).toNot(beNil())
+      }
+      
+      for code in [200, 204, 500, 503] {
+        it("does not cache \(code) responses") {
+          _ = stubRequest("GET", settingsUrl.absoluteString as LSMatcheable)
+            .andReturn(code)!
+          
+          var done = false
+          let task = client.settings(forWriteKey: "foo", completionHandler: { success, settings in
+            done = true
+          })
+          expect(task.state).toEventually(equal(URLSessionTask.State.completed))
+          expect(done).toEventually(beTrue())
+          
+          expect(client.cache.cachedResponse(for: request)).to(beNil())
+        }
       }
     }
   }

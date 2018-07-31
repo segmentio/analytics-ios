@@ -28,8 +28,14 @@
         } else {
             self.requestFactory = requestFactory;
         }
-        _sessionsByWriteKey = [NSMutableDictionary dictionary];
+        
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+
+        _sessionsByWriteKey = [NSMutableDictionary dictionary];
+        _cache = [NSURLCache.alloc initWithMemoryCapacity:NSURLCache.sharedURLCache.memoryCapacity
+                                             diskCapacity:NSURLCache.sharedURLCache.diskCapacity
+                                                 diskPath:@"seg_http_cache"];
+        config.URLCache = _cache;
         config.HTTPAdditionalHeaders = @{
             @"Accept-Encoding" : @"gzip",
             @"User-Agent" : [NSString stringWithFormat:@"analytics-ios/%@", [SEGAnalytics version]],
@@ -153,6 +159,17 @@
 
         NSInteger code = ((NSHTTPURLResponse *)response).statusCode;
         if (code > 300) {
+            // Look for a non-cached valid 4xx response
+            if(response && data && code < 500 && ![self.cache cachedResponseForRequest:request]) {
+                NSCachedURLResponse* cached = [NSCachedURLResponse.alloc initWithResponse:response
+                                                                                     data:data];
+                
+                // Manually store the response onto the cache.
+                // self.genericSession will take care of storing cacheable 2xx responses,
+                // and checking the cache next time dataWithRequest is called.
+                [self.cache storeCachedResponse:cached forRequest:request];
+            }
+
             SEGLog(@"Server responded with unexpected HTTP code %d.", code);
             completionHandler(NO, nil);
             return;
