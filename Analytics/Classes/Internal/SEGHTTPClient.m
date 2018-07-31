@@ -29,12 +29,11 @@
             self.requestFactory = requestFactory;
         }
         
-        NSUInteger megabyte = 1024 * 1024;
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
 
         _sessionsByWriteKey = [NSMutableDictionary dictionary];
-        _cache = [NSURLCache.alloc initWithMemoryCapacity:1 * megabyte
-                                             diskCapacity:5 * megabyte
+        _cache = [NSURLCache.alloc initWithMemoryCapacity:NSURLCache.sharedURLCache.memoryCapacity
+                                             diskCapacity:NSURLCache.sharedURLCache.diskCapacity
                                                  diskPath:@"seg_http_cache"];
         config.URLCache = _cache;
         config.HTTPAdditionalHeaders = @{
