@@ -1,6 +1,21 @@
 Change Log
 ==========
 
+Version 3.7.0-beta *(27th August, 2018)*
+----------------------------------------
+
+* [Improvement](https://github.com/segmentio/analytics-ios/pull/765): Make the maximum queue size configurable
+* [Improvement](https://github.com/segmentio/analytics-ios/pull/767): Make the flush interval configurable
+
+* [Fix](https://github.com/segmentio/analytics-ios/pull/773): Fix linking issues when automatic framework linking is disabled
+* [Fix](https://github.com/segmentio/analytics-ios/pull/763): Retry HTTP 429 status codes
+* [Fix](https://github.com/segmentio/analytics-ios/pull/761): Send RFC 7231 Formatted User Agent
+* [Fix](https://github.com/segmentio/analytics-ios/pull/751): Ensure queue is always < 1000 items
+* [Fix](https://github.com/segmentio/analytics-ios/pull/750): Reset SEGUserIdKey only on tvOS
+* [Fix](https://github.com/segmentio/analytics-ios/pull/749): Renames GZIP category to prevent collisions
+* [Fix](https://github.com/segmentio/analytics-ios/pull/744): sharedAnalytics returns null before setup
+* [Fix](https://github.com/segmentio/analytics-ios/pull/741): Swift 4 support
+
 Version 3.6.9 *(3rd December, 2017)*
 -------------------------------------
 
