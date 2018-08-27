@@ -9,7 +9,7 @@ XC_TEST_ARGS := -scheme $(TEST_PROJECT) GCC_GENERATE_TEST_COVERAGE_FILES=YES RUN
 bootstrap:
 	.buildscript/bootstrap.sh
 
-install: Podfile Analytics.podspec
+dependencies: Podfile Analytics.podspec
 	pod install
 
 lint:
@@ -42,4 +42,4 @@ test-pretty:
 xctest:
 	xctool $(XC_ARGS) run-tests
 
-.PHONY: bootstrap lint carthage archive build test xctest clean
+.PHONY: bootstrap dependencies lint carthage archive build test xctest clean
