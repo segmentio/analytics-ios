@@ -133,7 +133,7 @@ class AnalyticsTests: QuickSpec {
         }
       }
       
-      expect(sent).toEventually(be(max))
+      expect(sent).toEventually(equal(max))
     }
 
     it("protocol conformance should not interfere with UIApplication interface") {
