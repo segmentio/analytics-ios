@@ -24,7 +24,7 @@ func hasMatchingId(messageId: String) -> Bool {
     "Authorization": "Basic \(base64Token)",
   ]
 
-  let response = Alamofire.request("https://webhook-e2e.segment.com/buckets/ios?limit=10", headers: headers).responseJSON()
+  let response = Alamofire.request("https://webhook-e2e.segment.com/buckets/ios?limit=100", headers: headers).responseJSON()
 
   // TODO: This should be more strongly typed.
   let messages = response.result.value as! [String]
