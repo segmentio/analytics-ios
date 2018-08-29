@@ -14,5 +14,3 @@
 - Does the docs need an update?
 - Are there any security concerns?
 - Do we need to update engineering / success?
-
-@segmentio/gateway
