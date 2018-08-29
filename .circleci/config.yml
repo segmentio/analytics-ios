@@ -23,8 +23,11 @@ jobs:
       - run: make carthage
 
       - store_test_results:
+          # relies on xcpretty --report junit
           path: build/reports
+      - run: bash <(curl -s https://codecov.io/bash)
+
+      # Save Pods to artifacts in case we need to dig up dependencies later
       - run: zip -FSr Pods.zip ./Pods
       - store_artifacts:
           path: Pods.zip
-      - run: bash <(curl -s https://codecov.io/bash)
