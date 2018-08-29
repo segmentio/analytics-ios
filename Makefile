@@ -12,7 +12,7 @@ dependencies: Podfile Analytics.podspec
 	pod install
 
 lint:
-	pod lib lint
+	pod lib lint --allow-warnings
 
 carthage:
 	carthage build --no-skip-current
