@@ -1,0 +1,33 @@
+version: 2
+
+jobs:
+  build:
+    macos:
+      xcode: "9.4.1"
+    steps:
+      - checkout
+      - run:
+          name: Install build dependencies
+          command: |
+            sudo gem install xcpretty
+            sudo gem install cocoapods -v $(var=$(tail -1 Podfile.lock); echo ${var##COCOAPODS:})
+
+      - run:
+          name: Fetch Cocoapods specs
+          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+
+      - run: make dependencies
+      - run: make build-pretty
+      - run: make test-pretty
+      - run: make lint
+      - run: make carthage
+
+      - store_test_results:
+          # relies on xcpretty --report junit
+          path: build/reports
+      - run: bash <(curl -s https://codecov.io/bash)
+
+      # Save Pods to artifacts in case we need to dig up dependencies later
+      - run: zip -FSr Pods.zip ./Pods
+      - store_artifacts:
+          path: Pods.zip
