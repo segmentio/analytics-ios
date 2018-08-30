@@ -121,19 +121,18 @@ class AnalyticsTests: QuickSpec {
       let integration = analytics.test_integrationsManager()?.test_segmentIntegration()
       expect(integration).notTo(beNil())
       
-      var sent = 0
-
       analytics.flush()
-      integration?.test_dispatchBackground {
-        if let count = integration?.test_queue()?.count {
-          sent = count
-        }
-        else {
-          sent = -1
+      waitUntil(timeout: 60) {done in
+        let queue = DispatchQueue(label: "test")
+        
+        queue.async {
+          while(integration?.test_queue()?.count != max) {
+            sleep(1)
+          }
+
+          done()
         }
       }
-      
-      expect(sent).toEventually(equal(max))
     }
 
     it("protocol conformance should not interfere with UIApplication interface") {
