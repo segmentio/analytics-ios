@@ -6,6 +6,7 @@ jobs:
       xcode: "9.4.1"
     steps:
       - checkout
+      - run: xcrun simctl list
       - run:
           name: Install build dependencies
           command: |
