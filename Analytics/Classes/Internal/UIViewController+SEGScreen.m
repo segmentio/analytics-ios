@@ -73,11 +73,9 @@
     }
 
     if (rootViewController.childViewControllers.count > 0) {
-        if ([rootViewController conformsToProtocol:@protocol(SEGScreenReporting)]) {
+        if ([rootViewController conformsToProtocol:@protocol(SEGScreenReporting)] && [rootViewController respondsToSelector:@selector(seg_mainViewController)]) {
             __auto_type screenReporting = (UIViewController<SEGScreenReporting>*)rootViewController;
-            if ([screenReporting respondsToSelector:@selector(seg_mainViewController)]) {
-                return screenReporting.seg_mainViewController;
-            }
+            return screenReporting.seg_mainViewController;
         }
 
         // fall back on first child UIViewController as a "best guess" assumption
@@ -98,22 +96,7 @@
         return;
     }
 
-    SERIALIZABLE_DICT properties = nil;
-    NSString *name = nil;
-
-    if ([top conformsToProtocol:@protocol(SEGScreenReporting)]) {
-        __auto_type screenReporting = (UIViewController<SEGScreenReporting>*)top;
-
-        if ([screenReporting respondsToSelector:@selector(seg_screenProperties)]) {
-            properties = screenReporting.seg_screenProperties;
-        }
-
-        if ([top respondsToSelector:@selector(seg_screenName)]) {
-            name = screenReporting.seg_screenName;
-        }
-    }
-
-    name = name ?: [top title];
+    NSString *name = [top title];
     if (!name || name.length == 0) {
         name = [[[top class] description] stringByReplacingOccurrencesOfString:@"ViewController" withString:@""];
         // Class name could be just "ViewController".
@@ -123,7 +106,13 @@
         }
     }
 
-    [[SEGAnalytics sharedAnalytics] screen:name properties:properties options:nil];
+    if ([top conformsToProtocol:@protocol(SEGScreenReporting)] && [top respondsToSelector:@selector(seg_trackScreen)]) {
+        __auto_type screenReporting = (UIViewController<SEGScreenReporting>*)top;
+        [screenReporting seg_trackScreen:top name:name];
+        return;
+    }
+
+    [[SEGAnalytics sharedAnalytics] screen:name properties:nil options:nil];
 
     [self seg_viewDidAppear:animated];
 }
