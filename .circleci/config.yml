@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  build:
+  build_and_test:
     macos:
       xcode: "9.4.1"
     steps:
@@ -31,3 +31,20 @@ jobs:
       - run: zip -FSr Pods.zip ./Pods
       - store_artifacts:
           path: Pods.zip
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build_and_test
+  scheduled_e2e_test:
+    triggers:
+      - schedule:
+          cron: "30 * * * *"
+          filters:
+            branches:
+              only:
+                - master
+                - scheduled_e2e_testing
+    jobs:
+      - build_and_test
