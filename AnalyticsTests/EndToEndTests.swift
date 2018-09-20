@@ -65,9 +65,9 @@ class AnalyticsE2ETests: QuickSpec {
 
       analytics.track("E2E Test", properties: ["id": uuid])
 
-      self.waitForExpectations(timeout: 20)
+      self.waitForExpectations(timeout: 3 * 60)
 
-      for _ in 1...5 {
+      for _ in 1...3 * 30 {
         sleep(2)
         if hasMatchingId(messageId: uuid) {
           return
