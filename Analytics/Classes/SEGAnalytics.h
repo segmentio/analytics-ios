@@ -144,6 +144,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)alias:(NSString *)newId options:(SERIALIZABLE_DICT _Nullable)options;
 - (void)alias:(NSString *)newId;
 
+/** Sets the anonymous ID of the current user. */
+- (void)setAnonymousId:(NSString *)anonymousId;
+
 // todo: docs
 - (void)receivedRemoteNotification:(NSDictionary *)userInfo;
 - (void)failedToRegisterForRemoteNotificationsWithError:(NSError *)error;

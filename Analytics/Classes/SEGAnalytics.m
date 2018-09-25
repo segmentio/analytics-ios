@@ -390,6 +390,11 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     return [self.integrationsManager getAnonymousId];
 }
 
+- (void)setAnonymousId:(NSString *)anonymousId
+{
+    [self.integrationsManager saveAnonymousId:anonymousId];
+}
+
 - (NSDictionary *)bundledIntegrations
 {
     return [self.integrationsManager.registeredIntegrations copy];
