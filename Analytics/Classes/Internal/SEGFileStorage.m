@@ -117,9 +117,15 @@
 
 + (NSURL *)applicationSupportDirectoryURL
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *supportPath = [paths firstObject];
-    return [NSURL fileURLWithPath:supportPath];
+    #if TARGET_OS_TV
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+        NSString *supportPath = [paths firstObject];
+        return [NSURL fileURLWithPath:supportPath];
+    #else
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+        NSString *supportPath = [paths firstObject];
+        return [NSURL fileURLWithPath:supportPath];
+    #endif
 }
 
 - (NSURL *)urlForKey:(NSString *)key

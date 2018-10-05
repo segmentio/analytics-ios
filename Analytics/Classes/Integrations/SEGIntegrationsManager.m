@@ -71,11 +71,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         self.messageQueue = [[NSMutableArray alloc] init];
         self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
-#if TARGET_OS_TV
-        self.storage = [[SEGUserDefaultsStorage alloc] initWithDefaults:[NSUserDefaults standardUserDefaults] namespacePrefix:nil crypto:configuration.crypto];
-#else
         self.storage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:configuration.crypto];
-#endif
         self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
         NSMutableArray *factories = [[configuration factories] mutableCopy];
         [factories addObject:[[SEGSegmentIntegrationFactory alloc] initWithHTTPClient:self.httpClient storage:self.storage]];
