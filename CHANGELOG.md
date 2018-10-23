@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.7.0-beta.1 *(23rd October, 2018)*
+-------------------------------------------
+
+* [Fix](https://github.com/segmentio/analytics-ios/pull/795): Remove -beta suffix from CFBundleShortVersionString
+
 Version 3.7.0-beta *(27th August, 2018)*
 ----------------------------------------
 
