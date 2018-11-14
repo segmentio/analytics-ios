@@ -142,8 +142,8 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
 
 /**
  * A dictionary of filters to redact payloads before they are sent.
- * This currently only applies to Deep Links but is expected to be applied
- * to all calls in a next major version.
+ * This is an experimental feature that currently only applies to Deep Links.
+ * It is subject to change to allow for more flexible customizations in the future.
  *
  * The key of this dictionary should be a regular expression string pattern,
  * and the value should be a regular expression substitution template.
