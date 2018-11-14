@@ -72,7 +72,7 @@
                                                                                 options:0
                                                                                   error:&error];
             
-            if(error) {
+            if (error) {
                 @throw error;
             }
             
@@ -81,7 +81,7 @@
                                                      range:NSMakeRange(0, str.length)
                                               withTemplate:patterns[pattern]];
             
-            if(matches > 0) {
+            if (matches > 0) {
                 SEGLog(@"%@ Redacted value from action: %@", self, str);
                 
                 return str;
