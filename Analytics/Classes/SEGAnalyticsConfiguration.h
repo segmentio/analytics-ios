@@ -155,7 +155,7 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
  *
  * This will replace any matching occurences to a redacted version:
  * @code
- * "fb123456789://authorize#access_token=secretsecretsecretsecret&some=data"
+ * "fb123456789://authorize#access_token=secretsecretsecretsecret&some=data"
  * @endcode
  *
  * Becomes:
