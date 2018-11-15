@@ -12,6 +12,6 @@
 + (NSData *_Nullable)dataFromPlist:(nonnull id)plist;
 + (id _Nullable)plistFromData:(NSData *_Nonnull)data;
 
-+ (id)traverseJSON:(id)object andReplaceWithFilters:(NSDictionary<NSString*, NSString*>*)patterns;
++ (id _Nullable)traverseJSON:(id _Nullable)object andReplaceWithFilters:(nonnull NSDictionary<NSString*, NSString*>*)patterns;
 
 @end
