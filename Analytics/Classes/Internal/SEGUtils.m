@@ -82,11 +82,11 @@
                                               withTemplate:patterns[pattern]];
             
             if (matches > 0) {
-                SEGLog(@"%@ Redacted value from action: %@", self, str);
-                
-                return str;
+                SEGLog(@"%@ Redacted value from action: %@", self, pattern);
             }
         }
+        
+        return str;
     }
     
     return object;
