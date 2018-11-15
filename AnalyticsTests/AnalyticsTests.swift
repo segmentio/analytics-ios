@@ -170,6 +170,29 @@ class AnalyticsTests: QuickSpec {
       expect(timer).toNot(beNil())
       expect(timer?.timeInterval) == config.flushInterval
     }
+    
+    it("redacts sensible URLs from deep links tracking") {
+      testMiddleware.swallowEvent = true
+      analytics.configuration.trackDeepLinks = true
+      analytics.open(URL(string: "fb123456789://authorize#access_token=hastoberedacted")!, options: [:])
+      
+      
+      let event = testMiddleware.lastContext?.payload as? SEGTrackPayload
+      expect(event?.event) == "Deep Link Opened"
+      expect(event?.properties?["url"] as? String) == "fb123456789://authorize#access_token=((redacted/fb-auth-token))"
+    }
+
+    it("redacts sensible URLs from deep links tracking using custom filters") {
+      testMiddleware.swallowEvent = true
+      analytics.configuration.payloadFilters["(myapp://auth\\?token=)([^&]+)"] = "$1((redacted/my-auth))"
+      analytics.configuration.trackDeepLinks = true
+      analytics.open(URL(string: "myapp://auth?token=hastoberedacted&other=stuff")!, options: [:])
+      
+      
+      let event = testMiddleware.lastContext?.payload as? SEGTrackPayload
+      expect(event?.event) == "Deep Link Opened"
+      expect(event?.properties?["url"] as? String) == "myapp://auth?token=((redacted/my-auth))&other=stuff"
+    }
   }
 
 }

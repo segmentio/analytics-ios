@@ -62,5 +62,54 @@ class AnalyticsUtilTests: QuickSpec {
         expect(queue) == [1, 2, 3, 4, 5]
       }
     })
+    
+    describe("JSON traverse", {
+      let filters = [
+        "(foo)": "$1-bar"
+      ]
+      
+      func equals(a: Any, b: Any) -> Bool {
+        let aData = try! JSONSerialization.data(withJSONObject: a, options: .prettyPrinted) as NSData
+        let bData = try! JSONSerialization.data(withJSONObject: b, options: .prettyPrinted)
+        
+        return aData.isEqual(to: bData)
+      }
+
+      it("works with strings") {
+        expect(SEGUtils.traverseJSON("a b foo c", andReplaceWithFilters: filters) as? String) == "a b foo-bar c"
+      }
+
+      it("works recursively") {
+        expect(SEGUtils.traverseJSON("a b foo foo c", andReplaceWithFilters: filters) as? String) == "a b foo-bar foo-bar c"
+      }
+      
+      it("works with nested dictionaries") {
+        let data = [
+          "foo": [1, nil, "qfoob", ["baz": "foo"]],
+          "bar": "foo"
+        ] as [String : Any]
+        let input = SEGUtils.traverseJSON(data, andReplaceWithFilters: filters)
+        let output = [
+          "foo": [1, nil, "qfoo-barb", ["baz": "foo-bar"]],
+          "bar": "foo-bar"
+        ] as [String : Any]
+        
+        expect(equals(a: input!, b: output)) == true
+      }
+      
+      it("works with nested arrays") {
+        let data = [
+          [1, nil, "qfoob", ["baz": "foo"]],
+          "foo"
+          ] as [Any]
+        let input = SEGUtils.traverseJSON(data, andReplaceWithFilters: filters)
+        let output = [
+          [1, nil, "qfoo-barb", ["baz": "foo-bar"]],
+          "foo-bar"
+          ] as [Any]
+        
+        expect(equals(a: input!, b: output)) == true
+      }
+    })
   }
 }

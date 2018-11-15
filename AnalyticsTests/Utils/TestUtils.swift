@@ -67,7 +67,7 @@ extension SEGSegmentIntegration {
   func test_queue() -> [AnyObject]? {
     return self.value(forKey: "queue") as? [AnyObject]
   }
-  func test_dispatchBackground(block: @convention(block) () -> Void) {
+  func test_dispatchBackground(block: @escaping @convention(block) () -> Void) {
     self.perform(Selector(("dispatchBackground:")), with: block)
   }
 }
