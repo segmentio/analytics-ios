@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.6.10 *(19th November, 2018)*
+--------------------------------------------
+
+* [Fix](https://github.com/segmentio/analytics-ios/pull/798): Add deep links redaction
+
 Version 3.6.9 *(3rd December, 2017)*
 -------------------------------------
 
