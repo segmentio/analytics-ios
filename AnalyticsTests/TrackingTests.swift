@@ -15,7 +15,7 @@ class TrackingTests: QuickSpec {
   override func spec() {
     var passthrough: SEGPassthroughMiddleware!
     var analytics: SEGAnalytics!
-    
+
     beforeEach {
       let config = SEGAnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
       passthrough = SEGPassthroughMiddleware()
@@ -24,11 +24,11 @@ class TrackingTests: QuickSpec {
       ]
       analytics = SEGAnalytics(configuration: config)
     }
-    
+
     afterEach {
       analytics.reset()
     }
-    
+
     it("handles identify:") {
       analytics.identify("testUserId1", traits: [
         "firstName": "Peter"
@@ -36,9 +36,23 @@ class TrackingTests: QuickSpec {
       expect(passthrough.lastContext?.eventType) == SEGEventType.identify
       let identify = passthrough.lastContext?.payload as? SEGIdentifyPayload
       expect(identify?.userId) == "testUserId1"
+      expect(identify?.anonymousId).to(beNil())
       expect(identify?.traits?["firstName"] as? String) == "Peter"
     }
-    
+
+    it("handles identify with custom anonymousId:") {
+      analytics.identify("testUserId1", traits: [
+        "firstName": "Peter"
+        ], options: [
+          "anonymousId": "a_custom_anonymous_id"
+        ])
+      expect(passthrough.lastContext?.eventType) == SEGEventType.identify
+      let identify = passthrough.lastContext?.payload as? SEGIdentifyPayload
+      expect(identify?.userId) == "testUserId1"
+      expect(identify?.anonymousId) == "a_custom_anonymous_id"
+      expect(identify?.traits?["firstName"] as? String) == "Peter"
+    }
+
     it("handles track:") {
       analytics.track("User Signup", properties: [
         "method": "SSO"
@@ -48,14 +62,14 @@ class TrackingTests: QuickSpec {
       expect(payload?.event) == "User Signup"
       expect(payload?.properties?["method"] as? String) == "SSO"
     }
-    
+
     it("handles alias:") {
       analytics.alias("persistentUserId")
       expect(passthrough.lastContext?.eventType) == SEGEventType.alias
       let payload = passthrough.lastContext?.payload as? SEGAliasPayload
       expect(payload?.theNewId) == "persistentUserId"
     }
-    
+
     it("handles screen:") {
       analytics.screen("Home", properties: [
         "referrer": "Google"
@@ -65,7 +79,7 @@ class TrackingTests: QuickSpec {
       expect(screen?.name) == "Home"
       expect(screen?.properties?["referrer"] as? String) == "Google"
     }
-    
+
     it("handles group:") {
       analytics.group("acme-company", traits: [
         "employees": 2333
