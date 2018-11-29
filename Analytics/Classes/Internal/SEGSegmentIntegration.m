@@ -346,8 +346,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (void)track:(SEGTrackPayload *)payload
 {
-    SEGLog(@"segment integration received payload %@", payload);
-
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:payload.event forKey:@"event"];
     [dictionary setValue:payload.properties forKey:@"properties"];
