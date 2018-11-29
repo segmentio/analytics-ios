@@ -201,7 +201,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     NSCAssert2(userId.length > 0 || traits.count > 0, @"either userId (%@) or traits (%@) must be provided.", userId, traits);
     [self run:SEGEventTypeIdentify payload:
                                        [[SEGIdentifyPayload alloc] initWithUserId:userId
-                                                                      anonymousId:nil
+                                                                      anonymousId:[options objectForKey:@"anonymousId"]
                                                                            traits:SEGCoerceDictionary(traits)
                                                                           context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                                      integrations:[options objectForKey:@"integrations"]]];

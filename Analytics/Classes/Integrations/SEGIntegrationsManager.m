@@ -541,7 +541,15 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     switch (context.eventType) {
         case SEGEventTypeIdentify: {
             SEGIdentifyPayload *p = (SEGIdentifyPayload *)context.payload;
-            [self identify:p.userId traits:p.traits options:p.options];
+            NSDictionary *options;
+            if (p.anonymousId) {
+                NSMutableDictionary *mutableOptions = [[NSMutableDictionary alloc] initWithDictionary:p.options];
+                mutableOptions[@"anonymousId"] = p.anonymousId;
+                options = [mutableOptions copy];
+            } else {
+                options =  p.options;
+            }
+            [self identify:p.userId traits:p.traits options:options];
             break;
         }
         case SEGEventTypeTrack: {
