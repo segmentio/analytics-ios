@@ -433,6 +433,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     payload[@"type"] = action;
     payload[@"timestamp"] = iso8601FormattedString([NSDate date]);
     payload[@"messageId"] = GenerateUUIDString();
+    payload[@"anonymousId"] = [self.analytics getAnonymousId];
 
     [self dispatchBackground:^{
         // attach userId and anonymousId inside the dispatch_async in case
@@ -442,7 +443,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         if (![action isEqualToString:@"alias"]) {
             [payload setValue:self.userId forKey:@"userId"];
         }
-        [payload setValue:[self.analytics getAnonymousId] forKey:@"anonymousId"];
 
         [payload setValue:[self integrationsDictionary:integrations] forKey:@"integrations"];
 
