@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.7.0-beta.3 *(10th January, 2018)*
+--------------------------------------------
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/799): Allow setting anonymousId
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/800): Remove stray log
+
 Version 3.6.10 *(19th November, 2018)*
 --------------------------------------------
  * [Fix](https://github.com/segmentio/analytics-ios/pull/798): Add deep links redaction
