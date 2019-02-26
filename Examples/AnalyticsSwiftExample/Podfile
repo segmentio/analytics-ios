@@ -1,0 +1,7 @@
+platform :ios, '11.0'
+
+target 'AnalyticsSwiftExample' do
+  use_frameworks!
+
+  pod 'Analytics', '3.6.10'
+end
