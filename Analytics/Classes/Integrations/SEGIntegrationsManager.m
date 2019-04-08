@@ -374,7 +374,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         }
 
         self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey completionHandler:^(BOOL success, NSDictionary *settings) {
-            seg_dispatch_specific_async(_serialQueue, ^{
+            seg_dispatch_specific_async(self -> _serialQueue, ^{
                 if (success) {
                     [self setCachedSettings:settings];
                 } else {
