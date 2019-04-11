@@ -164,6 +164,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     dict[@"device"] = ({
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         dict[@"manufacturer"] = @"Apple";
+        dict[@"type"] = @"ios";
         dict[@"model"] = GetDeviceModel();
         dict[@"id"] = [[device identifierForVendor] UUIDString];
         if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
