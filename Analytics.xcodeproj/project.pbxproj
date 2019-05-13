@@ -536,7 +536,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Nocilla/Nocilla.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
@@ -551,7 +551,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
