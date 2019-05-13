@@ -1,7 +1,7 @@
 //
 //  GZIP.h
 //
-//  Version 1.1.1
+//  Version 1.2.2
 //
 //  Created by Nick Lockwood on 03/06/2012.
 //  Copyright (C) 2012 Charcoal Design
@@ -33,12 +33,12 @@
 
 #import <Foundation/Foundation.h>
 
-extern void *_Nullable seg_libzOpen(void);
-
 
 @interface NSData (GZIP)
 
-- (nullable NSData *)seg_gzippedData;
-- (BOOL)seg_isGzippedData;
+- (nullable NSData *)gzippedDataWithCompressionLevel:(float)level;
+- (nullable NSData *)gzippedData;
+- (nullable NSData *)gunzippedData;
+- (BOOL)isGzippedData;
 
 @end

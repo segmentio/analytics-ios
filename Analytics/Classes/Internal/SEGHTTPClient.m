@@ -89,7 +89,7 @@
         completionHandler(NO); // Don't retry this batch.
         return nil;
     }
-    NSData *gzippedPayload = [payload seg_gzippedData];
+    NSData *gzippedPayload = [payload gzippedData];
 
     NSURLSessionUploadTask *task = [session uploadTaskWithRequest:request fromData:gzippedPayload completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
         if (error) {
@@ -184,7 +184,7 @@
         completionHandler(NO, nil);
         return nil;
     }
-    NSData *gzippedPayload = [payload seg_gzippedData];
+    NSData *gzippedPayload = [payload gzippedData];
 
     NSURLSessionUploadTask *task = [session uploadTaskWithRequest:request fromData:gzippedPayload completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
         if (error) {
