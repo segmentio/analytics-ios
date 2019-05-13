@@ -1,7 +1,9 @@
 //
-//  GZIP.m
+//  GZIP.m -> RENAMED TO NSData+OldGZIP.m
 //
-//  Version 1.2.2
+//  Version 1.1.1
+//
+//  INCLUDED FOR TESTING PURPOSES
 //
 //  Created by Nick Lockwood on 03/06/2012.
 //  Copyright (C) 2012 Charcoal Design
@@ -31,21 +33,38 @@
 //
 
 
-#import "NSData+SEGGZIP.h"
+#import "NSData+OldSEGGZIP.h"
 #import <zlib.h>
+#import <dlfcn.h>
 
 
 #pragma clang diagnostic ignored "-Wcast-qual"
 
 
-@implementation NSData (SEG_GZIP)
+@implementation NSData (OLD_SEG_GZIP)
 
-- (NSData *)seg_gzippedDataWithCompressionLevel:(float)level
+static void *old_seg_libzOpen()
 {
-    if (self.length == 0 || [self seg_isGzippedData])
+    static void *libz;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        libz = dlopen("/usr/lib/libz.dylib", RTLD_LAZY);
+    });
+    return libz;
+}
+
+- (NSData *)old_seg_gzippedDataWithCompressionLevel:(float)level
+{
+    if (self.length == 0 || [self old_seg_isGzippedData])
     {
         return self;
     }
+
+    void *libz = old_seg_libzOpen();
+    int (*deflateInit2_)(z_streamp, int, int, int, int, int, const char *, int) =
+    (int (*)(z_streamp, int, int, int, int, int, const char *, int))dlsym(libz, "deflateInit2_");
+    int (*deflate)(z_streamp, int) = (int (*)(z_streamp, int))dlsym(libz, "deflate");
+    int (*deflateEnd)(z_streamp) = (int (*)(z_streamp))dlsym(libz, "deflateEnd");
 
     z_stream stream;
     stream.zalloc = Z_NULL;
@@ -80,17 +99,23 @@
     return output;
 }
 
-- (NSData *)seg_gzippedData
+- (NSData *)old_seg_gzippedData
 {
-    return [self seg_gzippedDataWithCompressionLevel:-1.0f];
+    return [self old_seg_gzippedDataWithCompressionLevel:-1.0f];
 }
 
-- (NSData *)seg_gunzippedData
+- (NSData *)old_seg_gunzippedData
 {
-    if (self.length == 0 || ![self seg_isGzippedData])
+    if (self.length == 0 || ![self old_seg_isGzippedData])
     {
         return self;
     }
+
+    void *libz = old_seg_libzOpen();
+    int (*inflateInit2_)(z_streamp, int, const char *, int) =
+    (int (*)(z_streamp, int, const char *, int))dlsym(libz, "inflateInit2_");
+    int (*inflate)(z_streamp, int) = (int (*)(z_streamp, int))dlsym(libz, "inflate");
+    int (*inflateEnd)(z_streamp) = (int (*)(z_streamp))dlsym(libz, "inflateEnd");
 
     z_stream stream;
     stream.zalloc = Z_NULL;
@@ -127,7 +152,7 @@
     return output;
 }
 
-- (BOOL)seg_isGzippedData
+- (BOOL)old_seg_isGzippedData
 {
     const UInt8 *bytes = (const UInt8 *)self.bytes;
     return (self.length >= 2 && bytes[0] == 0x1f && bytes[1] == 0x8b);

@@ -10,6 +10,12 @@
 		3481C14AEC76E5A8DA64DA59 /* Pods_AnalyticsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89033CBF22319674E6CE7E61 /* Pods_AnalyticsTests.framework */; };
 		6E265C791FB1178C0030E08E /* IntegrationsManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */; };
 		6EEC1C712017EA370089C478 /* EndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC1C702017EA370089C478 /* EndToEndTests.swift */; };
+		C11486A8228C5CBB00FE6CD8 /* SEGGZIPTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C11486A7228C5CBB00FE6CD8 /* SEGGZIPTests.m */; };
+		C11486AB228C5DA300FE6CD8 /* NSData+OldSEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = C11486A9228C5DA300FE6CD8 /* NSData+OldSEGGZIP.m */; };
+		C11486AD228C8C4700FE6CD8 /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11486AC228C8C4700FE6CD8 /* AnalyticsTests.swift */; };
+		C1AEE0DE2289C2AF002D410E /* NSData+SEGGZIP.h in Headers */ = {isa = PBXBuildFile; fileRef = C1AEE0DC2289C2AE002D410E /* NSData+SEGGZIP.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		C1AEE0DF2289C2AF002D410E /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AEE0DD2289C2AF002D410E /* NSData+SEGGZIP.m */; };
+		C1AEE0E02289C459002D410E /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = C1AEE0DD2289C2AF002D410E /* NSData+SEGGZIP.m */; };
 		EA88A5981DED7608009FB66A /* SEGSerializableValue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA88A5971DED7608009FB66A /* SEGSerializableValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8F09741E24C5C600B8B93F /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */; };
 		EAA542771EB4035400945DA7 /* TrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA542761EB4035400945DA7 /* TrackingTests.swift */; };
@@ -37,8 +43,6 @@
 		EADEB8BE1DECD12B005322DA /* SEGScreenPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8891DECD12B005322DA /* SEGScreenPayload.m */; };
 		EADEB8BF1DECD12B005322DA /* SEGTrackPayload.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB88A1DECD12B005322DA /* SEGTrackPayload.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8C01DECD12B005322DA /* SEGTrackPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB88B1DECD12B005322DA /* SEGTrackPayload.m */; };
-		EADEB8C11DECD12B005322DA /* NSData+SEGGZIP.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB88D1DECD12B005322DA /* NSData+SEGGZIP.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		EADEB8C21DECD12B005322DA /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB88E1DECD12B005322DA /* NSData+SEGGZIP.m */; };
 		EADEB8C31DECD12B005322DA /* SEGAnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB88F1DECD12B005322DA /* SEGAnalyticsUtils.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8C41DECD12B005322DA /* SEGAnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8901DECD12B005322DA /* SEGAnalyticsUtils.m */; };
 		EADEB8C51DECD12B005322DA /* SEGFileStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8911DECD12B005322DA /* SEGFileStorage.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -67,11 +71,9 @@
 		EADEB8DE1DECD12B005322DA /* SEGAnalyticsConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8AB1DECD12B005322DA /* SEGAnalyticsConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8DF1DECD12B005322DA /* SEGAnalyticsConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8AC1DECD12B005322DA /* SEGAnalyticsConfiguration.m */; };
 		EADEB8EE1DECD335005322DA /* HTTPClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E01DECD335005322DA /* HTTPClientTest.swift */; };
-		EADEB8EF1DECD335005322DA /* NSData+SEGGUNZIPP.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E31DECD335005322DA /* NSData+SEGGUNZIPP.m */; };
 		EADEB8F01DECD335005322DA /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E41DECD335005322DA /* TestUtils.swift */; };
 		EADEB8F11DECD335005322DA /* FileStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E51DECD335005322DA /* FileStorageTest.swift */; };
 		EADEB8F21DECD335005322DA /* UserDefaultsStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E61DECD335005322DA /* UserDefaultsStorageTest.swift */; };
-		EADEB8F31DECD335005322DA /* AnalyticsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E71DECD335005322DA /* AnalyticsTests.swift */; };
 		EADEB8F41DECD335005322DA /* ContextTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E81DECD335005322DA /* ContextTest.swift */; };
 		EADEB8F51DECD335005322DA /* CryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E91DECD335005322DA /* CryptoTest.swift */; };
 		F61EB4AF1F996DEF0038C8C0 /* AnalyticsUtilTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61EB4AE1F996DEF0038C8C0 /* AnalyticsUtilTests.swift */; };
@@ -92,6 +94,12 @@
 		6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationsManagerTest.swift; sourceTree = "<group>"; };
 		6EEC1C702017EA370089C478 /* EndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndToEndTests.swift; sourceTree = "<group>"; };
 		89033CBF22319674E6CE7E61 /* Pods_AnalyticsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnalyticsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C11486A7228C5CBB00FE6CD8 /* SEGGZIPTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEGGZIPTests.m; sourceTree = "<group>"; };
+		C11486A9228C5DA300FE6CD8 /* NSData+OldSEGGZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+OldSEGGZIP.m"; sourceTree = "<group>"; };
+		C11486AA228C5DA300FE6CD8 /* NSData+OldSEGGZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+OldSEGGZIP.h"; sourceTree = "<group>"; };
+		C11486AC228C8C4700FE6CD8 /* AnalyticsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsTests.swift; sourceTree = "<group>"; };
+		C1AEE0DC2289C2AE002D410E /* NSData+SEGGZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SEGGZIP.h"; sourceTree = "<group>"; };
+		C1AEE0DD2289C2AF002D410E /* NSData+SEGGZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SEGGZIP.m"; sourceTree = "<group>"; };
 		D3BF8AE673FE0FD91DF5B503 /* Pods-AnalyticsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests.release.xcconfig"; sourceTree = "<group>"; };
 		EA88A5971DED7608009FB66A /* SEGSerializableValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGSerializableValue.h; sourceTree = "<group>"; };
 		EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
@@ -122,8 +130,6 @@
 		EADEB8891DECD12B005322DA /* SEGScreenPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGScreenPayload.m; sourceTree = "<group>"; };
 		EADEB88A1DECD12B005322DA /* SEGTrackPayload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGTrackPayload.h; sourceTree = "<group>"; };
 		EADEB88B1DECD12B005322DA /* SEGTrackPayload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGTrackPayload.m; sourceTree = "<group>"; };
-		EADEB88D1DECD12B005322DA /* NSData+SEGGZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SEGGZIP.h"; sourceTree = "<group>"; };
-		EADEB88E1DECD12B005322DA /* NSData+SEGGZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SEGGZIP.m"; sourceTree = "<group>"; };
 		EADEB88F1DECD12B005322DA /* SEGAnalyticsUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAnalyticsUtils.h; sourceTree = "<group>"; };
 		EADEB8901DECD12B005322DA /* SEGAnalyticsUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGAnalyticsUtils.m; sourceTree = "<group>"; };
 		EADEB8911DECD12B005322DA /* SEGFileStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGFileStorage.h; sourceTree = "<group>"; };
@@ -152,12 +158,9 @@
 		EADEB8AB1DECD12B005322DA /* SEGAnalyticsConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAnalyticsConfiguration.h; sourceTree = "<group>"; };
 		EADEB8AC1DECD12B005322DA /* SEGAnalyticsConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGAnalyticsConfiguration.m; sourceTree = "<group>"; };
 		EADEB8E01DECD335005322DA /* HTTPClientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPClientTest.swift; sourceTree = "<group>"; };
-		EADEB8E21DECD335005322DA /* NSData+SEGGUNZIPP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SEGGUNZIPP.h"; sourceTree = "<group>"; };
-		EADEB8E31DECD335005322DA /* NSData+SEGGUNZIPP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SEGGUNZIPP.m"; sourceTree = "<group>"; };
 		EADEB8E41DECD335005322DA /* TestUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestUtils.swift; sourceTree = "<group>"; };
 		EADEB8E51DECD335005322DA /* FileStorageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileStorageTest.swift; sourceTree = "<group>"; };
 		EADEB8E61DECD335005322DA /* UserDefaultsStorageTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorageTest.swift; sourceTree = "<group>"; };
-		EADEB8E71DECD335005322DA /* AnalyticsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsTests.swift; sourceTree = "<group>"; };
 		EADEB8E81DECD335005322DA /* ContextTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextTest.swift; sourceTree = "<group>"; };
 		EADEB8E91DECD335005322DA /* CryptoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoTest.swift; sourceTree = "<group>"; };
 		EADEB8EA1DECD335005322DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -257,7 +260,7 @@
 				EADEB8E51DECD335005322DA /* FileStorageTest.swift */,
 				EADEB8E61DECD335005322DA /* UserDefaultsStorageTest.swift */,
 				EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */,
-				EADEB8E71DECD335005322DA /* AnalyticsTests.swift */,
+				C11486AC228C8C4700FE6CD8 /* AnalyticsTests.swift */,
 				F61EB4AE1F996DEF0038C8C0 /* AnalyticsUtilTests.swift */,
 				EAA542761EB4035400945DA7 /* TrackingTests.swift */,
 				EADEB8E81DECD335005322DA /* ContextTest.swift */,
@@ -266,6 +269,7 @@
 				EADEB8EC1DECD335005322DA /* AnalyticsTests-Bridging-Header.h */,
 				6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */,
 				6EEC1C702017EA370089C478 /* EndToEndTests.swift */,
+				C11486A7228C5CBB00FE6CD8 /* SEGGZIPTests.m */,
 			);
 			indentWidth = 2;
 			path = AnalyticsTests;
@@ -325,8 +329,8 @@
 		EADEB88C1DECD12B005322DA /* Internal */ = {
 			isa = PBXGroup;
 			children = (
-				EADEB88D1DECD12B005322DA /* NSData+SEGGZIP.h */,
-				EADEB88E1DECD12B005322DA /* NSData+SEGGZIP.m */,
+				C1AEE0DC2289C2AE002D410E /* NSData+SEGGZIP.h */,
+				C1AEE0DD2289C2AF002D410E /* NSData+SEGGZIP.m */,
 				EADEB88F1DECD12B005322DA /* SEGAnalyticsUtils.h */,
 				EADEB8901DECD12B005322DA /* SEGAnalyticsUtils.m */,
 				EADEB8911DECD12B005322DA /* SEGFileStorage.h */,
@@ -364,8 +368,8 @@
 		EADEB8E11DECD335005322DA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				EADEB8E21DECD335005322DA /* NSData+SEGGUNZIPP.h */,
-				EADEB8E31DECD335005322DA /* NSData+SEGGUNZIPP.m */,
+				C11486AA228C5DA300FE6CD8 /* NSData+OldSEGGZIP.h */,
+				C11486A9228C5DA300FE6CD8 /* NSData+OldSEGGZIP.m */,
 				EADEB8E41DECD335005322DA /* TestUtils.swift */,
 			);
 			path = Utils;
@@ -402,6 +406,7 @@
 				EADEB8DA1DECD12B005322DA /* SEGMiddleware.h in Headers */,
 				EADEB8BF1DECD12B005322DA /* SEGTrackPayload.h in Headers */,
 				EADEB8C71DECD12B005322DA /* SEGHTTPClient.h in Headers */,
+				C1AEE0DE2289C2AF002D410E /* NSData+SEGGZIP.h in Headers */,
 				EADEB8B31DECD12B005322DA /* SEGGroupPayload.h in Headers */,
 				EADEB8B01DECD12B005322DA /* SEGCrypto.h in Headers */,
 				EADEB8DE1DECD12B005322DA /* SEGAnalyticsConfiguration.h in Headers */,
@@ -416,7 +421,6 @@
 				EADEB8AE1DECD12B005322DA /* SEGAES256Crypto.h in Headers */,
 				EADEB8C51DECD12B005322DA /* SEGFileStorage.h in Headers */,
 				EAA5427D1EB42B8C00945DA7 /* SEGReachability.h in Headers */,
-				EADEB8C11DECD12B005322DA /* NSData+SEGGZIP.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,12 +588,12 @@
 				EADEB8C61DECD12B005322DA /* SEGFileStorage.m in Sources */,
 				EADEB8D31DECD12B005322DA /* SEGUserDefaultsStorage.m in Sources */,
 				EADEB8BC1DECD12B005322DA /* SEGPayload.m in Sources */,
-				EADEB8C21DECD12B005322DA /* NSData+SEGGZIP.m in Sources */,
 				EADEB8D91DECD12B005322DA /* SEGContext.m in Sources */,
 				EADEB8DB1DECD12B005322DA /* SEGMiddleware.m in Sources */,
 				EADEB8DF1DECD12B005322DA /* SEGAnalyticsConfiguration.m in Sources */,
 				EADEB8D51DECD12B005322DA /* SEGUtils.m in Sources */,
 				EAA5427E1EB42B8C00945DA7 /* SEGReachability.m in Sources */,
+				C1AEE0DF2289C2AF002D410E /* NSData+SEGGZIP.m in Sources */,
 				EADEB8B41DECD12B005322DA /* SEGGroupPayload.m in Sources */,
 				EADEB8D71DECD12B005322DA /* UIViewController+SEGScreen.m in Sources */,
 				EADEB8D11DECD12B005322DA /* SEGStoreKitTracker.m in Sources */,
@@ -600,18 +604,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11486A8228C5CBB00FE6CD8 /* SEGGZIPTests.m in Sources */,
 				EADEB8F51DECD335005322DA /* CryptoTest.swift in Sources */,
 				EADEB8F21DECD335005322DA /* UserDefaultsStorageTest.swift in Sources */,
 				EAA542771EB4035400945DA7 /* TrackingTests.swift in Sources */,
 				EADEB8F41DECD335005322DA /* ContextTest.swift in Sources */,
 				EADEB8EE1DECD335005322DA /* HTTPClientTest.swift in Sources */,
-				EADEB8F31DECD335005322DA /* AnalyticsTests.swift in Sources */,
 				EADEB8F11DECD335005322DA /* FileStorageTest.swift in Sources */,
+				C1AEE0E02289C459002D410E /* NSData+SEGGZIP.m in Sources */,
 				F61EB4AF1F996DEF0038C8C0 /* AnalyticsUtilTests.swift in Sources */,
+				C11486AB228C5DA300FE6CD8 /* NSData+OldSEGGZIP.m in Sources */,
 				EAA542801EB4382100945DA7 /* StoreKitTrackerTests.swift in Sources */,
+				C11486AD228C8C4700FE6CD8 /* AnalyticsTests.swift in Sources */,
 				EA8F09741E24C5C600B8B93F /* MiddlewareTests.swift in Sources */,
 				6E265C791FB1178C0030E08E /* IntegrationsManagerTest.swift in Sources */,
-				EADEB8EF1DECD335005322DA /* NSData+SEGGUNZIPP.m in Sources */,
 				6EEC1C712017EA370089C478 /* EndToEndTests.swift in Sources */,
 				EADEB8F01DECD335005322DA /* TestUtils.swift in Sources */,
 			);

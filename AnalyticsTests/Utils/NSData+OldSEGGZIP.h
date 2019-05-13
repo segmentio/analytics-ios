@@ -1,7 +1,7 @@
 //
-//  GZIP.h
+//  GZIP.h -> RENAMED TO NSData+OldGZIP.h
 //
-//  Version 1.2.2
+//  Version 1.1.1
 //
 //  Created by Nick Lockwood on 03/06/2012.
 //  Copyright (C) 2012 Charcoal Design
@@ -34,11 +34,11 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSData (SEG_GZIP)
+@interface NSData (OLD_SEG_GZIP)
 
-- (nullable NSData *)seg_gzippedDataWithCompressionLevel:(float)level;
-- (nullable NSData *)seg_gzippedData;
-- (nullable NSData *)seg_gunzippedData;
-- (BOOL)seg_isGzippedData;
+- (nullable NSData *)old_seg_gzippedDataWithCompressionLevel:(float)level;
+- (nullable NSData *)old_seg_gzippedData;
+- (nullable NSData *)old_seg_gunzippedData;
+- (BOOL)old_seg_isGzippedData;
 
 @end
