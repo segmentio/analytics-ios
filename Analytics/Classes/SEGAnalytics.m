@@ -138,13 +138,17 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
             @"version" : currentVersion ?: @"",
             @"build" : currentBuild ?: @"",
         }];
-    } else if (![currentBuild isEqualToString:previousBuildV2]) {
-        [self track:@"Application Updated" properties:@{
-            @"previous_version" : previousVersion ?: @"",
-            @"previous_build" : previousBuildV2 ?: @"",
-            @"version" : currentVersion ?: @"",
-            @"build" : currentBuild ?: @"",
-        }];
+    } else {
+        BOOL versionChanged = ![currentVersion isEqualToString:previousVersion];
+        BOOL buildChanged = ![currentBuild isEqualToString:previousBuildV2];
+        if (versionChanged || (!versionChanged && buildChanged)) {
+            [self track:@"Application Updated" properties:@{
+                @"previous_version" : previousVersion ?: @"",
+                @"previous_build" : previousBuildV2 ?: @"",
+                @"version" : currentVersion ?: @"",
+                @"build" : currentBuild ?: @"",
+            }];
+        }
     }
 
     [self track:@"Application Opened" properties:@{
