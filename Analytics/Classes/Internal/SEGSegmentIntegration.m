@@ -8,7 +8,9 @@
 #import "SEGHTTPClient.h"
 #import "SEGStorage.h"
 
-#if TARGET_OS_IOS
+#define TARGET_IS_IOS TARGET_OS_IOS && !TARGET_OS_MAC
+
+#if TARGET_IS_IOS
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #endif
@@ -135,7 +137,7 @@ static BOOL GetAdTrackingEnabled()
  * Ref: http://stackoverflow.com/questions/14238586/coretelephony-crash
  */
 
-#if TARGET_OS_IOS
+#if TARGET_IS_IOS
 static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 #endif
 
@@ -229,7 +231,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
             network[@"cellular"] = @(self.reachability.isReachableViaWWAN);
         }
 
-#if TARGET_OS_IOS
+#if TARGET_IS_IOS
         static dispatch_once_t networkInfoOnceToken;
         dispatch_once(&networkInfoOnceToken, ^{
             _telephonyNetworkInfo = [[CTTelephonyNetworkInfo alloc] init];
