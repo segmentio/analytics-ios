@@ -16,6 +16,4 @@ Releasing
  9. Create a new Github release at https://github.com/segmentio/analytics-ios/releases
      * Add latest version information from `CHANGELOG.md`
      * Upload `Archive.zip` from step 7 and `Analytics.zip` from step 8 into binaries section to make available for users to download.
- 10. Update the version in `SEGAnalytics.m`, `Analytics.podspec` to the next SNAPSHOT version.
- 11. `git commit -am "Prepare next development version."`
- 12. `git push`.
+ 10. `git push`.
