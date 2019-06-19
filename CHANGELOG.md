@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 3.7.0-beta.4 *(19th June, 2019)*
+-----------------------------------------
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/812): Remove invalid `.clang-format` symlink which can cause issues with manual builds.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/806): Collect `context.device.type` as `ios`.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/815): Fix Xcode warning.
+
 Version 3.7.0-beta.3 *(10th January, 2018)*
 --------------------------------------------
  * [Fix](https://github.com/segmentio/analytics-ios/pull/799): Allow setting anonymousId
