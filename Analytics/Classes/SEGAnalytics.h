@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @see -setupWithConfiguration:
  */
-+ (instancetype _Nullable)sharedAnalytics;
++ (instancetype _Nonnull)sharedAnalytics;
 
 /*!
  @method
