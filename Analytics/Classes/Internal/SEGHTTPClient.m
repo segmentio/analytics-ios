@@ -136,12 +136,11 @@
     return task;
 }
 
-- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL success, JSON_DICT _Nullable settings))completionHandler
+- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey configurationURL:(NSURL *)configurationURL completionHandler:(void (^)(BOOL success, JSON_DICT _Nullable settings))completionHandler
 {
     NSURLSession *session = self.genericSession;
 
-    NSURL *url = [SEGMENT_CDN_BASE URLByAppendingPathComponent:[NSString stringWithFormat:@"/projects/%@/settings", writeKey]];
-    NSMutableURLRequest *request = self.requestFactory(url);
+    NSMutableURLRequest *request = self.requestFactory(configurationURL);
     [request setHTTPMethod:@"GET"];
 
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {

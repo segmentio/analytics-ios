@@ -37,12 +37,19 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
  */
 + (_Nonnull instancetype)configurationWithWriteKey:(NSString *_Nonnull)writeKey;
 
++ (_Nonnull instancetype)configurationWithWriteKey:(NSString *_Nonnull)writeKey configurationURL:(NSURL *_Nullable)url;
+
 /**
  * Your project's write key from segment.io.
  *
  * @see +configurationWithWriteKey:
  */
 @property (nonatomic, copy, readonly, nonnull) NSString *writeKey;
+
+/**
+ * URL from which the configuration will be obtained.
+ */
+@property (nonatomic, copy, readonly, nonnull) NSURL *configurationURL;
 
 /**
  * Whether the analytics client should use location services.

@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (NSURLSessionUploadTask *)upload:(JSON_DICT)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler;
 
-- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL success, JSON_DICT _Nullable settings))completionHandler;
+- (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey configurationURL:(NSURL *)configurationURL completionHandler:(void (^)(BOOL success, JSON_DICT _Nullable settings))completionHandler;
 
 - (NSURLSessionDataTask *)attributionWithWriteKey:(NSString *)writeKey forDevice:(JSON_DICT)context completionHandler:(void (^)(BOOL success, JSON_DICT _Nullable properties))completionHandler;
 

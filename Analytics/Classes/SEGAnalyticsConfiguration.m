@@ -8,6 +8,7 @@
 
 #import "SEGAnalyticsConfiguration.h"
 #import "SEGCrypto.h"
+#import "SEGHTTPClient.h"
 
 
 @implementation UIApplication (SEGApplicationProtocol)
@@ -29,6 +30,7 @@
 
 @property (nonatomic, copy, readwrite) NSString *writeKey;
 @property (nonatomic, strong, readonly) NSMutableArray *factories;
+@property (nonatomic, copy, readwrite) NSURL *configurationURL;
 
 @end
 
@@ -37,13 +39,23 @@
 
 + (instancetype)configurationWithWriteKey:(NSString *)writeKey
 {
-    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey];
+    return [SEGAnalyticsConfiguration configurationWithWriteKey:writeKey configurationURL:nil];
 }
 
-- (instancetype)initWithWriteKey:(NSString *)writeKey
++ (instancetype)configurationWithWriteKey:(NSString *)writeKey configurationURL:(NSURL * _Nullable)url
+{
+    NSURL *configURL = [SEGMENT_CDN_BASE URLByAppendingPathComponent:[NSString stringWithFormat:@"/projects/%@/settings", writeKey]];
+    if (url != nil) {
+        configURL = url;
+    }
+    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey configurationURL:configURL];
+}
+
+- (instancetype)initWithWriteKey:(NSString *)writeKey configurationURL:(NSURL *)url
 {
     if (self = [self init]) {
         self.writeKey = writeKey;
+        self.configurationURL = url;
     }
     return self;
 }
