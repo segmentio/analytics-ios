@@ -1,8 +1,8 @@
 target 'AnalyticsTests' do
     platform :ios, '11'
-    
+
     use_frameworks!
-    
+
     pod 'Quick', '~> 1.2.0'
     pod 'Nimble', '~> 7.3.4'
     pod 'Nocilla', '~> 0.11.0'
