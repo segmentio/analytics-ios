@@ -106,7 +106,7 @@
         }
     }
 
-    if ([top conformsToProtocol:@protocol(SEGScreenReporting)] && [top respondsToSelector:@selector(seg_trackScreen)]) {
+    if ([top conformsToProtocol:@protocol(SEGScreenReporting)] && [top respondsToSelector:@selector(seg_trackScreen:name:)]) {
         __auto_type screenReporting = (UIViewController<SEGScreenReporting>*)top;
         [screenReporting seg_trackScreen:top name:name];
         return;
