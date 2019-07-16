@@ -102,6 +102,14 @@ class AnalyticsTests: QuickSpec {
       expect(event?.event) == "Application Opened"
       expect(event?.properties?["from_background"] as? Bool) == true
     }
+    
+    it("fires Application Backgrounded during UIApplicationDidEnterBackground") {
+      testMiddleware.swallowEvent = true
+      NotificationCenter.default.post(name: .UIApplicationDidEnterBackground, object: testApplication)
+      let event = testMiddleware.lastContext?.payload as? SEGTrackPayload
+      expect(event?.event) == "Application Backgrounded"
+      expect(event?.properties?["from_background"] as? Bool) == false
+    }
 
     it("flushes when UIApplicationDidEnterBackgroundNotification is fired") {
       analytics.track("test")
