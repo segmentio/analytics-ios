@@ -3,7 +3,7 @@ version: 2
 jobs:
   build_and_test:
     macos:
-      xcode: "9.4.1"
+      xcode: "10.2.1"
     steps:
       - checkout
       - run: xcrun simctl list
