@@ -16,7 +16,7 @@ Special thanks to [Tony Xiao](https://github.com/tonyxiao), [Lee Hasiuk](https:/
 Analytics helps you measure your users, product, and business. It unlocks insights into your app's funnel, core business metrics, and whether you have product-market fit.
 
 ## How to get started
-1. **Collect analytics data** from your app(s).
+1. **Collect analytics data** from your app.
     - The top 200 Segment companies collect data from 5+ source types (web, mobile, server, CRM, etc.).
 2. **Send the data to analytics tools** (for example, Google Analytics, Amplitude, Mixpanel).
     - Over 250+ Segment companies send data to eight categories of destinations such as analytics tools, warehouses, email marketing and remarketing systems, session recording, and more.
