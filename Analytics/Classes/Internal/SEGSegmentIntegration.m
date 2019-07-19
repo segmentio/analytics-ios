@@ -167,6 +167,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         dict[@"type"] = @"ios";
         dict[@"model"] = GetDeviceModel();
         dict[@"id"] = [[device identifierForVendor] UUIDString];
+        dict[@"name"] = [device model];
         if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
             dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
         }
