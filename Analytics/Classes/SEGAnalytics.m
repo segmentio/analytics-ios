@@ -179,7 +179,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
   if (!self.configuration.trackApplicationLifecycleEvents) {
     return;
   }
-  [self track: @"Application Backgrounded" properties: @{}];
+  [self track: @"Application Backgrounded"];
 }
 
 
