@@ -111,6 +111,8 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         [self _applicationDidFinishLaunchingWithOptions:note.userInfo];
     } else if ([note.name isEqualToString:UIApplicationWillEnterForegroundNotification]) {
         [self _applicationWillEnterForeground];
+    } else if ([note.name isEqualToString: UIApplicationDidEnterBackgroundNotification]) {
+      [self _applicationDidEnterBackground];
     }
 }
 
@@ -167,13 +169,17 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     if (!self.configuration.trackApplicationLifecycleEvents) {
         return;
     }
-    NSString *currentVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
-    NSString *currentBuild = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
     [self track:@"Application Opened" properties:@{
         @"from_background" : @YES,
-        @"version" : currentVersion ?: @"",
-        @"build" : currentBuild ?: @"",
     }];
+}
+
+- (void)_applicationDidEnterBackground
+{
+  if (!self.configuration.trackApplicationLifecycleEvents) {
+    return;
+  }
+  [self track: @"Application Backgrounded"];
 }
 
 
