@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.7.0 *(22nd July, 2019)*
+---------------------------------
+
+This release promotes 3.7.0-beta.4 to stable.
+
 Version 3.7.0-beta.4 *(19th June, 2019)*
 -----------------------------------------
  * [Fix](https://github.com/segmentio/analytics-ios/pull/812): Remove invalid `.clang-format` symlink which can cause issues with manual builds.
