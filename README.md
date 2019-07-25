@@ -57,7 +57,7 @@ Analytics is available through [CocoaPods](http://cocoapods.org) and [Carthage](
 ### CocoaPods
 
 ```ruby
-pod "Analytics", "3.7.0"
+pod "Analytics", "3.8.0-beta.0"
 ```
 
 ### Carthage
