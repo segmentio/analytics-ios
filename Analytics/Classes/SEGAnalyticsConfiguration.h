@@ -166,4 +166,9 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
  */
 @property (nonatomic, strong, nonnull) NSDictionary<NSString*, NSString*>* payloadFilters;
 
+/**
+ * An optional delegate that handles NSURLSessionDelegate callbacks
+ */
+@property (nonatomic, strong, nullable) id<NSURLSessionDelegate> httpSessionDelegate;
+
 @end
