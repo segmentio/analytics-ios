@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 3.8.0-beta.0 *(25th July, 2019)*
+----------------------------------------
+
+ * [New](https://github.com/segmentio/analytics-ios/pull/831): Add iOS Backgrounded Event.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/785): Fix GCD mutual dependency
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/): adding “name” field to payload; updated nimble to version 7.3.4
+
 Version 3.7.0 *(22nd July, 2019)*
 ---------------------------------
 
