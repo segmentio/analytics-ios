@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Analytics"
-  s.version          = "3.7.0-beta.4"
+  s.version          = "3.8.0-beta.0"
   s.summary          = "The hassle-free way to add analytics to your iOS app."
 
   s.description      = <<-DESC
