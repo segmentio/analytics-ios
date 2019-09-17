@@ -9,6 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "SEGMiddleware.h"
 
+// BKS Demo hack
+// needs to be passed in via SEGAnalytics eventually.
+// this handles direct destinations.
+@protocol SEGConsentManager <NSObject>
+- (BOOL)hasConsentedTo:(NSString *)integration;
+@end
+
+extern id<SEGConsentManager> __integrationConsentManager;
+// BKS End Demo hack
+
 /**
  * NSNotification name, that is posted after integrations are loaded.
  */

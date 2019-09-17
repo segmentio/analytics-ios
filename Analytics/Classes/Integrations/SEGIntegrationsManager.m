@@ -29,6 +29,7 @@ NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.d
 static NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
 static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
+id<SEGConsentManager> __integrationConsentManager;
 
 @interface SEGAnalyticsConfiguration (Private)
 
@@ -434,7 +435,9 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 - (void)forwardSelector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
 {
     [self.integrations enumerateKeysAndObjectsUsingBlock:^(NSString *key, id<SEGIntegration> integration, BOOL *stop) {
-        [self invokeIntegration:integration key:key selector:selector arguments:arguments options:options];
+        if ([__integrationConsentManager hasConsentedTo: key]) {
+            [self invokeIntegration:integration key:key selector:selector arguments:arguments options:options];
+        }
     }];
 }
 
