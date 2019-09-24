@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
-#import "SEGAnalyticsUtils.h"
-#import "SEGAnalytics.h"
+#import "../Internal/SEGAnalyticsUtils.h"
+#import "../SEGAnalytics.h"
 #import "SEGIntegrationFactory.h"
 #import "SEGIntegration.h"
-#import "SEGHTTPClient.h"
-#import "SEGStorage.h"
-#import "SEGFileStorage.h"
-#import "SEGUserDefaultsStorage.h"
+#import "../Internal/SEGHTTPClient.h"
+#import "../Internal/SEGStorage.h"
+#import "../Internal/SEGFileStorage.h"
+#import "../Internal/SEGUserDefaultsStorage.h"
 #import "SEGIntegrationsManager.h"
-#import "SEGSegmentIntegrationFactory.h"
+#import "../Internal/SEGSegmentIntegrationFactory.h"
 #import "SEGPayload.h"
 #import "SEGIdentifyPayload.h"
 #import "SEGTrackPayload.h"

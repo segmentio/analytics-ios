@@ -1,6 +1,6 @@
 #import "UIViewController+SEGScreen.h"
 #import <objc/runtime.h>
-#import "SEGAnalytics.h"
+#import "../SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
 
 

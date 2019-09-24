@@ -6,7 +6,7 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-#import "SEGUtils.h"
+#import "../Internal/SEGUtils.h"
 #import "SEGMiddleware.h"
 
 

@@ -9,7 +9,7 @@
 #import <CommonCrypto/CommonCryptor.h>
 #import <CommonCrypto/CommonKeyDerivation.h>
 #import "SEGAES256Crypto.h"
-#import "SEGUtils.h"
+#import "../Internal/SEGUtils.h"
 
 // Implementation courtesy of http://robnapier.net/aes-commoncrypto
 

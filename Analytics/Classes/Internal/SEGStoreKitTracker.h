@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <StoreKit/StoreKit.h>
-#import "SEGAnalytics.h"
+#import "../SEGAnalytics.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

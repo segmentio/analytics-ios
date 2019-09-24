@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
-#import "SEGIntegrationFactory.h"
-#import "SEGCrypto.h"
+#import "Integrations/SEGIntegrationFactory.h"
+#import "Crypto/SEGCrypto.h"
 #import "SEGAnalyticsConfiguration.h"
 #import "SEGSerializableValue.h"
 

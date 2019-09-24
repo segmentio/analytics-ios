@@ -7,7 +7,7 @@
 //
 
 #import "SEGAnalyticsConfiguration.h"
-#import "SEGCrypto.h"
+#import "Crypto/SEGCrypto.h"
 
 
 @implementation UIApplication (SEGApplicationProtocol)

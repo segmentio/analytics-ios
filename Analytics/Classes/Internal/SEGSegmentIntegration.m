@@ -1,10 +1,10 @@
 #include <sys/sysctl.h>
 
 #import <UIKit/UIKit.h>
-#import "SEGAnalytics.h"
+#import "../SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGSegmentIntegration.h"
-#import "SEGReachability.h"
+#import "../../Vendor/SEGReachability.h"
 #import "SEGHTTPClient.h"
 #import "SEGStorage.h"
 
