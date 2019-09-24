@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SEGIntegration.h"
+#import "../Integrations/SEGIntegration.h"
 
 typedef NS_ENUM(NSInteger, SEGEventType) {
     // Should not happen, but default state

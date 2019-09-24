@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SEGCrypto.h"
+#import "../Crypto/SEGCrypto.h"
 
 @protocol SEGStorage <NSObject>
 

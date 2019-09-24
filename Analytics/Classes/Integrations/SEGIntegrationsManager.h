@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SEGMiddleware.h"
+#import "../Middlewares/SEGMiddleware.h"
 
 /**
  * NSNotification name, that is posted after integrations are loaded.

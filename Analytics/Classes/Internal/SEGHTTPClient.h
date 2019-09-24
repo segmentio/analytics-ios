@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "SEGAnalytics.h"
+#import "../SEGAnalytics.h"
 
 // TODO: Make this configurable via SEGAnalyticsConfiguration
 // NOTE: `/` at the end kind of screws things up. So don't use it
