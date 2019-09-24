@@ -81,6 +81,7 @@ static BOOL GetAdTrackingEnabled()
         self.analytics = analytics;
         self.configuration = analytics.configuration;
         self.httpClient = httpClient;
+        self.httpClient.httpSessionDelegate = analytics.configuration.httpSessionDelegate;
         self.storage = storage;
         self.apiURL = [SEGMENT_API_BASE URLByAppendingPathComponent:@"import"];
         self.userId = [self getUserId];

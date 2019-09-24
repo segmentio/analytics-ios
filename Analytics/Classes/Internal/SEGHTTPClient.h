@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) SEGRequestFactory requestFactory;
 @property (nonatomic, readonly) NSMutableDictionary<NSString *, NSURLSession *> *sessionsByWriteKey;
 @property (nonatomic, readonly) NSURLSession *genericSession;
+@property (nonatomic, weak)  id<NSURLSessionDelegate> httpSessionDelegate;
 
 + (SEGRequestFactory)defaultRequestFactory;
 + (NSString *)authorizationHeader:(NSString *)writeKey;
