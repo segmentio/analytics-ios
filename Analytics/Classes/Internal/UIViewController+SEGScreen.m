@@ -4,7 +4,9 @@
 #import "SEGAnalyticsUtils.h"
 
 
-@implementation UIViewController (SEGScreen)
+#if TARGET_OS_OSX
+
+@implementation NSViewController (SEGScreen)
 
 + (void)seg_swizzleViewDidAppear
 {
@@ -36,22 +38,18 @@
 }
 
 
-+ (UIViewController *)seg_topViewController
++ (NSViewController *)seg_topViewController
 {
-    UIViewController *root = [[SEGAnalytics sharedAnalytics] configuration].application.delegate.window.rootViewController;
+    NSWindow *window = ((NSApplication *)[[SEGAnalytics sharedAnalytics] configuration].application).mainWindow;
+    NSViewController *root = window.windowController.contentViewController;
     return [self seg_topViewController:root];
 }
 
-+ (UIViewController *)seg_topViewController:(UIViewController *)rootViewController
++ (NSViewController *)seg_topViewController:(NSViewController *)rootViewController
 {
-    UIViewController *presentedViewController = rootViewController.presentedViewController;
+    NSViewController *presentedViewController = rootViewController.presentedViewControllers.firstObject;
     if (presentedViewController != nil) {
         return [self seg_topViewController:presentedViewController];
-    }
-
-    if ([rootViewController isKindOfClass:[UINavigationController class]]) {
-        UIViewController *lastViewController = [[(UINavigationController *)rootViewController viewControllers] lastObject];
-        return [self seg_topViewController:lastViewController];
     }
 
     return rootViewController;
@@ -59,7 +57,7 @@
 
 - (void)seg_viewDidAppear:(BOOL)animated
 {
-    UIViewController *top = [[self class] seg_topViewController];
+    NSViewController *top = [[self class] seg_topViewController];
     if (!top) {
         SEGLog(@"Could not infer screen.");
         return;
@@ -80,3 +78,84 @@
 }
 
 @end
+
+#else
+
+@implementation UIViewController (SEGScreen)
+
++ (void)seg_swizzleViewDidAppear
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        Class class = [self class];
+        
+        SEL originalSelector = @selector(viewDidAppear:);
+        SEL swizzledSelector = @selector(seg_viewDidAppear:);
+        
+        Method originalMethod = class_getInstanceMethod(class, originalSelector);
+        Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+        
+        BOOL didAddMethod =
+        class_addMethod(class,
+                        originalSelector,
+                        method_getImplementation(swizzledMethod),
+                        method_getTypeEncoding(swizzledMethod));
+        
+        if (didAddMethod) {
+            class_replaceMethod(class,
+                                swizzledSelector,
+                                method_getImplementation(originalMethod),
+                                method_getTypeEncoding(originalMethod));
+        } else {
+            method_exchangeImplementations(originalMethod, swizzledMethod);
+        }
+    });
+}
+
+
++ (UIViewController *)seg_topViewController
+{
+    UIViewController *root = [[SEGAnalytics sharedAnalytics] configuration].application.delegate.window.rootViewController;
+    return [self seg_topViewController:root];
+}
+
++ (UIViewController *)seg_topViewController:(UIViewController *)rootViewController
+{
+    UIViewController *presentedViewController = rootViewController.presentedViewController;
+    if (presentedViewController != nil) {
+        return [self seg_topViewController:presentedViewController];
+    }
+    
+    if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+        UIViewController *lastViewController = [[(UINavigationController *)rootViewController viewControllers] lastObject];
+        return [self seg_topViewController:lastViewController];
+    }
+    
+    return rootViewController;
+}
+
+- (void)seg_viewDidAppear:(BOOL)animated
+{
+    UIViewController *top = [[self class] seg_topViewController];
+    if (!top) {
+        SEGLog(@"Could not infer screen.");
+        return;
+    }
+    
+    NSString *name = [top title];
+    if (!name || name.length == 0) {
+        name = [[[top class] description] stringByReplacingOccurrencesOfString:@"ViewController" withString:@""];
+        // Class name could be just "ViewController".
+        if (name.length == 0) {
+            SEGLog(@"Could not infer screen name.");
+            name = @"Unknown";
+        }
+    }
+    [[SEGAnalytics sharedAnalytics] screen:name properties:nil options:nil];
+    
+    [self seg_viewDidAppear:animated];
+}
+
+@end
+
+#endif

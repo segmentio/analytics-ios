@@ -10,6 +10,27 @@
 #import "SEGCrypto.h"
 
 
+#if TARGET_OS_OSX
+@implementation NSApplication (SEGApplicationProtocol)
+
+- (NSBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void (^__nullable)(void))handler
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if (handler)
+        {
+            handler();
+        }
+    });
+    
+    return 0;
+}
+
+- (void)seg_endBackgroundTask:(NSBackgroundTaskIdentifier)identifier
+{}
+
+@end
+
+#else
 @implementation UIApplication (SEGApplicationProtocol)
 
 - (UIBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void (^__nullable)(void))handler
@@ -23,6 +44,8 @@
 }
 
 @end
+
+#endif
 
 
 @interface SEGAnalyticsConfiguration ()
@@ -61,7 +84,13 @@
             @"(fb\\d+://authorize#access_token=)([^ ]+)": @"$1((redacted/fb-auth-token))"
         };
         _factories = [NSMutableArray array];
+        
+#if TARGET_OS_OSX
+        Class applicationClass = NSClassFromString(@"NSApplication");
+#else
         Class applicationClass = NSClassFromString(@"UIApplication");
+#endif
+
         if (applicationClass) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"

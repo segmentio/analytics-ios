@@ -1,6 +1,4 @@
 #include <sys/sysctl.h>
-
-#import <UIKit/UIKit.h>
 #import "SEGAnalytics.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGSegmentIntegration.h"
@@ -8,7 +6,11 @@
 #import "SEGHTTPClient.h"
 #import "SEGStorage.h"
 
-#if TARGET_OS_IOS
+#if TARGET_OS_OSX
+#import <AppKit/AppKit.h>
+#import <IOKit/IOKitLib.h>
+#else
+#import <UIKit/UIKit.h>
 #import <CoreTelephony/CTCarrier.h>
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #endif
@@ -55,7 +57,13 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, strong) NSDictionary *cachedStaticContext;
 @property (nonatomic, strong) NSURLSessionUploadTask *batchRequest;
+
+#if TARGET_OS_OSX
+@property (nonatomic, assign) NSBackgroundTaskIdentifier flushTaskID;
+#else
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
+#endif
+
 @property (nonatomic, strong) SEGReachability *reachability;
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
@@ -90,8 +98,13 @@ static BOOL GetAdTrackingEnabled()
         self.cachedStaticContext = [self staticContext];
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         self.backgroundTaskQueue = seg_dispatch_queue_create_specific("io.segment.analytics.backgroundTask", DISPATCH_QUEUE_SERIAL);
-        self.flushTaskID = UIBackgroundTaskInvalid;
 
+#if TARGET_OS_OSX
+        self.flushTaskID = 0;
+#else
+        self.flushTaskID = UIBackgroundTaskInvalid;
+#endif
+        
 #if !TARGET_OS_TV
         // Check for previous queue/track data in NSUserDefaults and remove if present
         [self dispatchBackground:^{
@@ -132,6 +145,17 @@ static BOOL GetAdTrackingEnabled()
 static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 #endif
 
+#if TARGET_OS_OSX
+void get_platform_uuid(char * buf, int bufSize)
+{
+    io_registry_entry_t ioRegistryRoot = IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/");
+    CFStringRef uuidCf = (CFStringRef) IORegistryEntryCreateCFProperty(ioRegistryRoot, CFSTR(kIOPlatformUUIDKey), kCFAllocatorDefault, 0);
+    IOObjectRelease(ioRegistryRoot);
+    CFStringGetCString(uuidCf, buf, bufSize, kCFStringEncodingMacRoman);
+    CFRelease(uuidCf);
+}
+#endif
+
 - (NSDictionary *)staticContext
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
@@ -151,16 +175,18 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
             @"namespace" : [[NSBundle mainBundle] bundleIdentifier] ?: @"",
         };
     }
-
-    UIDevice *device = [UIDevice currentDevice];
-
+    
+#if TARGET_OS_OSX
+    NSProcessInfo *deviceInfo = [NSProcessInfo processInfo];
     dict[@"device"] = ({
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         dict[@"manufacturer"] = @"Apple";
         dict[@"type"] = @"ios";
         dict[@"model"] = GetDeviceModel();
-        dict[@"id"] = [[device identifierForVendor] UUIDString];
-        dict[@"name"] = [device model];
+        char buf[512] = { 0 };
+        get_platform_uuid(buf, sizeof(buf));
+        NSString *strID = [NSString stringWithUTF8String:buf];
+        dict[@"id"] = strID;
         if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
             dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
         }
@@ -170,17 +196,46 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         }
         dict;
     });
-
+    
     dict[@"os"] = @{
-        @"name" : device.systemName,
-        @"version" : device.systemVersion
+        @"name" : deviceInfo.operatingSystemVersionString,
+        @"version" : [NSString stringWithFormat:@"%ld.%ld.%ld", deviceInfo.operatingSystemVersion.majorVersion, deviceInfo.operatingSystemVersion.minorVersion, deviceInfo.operatingSystemVersion.patchVersion]
     };
 
-    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    CGSize screenSize = [NSScreen mainScreen].frame.size;
     dict[@"screen"] = @{
         @"width" : @(screenSize.width),
         @"height" : @(screenSize.height)
     };
+#else
+    UIDevice *device = [UIDevice currentDevice];
+    dict[@"device"] = ({
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        dict[@"manufacturer"] = @"Apple";
+        dict[@"type"] = @"macxos";
+        dict[@"model"] = GetDeviceModel();
+        dict[@"id"] = [[device identifierForVendor] UUIDString];
+        if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
+            dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
+        }
+        if (self.configuration.enableAdvertisingTracking) {
+            NSString *idfa = SEGIDFA();
+            if (idfa.length) dict[@"advertisingId"] = idfa;
+        }
+        dict;
+    });
+    
+    dict[@"os"] = @{
+                    @"name" : device.systemName,
+                    @"version" : device.systemVersion
+                    };
+    
+    CGSize screenSize = [UIScreen mainScreen].bounds.size;
+    dict[@"screen"] = @{
+                        @"width" : @(screenSize.width),
+                        @"height" : @(screenSize.height)
+                        };
+#endif
 
 #if !(TARGET_IPHONE_SIMULATOR)
     Class adClient = NSClassFromString(SEGADClientClass);
@@ -282,6 +337,12 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     // attempt to call forwardSelector:arguments:options:
     // See https://github.com/segmentio/analytics-ios/issues/683
     seg_dispatch_specific_sync(_backgroundTaskQueue, ^{
+#if TARGET_OS_OSX
+        id<SEGApplicationProtocol> application = [self.analytics configuration].application;
+        if (application) {
+            [application seg_endBackgroundTask:self.flushTaskID];
+        }
+#else
         if (self.flushTaskID != UIBackgroundTaskInvalid) {
             id<SEGApplicationProtocol> application = [self.analytics configuration].application;
             if (application) {
@@ -290,6 +351,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
             self.flushTaskID = UIBackgroundTaskInvalid;
         }
+#endif
     });
 }
 

@@ -6,7 +6,6 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
@@ -24,6 +23,12 @@
 #import "SEGGroupPayload.h"
 #import "SEGScreenPayload.h"
 #import "SEGAliasPayload.h"
+
+#if TARGET_OS_OSX
+#import <Cocoa/Cocoa.h>
+#else
+#import <UIKit/UIKit.h>
+#endif
 
 NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.did.start";
 static NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
@@ -90,10 +95,17 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 
         // Update settings on foreground
+#if TARGET_OS_OSX
+        id<SEGApplicationProtocol> application = configuration.application;
+        if (application) {
+            [nc addObserver:self selector:@selector(onAppForeground:) name:NSApplicationWillUnhideNotification object:application];
+        }
+#else
         id<SEGApplicationProtocol> application = configuration.application;
         if (application) {
             [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:application];
         }
+#endif
     }
     return self;
 }
@@ -117,20 +129,37 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     static NSDictionary *selectorMapping;
     static dispatch_once_t selectorMappingOnce;
     dispatch_once(&selectorMappingOnce, ^{
+#if TARGET_OS_OSX
         selectorMapping = @{
-            UIApplicationDidFinishLaunchingNotification :
-                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
-            UIApplicationDidEnterBackgroundNotification :
-                NSStringFromSelector(@selector(applicationDidEnterBackground)),
-            UIApplicationWillEnterForegroundNotification :
-                NSStringFromSelector(@selector(applicationWillEnterForeground)),
-            UIApplicationWillTerminateNotification :
-                NSStringFromSelector(@selector(applicationWillTerminate)),
-            UIApplicationWillResignActiveNotification :
-                NSStringFromSelector(@selector(applicationWillResignActive)),
-            UIApplicationDidBecomeActiveNotification :
-                NSStringFromSelector(@selector(applicationDidBecomeActive))
-        };
+                            NSApplicationDidFinishLaunchingNotification :
+                                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
+                            NSApplicationDidHideNotification :
+                                NSStringFromSelector(@selector(applicationDidEnterBackground)),
+                            NSApplicationWillUnhideNotification :
+                                NSStringFromSelector(@selector(applicationWillEnterForeground)),
+                            NSApplicationWillTerminateNotification :
+                                NSStringFromSelector(@selector(applicationWillTerminate)),
+                            NSApplicationWillResignActiveNotification :
+                                NSStringFromSelector(@selector(applicationWillResignActive)),
+                            NSApplicationDidBecomeActiveNotification :
+                                NSStringFromSelector(@selector(applicationDidBecomeActive))
+                            };
+#else
+        selectorMapping = @{
+                            UIApplicationDidFinishLaunchingNotification :
+                                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
+                            UIApplicationDidEnterBackgroundNotification :
+                                NSStringFromSelector(@selector(applicationDidEnterBackground)),
+                            UIApplicationWillEnterForegroundNotification :
+                                NSStringFromSelector(@selector(applicationWillEnterForeground)),
+                            UIApplicationWillTerminateNotification :
+                                NSStringFromSelector(@selector(applicationWillTerminate)),
+                            UIApplicationWillResignActiveNotification :
+                                NSStringFromSelector(@selector(applicationWillResignActive)),
+                            UIApplicationDidBecomeActiveNotification :
+                                NSStringFromSelector(@selector(applicationDidBecomeActive))
+                            };
+#endif
     });
     SEL selector = NSSelectorFromString(selectorMapping[notificationName]);
     if (selector) {
@@ -417,7 +446,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     if ([key isEqualToString:@"Segment.io"]) {
         return YES;
     }
-
+    
     if (plan[@"track"][event]) {
         if ([plan[@"track"][event][@"enabled"] boolValue]) {
             return [self isIntegration:key enabledInOptions:plan[@"track"][event][@"integrations"]];
