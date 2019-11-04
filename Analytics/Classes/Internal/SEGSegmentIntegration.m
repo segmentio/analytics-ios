@@ -181,12 +181,13 @@ void get_platform_uuid(char * buf, int bufSize)
     dict[@"device"] = ({
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         dict[@"manufacturer"] = @"Apple";
-        dict[@"type"] = @"ios";
+        dict[@"type"] = @"macxos";
         dict[@"model"] = GetDeviceModel();
-        char buf[512] = { 0 };
-        get_platform_uuid(buf, sizeof(buf));
-        NSString *strID = [NSString stringWithUTF8String:buf];
-        dict[@"id"] = strID;
+        dict[@"name"] = [deviceInfo hostName];
+        char platformUUID[512] = { 0 };
+        get_platform_uuid(platformUUID, sizeof(platformUUID));
+        NSString *UUID = [NSString stringWithUTF8String:platformUUID];
+        dict[@"id"] = UUID;
         if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
             dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
         }
@@ -212,9 +213,10 @@ void get_platform_uuid(char * buf, int bufSize)
     dict[@"device"] = ({
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         dict[@"manufacturer"] = @"Apple";
-        dict[@"type"] = @"macxos";
+        dict[@"type"] = @"ios";
         dict[@"model"] = GetDeviceModel();
         dict[@"id"] = [[device identifierForVendor] UUIDString];
+        dict[@"name"] = [device model];
         if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
             dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
         }
