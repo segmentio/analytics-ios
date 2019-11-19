@@ -211,7 +211,7 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
 #ifdef DEBUG
             NSAssert(FALSE, @"key `%@` doesn't conform to NSCoding and can't be serialized for delivery.", key);
 #else
-            SEGLog(@"key `%@` doesn't conform to NSCoding and can't be serialized for delivery.", key)
+            SEGLog(@"key `%@` doesn't conform to NSCoding and can't be serialized for delivery.", key);
             // simply leave it out since we can't encode it anyway.
             continue;
 #endif
