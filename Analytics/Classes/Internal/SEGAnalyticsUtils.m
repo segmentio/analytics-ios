@@ -160,31 +160,12 @@ static id SEGCoerceJSONObject(id obj)
     return [obj description];
 }
 
-static void AssertDictionaryTypes(id dict)
-{
-#ifdef DEBUG
-    assert([dict isKindOfClass:[NSDictionary class]]);
-    for (id key in dict) {
-        assert([key isKindOfClass:[NSString class]]);
-        id value = dict[key];
-
-        assert([value isKindOfClass:[NSString class]] ||
-               [value isKindOfClass:[NSNumber class]] ||
-               [value isKindOfClass:[NSNull class]] ||
-               [value isKindOfClass:[NSArray class]] ||
-               [value isKindOfClass:[NSDictionary class]] ||
-               [value isKindOfClass:[NSDate class]] ||
-               [value isKindOfClass:[NSURL class]]);
-    }
-#endif
-}
-
 NSDictionary *SEGCoerceDictionary(NSDictionary *dict)
 {
     // make sure that a new dictionary exists even if the input is null
     dict = dict ?: @{};
     // assert that the proper types are in the dictionary
-    AssertDictionaryTypes(dict);
+    dict = [dict serializableDeepCopy];
     // coerce urls, and dates to the proper format
     return SEGCoerceJSONObject(dict);
 }
@@ -214,3 +195,75 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
 {
     return [[NSString alloc] initWithFormat:@"Viewed %@ Screen", title];
 }
+
+
+@implementation NSDictionary(SerializableDeepCopy)
+
+- (NSDictionary *)serializableDeepCopy
+{
+    NSMutableDictionary *returnDict = [[NSMutableDictionary alloc] initWithCapacity:self.count];
+    NSArray *keys = [self allKeys];
+    for (id key in keys) {
+        id aValue = [self objectForKey:key];
+        id theCopy = nil;
+        
+        if (![aValue conformsToProtocol:@protocol(NSCoding)]) {
+#ifdef DEBUG
+            NSAssert(FALSE, @"key `%@` doesn't conform to NSCoding and can't be serialized for delivery.", key);
+#else
+            SEGLog(@"key `%@` doesn't conform to NSCoding and can't be serialized for delivery.", key);
+            // simply leave it out since we can't encode it anyway.
+            continue;
+#endif
+        }
+        
+        if ([aValue conformsToProtocol:@protocol(SEGSerializableDeepCopy)]) {
+            theCopy = [aValue serializableDeepCopy];
+        } else if ([aValue conformsToProtocol:@protocol(NSCopying)]) {
+            theCopy = [aValue copy];
+        } else {
+            theCopy = aValue;
+        }
+        
+        [returnDict setValue:theCopy forKey:key];
+  }
+    
+  return [returnDict copy];
+}
+
+@end
+
+
+@implementation NSArray(SerializableDeepCopy)
+
+-(NSArray *)serializableDeepCopy
+{
+    NSMutableArray *returnArray = [[NSMutableArray alloc] initWithCapacity:self.count];
+    
+    for (id aValue in self) {
+        id theCopy = nil;
+        
+        if (![aValue conformsToProtocol:@protocol(NSCoding)]) {
+#ifdef DEBUG
+            NSAssert(FALSE, @"type `%@` doesn't conform to NSCoding and can't be serialized for delivery.", NSStringFromClass([aValue class]));
+#else
+            SEGLog(@"type `%@` doesn't conform to NSCoding and can't be serialized for delivery.", NSStringFromClass([aValue class]));
+            // simply leave it out since we can't encode it anyway.
+            continue;
+#endif
+        }
+        
+        if ([aValue conformsToProtocol:@protocol(SEGSerializableDeepCopy)]) {
+            theCopy = [aValue serializableDeepCopy];
+        } else if ([aValue conformsToProtocol:@protocol(NSCopying)]) {
+            theCopy = [aValue copy];
+        } else {
+            theCopy = aValue;
+        }
+        [returnArray addObject:theCopy];
+    }
+    
+    return [returnArray copy];
+}
+
+@end

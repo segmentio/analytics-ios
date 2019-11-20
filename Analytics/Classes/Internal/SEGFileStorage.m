@@ -146,12 +146,19 @@
 - (NSData *_Nullable)dataFromPlist:(nonnull id)plist
 {
     NSError *error = nil;
-    NSData *data = [NSPropertyListSerialization dataWithPropertyList:plist
-                                                              format:NSPropertyListXMLFormat_v1_0
-                                                             options:0
-                                                               error:&error];
-    if (error) {
-        SEGLog(@"Unable to serialize data from plist object", error, plist);
+    NSData *data = nil;
+    // Temporary just-in-case fix for issue #846; Follow-on PR to move away from plist storage.
+    @try {
+        data = [NSPropertyListSerialization dataWithPropertyList:plist
+                                                          format:NSPropertyListXMLFormat_v1_0
+                                                         options:0
+                                                           error:&error];
+    } @catch (NSException *e) {
+        SEGLog(@"Unable to serialize data from plist object; Exception: %@, plist: %@", e, plist);
+    } @finally {
+        if (error) {
+            SEGLog(@"Unable to serialize data from plist object; Error: %@, plist: %@", error, plist);
+        }
     }
     return data;
 }
