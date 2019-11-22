@@ -402,35 +402,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8FF3EA023700DD400A016B4 /* SEGAnalytics.h in Headers */,
-				E8FF3EA123700DD400A016B4 /* SEGIntegrationFactory.h in Headers */,
-				E8FF3EA223700DD400A016B4 /* SEGSegmentIntegration.h in Headers */,
-				E8FF3EA323700DD400A016B4 /* SEGSegmentIntegrationFactory.h in Headers */,
-				E8FF3EA423700DD400A016B4 /* SEGIntegration.h in Headers */,
-				E8FF3EA523700DD400A016B4 /* SEGIdentifyPayload.h in Headers */,
-				E8FF3EA623700DD400A016B4 /* SEGPayload.h in Headers */,
-				E8FF3EA723700DD400A016B4 /* SEGAliasPayload.h in Headers */,
-				E8FF3EA823700DD400A016B4 /* SEGScreenPayload.h in Headers */,
-				E8FF3EA923700DD400A016B4 /* SEGSerializableValue.h in Headers */,
-				E8FF3EAA23700DD400A016B4 /* SEGContext.h in Headers */,
-				E8FF3EAB23700DD400A016B4 /* SEGMiddleware.h in Headers */,
-				E8FF3EAC23700DD400A016B4 /* SEGTrackPayload.h in Headers */,
-				E8FF3EAD23700DD400A016B4 /* SEGHTTPClient.h in Headers */,
-				E8FF3EAE23700DD400A016B4 /* SEGGroupPayload.h in Headers */,
-				E8FF3EAF23700DD400A016B4 /* SEGCrypto.h in Headers */,
-				E8FF3EB023700DD400A016B4 /* SEGAnalyticsConfiguration.h in Headers */,
-				E8FF3EB123700DD400A016B4 /* UIViewController+SEGScreen.h in Headers */,
-				E8FF3EB223700DD400A016B4 /* SEGStorage.h in Headers */,
-				E8FF3EB323700DD400A016B4 /* SEGUserDefaultsStorage.h in Headers */,
-				E8FF3EB423700DD400A016B4 /* SEGStoreKitTracker.h in Headers */,
-				E8FF3EB523700DD400A016B4 /* SEGUtils.h in Headers */,
-				E8FF3EB623700DD400A016B4 /* Analytics.h in Headers */,
-				E8FF3EB723700DD400A016B4 /* SEGAnalyticsUtils.h in Headers */,
-				E8FF3EB823700DD400A016B4 /* SEGIntegrationsManager.h in Headers */,
-				E8FF3EB923700DD400A016B4 /* SEGAES256Crypto.h in Headers */,
-				E8FF3EBA23700DD400A016B4 /* SEGFileStorage.h in Headers */,
-				E8FF3EBB23700DD400A016B4 /* SEGReachability.h in Headers */,
-				E8FF3EBC23700DD400A016B4 /* NSData+SEGGZIP.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,29 +618,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8FF3E8723700DD400A016B4 /* SEGAnalytics.m in Sources */,
-				E8FF3E8823700DD400A016B4 /* SEGScreenPayload.m in Sources */,
-				E8FF3E8923700DD400A016B4 /* SEGIdentifyPayload.m in Sources */,
-				E8FF3E8A23700DD400A016B4 /* SEGSegmentIntegrationFactory.m in Sources */,
-				E8FF3E8B23700DD400A016B4 /* SEGTrackPayload.m in Sources */,
-				E8FF3E8C23700DD400A016B4 /* SEGAES256Crypto.m in Sources */,
-				E8FF3E8D23700DD400A016B4 /* SEGHTTPClient.m in Sources */,
-				E8FF3E8E23700DD400A016B4 /* SEGSegmentIntegration.m in Sources */,
-				E8FF3E8F23700DD400A016B4 /* SEGAliasPayload.m in Sources */,
-				E8FF3E9023700DD400A016B4 /* SEGIntegrationsManager.m in Sources */,
-				E8FF3E9123700DD400A016B4 /* SEGAnalyticsUtils.m in Sources */,
-				E8FF3E9223700DD400A016B4 /* SEGFileStorage.m in Sources */,
-				E8FF3E9323700DD400A016B4 /* SEGUserDefaultsStorage.m in Sources */,
-				E8FF3E9423700DD400A016B4 /* SEGPayload.m in Sources */,
-				E8FF3E9523700DD400A016B4 /* NSData+SEGGZIP.m in Sources */,
-				E8FF3E9623700DD400A016B4 /* SEGContext.m in Sources */,
-				E8FF3E9723700DD400A016B4 /* SEGMiddleware.m in Sources */,
-				E8FF3E9823700DD400A016B4 /* SEGAnalyticsConfiguration.m in Sources */,
-				E8FF3E9923700DD400A016B4 /* SEGUtils.m in Sources */,
-				E8FF3E9A23700DD400A016B4 /* SEGReachability.m in Sources */,
-				E8FF3E9B23700DD400A016B4 /* SEGGroupPayload.m in Sources */,
-				E8FF3E9C23700DD400A016B4 /* UIViewController+SEGScreen.m in Sources */,
-				E8FF3E9D23700DD400A016B4 /* SEGStoreKitTracker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,9 +701,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvos appletvsimulator";
+				SUPPORTED_PLATFORMS = macosx;
 				TARGETED_DEVICE_FAMILY = "1,2,3";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -776,9 +725,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvos appletvsimulator";
+				SUPPORTED_PLATFORMS = macosx;
 				TARGETED_DEVICE_FAMILY = "1,2,3";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
