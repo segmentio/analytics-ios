@@ -107,12 +107,18 @@
 
 - (NSString *)stringForKey:(NSString *)key
 {
-    return [self jsonForKey:key];
+    // unlike plists, we can't have stray values, they need to be
+    // in a dictionary or array container.
+    NSDictionary *data = [self jsonForKey:key];
+    return data[key];
 }
 
 - (void)setString:(NSString *)string forKey:(NSString *)key
 {
-    [self setJSON:string forKey:key];
+    // unlike plists, we can't have stray values, they need to be
+    // in a dictionary or array container.
+    NSDictionary *data = @{key: string};
+    [self setJSON:data forKey:key];
 }
 
 + (NSURL *)applicationSupportDirectoryURL
@@ -146,7 +152,17 @@
 
 - (void)setJSON:(id _Nonnull)plist forKey:(NSString *)key
 {
-    NSData *data = [self dataFromJSON:plist];
+    NSDictionary *dict = nil;
+    
+    // json doesn't allow stand alone values like plist (previous storage format) does so
+    // we need to massage it a little.
+    if ([plist isKindOfClass:[NSDictionary class]] || [plist isKindOfClass:[NSArray class]]) {
+        dict = plist;
+    } else {
+        dict = @{key: plist};
+    }
+    
+    NSData *data = [self dataFromJSON:dict];
     if (data) {
         [self setData:data forKey:key];
     }
@@ -169,7 +185,7 @@
     if (error) {
         // maybe it's a plist and needs to be converted.
         result = [self plistFromData:data];
-        if (result == nil) {
+        if (result != nil) {
             *needsConversion = YES;
         } else {
             SEGLog(@"Unable to parse json from data %@", error);

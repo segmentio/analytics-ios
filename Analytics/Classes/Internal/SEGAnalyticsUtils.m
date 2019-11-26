@@ -107,10 +107,6 @@ void SEGLog(NSString *format, ...)
 
 static id SEGCoerceJSONObject(id obj)
 {
-    // Hotfix: Storage format should support NSNull instead
-    if ([obj isKindOfClass:[NSNull class]]) {
-        return [NSData data];//return @"<null>";
-    }
     // if the object is a NSString, NSNumber
     // then we're good
     if ([obj isKindOfClass:[NSString class]] ||
