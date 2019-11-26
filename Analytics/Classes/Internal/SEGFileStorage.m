@@ -87,32 +87,32 @@
 
 - (NSDictionary *)dictionaryForKey:(NSString *)key
 {
-    return [self plistForKey:key];
+    return [self jsonForKey:key];
 }
 
 - (void)setDictionary:(NSDictionary *)dictionary forKey:(NSString *)key
 {
-    [self setPlist:dictionary forKey:key];
+    [self setJSON:dictionary forKey:key];
 }
 
 - (NSArray *)arrayForKey:(NSString *)key
 {
-    return [self plistForKey:key];
+    return [self jsonForKey:key];
 }
 
 - (void)setArray:(NSArray *)array forKey:(NSString *)key
 {
-    [self setPlist:array forKey:key];
+    [self setJSON:array forKey:key];
 }
 
 - (NSString *)stringForKey:(NSString *)key
 {
-    return [self plistForKey:key];
+    return [self jsonForKey:key];
 }
 
 - (void)setString:(NSString *)string forKey:(NSString *)key
 {
-    [self setPlist:string forKey:key];
+    [self setJSON:string forKey:key];
 }
 
 + (NSURL *)applicationSupportDirectoryURL
@@ -129,20 +129,70 @@
 
 #pragma mark - Helpers
 
-- (id _Nullable)plistForKey:(NSString *)key
+- (id _Nullable)jsonForKey:(NSString *)key
 {
+    id result = nil;
+    
     NSData *data = [self dataForKey:key];
-    return data ? [self plistFromData:data] : nil;
+    if (data) {
+        BOOL needsConversion = NO;
+        result = [self jsonFromData:data needsConversion:&needsConversion];
+        if (needsConversion) {
+            [self setJSON:result forKey:key];
+        }
+    }
+    return result;
 }
 
-- (void)setPlist:(id _Nonnull)plist forKey:(NSString *)key
+- (void)setJSON:(id _Nonnull)plist forKey:(NSString *)key
 {
-    NSData *data = [self dataFromPlist:plist];
+    NSData *data = [self dataFromJSON:plist];
     if (data) {
         [self setData:data forKey:key];
     }
 }
 
+- (NSData *_Nullable)dataFromJSON:(id)json
+{
+    NSError *error = nil;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:json options:0 error:&error];
+    if (error) {
+        SEGLog(@"Unable to serialize data from json object; %@, %@", error, json);
+    }
+    return data;
+}
+
+- (id _Nullable)jsonFromData:(NSData *_Nonnull)data needsConversion:(BOOL *)needsConversion
+{
+    NSError *error = nil;
+    id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    if (error) {
+        // maybe it's a plist and needs to be converted.
+        result = [self plistFromData:data];
+        if (result == nil) {
+            *needsConversion = YES;
+        } else {
+            SEGLog(@"Unable to parse json from data %@", error);
+        }
+    }
+    return result;
+}
+
+- (void)createDirectoryAtURLIfNeeded:(NSURL *)url
+{
+    if (![[NSFileManager defaultManager] fileExistsAtPath:url.path
+                                              isDirectory:NULL]) {
+        NSError *error = nil;
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:url.path
+                                       withIntermediateDirectories:YES
+                                                        attributes:nil
+                                                             error:&error]) {
+            SEGLog(@"error: %@", error.localizedDescription);
+        }
+    }
+}
+
+/// Deprecated
 - (NSData *_Nullable)dataFromPlist:(nonnull id)plist
 {
     NSError *error = nil;
@@ -163,6 +213,7 @@
     return data;
 }
 
+/// Deprecated
 - (id _Nullable)plistFromData:(NSData *_Nonnull)data
 {
     NSError *error = nil;
@@ -174,20 +225,6 @@
         SEGLog(@"Unable to parse plist from data %@", error);
     }
     return plist;
-}
-
-- (void)createDirectoryAtURLIfNeeded:(NSURL *)url
-{
-    if (![[NSFileManager defaultManager] fileExistsAtPath:url.path
-                                              isDirectory:NULL]) {
-        NSError *error = nil;
-        if (![[NSFileManager defaultManager] createDirectoryAtPath:url.path
-                                       withIntermediateDirectories:YES
-                                                        attributes:nil
-                                                             error:&error]) {
-            SEGLog(@"error: %@", error.localizedDescription);
-        }
-    }
 }
 
 @end
