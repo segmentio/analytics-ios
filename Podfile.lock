@@ -16,7 +16,7 @@ DEPENDENCIES:
   - SwiftTryCatch (from `https://github.com/segmentio/SwiftTryCatch.git`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Alamofire-Synchronous
     - Nimble
@@ -40,6 +40,6 @@ SPEC CHECKSUMS:
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   SwiftTryCatch: 2f4ef36cf5396bdb450006b70633dbce5260d3b3
 
-PODFILE CHECKSUM: 96037d813a3e1239ea354ede97146038cd4a31bb
+PODFILE CHECKSUM: 6c11ce6879d40225a5ec2b9b5ac275626edbeeb6
 
-COCOAPODS: 1.7.4
+COCOAPODS: 1.8.4
