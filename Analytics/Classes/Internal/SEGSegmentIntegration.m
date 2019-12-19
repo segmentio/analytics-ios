@@ -53,7 +53,7 @@ static BOOL GetAdTrackingEnabled()
 @interface SEGSegmentIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
-@property (nonatomic, strong) NSDictionary *cachedStaticContext;
+@property (nonatomic, strong) NSDictionary *_cachedStaticContext;
 @property (nonatomic, strong) NSURLSessionUploadTask *batchRequest;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
 @property (nonatomic, strong) SEGReachability *reachability;
@@ -115,6 +115,12 @@ static BOOL GetAdTrackingEnabled()
         
         [NSRunLoop.mainRunLoop addTimer:self.flushTimer
                                 forMode:NSDefaultRunLoopMode];
+        
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(updateStaticContext)
+                                                     name:UIApplicationWillEnterForegroundNotification
+                                                   object:[UIApplication sharedApplication]];
     }
     return self;
 }
@@ -203,6 +209,25 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 #endif
 
     return dict;
+}
+
+- (void)updateStaticContext
+{
+    self.cachedStaticContext = [self staticContext];
+}
+
+- (NSDictionary *)cachedStaticContext {
+    __block NSDictionary *result = nil;
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        result = self._cachedStaticContext;
+    });
+    return result;
+}
+
+- (void)setCachedStaticContext:(NSDictionary *)cachedStaticContext {
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        self._cachedStaticContext = cachedStaticContext;
+    });
 }
 
 - (NSDictionary *)liveContext
