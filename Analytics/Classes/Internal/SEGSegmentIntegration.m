@@ -120,7 +120,7 @@ static BOOL GetAdTrackingEnabled()
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(updateStaticContext)
                                                      name:UIApplicationWillEnterForegroundNotification
-                                                   object:[UIApplication sharedApplication]];
+                                                   object:nil];
     }
     return self;
 }
