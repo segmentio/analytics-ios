@@ -7,6 +7,7 @@
 #import "SEGReachability.h"
 #import "SEGHTTPClient.h"
 #import "SEGStorage.h"
+#import "SEGMacros.h"
 
 #if TARGET_OS_IOS
 #import <CoreTelephony/CTCarrier.h>
@@ -53,7 +54,7 @@ static BOOL GetAdTrackingEnabled()
 @interface SEGSegmentIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
-@property (nonatomic, strong) NSDictionary *cachedStaticContext;
+@property (nonatomic, strong) NSDictionary *_cachedStaticContext;
 @property (nonatomic, strong) NSURLSessionUploadTask *batchRequest;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
 @property (nonatomic, strong) SEGReachability *reachability;
@@ -115,6 +116,12 @@ static BOOL GetAdTrackingEnabled()
         
         [NSRunLoop.mainRunLoop addTimer:self.flushTimer
                                 forMode:NSDefaultRunLoopMode];
+        
+
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(updateStaticContext)
+                                                     name:UIApplicationWillEnterForegroundNotification
+                                                   object:nil];
     }
     return self;
 }
@@ -203,6 +210,29 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 #endif
 
     return dict;
+}
+
+- (void)updateStaticContext
+{
+    self.cachedStaticContext = [self staticContext];
+}
+
+- (NSDictionary *)cachedStaticContext {
+    __block NSDictionary *result = nil;
+    weakify(self);
+    dispatch_sync(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        strongify(self);
+        result = self._cachedStaticContext;
+    });
+    return result;
+}
+
+- (void)setCachedStaticContext:(NSDictionary *)cachedStaticContext {
+    weakify(self);
+    dispatch_sync(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        strongify(self);
+        self._cachedStaticContext = cachedStaticContext;
+    });
 }
 
 - (NSDictionary *)liveContext
