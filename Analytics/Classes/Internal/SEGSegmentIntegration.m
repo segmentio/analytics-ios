@@ -7,6 +7,7 @@
 #import "SEGReachability.h"
 #import "SEGHTTPClient.h"
 #import "SEGStorage.h"
+#import "SEGMacros.h"
 
 #if TARGET_OS_IOS
 #import <CoreTelephony/CTCarrier.h>
@@ -218,14 +219,18 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (NSDictionary *)cachedStaticContext {
     __block NSDictionary *result = nil;
-    dispatch_sync(dispatch_get_main_queue(), ^{
+    weakify(self);
+    dispatch_sync(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        strongify(self);
         result = self._cachedStaticContext;
     });
     return result;
 }
 
 - (void)setCachedStaticContext:(NSDictionary *)cachedStaticContext {
-    dispatch_sync(dispatch_get_main_queue(), ^{
+    weakify(self);
+    dispatch_sync(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
+        strongify(self);
         self._cachedStaticContext = cachedStaticContext;
     });
 }
