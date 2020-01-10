@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "SEGHTTPConfiguration.h"
 
 @protocol SEGApplicationProtocol <NSObject>
 @property (nullable, nonatomic, assign) id<UIApplicationDelegate> delegate;
@@ -114,6 +115,11 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
  * Dictionary indicating the options the app was launched with.
  */
 @property (nonatomic, strong, nullable) NSDictionary *launchOptions;
+
+/**
+ * Set a custom HTTP configuration.
+ */
+@property (nonatomic, strong, nonnull) SEGHTTPConfiguration *httpConfiguration;
 
 /**
  * Set a custom request factory.

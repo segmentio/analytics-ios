@@ -84,7 +84,7 @@ static BOOL GetAdTrackingEnabled()
         self.httpClient = httpClient;
         self.httpClient.httpSessionDelegate = analytics.configuration.httpSessionDelegate;
         self.storage = storage;
-        self.apiURL = [SEGMENT_API_BASE URLByAppendingPathComponent:@"import"];
+        self.apiURL = [analytics.configuration.httpConfiguration.apiBaseURL URLByAppendingPathComponent:@"import"];
         self.userId = [self getUserId];
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
         [self.reachability startNotifier];

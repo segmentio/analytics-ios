@@ -70,7 +70,8 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         self.configuration = configuration;
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         self.messageQueue = [[NSMutableArray alloc] init];
-        self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
+        self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory
+                                                      httpConfiguration:configuration.httpConfiguration];
 #if TARGET_OS_TV
         self.storage = [[SEGUserDefaultsStorage alloc] initWithDefaults:[NSUserDefaults standardUserDefaults] namespacePrefix:nil crypto:configuration.crypto];
 #else

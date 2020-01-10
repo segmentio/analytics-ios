@@ -12,6 +12,8 @@
 		6EEC1C712017EA370089C478 /* EndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC1C702017EA370089C478 /* EndToEndTests.swift */; };
 		A31958EF2385AC3A00A47EFA /* SerializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A31958EE2385AC3A00A47EFA /* SerializationTests.m */; };
 		A352176023AD5825005B07F6 /* SEGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = A352175F23AD5825005B07F6 /* SEGMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		734E0DD223C82E8200E08CDE /* SEGHTTPConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = 734E0DD023C82E8200E08CDE /* SEGHTTPConfiguration.h */; };
+		734E0DD323C82E8200E08CDE /* SEGHTTPConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 734E0DD123C82E8200E08CDE /* SEGHTTPConfiguration.m */; };
 		EA88A5981DED7608009FB66A /* SEGSerializableValue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA88A5971DED7608009FB66A /* SEGSerializableValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8F09741E24C5C600B8B93F /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */; };
 		EAA542771EB4035400945DA7 /* TrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA542761EB4035400945DA7 /* TrackingTests.swift */; };
@@ -93,6 +95,8 @@
 		1DF03A6929EEFE7158913224 /* Pods-AnalyticsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationsManagerTest.swift; sourceTree = "<group>"; };
 		6EEC1C702017EA370089C478 /* EndToEndTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndToEndTests.swift; sourceTree = "<group>"; };
+		734E0DD023C82E8200E08CDE /* SEGHTTPConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGHTTPConfiguration.h; sourceTree = "<group>"; };
+		734E0DD123C82E8200E08CDE /* SEGHTTPConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEGHTTPConfiguration.m; sourceTree = "<group>"; };
 		89033CBF22319674E6CE7E61 /* Pods_AnalyticsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnalyticsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A31958EE2385AC3A00A47EFA /* SerializationTests.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SerializationTests.m; sourceTree = "<group>"; tabWidth = 4; };
 		A352175F23AD5825005B07F6 /* SEGMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGMacros.h; sourceTree = "<group>"; };
@@ -352,6 +356,8 @@
 				A352175F23AD5825005B07F6 /* SEGMacros.h */,
 				EADEB8A21DECD12B005322DA /* UIViewController+SEGScreen.h */,
 				EADEB8A31DECD12B005322DA /* UIViewController+SEGScreen.m */,
+				734E0DD023C82E8200E08CDE /* SEGHTTPConfiguration.h */,
+				734E0DD123C82E8200E08CDE /* SEGHTTPConfiguration.m */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -409,6 +415,7 @@
 				EADEB8BF1DECD12B005322DA /* SEGTrackPayload.h in Headers */,
 				EADEB8C71DECD12B005322DA /* SEGHTTPClient.h in Headers */,
 				EADEB8B31DECD12B005322DA /* SEGGroupPayload.h in Headers */,
+				734E0DD223C82E8200E08CDE /* SEGHTTPConfiguration.h in Headers */,
 				EADEB8B01DECD12B005322DA /* SEGCrypto.h in Headers */,
 				EADEB8DE1DECD12B005322DA /* SEGAnalyticsConfiguration.h in Headers */,
 				EADEB8D61DECD12B005322DA /* UIViewController+SEGScreen.h in Headers */,
@@ -594,6 +601,7 @@
 				EADEB8BC1DECD12B005322DA /* SEGPayload.m in Sources */,
 				EADEB8C21DECD12B005322DA /* NSData+SEGGZIP.m in Sources */,
 				EADEB8D91DECD12B005322DA /* SEGContext.m in Sources */,
+				734E0DD323C82E8200E08CDE /* SEGHTTPConfiguration.m in Sources */,
 				EADEB8DB1DECD12B005322DA /* SEGMiddleware.m in Sources */,
 				EADEB8DF1DECD12B005322DA /* SEGAnalyticsConfiguration.m in Sources */,
 				EADEB8D51DECD12B005322DA /* SEGUtils.m in Sources */,
