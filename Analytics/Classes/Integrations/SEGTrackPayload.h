@@ -3,7 +3,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
+NS_SWIFT_NAME(TrackPayload)
 @interface SEGTrackPayload : SEGPayload
 
 @property (nonatomic, readonly) NSString *event;

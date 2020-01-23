@@ -3,7 +3,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
+NS_SWIFT_NAME(Payload)
 @interface SEGPayload : NSObject
 
 @property (nonatomic, readonly) JSON_DICT context;
@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
+NS_SWIFT_NAME(ApplicationLifecyclePayload)
 @interface SEGApplicationLifecyclePayload : SEGPayload
 
 @property (nonatomic, strong) NSString *notificationName;
@@ -23,14 +23,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
+NS_SWIFT_NAME(ContinueUserActivityPayload)
 @interface SEGContinueUserActivityPayload : SEGPayload
 
 @property (nonatomic, strong) NSUserActivity *activity;
 
 @end
 
-
+NS_SWIFT_NAME(OpenURLPayload)
 @interface SEGOpenURLPayload : SEGPayload
 
 @property (nonatomic, strong) NSURL *url;
@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-
+NS_SWIFT_NAME(RemoteNotificationPayload)
 @interface SEGRemoteNotificationPayload : SEGPayload
 
 // SEGEventTypeHandleActionWithForRemoteNotification
