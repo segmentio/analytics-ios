@@ -43,16 +43,16 @@ func hasMatchingId(messageId: String) -> Bool {
 // verify that the data was sent to the source by finding it from the Webhook destination.
 class AnalyticsE2ETests: QuickSpec {
   override func spec() {
-    var analytics: SEGAnalytics!
+    var analytics: Analytics!
 
     beforeEach {
       // Write Key for https://app.segment.com/segment-libraries/sources/analytics_ios_e2e_test/overview
-      let config = SEGAnalyticsConfiguration(writeKey: "3VxTfPsVOoEOSbbzzbFqVNcYMNu2vjnr")
+      let config = AnalyticsConfiguration(writeKey: "3VxTfPsVOoEOSbbzzbFqVNcYMNu2vjnr")
       config.flushAt = 1
 
-      SEGAnalytics.setup(with: config)
+      Analytics.setup(with: config)
 
-      analytics = SEGAnalytics.shared()
+      analytics = Analytics.shared()
     }
 
     afterEach {

@@ -69,8 +69,9 @@ class AnalyticsUtilTests: QuickSpec {
       ]
       
       func equals(a: Any, b: Any) -> Bool {
-        let aData = try! JSONSerialization.data(withJSONObject: a, options: .prettyPrinted) as NSData
-        let bData = try! JSONSerialization.data(withJSONObject: b, options: .prettyPrinted)
+        // keys must be sorted or this method will fail at some statistically random rate since there's only 2 keys.
+        let aData = try! JSONSerialization.data(withJSONObject: a, options: .sortedKeys) as NSData
+        let bData = try! JSONSerialization.data(withJSONObject: b, options: .sortedKeys)
         
         return aData.isEqual(to: bData)
       }

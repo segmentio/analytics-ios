@@ -44,13 +44,13 @@ class StoreKitTrackerTests: QuickSpec {
 
     var test: TestMiddleware!
     var tracker: SEGStoreKitTracker!
-    var analytics: SEGAnalytics!
+    var analytics: Analytics!
 
     beforeEach {
-      let config = SEGAnalyticsConfiguration(writeKey: "foobar")
+      let config = AnalyticsConfiguration(writeKey: "foobar")
       test = TestMiddleware()
       config.middlewares = [test]
-      analytics = SEGAnalytics(configuration: config)
+      analytics = Analytics(configuration: config)
       tracker = SEGStoreKitTracker.trackTransactions(for: analytics)
     }
 
@@ -61,7 +61,7 @@ class StoreKitTrackerTests: QuickSpec {
       
       tracker.productsRequest(SKProductsRequest(), didReceive: mockProductResponse())
       
-      let payload = test.lastContext?.payload as? SEGTrackPayload
+      let payload = test.lastContext?.payload as? TrackPayload
       
       expect(payload?.event) == "Order Completed"
     }

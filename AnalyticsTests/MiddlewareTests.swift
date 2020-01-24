@@ -15,14 +15,14 @@ import Analytics
 let customizeAllTrackCalls = SEGBlockMiddleware { (context, next) in
   if context.eventType == .track {
     next(context.modify { ctx in
-      guard let track = ctx.payload as? SEGTrackPayload else {
+      guard let track = ctx.payload as? TrackPayload else {
         return
       }
       let newEvent = "[New] \(track.event)"
       var newProps = track.properties ?? [:]
       newProps["customAttribute"] = "Hello"
       newProps["nullTest"] = NSNull()
-      ctx.payload = SEGTrackPayload(
+      ctx.payload = TrackPayload(
         event: newEvent,
         properties: newProps,
         context: track.context,
@@ -41,29 +41,29 @@ let eatAllCalls = SEGBlockMiddleware { (context, next) in
 class MiddlewareTests: QuickSpec {
   override func spec() {
     it("receives events") {
-      let config = SEGAnalyticsConfiguration(writeKey: "TESTKEY")
+      let config = AnalyticsConfiguration(writeKey: "TESTKEY")
       let passthrough = SEGPassthroughMiddleware()
       config.middlewares = [
         passthrough,
       ]
-      let analytics = SEGAnalytics(configuration: config)
+      let analytics = Analytics(configuration: config)
       analytics.identify("testUserId1")
-      expect(passthrough.lastContext?.eventType) == SEGEventType.identify
-      let identify = passthrough.lastContext?.payload as? SEGIdentifyPayload
+      expect(passthrough.lastContext?.eventType) == .identify
+      let identify = passthrough.lastContext?.payload as? IdentifyPayload
       expect(identify?.userId) == "testUserId1"
     }
     
     it("modifies and passes event to next") {
-      let config = SEGAnalyticsConfiguration(writeKey: "TESTKEY")
+      let config = AnalyticsConfiguration(writeKey: "TESTKEY")
       let passthrough = SEGPassthroughMiddleware()
       config.middlewares = [
         customizeAllTrackCalls,
         passthrough,
       ]
-      let analytics = SEGAnalytics(configuration: config)
+      let analytics = Analytics(configuration: config)
       analytics.track("Purchase Success")
-      expect(passthrough.lastContext?.eventType) == SEGEventType.track
-      let track = passthrough.lastContext?.payload as? SEGTrackPayload
+      expect(passthrough.lastContext?.eventType) == .track
+      let track = passthrough.lastContext?.payload as? TrackPayload
       expect(track?.event) == "[New] Purchase Success"
       expect(track?.properties?["customAttribute"] as? String) == "Hello"
       let isNull = (track?.properties?["nullTest"] is NSNull)
@@ -71,13 +71,13 @@ class MiddlewareTests: QuickSpec {
     }
     
     it("expects event to be swallowed if next is not called") {
-      let config = SEGAnalyticsConfiguration(writeKey: "TESTKEY")
+      let config = AnalyticsConfiguration(writeKey: "TESTKEY")
       let passthrough = SEGPassthroughMiddleware()
       config.middlewares = [
         eatAllCalls,
         passthrough,
       ]
-      let analytics = SEGAnalytics(configuration: config)
+      let analytics = Analytics(configuration: config)
       analytics.track("Purchase Success")
       expect(passthrough.lastContext).to(beNil())
     }

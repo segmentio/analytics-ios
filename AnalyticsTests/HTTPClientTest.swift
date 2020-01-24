@@ -37,7 +37,7 @@ class HTTPClientTest: QuickSpec {
     describe("settingsForWriteKey") {
       it("succeeds for 2xx response") {
         _ = stubRequest("GET", "https://cdn-settings.segment.com/v1/projects/foo/settings" as NSString)
-          .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
+          .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
           .withHeaders(["Accept-Encoding" : "gzip" ])!
           .andReturn(200)!
           .withHeaders(["Content-Type" : "application/json"])!
@@ -64,7 +64,7 @@ class HTTPClientTest: QuickSpec {
 
       it("fails for non 2xx response") {
         _ = stubRequest("GET", "https://cdn-settings.segment.com/v1/projects/foo/settings" as NSString)
-          .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
+          .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
           .withHeaders(["Accept-Encoding" : "gzip" ])!
           .andReturn(400)!
           .withHeaders(["Content-Type" : "application/json" ])!
@@ -80,7 +80,7 @@ class HTTPClientTest: QuickSpec {
 
       it("fails for json error") {
         _ = stubRequest("GET", "https://cdn-settings.segment.com/v1/projects/foo/settings" as NSString)
-          .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
+          .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
           .withHeaders(["Accept-Encoding":"gzip"])!
           .andReturn(200)!
           .withHeaders(["Content-Type":"application/json"])!
@@ -117,7 +117,7 @@ class HTTPClientTest: QuickSpec {
 
       it("does not ask to retry for 2xx response") {
         _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
-          .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
+          .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
           .withJsonGzippedBody(batch as AnyObject)
           .withWriteKey("bar")
           .andReturn(200)
@@ -132,7 +132,7 @@ class HTTPClientTest: QuickSpec {
 
       it("asks to retry for 3xx response") {
         _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
-          .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
+          .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
           .withJsonGzippedBody(batch as AnyObject)
           .withWriteKey("bar")
           .andReturn(304)
@@ -147,7 +147,7 @@ class HTTPClientTest: QuickSpec {
 
       it("does not ask to retry for 4xx response") {
         _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
-          .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
+          .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
           .withJsonGzippedBody(batch as AnyObject)
           .withWriteKey("bar")
           .andReturn(401)
@@ -162,7 +162,7 @@ class HTTPClientTest: QuickSpec {
 
       it("asks to retry for 429 response") {
         _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
-          .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
+          .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
           .withJsonGzippedBody(batch as AnyObject)
           .withWriteKey("bar")
           .andReturn(429)
@@ -177,7 +177,7 @@ class HTTPClientTest: QuickSpec {
 
       it("asks to retry for 5xx response") {
         _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
-          .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
+          .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
           .withJsonGzippedBody(batch as AnyObject)
           .withWriteKey("bar")
           .andReturn(504)
@@ -216,7 +216,7 @@ class HTTPClientTest: QuickSpec {
 
       it("succeeds for 2xx response") {
         _ = stubRequest("POST", "https://mobile-service.segment.com/v1/attribution" as NSString)
-          .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
+          .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
           .withWriteKey("foo")
           .andReturn(200)!
           .withBody("{\"provider\": \"mock\"}" as NSString)
@@ -235,7 +235,7 @@ class HTTPClientTest: QuickSpec {
 
       it("fails for non 2xx response") {
         _ = stubRequest("POST", "https://mobile-service.segment.com/v1/attribution" as NSString)
-          .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
+          .withHeader("User-Agent", "analytics-ios/" + Analytics.version())!
           .withWriteKey("foo")
           .andReturn(404)!
           .withBody("not found" as NSString)

@@ -13,14 +13,14 @@ import Analytics
 
 class AnalyticsTests: QuickSpec {
   override func spec() {
-    let config = SEGAnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
+    let config = AnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
     let cachedSettings = [
       "integrations": [
         "Segment.io": ["apiKey": "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE"]
       ],
       "plan": ["track": [:]],
     ] as NSDictionary
-    var analytics: SEGAnalytics!
+    var analytics: Analytics!
     var testMiddleware: TestMiddleware!
     var testApplication: TestApplication!
 
@@ -31,7 +31,7 @@ class AnalyticsTests: QuickSpec {
       config.application = testApplication
       config.trackApplicationLifecycleEvents = true
 
-      analytics = SEGAnalytics(configuration: config)
+      analytics = Analytics(configuration: config)
       analytics.test_integrationsManager()?.test_setCachedSettings(settings: cachedSettings)
     }
 
@@ -52,14 +52,14 @@ class AnalyticsTests: QuickSpec {
     }
 
     it("persists anonymousId") {
-      let analytics2 = SEGAnalytics(configuration: config)
+      let analytics2 = Analytics(configuration: config)
       expect(analytics.getAnonymousId()) == analytics2.getAnonymousId()
     }
 
     it("persists userId") {
       analytics.identify("testUserId1")
 
-      let analytics2 = SEGAnalytics(configuration: config)
+      let analytics2 = Analytics(configuration: config)
       analytics2.test_integrationsManager()?.test_setCachedSettings(settings: cachedSettings)
 
       expect(analytics.test_integrationsManager()?.test_segmentIntegration()?.test_userId()) == "testUserId1"
@@ -89,7 +89,7 @@ class AnalyticsTests: QuickSpec {
         UIApplicationLaunchOptionsKey.sourceApplication: "testApp",
         UIApplicationLaunchOptionsKey.url: "test://test",
       ])
-      let event = testMiddleware.lastContext?.payload as? SEGTrackPayload
+      let event = testMiddleware.lastContext?.payload as? TrackPayload
       expect(event?.event) == "Application Opened"
       expect(event?.properties?["from_background"] as? Bool) == false
       expect(event?.properties?["referring_application"] as? String) == "testApp"
@@ -99,7 +99,7 @@ class AnalyticsTests: QuickSpec {
     it("fires Application Opened during UIApplicationWillEnterForeground") {
       testMiddleware.swallowEvent = true
       NotificationCenter.default.post(name: .UIApplicationWillEnterForeground, object: testApplication)
-      let event = testMiddleware.lastContext?.payload as? SEGTrackPayload
+      let event = testMiddleware.lastContext?.payload as? TrackPayload
       expect(event?.event) == "Application Opened"
       expect(event?.properties?["from_background"] as? Bool) == true
     }
@@ -107,7 +107,7 @@ class AnalyticsTests: QuickSpec {
     it("fires Application Backgrounded during UIApplicationDidEnterBackground") {
       testMiddleware.swallowEvent = true
       NotificationCenter.default.post(name: .UIApplicationDidEnterBackground, object: testApplication)
-      let event = testMiddleware.lastContext?.payload as? SEGTrackPayload
+      let event = testMiddleware.lastContext?.payload as? TrackPayload
       expect(event?.event) == "Application Backgrounded"
     }
 
@@ -185,7 +185,7 @@ class AnalyticsTests: QuickSpec {
       analytics.open(URL(string: "fb123456789://authorize#access_token=hastoberedacted")!, options: [:])
       
       
-      let event = testMiddleware.lastContext?.payload as? SEGTrackPayload
+      let event = testMiddleware.lastContext?.payload as? TrackPayload
       expect(event?.event) == "Deep Link Opened"
       expect(event?.properties?["url"] as? String) == "fb123456789://authorize#access_token=((redacted/fb-auth-token))"
     }
@@ -197,7 +197,7 @@ class AnalyticsTests: QuickSpec {
       analytics.open(URL(string: "myapp://auth?token=hastoberedacted&other=stuff")!, options: [:])
       
       
-      let event = testMiddleware.lastContext?.payload as? SEGTrackPayload
+      let event = testMiddleware.lastContext?.payload as? TrackPayload
       expect(event?.event) == "Deep Link Opened"
       expect(event?.properties?["url"] as? String) == "myapp://auth?token=((redacted/my-auth))&other=stuff"
     }
