@@ -68,10 +68,10 @@
 {
     SEGContext *ctx = [[SEGContext allocWithZone:zone] initWithAnalytics:self._analytics];
     ctx.eventType = self.eventType;
-    ctx.userId = self.userId;
-    ctx.anonymousId = self.anonymousId;
-    ctx.payload = self.payload;
-    ctx.error = self.error;
+    ctx.userId = [self.userId copy];
+    ctx.anonymousId = [self.anonymousId copy];
+    ctx.payload = self.payload; // FIX: this needs to be copied!!
+    ctx.error = [self.error copy];
     ctx.debug = self.debug;
     return ctx;
 }
