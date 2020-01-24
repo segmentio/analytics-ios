@@ -12,6 +12,7 @@
 #import "SEGFileStorage.h"
 #import "SEGUserDefaultsStorage.h"
 #import "SEGMiddleware.h"
+#import "SEGSourceMiddleware.h"
 #import "SEGContext.h"
 #import "SEGIntegrationsManager.h"
 #import "Internal/SEGUtils.h"
@@ -26,6 +27,7 @@ static SEGAnalytics *__sharedInstance = nil;
 @property (nonatomic, strong) SEGStoreKitTracker *storeKitTracker;
 @property (nonatomic, strong) SEGIntegrationsManager *integrationsManager;
 @property (nonatomic, strong) SEGMiddlewareRunner *runner;
+@property (nonatomic, strong) SEGSourceMiddlewareRunner *sourceMiddlewareRunner;
 
 @end
 
@@ -54,6 +56,9 @@ static SEGAnalytics *__sharedInstance = nil;
 
         self.runner = [[SEGMiddlewareRunner alloc] initWithMiddlewares:
                                                        [configuration.middlewares ?: @[] arrayByAddingObject:self.integrationsManager]];
+        
+        NSArray<id<SEGSourceMiddleware>> *sourceMiddleware = [(configuration.sourceMiddleware ?: @[]) arrayByAddingObject:self.integrationsManager];
+        self.sourceMiddlewareRunner = [[SEGSourceMiddlewareRunner alloc] initWithMiddleware:sourceMiddleware];
 
         // Attach to application state change hooks
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -440,6 +445,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     }];
     // Could probably do more things with callback later, but we don't use it yet.
     [self.runner run:context callback:nil];
+    [self.sourceMiddlewareRunner run:context callback:nil];
 }
 
 @end

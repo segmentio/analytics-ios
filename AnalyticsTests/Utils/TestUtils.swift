@@ -11,18 +11,27 @@ import Nocilla
 import Analytics
 
 class SEGPassthroughMiddleware: SEGMiddleware {
-  var lastContext: SEGContext?
+  var lastContext: Context?
   
-  func context(_ context: SEGContext, next: @escaping SEGMiddlewareNext) {
+  func context(_ context: Context, next: @escaping SEGMiddlewareNext) {
     lastContext = context;
     next(context)
   }
 }
 
+class PassthroughSourceMiddleware: SourceMiddleware {
+    var lastContext: Context?
+  
+    func event(_ payload: Payload, context: Context) -> Context? {
+        lastContext = context
+        return context
+    }
+}
+
 class TestMiddleware: SEGMiddleware {
-  var lastContext: SEGContext?
+  var lastContext: Context?
   var swallowEvent = false
-  func context(_ context: SEGContext, next: @escaping SEGMiddlewareNext) {
+  func context(_ context: Context, next: @escaping SEGMiddlewareNext) {
     lastContext = context
     if !swallowEvent {
       next(context)
@@ -30,7 +39,53 @@ class TestMiddleware: SEGMiddleware {
   }
 }
 
-extension SEGAnalytics {
+class TestSourceMiddleware: SourceMiddleware {
+    var lastContext: Context?
+    var swallowEvent = false
+
+    func event(_ payload: Payload, context: Context) -> Context? {
+        lastContext = context
+        if swallowEvent {
+           return nil
+        }
+        return context
+    }
+}
+
+class CustomizeTrackMiddleware: SourceMiddleware {
+    var lastContext: Context?
+    var swallowEvent = false
+
+    func event(_ payload: Payload, context: Context) -> Context? {
+        if swallowEvent {
+            return nil
+        }
+        
+        if context.eventType == .track {
+            let newContext = context.modify { (ctx) in
+                guard let track = ctx.payload as? TrackPayload else {
+                    return
+                }
+                
+                var newProps = track.properties ?? [:]
+                let newEvent = "[New] \(track.event)"
+                newProps["customAttribute"] = "Hello"
+                newProps["nullTest"] = NSNull()
+                ctx.payload = TrackPayload(
+                  event: newEvent,
+                  properties: newProps,
+                  context: track.context,
+                  integrations: track.integrations
+                )
+            }
+            return newContext
+        }
+        
+        return context
+    }
+}
+
+extension Analytics {
   func test_integrationsManager() -> SEGIntegrationsManager? {
     return self.value(forKey: "integrationsManager") as? SEGIntegrationsManager
   }
@@ -82,7 +137,7 @@ class JsonGzippedBody : LSMatcher, LSMatcheable {
     }
     
     func matchesJson(_ json: AnyObject) -> Bool {
-        let actualValue : () -> NSObject! = {
+        let actualValue : () -> NSObject = {
             return json as! NSObject
         }
         let failureMessage = FailureMessage()

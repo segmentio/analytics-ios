@@ -630,3 +630,14 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 }
 
 @end
+
+
+@implementation SEGIntegrationsManager (SEGSourceMiddleware)
+
+- (SEGContext * _Nullable)event:(SEGTrackPayload *)payload context:(SEGContext *)context
+{
+    NSLog(@"event:context: was called.");
+    return context;
+}
+
+@end

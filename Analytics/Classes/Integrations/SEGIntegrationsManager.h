@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SEGMiddleware.h"
+#import "SEGSourceMiddleware.h"
 
 /**
  * NSNotification name, that is posted after integrations are loaded.
@@ -36,4 +37,7 @@ extern NSString *_Nonnull SEGAnalyticsIntegrationDidStart;
 
 @interface SEGIntegrationsManager (SEGMiddleware) <SEGMiddleware>
 
+@end
+
+@interface SEGIntegrationsManager (SEGSourceMiddleware) <SEGSourceMiddleware>
 @end
