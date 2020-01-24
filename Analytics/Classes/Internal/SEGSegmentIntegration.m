@@ -259,9 +259,18 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
             _telephonyNetworkInfo = [[CTTelephonyNetworkInfo alloc] init];
         });
 
-        CTCarrier *carrier = [_telephonyNetworkInfo subscriberCellularProvider];
-        if (carrier.carrierName.length)
-            network[@"carrier"] = carrier.carrierName;
+        CTCarrier *carrier = nil;
+        NSDictionary *carriers = [_telephonyNetworkInfo serviceSubscriberCellularProviders];
+        if (carriers[@"home"] != nil) {
+            carrier = carriers[@"home"];
+        } else if ([carriers.allKeys count] > 0) {
+            carrier = carriers[carriers.allKeys[0]];
+        }
+
+        if (carrier) {
+            if (carrier.carrierName.length)
+                network[@"carrier"] = carrier.carrierName;
+        }
 #endif
 
         network;
