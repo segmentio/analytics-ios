@@ -23,7 +23,6 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
 
 @protocol SEGIntegrationFactory;
 @protocol SEGCrypto;
-@protocol SEGMiddleware;
 @protocol SEGSourceMiddleware;
 
 /**
@@ -130,7 +129,6 @@ NS_SWIFT_NAME(AnalyticsConfiguration)
 /**
  * Set custom middlewares. Will be run before all integrations
  */
-@property (nonatomic, strong, nullable) NSArray<id<SEGMiddleware>> *middlewares;
 @property (nonatomic, strong, nullable) NSArray<id<SEGSourceMiddleware>> *sourceMiddleware;
 
 /**

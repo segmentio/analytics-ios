@@ -10,27 +10,6 @@
 import Nocilla
 import Analytics
 
-class SEGPassthroughMiddleware: SEGMiddleware {
-  var lastContext: Context?
-  
-  func context(_ context: Context, next: @escaping SEGMiddlewareNext) {
-    lastContext = context;
-    next(context)
-  }
-}
-
-class TestMiddleware: SEGMiddleware {
-  var lastContext: Context?
-  var swallowEvent = false
-  func context(_ context: Context, next: @escaping SEGMiddlewareNext) {
-    lastContext = context
-    if !swallowEvent {
-      next(context)
-    }
-  }
-}
-
-
 extension Analytics {
   func test_integrationsManager() -> SEGIntegrationsManager? {
     return self.value(forKey: "integrationsManager") as? SEGIntegrationsManager

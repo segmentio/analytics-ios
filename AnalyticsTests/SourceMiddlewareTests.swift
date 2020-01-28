@@ -122,10 +122,14 @@ class SourceMiddlewareTests: XCTestCase {
         let appLifePayloadOut = passthru.lastContext?.payload as! ApplicationLifecyclePayload
         XCTAssertTrue(appLifePayloadOut.context["appLifeCalled"] as! Bool == true)
 
-        analytics.open(URL(string: "http://blah.com")!, options: [:])
+        guard let url = URL(string: "http://booty.com") else {
+            XCTAssertTrue(false)
+            return
+        }
+        analytics.open(url, options: [:])
         // let any async operations above complete.
         queue.sync {}
-        let openUrlPayloadOut = passthru.lastContext?.payload as! OpenURLPayload
-        XCTAssertTrue(openUrlPayloadOut.context["openUrlCalled"] as! Bool == true)
+        let openUrlPayload = passthru.lastContext?.payload as! OpenURLPayload
+        XCTAssertTrue(openUrlPayload.context["openUrlCalled"] as! Bool == true)
     }
 }

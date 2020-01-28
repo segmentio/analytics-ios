@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SEGMiddleware.h"
 #import "SEGSourceMiddleware.h"
 
 /**
@@ -34,10 +33,6 @@ extern NSString *_Nonnull SEGAnalyticsIntegrationDidStart;
 
 @end
 
-
-@interface SEGIntegrationsManager (SEGMiddleware) <SEGMiddleware>
-
-@end
 
 @interface SEGIntegrationsManager (SEGSourceMiddleware) <SEGSourceMiddleware>
 @end

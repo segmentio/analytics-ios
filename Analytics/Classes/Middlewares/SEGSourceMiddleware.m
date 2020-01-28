@@ -38,11 +38,13 @@
 
     SEGContext *workingContext = context;
     for (id<SEGSourceMiddleware> item in middleware) {
-        SEGPayload *payload = workingContext.payload;
+        // a nil payload is expected on occasion, such as reset and flush.
+        // an empty but non-nil value will allow the nil catch at the bottom to be effective.
+        SEGPayload *payload = workingContext.payload ? workingContext.payload : [[SEGPayload alloc] init];
         
         if ([item respondsToSelector:@selector(event:context:)]) {
             // try the catch-all first.
-            payload = [item event:workingContext.payload context:workingContext];
+            payload = [item event:payload context:workingContext];
         } else {
             // otherwise, hit the pre-typed ones instead.
             switch (workingContext.eventType) {

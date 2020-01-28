@@ -546,10 +546,12 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 @end
 
 
-@implementation SEGIntegrationsManager (SEGMiddleware)
+@implementation SEGIntegrationsManager (SEGSourceMiddleware)
 
-- (void)context:(SEGContext *)context next:(void (^_Nonnull)(SEGContext *_Nullable))next
+- (SEGPayload * _Nullable)event:(SEGPayload *)payload context:(SEGContext *)context
 {
+    SEGPayload *result = payload;
+    
     switch (context.eventType) {
         case SEGEventTypeIdentify: {
             SEGIdentifyPayload *p = (SEGIdentifyPayload *)context.payload;
@@ -562,26 +564,31 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
                 options =  p.options;
             }
             [self identify:p.userId traits:p.traits options:options];
+            result = p;
             break;
         }
         case SEGEventTypeTrack: {
             SEGTrackPayload *p = (SEGTrackPayload *)context.payload;
             [self track:p.event properties:p.properties options:p.options];
+            result = p;
             break;
         }
         case SEGEventTypeScreen: {
             SEGScreenPayload *p = (SEGScreenPayload *)context.payload;
             [self screen:p.name properties:p.properties options:p.options];
+            result = p;
             break;
         }
         case SEGEventTypeGroup: {
             SEGGroupPayload *p = (SEGGroupPayload *)context.payload;
             [self group:p.groupId traits:p.traits options:p.options];
+            result = p;
             break;
         }
         case SEGEventTypeAlias: {
             SEGAliasPayload *p = (SEGAliasPayload *)context.payload;
             [self alias:p.theNewId options:p.options];
+            result = p;
             break;
         }
         case SEGEventTypeReset:
@@ -606,6 +613,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
             SEGRemoteNotificationPayload *payload = (SEGRemoteNotificationPayload *)context.payload;
             [self handleActionWithIdentifier:payload.actionIdentifier
                        forRemoteNotification:payload.userInfo];
+            result = payload;
             break;
         }
         case SEGEventTypeApplicationLifecycle:
@@ -619,6 +627,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         case SEGEventTypeOpenURL: {
             SEGOpenURLPayload *payload = (SEGOpenURLPayload *)context.payload;
             [self openURL:payload.url options:payload.options];
+            result = payload;
             break;
         }
         case SEGEventTypeUndefined:
@@ -626,18 +635,8 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
             NSLog(@"[ERROR]: Received context with undefined event type %@", context);
             break;
     }
-    next(context);
-}
-
-@end
-
-
-@implementation SEGIntegrationsManager (SEGSourceMiddleware)
-
-- (SEGContext * _Nullable)event:(SEGTrackPayload *)payload context:(SEGContext *)context
-{
-    NSLog(@"event:context: was called.");
-    return context;
+    
+    return result;
 }
 
 @end

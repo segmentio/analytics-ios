@@ -42,14 +42,14 @@ class mockProductResponse: SKProductsResponse {
 class StoreKitTrackerTests: QuickSpec {
   override func spec() {
 
-    var test: TestMiddleware!
+    var test: TestSourceMiddleware!
     var tracker: SEGStoreKitTracker!
     var analytics: Analytics!
 
     beforeEach {
       let config = AnalyticsConfiguration(writeKey: "foobar")
-      test = TestMiddleware()
-      config.middlewares = [test]
+      test = TestSourceMiddleware()
+      config.sourceMiddleware = [test]
       analytics = Analytics(configuration: config)
       tracker = SEGStoreKitTracker.trackTransactions(for: analytics)
     }

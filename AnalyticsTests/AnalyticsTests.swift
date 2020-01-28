@@ -21,12 +21,12 @@ class AnalyticsTests: QuickSpec {
       "plan": ["track": [:]],
     ] as NSDictionary
     var analytics: Analytics!
-    var testMiddleware: TestMiddleware!
+    var testMiddleware: TestSourceMiddleware!
     var testApplication: TestApplication!
 
     beforeEach {
-      testMiddleware = TestMiddleware()
-      config.middlewares = [testMiddleware]
+      testMiddleware = TestSourceMiddleware()
+      config.sourceMiddleware = [testMiddleware]
       testApplication = TestApplication()
       config.application = testApplication
       config.trackApplicationLifecycleEvents = true

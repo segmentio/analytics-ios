@@ -11,7 +11,6 @@
 #import "SEGStorage.h"
 #import "SEGFileStorage.h"
 #import "SEGUserDefaultsStorage.h"
-#import "SEGMiddleware.h"
 #import "SEGSourceMiddleware.h"
 #import "SEGContext.h"
 #import "SEGIntegrationsManager.h"
@@ -26,7 +25,6 @@ static SEGAnalytics *__sharedInstance = nil;
 @property (nonatomic, strong) SEGAnalyticsConfiguration *configuration;
 @property (nonatomic, strong) SEGStoreKitTracker *storeKitTracker;
 @property (nonatomic, strong) SEGIntegrationsManager *integrationsManager;
-@property (nonatomic, strong) SEGMiddlewareRunner *runner;
 @property (nonatomic, strong) SEGSourceMiddlewareRunner *sourceMiddlewareRunner;
 
 @end
@@ -54,9 +52,6 @@ static SEGAnalytics *__sharedInstance = nil;
         // TODO: Figure out if this is really the best way to do things here.
         self.integrationsManager = [[SEGIntegrationsManager alloc] initWithAnalytics:self];
 
-        self.runner = [[SEGMiddlewareRunner alloc] initWithMiddlewares:
-                                                       [configuration.middlewares ?: @[] arrayByAddingObject:self.integrationsManager]];
-        
         NSArray<id<SEGSourceMiddleware>> *sourceMiddleware = [(configuration.sourceMiddleware ?: @[]) arrayByAddingObject:self.integrationsManager];
         self.sourceMiddlewareRunner = [[SEGSourceMiddlewareRunner alloc] initWithMiddleware:sourceMiddleware];
 
@@ -444,7 +439,6 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         ctx.payload = payload;
     }];
     // Could probably do more things with callback later, but we don't use it yet.
-    [self.runner run:context callback:nil];
     [self.sourceMiddlewareRunner run:context callback:nil];
 }
 

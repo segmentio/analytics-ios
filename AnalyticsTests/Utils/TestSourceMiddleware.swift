@@ -122,15 +122,9 @@ class TypedSourceMiddleware: NSObject, SourceMiddleware {
         var newContext = payload.context
         newContext["openUrlCalled"] = true
         let newPayload = OpenURLPayload(context: newContext, integrations: payload.integrations)
+        newPayload.url = payload.url
+        newPayload.options = payload.options
         return newPayload
     }
-
-    func remoteNotificationEvent(_ payload: RemoteNotificationPayload, context: Context) -> Payload? {
-        var newContext = payload.context
-        newContext["remoteCalled"] = true
-        let newPayload = RemoteNotificationPayload(context: payload.context, integrations: payload.integrations)
-        return newPayload
-    }
-
 }
 

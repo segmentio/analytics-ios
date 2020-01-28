@@ -13,15 +13,13 @@ import Analytics
 
 class TrackingTests: QuickSpec {
   override func spec() {
-    var passthrough: SEGPassthroughMiddleware!
+    var passthrough: PassthroughSourceMiddleware!
     var analytics: Analytics!
 
     beforeEach {
       let config = AnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
-      passthrough = SEGPassthroughMiddleware()
-      config.middlewares = [
-        passthrough,
-      ]
+      passthrough = PassthroughSourceMiddleware()
+      config.sourceMiddleware = [passthrough]
       analytics = Analytics(configuration: config)
     }
 
