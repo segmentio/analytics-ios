@@ -66,7 +66,7 @@ class TrackingTests: QuickSpec {
     it("handles alias:") {
       analytics.alias("persistentUserId")
       expect(passthrough.lastContext?.eventType) == .alias
-      let payload = passthrough.lastContext?.payload as? SEGAliasPayload
+      let payload = passthrough.lastContext?.payload as? AliasPayload
       expect(payload?.theNewId) == "persistentUserId"
     }
 

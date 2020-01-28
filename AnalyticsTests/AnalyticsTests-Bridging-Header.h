@@ -14,5 +14,7 @@
 #import <Analytics/SEGUtils.h>
 
 #import "NSData+SEGGUNZIPP.h"
+#import "SEGAnalytics_Private.h"
+
 // Temp hack. We should fix the LSNocilla podspec to make this header publicly available
 #import "LSMatcher.h"

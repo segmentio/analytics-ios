@@ -19,15 +19,6 @@ class SEGPassthroughMiddleware: SEGMiddleware {
   }
 }
 
-class PassthroughSourceMiddleware: SourceMiddleware {
-    var lastContext: Context?
-  
-    func event(_ payload: Payload, context: Context) -> Context? {
-        lastContext = context
-        return context
-    }
-}
-
 class TestMiddleware: SEGMiddleware {
   var lastContext: Context?
   var swallowEvent = false
@@ -39,51 +30,6 @@ class TestMiddleware: SEGMiddleware {
   }
 }
 
-class TestSourceMiddleware: SourceMiddleware {
-    var lastContext: Context?
-    var swallowEvent = false
-
-    func event(_ payload: Payload, context: Context) -> Context? {
-        lastContext = context
-        if swallowEvent {
-           return nil
-        }
-        return context
-    }
-}
-
-class CustomizeTrackMiddleware: SourceMiddleware {
-    var lastContext: Context?
-    var swallowEvent = false
-
-    func event(_ payload: Payload, context: Context) -> Context? {
-        if swallowEvent {
-            return nil
-        }
-        
-        if context.eventType == .track {
-            let newContext = context.modify { (ctx) in
-                guard let track = ctx.payload as? TrackPayload else {
-                    return
-                }
-                
-                var newProps = track.properties ?? [:]
-                let newEvent = "[New] \(track.event)"
-                newProps["customAttribute"] = "Hello"
-                newProps["nullTest"] = NSNull()
-                ctx.payload = TrackPayload(
-                  event: newEvent,
-                  properties: newProps,
-                  context: track.context,
-                  integrations: track.integrations
-                )
-            }
-            return newContext
-        }
-        
-        return context
-    }
-}
 
 extension Analytics {
   func test_integrationsManager() -> SEGIntegrationsManager? {

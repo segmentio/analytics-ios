@@ -3,7 +3,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
+NS_SWIFT_NAME(AliasPayload)
 @interface SEGAliasPayload : SEGPayload
 
 @property (nonatomic, readonly) NSString *theNewId;
