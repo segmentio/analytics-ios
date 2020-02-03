@@ -145,6 +145,7 @@
         result = [self jsonFromData:data needsConversion:&needsConversion];
         if (needsConversion) {
             [self setJSON:result forKey:key];
+            result = [self dataForKey:key];
         }
     }
     return result;
