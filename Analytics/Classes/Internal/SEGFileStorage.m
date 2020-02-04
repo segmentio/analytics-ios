@@ -145,7 +145,10 @@
         result = [self jsonFromData:data needsConversion:&needsConversion];
         if (needsConversion) {
             [self setJSON:result forKey:key];
-            result = [self dataForKey:key];
+            // maybe a little repetitive, but we want to recreate the same path it would
+            // take if it weren't being converted.
+            data = [self dataForKey:key];
+            result = [self jsonFromData:data needsConversion:&needsConversion];
         }
     }
     return result;
