@@ -1,5 +1,5 @@
 target 'AnalyticsTests' do
-    platform :ios, '11'
+    platform :ios, '10'
 
     use_frameworks!
 
