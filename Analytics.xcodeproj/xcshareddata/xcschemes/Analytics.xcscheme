@@ -39,12 +39,22 @@
       </MacroExpansion>
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EADEB8691DECD0EF005322DA"
                BuildableName = "AnalyticsTests.xctest"
                BlueprintName = "AnalyticsTests"
+               ReferencedContainer = "container:Analytics.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9D8CE58B23EE014E00197D0C"
+               BuildableName = "AnalyticsTestsTVOS.xctest"
+               BlueprintName = "AnalyticsTestsTVOS"
                ReferencedContainer = "container:Analytics.xcodeproj">
             </BuildableReference>
          </TestableReference>

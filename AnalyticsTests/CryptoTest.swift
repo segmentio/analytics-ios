@@ -5,7 +5,11 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
+#if TARGET_OS_TV
+import QuickTVOS
+#else
 import Quick
+#endif
 import Nimble
 import Analytics
 
