@@ -68,7 +68,8 @@ static BOOL GetAdTrackingEnabled()
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, strong) NSURL *apiURL;
 @property (nonatomic, strong) SEGHTTPClient *httpClient;
-@property (nonatomic, strong) id<SEGStorage> storage;
+@property (nonatomic, strong) id<SEGStorage> fileStorage;
+@property (nonatomic, strong) id<SEGStorage> userDefaultsStorage;
 @property (nonatomic, strong) NSURLSessionDataTask *attributionRequest;
 
 @end
@@ -76,14 +77,15 @@ static BOOL GetAdTrackingEnabled()
 
 @implementation SEGSegmentIntegration
 
-- (id)initWithAnalytics:(SEGAnalytics *)analytics httpClient:(SEGHTTPClient *)httpClient storage:(id<SEGStorage>)storage
+- (id)initWithAnalytics:(SEGAnalytics *)analytics httpClient:(SEGHTTPClient *)httpClient fileStorage:(id<SEGStorage>)fileStorage userDefaultsStorage:(id<SEGStorage>)userDefaultsStorage;
 {
     if (self = [super init]) {
         self.analytics = analytics;
         self.configuration = analytics.configuration;
         self.httpClient = httpClient;
         self.httpClient.httpSessionDelegate = analytics.configuration.httpSessionDelegate;
-        self.storage = storage;
+        self.fileStorage = fileStorage;
+        self.userDefaultsStorage = userDefaultsStorage;
         self.apiURL = [SEGMENT_API_BASE URLByAppendingPathComponent:@"import"];
         self.userId = [self getUserId];
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
@@ -334,9 +336,9 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         self.userId = userId;
 
 #if TARGET_OS_TV
-        [self.storage setString:userId forKey:SEGUserIdKey];
+        [self.userDefaultsStorage setString:userId forKey:SEGUserIdKey];
 #else
-        [self.storage setString:userId forKey:kSEGUserIdFilename];
+        [self.fileStorage setString:userId forKey:kSEGUserIdFilename];
 #endif
     }];
 }
@@ -347,9 +349,9 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         [self.traits addEntriesFromDictionary:traits];
 
 #if TARGET_OS_TV
-        [self.storage setDictionary:[self.traits copy] forKey:SEGTraitsKey];
+        [self.userDefaultsStorage setDictionary:[self.traits copy] forKey:SEGTraitsKey];
 #else
-        [self.storage setDictionary:[self.traits copy] forKey:kSEGTraitsFilename];
+        [self.fileStorage setDictionary:[self.traits copy] forKey:kSEGTraitsFilename];
 #endif
     }];
 }
@@ -543,12 +545,11 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     [self dispatchBackgroundAndWait:^{
 #if TARGET_OS_TV
-        [self.storage removeKey:SEGUserIdKey];
-        [self.storage removeKey:SEGTraitsKey];
-#else
-        [self.storage removeKey:kSEGUserIdFilename];
-        [self.storage removeKey:kSEGTraitsFilename];
+        [self.userDefaultsStorage removeKey:SEGUserIdKey];
+        [self.userDefaultsStorage removeKey:SEGTraitsKey];
 #endif
+        [self.fileStorage removeKey:kSEGUserIdFilename];
+        [self.fileStorage removeKey:kSEGTraitsFilename];
 
         self.userId = nil;
         self.traits = [NSMutableDictionary dictionary];
@@ -613,11 +614,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (NSMutableArray *)queue
 {
     if (!_queue) {
-#if TARGET_OS_TV
-        _queue = [[self.storage arrayForKey:SEGQueueKey] ?: @[] mutableCopy];
-#else
-        _queue = [[self.storage arrayForKey:kSEGQueueFilename] ?: @[] mutableCopy];
-#endif
+        _queue = [[self.fileStorage arrayForKey:kSEGQueueFilename] ?: @[] mutableCopy];
     }
 
     return _queue;
@@ -627,9 +624,9 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     if (!_traits) {
 #if TARGET_OS_TV
-        _traits = [[self.storage dictionaryForKey:SEGTraitsKey] ?: @{} mutableCopy];
+        _traits = [[self.userDefaultsStorage dictionaryForKey:SEGTraitsKey] ?: @{} mutableCopy];
 #else
-        _traits = [[self.storage dictionaryForKey:kSEGTraitsFilename] ?: @{} mutableCopy];
+        _traits = [[self.fileStorage dictionaryForKey:kSEGTraitsFilename] ?: @{} mutableCopy];
 #endif
     }
 
@@ -643,16 +640,16 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 - (NSString *)getUserId
 {
-    return [[NSUserDefaults standardUserDefaults] valueForKey:SEGUserIdKey] ?: [self.storage stringForKey:kSEGUserIdFilename];
+#if TARGET_OS_TV
+    return [[NSUserDefaults standardUserDefaults] valueForKey:SEGUserIdKey];
+#else
+    return [self.fileStorage stringForKey:kSEGUserIdFilename];
+#endif
 }
 
 - (void)persistQueue
 {
-#if TARGET_OS_TV
-    [self.storage setArray:[self.queue copy] forKey:SEGQueueKey];
-#else
-    [self.storage setArray:[self.queue copy] forKey:kSEGQueueFilename];
-#endif
+    [self.fileStorage setArray:[self.queue copy] forKey:kSEGQueueFilename];
 }
 
 NSString *const SEGTrackedAttributionKey = @"SEGTrackedAttributionKey";

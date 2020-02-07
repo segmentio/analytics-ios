@@ -18,6 +18,6 @@
 
 - (NSURL *_Nonnull)urlForKey:(NSString *_Nonnull)key;
 
-+ (NSURL *_Nullable)applicationSupportDirectoryURL;
++ (NSURL *_Nullable)fileStorageURL;
 
 @end

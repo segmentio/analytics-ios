@@ -21,7 +21,7 @@
 
 - (instancetype)init
 {
-    return [self initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:nil];
+    return [self initWithFolder:[SEGFileStorage fileStorageURL] crypto:nil];
 }
 
 - (instancetype)initWithFolder:(NSURL *)folderURL crypto:(id<SEGCrypto>)crypto
@@ -121,11 +121,16 @@
     [self setJSON:data forKey:key];
 }
 
-+ (NSURL *)applicationSupportDirectoryURL
++ (NSURL *)fileStorageURL
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *supportPath = [paths firstObject];
-    return [NSURL fileURLWithPath:supportPath];
+    #if TARGET_OS_TV
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    #else
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    #endif
+    
+    NSString *storagePath = [paths firstObject];
+    return [NSURL fileURLWithPath:storagePath];
 }
 
 - (NSURL *)urlForKey:(NSString *)key
