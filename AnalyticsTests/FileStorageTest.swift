@@ -13,7 +13,7 @@ class FileStorageTest : QuickSpec {
   override func spec() {
     var storage : SEGFileStorage!
     beforeEach {
-      let url = SEGFileStorage.fileStorageURL()
+      let url = SEGFileStorage.applicationSupportDirectoryURL()
       expect(url).toNot(beNil())
       expect(url?.lastPathComponent) == "Application Support"
       storage = SEGFileStorage(folder: url!, crypto: nil)
@@ -103,7 +103,7 @@ class FileStorageTest : QuickSpec {
     }
     
     it("should work with crypto") {
-      let url = SEGFileStorage.fileStorageURL()
+      let url = SEGFileStorage.applicationSupportDirectoryURL()
       let crypto = SEGAES256Crypto(password: "thetrees")
       let s = SEGFileStorage(folder: url!, crypto: crypto)
       let dict = [

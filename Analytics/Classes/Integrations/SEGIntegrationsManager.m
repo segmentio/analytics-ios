@@ -28,6 +28,7 @@
 NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.did.start";
 static NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
 static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
+static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
 
 
 @interface SEGAnalyticsConfiguration (Private)
@@ -72,9 +73,13 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         self.messageQueue = [[NSMutableArray alloc] init];
         self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
-
+        
         self.userDefaultsStorage = [[SEGUserDefaultsStorage alloc] initWithDefaults:[NSUserDefaults standardUserDefaults] namespacePrefix:nil crypto:configuration.crypto];
-        self.fileStorage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage fileStorageURL] crypto:configuration.crypto];
+        #if TARGET_OS_TV
+            self.fileStorage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage cachesDirectoryURL] crypto:configuration.crypto];
+        #else
+            self.fileStorage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:configuration.crypto];
+        #endif
 
         self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
         NSMutableArray *factories = [[configuration factories] mutableCopy];
@@ -326,9 +331,9 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 {
     if (!_cachedSettings) {
 #if TARGET_OS_TV
-        _cachedSettings = [self.userDefaultsStorage dictionaryForKey:@"analytics.settings.v2.plist"] ?: @{};
+        _cachedSettings = [self.userDefaultsStorage dictionaryForKey:SEGCachedSettingsKey] ?: @{};
 #else
-        _cachedSettings = [self.fileStorage dictionaryForKey:@"analytics.settings.v2.plist"] ?: @{};
+        _cachedSettings = [self.fileStorage dictionaryForKey:SEGCachedSettingsKey] ?: @{};
 #endif
     }
     
@@ -344,9 +349,9 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
     }
     
 #if TARGET_OS_TV
-    [self.userDefaultsStorage setDictionary:_cachedSettings forKey:@"analytics.settings.v2.plist"];
+    [self.userDefaultsStorage setDictionary:_cachedSettings forKey:SEGCachedSettingsKey];
 #else
-    [self.fileStorage setDictionary:_cachedSettings forKey:@"analytics.settings.v2.plist"];
+    [self.fileStorage setDictionary:_cachedSettings forKey:SEGCachedSettingsKey];
 #endif
 
     [self updateIntegrationsWithSettings:settings[@"integrations"]];
