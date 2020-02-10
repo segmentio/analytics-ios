@@ -47,7 +47,7 @@ class AnalyticsTests: QuickSpec {
       expect(analytics.configuration.shouldUseLocationServices) == false
       expect(analytics.configuration.enableAdvertisingTracking) == true
       expect(analytics.configuration.shouldUseBluetooth) == false
-      expect(analytics.configuration.httpSessionDelegate) == nil
+      expect(analytics.configuration.httpSessionDelegate).to(beNil())
       expect(analytics.getAnonymousId()).toNot(beNil())
     }
 
