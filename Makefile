@@ -1,9 +1,6 @@
-SDK ?= "iphonesimulator"
-IOS_DESTINATION := "platform=iOS Simulator,name=iPhone X"
-TVOS_DESTINATION := "platform=tvOS Simulator,name=Apple TV"
 XC_ARGS := -workspace Analytics.xcworkspace GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES
-IOS_XCARGS := $(XC_ARGS) -destination $(IOS_DESTINATION)
-TVOS_XCARGS := $(XC_ARGS) -destination $(TVOS_DESTINATION)
+IOS_XCARGS := $(XC_ARGS) -destination "platform=iOS Simulator,name=iPhone 11" -sdk iphonesimulator
+TVOS_XCARGS := $(XC_ARGS) -destination "platform=tvOS Simulator,name=Apple TV" -sdk appletvsimulator
 XC_BUILD_ARGS := -scheme Analytics ONLY_ACTIVE_ARCH=NO
 XC_TEST_ARGS := GCC_GENERATE_TEST_COVERAGE_FILES=YES RUN_E2E_TESTS=$(RUN_E2E_TESTS) WEBHOOK_AUTH_USERNAME=$(WEBHOOK_AUTH_USERNAME)
 
