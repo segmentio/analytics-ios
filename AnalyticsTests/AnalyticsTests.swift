@@ -208,6 +208,12 @@ class AnalyticsTests: QuickSpec {
       expect(event?.event) == "Deep Link Opened"
       expect(event?.properties?["url"] as? String) == "myapp://auth?token=((redacted/my-auth))&other=stuff"
     }
+    
+    it("defaults SEGQueue to an empty array when missing from file storage") {
+      let integration = analytics.test_integrationsManager()?.test_segmentIntegration()
+      expect(integration).notTo(beNil())
+      integration?.test_fileStorage()?.resetAll()
+      expect(integration?.test_queue()).to(beEmpty())
+    }
   }
-
 }
