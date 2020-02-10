@@ -39,7 +39,7 @@
       </MacroExpansion>
       <Testables>
          <TestableReference
-            skipped = "YES">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EADEB8691DECD0EF005322DA"
