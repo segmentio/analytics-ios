@@ -18,8 +18,8 @@ jobs:
           command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
 
       - run: make dependencies
-      - run: make build-pretty
-      - run: make test-pretty
+      - run: make build
+      - run: make test
       - run: make lint
       - run: make carthage
 

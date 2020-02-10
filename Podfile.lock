@@ -13,10 +13,10 @@ DEPENDENCIES:
   - Nimble (~> 7.3.4)
   - Nocilla (~> 0.11.0)
   - Quick (~> 1.2.0)
-  - SwiftTryCatch (from `https://github.com/segmentio/SwiftTryCatch.git`)
+  - SwiftTryCatch (from `../SwiftTryCatch`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - Alamofire-Synchronous
     - Nimble
@@ -25,12 +25,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   SwiftTryCatch:
-    :git: https://github.com/segmentio/SwiftTryCatch.git
-
-CHECKOUT OPTIONS:
-  SwiftTryCatch:
-    :commit: 2cdec294628f73350c5d8f6f05d08886af57668b
-    :git: https://github.com/segmentio/SwiftTryCatch.git
+    :path: "../SwiftTryCatch"
 
 SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
@@ -38,8 +33,8 @@ SPEC CHECKSUMS:
   Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
   Nocilla: 7af7a386071150cc8aa5da4da97d060f049dd61c
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
-  SwiftTryCatch: 2f4ef36cf5396bdb450006b70633dbce5260d3b3
+  SwiftTryCatch: 6ef1f543b5d287a4f5763c0de2ee9c8568985269
 
-PODFILE CHECKSUM: 6c11ce6879d40225a5ec2b9b5ac275626edbeeb6
+PODFILE CHECKSUM: 97e1faeb9542e55c5bc63b8b91834866c93cd59a
 
 COCOAPODS: 1.8.4
