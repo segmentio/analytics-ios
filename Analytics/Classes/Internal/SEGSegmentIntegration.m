@@ -95,17 +95,18 @@ static BOOL GetAdTrackingEnabled()
         self.backgroundTaskQueue = seg_dispatch_queue_create_specific("io.segment.analytics.backgroundTask", DISPATCH_QUEUE_SERIAL);
         self.flushTaskID = UIBackgroundTaskInvalid;
 
-#if !TARGET_OS_TV
-        // Check for previous queue/track data in NSUserDefaults and remove if present
         [self dispatchBackground:^{
+            // Check for previous queue data in NSUserDefaults and remove if present.
             if ([[NSUserDefaults standardUserDefaults] objectForKey:SEGQueueKey]) {
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGQueueKey];
             }
+#if !TARGET_OS_TV
+            // Check for previous track data in NSUserDefaults and remove if present (Traits still exist in NSUserDefaults on tvOS)
             if ([[NSUserDefaults standardUserDefaults] objectForKey:SEGTraitsKey]) {
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGTraitsKey];
             }
-        }];
 #endif
+        }];
         [self dispatchBackground:^{
             [self trackAttributionData:self.configuration.trackAttributionData];
         }];
@@ -547,10 +548,10 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 #if TARGET_OS_TV
         [self.userDefaultsStorage removeKey:SEGUserIdKey];
         [self.userDefaultsStorage removeKey:SEGTraitsKey];
-#endif
+#else
         [self.fileStorage removeKey:kSEGUserIdFilename];
         [self.fileStorage removeKey:kSEGTraitsFilename];
-
+#endif
         self.userId = nil;
         self.traits = [NSMutableDictionary dictionary];
     }];
