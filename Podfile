@@ -4,8 +4,7 @@ def shared_testing_pods
     pod 'Nocilla', '~> 0.11.0'
     pod 'Alamofire', '~> 4.5'
     pod 'Alamofire-Synchronous', '~> 4.0'
-    # TODO: Change to git url when updated. :git => 'https://github.com/segmentio/SwiftTryCatch.git'
-    pod 'SwiftTryCatch', :path => '../SwiftTryCatch'
+    pod 'SwiftTryCatch', :git => 'https://github.com/segmentio/SwiftTryCatch.git'
 end
 
 target 'AnalyticsTests' do
