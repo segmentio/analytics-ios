@@ -12,7 +12,7 @@ extern NSString *const SEGSegmentRequestDidFailNotification;
 
 @interface SEGSegmentIntegration : NSObject <SEGIntegration>
 
-- (id)initWithAnalytics:(SEGAnalytics *)analytics httpClient:(SEGHTTPClient *)httpClient storage:(id<SEGStorage>)storage;
+- (id)initWithAnalytics:(SEGAnalytics *)analytics httpClient:(SEGHTTPClient *)httpClient fileStorage:(id<SEGStorage>)fileStorage userDefaultsStorage:(id<SEGStorage>)userDefaultsStorage;
 
 @end
 
