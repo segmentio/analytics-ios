@@ -425,8 +425,10 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
         if ([value isKindOfClass:[NSNumber class]]) {
             NSNumber *numberValue = (NSNumber *)value;
             return [numberValue boolValue];
+        } if ([value isKindOfClass:[NSDictionary class]]) {
+            return YES;
         } else {
-            NSString *msg = [NSString stringWithFormat: @"Value for `%@` in integration options is supposed to be a boolean and it is not!"
+            NSString *msg = [NSString stringWithFormat: @"Value for `%@` in integration options is supposed to be a boolean or dictionary and it is not!"
                              "This is likely due to a user-added value in `integrations` that overwrites a value received from the server", key];
             SEGLog(msg);
             NSAssert(NO, msg);
