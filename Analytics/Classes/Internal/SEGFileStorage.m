@@ -51,6 +51,13 @@
 - (void)setData:(NSData *)data forKey:(NSString *)key
 {
     NSURL *url = [self urlForKey:key];
+    
+    // a nil value was supplied, remove the storage for said key.
+    if (data == nil) {
+        [[NSFileManager defaultManager] removeItemAtURL:url error:nil];
+        return;
+    }
+    
     if (self.crypto) {
         NSData *encryptedData = [self.crypto encrypt:data];
         [encryptedData writeToURL:url atomically:YES];
@@ -80,40 +87,38 @@
     return data;
 }
 
-- (NSDictionary *)dictionaryForKey:(NSString *)key
+- (nullable NSDictionary *)dictionaryForKey:(NSString *)key
 {
     return [self jsonForKey:key];
 }
 
-- (void)setDictionary:(NSDictionary *)dictionary forKey:(NSString *)key
+- (void)setDictionary:(nullable NSDictionary *)dictionary forKey:(NSString *)key
 {
     [self setJSON:dictionary forKey:key];
 }
 
-- (NSArray *)arrayForKey:(NSString *)key
+- (nullable NSArray *)arrayForKey:(NSString *)key
 {
     return [self jsonForKey:key];
 }
 
-- (void)setArray:(NSArray *)array forKey:(NSString *)key
+- (void)setArray:(nullable NSArray *)array forKey:(NSString *)key
 {
     [self setJSON:array forKey:key];
 }
 
-- (NSString *)stringForKey:(NSString *)key
+- (nullable NSString *)stringForKey:(NSString *)key
 {
-    // unlike plists, we can't have stray values, they need to be
-    // in a dictionary or array container.
     NSDictionary *data = [self jsonForKey:key];
-    return data[key];
+    if (data) {
+        return data[key];
+    }
+    return nil;
 }
 
-- (void)setString:(NSString *)string forKey:(NSString *)key
+- (void)setString:(nullable NSString *)string forKey:(NSString *)key
 {
-    // unlike plists, we can't have stray values, they need to be
-    // in a dictionary or array container.
-    NSDictionary *data = @{key: string};
-    [self setJSON:data forKey:key];
+    [self setJSON:string forKey:key];
 }
 
 
@@ -148,31 +153,39 @@
         result = [self jsonFromData:data needsConversion:&needsConversion];
         if (needsConversion) {
             [self setJSON:result forKey:key];
+            // maybe a little repetitive, but we want to recreate the same path it would
+            // take if it weren't being converted.
+            data = [self dataForKey:key];
+            result = [self jsonFromData:data needsConversion:&needsConversion];
         }
     }
     return result;
 }
 
-- (void)setJSON:(id _Nonnull)plist forKey:(NSString *)key
+- (void)setJSON:(id _Nonnull)json forKey:(NSString *)key
 {
     NSDictionary *dict = nil;
     
     // json doesn't allow stand alone values like plist (previous storage format) does so
     // we need to massage it a little.
-    if ([plist isKindOfClass:[NSDictionary class]] || [plist isKindOfClass:[NSArray class]]) {
-        dict = plist;
-    } else {
-        dict = @{key: plist};
+    if (json) {
+        if ([json isKindOfClass:[NSDictionary class]] || [json isKindOfClass:[NSArray class]]) {
+            dict = json;
+        } else {
+            dict = @{key: json};
+        }
     }
     
     NSData *data = [self dataFromJSON:dict];
-    if (data) {
-        [self setData:data forKey:key];
-    }
+    [self setData:data forKey:key];
 }
 
 - (NSData *_Nullable)dataFromJSON:(id)json
 {
+    if (json == nil) {
+        return nil;
+    }
+    
     NSError *error = nil;
     NSData *data = [NSJSONSerialization dataWithJSONObject:json options:0 error:&error];
     if (error) {
