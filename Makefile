@@ -1,6 +1,6 @@
 XC_ARGS := -workspace Analytics.xcworkspace GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES
 IOS_XCARGS := $(XC_ARGS) -destination "platform=iOS Simulator,name=iPhone 11" -sdk iphonesimulator
-TVOS_XCARGS := $(XC_ARGS) -destination "platform=tvOS Simulator,name=Apple TV" -sdk appletvsimulator
+TVOS_XCARGS := $(XC_ARGS) -destination "platform=tvOS Simulator,name=Apple TV"
 XC_BUILD_ARGS := -scheme Analytics ONLY_ACTIVE_ARCH=NO
 XC_TEST_ARGS := GCC_GENERATE_TEST_COVERAGE_FILES=YES RUN_E2E_TESTS=$(RUN_E2E_TESTS) WEBHOOK_AUTH_USERNAME=$(WEBHOOK_AUTH_USERNAME)
 
@@ -20,10 +20,10 @@ archive: carthage
 	carthage archive Analytics
 
 clean-ios:
-	set -o pipefail && xcodebuild $(IOS_XCARGS) -scheme AnalyticsTests clean | xcpretty
+	set -o pipefail && xcodebuild $(IOS_XCARGS) -scheme Analytics clean | xcpretty
 
 clean-tvos:
-	set -o pipefail && xcodebuild $(TVOS_XCARGS) -scheme AnalyticsTestsTVOS clean | xcpretty
+	set -o pipefail && xcodebuild $(TVOS_XCARGS) -scheme Analytics clean | xcpretty
 
 clean: clean-ios clean-tvos
 
