@@ -19,6 +19,12 @@ class FileStorageTest : QuickSpec {
       storage = SEGFileStorage(folder: url!, crypto: nil)
     }
     
+    it("Creates caches directory") {
+      let url = SEGFileStorage.cachesDirectoryURL()
+      expect(url).toNot(beNil())
+      expect(url?.lastPathComponent) == "Caches"
+    }
+    
     it("creates folder if none exists") {
       let tempDir = NSURL(fileURLWithPath: NSTemporaryDirectory())
       let url = tempDir.appendingPathComponent(NSUUID().uuidString)
