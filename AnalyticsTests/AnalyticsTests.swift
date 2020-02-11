@@ -31,6 +31,9 @@ class AnalyticsTests: QuickSpec {
       config.application = testApplication
       config.trackApplicationLifecycleEvents = true
 
+      UserDefaults.standard.set("test SEGQueue should be removed", forKey: "SEGQueue")
+      expect(UserDefaults.standard.string(forKey: "SEGQueue")).toNot(beNil())
+      
       analytics = SEGAnalytics(configuration: config)
       analytics.test_integrationsManager()?.test_setCachedSettings(settings: cachedSettings)
     }
@@ -47,10 +50,14 @@ class AnalyticsTests: QuickSpec {
       expect(analytics.configuration.shouldUseLocationServices) == false
       expect(analytics.configuration.enableAdvertisingTracking) == true
       expect(analytics.configuration.shouldUseBluetooth) == false
-      expect(analytics.configuration.httpSessionDelegate) == nil
+      expect(analytics.configuration.httpSessionDelegate).to(beNil())
       expect(analytics.getAnonymousId()).toNot(beNil())
     }
-
+    
+    it("clears SEGQueue from UserDefaults after initialized") {
+      expect(UserDefaults.standard.string(forKey: "SEGQueue")).toEventually(beNil())
+    }
+    
     it("persists anonymousId") {
       let analytics2 = SEGAnalytics(configuration: config)
       expect(analytics.getAnonymousId()) == analytics2.getAnonymousId()
@@ -201,6 +208,12 @@ class AnalyticsTests: QuickSpec {
       expect(event?.event) == "Deep Link Opened"
       expect(event?.properties?["url"] as? String) == "myapp://auth?token=((redacted/my-auth))&other=stuff"
     }
+    
+    it("defaults SEGQueue to an empty array when missing from file storage") {
+      let integration = analytics.test_integrationsManager()?.test_segmentIntegration()
+      expect(integration).notTo(beNil())
+      integration?.test_fileStorage()?.resetAll()
+      expect(integration?.test_queue()).to(beEmpty())
+    }
   }
-
 }

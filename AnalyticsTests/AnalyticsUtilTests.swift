@@ -87,14 +87,19 @@ class AnalyticsUtilTests: QuickSpec {
         let data = [
           "foo": [1, nil, "qfoob", ["baz": "foo"]],
           "bar": "foo"
-        ] as [String : Any]
-        let input = SEGUtils.traverseJSON(data, andReplaceWithFilters: filters)
+        ] as [String: Any]
+        
+        guard let input = SEGUtils.traverseJSON(data, andReplaceWithFilters: filters) as? [String: Any] else {
+          XCTFail("Failed to create actual result from traversed JSON replace")
+          return
+        }
+        
         let output = [
           "foo": [1, nil, "qfoo-barb", ["baz": "foo-bar"]],
           "bar": "foo-bar"
-        ] as [String : Any]
+        ] as [String: Any]
         
-        expect(equals(a: input!, b: output)) == true
+        expect(NSDictionary(dictionary: output).isEqual(to: input)) == true
       }
       
       it("works with nested arrays") {
