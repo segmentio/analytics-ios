@@ -9,6 +9,18 @@ class IntegrationsManagerTest: QuickSpec {
     describe("IntegrationsManager") {
       context("is track event enabled for integration in plan") {
         
+        it("valid value types are used in integration enablement flags") {
+          var exception: NSException? = nil
+          SwiftTryCatch.tryRun({
+            SEGIntegrationsManager.isIntegration("comScore", enabledInOptions: ["comScore": ["blah": 1]])
+            SEGIntegrationsManager.isIntegration("comScore", enabledInOptions: ["comScore": true])
+          }, catchRun: { e in
+            exception = e
+          }, finallyRun: nil)
+          
+          expect(exception).to(beNil())
+        }
+        
         it("asserts when invalid value types are used integration enablement flags") {
           var exception: NSException? = nil
           SwiftTryCatch.tryRun({
@@ -23,7 +35,8 @@ class IntegrationsManagerTest: QuickSpec {
         it("asserts when invalid value types are used integration enablement flags") {
           var exception: NSException? = nil
           SwiftTryCatch.tryRun({
-            SEGIntegrationsManager.isIntegration("comScore", enabledInOptions: ["comScore": ["key": 1]])
+            // we don't accept array's as values.
+            SEGIntegrationsManager.isIntegration("comScore", enabledInOptions: ["comScore": ["key", 1]])
           }, catchRun: { e in
             exception = e
           }, finallyRun: nil)
