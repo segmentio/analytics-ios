@@ -28,6 +28,7 @@
 NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.did.start";
 static NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
 static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
+static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
 
 
 @interface SEGAnalyticsConfiguration (Private)
@@ -51,7 +52,8 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 @property (nonatomic, copy) NSString *cachedAnonymousId;
 @property (nonatomic, strong) SEGHTTPClient *httpClient;
 @property (nonatomic, strong) NSURLSessionDataTask *settingsRequest;
-@property (nonatomic, strong) id<SEGStorage> storage;
+@property (nonatomic, strong) id<SEGStorage> userDefaultsStorage;
+@property (nonatomic, strong) id<SEGStorage> fileStorage;
 
 @end
 
@@ -71,14 +73,17 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics", DISPATCH_QUEUE_SERIAL);
         self.messageQueue = [[NSMutableArray alloc] init];
         self.httpClient = [[SEGHTTPClient alloc] initWithRequestFactory:configuration.requestFactory];
-#if TARGET_OS_TV
-        self.storage = [[SEGUserDefaultsStorage alloc] initWithDefaults:[NSUserDefaults standardUserDefaults] namespacePrefix:nil crypto:configuration.crypto];
-#else
-        self.storage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:configuration.crypto];
-#endif
+        
+        self.userDefaultsStorage = [[SEGUserDefaultsStorage alloc] initWithDefaults:[NSUserDefaults standardUserDefaults] namespacePrefix:nil crypto:configuration.crypto];
+        #if TARGET_OS_TV
+            self.fileStorage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage cachesDirectoryURL] crypto:configuration.crypto];
+        #else
+            self.fileStorage = [[SEGFileStorage alloc] initWithFolder:[SEGFileStorage applicationSupportDirectoryURL] crypto:configuration.crypto];
+        #endif
+
         self.cachedAnonymousId = [self loadOrGenerateAnonymousID:NO];
         NSMutableArray *factories = [[configuration factories] mutableCopy];
-        [factories addObject:[[SEGSegmentIntegrationFactory alloc] initWithHTTPClient:self.httpClient storage:self.storage]];
+        [factories addObject:[[SEGSegmentIntegrationFactory alloc] initWithHTTPClient:self.httpClient fileStorage:self.fileStorage userDefaultsStorage:self.userDefaultsStorage]];
         self.factories = [factories copy];
         self.integrations = [NSMutableDictionary dictionaryWithCapacity:factories.count];
         self.registeredIntegrations = [NSMutableDictionary dictionaryWithCapacity:factories.count];
@@ -285,9 +290,9 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 - (NSString *)loadOrGenerateAnonymousID:(BOOL)reset
 {
 #if TARGET_OS_TV
-    NSString *anonymousId = [self.storage stringForKey:SEGAnonymousIdKey];
+    NSString *anonymousId = [self.userDefaultsStorage stringForKey:SEGAnonymousIdKey];
 #else
-    NSString *anonymousId = [self.storage stringForKey:kSEGAnonymousIdFilename];
+    NSString *anonymousId = [self.fileStorage stringForKey:kSEGAnonymousIdFilename];
 #endif
 
     if (!anonymousId || reset) {
@@ -297,9 +302,9 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         anonymousId = GenerateUUIDString();
         SEGLog(@"New anonymousId: %@", anonymousId);
 #if TARGET_OS_TV
-        [self.storage setString:anonymousId forKey:SEGAnonymousIdKey];
+        [self.userDefaultsStorage setString:anonymousId forKey:SEGAnonymousIdKey];
 #else
-        [self.storage setString:anonymousId forKey:kSEGAnonymousIdFilename];
+        [self.fileStorage setString:anonymousId forKey:kSEGAnonymousIdFilename];
 #endif
     }
     return anonymousId;
@@ -309,9 +314,9 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 {
     self.cachedAnonymousId = anonymousId;
 #if TARGET_OS_TV
-    [self.storage setString:anonymousId forKey:SEGAnonymousIdKey];
+    [self.userDefaultsStorage setString:anonymousId forKey:SEGAnonymousIdKey];
 #else
-    [self.storage setString:anonymousId forKey:@"segment.anonymousId"];
+    [self.fileStorage setString:anonymousId forKey:kSEGAnonymousIdFilename];
 #endif
 }
 
@@ -324,8 +329,14 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
 
 - (NSDictionary *)cachedSettings
 {
-    if (!_cachedSettings)
-        _cachedSettings = [self.storage dictionaryForKey:@"analytics.settings.v2.plist"] ?: @{};
+    if (!_cachedSettings) {
+#if TARGET_OS_TV
+        _cachedSettings = [self.userDefaultsStorage dictionaryForKey:SEGCachedSettingsKey] ?: @{};
+#else
+        _cachedSettings = [self.fileStorage dictionaryForKey:SEGCachedSettingsKey] ?: @{};
+#endif
+    }
+    
     return _cachedSettings;
 }
 
@@ -336,7 +347,12 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         // [@{} writeToURL:settingsURL atomically:YES];
         return;
     }
-    [self.storage setDictionary:_cachedSettings forKey:@"analytics.settings.v2.plist"];
+    
+#if TARGET_OS_TV
+    [self.userDefaultsStorage setDictionary:_cachedSettings forKey:SEGCachedSettingsKey];
+#else
+    [self.fileStorage setDictionary:_cachedSettings forKey:SEGCachedSettingsKey];
+#endif
 
     [self updateIntegrationsWithSettings:settings[@"integrations"]];
 }
@@ -409,8 +425,10 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         if ([value isKindOfClass:[NSNumber class]]) {
             NSNumber *numberValue = (NSNumber *)value;
             return [numberValue boolValue];
+        } if ([value isKindOfClass:[NSDictionary class]]) {
+            return YES;
         } else {
-            NSString *msg = [NSString stringWithFormat: @"Value for `%@` in integration options is supposed to be a boolean and it is not!"
+            NSString *msg = [NSString stringWithFormat: @"Value for `%@` in integration options is supposed to be a boolean or dictionary and it is not!"
                              "This is likely due to a user-added value in `integrations` that overwrites a value received from the server", key];
             SEGLog(msg);
             NSAssert(NO, msg);

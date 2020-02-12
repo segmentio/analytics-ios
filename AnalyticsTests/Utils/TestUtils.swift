@@ -49,6 +49,9 @@ extension SEGIntegrationsManager {
 }
 
 extension SEGSegmentIntegration {
+  func test_fileStorage() -> SEGFileStorage? {
+    return self.value(forKey: "fileStorage") as? SEGFileStorage
+  }
   func test_referrer() -> [String: AnyObject]? {
     return self.value(forKey: "referrer") as? [String: AnyObject]
   }

@@ -3,7 +3,7 @@ version: 2
 jobs:
   build_and_test:
     macos:
-      xcode: "9.4.1"
+      xcode: "11.3.1"
     steps:
       - checkout
       - run: xcrun simctl list
@@ -13,13 +13,24 @@ jobs:
             sudo gem install xcpretty
             sudo gem install cocoapods -v $(var=$(tail -1 Podfile.lock); echo ${var##COCOAPODS:})
 
+      - restore_cache:
+          key: 1-pods-{{ checksum "Podfile.lock" }}
       - run:
-          name: Fetch Cocoapods specs
-          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+          name: Install CocoaPods
+          command: |
+            if [ ! -d "Pods" ]
+            then
+              make dependencies
+            fi
+      - save_cache:
+          key: 1-pods-{{ checksum "Podfile.lock" }}
+          paths:
+            - ./Pods
 
-      - run: make dependencies
-      - run: make build-pretty
-      - run: make test-pretty
+      - run: make build-ios
+      - run: make test-ios
+      - run: make build-tvos
+      - run: make test-tvos
       - run: make lint
       - run: make carthage
 
