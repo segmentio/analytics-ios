@@ -36,7 +36,7 @@ class TrackingTests: QuickSpec {
       expect(passthrough.lastContext?.eventType) == SEGEventType.identify
       let identify = passthrough.lastContext?.payload as? SEGIdentifyPayload
       expect(identify?.userId) == "testUserId1"
-      expect(identify?.anonymousId).to(beNil())
+      expect(identify?.anonymousId).toNot(beNil())
       expect(identify?.traits?["firstName"] as? String) == "Peter"
     }
 
