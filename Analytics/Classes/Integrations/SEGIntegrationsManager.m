@@ -378,14 +378,19 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
                 if (success) {
                     [self setCachedSettings:settings];
                 } else {
-                    // If settings request fail, fall back to using just Segment integration.
-                    // Doesn't address situations where this callback never gets called (though we don't expect that to ever happen).
-                    [self setCachedSettings:@{
-                        @"integrations" : @{
-                            @"Segment.io" : @{@"apiKey" : self.configuration.writeKey},
-                        },
-                        @"plan" : @{@"track" : @{}}
-                    }];
+                    NSDictionary *previouslyCachedSettings = [self cachedSettings];
+                    if (previouslyCachedSettings) {
+                        [self setCachedSettings:previouslyCachedSettings];
+                    } else {
+                        // If settings request fail, fall back to using just Segment integration.
+                        // Doesn't address situations where this callback never gets called (though we don't expect that to ever happen).
+                        [self setCachedSettings:@{
+                            @"integrations" : @{
+                                @"Segment.io" : @{@"apiKey" : self.configuration.writeKey},
+                            },
+                            @"plan" : @{@"track" : @{}}
+                        }];
+                    }
                 }
                 self.settingsRequest = nil;
             });
