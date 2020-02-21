@@ -85,12 +85,12 @@ class AnalyticsUtilTests: QuickSpec {
       
       it("works with nested dictionaries") {
         let data = [
-          "foo": [1, nil, "qfoob", ["baz": "foo"]],
+          "foo": [1, "qfoob", ["baz": "foo"]],
           "bar": "foo"
         ] as [String : Any]
         let input = SEGUtils.traverseJSON(data, andReplaceWithFilters: filters)
         let output = [
-          "foo": [1, nil, "qfoo-barb", ["baz": "foo-bar"]],
+          "foo": [1, "qfoo-barb", ["baz": "foo-bar"]],
           "bar": "foo-bar"
         ] as [String : Any]
         
