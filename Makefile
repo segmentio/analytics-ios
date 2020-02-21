@@ -1,5 +1,5 @@
 SDK ?= "iphonesimulator"
-DESTINATION ?= "platform=iOS Simulator,name=iPhone X"
+DESTINATION ?= "platform=iOS Simulator,name=iPhone 11"
 PROJECT := Analytics
 XC_ARGS := -workspace $(PROJECT).xcworkspace -scheme $(PROJECT) -destination $(DESTINATION) GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES
 XC_BUILD_ARGS := ONLY_ACTIVE_ARCH=NO
