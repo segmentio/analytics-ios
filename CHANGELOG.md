@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+Version 3.7.1 *(21st Feburary, 2020)*
+-------------------------------------
+ The following fixes were backported from the 3.8.x betas
+ 
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/866): Fallback to last settings loaded on iOS.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/864): Differences observed in how iOS/android pass userId/anonId; Corrected.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/785): Fix GCD mutual dependency
+ 
 Version 3.7.0 *(22nd July, 2019)*
 ---------------------------------
 
