@@ -21,6 +21,7 @@ let customizeAllTrackCalls = SEGBlockMiddleware { (context, next) in
       let newEvent = "[New] \(track.event)"
       var newProps = track.properties ?? [:]
       newProps["customAttribute"] = "Hello"
+      newProps["nullTest"] = NSNull()
       ctx.payload = SEGTrackPayload(
         event: newEvent,
         properties: newProps,
@@ -65,6 +66,8 @@ class MiddlewareTests: QuickSpec {
       let track = passthrough.lastContext?.payload as? SEGTrackPayload
       expect(track?.event) == "[New] Purchase Success"
       expect(track?.properties?["customAttribute"] as? String) == "Hello"
+      let isNull = (track?.properties?["nullTest"] is NSNull)
+      expect(isNull) == true
     }
     
     it("expects event to be swallowed if next is not called") {

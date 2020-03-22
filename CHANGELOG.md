@@ -1,6 +1,28 @@
 Change Log
 ==========
 
+Version 3.8.0-beta.1 *(7th January, 2020)*
+------------------------------------------
+
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/856) Reload static context data when the app returns from background.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/855) Fixes issue where customers can overwrite information regarding integration enablement.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/854) Swapped JSON in for the storage format instead of plists.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/853) Hardened handling of user-supplied data in event properties.
+ * [New](https://github.com/segmentio/analytics-ios/pull/839) Added support for SSL pinning.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/842) CoreTelephony library is now only included on iOS targets.
+
+Version 3.8.0-beta.0 *(25th July, 2019)*
+----------------------------------------
+
+ * [New](https://github.com/segmentio/analytics-ios/pull/831): Add iOS Backgrounded Event.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/785): Fix GCD mutual dependency
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/): adding “name” field to payload; updated nimble to version 7.3.4
+
+Version 3.7.0 *(22nd July, 2019)*
+---------------------------------
+
+This release promotes 3.7.0-beta.4 to stable.
+
 Version 3.7.0-beta.4 *(19th June, 2019)*
 -----------------------------------------
  * [Fix](https://github.com/segmentio/analytics-ios/pull/812): Remove invalid `.clang-format` symlink which can cause issues with manual builds.
