@@ -1,13 +1,13 @@
 //
-//  Analytics.h
+//  Analytics.m
 //  Analytics
 //
 //  Created by Brandon Sneed on 3/25/20.
 //  Copyright © 2020 Segment. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "Analytics.h"
 
-@interface Analytics : NSObject
+@implementation Analytics
 
 @end
