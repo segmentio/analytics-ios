@@ -7,7 +7,6 @@
 #import "SEGReachability.h"
 #import "SEGHTTPClient.h"
 #import "SEGStorage.h"
-#import "SEGMacros.h"
 
 #if TARGET_OS_IOS
 #import <CoreTelephony/CTCarrier.h>
@@ -54,7 +53,7 @@ static BOOL GetAdTrackingEnabled()
 @interface SEGSegmentIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
-@property (nonatomic, strong) NSDictionary *_cachedStaticContext;
+@property (nonatomic, strong) NSDictionary *cachedStaticContext;
 @property (nonatomic, strong) NSURLSessionUploadTask *batchRequest;
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
 @property (nonatomic, strong) SEGReachability *reachability;
@@ -108,22 +107,24 @@ static BOOL GetAdTrackingEnabled()
             [self trackAttributionData:self.configuration.trackAttributionData];
         }];
 
-        self.flushTimer = [NSTimer timerWithTimeInterval:self.configuration.flushInterval
-                                                  target:self
-                                                selector:@selector(flush)
-                                                userInfo:nil
-                                                 repeats:YES];
-        
-        [NSRunLoop.mainRunLoop addTimer:self.flushTimer
-                                forMode:NSDefaultRunLoopMode];
-        
-
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(updateStaticContext)
-                                                     name:UIApplicationWillEnterForegroundNotification
-                                                   object:nil];
+        if ([NSThread isMainThread]) {
+            [self setupFlushTimer];
+        } else {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [self setupFlushTimer];
+            });
+        }
     }
     return self;
+}
+
+- (void)setupFlushTimer
+{
+    self.flushTimer = [NSTimer scheduledTimerWithTimeInterval:self.configuration.flushInterval
+                                                       target:self
+                                                     selector:@selector(flush)
+                                                     userInfo:nil
+                                                      repeats:YES];
 }
 
 /*
@@ -167,7 +168,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         dict[@"type"] = @"ios";
         dict[@"model"] = GetDeviceModel();
         dict[@"id"] = [[device identifierForVendor] UUIDString];
-        dict[@"name"] = [device model];
         if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
             dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
         }
@@ -210,29 +210,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 #endif
 
     return dict;
-}
-
-- (void)updateStaticContext
-{
-    self.cachedStaticContext = [self staticContext];
-}
-
-- (NSDictionary *)cachedStaticContext {
-    __block NSDictionary *result = nil;
-    weakify(self);
-    dispatch_sync(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-        strongify(self);
-        result = self._cachedStaticContext;
-    });
-    return result;
-}
-
-- (void)setCachedStaticContext:(NSDictionary *)cachedStaticContext {
-    weakify(self);
-    dispatch_sync(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), ^{
-        strongify(self);
-        self._cachedStaticContext = cachedStaticContext;
-    });
 }
 
 - (NSDictionary *)liveContext

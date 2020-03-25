@@ -5,9 +5,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 NSString *GenerateUUIDString(void);
 
-// Validation Utils
-BOOL serializableDictionaryTypes(NSDictionary *dict);
-
 // Date Utils
 NSString *iso8601FormattedString(NSDate *date);
 
@@ -35,17 +32,5 @@ JSON_DICT SEGCoerceDictionary(NSDictionary *_Nullable dict);
 NSString *_Nullable SEGIDFA(void);
 
 NSString *SEGEventNameForScreenTitle(NSString *title);
-
-// Deep copy and check NSCoding conformance
-@protocol SEGSerializableDeepCopy <NSObject>
--(id _Nullable) serializableDeepCopy;
-@end
-
-@interface NSDictionary(SerializableDeepCopy) <SEGSerializableDeepCopy>
-@end
-
-@interface NSArray(SerializableDeepCopy) <SEGSerializableDeepCopy>
-@end
-
 
 NS_ASSUME_NONNULL_END

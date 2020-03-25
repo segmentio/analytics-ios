@@ -87,38 +87,32 @@
 
 - (NSDictionary *)dictionaryForKey:(NSString *)key
 {
-    return [self jsonForKey:key];
+    return [self plistForKey:key];
 }
 
 - (void)setDictionary:(NSDictionary *)dictionary forKey:(NSString *)key
 {
-    [self setJSON:dictionary forKey:key];
+    [self setPlist:dictionary forKey:key];
 }
 
 - (NSArray *)arrayForKey:(NSString *)key
 {
-    return [self jsonForKey:key];
+    return [self plistForKey:key];
 }
 
 - (void)setArray:(NSArray *)array forKey:(NSString *)key
 {
-    [self setJSON:array forKey:key];
+    [self setPlist:array forKey:key];
 }
 
 - (NSString *)stringForKey:(NSString *)key
 {
-    // unlike plists, we can't have stray values, they need to be
-    // in a dictionary or array container.
-    NSDictionary *data = [self jsonForKey:key];
-    return data[key];
+    return [self plistForKey:key];
 }
 
 - (void)setString:(NSString *)string forKey:(NSString *)key
 {
-    // unlike plists, we can't have stray values, they need to be
-    // in a dictionary or array container.
-    NSDictionary *data = @{key: string};
-    [self setJSON:data forKey:key];
+    [self setPlist:string forKey:key];
 }
 
 + (NSURL *)applicationSupportDirectoryURL
@@ -135,66 +129,44 @@
 
 #pragma mark - Helpers
 
-- (id _Nullable)jsonForKey:(NSString *)key
+- (id _Nullable)plistForKey:(NSString *)key
 {
-    id result = nil;
-    
     NSData *data = [self dataForKey:key];
-    if (data) {
-        BOOL needsConversion = NO;
-        id json = [self jsonFromData:data needsConversion:&needsConversion];
-        if (needsConversion) {
-            [self setJSON:result forKey:key];
-            result = @{key: result};
-        } else {
-            result = json;
-        }
-    }
-    return result;
+    return data ? [self plistFromData:data] : nil;
 }
 
-- (void)setJSON:(id _Nonnull)plist forKey:(NSString *)key
+- (void)setPlist:(id _Nonnull)plist forKey:(NSString *)key
 {
-    NSDictionary *dict = nil;
-    
-    // json doesn't allow stand alone values like plist (previous storage format) does so
-    // we need to massage it a little.
-    if ([plist isKindOfClass:[NSDictionary class]] || [plist isKindOfClass:[NSArray class]]) {
-        dict = plist;
-    } else {
-        dict = @{key: plist};
-    }
-    
-    NSData *data = [self dataFromJSON:dict];
+    NSData *data = [self dataFromPlist:plist];
     if (data) {
         [self setData:data forKey:key];
     }
 }
 
-- (NSData *_Nullable)dataFromJSON:(id)json
+- (NSData *_Nullable)dataFromPlist:(nonnull id)plist
 {
     NSError *error = nil;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:json options:0 error:&error];
+    NSData *data = [NSPropertyListSerialization dataWithPropertyList:plist
+                                                              format:NSPropertyListXMLFormat_v1_0
+                                                             options:0
+                                                               error:&error];
     if (error) {
-        SEGLog(@"Unable to serialize data from json object; %@, %@", error, json);
+        SEGLog(@"Unable to serialize data from plist object", error, plist);
     }
     return data;
 }
 
-- (id _Nullable)jsonFromData:(NSData *_Nonnull)data needsConversion:(BOOL *)needsConversion
+- (id _Nullable)plistFromData:(NSData *_Nonnull)data
 {
     NSError *error = nil;
-    id result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    id plist = [NSPropertyListSerialization propertyListWithData:data
+                                                         options:0
+                                                          format:nil
+                                                           error:&error];
     if (error) {
-        // maybe it's a plist and needs to be converted.
-        result = [self plistFromData:data];
-        if (result != nil) {
-            *needsConversion = YES;
-        } else {
-            SEGLog(@"Unable to parse json from data %@", error);
-        }
+        SEGLog(@"Unable to parse plist from data %@", error);
     }
-    return result;
+    return plist;
 }
 
 - (void)createDirectoryAtURLIfNeeded:(NSURL *)url
@@ -209,41 +181,6 @@
             SEGLog(@"error: %@", error.localizedDescription);
         }
     }
-}
-
-/// Deprecated
-- (NSData *_Nullable)dataFromPlist:(nonnull id)plist
-{
-    NSError *error = nil;
-    NSData *data = nil;
-    // Temporary just-in-case fix for issue #846; Follow-on PR to move away from plist storage.
-    @try {
-        data = [NSPropertyListSerialization dataWithPropertyList:plist
-                                                          format:NSPropertyListXMLFormat_v1_0
-                                                         options:0
-                                                           error:&error];
-    } @catch (NSException *e) {
-        SEGLog(@"Unable to serialize data from plist object; Exception: %@, plist: %@", e, plist);
-    } @finally {
-        if (error) {
-            SEGLog(@"Unable to serialize data from plist object; Error: %@, plist: %@", error, plist);
-        }
-    }
-    return data;
-}
-
-/// Deprecated
-- (id _Nullable)plistFromData:(NSData *_Nonnull)data
-{
-    NSError *error = nil;
-    id plist = [NSPropertyListSerialization propertyListWithData:data
-                                                         options:0
-                                                          format:nil
-                                                           error:&error];
-    if (error) {
-        SEGLog(@"Unable to parse plist from data %@", error);
-    }
-    return plist;
 }
 
 @end

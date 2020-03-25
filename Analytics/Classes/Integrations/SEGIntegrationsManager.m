@@ -402,19 +402,7 @@ static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
         return YES;
     }
     if (options[key]) {
-        id value = options[key];
-        
-        // it's been observed that customers sometimes override this with
-        // value's that aren't bool types.
-        if ([value isKindOfClass:[NSNumber class]]) {
-            NSNumber *numberValue = (NSNumber *)value;
-            return [numberValue boolValue];
-        } else {
-            NSString *msg = [NSString stringWithFormat: @"Value for `%@` in integration options is supposed to be a boolean and it is not!"
-                             "This is likely due to a user-added value in `integrations` that overwrites a value received from the server", key];
-            SEGLog(msg);
-            NSAssert(NO, msg);
-        }
+        return [options[key] boolValue];
     } else if (options[@"All"]) {
         return [options[@"All"] boolValue];
     } else if (options[@"all"]) {

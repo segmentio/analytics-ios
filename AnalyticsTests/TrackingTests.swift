@@ -89,15 +89,6 @@ class TrackingTests: QuickSpec {
       expect(payload?.groupId) == "acme-company"
       expect(payload?.traits?["employees"] as? Int) == 2333
     }
-    
-    it("handles null values") {
-      analytics.track("null test", properties: [
-        "nullTest": NSNull()
-        ])
-      let payload = passthrough.lastContext?.payload as? SEGTrackPayload
-      let isNull = (payload?.properties?["nullTest"] is NSNull)
-      expect(isNull) == true
-    }
   }
 
 }
