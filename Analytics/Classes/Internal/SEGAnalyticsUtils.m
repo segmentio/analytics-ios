@@ -3,6 +3,45 @@
 
 static BOOL kAnalyticsLoggerShowLogs = NO;
 
+
+@interface SEGISO8601NanosecondDateFormatter: NSDateFormatter
+@end
+
+@implementation SEGISO8601NanosecondDateFormatter
+
+- (id)init
+{
+    self = [super init];
+    self.dateFormat = @"yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS:'Z'";
+    self.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    self.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+    return self;
+}
+
+const __SEG_NANO_MAX_LENGTH = 6;
+- (NSString * _Nonnull)stringFromDate:(NSDate *)date
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *dateComponents = [calendar components:NSCalendarUnitSecond | NSCalendarUnitNanosecond fromDate:date];
+    NSString *genericDateString = [super stringFromDate:date];
+    
+    NSMutableArray *stringComponents = [[genericDateString componentsSeparatedByString:@"."] mutableCopy];
+    NSString *nanoSeconds = [NSString stringWithFormat:@"%li", (long)dateComponents.nanosecond];
+    
+    if (nanoSeconds.length > __SEG_NANO_MAX_LENGTH) {
+        nanoSeconds = [nanoSeconds substringToIndex:__SEG_NANO_MAX_LENGTH];
+    } else {
+        nanoSeconds = [nanoSeconds stringByPaddingToLength:__SEG_NANO_MAX_LENGTH withString:@"0" startingAtIndex:0];
+    }
+    
+    NSString *result = [NSString stringWithFormat:@"%@.%@Z", stringComponents[0], nanoSeconds];
+    
+    return result;
+}
+
+@end
+
+
 NSString *GenerateUUIDString()
 {
     CFUUIDRef theUUID = CFUUIDCreate(NULL);
@@ -11,7 +50,20 @@ NSString *GenerateUUIDString()
     return UUIDString;
 }
 
+
 // Date Utils
+NSString *iso8601FormattedString(NSDate *date)
+{
+    static NSDateFormatter *dateFormatter;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        dateFormatter = [[SEGISO8601NanosecondDateFormatter alloc] init];
+    });
+    return [dateFormatter stringFromDate:date];
+}
+
+
+/*// Date Utils
 NSString *iso8601FormattedString(NSDate *date)
 {
     static NSDateFormatter *dateFormatter;
@@ -23,7 +75,8 @@ NSString *iso8601FormattedString(NSDate *date)
         dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     });
     return [dateFormatter stringFromDate:date];
-}
+}*/
+
 
 /** trim the queue so that it contains only upto `max` number of elements. */
 void trimQueue(NSMutableArray *queue, NSUInteger max)

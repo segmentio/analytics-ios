@@ -448,6 +448,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     if (!self.enabled) {
         return;
     }
+    payload.timestamp = iso8601FormattedString([NSDate date]);
     SEGContext *context = [[[SEGContext alloc] initWithAnalytics:self] modify:^(id<SEGMutableContext> _Nonnull ctx) {
         ctx.eventType = eventType;
         ctx.payload = payload;

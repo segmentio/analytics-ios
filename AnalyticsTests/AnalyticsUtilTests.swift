@@ -17,7 +17,7 @@ class AnalyticsUtilTests: QuickSpec {
     it("format NSDate objects to RFC 3339 complaint string") {
       let date = Date(timeIntervalSince1970: 0)
       let formattedString = iso8601FormattedString(date)
-      expect(formattedString) == "1970-01-01T00:00:00.000Z"
+      expect(formattedString) == "1970-01-01T00:00:00.000000Z"
 
       var components = DateComponents()
       components.year = 1992
@@ -31,7 +31,7 @@ class AnalyticsUtilTests: QuickSpec {
       calendar.timeZone = TimeZone(secondsFromGMT: -4 * 60 * 60)!
       let date2 = calendar.date(from: components)!
       let formattedString2 = iso8601FormattedString(date2)
-      expect(formattedString2) == "1992-08-06T11:32:04.335Z"
+      expect(formattedString2) == "1992-08-06T11:32:04.335000Z"
     }
 
     describe("trimQueue", {
