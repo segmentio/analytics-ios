@@ -22,6 +22,12 @@ jobs:
             then
               make dependencies
             fi
+      - run:
+          name: Snyk
+          command: curl -sL https://raw.githubusercontent.com/segmentio/snyk_helpers/master/initialization/snyk.sh | sh
+          environment:
+            SNYK_FAIL_ON: upgradable
+            SNYK_SEVERITY_THRESHOLD: high
       - save_cache:
           key: 1-pods-{{ checksum "Podfile.lock" }}
           paths:
