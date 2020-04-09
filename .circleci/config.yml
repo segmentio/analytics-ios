@@ -54,7 +54,8 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build_and_test
+      - build_and_test:
+          context: snyk
   scheduled_e2e_test:
     triggers:
       - schedule:
