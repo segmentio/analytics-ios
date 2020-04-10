@@ -2,7 +2,7 @@
 #import "NSData+SEGGZIP.h"
 #import "SEGAnalyticsUtils.h"
 
-static const NSUInteger kMaxBatchSize = 500000; // 500KB
+static const NSUInteger kMaxBatchSize = 475000; // 475KB
 
 @implementation SEGHTTPClient
 
@@ -94,12 +94,12 @@ static const NSUInteger kMaxBatchSize = 500000; // 500KB
         completionHandler(NO); // Don't retry this batch.
         return nil;
     }
-    NSData *gzippedPayload = [payload seg_gzippedData];
-    if (gzippedPayload.length >= kMaxBatchSize) {
+    if (payload.length >= kMaxBatchSize) {
         SEGLog(@"Payload exceeded the limit of %luKB per batch", kMaxBatchSize / 1000);
         completionHandler(NO);
         return nil;
     }
+    NSData *gzippedPayload = [payload seg_gzippedData];
 
     NSURLSessionUploadTask *task = [session uploadTaskWithRequest:request fromData:gzippedPayload completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
         if (error) {
