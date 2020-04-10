@@ -193,11 +193,6 @@ class HTTPClientTest: QuickSpec {
       it("fails when batch size exceeds the max limit size") {
         let oversizedBatch: [String: Any] = ["sentAt":"2016-07-19'T'19:25:06Z",
                                              "batch": Array(repeating: ["type":"track", "event":"foo"], count: 16000)]
-        _ = stubRequest("POST", "https://api.segment.io/v1/batch" as NSString)
-          .withHeader("User-Agent", "analytics-ios/" + SEGAnalytics.version())!
-          .withJsonGzippedBody(oversizedBatch as AnyObject)
-          .withWriteKey("bar")
-          .andReturn(429)
         var done = false
         let task = client.upload(oversizedBatch, forWriteKey: "bar") { retry in
           expect(retry) == false
