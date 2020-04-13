@@ -55,7 +55,10 @@
     // of immutable data structure without the cost of having to allocate and reallocate
     // objects over and over again.
     SEGContext *context = self.debug ? [self copy] : self;
+    NSString *originalTimestamp = context.payload.timestamp;
     modify(context);
+    context.payload.timestamp = originalTimestamp;
+    
     // TODO: We could probably add some validation here that the newly modified context
     // is actualy valid. For example, `eventType` should match `paylaod` class.
     // or anonymousId should never be null.
