@@ -57,7 +57,9 @@
     SEGContext *context = self.debug ? [self copy] : self;
     NSString *originalTimestamp = context.payload.timestamp;
     modify(context);
-    context.payload.timestamp = originalTimestamp;
+    if (originalTimestamp) {
+        context.payload.timestamp = originalTimestamp;
+    }
     
     // TODO: We could probably add some validation here that the newly modified context
     // is actualy valid. For example, `eventType` should match `paylaod` class.
