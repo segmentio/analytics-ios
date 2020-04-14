@@ -52,7 +52,7 @@ NSString *GenerateUUIDString()
 
 
 // Date Utils
-NSString *iso8601FormattedString(NSDate *date)
+NSString *iso8601NanoFormattedString(NSDate *date)
 {
     static NSDateFormatter *dateFormatter;
     static dispatch_once_t onceToken;
@@ -62,8 +62,6 @@ NSString *iso8601FormattedString(NSDate *date)
     return [dateFormatter stringFromDate:date];
 }
 
-
-/*// Date Utils
 NSString *iso8601FormattedString(NSDate *date)
 {
     static NSDateFormatter *dateFormatter;
@@ -75,7 +73,7 @@ NSString *iso8601FormattedString(NSDate *date)
         dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
     });
     return [dateFormatter stringFromDate:date];
-}*/
+}
 
 
 /** trim the queue so that it contains only upto `max` number of elements. */
