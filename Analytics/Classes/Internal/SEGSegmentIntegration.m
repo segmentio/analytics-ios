@@ -368,7 +368,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:payload.traits forKey:@"traits"];
-
+    [dictionary setValue:payload.timestamp forKey:@"timestamp"];
     [self enqueueAction:@"identify" dictionary:dictionary context:payload.context integrations:payload.integrations];
 }
 
@@ -377,6 +377,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:payload.event forKey:@"event"];
     [dictionary setValue:payload.properties forKey:@"properties"];
+    [dictionary setValue:payload.timestamp forKey:@"timestamp"];
     [self enqueueAction:@"track" dictionary:dictionary context:payload.context integrations:payload.integrations];
 }
 
@@ -385,6 +386,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:payload.name forKey:@"name"];
     [dictionary setValue:payload.properties forKey:@"properties"];
+    [dictionary setValue:payload.timestamp forKey:@"timestamp"];
 
     [self enqueueAction:@"screen" dictionary:dictionary context:payload.context integrations:payload.integrations];
 }
@@ -394,6 +396,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:payload.groupId forKey:@"groupId"];
     [dictionary setValue:payload.traits forKey:@"traits"];
+    [dictionary setValue:payload.timestamp forKey:@"timestamp"];
 
     [self enqueueAction:@"group" dictionary:dictionary context:payload.context integrations:payload.integrations];
 }
@@ -403,6 +406,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:payload.theNewId forKey:@"userId"];
     [dictionary setValue:self.userId ?: [self.analytics getAnonymousId] forKey:@"previousId"];
+    [dictionary setValue:payload.timestamp forKey:@"timestamp"];
 
     [self enqueueAction:@"alias" dictionary:dictionary context:payload.context integrations:payload.integrations];
 }
@@ -457,9 +461,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 - (void)enqueueAction:(NSString *)action dictionary:(NSMutableDictionary *)payload context:(NSDictionary *)context integrations:(NSDictionary *)integrations
 {
     // attach these parts of the payload outside since they are all synchronous
-    // and the timestamp will be more accurate.
     payload[@"type"] = action;
-    payload[@"timestamp"] = iso8601FormattedString([NSDate date]);
     payload[@"messageId"] = GenerateUUIDString();
 
     [self dispatchBackground:^{

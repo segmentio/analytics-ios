@@ -56,7 +56,13 @@ class TrackingTests: QuickSpec {
     it("handles track:") {
       analytics.track("User Signup", properties: [
         "method": "SSO"
-        ])
+      ], options: [
+        "context": [
+          "device": [
+            "token": "1234"
+          ]
+        ]
+      ])
       expect(passthrough.lastContext?.eventType) == SEGEventType.track
       let payload = passthrough.lastContext?.payload as? SEGTrackPayload
       expect(payload?.event) == "User Signup"

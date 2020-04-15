@@ -448,6 +448,12 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     if (!self.enabled) {
         return;
     }
+    
+    if (self.configuration.experimental.nanosecondTimestamps) {
+        payload.timestamp = iso8601NanoFormattedString([NSDate date]);
+    } else {
+        payload.timestamp = iso8601FormattedString([NSDate date]);
+    }
     SEGContext *context = [[[SEGContext alloc] initWithAnalytics:self] modify:^(id<SEGMutableContext> _Nonnull ctx) {
         ctx.eventType = eventType;
         ctx.payload = payload;
