@@ -18,7 +18,7 @@ static BOOL kAnalyticsLoggerShowLogs = NO;
     return self;
 }
 
-const __SEG_NANO_MAX_LENGTH = 9;
+const NSInteger __SEG_NANO_MAX_LENGTH = 9;
 - (NSString * _Nonnull)stringFromDate:(NSDate *)date
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
