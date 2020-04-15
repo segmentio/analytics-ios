@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 3.8.0-beta.2 *(15th April, 2020)*
+-----------------------------------------
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/861) Move SEGQueue from UserDefaults to caches directory.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/862) Fix issues around plist->json conversion and nil values.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/851) Expect dictionary as well as bool for integration enablement.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/864) Differences observed in how iOS/android pass userId/anonId; Corrected.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/866) Look at previously cached settings before blowing them away.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/876) Added experimental feature to enable nanosecond granularity on timestamps.
+
 Version 3.8.0-beta.1 *(7th January, 2020)*
 ------------------------------------------
 
