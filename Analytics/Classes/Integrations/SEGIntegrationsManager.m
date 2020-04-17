@@ -553,29 +553,28 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
 
     if (eventType != SEGEventTypeUndefined) {
         SEGMiddlewareRunner *runner = self.integrationMiddleware[key];
-        SEGPayload *payload = nil;
-        // things like flush have no args.
-        if (arguments.count > 0) {
-            payload = arguments[0];
-        }
-        SEGContext *context = [[[SEGContext alloc] initWithAnalytics:[SEGAnalytics sharedAnalytics]] modify:^(id<SEGMutableContext> _Nonnull ctx) {
-            ctx.eventType = eventType;
-            ctx.payload = payload;
-        }];
-        NSLog(@"-------");
-        NSLog(@"contextIntegrationBefore = %@", context.payload);
+        if (runner.middlewares.count > 0) {
+            SEGPayload *payload = nil;
+            // things like flush have no args.
+            if (arguments.count > 0) {
+                payload = arguments[0];
+            }
+            SEGContext *context = [[[SEGContext alloc] initWithAnalytics:self.analytics] modify:^(id<SEGMutableContext> _Nonnull ctx) {
+                ctx.eventType = eventType;
+                ctx.payload = payload;
+            }];
+            NSLog(@"-------");
+            NSLog(@"contextIntegrationBefore = %@", context.payload);
 
-        context = [runner run:context callback:nil];
-        // if we weren't given args, don't set them.
-        if (arguments.count > 0) {
-            newArguments[0] = context.payload;
+            context = [runner run:context callback:nil];
+            // if we weren't given args, don't set them.
+            if (arguments.count > 0) {
+                newArguments[0] = context.payload;
+            }
+            NSLog(@"contextIntegrationAfter = %@", context.payload);
         }
-        NSLog(@"contextIntegrationAfter = %@", context.payload);
     }
     
-    if (newArguments.count == 0) {
-        return;
-    }
     SEGLog(@"Running: %@ with arguments %@ on integration: %@", NSStringFromSelector(selector), newArguments, key);
     NSInvocation *invocation = [self invocationForSelector:selector arguments:newArguments];
     [invocation invokeWithTarget:integration];
