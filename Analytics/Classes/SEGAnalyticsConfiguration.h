@@ -26,6 +26,7 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
 @protocol SEGMiddleware;
 
 @class SEGAnalyticsExperimental;
+@class SEGIntegrationMiddleware;
 
 /**
  * This object provides a set of properties to control various policies of the analytics client. Other than `writeKey`, these properties can be changed at any time.
@@ -128,9 +129,20 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
 @property (nonatomic, strong, nullable) id<SEGCrypto> crypto;
 
 /**
- * Set custom middlewares. Will be run before all integrations
+ * Set custom middlewares. Will be run before all integrations.
+ *  This property is deprecated in favor of the `sourceMiddleware` property.
  */
-@property (nonatomic, strong, nullable) NSArray<id<SEGMiddleware>> *middlewares;
+@property (nonatomic, strong, nullable) NSArray<id<SEGMiddleware>> *middlewares DEPRECATED_MSG_ATTRIBUTE("Use .sourceMiddleware instead.");
+
+/**
+ * Set custom source middleware. Will be run before all integrations
+ */
+@property (nonatomic, strong, nullable) NSArray<id<SEGMiddleware>> *sourceMiddleware;
+
+/**
+ * Set custom integration middleware. Will be run before the associated integration.
+ */
+@property (nonatomic, strong, nullable) NSArray<SEGIntegrationMiddleware *> *integrationMiddleware;
 
 /**
  * Register a factory that can be used to create an integration.

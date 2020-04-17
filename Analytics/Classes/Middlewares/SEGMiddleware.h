@@ -51,8 +51,15 @@ typedef void (^RunMiddlewaresCallback)(BOOL earlyExit, NSArray<id<SEGMiddleware>
 // gonna support that for now to keep things simple. If there is a real need later we'll see then.
 @property (nonnull, nonatomic, readonly) NSArray<id<SEGMiddleware>> *middlewares;
 
-- (void)run:(SEGContext *_Nonnull)context callback:(RunMiddlewaresCallback _Nullable)callback;
+- (SEGContext *)run:(SEGContext *_Nonnull)context callback:(RunMiddlewaresCallback _Nullable)callback;
 
-- (instancetype _Nonnull)initWithMiddlewares:(NSArray<id<SEGMiddleware>> *_Nonnull)middlewares;
+- (instancetype _Nonnull)initWithMiddleware:(NSArray<id<SEGMiddleware>> *_Nonnull)middlewares;
 
+@end
+
+// Container object for middlewares for a specific integration.
+@interface SEGIntegrationMiddleware : NSObject
+@property (nonatomic, strong, nonnull, readonly) NSString *integrationKey;
+@property (nonatomic, strong, nullable, readonly) NSArray<id<SEGMiddleware>> *middleware;
+- (instancetype)initWithKey:(NSString *)integrationKey middleware:(NSArray<id<SEGMiddleware>> *)middleware;
 @end

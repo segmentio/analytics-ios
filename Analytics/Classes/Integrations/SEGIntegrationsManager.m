@@ -66,6 +66,7 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
 @property (nonatomic, strong) NSArray *factories;
 @property (nonatomic, strong) NSMutableDictionary *integrations;
 @property (nonatomic, strong) NSMutableDictionary *registeredIntegrations;
+@property (nonatomic, strong) NSMutableDictionary *integrationMiddleware;
 @property (nonatomic) volatile BOOL initialized;
 @property (nonatomic, copy) NSString *cachedAnonymousId;
 @property (nonatomic, strong) SEGHTTPClient *httpClient;
@@ -105,6 +106,7 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
         self.factories = [factories copy];
         self.integrations = [NSMutableDictionary dictionaryWithCapacity:factories.count];
         self.registeredIntegrations = [NSMutableDictionary dictionaryWithCapacity:factories.count];
+        self.integrationMiddleware = [NSMutableDictionary dictionaryWithCapacity:factories.count];
 
         // Update settings on each integration immediately
         [self refreshSettings];
@@ -188,38 +190,6 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
                                options:payload.options
                                   sync:false];
 }
-/*
-- (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
-{
-    NSCAssert2(userId.length > 0 || traits.count > 0, @"either userId (%@) or traits (%@) must be provided.", userId, traits);
-
-    NSDictionary *options;
-    if (p.anonymousId) {
-        NSMutableDictionary *mutableOptions = [[NSMutableDictionary alloc] initWithDictionary:p.options];
-        mutableOptions[@"anonymousId"] = p.anonymousId;
-        options = [mutableOptions copy];
-    } else {
-        options =  p.options;
-    }
-    
-    NSString *anonymousId = [options objectForKey:@"anonymousId"];
-    if (anonymousId) {
-        [self saveAnonymousId:anonymousId];
-    } else {
-        anonymousId = self.cachedAnonymousId;
-    }
-
-    SEGIdentifyPayload *payload = [[SEGIdentifyPayload alloc] initWithUserId:userId
-                                                                 anonymousId:anonymousId
-                                                                      traits:SEGCoerceDictionary(traits)
-                                                                     context:SEGCoerceDictionary([options objectForKey:@"context"])
-                                                                integrations:[options objectForKey:@"integrations"]];
-
-    [self callIntegrationsWithSelector:NSSelectorFromString(@"identify:")
-                             arguments:@[ payload ]
-                               options:options
-                                  sync:false];
-}*/
 
 #pragma mark - Track
 
@@ -383,6 +353,17 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
     [self updateIntegrationsWithSettings:settings[@"integrations"]];
 }
 
+- (nonnull NSArray<id<SEGMiddleware>> *)middlewareForIntegrationKey:(NSString *)key
+{
+    NSMutableArray *result = [[NSMutableArray alloc] init];
+    for (SEGIntegrationMiddleware *container in self.configuration.integrationMiddleware) {
+        if ([container.integrationKey isEqualToString:key]) {
+            [result addObjectsFromArray:container.middleware];
+        }
+    }
+    return result;
+}
+
 - (void)updateIntegrationsWithSettings:(NSDictionary *)projectSettings
 {
     seg_dispatch_specific_sync(_serialQueue, ^{
@@ -397,6 +378,10 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
                 if (integration != nil) {
                     self.integrations[key] = integration;
                     self.registeredIntegrations[key] = @NO;
+                    
+                    // setup integration middleware
+                    NSArray<id<SEGMiddleware>> *middleware = [self middlewareForIntegrationKey:key];
+                    self.integrationMiddleware[key] = [[SEGMiddlewareRunner alloc] initWithMiddleware:middleware];
                 }
                 [[NSNotificationCenter defaultCenter] postNotificationName:SEGAnalyticsIntegrationDidStart object:key userInfo:nil];
             } else {
@@ -499,6 +484,49 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
     }];
 }
 
+/*
+ This kind of sucks, but we wrote ourselves into a corner here.  A larger refactor will need to happen.
+ I also opted to not put this as a utility function because we shouldn't be doing this in the first place,
+ so consider it a one-off.  If you find yourself needing to do this again, lets talk about a refactor.
+ */
+- (SEGEventType)eventTypeFromSelector:(SEL)selector
+{
+    NSString *selectorString = NSStringFromSelector(selector);
+    SEGEventType result = SEGEventTypeUndefined;
+    
+    if ([selectorString hasPrefix:@"identify"]) {
+        result = SEGEventTypeIdentify;
+    } else if ([selectorString hasPrefix:@"track"]) {
+        result = SEGEventTypeTrack;
+    } else if ([selectorString hasPrefix:@"screen"]) {
+        result = SEGEventTypeScreen;
+    } else if ([selectorString hasPrefix:@"group"]) {
+        result = SEGEventTypeGroup;
+    } else if ([selectorString hasPrefix:@"alias"]) {
+        result = SEGEventTypeAlias;
+    } else if ([selectorString hasPrefix:@"reset"]) {
+        result = SEGEventTypeReset;
+    } else if ([selectorString hasPrefix:@"flush"]) {
+        result = SEGEventTypeFlush;
+    } else if ([selectorString hasPrefix:@"receivedRemoteNotification"]) {
+        result = SEGEventTypeReceivedRemoteNotification;
+    } else if ([selectorString hasPrefix:@"failedToRegisterForRemoteNotificationsWithError"]) {
+        result = SEGEventTypeFailedToRegisterForRemoteNotifications;
+    } else if ([selectorString hasPrefix:@"registeredForRemoteNotificationsWithDeviceToken"]) {
+        result = SEGEventTypeRegisteredForRemoteNotifications;
+    } else if ([selectorString hasPrefix:@"handleActionWithIdentifier"]) {
+        result = SEGEventTypeHandleActionWithForRemoteNotification;
+    } else if ([selectorString hasPrefix:@"continueUserActivity"]) {
+        result = SEGEventTypeContinueUserActivity;
+    } else if ([selectorString hasPrefix:@"openURL"]) {
+        result = SEGEventTypeOpenURL;
+    } else if ([selectorString hasPrefix:@"application"]) {
+        result = SEGEventTypeApplicationLifecycle;
+    }
+
+    return result;
+}
+
 - (void)invokeIntegration:(id<SEGIntegration>)integration key:(NSString *)key selector:(SEL)selector arguments:(NSArray *)arguments options:(NSDictionary *)options
 {
     if (![integration respondsToSelector:selector]) {
@@ -510,9 +538,9 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
         SEGLog(@"Not sending call to %@ because it is disabled in options.", key);
         return;
     }
-
-    NSString *eventType = NSStringFromSelector(selector);
-    if ([eventType hasPrefix:@"track:"]) {
+    
+    SEGEventType eventType = [self eventTypeFromSelector:selector];
+    if (eventType == SEGEventTypeTrack) {
         SEGTrackPayload *eventPayload = arguments[0];
         BOOL enabled = [[self class] isTrackEvent:eventPayload.event enabledForIntegration:key inPlan:self.cachedSettings[@"plan"]];
         if (!enabled) {
@@ -521,8 +549,35 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
         }
     }
 
-    SEGLog(@"Running: %@ with arguments %@ on integration: %@", eventType, arguments, key);
-    NSInvocation *invocation = [self invocationForSelector:selector arguments:arguments];
+    NSMutableArray *newArguments = [arguments mutableCopy];
+
+    if (eventType != SEGEventTypeUndefined) {
+        SEGMiddlewareRunner *runner = self.integrationMiddleware[key];
+        SEGPayload *payload = nil;
+        // things like flush have no args.
+        if (arguments.count > 0) {
+            payload = arguments[0];
+        }
+        SEGContext *context = [[[SEGContext alloc] initWithAnalytics:[SEGAnalytics sharedAnalytics]] modify:^(id<SEGMutableContext> _Nonnull ctx) {
+            ctx.eventType = eventType;
+            ctx.payload = payload;
+        }];
+        NSLog(@"-------");
+        NSLog(@"contextIntegrationBefore = %@", context.payload);
+
+        context = [runner run:context callback:nil];
+        // if we weren't given args, don't set them.
+        if (arguments.count > 0) {
+            newArguments[0] = context.payload;
+        }
+        NSLog(@"contextIntegrationAfter = %@", context.payload);
+    }
+    
+    if (newArguments.count == 0) {
+        return;
+    }
+    SEGLog(@"Running: %@ with arguments %@ on integration: %@", NSStringFromSelector(selector), newArguments, key);
+    NSInvocation *invocation = [self invocationForSelector:selector arguments:newArguments];
     [invocation invokeWithTarget:integration];
 }
 
@@ -584,16 +639,6 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
         case SEGEventTypeIdentify: {
             SEGIdentifyPayload *p = (SEGIdentifyPayload *)context.payload;
             [self identify:p];
-            /*
-            NSDictionary *options;
-            if (p.anonymousId) {
-                NSMutableDictionary *mutableOptions = [[NSMutableDictionary alloc] initWithDictionary:p.options];
-                mutableOptions[@"anonymousId"] = p.anonymousId;
-                options = [mutableOptions copy];
-            } else {
-                options =  p.options;
-            }
-            [self identify:p.userId traits:p.traits options:options];*/
             break;
         }
         case SEGEventTypeTrack: {

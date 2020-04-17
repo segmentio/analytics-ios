@@ -12,6 +12,7 @@
 @interface SEGContext () <SEGMutableContext>
 
 @property (nonatomic) SEGEventType eventType;
+@property (nonatomic, nullable) NSString *target;
 @property (nonatomic, nullable) NSString *userId;
 @property (nonatomic, nullable) NSString *anonymousId;
 @property (nonatomic, nullable) SEGPayload *payload;
@@ -78,6 +79,7 @@
     ctx.payload = self.payload;
     ctx.error = self.error;
     ctx.debug = self.debug;
+    ctx.target = self.target;
     return ctx;
 }
 
