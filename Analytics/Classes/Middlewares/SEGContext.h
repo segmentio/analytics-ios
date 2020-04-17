@@ -58,8 +58,6 @@ typedef NS_ENUM(NSInteger, SEGEventType) {
 @property (nonatomic, readonly, nonnull) SEGAnalytics *_analytics;
 @property (nonatomic, readonly) SEGEventType eventType;
 
-@property (nonatomic, readonly, nullable) NSString *target;
-
 @property (nonatomic, readonly, nullable) NSString *userId;
 @property (nonatomic, readonly, nullable) NSString *anonymousId;
 @property (nonatomic, readonly, nullable) NSError *error;
@@ -75,7 +73,6 @@ typedef NS_ENUM(NSInteger, SEGEventType) {
 @protocol SEGMutableContext <NSObject>
 
 @property (nonatomic) SEGEventType eventType;
-@property (nonatomic, nullable) NSString *target;
 @property (nonatomic, nullable) NSString *userId;
 @property (nonatomic, nullable) NSString *anonymousId;
 @property (nonatomic, nullable) SEGPayload *payload;
