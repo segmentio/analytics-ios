@@ -38,12 +38,12 @@ let customizeAllTrackCalls = SEGBlockMiddleware { (context, next) in
 let eatAllCalls = SEGBlockMiddleware { (context, next) in
 }
 
-class MiddlewareTests: QuickSpec {
+class SourceMiddlewareTests: QuickSpec {
   override func spec() {
     it("receives events") {
       let config = SEGAnalyticsConfiguration(writeKey: "TESTKEY")
       let passthrough = SEGPassthroughMiddleware()
-      config.middlewares = [
+      config.sourceMiddleware = [
         passthrough,
       ]
       let analytics = SEGAnalytics(configuration: config)
@@ -56,7 +56,7 @@ class MiddlewareTests: QuickSpec {
     it("modifies and passes event to next") {
       let config = SEGAnalyticsConfiguration(writeKey: "TESTKEY")
       let passthrough = SEGPassthroughMiddleware()
-      config.middlewares = [
+      config.sourceMiddleware = [
         customizeAllTrackCalls,
         passthrough,
       ]
@@ -73,12 +73,74 @@ class MiddlewareTests: QuickSpec {
     it("expects event to be swallowed if next is not called") {
       let config = SEGAnalyticsConfiguration(writeKey: "TESTKEY")
       let passthrough = SEGPassthroughMiddleware()
-      config.middlewares = [
+      config.sourceMiddleware = [
         eatAllCalls,
         passthrough,
       ]
       let analytics = SEGAnalytics(configuration: config)
       analytics.track("Purchase Success")
+      expect(passthrough.lastContext).to(beNil())
+    }
+  }
+}
+
+class IntegrationMiddlewareTests: QuickSpec {
+  override func spec() {
+    it("receives events") {
+      let config = SEGAnalyticsConfiguration(writeKey: "TESTKEY")
+      let passthrough = SEGPassthroughMiddleware()
+      config.integrationMiddleware = [SEGIntegrationMiddleware(key: SEGSegmentIntegrationFactory().key(), middleware: [passthrough])]
+      let analytics = SEGAnalytics(configuration: config)
+      analytics.identify("testUserId1")
+      
+      // pump the runloop until we have a last context.
+      // integration middleware is held up until initialization is completed.
+      while (passthrough.lastContext == nil) {
+        RunLoop.current.run(until: Date.distantPast)
+      }
+      
+      expect(passthrough.lastContext?.eventType) == SEGEventType.identify
+      let identify = passthrough.lastContext?.payload as? SEGIdentifyPayload
+      expect(identify?.userId) == "testUserId1"
+    }
+    
+    it("modifies and passes event to next") {
+      let config = SEGAnalyticsConfiguration(writeKey: "TESTKEY")
+      let passthrough = SEGPassthroughMiddleware()
+      config.integrationMiddleware = [SEGIntegrationMiddleware(key: SEGSegmentIntegrationFactory().key(), middleware: [customizeAllTrackCalls, passthrough])]
+      let analytics = SEGAnalytics(configuration: config)
+      analytics.track("Purchase Success")
+      
+      // pump the runloop until we have a last context.
+      // integration middleware is held up until initialization is completed.
+      while (passthrough.lastContext == nil) {
+        RunLoop.current.run(until: Date.distantPast)
+      }
+      
+      expect(passthrough.lastContext?.eventType) == SEGEventType.track
+      let track = passthrough.lastContext?.payload as? SEGTrackPayload
+      expect(track?.event) == "[New] Purchase Success"
+      expect(track?.properties?["customAttribute"] as? String) == "Hello"
+      let isNull = (track?.properties?["nullTest"] is NSNull)
+      expect(isNull) == true
+    }
+    
+    it("expects event to be swallowed if next is not called") {
+      let config = SEGAnalyticsConfiguration(writeKey: "TESTKEY")
+      let passthrough = SEGPassthroughMiddleware()
+      config.integrationMiddleware = [SEGIntegrationMiddleware(key: SEGSegmentIntegrationFactory().key(), middleware: [eatAllCalls, passthrough])]
+      let analytics = SEGAnalytics(configuration: config)
+      analytics.track("Purchase Success")
+      
+      // Since we're testing that an event is dropped, the previously used run loop pump won't work here.
+      var initialized = false;
+      NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: SEGAnalyticsIntegrationDidStart), object: nil, queue: nil) { (notification) in
+        initialized = true;
+      }
+      while (!initialized) {
+        RunLoop.current.run(until: Date.distantPast)
+      }
+
       expect(passthrough.lastContext).to(beNil())
     }
   }
