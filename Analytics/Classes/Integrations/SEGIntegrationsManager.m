@@ -563,15 +563,12 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
                 ctx.eventType = eventType;
                 ctx.payload = payload;
             }];
-            NSLog(@"-------");
-            NSLog(@"contextIntegrationBefore = %@", context.payload);
 
             context = [runner run:context callback:nil];
             // if we weren't given args, don't set them.
             if (arguments.count > 0) {
                 newArguments[0] = context.payload;
             }
-            NSLog(@"contextIntegrationAfter = %@", context.payload);
         }
     }
     
@@ -699,7 +696,7 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
         }
         case SEGEventTypeUndefined:
             NSAssert(NO, @"Received context with undefined event type %@", context);
-            NSLog(@"[ERROR]: Received context with undefined event type %@", context);
+            SEGLog(@"[ERROR]: Received context with undefined event type %@", context);
             break;
     }
     next(context);

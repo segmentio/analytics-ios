@@ -70,12 +70,9 @@
         return context;
     }
     
-    NSLog(@"contextA = %@", [result.payload description]);
     [middlewares[0] context:result next:^(SEGContext *_Nullable newContext) {
         NSArray *remainingMiddlewares = [middlewares subarrayWithRange:NSMakeRange(1, middlewares.count - 1)];
-        NSLog(@"contextBefore = %@", [result.payload description]);
         result = [self runMiddlewares:remainingMiddlewares context:newContext callback:callback];
-        NSLog(@"contextAfter = %@", [result.payload description]);
     }];
     
     return result;
