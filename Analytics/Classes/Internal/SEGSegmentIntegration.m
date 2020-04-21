@@ -486,7 +486,19 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         [payload setValue:[context copy] forKey:@"context"];
 
         SEGLog(@"%@ Enqueueing action: %@", self, payload);
-        [self queuePayload:[payload copy]];
+        
+        NSDictionary *queuePayload = [payload copy];
+        
+        if (self.configuration.experimental.rawSegmentModificationBlock != nil) {
+            NSDictionary *tempPayload = self.configuration.experimental.rawSegmentModificationBlock(queuePayload);
+            if (tempPayload == nil) {
+                SEGLog(@"rawSegmentModificationBlock cannot be used to drop events!");
+            } else {
+                // prevent anything else from modifying it at this point.
+                queuePayload = [tempPayload copy];
+            }
+        }
+        [self queuePayload:queuePayload];
     }];
 }
 

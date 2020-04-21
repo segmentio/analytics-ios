@@ -192,6 +192,9 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
 
 @end
 
+#pragma mark - Experimental
+
+typedef  NSDictionary * _Nonnull (^SEGRawModificationBlock)( NSDictionary * _Nonnull rawPayload);
 
 @interface SEGAnalyticsExperimental : NSObject
 /**
@@ -204,4 +207,12 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
  received.
  */
 @property (nonatomic, assign) BOOL nanosecondTimestamps;
+/**
+ Experimental support for transformation of raw dictionaries prior to being sent to segment.
+ This should generally NOT be used, but is a current stop-gap measure for some customers who need to filter
+ payload data prior to being received by segment.com.  This property will go away in future versions when context
+ object data is made available earlier in the event pipeline.
+ */
+@property (nonatomic, strong, nullable) SEGRawModificationBlock rawSegmentModificationBlock;
+
 @end
