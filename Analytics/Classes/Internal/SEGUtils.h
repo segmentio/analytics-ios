@@ -15,3 +15,5 @@
 + (id _Nullable)traverseJSON:(id _Nullable)object andReplaceWithFilters:(nonnull NSDictionary<NSString*, NSString*>*)patterns;
 
 @end
+
+BOOL isUnitTesting();

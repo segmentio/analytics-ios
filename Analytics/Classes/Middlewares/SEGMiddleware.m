@@ -10,6 +10,17 @@
 #import "SEGMiddleware.h"
 
 
+@implementation SEGIntegrationMiddleware
+- (instancetype)initWithKey:(NSString *)integrationKey middleware:(NSArray<id<SEGMiddleware>> *)middleware
+{
+    if (self = [super init]) {
+        _integrationKey = integrationKey;
+        _middleware = middleware;
+    }
+    return self;
+}
+@end
+
 @implementation SEGBlockMiddleware
 
 - (instancetype)initWithBlock:(SEGMiddlewareBlock)block
@@ -30,7 +41,7 @@
 
 @implementation SEGMiddlewareRunner
 
-- (instancetype)initWithMiddlewares:(NSArray<id<SEGMiddleware>> *_Nonnull)middlewares
+- (instancetype)initWithMiddleware:(NSArray<id<SEGMiddleware>> *_Nonnull)middlewares
 {
     if (self = [super init]) {
         _middlewares = middlewares;
@@ -38,29 +49,33 @@
     return self;
 }
 
-- (void)run:(SEGContext *_Nonnull)context callback:(RunMiddlewaresCallback _Nullable)callback
+- (SEGContext *)run:(SEGContext *_Nonnull)context callback:(RunMiddlewaresCallback _Nullable)callback
 {
-    [self runMiddlewares:self.middlewares context:context callback:callback];
+    return [self runMiddlewares:self.middlewares context:context callback:callback];
 }
 
 // TODO: Maybe rename SEGContext to SEGEvent to be a bit more clear?
 // We could also use some sanity check / other types of logging here.
-- (void)runMiddlewares:(NSArray<id<SEGMiddleware>> *_Nonnull)middlewares
+- (SEGContext *)runMiddlewares:(NSArray<id<SEGMiddleware>> *_Nonnull)middlewares
                context:(SEGContext *_Nonnull)context
               callback:(RunMiddlewaresCallback _Nullable)callback
 {
+    __block SEGContext * _Nonnull result = context;
+
     BOOL earlyExit = context == nil;
     if (middlewares.count == 0 || earlyExit) {
         if (callback) {
             callback(earlyExit, middlewares);
         }
-        return;
+        return context;
     }
-
-    [middlewares[0] context:context next:^(SEGContext *_Nullable newContext) {
+    
+    [middlewares[0] context:result next:^(SEGContext *_Nullable newContext) {
         NSArray *remainingMiddlewares = [middlewares subarrayWithRange:NSMakeRange(1, middlewares.count - 1)];
-        [self runMiddlewares:remainingMiddlewares context:newContext callback:callback];
+        result = [self runMiddlewares:remainingMiddlewares context:newContext callback:callback];
     }];
+    
+    return result;
 }
 
 @end

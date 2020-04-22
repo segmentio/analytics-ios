@@ -27,7 +27,6 @@
 @implementation SEGAnalyticsExperimental
 @end
 
-
 @interface SEGAnalyticsConfiguration ()
 
 @property (nonatomic, copy, readwrite) NSString *writeKey;
@@ -85,6 +84,18 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"<%p:%@, %@>", self, self.class, [self dictionaryWithValuesForKeys:@[ @"writeKey", @"shouldUseLocationServices", @"flushAt" ]]];
+}
+
+// MARK: remove these when `middlewares` property is removed.
+
+- (void)setMiddlewares:(NSArray<id<SEGMiddleware>> *)middlewares
+{
+    self.sourceMiddleware = middlewares;
+}
+
+- (NSArray<id<SEGMiddleware>> *)middlewares
+{
+    return self.sourceMiddleware;
 }
 
 @end

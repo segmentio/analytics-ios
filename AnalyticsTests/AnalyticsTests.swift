@@ -26,7 +26,7 @@ class AnalyticsTests: QuickSpec {
 
     beforeEach {
       testMiddleware = TestMiddleware()
-      config.middlewares = [testMiddleware]
+      config.sourceMiddleware = [testMiddleware]
       testApplication = TestApplication()
       config.application = testApplication
       config.trackApplicationLifecycleEvents = true

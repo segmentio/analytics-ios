@@ -49,7 +49,7 @@ class StoreKitTrackerTests: QuickSpec {
     beforeEach {
       let config = SEGAnalyticsConfiguration(writeKey: "foobar")
       test = TestMiddleware()
-      config.middlewares = [test]
+      config.sourceMiddleware = [test]
       analytics = SEGAnalytics(configuration: config)
       tracker = SEGStoreKitTracker.trackTransactions(for: analytics)
     }

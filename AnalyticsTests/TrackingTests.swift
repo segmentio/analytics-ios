@@ -19,7 +19,7 @@ class TrackingTests: QuickSpec {
     beforeEach {
       let config = SEGAnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
       passthrough = SEGPassthroughMiddleware()
-      config.middlewares = [
+      config.sourceMiddleware = [
         passthrough,
       ]
       analytics = SEGAnalytics(configuration: config)

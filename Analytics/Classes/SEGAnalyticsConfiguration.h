@@ -26,6 +26,7 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
 @protocol SEGMiddleware;
 
 @class SEGAnalyticsExperimental;
+@class SEGIntegrationMiddleware;
 
 /**
  * This object provides a set of properties to control various policies of the analytics client. Other than `writeKey`, these properties can be changed at any time.
@@ -128,9 +129,20 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
 @property (nonatomic, strong, nullable) id<SEGCrypto> crypto;
 
 /**
- * Set custom middlewares. Will be run before all integrations
+ * Set custom middlewares. Will be run before all integrations.
+ *  This property is deprecated in favor of the `sourceMiddleware` property.
  */
-@property (nonatomic, strong, nullable) NSArray<id<SEGMiddleware>> *middlewares;
+@property (nonatomic, strong, nullable) NSArray<id<SEGMiddleware>> *middlewares DEPRECATED_MSG_ATTRIBUTE("Use .sourceMiddleware instead.");
+
+/**
+ * Set custom source middleware. Will be run before all integrations
+ */
+@property (nonatomic, strong, nullable) NSArray<id<SEGMiddleware>> *sourceMiddleware;
+
+/**
+ * Set custom integration middleware. Will be run before the associated integration.
+ */
+@property (nonatomic, strong, nullable) NSArray<SEGIntegrationMiddleware *> *integrationMiddleware;
 
 /**
  * Register a factory that can be used to create an integration.
@@ -180,6 +192,9 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
 
 @end
 
+#pragma mark - Experimental
+
+typedef  NSDictionary * _Nonnull (^SEGRawModificationBlock)( NSDictionary * _Nonnull rawPayload);
 
 @interface SEGAnalyticsExperimental : NSObject
 /**
@@ -192,4 +207,12 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
  received.
  */
 @property (nonatomic, assign) BOOL nanosecondTimestamps;
+/**
+ Experimental support for transformation of raw dictionaries prior to being sent to segment.
+ This should generally NOT be used, but is a current stop-gap measure for some customers who need to filter
+ payload data prior to being received by segment.com.  This property will go away in future versions when context
+ object data is made available earlier in the event pipeline.
+ */
+@property (nonatomic, strong, nullable) SEGRawModificationBlock rawSegmentModificationBlock;
+
 @end

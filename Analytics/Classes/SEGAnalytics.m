@@ -52,8 +52,8 @@ static SEGAnalytics *__sharedInstance = nil;
         // TODO: Figure out if this is really the best way to do things here.
         self.integrationsManager = [[SEGIntegrationsManager alloc] initWithAnalytics:self];
 
-        self.runner = [[SEGMiddlewareRunner alloc] initWithMiddlewares:
-                                                       [configuration.middlewares ?: @[] arrayByAddingObject:self.integrationsManager]];
+        self.runner = [[SEGMiddlewareRunner alloc] initWithMiddleware:
+                                                       [configuration.sourceMiddleware ?: @[] arrayByAddingObject:self.integrationsManager]];
 
         // Attach to application state change hooks
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];

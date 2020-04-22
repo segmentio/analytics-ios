@@ -25,7 +25,7 @@
 
 - (instancetype)init
 {
-    @throw [NSException exceptionWithName:@"Bad Initization"
+    @throw [NSException exceptionWithName:@"Bad Initialization"
                                    reason:@"Please use initWithAnalytics:"
                                  userInfo:nil];
 }
