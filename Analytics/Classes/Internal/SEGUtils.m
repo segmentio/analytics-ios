@@ -89,3 +89,14 @@
 }
 
 @end
+
+BOOL isUnitTesting()
+{
+    static dispatch_once_t pred = 0;
+    static BOOL _isUnitTesting = NO;
+    dispatch_once(&pred, ^{
+        NSDictionary *env = [NSProcessInfo processInfo].environment;
+        _isUnitTesting = (env[@"XCTestConfigurationFilePath"] != nil);
+    });
+    return _isUnitTesting;
+}

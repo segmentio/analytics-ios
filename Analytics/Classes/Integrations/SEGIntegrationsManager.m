@@ -24,6 +24,7 @@
 #import "SEGGroupPayload.h"
 #import "SEGScreenPayload.h"
 #import "SEGAliasPayload.h"
+#import "SEGUtils.h"
 
 NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.did.start";
 static NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
@@ -373,6 +374,9 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
         for (id<SEGIntegrationFactory> factory in self.factories) {
             NSString *key = [factory key];
             NSDictionary *integrationSettings = [projectSettings objectForKey:key];
+            if (isUnitTesting()) {
+                integrationSettings = @{};
+            }
             if (integrationSettings) {
                 id<SEGIntegration> integration = [factory createWithSettings:integrationSettings forAnalytics:self.analytics];
                 if (integration != nil) {

@@ -95,8 +95,14 @@ class IntegrationMiddlewareTests: QuickSpec {
       
       // pump the runloop until we have a last context.
       // integration middleware is held up until initialization is completed.
-      while (passthrough.lastContext == nil) {
-        RunLoop.current.run(until: Date.distantPast)
+      waitUntil(timeout: 60) { done in
+        let queue = DispatchQueue(label: "test")
+        queue.async {
+          while(passthrough.lastContext == nil) {
+            sleep(1);
+          }
+          done()
+        }
       }
       
       expect(passthrough.lastContext?.eventType) == SEGEventType.identify
@@ -113,8 +119,14 @@ class IntegrationMiddlewareTests: QuickSpec {
       
       // pump the runloop until we have a last context.
       // integration middleware is held up until initialization is completed.
-      while (passthrough.lastContext == nil) {
-        RunLoop.current.run(until: Date.distantPast)
+      waitUntil(timeout: 60) { done in
+        let queue = DispatchQueue(label: "test")
+        queue.async {
+          while(passthrough.lastContext == nil) {
+            sleep(1)
+          }
+          done()
+        }
       }
       
       expect(passthrough.lastContext?.eventType) == SEGEventType.track
@@ -131,14 +143,20 @@ class IntegrationMiddlewareTests: QuickSpec {
       config.integrationMiddleware = [SEGIntegrationMiddleware(key: SEGSegmentIntegrationFactory().key(), middleware: [eatAllCalls, passthrough])]
       let analytics = SEGAnalytics(configuration: config)
       analytics.track("Purchase Success")
-      
+
       // Since we're testing that an event is dropped, the previously used run loop pump won't work here.
       var initialized = false;
       NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: SEGAnalyticsIntegrationDidStart), object: nil, queue: nil) { (notification) in
         initialized = true;
       }
-      while (!initialized) {
-        RunLoop.current.run(until: Date.distantPast)
+      waitUntil(timeout: 60) { done in
+        let queue = DispatchQueue(label: "test")
+        queue.async {
+          while (initialized != true) {
+            sleep(1)
+          }
+          done()
+        }
       }
 
       expect(passthrough.lastContext).to(beNil())
