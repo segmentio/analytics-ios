@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 4.0.0-beta.0 *(22nd April, 2020)*
+-----------------------------------------
+
+ * [New](https://github.com/segmentio/analytics-ios/pull/879) Added integration middleware functionality.
+
 Version 3.8.0 *(22nd April, 2020)*
 ----------------------------------
  * Promoting 3.8.x series to stable release.  This includes all changes since 3.7.
