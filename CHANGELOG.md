@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.8.0 *(22nd April, 2020)*
+----------------------------------
+ * Promoting 3.8.x series to stable release.  This includes all changes since 3.7.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/874) Implement maximum batch request size.
+ 
 Version 3.8.0-beta.2 *(15th April, 2020)*
 -----------------------------------------
  * [Fix](https://github.com/segmentio/analytics-ios/pull/861) Move SEGQueue from UserDefaults to caches directory.
