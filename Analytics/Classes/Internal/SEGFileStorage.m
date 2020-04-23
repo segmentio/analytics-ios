@@ -109,10 +109,18 @@
 
 - (nullable NSString *)stringForKey:(NSString *)key
 {
-    NSDictionary *data = [self jsonForKey:key];
-    if (data) {
+    id data = [self jsonForKey:key];
+
+    if (data == nil) {
+        return nil;
+    }
+
+    if ([data isKindOfClass:[NSString class]]) {
+        return data;
+    } else if ([data isKindOfClass:[NSDictionary class]]) {
         return data[key];
     }
+
     return nil;
 }
 
