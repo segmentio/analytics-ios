@@ -32,3 +32,4 @@ Carthage
 # itself has no pod dependencies, only our tests do.
 Pods/
 .clang-format
+.idea
