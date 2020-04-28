@@ -24,6 +24,10 @@
 
 @end
 
+@implementation SEGPuttingDeviceTokenPayload
+
+@end
+
 
 @implementation SEGContinueUserActivityPayload
 

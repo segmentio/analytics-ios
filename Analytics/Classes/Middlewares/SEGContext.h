@@ -27,6 +27,7 @@ typedef NS_ENUM(NSInteger, SEGEventType) {
     SEGEventTypeReceivedRemoteNotification,
     SEGEventTypeFailedToRegisterForRemoteNotifications,
     SEGEventTypeRegisteredForRemoteNotifications,
+    SEGEventTypePuttingDeviceToken,
     SEGEventTypeHandleActionWithForRemoteNotification,
 
     // Application Lifecycle

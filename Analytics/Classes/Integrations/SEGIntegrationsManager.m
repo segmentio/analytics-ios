@@ -253,6 +253,11 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
     [self callIntegrationsWithSelector:_cmd arguments:@[ deviceToken ] options:nil sync:true];
 }
 
+- (void)putDeviceToken:(NSString *)deviceToken
+{
+    [self callIntegrationsWithSelector:_cmd arguments:@[ deviceToken ] options:nil sync:true];
+}
+
 - (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo
 {
     [self callIntegrationsWithSelector:_cmd arguments:@[ identifier, userInfo ] options:nil sync:true];
@@ -518,6 +523,8 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
         result = SEGEventTypeFailedToRegisterForRemoteNotifications;
     } else if ([selectorString hasPrefix:@"registeredForRemoteNotificationsWithDeviceToken"]) {
         result = SEGEventTypeRegisteredForRemoteNotifications;
+    } else if ([selectorString hasPrefix:@"putDeviceToken"]) {
+        result = SEGEventTypePuttingDeviceToken;
     } else if ([selectorString hasPrefix:@"handleActionWithIdentifier"]) {
         result = SEGEventTypeHandleActionWithForRemoteNotification;
     } else if ([selectorString hasPrefix:@"continueUserActivity"]) {
@@ -678,6 +685,9 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
         case SEGEventTypeRegisteredForRemoteNotifications:
             [self registeredForRemoteNotificationsWithDeviceToken:
                       [(SEGRemoteNotificationPayload *)context.payload deviceToken]];
+            break;
+        case SEGEventTypePuttingDeviceToken:
+            [self putDeviceToken:[(SEGPuttingDeviceTokenPayload *)context.payload deviceToken]];
             break;
         case SEGEventTypeHandleActionWithForRemoteNotification: {
             SEGRemoteNotificationPayload *payload = (SEGRemoteNotificationPayload *)context.payload;

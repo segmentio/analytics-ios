@@ -58,3 +58,9 @@ NS_ASSUME_NONNULL_END
 @property (nonatomic, strong, nullable) NSData *deviceToken;
 
 @end
+
+@interface SEGPuttingDeviceTokenPayload : SEGPayload
+
+@property (nonatomic, strong, nonnull) NSString *deviceToken;
+
+@end

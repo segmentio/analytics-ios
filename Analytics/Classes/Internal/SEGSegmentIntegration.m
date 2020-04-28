@@ -426,6 +426,11 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     [self.cachedStaticContext[@"device"] setObject:[token copy] forKey:@"token"];
 }
 
+- (void)putDeviceToken:(NSString *)deviceToken
+{
+    [self.cachedStaticContext[@"device"] setObject:deviceToken forKey:@"token"];
+}
+
 - (void)continueUserActivity:(NSUserActivity *)activity
 {
     if ([activity.activityType isEqualToString:NSUserActivityTypeBrowsingWeb]) {

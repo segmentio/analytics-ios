@@ -148,6 +148,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)receivedRemoteNotification:(NSDictionary *)userInfo;
 - (void)failedToRegisterForRemoteNotificationsWithError:(NSError *)error;
 - (void)registeredForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
+
+/*!
+@method
+
+@abstract
+Manually set a device token (for example when using Firebase Cloud Messaging tokens).
+*/
+- (void)putDeviceToken:(NSString *)deviceToken;
+
+// todo: docs
 - (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo;
 - (void)continueUserActivity:(NSUserActivity *)activity;
 - (void)openURL:(NSURL *)url options:(NSDictionary *)options;

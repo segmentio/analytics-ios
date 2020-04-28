@@ -342,6 +342,13 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     [self run:SEGEventTypeRegisteredForRemoteNotifications payload:payload];
 }
 
+- (void)putDeviceToken:(NSString *)deviceToken
+{
+    SEGPuttingDeviceTokenPayload *payload = [[SEGPuttingDeviceTokenPayload alloc] init];
+    payload.deviceToken = deviceToken;
+    [self run:SEGEventTypePuttingDeviceToken payload:payload];
+}
+
 - (void)handleActionWithIdentifier:(NSString *)identifier forRemoteNotification:(NSDictionary *)userInfo
 {
     SEGRemoteNotificationPayload *payload = [[SEGRemoteNotificationPayload alloc] init];
