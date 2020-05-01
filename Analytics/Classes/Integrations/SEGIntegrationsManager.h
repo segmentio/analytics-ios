@@ -10,6 +10,12 @@
 #import "SEGMiddleware.h"
 
 /**
+ * Filenames of "Application Support" files where essential data is stored.
+ */
+extern NSString *_Nonnull const kSEGAnonymousIdFilename;
+extern NSString *_Nonnull const kSEGCachedSettingsFilename;
+
+/**
  * NSNotification name, that is posted after integrations are loaded.
  */
 extern NSString *_Nonnull SEGAnalyticsIntegrationDidStart;
