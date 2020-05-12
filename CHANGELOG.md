@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 3.8.1 *(12th May, 2020)*
+--------------------------------
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/880) Fixed a crash in the file storage.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/884) Adds back erroneously removed build/version data from App Opened event.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/865) Pushlishes filenames use for storage.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/771) Fixes incorrect naming in screen reporting.
+
 Version 3.8.0 *(22nd April, 2020)*
 ----------------------------------
  * Promoting 3.8.x series to stable release.  This includes all changes since 3.7.
