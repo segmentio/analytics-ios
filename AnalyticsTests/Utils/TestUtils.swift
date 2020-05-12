@@ -85,7 +85,7 @@ class JsonGzippedBody : LSMatcher, LSMatcheable {
     }
     
     func matchesJson(_ json: AnyObject) -> Bool {
-        let actualValue : () -> NSObject! = {
+        let actualValue : () -> NSObject = {
             return json as! NSObject
         }
         let failureMessage = FailureMessage()

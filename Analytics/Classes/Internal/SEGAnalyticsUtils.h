@@ -5,9 +5,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 NSString *GenerateUUIDString(void);
 
-// Validation Utils
-BOOL serializableDictionaryTypes(NSDictionary *dict);
-
 // Date Utils
 NSString *iso8601FormattedString(NSDate *date);
 NSString *iso8601NanoFormattedString(NSDate *date);

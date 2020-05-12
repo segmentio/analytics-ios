@@ -68,10 +68,7 @@
         _factories = [NSMutableArray array];
         Class applicationClass = NSClassFromString(@"UIApplication");
         if (applicationClass) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-            _application = [applicationClass performSelector:NSSelectorFromString(@"sharedApplication")];
-#pragma clang diagnostic pop
+            _application = [applicationClass performSelector:@selector(sharedApplication)];
         }
     }
     return self;

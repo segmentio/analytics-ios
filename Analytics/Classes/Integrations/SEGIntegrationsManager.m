@@ -26,9 +26,9 @@
 #import "SEGAliasPayload.h"
 
 NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.did.start";
-static NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
-static NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
-static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
+NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
+NSString *const kSEGAnonymousIdFilename = @"segment.anonymousId";
+NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 
 
 @interface SEGIdentifyPayload (AnonymousId)
@@ -357,9 +357,9 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
 {
     if (!_cachedSettings) {
 #if TARGET_OS_TV
-        _cachedSettings = [self.userDefaultsStorage dictionaryForKey:SEGCachedSettingsKey] ?: @{};
+        _cachedSettings = [self.userDefaultsStorage dictionaryForKey:kSEGCachedSettingsFilename] ?: @{};
 #else
-        _cachedSettings = [self.fileStorage dictionaryForKey:SEGCachedSettingsKey] ?: @{};
+        _cachedSettings = [self.fileStorage dictionaryForKey:kSEGCachedSettingsFilename] ?: @{};
 #endif
     }
     
@@ -375,9 +375,9 @@ static NSString *const SEGCachedSettingsKey = @"analytics.settings.v2.plist";
     }
     
 #if TARGET_OS_TV
-    [self.userDefaultsStorage setDictionary:_cachedSettings forKey:SEGCachedSettingsKey];
+    [self.userDefaultsStorage setDictionary:_cachedSettings forKey:kSEGCachedSettingsFilename];
 #else
-    [self.fileStorage setDictionary:_cachedSettings forKey:SEGCachedSettingsKey];
+    [self.fileStorage setDictionary:_cachedSettings forKey:kSEGCachedSettingsFilename];
 #endif
 
     [self updateIntegrationsWithSettings:settings[@"integrations"]];
