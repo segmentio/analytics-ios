@@ -174,7 +174,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
         if (NSClassFromString(SEGAdvertisingClassIdentifier)) {
             dict[@"adTrackingEnabled"] = @(GetAdTrackingEnabled());
         }
-        if (self.configuration.enableAdvertisingTracking) {
+        if (self.configuration.enableAdvertisingTracking && self.configuration.adSupportBlock != nil) {
             NSString *idfa = SEGIDFA();
             if (idfa.length) dict[@"advertisingId"] = idfa;
         }
