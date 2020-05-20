@@ -244,9 +244,9 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
 
 @implementation NSDictionary(SerializableDeepCopy)
 
-- (NSDictionary *)serializableDeepCopy
+- (id)serializableDeepCopy:(BOOL)mutable
 {
-    NSMutableDictionary *returnDict = [[NSMutableDictionary alloc] initWithCapacity:self.count];
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] initWithCapacity:self.count];
     NSArray *keys = [self allKeys];
     for (id key in keys) {
         id aValue = [self objectForKey:key];
@@ -263,17 +263,29 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
         }
         
         if ([aValue conformsToProtocol:@protocol(SEGSerializableDeepCopy)]) {
-            theCopy = [aValue serializableDeepCopy];
+            theCopy = [aValue serializableDeepCopy:mutable];
         } else if ([aValue conformsToProtocol:@protocol(NSCopying)]) {
             theCopy = [aValue copy];
         } else {
             theCopy = aValue;
         }
         
-        [returnDict setValue:theCopy forKey:key];
-  }
+        [result setValue:theCopy forKey:key];
+    }
     
-  return [returnDict copy];
+    if (mutable) {
+        return result;
+    } else {
+        return [result copy];
+    }
+}
+
+- (NSDictionary *)serializableDeepCopy {
+    return [self serializableDeepCopy:NO];
+}
+
+- (NSMutableDictionary *)serializableMutableDeepCopy {
+    return [self serializableDeepCopy:YES];
 }
 
 @end
@@ -281,9 +293,9 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
 
 @implementation NSArray(SerializableDeepCopy)
 
--(NSArray *)serializableDeepCopy
+-(id)serializableDeepCopy:(BOOL)mutable
 {
-    NSMutableArray *returnArray = [[NSMutableArray alloc] initWithCapacity:self.count];
+    NSMutableArray *result = [[NSMutableArray alloc] initWithCapacity:self.count];
     
     for (id aValue in self) {
         id theCopy = nil;
@@ -299,16 +311,30 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
         }
         
         if ([aValue conformsToProtocol:@protocol(SEGSerializableDeepCopy)]) {
-            theCopy = [aValue serializableDeepCopy];
+            theCopy = [aValue serializableDeepCopy:mutable];
         } else if ([aValue conformsToProtocol:@protocol(NSCopying)]) {
             theCopy = [aValue copy];
         } else {
             theCopy = aValue;
         }
-        [returnArray addObject:theCopy];
+        [result addObject:theCopy];
     }
     
-    return [returnArray copy];
+    if (mutable) {
+        return result;
+    } else {
+        return [result copy];
+    }
 }
+
+
+- (NSArray *)serializableDeepCopy {
+    return [self serializableDeepCopy:NO];
+}
+
+- (NSMutableArray *)serializableMutableDeepCopy {
+    return [self serializableDeepCopy:YES];
+}
+
 
 @end

@@ -133,7 +133,7 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
  * Set the default settings to use if Segment.com cannot be reached.  JSON->NSDictionary conversion is handled for you.
  * An example configuration can be found here, using your write key:  https://cdn-settings.segment.com/v1/projects/YOUR_WRITE_KEY/settings
  */
-@property (nonatomic, strong, nullable) NSDictionary<NSString *, NSObject *> *defaultSettings;
+@property (nonatomic, strong, nullable) NSDictionary *defaultSettings;
 
 /**
  * Set custom middlewares. Will be run before all integrations.
