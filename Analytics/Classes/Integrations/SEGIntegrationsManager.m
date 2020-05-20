@@ -421,7 +421,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
                     [self setCachedSettings:settings];
                 } else {
                     NSDictionary *previouslyCachedSettings = [self cachedSettings];
-                    if (previouslyCachedSettings) {
+                    if (previouslyCachedSettings && [previouslyCachedSettings count] > 0) {
                         [self setCachedSettings:previouslyCachedSettings];
                     } else {
                         // If settings request fail, fall back to using just Segment integration.
