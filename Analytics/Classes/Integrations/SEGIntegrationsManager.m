@@ -406,13 +406,13 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 
         self.settingsRequest = [self.httpClient settingsForWriteKey:self.configuration.writeKey completionHandler:^(BOOL success, NSDictionary *settings) {
             seg_dispatch_specific_async(self -> _serialQueue, ^{
-                /*if (success) {
+                if (success) {
                     [self setCachedSettings:settings];
-                } else*/ {
-                    /*NSDictionary *previouslyCachedSettings = [self cachedSettings];
+                } else {
+                    NSDictionary *previouslyCachedSettings = [self cachedSettings];
                     if (previouslyCachedSettings) {
                         [self setCachedSettings:previouslyCachedSettings];
-                    } else*/ if (self.configuration.defaultSettings != nil) {
+                    } else if (self.configuration.defaultSettings != nil) {
                         // If settings request fail, load a user-supplied version if present.
                         // but make sure segment.io is in the integrations
                         NSMutableDictionary *newSettings = [self.configuration.defaultSettings serializableMutableDeepCopy];
