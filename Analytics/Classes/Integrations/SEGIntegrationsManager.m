@@ -410,7 +410,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
                     [self setCachedSettings:settings];
                 } else {
                     NSDictionary *previouslyCachedSettings = [self cachedSettings];
-                    if (previouslyCachedSettings) {
+                    if (previouslyCachedSettings && [previouslyCachedSettings count] > 0) {
                         [self setCachedSettings:previouslyCachedSettings];
                     } else if (self.configuration.defaultSettings != nil) {
                         // If settings request fail, load a user-supplied version if present.
