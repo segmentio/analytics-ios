@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+Version 4.0.0-beta.1 *(21st May, 2020)*
+---------------------------------------
+* [New](https://github.com/segmentio/analytics-ios/pull/892) Makes IDFA support externally/customer driven.
+
 Version 3.8.2 *(21st May, 2020)*
 --------------------------------
 * [Fix](https://github.com/segmentio/analytics-ios/pull/880) Adds check to make sure cached settings aren't empty before being used.
