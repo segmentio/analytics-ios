@@ -58,6 +58,20 @@ class AnalyticsTests: QuickSpec {
       expect(UserDefaults.standard.string(forKey: "SEGQueue")).toEventually(beNil())
     }
     
+    /* TODO: Fix me when the Context object isn't so wild.
+    it("collects IDFA") {
+      testMiddleware.swallowEvent = true
+      analytics.configuration.enableAdvertisingTracking = true
+      analytics.configuration.adSupportBlock = { () -> String in
+        return "1234AdsNoMore!"
+      }
+
+      analytics.track("test");
+      
+      let event = testMiddleware.lastContext?.payload as? SEGTrackPayload
+      expect(event?.properties?["url"] as? String) == "myapp://auth?token=((redacted/my-auth))&other=stuff"
+    }*/
+    
     it("persists anonymousId") {
       let analytics2 = SEGAnalytics(configuration: config)
       expect(analytics.getAnonymousId()) == analytics2.getAnonymousId()

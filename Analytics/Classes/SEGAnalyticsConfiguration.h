@@ -20,6 +20,7 @@
 @end
 
 typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
+typedef NSString *_Nonnull (^SEGAdSupportBlock)(void);
 
 @protocol SEGIntegrationFactory;
 @protocol SEGCrypto;
@@ -191,6 +192,18 @@ typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
  * An optional delegate that handles NSURLSessionDelegate callbacks
  */
 @property (nonatomic, strong, nullable) id<NSURLSessionDelegate> httpSessionDelegate;
+
+/**
+ * Sets a block to be called when IDFA / AdSupport identifier is created.
+ * This is to allow for apps that do not want ad tracking to pass App Store guidelines in certain categories while
+ * still allowing apps that do ad tracking to continue to function.
+ *
+ * Example:
+ *      configuration.adSupportBlock = ^{
+ *          return [[ASIdentifierManager sharedManager] advertisingIdentifier];
+ *      }
+ */
+@property (nonatomic, strong, nullable) SEGAdSupportBlock adSupportBlock;
 
 /**
  Enable experimental features within the Segment Analytics-iOS library.
