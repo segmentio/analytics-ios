@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.8.2 *(21st May, 2020)*
+--------------------------------
+* [Fix](https://github.com/segmentio/analytics-ios/pull/880) Adds check to make sure cached settings aren't empty before being used.
+
+
 Version 3.8.1 *(12th May, 2020)*
 --------------------------------
  * [Fix](https://github.com/segmentio/analytics-ios/pull/880) Fixed a crash in the file storage.
