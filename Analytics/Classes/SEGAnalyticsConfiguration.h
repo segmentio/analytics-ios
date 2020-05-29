@@ -148,7 +148,7 @@ typedef NSString *_Nonnull (^SEGAdSupportBlock)(void);
 @property (nonatomic, strong, nullable) NSArray<id<SEGMiddleware>> *sourceMiddleware;
 
 /**
- * Set custom integration middleware. Will be run before the associated integration.
+ * Set custom destination middleware. Will be run before the associated integration for a destination.
  */
 @property (nonatomic, strong, nullable) NSArray<SEGDestinationMiddleware *> *destinationMiddleware;
 
