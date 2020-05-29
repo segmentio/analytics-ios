@@ -1,15 +1,10 @@
 PODS:
-  - Alamofire (4.6.0)
-  - Alamofire-Synchronous (4.0.0):
-    - Alamofire (~> 4.0)
   - Nimble (7.3.4)
   - Nocilla (0.11.0)
   - Quick (1.2.0)
   - SwiftTryCatch (1.0.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.5)
-  - Alamofire-Synchronous (~> 4.0)
   - Nimble (~> 7.3.4)
   - Nocilla (~> 0.11.0)
   - Quick (~> 1.2.0)
@@ -17,8 +12,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - Alamofire
-    - Alamofire-Synchronous
     - Nimble
     - Nocilla
     - Quick
@@ -33,13 +26,11 @@ CHECKOUT OPTIONS:
     :git: https://github.com/segmentio/SwiftTryCatch.git
 
 SPEC CHECKSUMS:
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
-  Alamofire-Synchronous: eedf1e6e961c3795a63c74990b3f7d9fbfac7e50
   Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
   Nocilla: 7af7a386071150cc8aa5da4da97d060f049dd61c
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   SwiftTryCatch: 6ef1f543b5d287a4f5763c0de2ee9c8568985269
 
-PODFILE CHECKSUM: bb5abec39a698f101923cddb294d2dfb1b19f105
+PODFILE CHECKSUM: 80d573cfd1dc222ba558c64e15bef5eb9d22c782
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.2
