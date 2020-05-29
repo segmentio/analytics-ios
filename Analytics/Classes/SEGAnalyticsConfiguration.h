@@ -27,7 +27,7 @@ typedef NSString *_Nonnull (^SEGAdSupportBlock)(void);
 @protocol SEGMiddleware;
 
 @class SEGAnalyticsExperimental;
-@class SEGIntegrationMiddleware;
+@class SEGDestinationMiddleware;
 
 /**
  * This object provides a set of properties to control various policies of the analytics client. Other than `writeKey`, these properties can be changed at any time.
@@ -150,7 +150,7 @@ typedef NSString *_Nonnull (^SEGAdSupportBlock)(void);
 /**
  * Set custom integration middleware. Will be run before the associated integration.
  */
-@property (nonatomic, strong, nullable) NSArray<SEGIntegrationMiddleware *> *integrationMiddleware;
+@property (nonatomic, strong, nullable) NSArray<SEGDestinationMiddleware *> *destinationMiddleware;
 
 /**
  * Register a factory that can be used to create an integration.

@@ -10,7 +10,7 @@
 #import "SEGMiddleware.h"
 
 
-@implementation SEGIntegrationMiddleware
+@implementation SEGDestinationMiddleware
 - (instancetype)initWithKey:(NSString *)integrationKey middleware:(NSArray<id<SEGMiddleware>> *)middleware
 {
     if (self = [super init]) {

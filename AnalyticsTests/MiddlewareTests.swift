@@ -89,7 +89,7 @@ class IntegrationMiddlewareTests: QuickSpec {
     it("receives events") {
       let config = SEGAnalyticsConfiguration(writeKey: "TESTKEY")
       let passthrough = SEGPassthroughMiddleware()
-      config.integrationMiddleware = [SEGIntegrationMiddleware(key: SEGSegmentIntegrationFactory().key(), middleware: [passthrough])]
+      config.destinationMiddleware = [SEGDestinationMiddleware(key: SEGSegmentIntegrationFactory().key(), middleware: [passthrough])]
       let analytics = SEGAnalytics(configuration: config)
       analytics.identify("testUserId1")
       
@@ -113,7 +113,7 @@ class IntegrationMiddlewareTests: QuickSpec {
     it("modifies and passes event to next") {
       let config = SEGAnalyticsConfiguration(writeKey: "TESTKEY")
       let passthrough = SEGPassthroughMiddleware()
-      config.integrationMiddleware = [SEGIntegrationMiddleware(key: SEGSegmentIntegrationFactory().key(), middleware: [customizeAllTrackCalls, passthrough])]
+      config.destinationMiddleware = [SEGDestinationMiddleware(key: SEGSegmentIntegrationFactory().key(), middleware: [customizeAllTrackCalls, passthrough])]
       let analytics = SEGAnalytics(configuration: config)
       analytics.track("Purchase Success")
       
@@ -140,7 +140,7 @@ class IntegrationMiddlewareTests: QuickSpec {
     it("expects event to be swallowed if next is not called") {
       let config = SEGAnalyticsConfiguration(writeKey: "TESTKEY")
       let passthrough = SEGPassthroughMiddleware()
-      config.integrationMiddleware = [SEGIntegrationMiddleware(key: SEGSegmentIntegrationFactory().key(), middleware: [eatAllCalls, passthrough])]
+      config.destinationMiddleware = [SEGDestinationMiddleware(key: SEGSegmentIntegrationFactory().key(), middleware: [eatAllCalls, passthrough])]
       let analytics = SEGAnalytics(configuration: config)
       analytics.track("Purchase Success")
 

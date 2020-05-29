@@ -357,7 +357,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 - (nonnull NSArray<id<SEGMiddleware>> *)middlewareForIntegrationKey:(NSString *)key
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
-    for (SEGIntegrationMiddleware *container in self.configuration.integrationMiddleware) {
+    for (SEGDestinationMiddleware *container in self.configuration.destinationMiddleware) {
         if ([container.integrationKey isEqualToString:key]) {
             [result addObjectsFromArray:container.middleware];
         }
