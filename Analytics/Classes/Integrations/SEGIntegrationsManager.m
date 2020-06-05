@@ -423,6 +423,12 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
                     NSDictionary *previouslyCachedSettings = [self cachedSettings];
                     if (previouslyCachedSettings && [previouslyCachedSettings count] > 0) {
                         [self setCachedSettings:previouslyCachedSettings];
+                    } else if (self.configuration.defaultSettings != nil) {
+                        // If settings request fail, load a user-supplied version if present.
+                        // but make sure segment.io is in the integrations
+                        NSMutableDictionary *newSettings = [self.configuration.defaultSettings serializableMutableDeepCopy];
+                        newSettings[@"integrations"][@"Segment.io"][@"apiKey"] = self.configuration.writeKey;
+                        [self setCachedSettings:newSettings];
                     } else {
                         // If settings request fail, fall back to using just Segment integration.
                         // Doesn't address situations where this callback never gets called (though we don't expect that to ever happen).

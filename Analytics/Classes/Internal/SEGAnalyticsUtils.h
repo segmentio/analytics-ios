@@ -36,6 +36,7 @@ NSString *SEGEventNameForScreenTitle(NSString *title);
 
 // Deep copy and check NSCoding conformance
 @protocol SEGSerializableDeepCopy <NSObject>
+-(id _Nullable) serializableMutableDeepCopy;
 -(id _Nullable) serializableDeepCopy;
 @end
 
