@@ -1,6 +1,11 @@
 Change Log
 ==========
 
+Version 3.9.0 *(5th June, 2020)*
+--------------------------------
+* [New](https://github.com/segmentio/analytics-ios/pull/897) Backport defaultSettings feature from 4.x to 3.x.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/885) Automatic Screen Tracking with consistent naming conventions
+
 Version 3.8.2 *(21st May, 2020)*
 --------------------------------
 * [Fix](https://github.com/segmentio/analytics-ios/pull/880) Adds check to make sure cached settings aren't empty before being used.
