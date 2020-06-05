@@ -4,7 +4,7 @@
 @interface UIViewController (SEGScreen)
 
 + (void)seg_swizzleViewDidAppear;
-+ (UIViewController *)seg_topViewController;
++ (UIViewController *)seg_rootViewControllerFromView:(UIView *)view;
 
 @end
 
