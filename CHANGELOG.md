@@ -3,11 +3,20 @@ Change Log
 
 Version 4.0.0-beta.1 *(21st May, 2020)*
 ---------------------------------------
-* [New](https://github.com/segmentio/analytics-ios/pull/892) Makes IDFA support externally/customer driven.
+ * [New](https://github.com/segmentio/analytics-ios/pull/892) Makes IDFA support externally/customer driven.
+
+Version 4.0.0-beta.0 *(22nd April, 2020)*
+-----------------------------------------
+ * [New](https://github.com/segmentio/analytics-ios/pull/879) Added integration middleware functionality.
+ 
+Version 3.9.0 *(5th June, 2020)*
+--------------------------------
+ * [New](https://github.com/segmentio/analytics-ios/pull/897) Backport defaultSettings feature from 4.x to 3.x.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/885) Automatic Screen Tracking with consistent naming conventions
 
 Version 3.8.2 *(21st May, 2020)*
 --------------------------------
-* [Fix](https://github.com/segmentio/analytics-ios/pull/880) Adds check to make sure cached settings aren't empty before being used.
+ * [Fix](https://github.com/segmentio/analytics-ios/pull/880) Adds check to make sure cached settings aren't empty before being used.
 
 Version 3.8.1 *(12th May, 2020)*
 --------------------------------
@@ -15,11 +24,6 @@ Version 3.8.1 *(12th May, 2020)*
  * [Fix](https://github.com/segmentio/analytics-ios/pull/884) Adds back erroneously removed build/version data from App Opened event.
  * [Fix](https://github.com/segmentio/analytics-ios/pull/865) Pushlishes filenames use for storage.
  * [Fix](https://github.com/segmentio/analytics-ios/pull/771) Fixes incorrect naming in screen reporting.
-
-Version 4.0.0-beta.0 *(22nd April, 2020)*
------------------------------------------
-
- * [New](https://github.com/segmentio/analytics-ios/pull/879) Added integration middleware functionality.
 
 Version 3.8.0 *(22nd April, 2020)*
 ----------------------------------
