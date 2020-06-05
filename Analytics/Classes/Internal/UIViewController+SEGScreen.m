@@ -96,9 +96,11 @@
         return;
     }
 
-    NSString *name = [top title];
+    NSString *name = [[[top class] description] stringByReplacingOccurrencesOfString:@"ViewController" withString:@""];
+    
     if (!name || name.length == 0) {
-        name = [[[top class] description] stringByReplacingOccurrencesOfString:@"ViewController" withString:@""];
+        // if no class description found, try view controller's title.
+        name = [top title];
         // Class name could be just "ViewController".
         if (name.length == 0) {
             SEGLog(@"Could not infer screen name.");
