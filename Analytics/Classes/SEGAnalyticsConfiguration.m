@@ -7,7 +7,9 @@
 //
 
 #import "SEGAnalyticsConfiguration.h"
+#import "SEGAnalytics.h"
 #import "SEGCrypto.h"
+#import <UIKit/UIKit.h>
 
 
 @implementation UIApplication (SEGApplicationProtocol)
@@ -65,9 +67,8 @@
             @"(fb\\d+://authorize#access_token=)([^ ]+)": @"$1((redacted/fb-auth-token))"
         };
         _factories = [NSMutableArray array];
-        Class applicationClass = NSClassFromString(@"UIApplication");
-        if (applicationClass) {
-            _application = [applicationClass performSelector:@selector(sharedApplication)];
+        if ([UIApplication respondsToSelector:@selector(sharedApplication)]) {
+            _application = [UIApplication performSelector:@selector(sharedApplication)];
         }
     }
     return self;

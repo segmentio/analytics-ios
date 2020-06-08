@@ -16,4 +16,4 @@
 
 @end
 
-BOOL isUnitTesting();
+BOOL isUnitTesting(void);
