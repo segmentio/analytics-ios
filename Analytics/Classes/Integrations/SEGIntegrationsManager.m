@@ -116,7 +116,10 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 
         // Update settings on foreground
-        [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+        id<SEGApplicationProtocol> application = configuration.application;
+        if (application) {
+            [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:application];
+        }
     }
     return self;
 }

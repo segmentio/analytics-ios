@@ -59,13 +59,16 @@ static SEGAnalytics *__sharedInstance = nil;
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 
         // Pass through for application state change events
-        for (NSString *name in @[ UIApplicationDidEnterBackgroundNotification,
-                                  UIApplicationDidFinishLaunchingNotification,
-                                  UIApplicationWillEnterForegroundNotification,
-                                  UIApplicationWillTerminateNotification,
-                                  UIApplicationWillResignActiveNotification,
-                                  UIApplicationDidBecomeActiveNotification ]) {
-            [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:nil];
+        id<SEGApplicationProtocol> application = configuration.application;
+        if (application) {
+            for (NSString *name in @[ UIApplicationDidEnterBackgroundNotification,
+                                      UIApplicationDidFinishLaunchingNotification,
+                                      UIApplicationWillEnterForegroundNotification,
+                                      UIApplicationWillTerminateNotification,
+                                      UIApplicationWillResignActiveNotification,
+                                      UIApplicationDidBecomeActiveNotification ]) {
+                [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:application];
+            }
         }
 
         if (configuration.recordScreenViews) {
