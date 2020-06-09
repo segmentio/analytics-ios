@@ -36,7 +36,7 @@ class TrackingTests: QuickSpec {
       expect(passthrough.lastContext?.eventType) == SEGEventType.identify
       let identify = passthrough.lastContext?.payload as? SEGIdentifyPayload
       expect(identify?.userId) == "testUserId1"
-      expect(identify?.anonymousId).to(beNil())
+      expect(identify?.anonymousId).toNot(beNil())
       expect(identify?.traits?["firstName"] as? String) == "Peter"
     }
 
@@ -56,7 +56,13 @@ class TrackingTests: QuickSpec {
     it("handles track:") {
       analytics.track("User Signup", properties: [
         "method": "SSO"
-        ])
+      ], options: [
+        "context": [
+          "device": [
+            "token": "1234"
+          ]
+        ]
+      ])
       expect(passthrough.lastContext?.eventType) == SEGEventType.track
       let payload = passthrough.lastContext?.payload as? SEGTrackPayload
       expect(payload?.event) == "User Signup"
@@ -88,6 +94,15 @@ class TrackingTests: QuickSpec {
       let payload = passthrough.lastContext?.payload as? SEGGroupPayload
       expect(payload?.groupId) == "acme-company"
       expect(payload?.traits?["employees"] as? Int) == 2333
+    }
+    
+    it("handles null values") {
+      analytics.track("null test", properties: [
+        "nullTest": NSNull()
+        ])
+      let payload = passthrough.lastContext?.payload as? SEGTrackPayload
+      let isNull = (payload?.properties?["nullTest"] is NSNull)
+      expect(isNull) == true
     }
   }
 

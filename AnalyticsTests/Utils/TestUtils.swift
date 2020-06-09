@@ -49,6 +49,9 @@ extension SEGIntegrationsManager {
 }
 
 extension SEGSegmentIntegration {
+  func test_fileStorage() -> SEGFileStorage? {
+    return self.value(forKey: "fileStorage") as? SEGFileStorage
+  }
   func test_referrer() -> [String: AnyObject]? {
     return self.value(forKey: "referrer") as? [String: AnyObject]
   }
@@ -82,7 +85,7 @@ class JsonGzippedBody : LSMatcher, LSMatcheable {
     }
     
     func matchesJson(_ json: AnyObject) -> Bool {
-        let actualValue : () -> NSObject! = {
+        let actualValue : () -> NSObject = {
             return json as! NSObject
         }
         let failureMessage = FailureMessage()

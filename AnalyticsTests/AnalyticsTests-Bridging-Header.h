@@ -12,7 +12,10 @@
 #import <Analytics/SEGAnalyticsUtils.h>
 #import <Analytics/SEGIntegrationsManager.h>
 #import <Analytics/SEGUtils.h>
+#import <Analytics/SEGScreenReporting.h>
 
 #import "NSData+SEGGUNZIPP.h"
 // Temp hack. We should fix the LSNocilla podspec to make this header publicly available
 #import "LSMatcher.h"
+
+#import "UIViewController+SegScreenTest.h"

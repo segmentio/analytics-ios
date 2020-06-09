@@ -1,3 +1,3 @@
-github "segmentio/analytics-ios" "3.7.0-beta.4"
+github "segmentio/analytics-ios" "3.9.0"
 # Use a local project when debugging
 # git "~/Code/segmentio/analytics-ios/" "master"
