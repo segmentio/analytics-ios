@@ -4,6 +4,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
+NS_SWIFT_NAME(ScreenPayload)
 @interface SEGScreenPayload : SEGPayload
 
 @property (nonatomic, readonly) NSString *name;

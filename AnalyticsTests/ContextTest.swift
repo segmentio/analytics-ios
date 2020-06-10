@@ -14,19 +14,19 @@ import Analytics
 class ContextTests: QuickSpec {
   override func spec() {
     
-    var analytics: SEGAnalytics!
+    var analytics: Analytics!
     
     beforeEach {
-      let config = SEGAnalyticsConfiguration(writeKey: "foobar")
-      analytics = SEGAnalytics(configuration: config)
+      let config = AnalyticsConfiguration(writeKey: "foobar")
+      analytics = Analytics(configuration: config)
     }
     
     it("throws when used incorrectly") {
-      var context: SEGContext?
+      var context: Context?
       var exception: NSException?
       
       SwiftTryCatch.tryRun({
-        context = SEGContext()
+        context = Context()
       }, catchRun: { e in
         exception = e
       }, finallyRun: nil)
@@ -37,25 +37,25 @@ class ContextTests: QuickSpec {
 
     
     it("initialized correctly") {
-      let context = SEGContext(analytics: analytics)
+      let context = Context(analytics: analytics)
       expect(context._analytics) == analytics
-      expect(context.eventType) == SEGEventType.undefined
+      expect(context.eventType) == EventType.undefined
     }
     
     it("accepts modifications") {
-      let context = SEGContext(analytics: analytics)
+      let context = Context(analytics: analytics)
       
       let newContext = context.modify { context in
         context.userId = "sloth"
         context.eventType = .track;
       }
       expect(newContext.userId) == "sloth"
-      expect(newContext.eventType) == SEGEventType.track;
+      expect(newContext.eventType) == EventType.track;
       
     }
     
     it("modifies copy in debug mode to catch bugs") {
-      let context = SEGContext(analytics: analytics).modify { context in
+      let context = Context(analytics: analytics).modify { context in
         context.debug = true
       }
       expect(context.debug) == true
@@ -69,7 +69,7 @@ class ContextTests: QuickSpec {
     }
     
     it("modifies self in non-debug mode to optimize perf.") {
-      let context = SEGContext(analytics: analytics).modify { context in
+      let context = Context(analytics: analytics).modify { context in
         context.debug = false
       }
       expect(context.debug) == false

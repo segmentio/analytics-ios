@@ -96,11 +96,11 @@ class AnalyticsUtilTests: QuickSpec {
       }
 
       it("works with strings") {
-        expect(SEGUtils.traverseJSON("a b foo c", andReplaceWithFilters: filters) as? String) == "a b foo-bar c"
+        expect(Utilities.traverseJSON("a b foo c", andReplaceWithFilters: filters) as? String) == "a b foo-bar c"
       }
 
       it("works recursively") {
-        expect(SEGUtils.traverseJSON("a b foo foo c", andReplaceWithFilters: filters) as? String) == "a b foo-bar foo-bar c"
+        expect(Utilities.traverseJSON("a b foo foo c", andReplaceWithFilters: filters) as? String) == "a b foo-bar foo-bar c"
       }
       
       it("works with nested dictionaries") {
@@ -109,7 +109,7 @@ class AnalyticsUtilTests: QuickSpec {
           "bar": "foo"
         ] as [String: Any]
         
-        guard let input = SEGUtils.traverseJSON(data, andReplaceWithFilters: filters) as? [String: Any] else {
+        guard let input = Utilities.traverseJSON(data, andReplaceWithFilters: filters) as? [String: Any] else {
           XCTFail("Failed to create actual result from traversed JSON replace")
           return
         }
@@ -127,7 +127,7 @@ class AnalyticsUtilTests: QuickSpec {
           [1, nil, "qfoob", ["baz": "foo"]],
           "foo"
           ] as [Any]
-        let input = SEGUtils.traverseJSON(data, andReplaceWithFilters: filters)
+        let input = Utilities.traverseJSON(data, andReplaceWithFilters: filters)
         let output = [
           [1, nil, "qfoo-barb", ["baz": "foo-bar"]],
           "foo-bar"

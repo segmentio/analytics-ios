@@ -13,6 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
+NS_SWIFT_NAME(HTTPClient)
 @interface SEGHTTPClient : NSObject
 
 @property (nonatomic, strong) SEGRequestFactory requestFactory;

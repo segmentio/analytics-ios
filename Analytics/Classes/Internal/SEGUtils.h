@@ -7,6 +7,7 @@
 #import "SEGAnalyticsUtils.h"
 
 
+NS_SWIFT_NAME(Utilities)
 @interface SEGUtils : NSObject
 
 + (NSData *_Nullable)dataFromPlist:(nonnull id)plist;

@@ -3,18 +3,18 @@ import XCTest
 
 class EndToEndTests: XCTestCase {
     
-    var analytics: SEGAnalytics!
+    var analytics: Analytics!
     
     override func setUp() {
         super.setUp()
         
         // Write Key for https://app.segment.com/segment-libraries/sources/analytics_ios_e2e_test/overview
-        let config = SEGAnalyticsConfiguration(writeKey: "3VxTfPsVOoEOSbbzzbFqVNcYMNu2vjnr")
+        let config = AnalyticsConfiguration(writeKey: "3VxTfPsVOoEOSbbzzbFqVNcYMNu2vjnr")
         config.flushAt = 1
 
-        SEGAnalytics.setup(with: config)
+        Analytics.setup(with: config)
 
-        analytics = SEGAnalytics.shared()
+        analytics = Analytics.shared()
     }
     
     override func tearDown() {
@@ -27,7 +27,7 @@ class EndToEndTests: XCTestCase {
         let uuid = UUID().uuidString
         let expectation = XCTestExpectation(description: "SegmentRequestDidSucceed")
         
-        SEGAnalytics.shared()?.configuration.experimental.rawSegmentModificationBlock = { data in
+        Analytics.shared().configuration.experimental.rawSegmentModificationBlock = { data in
             if let properties = data["properties"] as? Dictionary<String, Any?>,
                 let tempUUID = properties["id"] as? String, tempUUID == uuid {
                 expectation.fulfill()

@@ -42,12 +42,13 @@ typedef NS_ENUM(NSInteger, SEGEventType) {
     SEGEventTypeContinueUserActivity,
     SEGEventTypeOpenURL,
 
-};
+} NS_SWIFT_NAME(EventType);
 
 @class SEGAnalytics;
 @protocol SEGMutableContext;
 
 
+NS_SWIFT_NAME(Context)
 @interface SEGContext : NSObject <NSCopying>
 
 // Loopback reference to the top level SEGAnalytics object.

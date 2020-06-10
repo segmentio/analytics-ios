@@ -11,16 +11,16 @@ import Analytics
 
 class FileStorageTest : QuickSpec {
   override func spec() {
-    var storage : SEGFileStorage!
+    var storage : FileStorage!
     beforeEach {
-      let url = SEGFileStorage.applicationSupportDirectoryURL()
+      let url = FileStorage.applicationSupportDirectoryURL()
       expect(url).toNot(beNil())
       expect(url?.lastPathComponent) == "Application Support"
-      storage = SEGFileStorage(folder: url!, crypto: nil)
+      storage = FileStorage(folder: url!, crypto: nil)
     }
     
     it("Creates caches directory") {
-      let url = SEGFileStorage.cachesDirectoryURL()
+      let url = FileStorage.cachesDirectoryURL()
       expect(url).toNot(beNil())
       expect(url?.lastPathComponent) == "Caches"
     }
@@ -30,7 +30,7 @@ class FileStorageTest : QuickSpec {
       let url = tempDir.appendingPathComponent(NSUUID().uuidString)
       
       expect(try? url?.checkResourceIsReachable()).to(beNil())
-      _ = SEGFileStorage(folder: url!, crypto: nil)
+      _ = FileStorage(folder: url!, crypto: nil)
       
       var isDir: ObjCBool = false
       let exists = FileManager.default.fileExists(atPath: url!.path, isDirectory: &isDir)
@@ -109,9 +109,9 @@ class FileStorageTest : QuickSpec {
     }
     
     it("should work with crypto") {
-      let url = SEGFileStorage.applicationSupportDirectoryURL()
-      let crypto = SEGAES256Crypto(password: "thetrees")
-      let s = SEGFileStorage(folder: url!, crypto: crypto)
+      let url = FileStorage.applicationSupportDirectoryURL()
+      let crypto = AES256Crypto(password: "thetrees")
+      let s = FileStorage(folder: url!, crypto: crypto)
       let dict = [
         "san francisco": "tech",
         "new york": "finance",

@@ -11,12 +11,12 @@ import Analytics
 
 class UserDefaultsStorageTest : QuickSpec {
   override func spec() {
-    var storage : SEGUserDefaultsStorage!
+    var storage : UserDefaultsStorage!
     beforeEach {
 //      let crypto = SEGAES256Crypto(password: "thetrees")
 //      storage = SEGUserDefaultsStorage(defaults: NSUserDefaults.standardUserDefaults(), namespacePrefix: "segment", crypto: crypto)
 //      storage = SEGUserDefaultsStorage(defaults: NSUserDefaults.standardUserDefaults(), namespacePrefix: nil, crypto: crypto)
-      storage = SEGUserDefaultsStorage(defaults: UserDefaults.standard, namespacePrefix: nil, crypto: nil)
+      storage = UserDefaultsStorage(defaults: UserDefaults.standard, namespacePrefix: nil, crypto: nil)
     }
     
     it("persists and loads data") {
@@ -66,8 +66,8 @@ class UserDefaultsStorageTest : QuickSpec {
     }
     
     it("should work with crypto") {
-      let crypto = SEGAES256Crypto(password: "thetrees")
-      let s = SEGUserDefaultsStorage(defaults: UserDefaults.standard, namespacePrefix: nil, crypto: crypto)
+      let crypto = AES256Crypto(password: "thetrees")
+      let s = UserDefaultsStorage(defaults: UserDefaults.standard, namespacePrefix: nil, crypto: crypto)
       let dict = [
         "san francisco": "tech",
         "new york": "finance",
@@ -82,8 +82,8 @@ class UserDefaultsStorageTest : QuickSpec {
     
     
     it("should work with namespace") {
-      let crypto = SEGAES256Crypto(password: "thetrees")
-      let s = SEGUserDefaultsStorage(defaults: UserDefaults.standard, namespacePrefix: "segment", crypto: crypto)
+      let crypto = AES256Crypto(password: "thetrees")
+      let s = UserDefaultsStorage(defaults: UserDefaults.standard, namespacePrefix: "segment", crypto: crypto)
       let dict = [
         "san francisco": "tech",
         "new york": "finance",
