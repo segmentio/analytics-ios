@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_SWIFT_NAME(ApplicationProtocol)
 @protocol SEGApplicationProtocol <NSObject>
 @property (nullable, nonatomic, assign) id<UIApplicationDelegate> delegate;
 - (UIBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void (^__nullable)(void))handler;
@@ -32,6 +33,7 @@ typedef NSString *_Nonnull (^SEGAdSupportBlock)(void);
 /**
  * This object provides a set of properties to control various policies of the analytics client. Other than `writeKey`, these properties can be changed at any time.
  */
+NS_SWIFT_NAME(AnalyticsConfiguration)
 @interface SEGAnalyticsConfiguration : NSObject
 
 /**
@@ -216,6 +218,7 @@ typedef NSString *_Nonnull (^SEGAdSupportBlock)(void);
 
 typedef  NSDictionary * _Nonnull (^SEGRawModificationBlock)( NSDictionary * _Nonnull rawPayload);
 
+NS_SWIFT_NAME(AnalyticsExperimental)
 @interface SEGAnalyticsExperimental : NSObject
 /**
  Experimental support for nanosecond timestamps.  While the segment pipeline doesn't support this yet

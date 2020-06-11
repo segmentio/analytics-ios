@@ -13,16 +13,16 @@ import Analytics
 
 class TrackingTests: QuickSpec {
   override func spec() {
-    var passthrough: SEGPassthroughMiddleware!
-    var analytics: SEGAnalytics!
+    var passthrough: PassthroughMiddleware!
+    var analytics: Analytics!
 
     beforeEach {
-      let config = SEGAnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
-      passthrough = SEGPassthroughMiddleware()
+      let config = AnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
+      passthrough = PassthroughMiddleware()
       config.sourceMiddleware = [
         passthrough,
       ]
-      analytics = SEGAnalytics(configuration: config)
+      analytics = Analytics(configuration: config)
     }
 
     afterEach {
@@ -33,8 +33,8 @@ class TrackingTests: QuickSpec {
       analytics.identify("testUserId1", traits: [
         "firstName": "Peter"
       ])
-      expect(passthrough.lastContext?.eventType) == SEGEventType.identify
-      let identify = passthrough.lastContext?.payload as? SEGIdentifyPayload
+        expect(passthrough.lastContext?.eventType) == EventType.identify
+      let identify = passthrough.lastContext?.payload as? IdentifyPayload
       expect(identify?.userId) == "testUserId1"
       expect(identify?.anonymousId).toNot(beNil())
       expect(identify?.traits?["firstName"] as? String) == "Peter"
@@ -46,8 +46,8 @@ class TrackingTests: QuickSpec {
         ], options: [
           "anonymousId": "a_custom_anonymous_id"
         ])
-      expect(passthrough.lastContext?.eventType) == SEGEventType.identify
-      let identify = passthrough.lastContext?.payload as? SEGIdentifyPayload
+      expect(passthrough.lastContext?.eventType) == EventType.identify
+      let identify = passthrough.lastContext?.payload as? IdentifyPayload
       expect(identify?.userId) == "testUserId1"
       expect(identify?.anonymousId) == "a_custom_anonymous_id"
       expect(identify?.traits?["firstName"] as? String) == "Peter"
@@ -63,16 +63,16 @@ class TrackingTests: QuickSpec {
           ]
         ]
       ])
-      expect(passthrough.lastContext?.eventType) == SEGEventType.track
-      let payload = passthrough.lastContext?.payload as? SEGTrackPayload
+      expect(passthrough.lastContext?.eventType) == EventType.track
+      let payload = passthrough.lastContext?.payload as? TrackPayload
       expect(payload?.event) == "User Signup"
       expect(payload?.properties?["method"] as? String) == "SSO"
     }
 
     it("handles alias:") {
       analytics.alias("persistentUserId")
-      expect(passthrough.lastContext?.eventType) == SEGEventType.alias
-      let payload = passthrough.lastContext?.payload as? SEGAliasPayload
+      expect(passthrough.lastContext?.eventType) == EventType.alias
+      let payload = passthrough.lastContext?.payload as? AliasPayload
       expect(payload?.theNewId) == "persistentUserId"
     }
 
@@ -80,8 +80,8 @@ class TrackingTests: QuickSpec {
       analytics.screen("Home", properties: [
         "referrer": "Google"
       ])
-      expect(passthrough.lastContext?.eventType) == SEGEventType.screen
-      let screen = passthrough.lastContext?.payload as? SEGScreenPayload
+      expect(passthrough.lastContext?.eventType) == EventType.screen
+      let screen = passthrough.lastContext?.payload as? ScreenPayload
       expect(screen?.name) == "Home"
       expect(screen?.properties?["referrer"] as? String) == "Google"
     }
@@ -90,8 +90,8 @@ class TrackingTests: QuickSpec {
       analytics.group("acme-company", traits: [
         "employees": 2333
       ])
-      expect(passthrough.lastContext?.eventType) == SEGEventType.group
-      let payload = passthrough.lastContext?.payload as? SEGGroupPayload
+      expect(passthrough.lastContext?.eventType) == EventType.group
+      let payload = passthrough.lastContext?.payload as? GroupPayload
       expect(payload?.groupId) == "acme-company"
       expect(payload?.traits?["employees"] as? Int) == 2333
     }
@@ -100,7 +100,7 @@ class TrackingTests: QuickSpec {
       analytics.track("null test", properties: [
         "nullTest": NSNull()
         ])
-      let payload = passthrough.lastContext?.payload as? SEGTrackPayload
+      let payload = passthrough.lastContext?.payload as? TrackPayload
       let isNull = (payload?.properties?["nullTest"] is NSNull)
       expect(isNull) == true
     }

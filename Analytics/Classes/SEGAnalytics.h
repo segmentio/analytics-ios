@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @class SEGAnalyticsConfiguration;
 
-
+NS_SWIFT_NAME(Analytics)
 @interface SEGAnalytics : NSObject
 
 /**
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * @see -setupWithConfiguration:
  */
-+ (instancetype _Nullable)sharedAnalytics;
++ (instancetype)sharedAnalytics;
 
 /*!
  @method

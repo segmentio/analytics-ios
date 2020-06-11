@@ -17,7 +17,7 @@ class AutoScreenReportingTests: QuickSpec {
     var rootVC: UIViewController!
 
     beforeEach {
-      let config = SEGAnalyticsConfiguration(writeKey: "foobar")
+      let config = AnalyticsConfiguration(writeKey: "foobar")
       config.trackApplicationLifecycleEvents = true
       config.recordScreenViews = true
 

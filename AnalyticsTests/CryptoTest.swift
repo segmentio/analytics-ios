@@ -11,9 +11,9 @@ import Analytics
 
 class CryptoTest : QuickSpec {
   override func spec() {
-    var crypto : SEGAES256Crypto!
+    var crypto : AES256Crypto!
     beforeEach {
-      crypto = SEGAES256Crypto(password: "slothysloth")
+      crypto = AES256Crypto(password: "slothysloth")
     }
     
     it("encrypts and decrypts data") {
@@ -35,7 +35,7 @@ class CryptoTest : QuickSpec {
       let encryptedData = crypto.encrypt(dataIn)
       expect(encryptedData).toNot(beNil())
       
-      let crypto2 = SEGAES256Crypto(password: "wolf", salt: crypto.salt, iv: crypto.iv)
+      let crypto2 = AES256Crypto(password: "wolf", salt: crypto.salt, iv: crypto.iv)
       let dataOut = crypto2.decrypt(encryptedData!)
       expect(dataOut) != dataIn
       let strOut = String(data: dataOut!, encoding: String.Encoding.utf8)
@@ -50,7 +50,7 @@ class CryptoTest : QuickSpec {
       let encryptedData = crypto.encrypt(dataIn)
       expect(encryptedData).toNot(beNil())
       
-      let crypto2 = SEGAES256Crypto(password: crypto.password)
+      let crypto2 = AES256Crypto(password: crypto.password)
       let dataOut = crypto2.decrypt(encryptedData!)
       expect(dataOut) != dataIn
       

@@ -17,6 +17,7 @@ extern NSString *const kSEGQueueFilename;
 extern NSString *const kSEGTraitsFilename;
 
 
+NS_SWIFT_NAME(SegmentIntegration)
 @interface SEGSegmentIntegration : NSObject <SEGIntegration>
 
 - (id)initWithAnalytics:(SEGAnalytics *)analytics httpClient:(SEGHTTPClient *)httpClient fileStorage:(id<SEGStorage>)fileStorage userDefaultsStorage:(id<SEGStorage>)userDefaultsStorage;

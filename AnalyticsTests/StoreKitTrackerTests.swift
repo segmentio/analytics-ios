@@ -43,15 +43,15 @@ class StoreKitTrackerTests: QuickSpec {
   override func spec() {
 
     var test: TestMiddleware!
-    var tracker: SEGStoreKitTracker!
-    var analytics: SEGAnalytics!
+    var tracker: StoreKitTracker!
+    var analytics: Analytics!
 
     beforeEach {
-      let config = SEGAnalyticsConfiguration(writeKey: "foobar")
+      let config = AnalyticsConfiguration(writeKey: "foobar")
       test = TestMiddleware()
       config.sourceMiddleware = [test]
-      analytics = SEGAnalytics(configuration: config)
-      tracker = SEGStoreKitTracker.trackTransactions(for: analytics)
+      analytics = Analytics(configuration: config)
+      tracker = StoreKitTracker.trackTransactions(for: analytics)
     }
 
     it("SKPaymentQueue Observer") {
@@ -61,7 +61,7 @@ class StoreKitTrackerTests: QuickSpec {
       
       tracker.productsRequest(SKProductsRequest(), didReceive: mockProductResponse())
       
-      let payload = test.lastContext?.payload as? SEGTrackPayload
+      let payload = test.lastContext?.payload as? TrackPayload
       
       expect(payload?.event) == "Order Completed"
     }

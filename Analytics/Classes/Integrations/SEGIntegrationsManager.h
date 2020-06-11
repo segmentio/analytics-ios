@@ -22,7 +22,7 @@ extern NSString *_Nonnull SEGAnalyticsIntegrationDidStart;
 
 @class SEGAnalytics;
 
-
+NS_SWIFT_NAME(IntegrationsManager)
 @interface SEGIntegrationsManager : NSObject
 
 // Exposed for testing.

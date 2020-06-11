@@ -9,6 +9,7 @@
 #import "SEGCrypto.h"
 
 
+NS_SWIFT_NAME(AES256Crypto)
 @interface SEGAES256Crypto : NSObject <SEGCrypto>
 
 @property (nonatomic, readonly, nonnull) NSString *password;

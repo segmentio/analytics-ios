@@ -9,6 +9,7 @@
 #import "SEGStorage.h"
 
 
+NS_SWIFT_NAME(FileStorage)
 @interface SEGFileStorage : NSObject <SEGStorage>
 
 @property (nonatomic, strong, nullable) id<SEGCrypto> crypto;

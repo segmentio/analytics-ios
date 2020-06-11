@@ -11,6 +11,7 @@
 
 typedef void (^SEGMiddlewareNext)(SEGContext *_Nullable newContext);
 
+NS_SWIFT_NAME(Middleware)
 @protocol SEGMiddleware
 @required
 
@@ -33,6 +34,7 @@ typedef void (^SEGMiddlewareNext)(SEGContext *_Nullable newContext);
 typedef void (^SEGMiddlewareBlock)(SEGContext *_Nonnull context, SEGMiddlewareNext _Nonnull next);
 
 
+NS_SWIFT_NAME(BlockMiddleware)
 @interface SEGBlockMiddleware : NSObject <SEGMiddleware>
 
 @property (nonnull, nonatomic, readonly) SEGMiddlewareBlock block;
@@ -45,6 +47,7 @@ typedef void (^SEGMiddlewareBlock)(SEGContext *_Nonnull context, SEGMiddlewareNe
 typedef void (^RunMiddlewaresCallback)(BOOL earlyExit, NSArray<id<SEGMiddleware>> *_Nonnull remainingMiddlewares);
 
 // XXX TODO: Add some tests for SEGMiddlewareRunner
+NS_SWIFT_NAME(MiddlewareRunner)
 @interface SEGMiddlewareRunner : NSObject
 
 // While it is certainly technically possible to change middlewares dynamically on the fly. we're explicitly NOT
@@ -58,6 +61,7 @@ typedef void (^RunMiddlewaresCallback)(BOOL earlyExit, NSArray<id<SEGMiddleware>
 @end
 
 // Container object for middlewares for a specific destination.
+NS_SWIFT_NAME(DestinationMiddleware)
 @interface SEGDestinationMiddleware : NSObject
 @property (nonatomic, strong, nonnull, readonly) NSString *integrationKey;
 @property (nonatomic, strong, nullable, readonly) NSArray<id<SEGMiddleware>> *middleware;
