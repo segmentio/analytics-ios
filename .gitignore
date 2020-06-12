@@ -22,6 +22,10 @@ DerivedData
 # Bundler
 .bundle
 
+# Swift Package Manager
+.build
+.swiftpm
+
 Carthage
 
 # CocoaPods typically recommends against ignoring the Pods directory

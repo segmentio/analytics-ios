@@ -14,7 +14,7 @@
 #import "SEGMiddleware.h"
 #import "SEGContext.h"
 #import "SEGIntegrationsManager.h"
-#import "Internal/SEGUtils.h"
+#import "SEGUtils.h"
 
 static SEGAnalytics *__sharedInstance = nil;
 

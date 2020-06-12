@@ -256,16 +256,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EAA5427A1EB42B8C00945DA7 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				EAA5427B1EB42B8C00945DA7 /* SEGReachability.h */,
-				EAA5427C1EB42B8C00945DA7 /* SEGReachability.m */,
-			);
-			name = Vendor;
-			path = Analytics/Vendor;
-			sourceTree = SOURCE_ROOT;
-		};
 		EADEB8511DECD080005322DA = {
 			isa = PBXGroup;
 			children = (
@@ -292,8 +282,8 @@
 			isa = PBXGroup;
 			children = (
 				EADEB8751DECD12B005322DA /* Classes */,
-				EADEB85E1DECD080005322DA /* Analytics.h */,
 				EADEB85F1DECD080005322DA /* Info.plist */,
+				EADEB88C1DECD12B005322DA /* Internal */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -329,51 +319,43 @@
 		EADEB8751DECD12B005322DA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				EAA5427A1EB42B8C00945DA7 /* Vendor */,
-				EADEB8771DECD12B005322DA /* Crypto */,
-				EADEB87B1DECD12B005322DA /* Integrations */,
-				EADEB88C1DECD12B005322DA /* Internal */,
-				EADEB8A41DECD12B005322DA /* Middlewares */,
-				EA88A5971DED7608009FB66A /* SEGSerializableValue.h */,
+				EADEB85E1DECD080005322DA /* Analytics.h */,
+				EADEB87C1DECD12B005322DA /* SEGAliasPayload.h */,
+				EADEB87D1DECD12B005322DA /* SEGAliasPayload.m */,
 				EADEB8A91DECD12B005322DA /* SEGAnalytics.h */,
 				EADEB8AA1DECD12B005322DA /* SEGAnalytics.m */,
 				EADEB8AB1DECD12B005322DA /* SEGAnalyticsConfiguration.h */,
 				EADEB8AC1DECD12B005322DA /* SEGAnalyticsConfiguration.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		EADEB8771DECD12B005322DA /* Crypto */ = {
-			isa = PBXGroup;
-			children = (
-				EADEB8781DECD12B005322DA /* SEGAES256Crypto.h */,
-				EADEB8791DECD12B005322DA /* SEGAES256Crypto.m */,
+				EADEB8A51DECD12B005322DA /* SEGContext.h */,
+				EADEB8A61DECD12B005322DA /* SEGContext.m */,
 				EADEB87A1DECD12B005322DA /* SEGCrypto.h */,
-			);
-			path = Crypto;
-			sourceTree = "<group>";
-		};
-		EADEB87B1DECD12B005322DA /* Integrations */ = {
-			isa = PBXGroup;
-			children = (
-				EADEB87C1DECD12B005322DA /* SEGAliasPayload.h */,
-				EADEB87D1DECD12B005322DA /* SEGAliasPayload.m */,
 				EADEB87E1DECD12B005322DA /* SEGGroupPayload.h */,
 				EADEB87F1DECD12B005322DA /* SEGGroupPayload.m */,
+				EADEB8931DECD12B005322DA /* SEGHTTPClient.h */,
+				EADEB8941DECD12B005322DA /* SEGHTTPClient.m */,
 				EADEB8801DECD12B005322DA /* SEGIdentifyPayload.h */,
 				EADEB8811DECD12B005322DA /* SEGIdentifyPayload.m */,
 				EADEB8821DECD12B005322DA /* SEGIntegration.h */,
 				EADEB8831DECD12B005322DA /* SEGIntegrationFactory.h */,
-				EADEB8841DECD12B005322DA /* SEGIntegrationsManager.h */,
-				EADEB8851DECD12B005322DA /* SEGIntegrationsManager.m */,
+				EADEB8A71DECD12B005322DA /* SEGMiddleware.h */,
+				EADEB8A81DECD12B005322DA /* SEGMiddleware.m */,
 				EADEB8861DECD12B005322DA /* SEGPayload.h */,
 				EADEB8871DECD12B005322DA /* SEGPayload.m */,
+				EAA5427B1EB42B8C00945DA7 /* SEGReachability.h */,
+				EAA5427C1EB42B8C00945DA7 /* SEGReachability.m */,
 				EADEB8881DECD12B005322DA /* SEGScreenPayload.h */,
 				EADEB8891DECD12B005322DA /* SEGScreenPayload.m */,
+				5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */,
+				EADEB8971DECD12B005322DA /* SEGSegmentIntegration.h */,
+				EADEB8981DECD12B005322DA /* SEGSegmentIntegration.m */,
+				EADEB8991DECD12B005322DA /* SEGSegmentIntegrationFactory.h */,
+				EADEB89A1DECD12B005322DA /* SEGSegmentIntegrationFactory.m */,
+				EA88A5971DED7608009FB66A /* SEGSerializableValue.h */,
+				EADEB89B1DECD12B005322DA /* SEGStorage.h */,
 				EADEB88A1DECD12B005322DA /* SEGTrackPayload.h */,
 				EADEB88B1DECD12B005322DA /* SEGTrackPayload.m */,
 			);
-			path = Integrations;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		EADEB88C1DECD12B005322DA /* Internal */ = {
@@ -381,40 +363,25 @@
 			children = (
 				EADEB88D1DECD12B005322DA /* NSData+SEGGZIP.h */,
 				EADEB88E1DECD12B005322DA /* NSData+SEGGZIP.m */,
+				EADEB8781DECD12B005322DA /* SEGAES256Crypto.h */,
+				EADEB8791DECD12B005322DA /* SEGAES256Crypto.m */,
 				EADEB88F1DECD12B005322DA /* SEGAnalyticsUtils.h */,
 				EADEB8901DECD12B005322DA /* SEGAnalyticsUtils.m */,
 				EADEB8911DECD12B005322DA /* SEGFileStorage.h */,
 				EADEB8921DECD12B005322DA /* SEGFileStorage.m */,
-				EADEB8931DECD12B005322DA /* SEGHTTPClient.h */,
-				EADEB8941DECD12B005322DA /* SEGHTTPClient.m */,
-				EADEB8971DECD12B005322DA /* SEGSegmentIntegration.h */,
-				EADEB8981DECD12B005322DA /* SEGSegmentIntegration.m */,
-				EADEB8991DECD12B005322DA /* SEGSegmentIntegrationFactory.h */,
-				EADEB89A1DECD12B005322DA /* SEGSegmentIntegrationFactory.m */,
-				EADEB89B1DECD12B005322DA /* SEGStorage.h */,
+				EADEB8841DECD12B005322DA /* SEGIntegrationsManager.h */,
+				EADEB8851DECD12B005322DA /* SEGIntegrationsManager.m */,
+				A352175F23AD5825005B07F6 /* SEGMacros.h */,
 				EADEB89C1DECD12B005322DA /* SEGStoreKitTracker.h */,
 				EADEB89D1DECD12B005322DA /* SEGStoreKitTracker.m */,
 				EADEB89E1DECD12B005322DA /* SEGUserDefaultsStorage.h */,
 				EADEB89F1DECD12B005322DA /* SEGUserDefaultsStorage.m */,
 				EADEB8A01DECD12B005322DA /* SEGUtils.h */,
 				EADEB8A11DECD12B005322DA /* SEGUtils.m */,
-				A352175F23AD5825005B07F6 /* SEGMacros.h */,
 				EADEB8A21DECD12B005322DA /* UIViewController+SEGScreen.h */,
 				EADEB8A31DECD12B005322DA /* UIViewController+SEGScreen.m */,
-				5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */,
 			);
 			path = Internal;
-			sourceTree = "<group>";
-		};
-		EADEB8A41DECD12B005322DA /* Middlewares */ = {
-			isa = PBXGroup;
-			children = (
-				EADEB8A51DECD12B005322DA /* SEGContext.h */,
-				EADEB8A61DECD12B005322DA /* SEGContext.m */,
-				EADEB8A71DECD12B005322DA /* SEGMiddleware.h */,
-				EADEB8A81DECD12B005322DA /* SEGMiddleware.m */,
-			);
-			path = Middlewares;
 			sourceTree = "<group>";
 		};
 		EADEB8E11DECD335005322DA /* Utils */ = {
