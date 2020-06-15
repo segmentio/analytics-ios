@@ -24,6 +24,7 @@ let package = Package(
             dependencies: [],
             path: "Analytics",
             cSettings: [
+            .headerSearchPath("Internal"),
             .headerSearchPath("Classes"),
             .headerSearchPath("Classes/Crypto"),
             .headerSearchPath("Classes/Integrations"),
