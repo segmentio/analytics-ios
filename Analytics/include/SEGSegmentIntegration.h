@@ -1,0 +1,1 @@
+../Classes/Internal/SEGSegmentIntegration.h

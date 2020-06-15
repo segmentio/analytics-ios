@@ -1,0 +1,1 @@
+../Classes/SEGAnalyticsConfiguration.h

@@ -1,0 +1,1 @@
+../Classes/Internal/SEGScreenReporting.h

@@ -1,0 +1,1 @@
+../Classes/Integrations/SEGIntegrationsManager.h
