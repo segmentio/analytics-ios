@@ -8,6 +8,7 @@
 #import "SEGHTTPClient.h"
 #import "SEGStorage.h"
 #import "SEGMacros.h"
+#import "SEGState.h"
 
 #if TARGET_OS_IOS
 #import <CoreTelephony/CTCarrier.h>

@@ -11,9 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SEGUserInfo: NSObject
-@property (nonatomic, readonly, nonnull) NSString *anonymousId;
-@property (nonatomic, readonly, nullable) NSString *userId;
-@property (nonatomic, readonly, nullable) NSDictionary *traits;
+@property (nonatomic, strong, nonnull) NSString *anonymousId;
+@property (nonatomic, strong, nullable) NSString *userId;
+@property (nonatomic, strong, nullable) NSDictionary *traits;
 @end
 
 

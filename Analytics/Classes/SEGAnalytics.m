@@ -14,7 +14,8 @@
 #import "SEGMiddleware.h"
 #import "SEGContext.h"
 #import "SEGIntegrationsManager.h"
-#import "SEGUtils.h"
+#import "SEGState.h"
+#import "Internal/SEGUtils.h"
 
 static SEGAnalytics *__sharedInstance = nil;
 
@@ -417,7 +418,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 - (NSString *)getAnonymousId
 {
-    return [self.integrationsManager getAnonymousId];
+    return [SEGState sharedInstance].userInfo.anonymousId;
 }
 
 - (NSDictionary *)bundledIntegrations

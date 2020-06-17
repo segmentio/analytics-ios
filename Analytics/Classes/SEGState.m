@@ -9,13 +9,15 @@
 #import "SEGState.h"
 #import "SEGAnalyticsUtils.h"
 
-typedef void (^SEGStateBlock)(void);
-typedef id (^SEGStateGetBlock)(void);
+typedef void (^SEGStateSetBlock)(void);
+typedef _Nullable id (^SEGStateGetBlock)(void);
 
 
 @interface SEGState()
+// State Objects
 @property (nonatomic, nonnull) SEGUserInfo *userInfo;
-- (void)setValueWithBlock:(SEGStateBlock)block;
+// State Accessors
+- (void)setValueWithBlock:(SEGStateSetBlock)block;
 - (id)valueWithBlock:(SEGStateGetBlock)block;
 @end
 
@@ -27,14 +29,15 @@ typedef id (^SEGStateGetBlock)(void);
 
 
 @interface SEGUserInfo () <SEGStateObject>
-@property (nonatomic, copy, nonnull) NSString *anonymousId;
-@property (nonatomic, copy, nullable) NSString *userId;
-@property (nonatomic, copy, nullable) NSDictionary *traits;
 @end
 
 @implementation SEGUserInfo
 
 @synthesize state;
+
+@synthesize anonymousId = _anonymousId;
+@synthesize userId = _userId;
+@synthesize traits = _traits;
 
 - (instancetype)initWithState:(SEGState *)state
 {
@@ -47,42 +50,42 @@ typedef id (^SEGStateGetBlock)(void);
 - (NSString *)anonymousId
 {
     return [state valueWithBlock: ^id{
-        return self.anonymousId;
+        return self->_anonymousId;
     }];
 }
 
 - (void)setAnonymousId:(NSString *)anonymousId
 {
     [state setValueWithBlock: ^{
-        self.anonymousId = [anonymousId copy];
+        self->_anonymousId = [anonymousId copy];
     }];
 }
 
 - (NSString *)userId
 {
     return [state valueWithBlock: ^id{
-        return self.userId;
+        return self->_userId;
     }];
 }
 
 - (void)setUserId:(NSString *)userId
 {
     [state setValueWithBlock: ^{
-        self.userId = [userId copy];
+        self->_userId = [userId copy];
     }];
 }
 
 - (NSDictionary *)traits
 {
     return [state valueWithBlock:^id{
-        return self.traits;
+        return self->_traits;
     }];
 }
 
 - (void)setTraits:(NSDictionary *)traits
 {
     [state setValueWithBlock: ^{
-        self.traits = [traits serializableDeepCopy];
+        self->_traits = [traits serializableDeepCopy];
     }];
 }
 
@@ -107,13 +110,13 @@ typedef id (^SEGStateGetBlock)(void);
 - (instancetype)init
 {
     if (self = [super init]) {
-        _stateQueue = dispatch_queue_create("com.segment.state.queue", DISPATCH_QUEUE_SERIAL);
-        self.userInfo = [[SEGUserInfo alloc] init];
+        _stateQueue = dispatch_queue_create("com.segment.state.queue", DISPATCH_QUEUE_CONCURRENT);
+        self.userInfo = [[SEGUserInfo alloc] initWithState:self];
     }
     return self;
 }
 
-- (void)setValueWithBlock:(SEGStateBlock)block
+- (void)setValueWithBlock:(SEGStateSetBlock)block
 {
     dispatch_barrier_async(_stateQueue, block);
 }
