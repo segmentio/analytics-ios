@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Analytics"
-  s.version          = "4.0.0-beta.1"
+  s.version          = "4.0.0-beta.2"
   s.summary          = "The hassle-free way to add analytics to your iOS app."
 
   s.description      = <<-DESC
@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
 
   s.source_files = [
     'Analytics/Classes/**/*',
-    'Analytics/Vendor/**/*'
+    'Analytics/Internal/**/*'
   ]
 end
