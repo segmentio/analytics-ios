@@ -13,13 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 @class SEGAnalyticsConfiguration;
 
 @interface SEGUserInfo: NSObject
-@property (nonatomic, strong, nonnull) NSString *anonymousId;
+@property (nonatomic, strong) NSString *anonymousId;
 @property (nonatomic, strong, nullable) NSString *userId;
 @property (nonatomic, strong, nullable) NSDictionary *traits;
 @end
 
 @interface SEGPayloadContext: NSObject
-@property (nonatomic, readonly, nonnull) NSDictionary *payload;
+@property (nonatomic, readonly) NSDictionary *payload;
 @property (nonatomic, strong, nullable) NSDictionary *referrer;
 @property (nonatomic, strong, nullable) NSString *deviceToken;
 
@@ -31,10 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SEGState : NSObject
 
-@property (nonatomic, readonly, nonnull) SEGUserInfo *userInfo;
-@property (nonatomic, readonly, nonnull) SEGPayloadContext *context;
+@property (nonatomic, readonly) SEGUserInfo *userInfo;
+@property (nonatomic, readonly) SEGPayloadContext *context;
 
-@property (nonatomic, nullable) SEGAnalyticsConfiguration *configuration;
+@property (nonatomic, strong, nullable) SEGAnalyticsConfiguration *configuration;
 
 + (instancetype)sharedInstance;
 - (instancetype)init __unavailable;
