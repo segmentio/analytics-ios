@@ -215,14 +215,6 @@ NSDictionary *SEGCoerceDictionary(NSDictionary *dict)
     return SEGCoerceJSONObject(dict);
 }
 
-NSString *SEGIDFA()
-{
-    if ([SEGAnalytics sharedAnalytics].configuration.adSupportBlock != nil) {
-        return [SEGAnalytics sharedAnalytics].configuration.adSupportBlock();
-    }
-    return nil;
-}
-
 NSString *SEGEventNameForScreenTitle(NSString *title)
 {
     return [[NSString alloc] initWithFormat:@"Viewed %@ Screen", title];

@@ -138,25 +138,20 @@ class IntegrationMiddlewareTests: QuickSpec {
     }
     
     it("expects event to be swallowed if next is not called") {
+      // Since we're testing that an event is dropped, the previously used run loop pump won't work here.
+      var initialized = false
+      NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: SEGAnalyticsIntegrationDidStart), object: nil, queue: nil) { (notification) in
+        initialized = true
+      }
+        
       let config = AnalyticsConfiguration(writeKey: "TESTKEY")
       let passthrough = PassthroughMiddleware()
       config.destinationMiddleware = [DestinationMiddleware(key: SegmentIntegrationFactory().key(), middleware: [eatAllCalls, passthrough])]
       let analytics = Analytics(configuration: config)
       analytics.track("Purchase Success")
 
-      // Since we're testing that an event is dropped, the previously used run loop pump won't work here.
-      var initialized = false;
-      NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: SEGAnalyticsIntegrationDidStart), object: nil, queue: nil) { (notification) in
-        initialized = true;
-      }
-      waitUntil(timeout: 60) { done in
-        let queue = DispatchQueue(label: "test")
-        queue.async {
-          while (initialized != true) {
-            sleep(1)
-          }
-          done()
-        }
+      while (!initialized) {
+        sleep(1)
       }
 
       expect(passthrough.lastContext).to(beNil())
