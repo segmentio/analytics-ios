@@ -1,6 +1,15 @@
 Change Log
 ==========
 
+Version 4.0.1 (18 June, 2020)
+-----------------------------
+ * [New](https://github.com/segmentio/analytics-ios/pull/905) Added global state management; Middleware now receive all context data.
+ * [New](https://github.com/segmentio/analytics-ios/pull/885) change logic for screen naming conventions.
+ * [New](https://github.com/segmentio/analytics-ios/pull/899) Fixed crash on UISceneDelegate applications.
+ * [New](https://github.com/segmentio/analytics-ios/pull/896) Renamed middleware methods to match a.js naming.
+ * [New](https://github.com/segmentio/analytics-ios/pull/904) Added Swift Package Manager support.
+ * [New](https://github.com/segmentio/analytics-ios/pull/902) Updated class names for Swift.
+
 Version 4.0.0-beta.1 *(21st May, 2020)*
 ---------------------------------------
  * [New](https://github.com/segmentio/analytics-ios/pull/892) Makes IDFA support externally/customer driven.
