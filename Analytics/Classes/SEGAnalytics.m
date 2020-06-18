@@ -480,6 +480,9 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     SEGContext *context = [[[SEGContext alloc] initWithAnalytics:self] modify:^(id<SEGMutableContext> _Nonnull ctx) {
         ctx.eventType = eventType;
         ctx.payload = payload;
+        ctx.payload.messageId = GenerateUUIDString();
+        ctx.anonymousId = [SEGState sharedInstance].userInfo.anonymousId;
+        ctx.userId = [SEGState sharedInstance].userInfo.userId;
     }];
     
     // Could probably do more things with callback later, but we don't use it yet.
