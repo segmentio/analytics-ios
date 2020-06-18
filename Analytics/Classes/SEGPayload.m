@@ -1,12 +1,19 @@
 #import "SEGPayload.h"
-
+#import "SEGState.h"
 
 @implementation SEGPayload
 
 - (instancetype)initWithContext:(NSDictionary *)context integrations:(NSDictionary *)integrations
 {
     if (self = [super init]) {
-        _context = [context copy];
+        // combine existing state with user supplied context.
+        NSDictionary *internalContext = [SEGState sharedInstance].context.payload;
+        
+        NSMutableDictionary *combinedContext = [[NSMutableDictionary alloc] init];
+        [combinedContext addEntriesFromDictionary:internalContext];
+        [combinedContext addEntriesFromDictionary:context];
+
+        _context = [combinedContext copy];
         _integrations = [integrations copy];
     }
     return self;

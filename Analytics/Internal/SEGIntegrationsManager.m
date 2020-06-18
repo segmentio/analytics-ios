@@ -25,6 +25,7 @@
 #import "SEGScreenPayload.h"
 #import "SEGAliasPayload.h"
 #import "SEGUtils.h"
+#import "SEGState.h"
 
 NSString *SEGAnalyticsIntegrationDidStart = @"io.segment.analytics.integration.did.start";
 NSString *const SEGAnonymousIdKey = @"SEGAnonymousId";
@@ -80,6 +81,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 
 @implementation SEGIntegrationsManager
 
+@dynamic cachedAnonymousId;
 @synthesize cachedSettings = _cachedSettings;
 
 - (instancetype _Nonnull)initWithAnalytics:(SEGAnalytics *_Nonnull)analytics
@@ -130,6 +132,16 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)setCachedAnonymousId:(NSString *)cachedAnonymousId
+{
+    [SEGState sharedInstance].userInfo.anonymousId = cachedAnonymousId;
+}
+
+- (NSString *)cachedAnonymousId
+{
+    NSString *value = [SEGState sharedInstance].userInfo.anonymousId;
+    return value;
+}
 
 - (void)onAppForeground:(NSNotification *)note
 {
@@ -304,6 +316,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
         [self.fileStorage setString:anonymousId forKey:kSEGAnonymousIdFilename];
 #endif
     }
+    
     return anonymousId;
 }
 

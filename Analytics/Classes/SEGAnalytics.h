@@ -218,7 +218,6 @@ NS_SWIFT_NAME(Analytics)
 /** Returns the configuration used to create the analytics client. */
 - (SEGAnalyticsConfiguration *)configuration;
 
-
 @end
 
 NS_ASSUME_NONNULL_END
