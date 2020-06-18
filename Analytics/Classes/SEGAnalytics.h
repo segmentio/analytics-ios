@@ -218,11 +218,6 @@ NS_SWIFT_NAME(Analytics)
 /** Returns the configuration used to create the analytics client. */
 - (SEGAnalyticsConfiguration *)configuration;
 
-/*
- // a better way?
- - (void)setValueInContext:(id)value forKey:(NSString *)key;
- - (void)removeValueInContextForKey:(NSString *)key;
- */
 @end
 
 NS_ASSUME_NONNULL_END
