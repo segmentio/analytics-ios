@@ -15,6 +15,9 @@
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #endif
 
+// BKS: This doesn't appear to be needed anymore.  Will investigate.
+//NSString *const SEGADClientClass = @"ADClient";
+
 @implementation SEGUtils
 
 + (NSData *_Nullable)dataFromPlist:(nonnull id)plist
@@ -201,7 +204,8 @@ NSDictionary *getStaticContext(SEGAnalyticsConfiguration *configuration, NSStrin
         @"height" : @(screenSize.height)
     };
 
-#if !(TARGET_IPHONE_SIMULATOR)
+// BKS: This bit below doesn't seem to be effective anymore.  Will investigate later.
+/*#if !(TARGET_IPHONE_SIMULATOR)
     Class adClient = NSClassFromString(SEGADClientClass);
     if (adClient) {
 #pragma clang diagnostic push
@@ -219,7 +223,7 @@ NSDictionary *getStaticContext(SEGAnalyticsConfiguration *configuration, NSStrin
                            withObject:completionHandler];
 #pragma clang diagnostic pop
     }
-#endif
+#endif*/
 
     return dict;
 }

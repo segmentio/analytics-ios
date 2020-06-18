@@ -19,9 +19,6 @@ NSString *const SEGSegmentDidSendRequestNotification = @"SegmentDidSendRequest";
 NSString *const SEGSegmentRequestDidSucceedNotification = @"SegmentRequestDidSucceed";
 NSString *const SEGSegmentRequestDidFailNotification = @"SegmentRequestDidFail";
 
-NSString *const SEGAdvertisingClassIdentifier = @"ASIdentifierManager";
-NSString *const SEGADClientClass = @"ADClient";
-
 NSString *const SEGUserIdKey = @"SEGUserId";
 NSString *const SEGQueueKey = @"SEGQueue";
 NSString *const SEGTraitsKey = @"SEGTraits";
