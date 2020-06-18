@@ -309,7 +309,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     // attach these parts of the payload outside since they are all synchronous
     payload[@"type"] = action;
-    //payload[@"messageId"] = GenerateUUIDString();
 
     [self dispatchBackground:^{
         // attach userId and anonymousId inside the dispatch_async in case
