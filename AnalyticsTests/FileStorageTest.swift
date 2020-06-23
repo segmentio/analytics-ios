@@ -5,127 +5,129 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-import Quick
-import Nimble
 import Analytics
+import XCTest
 
-class FileStorageTest : QuickSpec {
-  override func spec() {
+
+class FileStorageTest : XCTestCase {
+    
     var storage : FileStorage!
-    beforeEach {
-      let url = FileStorage.applicationSupportDirectoryURL()
-      expect(url).toNot(beNil())
-      expect(url?.lastPathComponent) == "Application Support"
-      storage = FileStorage(folder: url!, crypto: nil)
+    
+    override func setUp() {
+        super.setUp()
+        let url = FileStorage.applicationSupportDirectoryURL()
+        XCTAssertNotNil(url, "URL Should not be nil")
+        XCTAssertEqual(url?.lastPathComponent, "Application Support")
+        storage = FileStorage(folder: url!, crypto: nil)
     }
     
-    it("Creates caches directory") {
-      let url = FileStorage.cachesDirectoryURL()
-      expect(url).toNot(beNil())
-      expect(url?.lastPathComponent) == "Caches"
+    override func tearDown() {
+        super.tearDown()
+        storage.resetAll()
     }
     
-    it("creates folder if none exists") {
-      let tempDir = NSURL(fileURLWithPath: NSTemporaryDirectory())
-      let url = tempDir.appendingPathComponent(NSUUID().uuidString)
-      
-      expect(try? url?.checkResourceIsReachable()).to(beNil())
-      _ = FileStorage(folder: url!, crypto: nil)
-      
-      var isDir: ObjCBool = false
-      let exists = FileManager.default.fileExists(atPath: url!.path, isDirectory: &isDir)
-      
-      expect(exists) == true
-      expect(isDir.boolValue) == true
+    func testCreatesCachesDirectory() {
+        let url = FileStorage.cachesDirectoryURL()
+        XCTAssertNotNil(url, "URL should not be nil")
+        XCTAssertEqual(url?.lastPathComponent, "Caches", "Last part of url should be Caches")
     }
     
-    it("persists and loads data") {
-      let dataIn = "segment".data(using: String.Encoding.utf8)!
-      storage.setData(dataIn, forKey: "mydata")
-      
-      let dataOut = storage.data(forKey: "mydata")
-      expect(dataOut) == dataIn
-      
-      let strOut = String(data: dataOut!, encoding: String.Encoding.utf8)
-      expect(strOut) == "segment"
+    func testCreatesFolderIfNoneExists() {
+        let tempDir = NSURL(fileURLWithPath: NSTemporaryDirectory())
+        let url = tempDir.appendingPathComponent(NSUUID().uuidString)
+        
+        XCTAssertNil(try? url?.checkResourceIsReachable() ?? true)
+        _ = FileStorage(folder: url!, crypto: nil)
+        
+        var isDir: ObjCBool = false
+        let exists = FileManager.default.fileExists(atPath: url!.path, isDirectory: &isDir)
+        
+        XCTAssertEqual(exists, true, "Exists should be true")
+        XCTAssertEqual(isDir.boolValue, true, "Should be a directory")
     }
     
-    it("persists and loads string") {
-      let str = "san francisco"
-      storage.setString(str, forKey: "city")
-      expect(storage.string(forKey: "city")) == str
-      
-      storage.removeKey("city")
-      expect(storage.string(forKey: "city")).to(beNil())
+    func testPersistsAndLoadsData() {
+        let dataIn = "segment".data(using: String.Encoding.utf8)!
+        storage.setData(dataIn, forKey: "mydata")
+        
+        let dataOut = storage.data(forKey: "mydata")
+        XCTAssertEqual(dataOut, dataIn, "Out and In data should match")
+        
+        let strOut = String(data: dataOut!, encoding: String.Encoding.utf8)
+        XCTAssertEqual(strOut, "segment")
     }
     
-    it("persists and loads array") {
-      let array = [
-        "san francisco",
-        "new york",
-        "tallinn",
-      ]
-      storage.setArray(array, forKey: "cities")
-      expect(storage.array(forKey: "cities") as? Array<String>) == array
-      
-      storage.removeKey("cities")
-      expect(storage.array(forKey: "cities")).to(beNil())
+    func testPersistsAndLoadsString() {
+        let str = "san francisco"
+        storage.setString(str, forKey: "city")
+        XCTAssertEqual(storage.string(forKey: "city"), str)
+        
+        storage.removeKey("city")
+        XCTAssertNil(storage.string(forKey: "city"))
     }
     
-    it("persists and loads dictionary") {
-      let dict = [
-        "san francisco": "tech",
-        "new york": "finance",
-        "paris": "fashion",
-      ]
-      storage.setDictionary(dict, forKey: "cityMap")
-      expect(storage.dictionary(forKey: "cityMap") as? Dictionary<String, String>) == dict
-      
-      storage.removeKey("cityMap")
-      expect(storage.dictionary(forKey: "cityMap")).to(beNil())
+    func testPersistsAndLoadsArray() {
+        let array = [
+          "san francisco",
+          "new york",
+          "tallinn",
+        ]
+        storage.setArray(array, forKey: "cities")
+        XCTAssertEqual(storage.array(forKey: "cities") as? Array<String>, array)
+        
+        storage.removeKey("cities")
+        XCTAssertNil(storage.array(forKey: "cities"))
     }
     
-    it("saves file to disk and removes from disk") {
-      let key = "input.txt"
-      let url = storage.url(forKey: key)
-      expect(try? url.checkResourceIsReachable()).to(beNil())
-      storage.setString("sloth", forKey: key)
-      expect(try! url.checkResourceIsReachable()) == true
-      storage.removeKey(key)
-      expect(try? url.checkResourceIsReachable()).to(beNil())
+    func testPersistsAndLoadsDictionary() {
+        let dict = [
+          "san francisco": "tech",
+          "new york": "finance",
+          "paris": "fashion",
+        ]
+        storage.setDictionary(dict, forKey: "cityMap")
+        XCTAssertEqual(storage.dictionary(forKey: "cityMap") as? Dictionary<String, String>, dict)
+        
+        storage.removeKey("cityMap")
+        XCTAssertNil(storage.dictionary(forKey: "cityMap"))
     }
     
-    it("should be binary compatible with old SDKs") {
-      let key = "traits.plist"
-      let dictIn = [
-        "san francisco": "tech",
-        "new york": "finance",
-        "paris": "fashion",
-      ]
-      
-      (dictIn as NSDictionary).write(to: storage.url(forKey: key), atomically: true)
-      let dictOut = storage.dictionary(forKey: key)
-      expect(dictOut as? [String: String]) == dictIn
+    func testSavesFileToDiskRemovesFromDisk() {
+        let key = "input.txt"
+        let url = storage.url(forKey: key)
+        XCTAssertNil(try? url.checkResourceIsReachable())
+        storage.setString("sloth", forKey: key)
+        XCTAssertEqual(try! url.checkResourceIsReachable(), true)
+        storage.removeKey(key)
+        XCTAssertNil(try? url.checkResourceIsReachable())
     }
     
-    it("should work with crypto") {
-      let url = FileStorage.applicationSupportDirectoryURL()
-      let crypto = AES256Crypto(password: "thetrees")
-      let s = FileStorage(folder: url!, crypto: crypto)
-      let dict = [
-        "san francisco": "tech",
-        "new york": "finance",
-        "paris": "fashion",
-      ]
-      s.setDictionary(dict, forKey: "cityMap")
-      expect(s.dictionary(forKey: "cityMap") as? Dictionary<String, String>) == dict
-      
-      s.removeKey("cityMap")
-      expect(s.dictionary(forKey: "cityMap")).to(beNil())
+    func testShouldBeBinaryCompatible() {
+        let key = "traits.plist"
+        let dictIn = [
+          "san francisco": "tech",
+          "new york": "finance",
+          "paris": "fashion",
+        ]
+        
+        (dictIn as NSDictionary).write(to: storage.url(forKey: key), atomically: true)
+        let dictOut = storage.dictionary(forKey: key)
+        XCTAssertEqual(dictOut as? [String: String], dictIn)
     }
     
-    afterEach {
-      storage.resetAll()
+    func testShouldWorkWithCrypto() {
+        let url = FileStorage.applicationSupportDirectoryURL()
+        let crypto = AES256Crypto(password: "thetrees")
+        let s = FileStorage(folder: url!, crypto: crypto)
+        let dict = [
+          "san francisco": "tech",
+          "new york": "finance",
+          "paris": "fashion",
+        ]
+        s.setDictionary(dict, forKey: "cityMap")
+        XCTAssertEqual(s.dictionary(forKey: "cityMap") as? Dictionary<String, String>, dict)
+        
+        s.removeKey("cityMap")
+        XCTAssertNil(s.dictionary(forKey: "cityMap"))
     }
-  }
 }
