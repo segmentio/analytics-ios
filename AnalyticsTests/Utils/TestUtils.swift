@@ -6,9 +6,9 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-@testable import Nimble
 import Nocilla
 import Analytics
+import XCTest
 
 class PassthroughMiddleware: Middleware {
   var lastContext: Context?
@@ -85,12 +85,9 @@ class JsonGzippedBody : LSMatcher, LSMatcheable {
     }
     
     func matchesJson(_ json: AnyObject) -> Bool {
-        let actualValue : () -> NSObject = {
-            return json as! NSObject
-        }
-        let failureMessage = FailureMessage()
-        let location = SourceLocation()
-        let matches = Nimble.equal(expectedJson).matches(actualValue, failureMessage: failureMessage, location: location)
+        let expectedDictionary = expectedJson as? [String: AnyHashable]
+        let jsonDictionary = json as? [String: AnyHashable]
+        let matches = expectedDictionary == jsonDictionary
 //        print("matches=\(matches) expected \(expectedJson) actual \(json)")
         return matches
     }
@@ -183,4 +180,22 @@ class TestApplication: NSObject, ApplicationProtocol {
     guard let index = backgroundTasks.index(where: { $0.identifier == identifier }) else { return }
     backgroundTasks[index].isEnded = true
   }
+}
+
+extension XCTestCase {
+    
+    func expectUntil(_ time: TimeInterval, expression: @escaping @autoclosure () throws -> Bool) {
+        
+        let expectation = self.expectation(description: "Expect Until")
+        DispatchQueue.global().async {
+            while (true) {
+                if try! expression() {
+                    expectation.fulfill()
+                    return
+                }
+                usleep(500) // try every half second
+            }
+        }
+        wait(for: [expectation], timeout: time)
+    }
 }
