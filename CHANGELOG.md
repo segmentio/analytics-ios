@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 4.0.2 (25 June, 2020)
+-----------------------------
+* [New](https://github.com/segmentio/analytics-ios/pull/913) Separate public utils from private utils appropriately.
+* [New](https://github.com/segmentio/analytics-ios/pull/912) Payload Info & Traits Fixes.
+* [New](https://github.com/segmentio/analytics-ios/pull/911) Updated SPM for code coverage compatibility.
+* [New](https://github.com/segmentio/analytics-ios/pull/909) Removed Quick and Nimble, updated unit tests.
+
 Version 4.0.1 (18 June, 2020)
 -----------------------------
  * [New](https://github.com/segmentio/analytics-ios/pull/905) Added global state management; Middleware now receive all context data.
