@@ -2,7 +2,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SEGAnalytics.h"
-#import "SEGAnalyticsUtils.h"
+#import "SEGUtils.h"
 #import "SEGSegmentIntegration.h"
 #import "SEGReachability.h"
 #import "SEGHTTPClient.h"
