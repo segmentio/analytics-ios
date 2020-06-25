@@ -3,6 +3,9 @@
 
 @implementation SEGPayload
 
+@synthesize userId = _userId;
+@synthesize anonymousId = _anonymousId;
+
 - (instancetype)initWithContext:(NSDictionary *)context integrations:(NSDictionary *)integrations
 {
     if (self = [super init]) {
@@ -15,6 +18,9 @@
 
         _context = [combinedContext copy];
         _integrations = [integrations copy];
+        _messageId = nil;
+        _userId = nil;
+        _anonymousId = nil;
     }
     return self;
 }
@@ -23,20 +29,16 @@
 
 
 @implementation SEGApplicationLifecyclePayload
-
 @end
 
 
 @implementation SEGRemoteNotificationPayload
-
 @end
 
 
 @implementation SEGContinueUserActivityPayload
-
 @end
 
 
 @implementation SEGOpenURLPayload
-
 @end

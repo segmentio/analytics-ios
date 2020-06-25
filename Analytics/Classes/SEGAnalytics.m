@@ -481,8 +481,12 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         ctx.eventType = eventType;
         ctx.payload = payload;
         ctx.payload.messageId = GenerateUUIDString();
-        ctx.anonymousId = [SEGState sharedInstance].userInfo.anonymousId;
-        ctx.userId = [SEGState sharedInstance].userInfo.userId;
+        if (ctx.payload.userId == nil) {
+            ctx.payload.userId = [SEGState sharedInstance].userInfo.userId;
+        }
+        if (ctx.payload.anonymousId == nil) {
+            ctx.payload.anonymousId = [SEGState sharedInstance].userInfo.anonymousId;
+        }
     }];
     
     // Could probably do more things with callback later, but we don't use it yet.

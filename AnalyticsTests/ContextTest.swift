@@ -44,38 +44,41 @@ class ContextTests: XCTestCase {
         let context = Context(analytics: analytics)
         
         let newContext = context.modify { context in
-            context.userId = "sloth"
-            context.eventType = .track;
+            context.payload = TrackPayload()
+            context.payload?.userId = "sloth"
+            context.eventType = .track
         }
-        XCTAssertEqual(newContext.userId, "sloth")
+        XCTAssertEqual(newContext.payload?.userId, "sloth")
         XCTAssertEqual(newContext.eventType,  EventType.track)
     }
     
     func testModifiesCopyInDebugMode() {
         let context = Context(analytics: analytics).modify { context in
             context.debug = true
+            context.eventType = .track
         }
         XCTAssertEqual(context.debug, true)
         
         let newContext = context.modify { context in
-            context.userId = "123"
+            context.eventType = .identify
         }
         XCTAssertNotEqual(context, newContext)
-        XCTAssertEqual(newContext.userId, "123")
-        XCTAssertNil(context.userId)
+        XCTAssertEqual(newContext.eventType, .identify)
+        XCTAssertEqual(context.eventType, .track)
     }
     
     func testModifiesSelfInNonDebug() {
         let context = Context(analytics: analytics).modify { context in
             context.debug = false
+            context.eventType = .track
         }
         XCTAssertFalse(context.debug)
         
         let newContext = context.modify { context in
-            context.userId = "123"
+            context.eventType = .identify
         }
         XCTAssertEqual(context, newContext)
-        XCTAssertEqual(newContext.userId, "123")
-        XCTAssertEqual(context.userId, "123")
+        XCTAssertEqual(newContext.eventType, .identify)
+        XCTAssertEqual(context.eventType, .identify)
     }
 }

@@ -6,10 +6,6 @@ NS_ASSUME_NONNULL_BEGIN
 NS_SWIFT_NAME(IdentifyPayload)
 @interface SEGIdentifyPayload : SEGPayload
 
-@property (nonatomic, readonly, nullable) NSString *userId;
-
-@property (nonatomic, readonly, nullable) NSString *anonymousId;
-
 @property (nonatomic, readonly, nullable) JSON_DICT traits;
 
 - (instancetype)initWithUserId:(NSString *)userId

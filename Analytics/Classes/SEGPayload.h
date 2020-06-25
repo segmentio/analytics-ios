@@ -10,6 +10,8 @@ NS_SWIFT_NAME(Payload)
 @property (nonatomic, readonly) JSON_DICT integrations;
 @property (nonatomic, strong) NSString *timestamp;
 @property (nonatomic, strong) NSString *messageId;
+@property (nonatomic, strong) NSString *anonymousId;
+@property (nonatomic, strong) NSString *userId;
 
 - (instancetype)initWithContext:(JSON_DICT)context integrations:(JSON_DICT)integrations;
 
