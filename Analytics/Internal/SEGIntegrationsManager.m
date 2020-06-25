@@ -191,12 +191,13 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
     NSCAssert2(payload.userId.length > 0 || payload.traits.count > 0, @"either userId (%@) or traits (%@) must be provided.", payload.userId, payload.traits);
 
     NSString *anonymousId = payload.anonymousId;
-    if (anonymousId) {
+    NSString *existingAnonymousId = self.cachedAnonymousId;
+    
+    if (anonymousId == nil) {
+        payload.anonymousId = anonymousId;
+    } else if (![anonymousId isEqualToString:existingAnonymousId]) {
         [self saveAnonymousId:anonymousId];
-    } else {
-        anonymousId = self.cachedAnonymousId;
     }
-    payload.anonymousId = anonymousId;
 
     [self callIntegrationsWithSelector:NSSelectorFromString(@"identify:")
                              arguments:@[ payload ]

@@ -88,6 +88,50 @@ class AnalyticsTests: XCTestCase {
         XCTAssertEqual(analytics2.test_integrationsManager()?.test_segmentIntegration()?.test_userId(), "testUserId1")
     }
     
+    func testPersistsTraits() {
+        analytics.identify("testUserId1", traits: ["trait1": "someTrait"])
+        
+        let analytics2 = Analytics(configuration: config)
+        analytics2.test_integrationsManager()?.test_setCachedSettings(settings: cachedSettings)
+        
+        XCTAssertEqual(analytics.test_integrationsManager()?.test_segmentIntegration()?.test_userId(), "testUserId1")
+        XCTAssertEqual(analytics2.test_integrationsManager()?.test_segmentIntegration()?.test_userId(), "testUserId1")
+        
+        var traits = analytics.test_integrationsManager()?.test_segmentIntegration()?.test_traits()
+        var storedTraits = analytics2.test_integrationsManager()?.test_segmentIntegration()?.test_traits()
+        
+        if let trait1 = traits?["trait1"] as? String {
+            XCTAssertEqual(trait1, "someTrait")
+        } else {
+            XCTAssert(false, "Traits are nil!")
+        }
+        
+        if let storedTrait1 = storedTraits?["trait1"] as? String {
+            XCTAssertEqual(storedTrait1, "someTrait")
+        } else {
+            XCTAssert(false, "Traits were not stored!")
+        }
+        
+        analytics.identify("testUserId1", traits: ["trait2": "someOtherTrait"])
+        
+        traits = analytics.test_integrationsManager()?.test_segmentIntegration()?.test_traits()
+        storedTraits = analytics2.test_integrationsManager()?.test_segmentIntegration()?.test_traits()
+        
+        if let trait1 = traits?["trait2"] as? String {
+            XCTAssertEqual(trait1, "someOtherTrait")
+        } else {
+            XCTAssert(false, "Traits are nil!")
+        }
+        
+        if let storedTrait1 = storedTraits?["trait2"] as? String {
+            XCTAssertEqual(storedTrait1, "someOtherTrait")
+        } else {
+            XCTAssert(false, "Traits were not stored!")
+        }
+        
+
+    }
+    
     func testClearsUserData() {
         analytics.identify("testUserId1", traits: [ "Test trait key" : "Test trait value"])
         analytics.reset()

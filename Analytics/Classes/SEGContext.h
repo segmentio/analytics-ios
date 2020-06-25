@@ -59,8 +59,6 @@ NS_SWIFT_NAME(Context)
 @property (nonatomic, readonly, nonnull) SEGAnalytics *_analytics;
 @property (nonatomic, readonly) SEGEventType eventType;
 
-@property (nonatomic, readonly, nullable) NSString *userId;
-@property (nonatomic, readonly, nullable) NSString *anonymousId;
 @property (nonatomic, readonly, nullable) NSError *error;
 @property (nonatomic, readonly, nullable) SEGPayload *payload;
 @property (nonatomic, readonly) BOOL debug;
@@ -74,8 +72,6 @@ NS_SWIFT_NAME(Context)
 @protocol SEGMutableContext <NSObject>
 
 @property (nonatomic) SEGEventType eventType;
-@property (nonatomic, nullable) NSString *userId;
-@property (nonatomic, nullable) NSString *anonymousId;
 @property (nonatomic, nullable) SEGPayload *payload;
 @property (nonatomic, nullable) NSError *error;
 @property (nonatomic) BOOL debug;

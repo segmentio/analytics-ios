@@ -224,11 +224,19 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     }
     // configure traits to match what is seen on android.
     NSMutableDictionary *newTraits = [traits mutableCopy];
+    // if no traits were passed in, need to create.
+    if (newTraits == nil) {
+        newTraits = [[NSMutableDictionary alloc] init];
+    }
     newTraits[@"anonymousId"] = anonId;
     if (userId != nil) {
         newTraits[@"userId"] = userId;
         [SEGState sharedInstance].userInfo.userId = userId;
     }
+    // merge w/ existing traits and set them.
+    NSDictionary *existingTraits = [SEGState sharedInstance].userInfo.traits;
+    [newTraits addEntriesFromDictionary:existingTraits];
+    [SEGState sharedInstance].userInfo.traits = newTraits;
     
     [self run:SEGEventTypeIdentify payload:
                                        [[SEGIdentifyPayload alloc] initWithUserId:userId
@@ -481,8 +489,12 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         ctx.eventType = eventType;
         ctx.payload = payload;
         ctx.payload.messageId = GenerateUUIDString();
-        ctx.anonymousId = [SEGState sharedInstance].userInfo.anonymousId;
-        ctx.userId = [SEGState sharedInstance].userInfo.userId;
+        if (ctx.payload.userId == nil) {
+            ctx.payload.userId = [SEGState sharedInstance].userInfo.userId;
+        }
+        if (ctx.payload.anonymousId == nil) {
+            ctx.payload.anonymousId = [SEGState sharedInstance].userInfo.anonymousId;
+        }
     }];
     
     // Could probably do more things with callback later, but we don't use it yet.
