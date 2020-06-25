@@ -224,11 +224,19 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     }
     // configure traits to match what is seen on android.
     NSMutableDictionary *newTraits = [traits mutableCopy];
+    // if no traits were passed in, need to create.
+    if (newTraits == nil) {
+        newTraits = [[NSMutableDictionary alloc] init];
+    }
     newTraits[@"anonymousId"] = anonId;
     if (userId != nil) {
         newTraits[@"userId"] = userId;
         [SEGState sharedInstance].userInfo.userId = userId;
     }
+    // merge w/ existing traits and set them.
+    NSDictionary *existingTraits = [SEGState sharedInstance].userInfo.traits;
+    [newTraits addEntriesFromDictionary:existingTraits];
+    [SEGState sharedInstance].userInfo.traits = newTraits;
     
     [self run:SEGEventTypeIdentify payload:
                                        [[SEGIdentifyPayload alloc] initWithUserId:userId

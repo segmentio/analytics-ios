@@ -68,6 +68,9 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         self.backgroundTaskQueue = seg_dispatch_queue_create_specific("io.segment.analytics.backgroundTask", DISPATCH_QUEUE_SERIAL);
         self.flushTaskID = UIBackgroundTaskInvalid;
+        
+        // load traits from disk.
+        [self loadTraits];
 
         [self dispatchBackground:^{
             // Check for previous queue data in NSUserDefaults and remove if present.
@@ -95,63 +98,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
                                 forMode:NSDefaultRunLoopMode];        
     }
     return self;
-}
-
-/*
- * There is an iOS bug that causes instances of the CTTelephonyNetworkInfo class to
- * sometimes get notifications after they have been deallocated.
- * Instead of instantiating, using, and releasing instances you * must instead retain
- * and never release them to work around the bug.
- *
- * Ref: http://stackoverflow.com/questions/14238586/coretelephony-crash
- */
-
-#if TARGET_OS_IOS
-static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
-#endif
-
-- (NSDictionary *)liveContext
-{
-    NSMutableDictionary *context = [[NSMutableDictionary alloc] init];
-    context[@"locale"] = [NSString stringWithFormat:
-                                       @"%@-%@",
-                                       [NSLocale.currentLocale objectForKey:NSLocaleLanguageCode],
-                                       [NSLocale.currentLocale objectForKey:NSLocaleCountryCode]];
-
-    context[@"timezone"] = [[NSTimeZone localTimeZone] name];
-
-    context[@"network"] = ({
-        NSMutableDictionary *network = [[NSMutableDictionary alloc] init];
-
-        if (self.reachability.isReachable) {
-            network[@"wifi"] = @(self.reachability.isReachableViaWiFi);
-            network[@"cellular"] = @(self.reachability.isReachableViaWWAN);
-        }
-
-#if TARGET_OS_IOS
-        static dispatch_once_t networkInfoOnceToken;
-        dispatch_once(&networkInfoOnceToken, ^{
-            _telephonyNetworkInfo = [[CTTelephonyNetworkInfo alloc] init];
-        });
-
-        CTCarrier *carrier = [_telephonyNetworkInfo subscriberCellularProvider];
-        if (carrier.carrierName.length)
-            network[@"carrier"] = carrier.carrierName;
-#endif
-
-        network;
-    });
-
-    context[@"traits"] = ({
-        NSMutableDictionary *traits = [[NSMutableDictionary alloc] initWithDictionary:[self traits]];
-        traits;
-    });
-
-    if (self.referrer) {
-        context[@"referrer"] = [self.referrer copy];
-    }
-
-    return [context copy];
 }
 
 - (void)dispatchBackground:(void (^)(void))block
@@ -217,10 +163,9 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     }];
 }
 
-- (void)addTraits:(NSDictionary *)traits
+- (void)saveTraits:(NSDictionary *)traits
 {
     [self dispatchBackground:^{
-        [self.traits addEntriesFromDictionary:traits];
         [SEGState sharedInstance].userInfo.traits = traits;
 #if TARGET_OS_TV
         [self.userDefaultsStorage setDictionary:[self.traits copy] forKey:SEGTraitsKey];
@@ -236,7 +181,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 {
     [self dispatchBackground:^{
         [self saveUserId:payload.userId];
-        [self addTraits:payload.traits];
+        [self saveTraits:payload.traits];
     }];
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -474,7 +419,7 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
     return _queue;
 }
 
-- (NSMutableDictionary *)traits
+- (void)loadTraits
 {
     if (!_traits) {
 #if TARGET_OS_TV
@@ -484,7 +429,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 #endif
     }
     [SEGState sharedInstance].userInfo.traits = _traits;
-    return _traits;
 }
 
 - (NSUInteger)maxBatchSize
