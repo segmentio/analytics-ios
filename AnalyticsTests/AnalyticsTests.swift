@@ -97,8 +97,8 @@ class AnalyticsTests: XCTestCase {
         XCTAssertEqual(analytics.test_integrationsManager()?.test_segmentIntegration()?.test_userId(), "testUserId1")
         XCTAssertEqual(analytics2.test_integrationsManager()?.test_segmentIntegration()?.test_userId(), "testUserId1")
         
-        let traits = analytics.test_integrationsManager()?.test_segmentIntegration()?.test_traits()
-        let storedTraits = analytics2.test_integrationsManager()?.test_segmentIntegration()?.test_traits()
+        var traits = analytics.test_integrationsManager()?.test_segmentIntegration()?.test_traits()
+        var storedTraits = analytics2.test_integrationsManager()?.test_segmentIntegration()?.test_traits()
         
         if let trait1 = traits?["trait1"] as? String {
             XCTAssertEqual(trait1, "someTrait")
@@ -111,6 +111,25 @@ class AnalyticsTests: XCTestCase {
         } else {
             XCTAssert(false, "Traits were not stored!")
         }
+        
+        analytics.identify("testUserId1", traits: ["trait2": "someOtherTrait"])
+        
+        traits = analytics.test_integrationsManager()?.test_segmentIntegration()?.test_traits()
+        storedTraits = analytics2.test_integrationsManager()?.test_segmentIntegration()?.test_traits()
+        
+        if let trait1 = traits?["trait2"] as? String {
+            XCTAssertEqual(trait1, "someOtherTrait")
+        } else {
+            XCTAssert(false, "Traits are nil!")
+        }
+        
+        if let storedTrait1 = storedTraits?["trait2"] as? String {
+            XCTAssertEqual(storedTrait1, "someOtherTrait")
+        } else {
+            XCTAssert(false, "Traits were not stored!")
+        }
+        
+
     }
     
     func testClearsUserData() {

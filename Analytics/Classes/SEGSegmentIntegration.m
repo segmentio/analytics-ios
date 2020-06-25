@@ -36,7 +36,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 @property (nonatomic, strong) dispatch_queue_t backgroundTaskQueue;
-@property (nonatomic, strong) NSMutableDictionary *traits;
+@property (nonatomic, strong) NSDictionary *traits;
 @property (nonatomic, assign) SEGAnalytics *analytics;
 @property (nonatomic, assign) SEGAnalyticsConfiguration *configuration;
 @property (atomic, copy) NSDictionary *referrer;
@@ -161,6 +161,16 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
         [self.fileStorage setString:userId forKey:kSEGUserIdFilename];
 #endif
     }];
+}
+
+- (NSDictionary *)traits
+{
+    return [SEGState sharedInstance].userInfo.traits;
+}
+
+- (void)setTraits:(NSDictionary *)traits
+{
+    [self saveTraits:traits];
 }
 
 - (void)saveTraits:(NSDictionary *)traits
@@ -421,14 +431,15 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
 - (void)loadTraits
 {
-    if (!_traits) {
+    if (![SEGState sharedInstance].userInfo.traits) {
+        NSDictionary *traits = nil;
 #if TARGET_OS_TV
-        _traits = [[self.userDefaultsStorage dictionaryForKey:SEGTraitsKey] ?: @{} mutableCopy];
+        traits = [[self.userDefaultsStorage dictionaryForKey:SEGTraitsKey] ?: @{} mutableCopy];
 #else
-        _traits = [[self.fileStorage dictionaryForKey:kSEGTraitsFilename] ?: @{} mutableCopy];
+        traits = [[self.fileStorage dictionaryForKey:kSEGTraitsFilename] ?: @{} mutableCopy];
 #endif
+        [SEGState sharedInstance].userInfo.traits = traits;
     }
-    [SEGState sharedInstance].userInfo.traits = _traits;
 }
 
 - (NSUInteger)maxBatchSize
