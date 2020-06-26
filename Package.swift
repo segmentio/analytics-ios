@@ -31,6 +31,9 @@ let package = Package(
             cSettings: [
                 .headerSearchPath("Internal"),
                 .headerSearchPath("Classes")
+            ],
+            linkerSettings: [
+                .linkedFramework("CoreTelephony", .when(platforms: [.iOS]))
             ]
         ),
     ]
