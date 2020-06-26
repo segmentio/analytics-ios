@@ -33,7 +33,7 @@ let package = Package(
                 .headerSearchPath("Classes")
             ],
             linkerSettings: [
-                .linkedFramework("CoreTelephony", .when(platforms: [.iOS]))
+                .linkedFramework("CoreTelephony", .when(platforms: [.iOS, .macOS]))
             ]
         ),
     ]
