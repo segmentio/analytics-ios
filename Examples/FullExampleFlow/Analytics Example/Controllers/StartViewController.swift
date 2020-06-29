@@ -39,15 +39,6 @@ class StartViewController: UIViewController {
         // Store off the current write key
         saveWriteKey(writeKey)
         
-//        let configuration = AnalyticsConfiguration(writeKey: writeKey)
-//
-//        // Enable this to record certain application events automatically!
-//        configuration.trackApplicationLifecycleEvents = true
-//        // Enable this to record screen views automatically!
-//        configuration.recordScreenViews = true
-//        Analytics.setup(with: configuration)
-        
-        
         let loginController = LoginViewController()
         self.navigationController?.pushViewController(loginController, animated: true)
     }

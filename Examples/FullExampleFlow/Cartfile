@@ -1,3 +1,0 @@
-github "segmentio/analytics-ios" "master"
-# Use a local project when debugging
-# git "~/Code/segmentio/analytics-ios/" "master"

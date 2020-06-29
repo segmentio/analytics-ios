@@ -3,15 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		9616DB59249050A600F7191B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9616DB58249050A600F7191B /* SignupViewController.swift */; };
 		9616DB5B2490583800F7191B /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9616DB5A2490583800F7191B /* InviteViewController.swift */; };
-		9616DB6E2492D0E600F7191B /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9616DB692492D0E000F7191B /* Analytics.framework */; };
-		9616DB6F2492D0E600F7191B /* Analytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9616DB692492D0E000F7191B /* Analytics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		961D80C024902143007C4F04 /* AnonymousViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961D80BC24902143007C4F04 /* AnonymousViewController.swift */; };
+		96BC0E4A24A57317000AF2EB /* SignoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BC0E4924A57317000AF2EB /* SignoutViewController.swift */; };
+		96BC0E4C24A693E3000AF2EB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BC0E4B24A693E3000AF2EB /* SignInViewController.swift */; };
+		96BC0E4F24A6B342000AF2EB /* Analytics in Frameworks */ = {isa = PBXBuildFile; productRef = 96BC0E4E24A6B342000AF2EB /* Analytics */; };
+		96BC0E5124AA72F6000AF2EB /* TrialEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BC0E5024AA72F6000AF2EB /* TrialEndViewController.swift */; };
 		96D0441F2485B458009C3FD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D0441E2485B458009C3FD7 /* AppDelegate.swift */; };
 		96D044212485B458009C3FD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D044202485B458009C3FD7 /* SceneDelegate.swift */; };
 		96D044232485B458009C3FD7 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D044222485B458009C3FD7 /* StartViewController.swift */; };
@@ -22,30 +24,6 @@
 		96EC569D2488568D00B636AC /* StepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96EC569C2488568D00B636AC /* StepsViewController.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		9616DB682492D0E000F7191B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9616DB622492D0DF00F7191B /* Analytics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EADEB85B1DECD080005322DA;
-			remoteInfo = Analytics;
-		};
-		9616DB6A2492D0E000F7191B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9616DB622492D0DF00F7191B /* Analytics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = EADEB86A1DECD0EF005322DA;
-			remoteInfo = AnalyticsTests;
-		};
-		9616DB6C2492D0E000F7191B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 9616DB622492D0DF00F7191B /* Analytics.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 9D8CE5A723EE014E00197D0C;
-			remoteInfo = AnalyticsTestsTVOS;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		96D044422485B541009C3FD7 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -53,7 +31,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9616DB6F2492D0E600F7191B /* Analytics.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,8 +40,10 @@
 /* Begin PBXFileReference section */
 		9616DB58249050A600F7191B /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		9616DB5A2490583800F7191B /* InviteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
-		9616DB622492D0DF00F7191B /* Analytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Analytics.xcodeproj; path = "Carthage/Checkouts/analytics-ios/Analytics.xcodeproj"; sourceTree = SOURCE_ROOT; };
 		961D80BC24902143007C4F04 /* AnonymousViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnonymousViewController.swift; sourceTree = "<group>"; };
+		96BC0E4924A57317000AF2EB /* SignoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignoutViewController.swift; sourceTree = "<group>"; };
+		96BC0E4B24A693E3000AF2EB /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		96BC0E5024AA72F6000AF2EB /* TrialEndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrialEndViewController.swift; sourceTree = "<group>"; };
 		96D0441B2485B458009C3FD7 /* Analytics Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Analytics Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D0441E2485B458009C3FD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96D044202485B458009C3FD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,31 +61,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9616DB6E2492D0E600F7191B /* Analytics.framework in Frameworks */,
+				96BC0E4F24A6B342000AF2EB /* Analytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9616DB5F2492D04600F7191B /* Libraries */ = {
-			isa = PBXGroup;
-			children = (
-				9616DB622492D0DF00F7191B /* Analytics.xcodeproj */,
-			);
-			path = Libraries;
-			sourceTree = "<group>";
-		};
-		9616DB632492D0DF00F7191B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9616DB692492D0E000F7191B /* Analytics.framework */,
-				9616DB6B2492D0E000F7191B /* AnalyticsTests.xctest */,
-				9616DB6D2492D0E000F7191B /* AnalyticsTestsTVOS.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		96D044122485B458009C3FD7 = {
 			isa = PBXGroup;
 			children = (
@@ -127,7 +88,6 @@
 		96D0441D2485B458009C3FD7 /* Analytics Example */ = {
 			isa = PBXGroup;
 			children = (
-				9616DB5F2492D04600F7191B /* Libraries */,
 				96EC5699248855F800B636AC /* Controllers */,
 				96D0441E2485B458009C3FD7 /* AppDelegate.swift */,
 				96D044272485B459009C3FD7 /* Assets.xcassets */,
@@ -149,12 +109,15 @@
 		96EC5699248855F800B636AC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9616DB5A2490583800F7191B /* InviteViewController.swift */,
-				96D044222485B458009C3FD7 /* StartViewController.swift */,
-				96EC569A2488567500B636AC /* LoginViewController.swift */,
-				96EC569C2488568D00B636AC /* StepsViewController.swift */,
 				961D80BC24902143007C4F04 /* AnonymousViewController.swift */,
+				9616DB5A2490583800F7191B /* InviteViewController.swift */,
+				96EC569A2488567500B636AC /* LoginViewController.swift */,
+				96BC0E4B24A693E3000AF2EB /* SignInViewController.swift */,
+				96BC0E4924A57317000AF2EB /* SignoutViewController.swift */,
 				9616DB58249050A600F7191B /* SignupViewController.swift */,
+				96D044222485B458009C3FD7 /* StartViewController.swift */,
+				96EC569C2488568D00B636AC /* StepsViewController.swift */,
+				96BC0E5024AA72F6000AF2EB /* TrialEndViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -176,6 +139,9 @@
 			dependencies = (
 			);
 			name = "Analytics Example";
+			packageProductDependencies = (
+				96BC0E4E24A6B342000AF2EB /* Analytics */,
+			);
 			productName = "Analytics Example";
 			productReference = 96D0441B2485B458009C3FD7 /* Analytics Example.app */;
 			productType = "com.apple.product-type.application";
@@ -204,44 +170,17 @@
 				Base,
 			);
 			mainGroup = 96D044122485B458009C3FD7;
+			packageReferences = (
+				96BC0E4D24A6B342000AF2EB /* XCRemoteSwiftPackageReference "analytics-ios" */,
+			);
 			productRefGroup = 96D0441C2485B458009C3FD7 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 9616DB632492D0DF00F7191B /* Products */;
-					ProjectRef = 9616DB622492D0DF00F7191B /* Analytics.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				96D0441A2485B458009C3FD7 /* Analytics Example */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		9616DB692492D0E000F7191B /* Analytics.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Analytics.framework;
-			remoteRef = 9616DB682492D0E000F7191B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9616DB6B2492D0E000F7191B /* AnalyticsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = AnalyticsTests.xctest;
-			remoteRef = 9616DB6A2492D0E000F7191B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		9616DB6D2492D0E000F7191B /* AnalyticsTestsTVOS.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = AnalyticsTestsTVOS.xctest;
-			remoteRef = 9616DB6C2492D0E000F7191B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		96D044192485B458009C3FD7 /* Resources */ = {
@@ -262,12 +201,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				96EC569B2488567500B636AC /* LoginViewController.swift in Sources */,
+				96BC0E4A24A57317000AF2EB /* SignoutViewController.swift in Sources */,
+				96BC0E5124AA72F6000AF2EB /* TrialEndViewController.swift in Sources */,
 				9616DB59249050A600F7191B /* SignupViewController.swift in Sources */,
 				96D044232485B458009C3FD7 /* StartViewController.swift in Sources */,
 				9616DB5B2490583800F7191B /* InviteViewController.swift in Sources */,
 				96D0441F2485B458009C3FD7 /* AppDelegate.swift in Sources */,
 				96D044212485B458009C3FD7 /* SceneDelegate.swift in Sources */,
 				961D80C024902143007C4F04 /* AnonymousViewController.swift in Sources */,
+				96BC0E4C24A693E3000AF2EB /* SignInViewController.swift in Sources */,
 				96EC569D2488568D00B636AC /* StepsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -474,6 +416,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		96BC0E4D24A6B342000AF2EB /* XCRemoteSwiftPackageReference "analytics-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:segmentio/analytics-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		96BC0E4E24A6B342000AF2EB /* Analytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96BC0E4D24A6B342000AF2EB /* XCRemoteSwiftPackageReference "analytics-ios" */;
+			productName = Analytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 96D044132485B458009C3FD7 /* Project object */;
 }

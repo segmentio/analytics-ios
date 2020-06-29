@@ -44,6 +44,11 @@ analytics.track("CTA Tapped", properties: ["plan": "premium"])
         startAnalytics()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        continueButton.isEnabled = false
+    }
+    
     private func startAnalytics() {
         let analytics = Analytics.shared()
         

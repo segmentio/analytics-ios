@@ -1,15 +1,15 @@
 //
-//  InviteViewController.swift
+//  SigninViewController.swift
 //  Analytics Example
 //
-//  Created by Cody Garvin on 6/25/20.
+//  Created by Cody Garvin on 6/9/20.
 //  Copyright © 2020 Cody Garvin. All rights reserved.
 //
 
 import UIKit
 import Analytics
 
-class InviteViewController: StepsViewController {
+class SigninViewController: StepsViewController {
     
     private var continueButton: UIButton!
 
@@ -22,18 +22,18 @@ class InviteViewController: StepsViewController {
 let analytics = Analytics.shared()
 
 // Screen
-analytics.screen("Invite")
+analytics.screen("Dashboard")
 
-// Invite user
-analytics.track("Invite Sent", properties: ["first": "Jane", "last": "Doe", "email": "jane@abc.com"])
+// Signed in
+analytics.track("Signed In", properties: ["username": "pgibbons"])
 """
         
         // Add the button
-        let inviteButton = UIButton.SegmentButton("Invite Yser", target: self, action: #selector(createUser(_:)))
+        let signinButton = UIButton.SegmentButton("Sign In", target: self, action: #selector(signin(_:)))
         continueButton = UIButton.SegmentButton("Continue", target: self, action: #selector(continueToNext(_:)))
         continueButton.isEnabled = false
     
-        propertyViews = [inviteButton, UIView.separator(), continueButton, UIView.separator()]
+        propertyViews = [signinButton, UIView.separator(), continueButton, UIView.separator()]
         
         // Fire off the beginning analytics
         startAnalytics()
@@ -44,20 +44,20 @@ analytics.track("Invite Sent", properties: ["first": "Jane", "last": "Doe", "ema
         let analytics = Analytics.shared()
         
         // identify screen load
-        analytics.screen("Invite")
+        analytics.screen("Dashboard")
     }
     
     @objc
-    func createUser(_ sender: Any) {
+    func signin(_ sender: Any) {
         let analytics = Analytics.shared()
         // track CTA tap
-        analytics.track("Invite Sent", properties: ["first": "Jane", "last": "Doe", "email": "jane@abc.com"])
+        analytics.track("Signed In", properties: ["username": "pgibbons"])
         continueButton.isEnabled = true
     }
     
     @objc
     func continueToNext(_ sender: Any) {
-        let signoutVC = SignoutViewController(nibName: nil, bundle: nil)
-        navigationController?.pushViewController(signoutVC, animated: true)
+        let trailEndVC = TrialEndViewController(nibName: nil, bundle: nil)
+        navigationController?.pushViewController(trailEndVC, animated: true)
     }
 }
