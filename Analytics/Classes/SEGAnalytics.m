@@ -223,25 +223,28 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         anonId = [self getAnonymousId];
     }
     // configure traits to match what is seen on android.
-    NSMutableDictionary *newTraits = [traits mutableCopy];
+    NSMutableDictionary *existingTraitsCopy = [[SEGState sharedInstance].userInfo.traits mutableCopy];
+    NSMutableDictionary *traitsCopy = [traits mutableCopy];
     // if no traits were passed in, need to create.
-    if (newTraits == nil) {
-        newTraits = [[NSMutableDictionary alloc] init];
+    if (existingTraitsCopy == nil) {
+        existingTraitsCopy = [[NSMutableDictionary alloc] init];
     }
-    newTraits[@"anonymousId"] = anonId;
+    if (traitsCopy == nil) {
+        traitsCopy = [[NSMutableDictionary alloc] init];
+    }
+    traitsCopy[@"anonymousId"] = anonId;
     if (userId != nil) {
-        newTraits[@"userId"] = userId;
+        traitsCopy[@"userId"] = userId;
         [SEGState sharedInstance].userInfo.userId = userId;
     }
     // merge w/ existing traits and set them.
-    NSDictionary *existingTraits = [SEGState sharedInstance].userInfo.traits;
-    [newTraits addEntriesFromDictionary:existingTraits];
-    [SEGState sharedInstance].userInfo.traits = newTraits;
+    [existingTraitsCopy addEntriesFromDictionary:traits];
+    [SEGState sharedInstance].userInfo.traits = existingTraitsCopy;
     
     [self run:SEGEventTypeIdentify payload:
                                        [[SEGIdentifyPayload alloc] initWithUserId:userId
                                                                       anonymousId:anonId
-                                                                           traits:SEGCoerceDictionary(newTraits)
+                                                                           traits:SEGCoerceDictionary(existingTraitsCopy)
                                                                           context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                                      integrations:[options objectForKey:@"integrations"]]];
 }
