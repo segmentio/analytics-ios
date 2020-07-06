@@ -471,7 +471,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 {
     // this has to match the actual version, NOT what's in info.plist
     // because Apple only accepts X.X.X as versions in the review process.
-    return @"4.0.2";
+    return @"4.0.3";
 }
 
 #pragma mark - Helpers
