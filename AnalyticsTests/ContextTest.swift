@@ -6,82 +6,79 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-import Quick
-import Nimble
 import SwiftTryCatch
 import Analytics
+import XCTest
 
-class ContextTests: QuickSpec {
-  override func spec() {
+class ContextTests: XCTestCase {
     
-    var analytics: SEGAnalytics!
+    var analytics: Analytics!
     
-    beforeEach {
-      let config = SEGAnalyticsConfiguration(writeKey: "foobar")
-      analytics = SEGAnalytics(configuration: config)
+    override func setUp() {
+        super.setUp()
+        let config = AnalyticsConfiguration(writeKey: "foobar")
+        analytics = Analytics(configuration: config)
     }
     
-    it("throws when used incorrectly") {
-      var context: SEGContext?
-      var exception: NSException?
-      
-      SwiftTryCatch.tryRun({
-        context = SEGContext()
-      }, catchRun: { e in
-        exception = e
-      }, finallyRun: nil)
-      
-      expect(context).to(beNil())
-      expect(exception).toNot(beNil())
-    }
-
-    
-    it("initialized correctly") {
-      let context = SEGContext(analytics: analytics)
-      expect(context._analytics) == analytics
-      expect(context.eventType) == SEGEventType.undefined
+    func testThrowsWhenUsedIncorrectly() {
+        var context: Context?
+        var exception: NSException?
+        
+        SwiftTryCatch.tryRun({
+            context = Context()
+        }, catchRun: { e in
+            exception = e
+        }, finallyRun: nil)
+        
+        XCTAssertNil(context)
+        XCTAssertNotNil(exception)
     }
     
-    it("accepts modifications") {
-      let context = SEGContext(analytics: analytics)
-      
-      let newContext = context.modify { context in
-        context.userId = "sloth"
-        context.eventType = .track;
-      }
-      expect(newContext.userId) == "sloth"
-      expect(newContext.eventType) == SEGEventType.track;
-      
+    func testInitializedCorrectly() {
+        let context = Context(analytics: analytics)
+        XCTAssertEqual(context._analytics, analytics)
+        XCTAssertEqual(context.eventType, EventType.undefined)
     }
     
-    it("modifies copy in debug mode to catch bugs") {
-      let context = SEGContext(analytics: analytics).modify { context in
-        context.debug = true
-      }
-      expect(context.debug) == true
-      
-      let newContext = context.modify { context in
-        context.userId = "123"
-      }
-      expect(context) !== newContext
-      expect(newContext.userId) == "123"
-      expect(context.userId).to(beNil())
+    func testAcceptsModifications() {
+        let context = Context(analytics: analytics)
+        
+        let newContext = context.modify { context in
+            context.payload = TrackPayload()
+            context.payload?.userId = "sloth"
+            context.eventType = .track
+        }
+        XCTAssertEqual(newContext.payload?.userId, "sloth")
+        XCTAssertEqual(newContext.eventType,  EventType.track)
     }
     
-    it("modifies self in non-debug mode to optimize perf.") {
-      let context = SEGContext(analytics: analytics).modify { context in
-        context.debug = false
-      }
-      expect(context.debug) == false
-      
-      let newContext = context.modify { context in
-        context.userId = "123"
-      }
-      expect(context) === newContext
-      expect(newContext.userId) == "123"
-      expect(context.userId) == "123"
+    func testModifiesCopyInDebugMode() {
+        let context = Context(analytics: analytics).modify { context in
+            context.debug = true
+            context.eventType = .track
+        }
+        XCTAssertEqual(context.debug, true)
+        
+        let newContext = context.modify { context in
+            context.eventType = .identify
+        }
+        XCTAssertNotEqual(context, newContext)
+        XCTAssertEqual(newContext.eventType, .identify)
+        XCTAssertEqual(context.eventType, .track)
     }
     
-  }
-  
+    func testModifiesSelfInNonDebug() {
+        let context = Context(analytics: analytics).modify { context in
+            context.debug = false
+            context.eventType = .track
+        }
+        XCTAssertFalse(context.debug)
+        
+        let newContext = context.modify { context in
+            context.eventType = .identify
+        }
+        XCTAssertEqual(context, newContext)
+        XCTAssertEqual(newContext.eventType, .identify)
+        XCTAssertEqual(context.eventType, .identify)
+    }
 }

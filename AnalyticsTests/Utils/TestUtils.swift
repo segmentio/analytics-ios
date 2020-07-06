@@ -6,23 +6,23 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-@testable import Nimble
 import Nocilla
 import Analytics
+import XCTest
 
-class SEGPassthroughMiddleware: SEGMiddleware {
-  var lastContext: SEGContext?
+class PassthroughMiddleware: Middleware {
+  var lastContext: Context?
   
-  func context(_ context: SEGContext, next: @escaping SEGMiddlewareNext) {
+  func context(_ context: Context, next: @escaping SEGMiddlewareNext) {
     lastContext = context;
     next(context)
   }
 }
 
-class TestMiddleware: SEGMiddleware {
-  var lastContext: SEGContext?
+class TestMiddleware: Middleware {
+  var lastContext: Context?
   var swallowEvent = false
-  func context(_ context: SEGContext, next: @escaping SEGMiddlewareNext) {
+  func context(_ context: Context, next: @escaping SEGMiddlewareNext) {
     lastContext = context
     if !swallowEvent {
       next(context)
@@ -30,27 +30,27 @@ class TestMiddleware: SEGMiddleware {
   }
 }
 
-extension SEGAnalytics {
-  func test_integrationsManager() -> SEGIntegrationsManager? {
-    return self.value(forKey: "integrationsManager") as? SEGIntegrationsManager
+extension Analytics {
+  func test_integrationsManager() -> IntegrationsManager? {
+    return self.value(forKey: "integrationsManager") as? IntegrationsManager
   }
 }
 
-extension SEGIntegrationsManager {
-  func test_integrations() -> [String: SEGIntegration]? {
-    return self.value(forKey: "integrations") as? [String: SEGIntegration]
+extension IntegrationsManager {
+  func test_integrations() -> [String: Integration]? {
+    return self.value(forKey: "integrations") as? [String: Integration]
   }
-  func test_segmentIntegration() -> SEGSegmentIntegration? {
-    return self.test_integrations()?["Segment.io"] as? SEGSegmentIntegration
+  func test_segmentIntegration() -> SegmentIntegration? {
+    return self.test_integrations()?["Segment.io"] as? SegmentIntegration
   }
   func test_setCachedSettings(settings: NSDictionary) {
     self.perform(Selector(("setCachedSettings:")), with: settings)
   }
 }
 
-extension SEGSegmentIntegration {
-  func test_fileStorage() -> SEGFileStorage? {
-    return self.value(forKey: "fileStorage") as? SEGFileStorage
+extension SegmentIntegration {
+  func test_fileStorage() -> FileStorage? {
+    return self.value(forKey: "fileStorage") as? FileStorage
   }
   func test_referrer() -> [String: AnyObject]? {
     return self.value(forKey: "referrer") as? [String: AnyObject]
@@ -85,12 +85,9 @@ class JsonGzippedBody : LSMatcher, LSMatcheable {
     }
     
     func matchesJson(_ json: AnyObject) -> Bool {
-        let actualValue : () -> NSObject = {
-            return json as! NSObject
-        }
-        let failureMessage = FailureMessage()
-        let location = SourceLocation()
-        let matches = Nimble.equal(expectedJson).matches(actualValue, failureMessage: failureMessage, location: location)
+        let expectedDictionary = expectedJson as? [String: AnyHashable]
+        let jsonDictionary = json as? [String: AnyHashable]
+        let matches = expectedDictionary == jsonDictionary
 //        print("matches=\(matches) expected \(expectedJson) actual \(json)")
         return matches
     }
@@ -151,7 +148,7 @@ typealias AndSegmentWriteKeyMethod = (String) -> LSStubRequestDSL
 extension LSStubRequestDSL {
     var withWriteKey: AndSegmentWriteKeyMethod {
         return { writeKey in
-            let base64Token = SEGHTTPClient.authorizationHeader(writeKey)
+            let base64Token = HTTPClient.authorizationHeader(writeKey)
             return self.withHeaders([
                 "Authorization": "Basic \(base64Token)",
             ])!
@@ -159,7 +156,7 @@ extension LSStubRequestDSL {
     }
 }
 
-class TestApplication: NSObject, SEGApplicationProtocol {
+class TestApplication: NSObject, ApplicationProtocol {
   class BackgroundTask {
     let identifier: UInt
     var isEnded = false
@@ -171,7 +168,7 @@ class TestApplication: NSObject, SEGApplicationProtocol {
   
   var backgroundTasks = [BackgroundTask]()
   
-  // MARK: - SEGApplicationProtocol
+  // MARK: - ApplicationProtocol
   var delegate: UIApplicationDelegate? = nil
   func seg_beginBackgroundTask(withName taskName: String?, expirationHandler handler: (() -> Void)? = nil) -> UInt {
     let backgroundTask = BackgroundTask(identifier: (backgroundTasks.map({ $0.identifier }).max() ?? 0) + 1)
@@ -183,4 +180,22 @@ class TestApplication: NSObject, SEGApplicationProtocol {
     guard let index = backgroundTasks.index(where: { $0.identifier == identifier }) else { return }
     backgroundTasks[index].isEnded = true
   }
+}
+
+extension XCTestCase {
+    
+    func expectUntil(_ time: TimeInterval, expression: @escaping @autoclosure () throws -> Bool) {
+        
+        let expectation = self.expectation(description: "Expect Until")
+        DispatchQueue.global().async {
+            while (true) {
+                if try! expression() {
+                    expectation.fulfill()
+                    return
+                }
+                usleep(500) // try every half second
+            }
+        }
+        wait(for: [expectation], timeout: time)
+    }
 }

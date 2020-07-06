@@ -5,57 +5,57 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-import Quick
-import Nimble
 import Analytics
+import XCTest
 
-class CryptoTest : QuickSpec {
-  override func spec() {
-    var crypto : SEGAES256Crypto!
-    beforeEach {
-      crypto = SEGAES256Crypto(password: "slothysloth")
+class CryptoTest : XCTestCase {
+    
+    var crypto: AES256Crypto!
+    override func setUp() {
+        super.setUp()
+        crypto = AES256Crypto(password: "slothysloth")
     }
     
-    it("encrypts and decrypts data") {
-      let strIn = "segment"
-      let dataIn = strIn.data(using: String.Encoding.utf8)!
-      let encryptedData = crypto.encrypt(dataIn)
-      expect(encryptedData).toNot(beNil())
-      
-      let dataOut = crypto.decrypt(encryptedData!)
-      expect(dataOut) == dataIn
-      
-      let strOut = String(data: dataOut!, encoding: String.Encoding.utf8)
-      expect(strOut) == "segment"
+    func testEncryptDecryptSuccess() {
+        let strIn = "segment"
+        let dataIn = strIn.data(using: String.Encoding.utf8)!
+        let encryptedData = crypto.encrypt(dataIn)
+        XCTAssert(encryptedData != nil, "Encrypted data should not be nil")
+        
+        let dataOut = crypto.decrypt(encryptedData!)
+        XCTAssert(dataOut == dataIn, "Data should be the same")
+        
+        let strOut = String(data: dataOut!, encoding: String.Encoding.utf8)
+        XCTAssertEqual(strOut, "segment", "Strings should be the same")
     }
     
-    it("fails for incorrect password") {
-      let strIn = "segment"
-      let dataIn = strIn.data(using: String.Encoding.utf8)!
-      let encryptedData = crypto.encrypt(dataIn)
-      expect(encryptedData).toNot(beNil())
-      
-      let crypto2 = SEGAES256Crypto(password: "wolf", salt: crypto.salt, iv: crypto.iv)
-      let dataOut = crypto2.decrypt(encryptedData!)
-      expect(dataOut) != dataIn
-      let strOut = String(data: dataOut!, encoding: String.Encoding.utf8)
-      // no built in way to check password correctness
-      // http://stackoverflow.com/questions/27712173/determine-if-key-is-incorrect-with-cccrypt-kccoptionpkcs7padding-objective-c
-      expect(strOut ?? "") != strIn
+    func testIncorrectPassword() {
+        let strIn = "segment"
+        let dataIn = strIn.data(using: String.Encoding.utf8)!
+        let encryptedData = crypto.encrypt(dataIn)
+        XCTAssert(encryptedData != nil, "Encrypted data should not be nil")
+        
+        let crypto2 = AES256Crypto(password: "wolf", salt: crypto.salt, iv: crypto.iv)
+        let dataOut = crypto2.decrypt(encryptedData!)
+        XCTAssertNotEqual(dataOut, dataIn, "In and out should not match")
+        
+        let strOut = String(data: dataOut!, encoding: String.Encoding.utf8)
+        // no built in way to check password correctness
+        // http://stackoverflow.com/questions/27712173/determine-if-key-is-incorrect-with-cccrypt-kccoptionpkcs7padding-objective-c
+        XCTAssertNotEqual(strOut ?? "", strIn, "String in and out should not match")
     }
     
-    it("fails for incorrect iv and sault") {
-      let strIn = "segment"
-      let dataIn = strIn.data(using: String.Encoding.utf8)!
-      let encryptedData = crypto.encrypt(dataIn)
-      expect(encryptedData).toNot(beNil())
-      
-      let crypto2 = SEGAES256Crypto(password: crypto.password)
-      let dataOut = crypto2.decrypt(encryptedData!)
-      expect(dataOut) != dataIn
-      
-      let strOut = String(data: dataOut!, encoding: String.Encoding.utf8)
-      expect(strOut ?? "") != strIn
+    func testFailureForIVAndSault() {
+        let strIn = "segment"
+        let dataIn = strIn.data(using: String.Encoding.utf8)!
+        let encryptedData = crypto.encrypt(dataIn)
+        XCTAssertNotNil(encryptedData, "Encrypted data should not be nil")
+        
+        let crypto2 = AES256Crypto(password: crypto.password)
+        let dataOut = crypto2.decrypt(encryptedData!)
+        XCTAssertNotEqual(dataOut, dataIn, "Out and In data should not match")
+        
+        let strOut = String(data: dataOut!, encoding: String.Encoding.utf8)
+        XCTAssertNotEqual(strOut ?? "", strIn, "Out and In strings should not match")
     }
-  }
 }

@@ -6,9 +6,8 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-import Quick
-import Nimble
 import Analytics
+import XCTest
 
 class mockTransaction: SKPaymentTransaction {
   override var transactionIdentifier: String? {
@@ -39,33 +38,30 @@ class mockProductResponse: SKProductsResponse {
   }
 }
 
-class StoreKitTrackerTests: QuickSpec {
-  override func spec() {
+class StoreKitTrackerTests: XCTestCase {
 
     var test: TestMiddleware!
-    var tracker: SEGStoreKitTracker!
-    var analytics: SEGAnalytics!
-
-    beforeEach {
-      let config = SEGAnalyticsConfiguration(writeKey: "foobar")
-      test = TestMiddleware()
-      config.sourceMiddleware = [test]
-      analytics = SEGAnalytics(configuration: config)
-      tracker = SEGStoreKitTracker.trackTransactions(for: analytics)
+    var tracker: StoreKitTracker!
+    var analytics: Analytics!
+    
+    override func setUp() {
+        super.setUp()
+        let config = AnalyticsConfiguration(writeKey: "foobar")
+        test = TestMiddleware()
+        config.sourceMiddleware = [test]
+        analytics = Analytics(configuration: config)
+        tracker = StoreKitTracker.trackTransactions(for: analytics)
     }
-
-    it("SKPaymentQueue Observer") {
-      let transaction = mockTransaction()
-      expect(transaction.transactionIdentifier) == "tid"
-      tracker.paymentQueue(SKPaymentQueue(), updatedTransactions: [transaction])
-      
-      tracker.productsRequest(SKProductsRequest(), didReceive: mockProductResponse())
-      
-      let payload = test.lastContext?.payload as? SEGTrackPayload
-      
-      expect(payload?.event) == "Order Completed"
+    
+    func testSKPaymentQueueObserver() {
+        let transaction = mockTransaction()
+        XCTAssertEqual(transaction.transactionIdentifier, "tid")
+        tracker.paymentQueue(SKPaymentQueue(), updatedTransactions: [transaction])
+        
+        tracker.productsRequest(SKProductsRequest(), didReceive: mockProductResponse())
+        
+        let payload = test.lastContext?.payload as? TrackPayload
+        
+        XCTAssertEqual(payload?.event, "Order Completed")
     }
-
-  }
-
 }
