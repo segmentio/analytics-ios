@@ -7,18 +7,34 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SEGMacros.h"
+
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#elif TARGET_OS_OSX
+#import <AppKit/AppKit.h>
+#endif
 
 NS_SWIFT_NAME(ApplicationProtocol)
 @protocol SEGApplicationProtocol <NSObject>
+
+#if TARGET_OS_IPHONE
 @property (nullable, nonatomic, assign) id<UIApplicationDelegate> delegate;
 - (UIBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void (^__nullable)(void))handler;
 - (void)seg_endBackgroundTask:(UIBackgroundTaskIdentifier)identifier;
+#elif TARGET_OS_OSX
+@property (nullable, nonatomic, assign) id<NSApplicationDelegate> delegate;
+#endif
 @end
 
-
+#if TARGET_OS_IOS
 @interface UIApplication (SEGApplicationProtocol) <SEGApplicationProtocol>
 @end
+#elif TARGET_OS_OSX
+@interface NSApplication (SEGApplicationProtocol) <SEGApplicationProtocol>
+@end
+#endif
+
 
 typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
 typedef NSString *_Nonnull (^SEGAdSupportBlock)(void);

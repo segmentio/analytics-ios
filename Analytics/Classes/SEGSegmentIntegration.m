@@ -1,6 +1,5 @@
 #include <sys/sysctl.h>
 
-#import <UIKit/UIKit.h>
 #import "SEGAnalytics.h"
 #import "SEGUtils.h"
 #import "SEGSegmentIntegration.h"
@@ -9,6 +8,10 @@
 #import "SEGStorage.h"
 #import "SEGMacros.h"
 #import "SEGState.h"
+
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#endif
 
 #if TARGET_OS_IOS
 #import <CoreTelephony/CTCarrier.h>
@@ -31,7 +34,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
 @property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, strong) NSURLSessionUploadTask *batchRequest;
-@property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
 @property (nonatomic, strong) SEGReachability *reachability;
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
@@ -46,6 +48,10 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 @property (nonatomic, strong) id<SEGStorage> fileStorage;
 @property (nonatomic, strong) id<SEGStorage> userDefaultsStorage;
 @property (nonatomic, strong) NSURLSessionDataTask *attributionRequest;
+
+#if TARGET_OS_IPHONE
+@property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
+#endif
 
 @end
 
@@ -67,7 +73,9 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
         [self.reachability startNotifier];
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         self.backgroundTaskQueue = seg_dispatch_queue_create_specific("io.segment.analytics.backgroundTask", DISPATCH_QUEUE_SERIAL);
+#if TARGET_OS_IPHONE
         self.flushTaskID = UIBackgroundTaskInvalid;
+#endif
         
         // load traits from disk.
         [self loadTraits];

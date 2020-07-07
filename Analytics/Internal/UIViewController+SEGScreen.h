@@ -1,5 +1,7 @@
-#import <UIKit/UIKit.h>
 #import "SEGSerializableValue.h"
+
+#if TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
 
 @interface UIViewController (SEGScreen)
 
@@ -8,3 +10,4 @@
 
 @end
 
+#endif

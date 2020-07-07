@@ -1,5 +1,5 @@
 #import <objc/runtime.h>
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
 #import "SEGIntegrationFactory.h"
@@ -62,6 +62,7 @@ static SEGAnalytics *__sharedInstance = nil;
         // Pass through for application state change events
         id<SEGApplicationProtocol> application = configuration.application;
         if (application) {
+#if TARGET_OS_IPHONE
             for (NSString *name in @[ UIApplicationDidEnterBackgroundNotification,
                                       UIApplicationDidFinishLaunchingNotification,
                                       UIApplicationWillEnterForegroundNotification,
@@ -70,6 +71,7 @@ static SEGAnalytics *__sharedInstance = nil;
                                       UIApplicationDidBecomeActiveNotification ]) {
                 [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:application];
             }
+#endif
         }
 
         if (configuration.recordScreenViews) {
