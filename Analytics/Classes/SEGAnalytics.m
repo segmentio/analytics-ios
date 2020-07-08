@@ -56,13 +56,12 @@ static SEGAnalytics *__sharedInstance = nil;
         self.runner = [[SEGMiddlewareRunner alloc] initWithMiddleware:
                                                        [configuration.sourceMiddleware ?: @[] arrayByAddingObject:self.integrationsManager]];
 
-        // Attach to application state change hooks
-        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-
         // Pass through for application state change events
         id<SEGApplicationProtocol> application = configuration.application;
         if (application) {
 #if TARGET_OS_IPHONE
+            // Attach to application state change hooks
+            NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
             for (NSString *name in @[ UIApplicationDidEnterBackgroundNotification,
                                       UIApplicationDidFinishLaunchingNotification,
                                       UIApplicationWillEnterForegroundNotification,
@@ -74,14 +73,16 @@ static SEGAnalytics *__sharedInstance = nil;
 #endif
         }
 
+#if TARGET_OS_IPHONE
         if (configuration.recordScreenViews) {
             [UIViewController seg_swizzleViewDidAppear];
         }
+#endif
         if (configuration.trackInAppPurchases) {
             _storeKitTracker = [SEGStoreKitTracker trackTransactionsForAnalytics:self];
         }
 
-#if !TARGET_OS_TV
+#if TARGET_OS_IOS
         if (configuration.trackPushNotifications && configuration.launchOptions) {
             NSDictionary *remoteNotification = configuration.launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
             if (remoteNotification) {
@@ -107,6 +108,7 @@ NSString *const SEGVersionKey = @"SEGVersionKey";
 NSString *const SEGBuildKeyV1 = @"SEGBuildKey";
 NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
+#if TARGET_OS_IPHONE
 - (void)handleAppStateNotification:(NSNotification *)note
 {
     SEGApplicationLifecyclePayload *payload = [[SEGApplicationLifecyclePayload alloc] init];
@@ -169,6 +171,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+#endif
 
 - (void)_applicationWillEnterForeground
 {

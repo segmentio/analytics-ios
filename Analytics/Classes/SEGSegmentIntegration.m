@@ -118,6 +118,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     seg_dispatch_specific_sync(_serialQueue, block);
 }
 
+#if TARGET_OS_IPHONE
 - (void)beginBackgroundTask
 {
     [self endBackgroundTask];
@@ -152,6 +153,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
         }
     });
 }
+#endif
 
 - (NSString *)description
 {
@@ -325,6 +327,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
 - (void)flushWithMaxSize:(NSUInteger)maxBatchSize
 {
+#if TARGET_OS_IPHONE
     [self dispatchBackground:^{
         if ([self.queue count] == 0) {
             SEGLog(@"%@ No queued API calls to flush.", self);
@@ -345,6 +348,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
         [self sendData:batch];
     }];
+#endif
 }
 
 - (void)flushQueueByLength
@@ -390,6 +394,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)batch.count, (unsigned long)self.queue.count);
     SEGLog(@"Flushing batch %@.", payload);
 
+#if TARGET_OS_IPHONE
     self.batchRequest = [self.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
         [self dispatchBackground:^{
             if (retry) {
@@ -406,10 +411,12 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
             [self endBackgroundTask];
         }];
     }];
+#endif
 
     [self notifyForName:SEGSegmentDidSendRequestNotification userInfo:batch];
 }
 
+#if TARGET_OS_IPHONE
 - (void)applicationDidEnterBackground
 {
     [self beginBackgroundTask];
@@ -417,6 +424,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     // since there is a chance that the user will never launch the app again.
     [self flush];
 }
+#endif
 
 - (void)applicationWillTerminate
 {

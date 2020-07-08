@@ -116,13 +116,14 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
         // Update settings on each integration immediately
         [self refreshSettings];
 
-        // Attach to application state change hooks
-        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-
         // Update settings on foreground
         id<SEGApplicationProtocol> application = configuration.application;
         if (application) {
+#if TARGET_OS_IPHONE
+            // Attach to application state change hooks
+            NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
             [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:application];
+#endif
         }
     }
     return self;
@@ -150,7 +151,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
     [self refreshSettings];
 }
 
-
+#if TARGET_OS_IPHONE
 - (void)handleAppStateNotification:(NSString *)notificationName
 {
     SEGLog(@"Application state change notification: %@", notificationName);
@@ -177,6 +178,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
         [self callIntegrationsWithSelector:selector arguments:nil options:nil sync:true];
     }
 }
+#endif
 
 
 #pragma mark - Public API
@@ -707,10 +709,6 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
                        forRemoteNotification:payload.userInfo];
             break;
         }
-        case SEGEventTypeApplicationLifecycle:
-            [self handleAppStateNotification:
-                      [(SEGApplicationLifecyclePayload *)context.payload notificationName]];
-            break;
         case SEGEventTypeContinueUserActivity:
             [self continueUserActivity:
                       [(SEGContinueUserActivityPayload *)context.payload activity]];
@@ -720,6 +718,13 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
             [self openURL:payload.url options:payload.options];
             break;
         }
+#if TARGET_OS_IPHONE
+        case SEGEventTypeApplicationLifecycle:
+            [self handleAppStateNotification:
+                      [(SEGApplicationLifecyclePayload *)context.payload notificationName]];
+            break;
+#endif
+        default:
         case SEGEventTypeUndefined:
             NSAssert(NO, @"Received context with undefined event type %@", context);
             SEGLog(@"[ERROR]: Received context with undefined event type %@", context);
