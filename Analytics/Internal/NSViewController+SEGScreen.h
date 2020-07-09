@@ -9,7 +9,7 @@
 #import "SEGSerializableValue.h"
 
 #if TARGET_OS_OSX
-#import <AppKit/AppKit.h>
+#import <Cocoa/Cocoa.h>
 
 @interface NSViewController (SEGScreen)
 

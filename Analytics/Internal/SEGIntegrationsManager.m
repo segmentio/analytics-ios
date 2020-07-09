@@ -119,10 +119,12 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
         // Update settings on foreground
         id<SEGApplicationProtocol> application = configuration.application;
         if (application) {
-#if TARGET_OS_IPHONE
             // Attach to application state change hooks
             NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+#if TARGET_OS_IPHONE
             [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:application];
+#elif TARGET_OS_OSX
+            [nc addObserver:self selector:@selector(onAppForeground:) name:NSApplicationWillUnhideNotification object:application];
 #endif
         }
     }
@@ -177,8 +179,10 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
         selectorMapping = @{
             NSApplicationDidFinishLaunchingNotification :
                 NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
-            NSApplicationDidResignActiveNotification :
+            NSApplicationDidHideNotification :
                 NSStringFromSelector(@selector(applicationDidEnterBackground)),
+            NSApplicationWillUnhideNotification :
+                NSStringFromSelector(@selector(applicationWillEnterForeground)),
             NSApplicationWillTerminateNotification :
                 NSStringFromSelector(@selector(applicationWillTerminate)),
             NSApplicationWillResignActiveNotification :

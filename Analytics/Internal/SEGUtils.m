@@ -16,7 +16,7 @@
 
 static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 #elif TARGET_OS_OSX
-#import <AppKit/AppKit.h>
+#import <Cocoa/Cocoa.h>
 #endif
 
 // BKS: This doesn't appear to be needed anymore.  Will investigate.
@@ -246,18 +246,30 @@ NSDictionary *mobileSpecifications(SEGAnalyticsConfiguration *configuration, NSS
 #endif
 
 #if TARGET_OS_OSX
+NSString *getMacUUID()
+{
+    char buf[512] = { 0 };
+    int bufSize = sizeof(buf);
+    io_registry_entry_t ioRegistryRoot = IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/");
+    CFStringRef uuidCf = (CFStringRef) IORegistryEntryCreateCFProperty(ioRegistryRoot, CFSTR(kIOPlatformUUIDKey), kCFAllocatorDefault, 0);
+    IOObjectRelease(ioRegistryRoot);
+    CFStringGetCString(uuidCf, buf, bufSize, kCFStringEncodingMacRoman);
+    CFRelease(uuidCf);
+    return [NSString stringWithUTF8String:buf];
+}
+
 NSDictionary *desktopSpecifications(SEGAnalyticsConfiguration *configuration, NSString *deviceToken)
 {
+    NSProcessInfo *deviceInfo = [NSProcessInfo processInfo];
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    
-    /*UIDevice *device = [UIDevice currentDevice];
     dict[@"device"] = ({
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         dict[@"manufacturer"] = @"Apple";
-        dict[@"type"] = @"ios";
+        dict[@"type"] = @"macos";
         dict[@"model"] = getDeviceModel();
-        dict[@"id"] = [[device identifierForVendor] UUIDString];
-        dict[@"name"] = [device model];
+        dict[@"id"] = getMacUUID();
+        dict[@"name"] = [deviceInfo hostName];
+        
         if (getAdTrackingEnabled(configuration)) {
             NSString *idfa = configuration.adSupportBlock();
             // This isn't ideal.  We're doing this because we can't actually check if IDFA is enabled on
@@ -276,20 +288,22 @@ NSDictionary *desktopSpecifications(SEGAnalyticsConfiguration *configuration, NS
     });
 
     dict[@"os"] = @{
-        @"name" : device.systemName,
-        @"version" : device.systemVersion
-    };*/
+        @"name" : deviceInfo.operatingSystemVersionString,
+        @"version" : [NSString stringWithFormat:@"%ld.%ld.%ld",
+                      deviceInfo.operatingSystemVersion.majorVersion,
+                      deviceInfo.operatingSystemVersion.minorVersion,
+                      deviceInfo.operatingSystemVersion.patchVersion]
+    };
 
-//
-//    CGSize screenSize = [NSScreen mainScreen].bounds.size;
-//    dict[@"screen"] = @{
-//        @"width" : @(screenSize.width),
-//        @"height" : @(screenSize.height)
-//    };
-
+    CGSize screenSize = [NSScreen mainScreen].frame.size;
+    dict[@"screen"] = @{
+        @"width" : @(screenSize.width),
+        @"height" : @(screenSize.height)
+    };
 
     return dict;
 }
+
 #endif
 
 NSDictionary *getLiveContext(SEGReachability *reachability, NSDictionary *referrer, NSDictionary *traits)

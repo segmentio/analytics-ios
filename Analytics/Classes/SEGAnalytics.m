@@ -73,13 +73,11 @@ static SEGAnalytics *__sharedInstance = nil;
 #elif TARGET_OS_OSX
             // Attach to application state change hooks
             NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-            for (NSString *name in @[ NSApplicationDidResignActiveNotification,
-                                      NSApplicationDidBecomeActiveNotification,
+            for (NSString *name in @[ NSApplicationWillUnhideNotification,
                                       NSApplicationDidFinishLaunchingNotification,
-//                                      NSApplicationDidUpdateNotification,
-                                      NSApplicationDidHideNotification,
-                                      NSApplicationDidUnhideNotification,
                                       NSApplicationWillResignActiveNotification,
+                                      NSApplicationDidHideNotification,
+                                      NSApplicationDidBecomeActiveNotification,
                                       NSApplicationWillTerminateNotification]) {
                 [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:application];
             }
@@ -99,16 +97,13 @@ static SEGAnalytics *__sharedInstance = nil;
             _storeKitTracker = [SEGStoreKitTracker trackTransactionsForAnalytics:self];
         }
 
+#if !TARGET_OS_TV
+        if (configuration.trackPushNotifications && configuration.launchOptions) {
 #if TARGET_OS_IOS
-        if (configuration.trackPushNotifications && configuration.launchOptions) {
             NSDictionary *remoteNotification = configuration.launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-            if (remoteNotification) {
-                [self trackPushNotification:remoteNotification fromLaunch:YES];
-            }
-        }
-#elif TARGET_OS_OSX
-        if (configuration.trackPushNotifications && configuration.launchOptions) {
+#else
             NSDictionary *remoteNotification = configuration.launchOptions[NSApplicationLaunchRemoteNotificationKey];
+#endif
             if (remoteNotification) {
                 [self trackPushNotification:remoteNotification fromLaunch:YES];
             }
@@ -156,9 +151,9 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
     if ([note.name isEqualToString:NSApplicationDidFinishLaunchingNotification]) {
         [self _applicationDidFinishLaunchingWithOptions:note.userInfo];
-    } else if ([note.name isEqualToString:NSApplicationDidBecomeActiveNotification]) {
+    } else if ([note.name isEqualToString:NSApplicationWillUnhideNotification]) {
         [self _applicationWillEnterForeground];
-    } else if ([note.name isEqualToString: NSApplicationDidResignActiveNotification]) {
+    } else if ([note.name isEqualToString: NSApplicationDidHideNotification]) {
       [self _applicationDidEnterBackground];
     }
 }
