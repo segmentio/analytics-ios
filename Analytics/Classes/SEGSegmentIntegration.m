@@ -327,6 +327,16 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
 - (void)flushWithMaxSize:(NSUInteger)maxBatchSize
 {
+    void (^startBatch)(void) = ^{
+        NSArray *batch;
+        if ([self.queue count] >= maxBatchSize) {
+            batch = [self.queue subarrayWithRange:NSMakeRange(0, maxBatchSize)];
+        } else {
+            batch = [NSArray arrayWithArray:self.queue];
+        }
+        [self sendData:batch];
+    };
+    
 #if TARGET_OS_IPHONE
     [self dispatchBackground:^{
         if ([self.queue count] == 0) {
@@ -338,16 +348,11 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
             SEGLog(@"%@ API request already in progress, not flushing again.", self);
             return;
         }
-
-        NSArray *batch;
-        if ([self.queue count] >= maxBatchSize) {
-            batch = [self.queue subarrayWithRange:NSMakeRange(0, maxBatchSize)];
-        } else {
-            batch = [NSArray arrayWithArray:self.queue];
-        }
-
-        [self sendData:batch];
+        // here
+        startBatch();
     }];
+#elif TARGET_OS_OSX
+    startBatch();
 #endif
 }
 
@@ -394,9 +399,10 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)batch.count, (unsigned long)self.queue.count);
     SEGLog(@"Flushing batch %@.", payload);
 
-#if TARGET_OS_IPHONE
     self.batchRequest = [self.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
-        [self dispatchBackground:^{
+        
+#if TARGET_OS_IPHONE
+        void (^completion)(void) = ^{
             if (retry) {
                 [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
                 self.batchRequest = nil;
@@ -409,9 +415,24 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
             [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
             self.batchRequest = nil;
             [self endBackgroundTask];
-        }];
-    }];
+        };
+#elif TARGET_OS_OSX
+        void (^completion)(void) = ^{
+            if (retry) {
+                [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
+                self.batchRequest = nil;
+                return;
+            }
+
+            [self.queue removeObjectsInArray:batch];
+            [self persistQueue];
+            [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
+            self.batchRequest = nil;
+        };
 #endif
+        
+        [self dispatchBackground:completion];
+    }];
 
     [self notifyForName:SEGSegmentDidSendRequestNotification userInfo:batch];
 }
