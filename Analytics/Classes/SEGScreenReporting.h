@@ -1,5 +1,7 @@
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#elif TARGET_OS_OSX
+#import <AppKit/AppKit.h>
 #endif
 
 #import "SEGSerializableValue.h"
@@ -14,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 #if TARGET_OS_IPHONE
 - (void)seg_trackScreen:(UIViewController*)screen name:(NSString*)name;
 @property (readonly, nullable) UIViewController *seg_mainViewController;
+#elif TARGET_OS_OSX
+- (void)seg_trackScreen:(NSViewController*)screen name:(NSString*)name;
+@property (readonly, nullable) NSViewController *seg_mainViewController;
 #endif
 @end
 

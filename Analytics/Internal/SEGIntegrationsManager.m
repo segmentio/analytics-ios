@@ -151,13 +151,14 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
     [self refreshSettings];
 }
 
-#if TARGET_OS_IPHONE
 - (void)handleAppStateNotification:(NSString *)notificationName
 {
     SEGLog(@"Application state change notification: %@", notificationName);
     static NSDictionary *selectorMapping;
     static dispatch_once_t selectorMappingOnce;
     dispatch_once(&selectorMappingOnce, ^{
+#if TARGET_OS_IPHONE
+
         selectorMapping = @{
             UIApplicationDidFinishLaunchingNotification :
                 NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
@@ -172,14 +173,27 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
             UIApplicationDidBecomeActiveNotification :
                 NSStringFromSelector(@selector(applicationDidBecomeActive))
         };
+#elif TARGET_OS_OSX
+        selectorMapping = @{
+            NSApplicationDidFinishLaunchingNotification :
+                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
+            NSApplicationDidResignActiveNotification :
+                NSStringFromSelector(@selector(applicationDidEnterBackground)),
+            NSApplicationWillTerminateNotification :
+                NSStringFromSelector(@selector(applicationWillTerminate)),
+            NSApplicationWillResignActiveNotification :
+                NSStringFromSelector(@selector(applicationWillResignActive)),
+            NSApplicationDidBecomeActiveNotification :
+                NSStringFromSelector(@selector(applicationDidBecomeActive))
+        };
+#endif
+
     });
     SEL selector = NSSelectorFromString(selectorMapping[notificationName]);
     if (selector) {
         [self callIntegrationsWithSelector:selector arguments:nil options:nil sync:true];
     }
 }
-#endif
-
 
 #pragma mark - Public API
 
@@ -718,12 +732,10 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
             [self openURL:payload.url options:payload.options];
             break;
         }
-#if TARGET_OS_IPHONE
         case SEGEventTypeApplicationLifecycle:
             [self handleAppStateNotification:
                       [(SEGApplicationLifecyclePayload *)context.payload notificationName]];
             break;
-#endif
         default:
         case SEGEventTypeUndefined:
             NSAssert(NO, @"Received context with undefined event type %@", context);

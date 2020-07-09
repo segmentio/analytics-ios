@@ -12,6 +12,8 @@
 		630FC8EA2107F2A500A759C5 /* SEGScreenReporting.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E265C791FB1178C0030E08E /* IntegrationsManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */; };
 		6EEC1C712017EA370089C478 /* EndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC1C702017EA370089C478 /* EndToEndTests.swift */; };
+		96A12C2824B680DB00949804 /* NSViewController+SEGScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 96A12C2624B680DB00949804 /* NSViewController+SEGScreen.h */; };
+		96A12C2924B680DB00949804 /* NSViewController+SEGScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A12C2724B680DB00949804 /* NSViewController+SEGScreen.m */; };
 		9D8CE59023EE014E00197D0C /* CryptoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E91DECD335005322DA /* CryptoTest.swift */; };
 		9D8CE59123EE014E00197D0C /* UserDefaultsStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E61DECD335005322DA /* UserDefaultsStorageTest.swift */; };
 		9D8CE59223EE014E00197D0C /* TrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA542761EB4035400945DA7 /* TrackingTests.swift */; };
@@ -128,6 +130,8 @@
 		66058A0DB75544E7C2766C31 /* Pods_AnalyticsTestsTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnalyticsTestsTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationsManagerTest.swift; sourceTree = "<group>"; };
 		6EEC1C702017EA370089C478 /* EndToEndTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EndToEndTests.swift; sourceTree = "<group>"; tabWidth = 4; };
+		96A12C2624B680DB00949804 /* NSViewController+SEGScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSViewController+SEGScreen.h"; sourceTree = "<group>"; };
+		96A12C2724B680DB00949804 /* NSViewController+SEGScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSViewController+SEGScreen.m"; sourceTree = "<group>"; };
 		9D8CE5A723EE014E00197D0C /* AnalyticsTestsTVOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsTestsTVOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A31958EE2385AC3A00A47EFA /* SerializationTests.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SerializationTests.m; sourceTree = "<group>"; tabWidth = 4; };
 		A34CC6DB249AAEBA00C5E368 /* SEGState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGState.m; sourceTree = "<group>"; };
@@ -386,6 +390,8 @@
 				EADEB8A11DECD12B005322DA /* SEGUtils.m */,
 				EADEB8A21DECD12B005322DA /* UIViewController+SEGScreen.h */,
 				EADEB8A31DECD12B005322DA /* UIViewController+SEGScreen.m */,
+				96A12C2624B680DB00949804 /* NSViewController+SEGScreen.h */,
+				96A12C2724B680DB00949804 /* NSViewController+SEGScreen.m */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -417,6 +423,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96A12C2824B680DB00949804 /* NSViewController+SEGScreen.h in Headers */,
 				A34CC6DE249AAEBB00C5E368 /* SEGState.h in Headers */,
 				EADEB8DC1DECD12B005322DA /* SEGAnalytics.h in Headers */,
 				EADEB8B81DECD12B005322DA /* SEGIntegrationFactory.h in Headers */,
@@ -700,6 +707,7 @@
 				EADEB8BE1DECD12B005322DA /* SEGScreenPayload.m in Sources */,
 				EADEB8B61DECD12B005322DA /* SEGIdentifyPayload.m in Sources */,
 				EADEB8CE1DECD12B005322DA /* SEGSegmentIntegrationFactory.m in Sources */,
+				96A12C2924B680DB00949804 /* NSViewController+SEGScreen.m in Sources */,
 				EADEB8C01DECD12B005322DA /* SEGTrackPayload.m in Sources */,
 				EADEB8AF1DECD12B005322DA /* SEGAES256Crypto.m in Sources */,
 				EADEB8C81DECD12B005322DA /* SEGHTTPClient.m in Sources */,
