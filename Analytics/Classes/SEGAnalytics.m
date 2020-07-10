@@ -102,7 +102,7 @@ static SEGAnalytics *__sharedInstance = nil;
 #if TARGET_OS_IOS
             NSDictionary *remoteNotification = configuration.launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
 #else
-            NSDictionary *remoteNotification = configuration.launchOptions[NSApplicationLaunchRemoteNotificationKey];
+            NSDictionary *remoteNotification = configuration.launchOptions[NSApplicationLaunchUserNotificationKey];
 #endif
             if (remoteNotification) {
                 [self trackPushNotification:remoteNotification fromLaunch:YES];
