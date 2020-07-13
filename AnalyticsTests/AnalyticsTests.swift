@@ -7,7 +7,7 @@
 //
 
 
-import Analytics
+@testable import Analytics
 import XCTest
 
 class AnalyticsTests: XCTestCase {
@@ -258,5 +258,22 @@ class AnalyticsTests: XCTestCase {
         XCTAssertNotNil(integration)
         integration?.test_fileStorage()?.resetAll()
         XCTAssert(integration?.test_queue()?.isEmpty ?? false)
+    }
+    
+    func testDeviceTokenRegistration() {
+        func getStringFrom(token: Data) -> String {
+            return token.reduce("") { $0 + String(format: "%02.2hhx", $1) }
+        }
+        
+        let deviceToken = GenerateUUIDString()
+        let data = deviceToken.data(using: .utf8)
+        if let data = data {
+            analytics.registeredForRemoteNotifications(withDeviceToken: data)
+            let deviceTokenString = getStringFrom(token: data)
+            XCTAssertTrue(deviceTokenString == analytics.getDeviceToken())
+
+        } else {
+            XCTAssertNotNil(data)
+        }
     }
 }

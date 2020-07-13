@@ -449,6 +449,11 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     return [SEGState sharedInstance].userInfo.anonymousId;
 }
 
+- (NSString *)getDeviceToken
+{
+    return [SEGState sharedInstance].context.deviceToken;
+}
+
 - (NSDictionary *)bundledIntegrations
 {
     return [self.integrationsManager.registeredIntegrations copy];
