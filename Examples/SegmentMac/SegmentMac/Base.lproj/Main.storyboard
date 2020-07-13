@@ -725,6 +725,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="signoutTapped:" target="XfG-lQ-9wD" id="sUl-i8-v1a"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dMq-HH-pu2">
                                 <rect key="frame" x="191" y="222" width="99" height="32"/>
@@ -732,14 +735,29 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="associateTapped:" target="XfG-lQ-9wD" id="ZMz-ER-KaF"/>
+                                </connections>
                             </button>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i0G-SY-T5w">
+                                <rect key="frame" x="190" y="85" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="BVa-t5-Hg7"/>
+                                    <constraint firstAttribute="height" constant="100" id="cyq-Oc-4f2"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Segment_Log" id="bOB-je-Qfk"/>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="dMq-HH-pu2" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="2cp-aj-3DA"/>
                             <constraint firstItem="ntK-Yu-IkP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="Foi-Op-0Ic"/>
                             <constraint firstAttribute="trailing" secondItem="Blc-38-i69" secondAttribute="trailing" constant="20" id="G1N-gS-EcZ"/>
+                            <constraint firstItem="i0G-SY-T5w" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="S0S-rG-nkc"/>
+                            <constraint firstItem="i0G-SY-T5w" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="gv4-Z6-TBY"/>
                             <constraint firstItem="ntK-Yu-IkP" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" symbolic="YES" id="kfF-3W-t2D"/>
+                            <constraint firstItem="i0G-SY-T5w" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="rEV-gB-R1U"/>
                             <constraint firstItem="Blc-38-i69" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="u0l-xw-ev3"/>
+                            <constraint firstItem="i0G-SY-T5w" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="wOh-1X-cFQ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -753,4 +771,7 @@
             <point key="canvasLocation" x="75" y="655"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Segment_Log" width="1024" height="1024"/>
+    </resources>
 </document>
