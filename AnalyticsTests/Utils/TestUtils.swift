@@ -157,14 +157,6 @@ extension LSStubRequestDSL {
 }
 
 class TestApplication: NSObject, ApplicationProtocol {
-/*    func seg_beginBackgroundTask(withName taskName: String?, expirationHandler handler: (() -> Void)? = nil) -> UIBackgroundTaskIdentifier {
-        <#code#>
-    }
-    
-    func seg_endBackgroundTask(_ identifier: UIBackgroundTaskIdentifier) {
-        <#code#>
-    }*/
-    
   class BackgroundTask {
     let identifier: Int
     var isEnded = false
