@@ -1,6 +1,5 @@
 def shared_testing_pods
     pod 'Nocilla', '~> 0.11.0'
-    pod 'SwiftTryCatch', :git => 'https://github.com/segmentio/SwiftTryCatch.git'
 end
 
 target 'AnalyticsTests' do

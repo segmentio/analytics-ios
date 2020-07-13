@@ -1,39 +1,29 @@
 import Analytics
-import SwiftTryCatch
 import XCTest
 class IntegrationsManagerTest: XCTestCase {
     
     func testValidValueTypesInIntegrationEnablementFlags() {
-        var exception: NSException? = nil
-        SwiftTryCatch.tryRun({
+        let exception = objc_tryCatch {
             IntegrationsManager.isIntegration("comScore", enabledInOptions: ["comScore": ["blah": 1]])
             IntegrationsManager.isIntegration("comScore", enabledInOptions: ["comScore": true])
-        }, catchRun: { e in
-            exception = e
-        }, finallyRun: nil)
+        }
         
         XCTAssertNil(exception)
     }
     
     func testAssertsWhenInvalidValueTypesUsedIntegrationEnablement() {
-        var exception: NSException? = nil
-        SwiftTryCatch.tryRun({
+        let exception = objc_tryCatch {
             IntegrationsManager.isIntegration("comScore", enabledInOptions: ["comScore": "blah"])
-        }, catchRun: { e in
-            exception = e
-        }, finallyRun: nil)
+        }
         
         XCTAssertNotNil(exception)
     }
     
     func testAssertsWhenInvalidValueTypesIntegrationEnableFlags() {
-        var exception: NSException? = nil
-        SwiftTryCatch.tryRun({
+        let exception = objc_tryCatch {
             // we don't accept array's as values.
             IntegrationsManager.isIntegration("comScore", enabledInOptions: ["comScore": ["key", 1]])
-        }, catchRun: { e in
-            exception = e
-        }, finallyRun: nil)
+        }
         
         XCTAssertNotNil(exception)
     }

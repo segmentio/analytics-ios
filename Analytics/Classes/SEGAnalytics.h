@@ -215,6 +215,9 @@ NS_SWIFT_NAME(Analytics)
 /** Returns the anonymous ID of the current user. */
 - (NSString *)getAnonymousId;
 
+/** Returns the registered device token of this device */
+- (NSString *)getDeviceToken;
+
 /** Returns the configuration used to create the analytics client. */
 - (SEGAnalyticsConfiguration *)configuration;
 

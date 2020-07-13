@@ -7,7 +7,7 @@
 //
 
 
-import Analytics
+@testable import Analytics
 import XCTest
 
 class AnalyticsTests: XCTestCase {
@@ -143,9 +143,9 @@ class AnalyticsTests: XCTestCase {
     
     func testFiresApplicationOpenedForAppLaunchingEvent() {
         testMiddleware.swallowEvent = true
-        NotificationCenter.default.post(name: .UIApplicationDidFinishLaunching, object: testApplication, userInfo: [
-            UIApplicationLaunchOptionsKey.sourceApplication: "testApp",
-            UIApplicationLaunchOptionsKey.url: "test://test",
+        NotificationCenter.default.post(name: UIApplication.didFinishLaunchingNotification, object: testApplication, userInfo: [
+            UIApplication.LaunchOptionsKey.sourceApplication: "testApp",
+            UIApplication.LaunchOptionsKey.url: "test://test",
         ])
         let event = testMiddleware.lastContext?.payload as? TrackPayload
         XCTAssertEqual(event?.event, "Application Opened")
@@ -156,7 +156,7 @@ class AnalyticsTests: XCTestCase {
     
     func testFiresApplicationEnterForeground() {
         testMiddleware.swallowEvent = true
-        NotificationCenter.default.post(name: .UIApplicationWillEnterForeground, object: testApplication)
+        NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: testApplication)
         let event = testMiddleware.lastContext?.payload as? TrackPayload
         XCTAssertEqual(event?.event, "Application Opened")
         XCTAssertEqual(event?.properties?["from_background"] as? Bool, true)
@@ -164,14 +164,14 @@ class AnalyticsTests: XCTestCase {
     
     func testFiresApplicationDuringEnterBackground() {
         testMiddleware.swallowEvent = true
-        NotificationCenter.default.post(name: .UIApplicationDidEnterBackground, object: testApplication)
+        NotificationCenter.default.post(name: UIApplication.didEnterBackgroundNotification, object: testApplication)
         let event = testMiddleware.lastContext?.payload as? TrackPayload
         XCTAssertEqual(event?.event, "Application Backgrounded")
     }
     
     func testFlushesWhenApplicationBackgroundIsFired() {
         analytics.track("test")
-        NotificationCenter.default.post(name: .UIApplicationDidEnterBackground, object: testApplication)
+        NotificationCenter.default.post(name: UIApplication.didEnterBackgroundNotification, object: testApplication)
         
         expectUntil(2.0, expression: self.testApplication.backgroundTasks.count == 1)
         expectUntil(2.0, expression: self.testApplication.backgroundTasks[0].isEnded == false)
@@ -258,5 +258,22 @@ class AnalyticsTests: XCTestCase {
         XCTAssertNotNil(integration)
         integration?.test_fileStorage()?.resetAll()
         XCTAssert(integration?.test_queue()?.isEmpty ?? false)
+    }
+    
+    func testDeviceTokenRegistration() {
+        func getStringFrom(token: Data) -> String {
+            return token.reduce("") { $0 + String(format: "%02.2hhx", $1) }
+        }
+        
+        let deviceToken = GenerateUUIDString()
+        let data = deviceToken.data(using: .utf8)
+        if let data = data {
+            analytics.registeredForRemoteNotifications(withDeviceToken: data)
+            let deviceTokenString = getStringFrom(token: data)
+            XCTAssertTrue(deviceTokenString == analytics.getDeviceToken())
+
+        } else {
+            XCTAssertNotNil(data)
+        }
     }
 }

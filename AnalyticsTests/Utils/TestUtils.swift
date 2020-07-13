@@ -158,10 +158,10 @@ extension LSStubRequestDSL {
 
 class TestApplication: NSObject, ApplicationProtocol {
   class BackgroundTask {
-    let identifier: UInt
+    let identifier: Int
     var isEnded = false
     
-    init(identifier: UInt) {
+    init(identifier: Int) {
       self.identifier = identifier
     }
   }
@@ -173,11 +173,11 @@ class TestApplication: NSObject, ApplicationProtocol {
   func seg_beginBackgroundTask(withName taskName: String?, expirationHandler handler: (() -> Void)? = nil) -> UInt {
     let backgroundTask = BackgroundTask(identifier: (backgroundTasks.map({ $0.identifier }).max() ?? 0) + 1)
     backgroundTasks.append(backgroundTask)
-    return backgroundTask.identifier
+    return UInt(backgroundTask.identifier)
   }
   
   func seg_endBackgroundTask(_ identifier: UInt) {
-    guard let index = backgroundTasks.index(where: { $0.identifier == identifier }) else { return }
+    guard let index = backgroundTasks.firstIndex(where: { $0.identifier == identifier }) else { return }
     backgroundTasks[index].isEnded = true
   }
 }
