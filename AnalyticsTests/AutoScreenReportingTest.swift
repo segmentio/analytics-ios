@@ -4,7 +4,6 @@
 //
 
 import Foundation
-import SwiftTryCatch
 @testable import Analytics
 import XCTest
 
