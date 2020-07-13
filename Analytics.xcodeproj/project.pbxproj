@@ -34,6 +34,7 @@
 		A34CC6DE249AAEBB00C5E368 /* SEGState.h in Headers */ = {isa = PBXBuildFile; fileRef = A34CC6DC249AAEBB00C5E368 /* SEGState.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A352176023AD5825005B07F6 /* SEGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = A352175F23AD5825005B07F6 /* SEGMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A3BECDD024BCE1E3009E2BD3 /* ObjcUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */; };
+		A3BECDD324BCFACA009E2BD3 /* ObjcUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */; };
 		E4ACAD51DB827114D8626C74 /* Pods_AnalyticsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5238C0454BF56A36A536C5C1 /* Pods_AnalyticsTests.framework */; };
 		EA88A5981DED7608009FB66A /* SEGSerializableValue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA88A5971DED7608009FB66A /* SEGSerializableValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8F09741E24C5C600B8B93F /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */; };
@@ -681,6 +682,7 @@
 				9D8CE59423EE014E00197D0C /* SerializationTests.m in Sources */,
 				9D8CE59523EE014E00197D0C /* HTTPClientTest.swift in Sources */,
 				9D8CE59623EE014E00197D0C /* AnalyticsTests.swift in Sources */,
+				A3BECDD324BCFACA009E2BD3 /* ObjcUtils.m in Sources */,
 				9D8CE59723EE014E00197D0C /* FileStorageTest.swift in Sources */,
 				9D8CE59823EE014E00197D0C /* AnalyticsUtilTests.swift in Sources */,
 				9D8CE59923EE014E00197D0C /* StoreKitTrackerTests.swift in Sources */,
