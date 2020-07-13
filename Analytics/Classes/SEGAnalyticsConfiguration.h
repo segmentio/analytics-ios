@@ -12,8 +12,8 @@
 NS_SWIFT_NAME(ApplicationProtocol)
 @protocol SEGApplicationProtocol <NSObject>
 @property (nullable, nonatomic, assign) id<UIApplicationDelegate> delegate;
-- (UIBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void (^__nullable)(void))handler;
-- (void)seg_endBackgroundTask:(UIBackgroundTaskIdentifier)identifier;
+- (NSUInteger)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void (^__nullable)(void))handler;
+- (void)seg_endBackgroundTask:(NSUInteger)identifier;
 @end
 
 
