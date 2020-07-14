@@ -68,7 +68,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
         self.fileStorage = fileStorage;
         self.userDefaultsStorage = userDefaultsStorage;
         self.apiURL = [SEGMENT_API_BASE URLByAppendingPathComponent:@"import"];
-        self.userId = [self getUserId];
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
         [self.reachability startNotifier];
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
@@ -77,7 +76,8 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
         self.flushTaskID = UIBackgroundTaskInvalid;
 #endif
         
-        // load traits from disk.
+        // load traits & user from disk.
+        [self loadUserId];
         [self loadTraits];
 
         [self dispatchBackground:^{
@@ -160,10 +160,14 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     return [NSString stringWithFormat:@"<%p:%@, %@>", self, self.class, self.configuration.writeKey];
 }
 
-- (void)saveUserId:(NSString *)userId
+- (NSString *)userId
+{
+    return [SEGState sharedInstance].userInfo.userId;
+}
+
+- (void)setUserId:(NSString *)userId
 {
     [self dispatchBackground:^{
-        self.userId = userId;
         [SEGState sharedInstance].userInfo.userId = userId;
 #if TARGET_OS_TV
         [self.userDefaultsStorage setString:userId forKey:SEGUserIdKey];
@@ -180,11 +184,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
 - (void)setTraits:(NSDictionary *)traits
 {
-    [self saveTraits:traits];
-}
-
-- (void)saveTraits:(NSDictionary *)traits
-{
     [self dispatchBackground:^{
         [SEGState sharedInstance].userInfo.traits = traits;
 #if TARGET_OS_TV
@@ -200,8 +199,8 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 - (void)identify:(SEGIdentifyPayload *)payload
 {
     [self dispatchBackground:^{
-        [self saveUserId:payload.userId];
-        [self saveTraits:payload.traits];
+        self.userId = payload.userId;
+        self.traits = payload.traits;
     }];
 
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
@@ -484,7 +483,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     return 100;
 }
 
-- (NSString *)getUserId
+- (void)loadUserId
 {
     NSString *result = nil;
 #if TARGET_OS_TV
@@ -493,7 +492,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     result = [self.fileStorage stringForKey:kSEGUserIdFilename];
 #endif
     [SEGState sharedInstance].userInfo.userId = result;
-    return result;
 }
 
 - (void)persistQueue

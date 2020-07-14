@@ -19,8 +19,8 @@ NS_SWIFT_NAME(ApplicationProtocol)
 
 #if TARGET_OS_IPHONE
 @property (nullable, nonatomic, assign) id<UIApplicationDelegate> delegate;
-- (UIBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void (^__nullable)(void))handler;
-- (void)seg_endBackgroundTask:(UIBackgroundTaskIdentifier)identifier;
+- (NSUInteger)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void (^__nullable)(void))handler;
+- (void)seg_endBackgroundTask:(NSUInteger)identifier;
 #elif TARGET_OS_OSX
 @property (nullable, nonatomic, assign) id<NSApplicationDelegate> delegate;
 #endif

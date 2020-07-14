@@ -161,8 +161,8 @@ typedef _Nullable id (^SEGStateGetBlock)(void);
 {
     [state setValueWithBlock: ^{
         self->_deviceToken = [deviceToken copy];
-        [self updateStaticContext];
     }];
+    [self updateStaticContext];
 }
 
 @end

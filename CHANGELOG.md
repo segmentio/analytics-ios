@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 4.0.3 (6 July, 2020)
+-----------------------------
+* [Fix](https://github.com/segmentio/analytics-ios/pull/917) Fixed an issue with old traits overwriting new traits.
+* [New](https://github.com/segmentio/analytics-ios/pull/915) Added full example flow with Swift Package Manager compatibility.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/914) Fix SwiftUI previews in macOS Catalyst builds.
+
 Version 4.0.2 (25 June, 2020)
 -----------------------------
 * [New](https://github.com/segmentio/analytics-ios/pull/913) Separate public utils from private utils appropriately.

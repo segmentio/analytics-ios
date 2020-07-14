@@ -4,7 +4,6 @@
 //
 
 import Foundation
-import SwiftTryCatch
 @testable import Analytics
 import XCTest
 
@@ -64,7 +63,7 @@ class AutoScreenReportingTests: XCTestCase {
         class CustomContainerViewController: UIViewController, SEGScreenReporting {
             var selectedIndex: Int = 0
             var seg_mainViewController: UIViewController? {
-                return childViewControllers[selectedIndex]
+                return children[selectedIndex]
             }
         }
         
@@ -73,7 +72,7 @@ class AutoScreenReportingTests: XCTestCase {
         let containerVC = CustomContainerViewController()
         rootVC.present(containerVC, animated: false)
         [UIViewController(), expectedVC, UIViewController()].forEach { child in
-            containerVC.addChildViewController(child)
+            containerVC.addChild(child)
         }
         containerVC.selectedIndex = 1
         let actualVC = UIViewController.seg_topViewController(rootVC)
@@ -86,7 +85,7 @@ class AutoScreenReportingTests: XCTestCase {
         let containerVC = UIViewController()
         rootVC.present(containerVC, animated: false)
         [expectedVC, UIViewController(), UIViewController()].forEach { child in
-            containerVC.addChildViewController(child)
+            containerVC.addChild(child)
         }
         let actualVC = UIViewController.seg_topViewController(rootVC)
         XCTAssertEqual(actualVC, expectedVC)

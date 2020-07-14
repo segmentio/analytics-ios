@@ -35,6 +35,8 @@
 		A34CC6DD249AAEBB00C5E368 /* SEGState.m in Sources */ = {isa = PBXBuildFile; fileRef = A34CC6DB249AAEBA00C5E368 /* SEGState.m */; };
 		A34CC6DE249AAEBB00C5E368 /* SEGState.h in Headers */ = {isa = PBXBuildFile; fileRef = A34CC6DC249AAEBB00C5E368 /* SEGState.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A352176023AD5825005B07F6 /* SEGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = A352175F23AD5825005B07F6 /* SEGMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		A3BECDD024BCE1E3009E2BD3 /* ObjcUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */; };
+		A3BECDD324BCFACA009E2BD3 /* ObjcUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */; };
 		E4ACAD51DB827114D8626C74 /* Pods_AnalyticsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5238C0454BF56A36A536C5C1 /* Pods_AnalyticsTests.framework */; };
 		EA88A5981DED7608009FB66A /* SEGSerializableValue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA88A5971DED7608009FB66A /* SEGSerializableValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8F09741E24C5C600B8B93F /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */; };
@@ -65,7 +67,7 @@
 		EADEB8C01DECD12B005322DA /* SEGTrackPayload.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB88B1DECD12B005322DA /* SEGTrackPayload.m */; };
 		EADEB8C11DECD12B005322DA /* NSData+SEGGZIP.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB88D1DECD12B005322DA /* NSData+SEGGZIP.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8C21DECD12B005322DA /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB88E1DECD12B005322DA /* NSData+SEGGZIP.m */; };
-		EADEB8C31DECD12B005322DA /* SEGAnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB88F1DECD12B005322DA /* SEGAnalyticsUtils.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		EADEB8C31DECD12B005322DA /* SEGAnalyticsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB88F1DECD12B005322DA /* SEGAnalyticsUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EADEB8C41DECD12B005322DA /* SEGAnalyticsUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8901DECD12B005322DA /* SEGAnalyticsUtils.m */; };
 		EADEB8C51DECD12B005322DA /* SEGFileStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8911DECD12B005322DA /* SEGFileStorage.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8C61DECD12B005322DA /* SEGFileStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8921DECD12B005322DA /* SEGFileStorage.m */; };
@@ -137,6 +139,8 @@
 		A34CC6DB249AAEBA00C5E368 /* SEGState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGState.m; sourceTree = "<group>"; };
 		A34CC6DC249AAEBB00C5E368 /* SEGState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGState.h; sourceTree = "<group>"; };
 		A352175F23AD5825005B07F6 /* SEGMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGMacros.h; sourceTree = "<group>"; };
+		A3BECDCE24BCE1E3009E2BD3 /* ObjcUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjcUtils.h; sourceTree = "<group>"; };
+		A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjcUtils.m; sourceTree = "<group>"; };
 		B0D1E9E4405FD8386DCCD150 /* Pods-AnalyticsTestsTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTestsTVOS.release.xcconfig"; path = "Target Support Files/Pods-AnalyticsTestsTVOS/Pods-AnalyticsTestsTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		EA88A5971DED7608009FB66A /* SEGSerializableValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGSerializableValue.h; sourceTree = "<group>"; };
 		EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
@@ -402,6 +406,8 @@
 				EADEB8E21DECD335005322DA /* NSData+SEGGUNZIPP.h */,
 				EADEB8E31DECD335005322DA /* NSData+SEGGUNZIPP.m */,
 				EADEB8E41DECD335005322DA /* TestUtils.swift */,
+				A3BECDCE24BCE1E3009E2BD3 /* ObjcUtils.h */,
+				A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -470,7 +476,7 @@
 				9D8CE58F23EE014E00197D0C /* Sources */,
 				9D8CE59F23EE014E00197D0C /* Frameworks */,
 				9D8CE5A223EE014E00197D0C /* Resources */,
-				D2ED3899A800F2659A9CF6C2 /* [CP] Embed Pods Frameworks */,
+				F59284A917BD27204F7B1F64 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -508,7 +514,7 @@
 				EADEB8661DECD0EF005322DA /* Sources */,
 				EADEB8671DECD0EF005322DA /* Frameworks */,
 				EADEB8681DECD0EF005322DA /* Resources */,
-				87F85ADB13C707FFFF3F27B0 /* [CP] Embed Pods Frameworks */,
+				7B56FD82419D9D8206680C38 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -539,7 +545,7 @@
 					};
 					EADEB8691DECD0EF005322DA = {
 						CreatedOnToolsVersion = 8.1;
-						LastSwiftMigration = 1130;
+						LastSwiftMigration = 1150;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -589,7 +595,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		87F85ADB13C707FFFF3F27B0 /* [CP] Embed Pods Frameworks */ = {
+		7B56FD82419D9D8206680C38 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -597,12 +603,10 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nocilla-iOS/Nocilla.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftTryCatch-iOS/SwiftTryCatch.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nocilla.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftTryCatch.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -653,7 +657,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D2ED3899A800F2659A9CF6C2 /* [CP] Embed Pods Frameworks */ = {
+		F59284A917BD27204F7B1F64 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -661,12 +665,10 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AnalyticsTestsTVOS/Pods-AnalyticsTestsTVOS-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Nocilla-tvOS/Nocilla.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftTryCatch-tvOS/SwiftTryCatch.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nocilla.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftTryCatch.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -687,6 +689,7 @@
 				9D8CE59423EE014E00197D0C /* SerializationTests.m in Sources */,
 				9D8CE59523EE014E00197D0C /* HTTPClientTest.swift in Sources */,
 				9D8CE59623EE014E00197D0C /* AnalyticsTests.swift in Sources */,
+				A3BECDD324BCFACA009E2BD3 /* ObjcUtils.m in Sources */,
 				9D8CE59723EE014E00197D0C /* FileStorageTest.swift in Sources */,
 				9D8CE59823EE014E00197D0C /* AnalyticsUtilTests.swift in Sources */,
 				9D8CE59923EE014E00197D0C /* StoreKitTrackerTests.swift in Sources */,
@@ -742,6 +745,7 @@
 				A31958EF2385AC3A00A47EFA /* SerializationTests.m in Sources */,
 				EADEB8EE1DECD335005322DA /* HTTPClientTest.swift in Sources */,
 				EADEB8F31DECD335005322DA /* AnalyticsTests.swift in Sources */,
+				A3BECDD024BCE1E3009E2BD3 /* ObjcUtils.m in Sources */,
 				EADEB8F11DECD335005322DA /* FileStorageTest.swift in Sources */,
 				F61EB4AF1F996DEF0038C8C0 /* AnalyticsUtilTests.swift in Sources */,
 				EAA542801EB4382100945DA7 /* StoreKitTrackerTests.swift in Sources */,
@@ -985,6 +989,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "AnalyticsTests/AnalyticsTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -998,6 +1003,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AnalyticsTests/AnalyticsTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

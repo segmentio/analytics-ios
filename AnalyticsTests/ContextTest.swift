@@ -6,7 +6,6 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-import SwiftTryCatch
 import Analytics
 import XCTest
 
@@ -24,11 +23,9 @@ class ContextTests: XCTestCase {
         var context: Context?
         var exception: NSException?
         
-        SwiftTryCatch.tryRun({
+        exception = objc_tryCatch {
             context = Context()
-        }, catchRun: { e in
-            exception = e
-        }, finallyRun: nil)
+        }
         
         XCTAssertNil(context)
         XCTAssertNotNil(exception)

@@ -1,28 +1,16 @@
 PODS:
   - Nocilla (0.11.0)
-  - SwiftTryCatch (1.0.0)
 
 DEPENDENCIES:
   - Nocilla (~> 0.11.0)
-  - SwiftTryCatch (from `https://github.com/segmentio/SwiftTryCatch.git`)
 
 SPEC REPOS:
   trunk:
     - Nocilla
 
-EXTERNAL SOURCES:
-  SwiftTryCatch:
-    :git: https://github.com/segmentio/SwiftTryCatch.git
-
-CHECKOUT OPTIONS:
-  SwiftTryCatch:
-    :commit: f06756adb8dfe164659f866e430daf71439b481f
-    :git: https://github.com/segmentio/SwiftTryCatch.git
-
 SPEC CHECKSUMS:
   Nocilla: 7af7a386071150cc8aa5da4da97d060f049dd61c
-  SwiftTryCatch: 6ef1f543b5d287a4f5763c0de2ee9c8568985269
 
-PODFILE CHECKSUM: 0317236deb6b78344dafed0871776d4342f80caa
+PODFILE CHECKSUM: b1320b7107926418d81b6d48a9c864abdf9c3eaf
 
 COCOAPODS: 1.9.3
