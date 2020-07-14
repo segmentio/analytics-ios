@@ -1,5 +1,6 @@
-version: 2
-
+version: 2.1
+orbs:
+  carthage: ngs/carthage@0.35.0
 jobs:
   build_and_test:
     macos:
