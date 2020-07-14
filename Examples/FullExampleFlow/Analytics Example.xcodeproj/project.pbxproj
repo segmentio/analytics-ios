@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		9616DB59249050A600F7191B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9616DB58249050A600F7191B /* SignupViewController.swift */; };
 		9616DB5B2490583800F7191B /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9616DB5A2490583800F7191B /* InviteViewController.swift */; };
+		961C617024BE5BED00A8B8E3 /* Analytics in Frameworks */ = {isa = PBXBuildFile; productRef = 961C616F24BE5BED00A8B8E3 /* Analytics */; };
 		961D80C024902143007C4F04 /* AnonymousViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961D80BC24902143007C4F04 /* AnonymousViewController.swift */; };
 		96BC0E4A24A57317000AF2EB /* SignoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BC0E4924A57317000AF2EB /* SignoutViewController.swift */; };
 		96BC0E4C24A693E3000AF2EB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BC0E4B24A693E3000AF2EB /* SignInViewController.swift */; };
-		96BC0E4F24A6B342000AF2EB /* Analytics in Frameworks */ = {isa = PBXBuildFile; productRef = 96BC0E4E24A6B342000AF2EB /* Analytics */; };
 		96BC0E5124AA72F6000AF2EB /* TrialEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BC0E5024AA72F6000AF2EB /* TrialEndViewController.swift */; };
 		96D0441F2485B458009C3FD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D0441E2485B458009C3FD7 /* AppDelegate.swift */; };
 		96D044212485B458009C3FD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D044202485B458009C3FD7 /* SceneDelegate.swift */; };
@@ -61,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96BC0E4F24A6B342000AF2EB /* Analytics in Frameworks */,
+				961C617024BE5BED00A8B8E3 /* Analytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +140,7 @@
 			);
 			name = "Analytics Example";
 			packageProductDependencies = (
-				96BC0E4E24A6B342000AF2EB /* Analytics */,
+				961C616F24BE5BED00A8B8E3 /* Analytics */,
 			);
 			productName = "Analytics Example";
 			productReference = 96D0441B2485B458009C3FD7 /* Analytics Example.app */;
@@ -171,7 +171,7 @@
 			);
 			mainGroup = 96D044122485B458009C3FD7;
 			packageReferences = (
-				96BC0E4D24A6B342000AF2EB /* XCRemoteSwiftPackageReference "analytics-ios" */,
+				961C616E24BE5BED00A8B8E3 /* XCRemoteSwiftPackageReference "analytics-ios" */,
 			);
 			productRefGroup = 96D0441C2485B458009C3FD7 /* Products */;
 			projectDirPath = "";
@@ -354,8 +354,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9EPD8ZWKX7;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -367,6 +368,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Segment.Analytics-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -376,8 +378,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 9EPD8ZWKX7;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -389,6 +392,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Segment.Analytics-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -418,20 +422,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		96BC0E4D24A6B342000AF2EB /* XCRemoteSwiftPackageReference "analytics-ios" */ = {
+		961C616E24BE5BED00A8B8E3 /* XCRemoteSwiftPackageReference "analytics-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:segmentio/analytics-ios.git";
+			repositoryURL = "https://github.com/segmentio/analytics-ios.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.2;
+				branch = migs647/macconversion;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		96BC0E4E24A6B342000AF2EB /* Analytics */ = {
+		961C616F24BE5BED00A8B8E3 /* Analytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 96BC0E4D24A6B342000AF2EB /* XCRemoteSwiftPackageReference "analytics-ios" */;
+			package = 961C616E24BE5BED00A8B8E3 /* XCRemoteSwiftPackageReference "analytics-ios" */;
 			productName = Analytics;
 		};
 /* End XCSwiftPackageProductDependency section */

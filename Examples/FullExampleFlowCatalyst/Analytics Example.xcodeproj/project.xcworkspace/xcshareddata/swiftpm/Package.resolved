@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Analytics",
+        "repositoryURL": "https://github.com/segmentio/analytics-ios.git",
+        "state": {
+          "branch": "migs647/macconversion",
+          "revision": "af24593f99aece20a54ea855ff8220acd5ab01fd",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

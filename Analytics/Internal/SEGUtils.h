@@ -32,6 +32,12 @@ NSDictionary *getLiveContext(SEGReachability *reachability, NSDictionary * _Null
 
 NSString *GenerateUUIDString(void);
 
+#if TARGET_OS_IPHONE
+NSDictionary *mobileSpecifications(SEGAnalyticsConfiguration *configuration, NSString * _Nullable deviceToken);
+#elif TARGET_OS_OSX
+NSDictionary *desktopSpecifications(SEGAnalyticsConfiguration *configuration, NSString * _Nullable deviceToken);
+#endif
+
 // Date Utils
 NSString *iso8601FormattedString(NSDate *date);
 NSString *iso8601NanoFormattedString(NSDate *date);

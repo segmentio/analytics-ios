@@ -14,7 +14,7 @@ lint:
 	pod lib lint --allow-warnings
 
 carthage:
-	carthage build --no-skip-current
+	carthage build --platform ios --no-skip-current
 
 archive: carthage
 	carthage archive Analytics

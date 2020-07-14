@@ -6,7 +6,9 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
+#endif
 #import <objc/runtime.h>
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
@@ -114,13 +116,16 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
         // Update settings on each integration immediately
         [self refreshSettings];
 
-        // Attach to application state change hooks
-        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-
         // Update settings on foreground
         id<SEGApplicationProtocol> application = configuration.application;
         if (application) {
+            // Attach to application state change hooks
+            NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+#if TARGET_OS_IPHONE
             [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:application];
+#elif TARGET_OS_OSX
+            [nc addObserver:self selector:@selector(onAppForeground:) name:NSApplicationWillUnhideNotification object:application];
+#endif
         }
     }
     return self;
@@ -148,13 +153,14 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
     [self refreshSettings];
 }
 
-
 - (void)handleAppStateNotification:(NSString *)notificationName
 {
     SEGLog(@"Application state change notification: %@", notificationName);
     static NSDictionary *selectorMapping;
     static dispatch_once_t selectorMappingOnce;
     dispatch_once(&selectorMappingOnce, ^{
+#if TARGET_OS_IPHONE
+
         selectorMapping = @{
             UIApplicationDidFinishLaunchingNotification :
                 NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
@@ -169,13 +175,29 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
             UIApplicationDidBecomeActiveNotification :
                 NSStringFromSelector(@selector(applicationDidBecomeActive))
         };
+#elif TARGET_OS_OSX
+        selectorMapping = @{
+            NSApplicationDidFinishLaunchingNotification :
+                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
+            NSApplicationDidHideNotification :
+                NSStringFromSelector(@selector(applicationDidEnterBackground)),
+            NSApplicationWillUnhideNotification :
+                NSStringFromSelector(@selector(applicationWillEnterForeground)),
+            NSApplicationWillTerminateNotification :
+                NSStringFromSelector(@selector(applicationWillTerminate)),
+            NSApplicationWillResignActiveNotification :
+                NSStringFromSelector(@selector(applicationWillResignActive)),
+            NSApplicationDidBecomeActiveNotification :
+                NSStringFromSelector(@selector(applicationDidBecomeActive))
+        };
+#endif
+
     });
     SEL selector = NSSelectorFromString(selectorMapping[notificationName]);
     if (selector) {
         [self callIntegrationsWithSelector:selector arguments:nil options:nil sync:true];
     }
 }
-
 
 #pragma mark - Public API
 
@@ -705,10 +727,6 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
                        forRemoteNotification:payload.userInfo];
             break;
         }
-        case SEGEventTypeApplicationLifecycle:
-            [self handleAppStateNotification:
-                      [(SEGApplicationLifecyclePayload *)context.payload notificationName]];
-            break;
         case SEGEventTypeContinueUserActivity:
             [self continueUserActivity:
                       [(SEGContinueUserActivityPayload *)context.payload activity]];
@@ -718,6 +736,11 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
             [self openURL:payload.url options:payload.options];
             break;
         }
+        case SEGEventTypeApplicationLifecycle:
+            [self handleAppStateNotification:
+                      [(SEGApplicationLifecyclePayload *)context.payload notificationName]];
+            break;
+        default:
         case SEGEventTypeUndefined:
             NSAssert(NO, @"Received context with undefined event type %@", context);
             SEGLog(@"[ERROR]: Received context with undefined event type %@", context);

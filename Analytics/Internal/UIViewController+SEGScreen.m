@@ -5,6 +5,7 @@
 #import "SEGScreenReporting.h"
 
 
+#if TARGET_OS_IPHONE
 @implementation UIViewController (SEGScreen)
 
 + (void)seg_swizzleViewDidAppear
@@ -120,3 +121,4 @@
 }
 
 @end
+#endif
