@@ -3,14 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		9616DB59249050A600F7191B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9616DB58249050A600F7191B /* SignupViewController.swift */; };
 		9616DB5B2490583800F7191B /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9616DB5A2490583800F7191B /* InviteViewController.swift */; };
-		961C616624BE569500A8B8E3 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961C616324BE565500A8B8E3 /* Analytics.framework */; };
-		961C616724BE569500A8B8E3 /* Analytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 961C616324BE565500A8B8E3 /* Analytics.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		961C617024BE5BED00A8B8E3 /* Analytics in Frameworks */ = {isa = PBXBuildFile; productRef = 961C616F24BE5BED00A8B8E3 /* Analytics */; };
 		961D80C024902143007C4F04 /* AnonymousViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961D80BC24902143007C4F04 /* AnonymousViewController.swift */; };
 		96BC0E4A24A57317000AF2EB /* SignoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BC0E4924A57317000AF2EB /* SignoutViewController.swift */; };
 		96BC0E4C24A693E3000AF2EB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BC0E4B24A693E3000AF2EB /* SignInViewController.swift */; };
@@ -32,7 +31,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				961C616724BE569500A8B8E3 /* Analytics.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,7 +40,6 @@
 /* Begin PBXFileReference section */
 		9616DB58249050A600F7191B /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		9616DB5A2490583800F7191B /* InviteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
-		961C616324BE565500A8B8E3 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Analytics.framework; path = Carthage/Build/iOS/Analytics.framework; sourceTree = "<group>"; };
 		961D80BC24902143007C4F04 /* AnonymousViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnonymousViewController.swift; sourceTree = "<group>"; };
 		96BC0E4924A57317000AF2EB /* SignoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignoutViewController.swift; sourceTree = "<group>"; };
 		96BC0E4B24A693E3000AF2EB /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -64,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				961C616624BE569500A8B8E3 /* Analytics.framework in Frameworks */,
+				961C617024BE5BED00A8B8E3 /* Analytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +71,6 @@
 		96D044122485B458009C3FD7 = {
 			isa = PBXGroup;
 			children = (
-				961C616324BE565500A8B8E3 /* Analytics.framework */,
 				96D0441D2485B458009C3FD7 /* Analytics Example */,
 				96D0441C2485B458009C3FD7 /* Products */,
 				96D0443F2485B541009C3FD7 /* Frameworks */,
@@ -144,6 +140,7 @@
 			);
 			name = "Analytics Example";
 			packageProductDependencies = (
+				961C616F24BE5BED00A8B8E3 /* Analytics */,
 			);
 			productName = "Analytics Example";
 			productReference = 96D0441B2485B458009C3FD7 /* Analytics Example.app */;
@@ -174,6 +171,7 @@
 			);
 			mainGroup = 96D044122485B458009C3FD7;
 			packageReferences = (
+				961C616E24BE5BED00A8B8E3 /* XCRemoteSwiftPackageReference "analytics-ios" */,
 			);
 			productRefGroup = 96D0441C2485B458009C3FD7 /* Products */;
 			projectDirPath = "";
@@ -422,6 +420,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		961C616E24BE5BED00A8B8E3 /* XCRemoteSwiftPackageReference "analytics-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/segmentio/analytics-ios.git";
+			requirement = {
+				branch = migs647/macconversion;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		961C616F24BE5BED00A8B8E3 /* Analytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 961C616E24BE5BED00A8B8E3 /* XCRemoteSwiftPackageReference "analytics-ios" */;
+			productName = Analytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 96D044132485B458009C3FD7 /* Project object */;
 }
