@@ -3,16 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		9616DB59249050A600F7191B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9616DB58249050A600F7191B /* SignupViewController.swift */; };
 		9616DB5B2490583800F7191B /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9616DB5A2490583800F7191B /* InviteViewController.swift */; };
+		961C616624BE569500A8B8E3 /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 961C616324BE565500A8B8E3 /* Analytics.framework */; };
+		961C616724BE569500A8B8E3 /* Analytics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 961C616324BE565500A8B8E3 /* Analytics.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		961D80C024902143007C4F04 /* AnonymousViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961D80BC24902143007C4F04 /* AnonymousViewController.swift */; };
 		96BC0E4A24A57317000AF2EB /* SignoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BC0E4924A57317000AF2EB /* SignoutViewController.swift */; };
 		96BC0E4C24A693E3000AF2EB /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BC0E4B24A693E3000AF2EB /* SignInViewController.swift */; };
-		96BC0E4F24A6B342000AF2EB /* Analytics in Frameworks */ = {isa = PBXBuildFile; productRef = 96BC0E4E24A6B342000AF2EB /* Analytics */; };
 		96BC0E5124AA72F6000AF2EB /* TrialEndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BC0E5024AA72F6000AF2EB /* TrialEndViewController.swift */; };
 		96D0441F2485B458009C3FD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D0441E2485B458009C3FD7 /* AppDelegate.swift */; };
 		96D044212485B458009C3FD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D044202485B458009C3FD7 /* SceneDelegate.swift */; };
@@ -31,6 +32,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				961C616724BE569500A8B8E3 /* Analytics.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -40,6 +42,7 @@
 /* Begin PBXFileReference section */
 		9616DB58249050A600F7191B /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		9616DB5A2490583800F7191B /* InviteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
+		961C616324BE565500A8B8E3 /* Analytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Analytics.framework; path = Carthage/Build/iOS/Analytics.framework; sourceTree = "<group>"; };
 		961D80BC24902143007C4F04 /* AnonymousViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnonymousViewController.swift; sourceTree = "<group>"; };
 		96BC0E4924A57317000AF2EB /* SignoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignoutViewController.swift; sourceTree = "<group>"; };
 		96BC0E4B24A693E3000AF2EB /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -61,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96BC0E4F24A6B342000AF2EB /* Analytics in Frameworks */,
+				961C616624BE569500A8B8E3 /* Analytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +74,7 @@
 		96D044122485B458009C3FD7 = {
 			isa = PBXGroup;
 			children = (
+				961C616324BE565500A8B8E3 /* Analytics.framework */,
 				96D0441D2485B458009C3FD7 /* Analytics Example */,
 				96D0441C2485B458009C3FD7 /* Products */,
 				96D0443F2485B541009C3FD7 /* Frameworks */,
@@ -140,7 +144,6 @@
 			);
 			name = "Analytics Example";
 			packageProductDependencies = (
-				96BC0E4E24A6B342000AF2EB /* Analytics */,
 			);
 			productName = "Analytics Example";
 			productReference = 96D0441B2485B458009C3FD7 /* Analytics Example.app */;
@@ -171,7 +174,6 @@
 			);
 			mainGroup = 96D044122485B458009C3FD7;
 			packageReferences = (
-				96BC0E4D24A6B342000AF2EB /* XCRemoteSwiftPackageReference "analytics-ios" */,
 			);
 			productRefGroup = 96D0441C2485B458009C3FD7 /* Products */;
 			projectDirPath = "";
@@ -420,25 +422,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		96BC0E4D24A6B342000AF2EB /* XCRemoteSwiftPackageReference "analytics-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:segmentio/analytics-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		96BC0E4E24A6B342000AF2EB /* Analytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 96BC0E4D24A6B342000AF2EB /* XCRemoteSwiftPackageReference "analytics-ios" */;
-			productName = Analytics;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 96D044132485B458009C3FD7 /* Project object */;
 }
