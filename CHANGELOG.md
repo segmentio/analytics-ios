@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 4.0.4 (14 July, 2020)
+-----------------------------
+* [New](https://github.com/segmentio/analytics-ios/pull/918) Added MacOS support.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/921) Fixed SEGLog permissions.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/920) Adopted Swift 5 syntax in tests. Removed SwiftTryCatch dependency for tests. Fixed deadlock from #916.
+
 Version 4.0.3 (6 July, 2020)
 -----------------------------
 * [Fix](https://github.com/segmentio/analytics-ios/pull/917) Fixed an issue with old traits overwriting new traits.
