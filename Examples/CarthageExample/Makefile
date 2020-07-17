@@ -4,4 +4,4 @@ clean:
 	rm -rf Carthage
 
 build:
-	carthage update
+	carthage update --platform ios
