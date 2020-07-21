@@ -160,11 +160,18 @@
         BOOL needsConversion = NO;
         result = [self jsonFromData:data needsConversion:&needsConversion];
         if (needsConversion) {
-            [self setJSON:result forKey:key];
-            // maybe a little repetitive, but we want to recreate the same path it would
-            // take if it weren't being converted.
-            data = [self dataForKey:key];
-            result = [self jsonFromData:data needsConversion:&needsConversion];
+            @try {
+                [self setJSON:result forKey:key];
+                // maybe a little repetitive, but we want to recreate the same path it would
+                // take if it weren't being converted.
+                data = [self dataForKey:key];
+                result = [self jsonFromData:data needsConversion:&needsConversion];
+            } @catch (NSException *e) {
+                SEGLog(@"Unable to convert data from plist object to json; Exception: %@, data: %@", e, data);
+
+                [self removeKey:key];
+                result = nil;
+            }
         }
     }
     return result;
