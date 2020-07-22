@@ -114,6 +114,19 @@ class FileStorageTest : XCTestCase {
         let dictOut = storage.dictionary(forKey: key)
         XCTAssertEqual(dictOut as? [String: String], dictIn)
     }
+
+    func testShouldRemoveDictionaryForInvalidPlistConversion() {
+        let key = "invalid.plist"
+        let dictIn: [String: Any] = [
+          "timestamp": TimeInterval.nan // `.nan` fails JSONSerialization
+        ]
+
+        let url = storage.url(forKey: key)
+        (dictIn as NSDictionary).write(to: url, atomically: true)
+        let dictOut = storage.dictionary(forKey: key)
+        XCTAssertNil(dictOut)
+        XCTAssertNil(try? url.checkResourceIsReachable())
+    }
     
     func testShouldWorkWithCrypto() {
         let url = FileStorage.applicationSupportDirectoryURL()
