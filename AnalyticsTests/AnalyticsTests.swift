@@ -44,14 +44,14 @@ class AnalyticsTests: XCTestCase {
     }
     
     func testInitializedCorrectly() {
-        XCTAssertEqual(analytics.configuration.flushAt, 20)
-        XCTAssertEqual(analytics.configuration.flushInterval, 30)
-        XCTAssertEqual(analytics.configuration.maxQueueSize, 1000)
-        XCTAssertEqual(analytics.configuration.writeKey, "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
-        XCTAssertEqual(analytics.configuration.shouldUseLocationServices, false)
-        XCTAssertEqual(analytics.configuration.enableAdvertisingTracking, true)
-        XCTAssertEqual(analytics.configuration.shouldUseBluetooth,  false)
-        XCTAssertNil(analytics.configuration.httpSessionDelegate)
+        XCTAssertEqual(config.flushAt, 20)
+        XCTAssertEqual(config.flushInterval, 30)
+        XCTAssertEqual(config.maxQueueSize, 1000)
+        XCTAssertEqual(config.writeKey, "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
+        XCTAssertEqual(config.shouldUseLocationServices, false)
+        XCTAssertEqual(config.enableAdvertisingTracking, true)
+        XCTAssertEqual(config.shouldUseBluetooth,  false)
+        XCTAssertNil(config.httpSessionDelegate)
         XCTAssertNotNil(analytics.getAnonymousId())
     }
     
@@ -232,7 +232,7 @@ class AnalyticsTests: XCTestCase {
     
     func testRedactsSensibleURLsFromDeepLinksTracking() {
         testMiddleware.swallowEvent = true
-        analytics.configuration.trackDeepLinks = true
+        config.trackDeepLinks = true
         analytics.open(URL(string: "fb123456789://authorize#access_token=hastoberedacted")!, options: [:])
         
         
@@ -243,8 +243,8 @@ class AnalyticsTests: XCTestCase {
     
     func testRedactsSensibleURLsFromDeepLinksWithFilters() {
         testMiddleware.swallowEvent = true
-        analytics.configuration.payloadFilters["(myapp://auth\\?token=)([^&]+)"] = "$1((redacted/my-auth))"
-        analytics.configuration.trackDeepLinks = true
+        config.payloadFilters["(myapp://auth\\?token=)([^&]+)"] = "$1((redacted/my-auth))"
+        config.trackDeepLinks = true
         analytics.open(URL(string: "myapp://auth?token=hastoberedacted&other=stuff")!, options: [:])
         
         

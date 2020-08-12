@@ -55,6 +55,9 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
 @end
 
+@interface SEGAnalytics ()
+@property (nonatomic, strong, readonly) SEGAnalyticsConfiguration *oneTimeConfiguration;
+@end
 
 @implementation SEGSegmentIntegration
 
@@ -62,9 +65,9 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 {
     if (self = [super init]) {
         self.analytics = analytics;
-        self.configuration = analytics.configuration;
+        self.configuration = analytics.oneTimeConfiguration;
         self.httpClient = httpClient;
-        self.httpClient.httpSessionDelegate = analytics.configuration.httpSessionDelegate;
+        self.httpClient.httpSessionDelegate = analytics.oneTimeConfiguration.httpSessionDelegate;
         self.fileStorage = fileStorage;
         self.userDefaultsStorage = userDefaultsStorage;
         self.apiURL = [SEGMENT_API_BASE URLByAppendingPathComponent:@"import"];
@@ -125,7 +128,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
     seg_dispatch_specific_sync(_backgroundTaskQueue, ^{
         
-        id<SEGApplicationProtocol> application = [self.analytics configuration].application;
+        id<SEGApplicationProtocol> application = [self.analytics oneTimeConfiguration].application;
         if (application && [application respondsToSelector:@selector(seg_beginBackgroundTaskWithName:expirationHandler:)]) {
             self.flushTaskID = [application seg_beginBackgroundTaskWithName:@"Segmentio.Flush"
                                                           expirationHandler:^{
@@ -144,7 +147,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     // See https://github.com/segmentio/analytics-ios/issues/683
     seg_dispatch_specific_sync(_backgroundTaskQueue, ^{
         if (self.flushTaskID != UIBackgroundTaskInvalid) {
-            id<SEGApplicationProtocol> application = [self.analytics configuration].application;
+            id<SEGApplicationProtocol> application = [self.analytics oneTimeConfiguration].application;
             if (application && [application respondsToSelector:@selector(seg_endBackgroundTask:)]) {
                 [application seg_endBackgroundTask:self.flushTaskID];
             }
@@ -309,7 +312,7 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 {
     @try {
         // Trim the queue to maxQueueSize - 1 before we add a new element.
-        trimQueue(self.queue, self.analytics.configuration.maxQueueSize - 1);
+        trimQueue(self.queue, self.analytics.oneTimeConfiguration.maxQueueSize - 1);
         [self.queue addObject:payload];
         [self persistQueue];
         [self flushQueueByLength];

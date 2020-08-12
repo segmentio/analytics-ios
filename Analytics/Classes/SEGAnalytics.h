@@ -17,7 +17,7 @@ NS_SWIFT_NAME(Analytics)
 /**
  * Used by the analytics client to configure various options.
  */
-@property (nonatomic, strong, readonly) SEGAnalyticsConfiguration *configuration;
+@property (nullable, nonatomic, strong, readonly) SEGAnalyticsConfiguration *configuration DEPRECATED_MSG_ATTRIBUTE("One time use object");
 
 /**
  * Setup this analytics client instance.
@@ -217,9 +217,6 @@ NS_SWIFT_NAME(Analytics)
 
 /** Returns the registered device token of this device */
 - (NSString *)getDeviceToken;
-
-/** Returns the configuration used to create the analytics client. */
-- (SEGAnalyticsConfiguration *)configuration;
 
 @end
 
