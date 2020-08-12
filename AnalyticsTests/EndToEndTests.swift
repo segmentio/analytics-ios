@@ -4,15 +4,16 @@ import XCTest
 class EndToEndTests: XCTestCase {
     
     var analytics: Analytics!
+    var configuration: AnalyticsConfiguration!
     
     override func setUp() {
         super.setUp()
         
         // Write Key for https://app.segment.com/segment-libraries/sources/analytics_ios_e2e_test/overview
-        let config = AnalyticsConfiguration(writeKey: "3VxTfPsVOoEOSbbzzbFqVNcYMNu2vjnr")
-        config.flushAt = 1
+        configuration = AnalyticsConfiguration(writeKey: "3VxTfPsVOoEOSbbzzbFqVNcYMNu2vjnr")
+        configuration.flushAt = 1
 
-        Analytics.setup(with: config)
+        Analytics.setup(with: configuration)
 
         analytics = Analytics.shared()
     }
@@ -27,7 +28,7 @@ class EndToEndTests: XCTestCase {
         let uuid = UUID().uuidString
         let expectation = XCTestExpectation(description: "SegmentRequestDidSucceed")
         
-        Analytics.shared().configuration.experimental.rawSegmentModificationBlock = { data in
+        configuration.experimental.rawSegmentModificationBlock = { data in
             if let properties = data["properties"] as? Dictionary<String, Any?>,
                 let tempUUID = properties["id"] as? String, tempUUID == uuid {
                 expectation.fulfill()

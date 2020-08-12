@@ -80,6 +80,10 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 
 @end
 
+@interface SEGAnalytics ()
+@property (nullable, nonatomic, strong, readonly) SEGAnalyticsConfiguration *oneTimeConfiguration;
+@end
+
 
 @implementation SEGIntegrationsManager
 
@@ -88,7 +92,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 
 - (instancetype _Nonnull)initWithAnalytics:(SEGAnalytics *_Nonnull)analytics
 {
-    SEGAnalyticsConfiguration *configuration = analytics.configuration;
+    SEGAnalyticsConfiguration *configuration = analytics.oneTimeConfiguration;
     NSCParameterAssert(configuration != nil);
 
     if (self = [super init]) {
