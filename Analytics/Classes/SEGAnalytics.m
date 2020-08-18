@@ -51,6 +51,11 @@ static SEGAnalytics *__sharedInstance = nil;
         // In swift this would not have been OK... But hey.. It's objc
         // TODO: Figure out if this is really the best way to do things here.
         self.integrationsManager = [[SEGIntegrationsManager alloc] initWithAnalytics:self];
+        
+        if (configuration.edgeFunctionMiddleware) {
+            configuration.sourceMiddleware = @[[configuration.edgeFunctionMiddleware sourceMiddleware]];
+            configuration.destinationMiddleware = @[[configuration.edgeFunctionMiddleware destinationMiddleware]];
+        }
 
         self.runner = [[SEGMiddlewareRunner alloc] initWithMiddleware:
                                                        [configuration.sourceMiddleware ?: @[] arrayByAddingObject:self.integrationsManager]];

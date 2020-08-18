@@ -41,6 +41,7 @@ typedef NSString *_Nonnull (^SEGAdSupportBlock)(void);
 @protocol SEGIntegrationFactory;
 @protocol SEGCrypto;
 @protocol SEGMiddleware;
+@protocol SEGEdgeFunctionMiddleware;
 
 @class SEGAnalyticsExperimental;
 @class SEGDestinationMiddleware;
@@ -168,6 +169,12 @@ NS_SWIFT_NAME(AnalyticsConfiguration)
  * Set custom destination middleware. Will be run before the associated integration for a destination.
  */
 @property (nonatomic, strong, nullable) NSArray<SEGDestinationMiddleware *> *destinationMiddleware;
+
+/**
+ * Sets edge function middleware.  This takes precendence over native middlewares.  Any middleware set via `sourceMiddleware`
+ * or `destinationMiddleware` will be removed.
+ */
+@property (nonatomic, strong, nullable) id<SEGEdgeFunctionMiddleware> edgeFunctionMiddleware;
 
 /**
  * Register a factory that can be used to create an integration.
