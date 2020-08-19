@@ -53,8 +53,14 @@ static SEGAnalytics *__sharedInstance = nil;
         self.integrationsManager = [[SEGIntegrationsManager alloc] initWithAnalytics:self];
         
         if (configuration.edgeFunctionMiddleware) {
-            configuration.sourceMiddleware = @[[configuration.edgeFunctionMiddleware sourceMiddleware]];
-            configuration.destinationMiddleware = @[[configuration.edgeFunctionMiddleware destinationMiddleware]];
+            id sourceMw = configuration.edgeFunctionMiddleware.sourceMiddleware;
+            if (sourceMw) {
+                configuration.sourceMiddleware = @[sourceMw];
+            }
+            id destMw = configuration.edgeFunctionMiddleware.destinationMiddleware;
+            if (destMw) {
+                configuration.destinationMiddleware = @[destMw];
+            }
         }
 
         self.runner = [[SEGMiddlewareRunner alloc] initWithMiddleware:
