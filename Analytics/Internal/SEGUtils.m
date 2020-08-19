@@ -171,11 +171,18 @@ NSDictionary *getStaticContext(SEGAnalyticsConfiguration *configuration, NSStrin
         };
     }
 
+    NSDictionary *settingsDictionary = nil;
 #if TARGET_OS_IPHONE
-    dict[@"device"] = mobileSpecifications(configuration, deviceToken);
+    settingsDictionary = mobileSpecifications(configuration, deviceToken);
 #elif TARGET_OS_OSX
-    dict[@"device"] = desktopSpecifications(configuration, deviceToken);
+    settingsDictionary = desktopSpecifications(configuration, deviceToken);
 #endif
+    
+    if (settingsDictionary != nil) {
+        dict[@"device"] = settingsDictionary[@"device"];
+        dict[@"os"] = settingsDictionary[@"os"];
+        dict[@"screen"] = settingsDictionary[@"screen"];
+    }
 
     return dict;
 }
