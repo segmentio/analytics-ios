@@ -55,11 +55,11 @@ static SEGAnalytics *__sharedInstance = nil;
         if (configuration.edgeFunctionMiddleware) {
             id sourceMw = configuration.edgeFunctionMiddleware.sourceMiddleware;
             if (sourceMw) {
-                configuration.sourceMiddleware = @[sourceMw];
+                configuration.sourceMiddleware = sourceMw;
             }
             id destMw = configuration.edgeFunctionMiddleware.destinationMiddleware;
             if (destMw) {
-                configuration.destinationMiddleware = @[destMw];
+                configuration.destinationMiddleware = destMw;
             }
         }
 
