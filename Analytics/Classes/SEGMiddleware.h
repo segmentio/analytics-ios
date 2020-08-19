@@ -71,8 +71,8 @@ NS_SWIFT_NAME(DestinationMiddleware)
 NS_SWIFT_NAME(EdgeFunctionMiddleware)
 @protocol SEGEdgeFunctionMiddleware
 @required
-@property (nonatomic, strong, nullable) NSArray<id<SEGMiddleware>> *sourceMiddleware;
-@property (nonatomic, strong, nullable) NSArray<SEGDestinationMiddleware *> *destinationMiddleware;
+@property (nonatomic, readonly, nullable) NSArray<id<SEGMiddleware>> *sourceMiddleware;
+@property (nonatomic, readonly, nullable) NSArray<SEGDestinationMiddleware *> *destinationMiddleware;
 - (void)setEdgeFunctionData:(NSDictionary *_Nullable)data;
 @end
 
