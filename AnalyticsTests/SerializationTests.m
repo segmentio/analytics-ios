@@ -9,6 +9,10 @@
 #import <XCTest/XCTest.h>
 @import Analytics;
 
+@interface NSJSONSerialization (Serializable)
++ (BOOL)isOfSerializableType:(id)obj;
+@end
+
 @protocol SEGSerializableDeepCopy <NSObject>
 -(id _Nullable) serializableDeepCopy;
 @end
@@ -49,6 +53,22 @@
     XCTAssert(array != arrayCopy);
 
     XCTAssertNoThrow([serializable serializableDeepCopy]);
+    XCTAssertThrows([nonserializable serializableDeepCopy]);
+}
+
+- (void)testDateIssue {
+    NSDate *date = [NSDate date];
+    NSString *test = @"test";
+
+    XCTAssertFalse([NSJSONSerialization isOfSerializableType:date]);
+    XCTAssertTrue([NSJSONSerialization isOfSerializableType:test]);
+
+    NSDictionary *nonserializable = @{@"test": date};
+    NSDictionary *serializable = @{@"test": @1};
+    XCTAssertThrows([nonserializable serializableDeepCopy]);
+    XCTAssertNoThrow([serializable serializableDeepCopy]);
+    
+    nonserializable = @{@"test": @[date]};
     XCTAssertThrows([nonserializable serializableDeepCopy]);
 }
 

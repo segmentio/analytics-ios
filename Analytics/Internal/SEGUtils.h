@@ -62,6 +62,10 @@ NSString *_Nullable SEGIDFA(void);
 
 NSString *SEGEventNameForScreenTitle(NSString *title);
 
+@interface NSJSONSerialization (Serializable)
++ (BOOL)isOfSerializableType:(id)obj;
+@end
+
 // Deep copy and check NSCoding conformance
 @protocol SEGSerializableDeepCopy <NSObject>
 -(id _Nullable) serializableMutableDeepCopy;

@@ -559,6 +559,20 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
 }
 
 
+@implementation NSJSONSerialization(Serializable)
++ (BOOL)isOfSerializableType:(id)obj
+{
+    if ([obj isKindOfClass:[NSArray class]] ||
+        [obj isKindOfClass:[NSDictionary class]] ||
+        [obj isKindOfClass:[NSString class]] ||
+        [obj isKindOfClass:[NSNumber class]] ||
+        [obj isKindOfClass:[NSNull class]])
+        return YES;
+    return NO;
+}
+@end
+
+
 @implementation NSDictionary(SerializableDeepCopy)
 
 - (id)serializableDeepCopy:(BOOL)mutable
@@ -569,11 +583,12 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
         id aValue = [self objectForKey:key];
         id theCopy = nil;
         
-        if (![aValue conformsToProtocol:@protocol(NSCoding)]) {
+        if (![NSJSONSerialization isOfSerializableType:aValue]) {
+            NSString *className = NSStringFromClass([aValue class]);
 #ifdef DEBUG
-            NSAssert(FALSE, @"key `%@` doesn't conform to NSCoding and can't be serialized for delivery.", key);
+            NSAssert(FALSE, @"key `%@` is a %@ and can't be serialized for delivery.", key, className);
 #else
-            SEGLog(@"key `%@` doesn't conform to NSCoding and can't be serialized for delivery.", key);
+            SEGLog(@"key `%@` is a %@ and can't be serializaed for delivery.", key, className);
             // simply leave it out since we can't encode it anyway.
             continue;
 #endif
@@ -617,16 +632,17 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
     for (id aValue in self) {
         id theCopy = nil;
         
-        if (![aValue conformsToProtocol:@protocol(NSCoding)]) {
+        if (![NSJSONSerialization isOfSerializableType:aValue]) {
+            NSString *className = NSStringFromClass([aValue class]);
 #ifdef DEBUG
-            NSAssert(FALSE, @"type `%@` doesn't conform to NSCoding and can't be serialized for delivery.", NSStringFromClass([aValue class]));
+            NSAssert(FALSE, @"found a %@ which can't be serialized for delivery.", className);
 #else
-            SEGLog(@"type `%@` doesn't conform to NSCoding and can't be serialized for delivery.", NSStringFromClass([aValue class]));
+            SEGLog(@"found a %@ which can't be serializaed for delivery.", className);
             // simply leave it out since we can't encode it anyway.
             continue;
 #endif
         }
-        
+
         if ([aValue conformsToProtocol:@protocol(SEGSerializableDeepCopy)]) {
             theCopy = [aValue serializableDeepCopy:mutable];
         } else if ([aValue conformsToProtocol:@protocol(NSCopying)]) {
