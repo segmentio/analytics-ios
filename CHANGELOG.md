@@ -1,26 +1,33 @@
 Change Log
 ==========
+Version 4.0.5 (pre-release) (28 August, 2020)
+-----------------------------
+* [Fix](https://github.com/segmentio/analytics-ios/pull/937) Fixed issue where non-serializable types would get into payload.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/931) Fixed double device payload.
+* [New](https://github.com/segmentio/analytics-ios/pull/930) Deprecated configuration access and updated associated tests.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/925) Disregard payloads that fail conversion from plist to json.
+* [New](https://github.com/segmentio/analytics-ios/pull/922) Added Swift and Carthage badging.
 
-Version 4.0.4 (14 July, 2020)
+Version 4.0.4 (pre-release) (14 July, 2020)
 -----------------------------
 * [New](https://github.com/segmentio/analytics-ios/pull/918) Added MacOS support.
 * [Fix](https://github.com/segmentio/analytics-ios/pull/921) Fixed SEGLog permissions.
 * [Fix](https://github.com/segmentio/analytics-ios/pull/920) Adopted Swift 5 syntax in tests. Removed SwiftTryCatch dependency for tests. Fixed deadlock from #916.
 
-Version 4.0.3 (6 July, 2020)
+Version 4.0.3 (pre-release) (6 July, 2020)
 -----------------------------
 * [Fix](https://github.com/segmentio/analytics-ios/pull/917) Fixed an issue with old traits overwriting new traits.
 * [New](https://github.com/segmentio/analytics-ios/pull/915) Added full example flow with Swift Package Manager compatibility.
 * [Fix](https://github.com/segmentio/analytics-ios/pull/914) Fix SwiftUI previews in macOS Catalyst builds.
 
-Version 4.0.2 (25 June, 2020)
+Version 4.0.2 (pre-release) (25 June, 2020)
 -----------------------------
 * [New](https://github.com/segmentio/analytics-ios/pull/913) Separate public utils from private utils appropriately.
 * [New](https://github.com/segmentio/analytics-ios/pull/912) Payload Info & Traits Fixes.
 * [New](https://github.com/segmentio/analytics-ios/pull/911) Updated SPM for code coverage compatibility.
 * [New](https://github.com/segmentio/analytics-ios/pull/909) Removed Quick and Nimble, updated unit tests.
 
-Version 4.0.1 (18 June, 2020)
+Version 4.0.1 (pre-release) (18 June, 2020)
 -----------------------------
  * [New](https://github.com/segmentio/analytics-ios/pull/905) Added global state management; Middleware now receive all context data.
  * [New](https://github.com/segmentio/analytics-ios/pull/885) change logic for screen naming conventions.
