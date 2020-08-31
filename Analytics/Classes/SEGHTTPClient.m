@@ -149,6 +149,7 @@ static const NSUInteger kMaxBatchSize = 475000; // 475KB
     NSURL *url = [SEGMENT_CDN_BASE URLByAppendingPathComponent:[NSString stringWithFormat:@"/projects/%@/settings", writeKey]];
     NSMutableURLRequest *request = self.requestFactory(url);
     [request setHTTPMethod:@"GET"];
+    [request setValue:@"json" forHTTPHeaderField:@"Accept-Encoding"];
 
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
         if (error != nil) {
