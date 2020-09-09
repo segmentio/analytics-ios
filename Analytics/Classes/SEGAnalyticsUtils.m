@@ -1,9 +1,10 @@
 #import "SEGAnalyticsUtils.h"
 #import "SEGAnalytics.h"
+#import "SEGUtils.h"
 
 static BOOL kAnalyticsLoggerShowLogs = NO;
 
-// Logging
+#pragma mark - Logging
 
 void SEGSetShowDebugLogs(BOOL showDebugLogs)
 {
@@ -20,4 +21,29 @@ void SEGLog(NSString *format, ...)
     NSLogv(format, args);
     va_end(args);
 }
+
+#pragma mark - Serialization Extensions
+
+@interface NSDate(SEGSerializable)<SEGSerializable>
+- (id)serializeToAppropriateType;
+@end
+
+@implementation NSDate(SEGSerializable)
+- (id)serializeToAppropriateType
+{
+    return iso8601FormattedString(self);
+}
+@end
+
+@interface NSURL(SEGSerializable)<SEGSerializable>
+- (id)serializeToAppropriateType;
+@end
+
+@implementation NSURL(SEGSerializable)
+- (id)serializeToAppropriateType
+{
+    return [self absoluteString];
+}
+@end
+
 

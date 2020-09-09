@@ -19,9 +19,6 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 #import <Cocoa/Cocoa.h>
 #endif
 
-// BKS: This doesn't appear to be needed anymore.  Will investigate.
-//NSString *const SEGADClientClass = @"ADClient";
-
 @implementation SEGUtils
 
 + (NSData *_Nullable)dataFromPlist:(nonnull id)plist
@@ -492,65 +489,13 @@ void seg_dispatch_specific_sync(dispatch_queue_t queue,
     seg_dispatch_specific(queue, block, YES);
 }
 
-// JSON Utils
-
-static id SEGCoerceJSONObject(id obj)
-{
-    // if the object is a NSString, NSNumber
-    // then we're good
-    if ([obj isKindOfClass:[NSString class]] ||
-        [obj isKindOfClass:[NSNumber class]] ||
-        [obj isKindOfClass:[NSNull class]]) {
-        return obj;
-    }
-
-    if ([obj isKindOfClass:[NSArray class]]) {
-        NSMutableArray *array = [NSMutableArray array];
-        for (id i in obj) {
-            NSObject *value = i;
-            // Hotfix: Storage format should support NSNull instead
-            if ([value isKindOfClass:[NSNull class]]) {
-                value = [NSData data];
-            }
-            [array addObject:SEGCoerceJSONObject(value)];
-        }
-        return array;
-    }
-
-    if ([obj isKindOfClass:[NSDictionary class]]) {
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-        for (NSString *key in obj) {
-            NSObject *value = obj[key];
-            if (![key isKindOfClass:[NSString class]])
-                SEGLog(@"warning: dictionary keys should be strings. got: %@. coercing "
-                       @"to: %@",
-                       [key class], [key description]);
-            dict[key.description] = SEGCoerceJSONObject(value);
-        }
-        return dict;
-    }
-
-    if ([obj isKindOfClass:[NSDate class]])
-        return iso8601FormattedString(obj);
-
-    if ([obj isKindOfClass:[NSURL class]])
-        return [obj absoluteString];
-
-    // default to sending the object's description
-    SEGLog(@"warning: dictionary values should be valid json types. got: %@. "
-           @"coercing to: %@",
-           [obj class], [obj description]);
-    return [obj description];
-}
-
 NSDictionary *SEGCoerceDictionary(NSDictionary *dict)
 {
     // make sure that a new dictionary exists even if the input is null
     dict = dict ?: @{};
     // assert that the proper types are in the dictionary
     dict = [dict serializableDeepCopy];
-    // coerce urls, and dates to the proper format
-    return SEGCoerceJSONObject(dict);
+    return dict;
 }
 
 NSString *SEGEventNameForScreenTitle(NSString *title)
@@ -558,10 +503,12 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
     return [[NSString alloc] initWithFormat:@"Viewed %@ Screen", title];
 }
 
-
 @implementation NSJSONSerialization(Serializable)
 + (BOOL)isOfSerializableType:(id)obj
 {
+    if ([obj conformsToProtocol:@protocol(SEGSerializable)])
+        return YES;
+    
     if ([obj isKindOfClass:[NSArray class]] ||
         [obj isKindOfClass:[NSDictionary class]] ||
         [obj isKindOfClass:[NSString class]] ||
@@ -598,6 +545,8 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
             theCopy = [aValue serializableDeepCopy:mutable];
         } else if ([aValue conformsToProtocol:@protocol(NSCopying)]) {
             theCopy = [aValue copy];
+        } else if ([aValue conformsToProtocol:@protocol(SEGSerializable)]) {
+            theCopy = [aValue serializeToAppropriateType];
         } else {
             theCopy = aValue;
         }
@@ -647,6 +596,8 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
             theCopy = [aValue serializableDeepCopy:mutable];
         } else if ([aValue conformsToProtocol:@protocol(NSCopying)]) {
             theCopy = [aValue copy];
+        } else if ([aValue conformsToProtocol:@protocol(SEGSerializable)]) {
+            theCopy = [aValue serializeToAppropriateType];
         } else {
             theCopy = aValue;
         }
@@ -668,6 +619,5 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
 - (NSMutableArray *)serializableMutableDeepCopy {
     return [self serializableDeepCopy:YES];
 }
-
 
 @end
