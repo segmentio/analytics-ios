@@ -10,7 +10,7 @@ void SEGLog(NSString *format, ...);
 
 #pragma mark - Serialization Extensions
 
-NS_SWIFT_NAME(Segment.Serializable)
+NS_SWIFT_NAME(SegmentSerializable)
 @protocol SEGSerializable
 /**
  Serialize objects to a type supported by NSJSONSerializable.  Objects that conform to this protocol should
