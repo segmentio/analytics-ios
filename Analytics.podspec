@@ -1,5 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "Analytics"
+  s.module_name      = "Segment"
   s.version          = "4.0.5"
   s.summary          = "The hassle-free way to add analytics to your iOS app."
 
@@ -21,7 +22,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'Security', 'StoreKit', 'SystemConfiguration', 'UIKit'
 
   s.source_files = [
-    'Analytics/Classes/**/*',
-    'Analytics/Internal/**/*'
+    'Segment/Classes/**/*',
+    'Segment/Internal/**/*'
   ]
 end

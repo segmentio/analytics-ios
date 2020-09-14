@@ -6,9 +6,7 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-#import <Analytics/SEGAnalytics.h>
-// TODO: Test and see if this works
-// @import Analytics;
+#import <Segment/SEGAnalytics.h>
 #import "ViewController.h"
 
 
