@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		067E6A3191007B3442DB29F0 /* Pods_AnalyticsTestsTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66058A0DB75544E7C2766C31 /* Pods_AnalyticsTestsTVOS.framework */; };
 		5AF0E8AE77F57B356DACCFE7 /* AutoScreenReportingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E8457CCFC077382BF449 /* AutoScreenReportingTest.swift */; };
 		630FC8EA2107F2A500A759C5 /* SEGScreenReporting.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E265C791FB1178C0030E08E /* IntegrationsManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */; };
@@ -29,7 +28,7 @@
 		9D8CE59C23EE014E00197D0C /* NSData+SEGGUNZIPP.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E31DECD335005322DA /* NSData+SEGGUNZIPP.m */; };
 		9D8CE59D23EE014E00197D0C /* EndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC1C702017EA370089C478 /* EndToEndTests.swift */; };
 		9D8CE59E23EE014E00197D0C /* TestUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8E41DECD335005322DA /* TestUtils.swift */; };
-		9D8CE5A023EE014E00197D0C /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEB85B1DECD080005322DA /* Analytics.framework */; };
+		9D8CE5A023EE014E00197D0C /* Segment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEB85B1DECD080005322DA /* Segment.framework */; };
 		A31958EF2385AC3A00A47EFA /* SerializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A31958EE2385AC3A00A47EFA /* SerializationTests.m */; };
 		A31CAFC224635F8400443BA4 /* AutoScreenReportingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E8457CCFC077382BF449 /* AutoScreenReportingTest.swift */; };
 		A34CC6DD249AAEBB00C5E368 /* SEGState.m in Sources */ = {isa = PBXBuildFile; fileRef = A34CC6DB249AAEBA00C5E368 /* SEGState.m */; };
@@ -37,7 +36,6 @@
 		A352176023AD5825005B07F6 /* SEGMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = A352175F23AD5825005B07F6 /* SEGMacros.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		A3BECDD024BCE1E3009E2BD3 /* ObjcUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */; };
 		A3BECDD324BCFACA009E2BD3 /* ObjcUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */; };
-		E4ACAD51DB827114D8626C74 /* Pods_AnalyticsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5238C0454BF56A36A536C5C1 /* Pods_AnalyticsTests.framework */; };
 		EA88A5981DED7608009FB66A /* SEGSerializableValue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA88A5971DED7608009FB66A /* SEGSerializableValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA8F09741E24C5C600B8B93F /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */; };
 		EAA542771EB4035400945DA7 /* TrackingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA542761EB4035400945DA7 /* TrackingTests.swift */; };
@@ -45,7 +43,7 @@
 		EAA5427E1EB42B8C00945DA7 /* SEGReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA5427C1EB42B8C00945DA7 /* SEGReachability.m */; };
 		EAA542801EB4382100945DA7 /* StoreKitTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA5427F1EB4382100945DA7 /* StoreKitTrackerTests.swift */; };
 		EADEB8601DECD080005322DA /* Analytics.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB85E1DECD080005322DA /* Analytics.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EADEB86F1DECD0EF005322DA /* Analytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEB85B1DECD080005322DA /* Analytics.framework */; };
+		EADEB86F1DECD0EF005322DA /* Segment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EADEB85B1DECD080005322DA /* Segment.framework */; };
 		EADEB8AE1DECD12B005322DA /* SEGAES256Crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB8781DECD12B005322DA /* SEGAES256Crypto.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		EADEB8AF1DECD12B005322DA /* SEGAES256Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = EADEB8791DECD12B005322DA /* SEGAES256Crypto.m */; };
 		EADEB8B01DECD12B005322DA /* SEGCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = EADEB87A1DECD12B005322DA /* SEGCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -123,35 +121,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03630CF57D6F100AC46A95FD /* Pods-AnalyticsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTests.release.xcconfig"; path = "Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests.release.xcconfig"; sourceTree = "<group>"; };
-		4E5B177C4F6C1CAE4837FF7B /* Pods-AnalyticsTestsTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTestsTVOS.debug.xcconfig"; path = "Target Support Files/Pods-AnalyticsTestsTVOS/Pods-AnalyticsTestsTVOS.debug.xcconfig"; sourceTree = "<group>"; };
-		5238C0454BF56A36A536C5C1 /* Pods_AnalyticsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnalyticsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AF0E8457CCFC077382BF449 /* AutoScreenReportingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoScreenReportingTest.swift; sourceTree = "<group>"; };
 		5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGScreenReporting.h; sourceTree = "<group>"; };
 		63E090D722DD49C300DEC7EC /* UIViewController+SegScreenTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SegScreenTest.h"; sourceTree = "<group>"; };
-		66058A0DB75544E7C2766C31 /* Pods_AnalyticsTestsTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnalyticsTestsTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationsManagerTest.swift; sourceTree = "<group>"; };
 		6EEC1C702017EA370089C478 /* EndToEndTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EndToEndTests.swift; sourceTree = "<group>"; tabWidth = 4; };
 		96A12C2624B680DB00949804 /* NSViewController+SEGScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSViewController+SEGScreen.h"; sourceTree = "<group>"; };
 		96A12C2724B680DB00949804 /* NSViewController+SEGScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSViewController+SEGScreen.m"; sourceTree = "<group>"; };
-		9D8CE5A723EE014E00197D0C /* AnalyticsTestsTVOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsTestsTVOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D8CE5A723EE014E00197D0C /* SegmentTestsTVOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SegmentTestsTVOS.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A31958EE2385AC3A00A47EFA /* SerializationTests.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SerializationTests.m; sourceTree = "<group>"; tabWidth = 4; };
 		A34CC6DB249AAEBA00C5E368 /* SEGState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGState.m; sourceTree = "<group>"; };
 		A34CC6DC249AAEBB00C5E368 /* SEGState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGState.h; sourceTree = "<group>"; };
 		A352175F23AD5825005B07F6 /* SEGMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGMacros.h; sourceTree = "<group>"; };
 		A3BECDCE24BCE1E3009E2BD3 /* ObjcUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjcUtils.h; sourceTree = "<group>"; };
 		A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjcUtils.m; sourceTree = "<group>"; };
-		B0D1E9E4405FD8386DCCD150 /* Pods-AnalyticsTestsTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTestsTVOS.release.xcconfig"; path = "Target Support Files/Pods-AnalyticsTestsTVOS/Pods-AnalyticsTestsTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		EA88A5971DED7608009FB66A /* SEGSerializableValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGSerializableValue.h; sourceTree = "<group>"; };
 		EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
 		EAA542761EB4035400945DA7 /* TrackingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingTests.swift; sourceTree = "<group>"; };
 		EAA5427B1EB42B8C00945DA7 /* SEGReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGReachability.h; sourceTree = "<group>"; };
 		EAA5427C1EB42B8C00945DA7 /* SEGReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGReachability.m; sourceTree = "<group>"; };
 		EAA5427F1EB4382100945DA7 /* StoreKitTrackerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StoreKitTrackerTests.swift; path = AnalyticsTests/StoreKitTrackerTests.swift; sourceTree = SOURCE_ROOT; };
-		EADEB85B1DECD080005322DA /* Analytics.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Analytics.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EADEB85B1DECD080005322DA /* Segment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Segment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADEB85E1DECD080005322DA /* Analytics.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Analytics.h; sourceTree = "<group>"; };
 		EADEB85F1DECD080005322DA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EADEB86A1DECD0EF005322DA /* AnalyticsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnalyticsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EADEB86A1DECD0EF005322DA /* SegmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SegmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EADEB8781DECD12B005322DA /* SEGAES256Crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGAES256Crypto.h; sourceTree = "<group>"; };
 		EADEB8791DECD12B005322DA /* SEGAES256Crypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGAES256Crypto.m; sourceTree = "<group>"; };
 		EADEB87A1DECD12B005322DA /* SEGCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGCrypto.h; sourceTree = "<group>"; };
@@ -215,7 +208,6 @@
 		EADEB8FF1DED3711005322DA /* circle.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = circle.yml; sourceTree = "<group>"; };
 		EADEB9001DED3711005322DA /* Analytics.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Analytics.podspec; sourceTree = "<group>"; };
 		EADEB9011DED3711005322DA /* Podfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
-		F611C4D4187214693180270A /* Pods-AnalyticsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnalyticsTests.debug.xcconfig"; path = "Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F61EB4AE1F996DEF0038C8C0 /* AnalyticsUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsUtilTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -224,8 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D8CE5A023EE014E00197D0C /* Analytics.framework in Frameworks */,
-				067E6A3191007B3442DB29F0 /* Pods_AnalyticsTestsTVOS.framework in Frameworks */,
+				9D8CE5A023EE014E00197D0C /* Segment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,8 +231,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EADEB86F1DECD0EF005322DA /* Analytics.framework in Frameworks */,
-				E4ACAD51DB827114D8626C74 /* Pods_AnalyticsTests.framework in Frameworks */,
+				EADEB86F1DECD0EF005322DA /* Segment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,21 +241,8 @@
 		14BF89C893339D4171174443 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F611C4D4187214693180270A /* Pods-AnalyticsTests.debug.xcconfig */,
-				03630CF57D6F100AC46A95FD /* Pods-AnalyticsTests.release.xcconfig */,
-				4E5B177C4F6C1CAE4837FF7B /* Pods-AnalyticsTestsTVOS.debug.xcconfig */,
-				B0D1E9E4405FD8386DCCD150 /* Pods-AnalyticsTestsTVOS.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		E7F5B7E85686966D7A4D0284 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5238C0454BF56A36A536C5C1 /* Pods_AnalyticsTests.framework */,
-				66058A0DB75544E7C2766C31 /* Pods_AnalyticsTestsTVOS.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EADEB8511DECD080005322DA = {
@@ -276,16 +253,15 @@
 				EADEB85C1DECD080005322DA /* Products */,
 				EADEB8FE1DED36ED005322DA /* Supporting Files */,
 				14BF89C893339D4171174443 /* Pods */,
-				E7F5B7E85686966D7A4D0284 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		EADEB85C1DECD080005322DA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EADEB85B1DECD080005322DA /* Analytics.framework */,
-				EADEB86A1DECD0EF005322DA /* AnalyticsTests.xctest */,
-				9D8CE5A723EE014E00197D0C /* AnalyticsTestsTVOS.xctest */,
+				EADEB85B1DECD080005322DA /* Segment.framework */,
+				EADEB86A1DECD0EF005322DA /* SegmentTests.xctest */,
+				9D8CE5A723EE014E00197D0C /* SegmentTestsTVOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -468,29 +444,27 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		9D8CE58B23EE014E00197D0C /* AnalyticsTestsTVOS */ = {
+		9D8CE58B23EE014E00197D0C /* SegmentTestsTVOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9D8CE5A423EE014E00197D0C /* Build configuration list for PBXNativeTarget "AnalyticsTestsTVOS" */;
+			buildConfigurationList = 9D8CE5A423EE014E00197D0C /* Build configuration list for PBXNativeTarget "SegmentTestsTVOS" */;
 			buildPhases = (
-				8DF48941AA6B976CE2A0FC2C /* [CP] Check Pods Manifest.lock */,
 				9D8CE58F23EE014E00197D0C /* Sources */,
 				9D8CE59F23EE014E00197D0C /* Frameworks */,
 				9D8CE5A223EE014E00197D0C /* Resources */,
-				F59284A917BD27204F7B1F64 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				9D8CE58C23EE014E00197D0C /* PBXTargetDependency */,
 			);
-			name = AnalyticsTestsTVOS;
+			name = SegmentTestsTVOS;
 			productName = AnalyticsTests;
-			productReference = 9D8CE5A723EE014E00197D0C /* AnalyticsTestsTVOS.xctest */;
+			productReference = 9D8CE5A723EE014E00197D0C /* SegmentTestsTVOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EADEB85A1DECD080005322DA /* Analytics */ = {
+		EADEB85A1DECD080005322DA /* Segment */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EADEB8631DECD080005322DA /* Build configuration list for PBXNativeTarget "Analytics" */;
+			buildConfigurationList = EADEB8631DECD080005322DA /* Build configuration list for PBXNativeTarget "Segment" */;
 			buildPhases = (
 				EADEB8561DECD080005322DA /* Sources */,
 				EADEB8571DECD080005322DA /* Frameworks */,
@@ -501,29 +475,27 @@
 			);
 			dependencies = (
 			);
-			name = Analytics;
+			name = Segment;
 			productName = Analytics;
-			productReference = EADEB85B1DECD080005322DA /* Analytics.framework */;
+			productReference = EADEB85B1DECD080005322DA /* Segment.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EADEB8691DECD0EF005322DA /* AnalyticsTests */ = {
+		EADEB8691DECD0EF005322DA /* SegmentTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EADEB8741DECD0EF005322DA /* Build configuration list for PBXNativeTarget "AnalyticsTests" */;
+			buildConfigurationList = EADEB8741DECD0EF005322DA /* Build configuration list for PBXNativeTarget "SegmentTests" */;
 			buildPhases = (
-				C870F10FB942774C9D2460DD /* [CP] Check Pods Manifest.lock */,
 				EADEB8661DECD0EF005322DA /* Sources */,
 				EADEB8671DECD0EF005322DA /* Frameworks */,
 				EADEB8681DECD0EF005322DA /* Resources */,
-				7B56FD82419D9D8206680C38 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				EADEB8711DECD0EF005322DA /* PBXTargetDependency */,
 			);
-			name = AnalyticsTests;
+			name = SegmentTests;
 			productName = AnalyticsTests;
-			productReference = EADEB86A1DECD0EF005322DA /* AnalyticsTests.xctest */;
+			productReference = EADEB86A1DECD0EF005322DA /* SegmentTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -550,7 +522,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EADEB8551DECD080005322DA /* Build configuration list for PBXProject "Analytics" */;
+			buildConfigurationList = EADEB8551DECD080005322DA /* Build configuration list for PBXProject "Segment" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -563,9 +535,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EADEB85A1DECD080005322DA /* Analytics */,
-				EADEB8691DECD0EF005322DA /* AnalyticsTests */,
-				9D8CE58B23EE014E00197D0C /* AnalyticsTestsTVOS */,
+				EADEB85A1DECD080005322DA /* Segment */,
+				EADEB8691DECD0EF005322DA /* SegmentTests */,
+				9D8CE58B23EE014E00197D0C /* SegmentTestsTVOS */,
 			);
 		};
 /* End PBXProject section */
@@ -593,89 +565,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		7B56FD82419D9D8206680C38 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Nocilla-iOS/Nocilla.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nocilla.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AnalyticsTests/Pods-AnalyticsTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8DF48941AA6B976CE2A0FC2C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AnalyticsTestsTVOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C870F10FB942774C9D2460DD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AnalyticsTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F59284A917BD27204F7B1F64 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-AnalyticsTestsTVOS/Pods-AnalyticsTestsTVOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Nocilla-tvOS/Nocilla.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nocilla.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AnalyticsTestsTVOS/Pods-AnalyticsTestsTVOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9D8CE58F23EE014E00197D0C /* Sources */ = {
@@ -763,12 +652,12 @@
 /* Begin PBXTargetDependency section */
 		9D8CE58C23EE014E00197D0C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EADEB85A1DECD080005322DA /* Analytics */;
+			target = EADEB85A1DECD080005322DA /* Segment */;
 			targetProxy = 9D8CE58D23EE014E00197D0C /* PBXContainerItemProxy */;
 		};
 		EADEB8711DECD0EF005322DA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EADEB85A1DECD080005322DA /* Analytics */;
+			target = EADEB85A1DECD080005322DA /* Segment */;
 			targetProxy = EADEB8701DECD0EF005322DA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -776,7 +665,6 @@
 /* Begin XCBuildConfiguration section */
 		9D8CE5A523EE014E00197D0C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E5B177C4F6C1CAE4837FF7B /* Pods-AnalyticsTestsTVOS.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = AnalyticsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -792,7 +680,6 @@
 		};
 		9D8CE5A623EE014E00197D0C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0D1E9E4405FD8386DCCD150 /* Pods-AnalyticsTestsTVOS.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = AnalyticsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -980,7 +867,6 @@
 		};
 		EADEB8721DECD0EF005322DA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F611C4D4187214693180270A /* Pods-AnalyticsTests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = AnalyticsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -995,7 +881,6 @@
 		};
 		EADEB8731DECD0EF005322DA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03630CF57D6F100AC46A95FD /* Pods-AnalyticsTests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = AnalyticsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1010,7 +895,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9D8CE5A423EE014E00197D0C /* Build configuration list for PBXNativeTarget "AnalyticsTestsTVOS" */ = {
+		9D8CE5A423EE014E00197D0C /* Build configuration list for PBXNativeTarget "SegmentTestsTVOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9D8CE5A523EE014E00197D0C /* Debug */,
@@ -1019,7 +904,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EADEB8551DECD080005322DA /* Build configuration list for PBXProject "Analytics" */ = {
+		EADEB8551DECD080005322DA /* Build configuration list for PBXProject "Segment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EADEB8611DECD080005322DA /* Debug */,
@@ -1028,7 +913,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EADEB8631DECD080005322DA /* Build configuration list for PBXNativeTarget "Analytics" */ = {
+		EADEB8631DECD080005322DA /* Build configuration list for PBXNativeTarget "Segment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EADEB8641DECD080005322DA /* Debug */,
@@ -1037,7 +922,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EADEB8741DECD0EF005322DA /* Build configuration list for PBXNativeTarget "AnalyticsTests" */ = {
+		EADEB8741DECD0EF005322DA /* Build configuration list for PBXNativeTarget "SegmentTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EADEB8721DECD0EF005322DA /* Debug */,

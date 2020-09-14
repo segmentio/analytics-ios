@@ -10,17 +10,37 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "NO">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "EADEB8691DECD0EF005322DA"
+            BuildableName = "SegmentTests.xctest"
+            BlueprintName = "SegmentTests"
+            ReferencedContainer = "container:Segment.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "WEBHOOK_AUTH_USERNAME"
+            value = "$(WEBHOOK_AUTH_USERNAME)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "RUN_E2E_TESTS"
+            value = "$(RUN_E2E_TESTS)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9D8CE58B23EE014E00197D0C"
-               BuildableName = "AnalyticsTestsTVOS.xctest"
-               BlueprintName = "AnalyticsTestsTVOS"
-               ReferencedContainer = "container:Analytics.xcodeproj">
+               BlueprintIdentifier = "EADEB8691DECD0EF005322DA"
+               BuildableName = "SegmentTests.xctest"
+               BlueprintName = "SegmentTests"
+               ReferencedContainer = "container:Segment.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>

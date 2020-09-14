@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EADEB85A1DECD080005322DA"
-               BuildableName = "Analytics.framework"
-               BlueprintName = "Analytics"
-               ReferencedContainer = "container:Analytics.xcodeproj">
+               BuildableName = "Segment.framework"
+               BlueprintName = "Segment"
+               ReferencedContainer = "container:Segment.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,9 +32,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EADEB85A1DECD080005322DA"
-            BuildableName = "Analytics.framework"
-            BlueprintName = "Analytics"
-            ReferencedContainer = "container:Analytics.xcodeproj">
+            BuildableName = "Segment.framework"
+            BlueprintName = "Segment"
+            ReferencedContainer = "container:Segment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EADEB8691DECD0EF005322DA"
-               BuildableName = "AnalyticsTests.xctest"
-               BlueprintName = "AnalyticsTests"
-               ReferencedContainer = "container:Analytics.xcodeproj">
+               BuildableName = "SegmentTests.xctest"
+               BlueprintName = "SegmentTests"
+               ReferencedContainer = "container:Segment.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -64,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EADEB85A1DECD080005322DA"
-            BuildableName = "Analytics.framework"
-            BlueprintName = "Analytics"
-            ReferencedContainer = "container:Analytics.xcodeproj">
+            BuildableName = "Segment.framework"
+            BlueprintName = "Segment"
+            ReferencedContainer = "container:Segment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </LaunchAction>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EADEB85A1DECD080005322DA"
-            BuildableName = "Analytics.framework"
-            BlueprintName = "Analytics"
-            ReferencedContainer = "container:Analytics.xcodeproj">
+            BuildableName = "Segment.framework"
+            BlueprintName = "Segment"
+            ReferencedContainer = "container:Segment.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
