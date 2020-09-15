@@ -1,16 +1,3 @@
-PODS:
-  - Nocilla (0.11.0)
-
-DEPENDENCIES:
-  - Nocilla (~> 0.11.0)
-
-SPEC REPOS:
-  trunk:
-    - Nocilla
-
-SPEC CHECKSUMS:
-  Nocilla: 7af7a386071150cc8aa5da4da97d060f049dd61c
-
-PODFILE CHECKSUM: 6aa857ddd04dc64680be300efbf9e225868f07a0
+PODFILE CHECKSUM: eef66c2c3257da7ee65df8750e185c09a9e957cd
 
 COCOAPODS: 1.9.1

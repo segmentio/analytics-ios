@@ -6,6 +6,9 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
+// TODO: Uncomment these tests and get rid of Nocilla.
+
+/*
 import Nocilla
 import Analytics
 import XCTest
@@ -251,3 +254,5 @@ class HTTPClientTest: XCTestCase {
         wait(for: [doneExpectation], timeout: 1.0)
     }
 }
+*/
+

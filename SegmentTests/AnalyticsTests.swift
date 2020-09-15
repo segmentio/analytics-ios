@@ -7,7 +7,7 @@
 //
 
 
-@testable import Analytics
+@testable import Segment
 import XCTest
 
 class AnalyticsTests: XCTestCase {

@@ -1,4 +1,4 @@
-@testable import Analytics
+@testable import Segment
 import XCTest
 
 class EndToEndTests: XCTestCase {

@@ -4,7 +4,7 @@
 //
 
 import Foundation
-@testable import Analytics
+@testable import Segment
 import XCTest
 
 class AutoScreenReportingTests: XCTestCase {

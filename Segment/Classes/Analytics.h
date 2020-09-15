@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 //! Project version number for Analytics.
-FOUNDATION_EXPORT double AnalyticsVersionNumber;
+FOUNDATION_EXPORT double SegmentVersionNumber;
 
 //! Project version string for Analytics.
-FOUNDATION_EXPORT const unsigned char AnalyticsVersionString[];
+FOUNDATION_EXPORT const unsigned char SegmentVersionString[];
 
 #import "SEGAnalytics.h"
 #import "SEGSegmentIntegration.h"

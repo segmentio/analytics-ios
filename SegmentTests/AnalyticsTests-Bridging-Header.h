@@ -2,17 +2,17 @@
 //  Use this file to import your target's public headers that you would like to expose to Swift.
 //
 
-#import <Analytics/SEGIntegrationsManager.h>
-#import <Analytics/SEGAES256Crypto.h>
-#import <Analytics/SEGFileStorage.h>
-#import <Analytics/SEGUserDefaultsStorage.h>
-#import <Analytics/NSData+SEGGZIP.h>
-#import <Analytics/SEGStoreKitTracker.h>
-#import <Analytics/UIViewController+SEGScreen.h>
-#import <Analytics/SEGAnalyticsUtils.h>
-#import <Analytics/SEGIntegrationsManager.h>
-#import <Analytics/SEGUtils.h>
-#import <Analytics/SEGScreenReporting.h>
+#import <Segment/SEGIntegrationsManager.h>
+#import <Segment/SEGAES256Crypto.h>
+#import <Segment/SEGFileStorage.h>
+#import <Segment/SEGUserDefaultsStorage.h>
+#import <Segment/NSData+SEGGZIP.h>
+#import <Segment/SEGStoreKitTracker.h>
+#import <Segment/UIViewController+SEGScreen.h>
+#import <Segment/SEGAnalyticsUtils.h>
+#import <Segment/SEGIntegrationsManager.h>
+#import <Segment/SEGUtils.h>
+#import <Segment/SEGScreenReporting.h>
 
 #import "NSData+SEGGUNZIPP.h"
 #import "UIViewController+SegScreenTest.h"

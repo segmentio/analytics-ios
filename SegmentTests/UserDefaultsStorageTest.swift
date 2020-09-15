@@ -5,7 +5,7 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-@testable import Analytics
+@testable import Segment
 import XCTest
 
 class UserDefaultsStorageTest : XCTestCase {
