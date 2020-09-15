@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Analytics",
+    name: "Segment",
     platforms: [
         .iOS(.v12), .tvOS(.v12)
     ],
@@ -36,5 +36,12 @@ let package = Package(
                 .linkedFramework("CoreTelephony", .when(platforms: [.iOS, .macOS]))
             ]
         ),
+        .testTarget(
+          name: "SegmentTests",
+          dependencies: ["Segment"],
+          path: "SegmentTests/",
+          sources: ["./", "Utils"]
+          //exclude: ["Resources/GoogleService-Info.plist"],
+        )
     ]
 )
