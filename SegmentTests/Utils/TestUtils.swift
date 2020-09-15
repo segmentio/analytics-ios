@@ -6,7 +6,11 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
+// TODO: Uncomment these tests using Nocilla and get rid of Nocilla.
+
+/*
 import Nocilla
+ */
 import Segment
 import XCTest
 
@@ -75,7 +79,7 @@ extension SegmentIntegration {
   }
 }
 
-
+/* TODO: Needs Nocilla
 class JsonGzippedBody : LSMatcher, LSMatcheable {
     
     let expectedJson: AnyObject
@@ -155,6 +159,7 @@ extension LSStubRequestDSL {
         }
     }
 }
+ */
 
 class TestApplication: NSObject, ApplicationProtocol {
   class BackgroundTask {
