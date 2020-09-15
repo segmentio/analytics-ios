@@ -7,7 +7,7 @@
 //
 
 
-import Analytics
+import Segment
 import XCTest
 
 // Changing event names and adding custom attributes

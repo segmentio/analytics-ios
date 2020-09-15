@@ -9,7 +9,7 @@
 
 #import <zlib.h>
 #import <dlfcn.h>
-#import <Analytics/NSData+SEGGZIP.h>
+#import <Segment/NSData+SEGGZIP.h>
 #import "NSData+SEGGUNZIPP.h"
 
 

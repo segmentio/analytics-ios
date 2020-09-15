@@ -7,7 +7,7 @@
 //
 
 import Nocilla
-import Analytics
+import Segment
 import XCTest
 
 class PassthroughMiddleware: Middleware {

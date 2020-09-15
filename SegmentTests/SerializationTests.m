@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-@import Analytics;
+@import Segment;
 
 #pragma mark - Internal copy-overs for testing
 

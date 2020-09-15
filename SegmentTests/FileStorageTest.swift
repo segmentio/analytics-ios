@@ -5,7 +5,7 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-import Analytics
+import Segment
 import XCTest
 
 

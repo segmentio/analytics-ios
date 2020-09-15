@@ -7,7 +7,7 @@
 //
 
 
-import Analytics
+import Segment
 import XCTest
 
 class AnalyticsUtilTests: XCTestCase {
