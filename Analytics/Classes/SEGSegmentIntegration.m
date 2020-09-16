@@ -47,7 +47,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 @property (nonatomic, strong) SEGHTTPClient *httpClient;
 @property (nonatomic, strong) id<SEGStorage> fileStorage;
 @property (nonatomic, strong) id<SEGStorage> userDefaultsStorage;
-@property (nonatomic, strong) NSURLSessionDataTask *attributionRequest;
 
 #if TARGET_OS_IPHONE
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
@@ -94,9 +93,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:SEGTraitsKey];
             }
 #endif
-        }];
-        [self dispatchBackground:^{
-            [self trackAttributionData:self.configuration.trackAttributionData];
         }];
 
         self.flushTimer = [NSTimer timerWithTimeInterval:self.configuration.flushInterval
@@ -500,34 +496,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 - (void)persistQueue
 {
     [self.fileStorage setArray:[self.queue copy] forKey:kSEGQueueFilename];
-}
-
-NSString *const SEGTrackedAttributionKey = @"SEGTrackedAttributionKey";
-
-- (void)trackAttributionData:(BOOL)trackAttributionData
-{
-#if TARGET_OS_IPHONE
-    if (!trackAttributionData) {
-        return;
-    }
-
-    BOOL trackedAttribution = [[NSUserDefaults standardUserDefaults] boolForKey:SEGTrackedAttributionKey];
-    if (trackedAttribution) {
-        return;
-    }
-
-    NSDictionary *context = [SEGState sharedInstance].context.payload;
-
-    self.attributionRequest = [self.httpClient attributionWithWriteKey:self.configuration.writeKey forDevice:[context copy] completionHandler:^(BOOL success, NSDictionary *properties) {
-        [self dispatchBackground:^{
-            if (success) {
-                [self.analytics track:@"Install Attributed" properties:properties];
-                [[NSUserDefaults standardUserDefaults] setBool:YES forKey:SEGTrackedAttributionKey];
-            }
-            self.attributionRequest = nil;
-        }];
-    }];
-#endif
 }
 
 @end

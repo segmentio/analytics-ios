@@ -26,7 +26,6 @@ NSString *const SEGMENT_WRITE_KEY = @"zr5x22gUVBDM3hO3uHkbMkVe6Pd6sCna";
     [SEGAnalytics debug:YES];
     SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:SEGMENT_WRITE_KEY];
     configuration.trackApplicationLifecycleEvents = YES;
-    configuration.trackAttributionData = YES;
     configuration.flushAt = 1;
     [SEGAnalytics setupWithConfiguration:configuration];
     [[SEGAnalytics sharedAnalytics] identify:@"Prateek" traits:nil options: @{
