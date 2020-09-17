@@ -128,7 +128,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 #if TARGET_OS_IPHONE
             [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:application];
 #elif TARGET_OS_OSX
-            [nc addObserver:self selector:@selector(onAppForeground:) name:NSApplicationWillUnhideNotification object:application];
+            [nc addObserver:self selector:@selector(onAppForeground:) name:NSApplicationWillBecomeActiveNotification object:application];
 #endif
         }
     }
@@ -183,16 +183,12 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
         selectorMapping = @{
             NSApplicationDidFinishLaunchingNotification :
                 NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
-            NSApplicationDidHideNotification :
+            NSApplicationDidResignActiveNotification :
                 NSStringFromSelector(@selector(applicationDidEnterBackground)),
-            NSApplicationWillUnhideNotification :
+            NSApplicationWillBecomeActiveNotification :
                 NSStringFromSelector(@selector(applicationWillEnterForeground)),
             NSApplicationWillTerminateNotification :
                 NSStringFromSelector(@selector(applicationWillTerminate)),
-            NSApplicationWillResignActiveNotification :
-                NSStringFromSelector(@selector(applicationWillResignActive)),
-            NSApplicationDidBecomeActiveNotification :
-                NSStringFromSelector(@selector(applicationDidBecomeActive))
         };
 #endif
 

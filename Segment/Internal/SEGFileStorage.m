@@ -134,7 +134,34 @@
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString *storagePath = [paths firstObject];
+#if TARGET_OS_IPHONE
+    // will return ".../Application Support" because it's in a sandbox.
     return [NSURL fileURLWithPath:storagePath];
+#else
+    NSString *executableName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleExecutable"];
+    // if we can't get an exec name, we're probably running as tests in a library of some kind, so make one up.
+    if (executableName == nil) {
+        executableName = @"segment-test";
+    }
+    NSString *newStoragePath = [storagePath stringByAppendingPathComponent:executableName];
+    BOOL isDirectory = NO;
+    BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:newStoragePath isDirectory:&isDirectory];
+    // if it exists, but isn't a directory... yikes, but make a segment-specific one.
+    if (!isDirectory && exists) {
+        newStoragePath = [storagePath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-%@", executableName, @"segment"]];
+    }
+    
+    if (!exists) {
+        [[NSFileManager defaultManager] createDirectoryAtPath:newStoragePath withIntermediateDirectories:NO attributes:nil error:nil];
+    }
+    
+    exists = [[NSFileManager defaultManager] fileExistsAtPath:newStoragePath isDirectory:&isDirectory];
+    if (!exists || !isDirectory) {
+        // we got some major prollems boss.
+        NSAssert(NO, @"We were unable to create or get the Application Support directory for your executable!");
+    }
+    return [NSURL fileURLWithPath:newStoragePath];
+#endif
 }
 
 + (NSURL *)cachesDirectoryURL

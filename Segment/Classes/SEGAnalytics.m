@@ -77,12 +77,12 @@ static SEGAnalytics *__sharedInstance = nil;
 #elif TARGET_OS_OSX
             // Attach to application state change hooks
             NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-            for (NSString *name in @[ NSApplicationWillUnhideNotification,
+            for (NSString *name in @[ NSApplicationDidResignActiveNotification,
                                       NSApplicationDidFinishLaunchingNotification,
+                                      NSApplicationWillBecomeActiveNotification,
+                                      NSApplicationWillTerminateNotification,
                                       NSApplicationWillResignActiveNotification,
-                                      NSApplicationDidHideNotification,
-                                      NSApplicationDidBecomeActiveNotification,
-                                      NSApplicationWillTerminateNotification]) {
+                                      NSApplicationDidBecomeActiveNotification]) {
                 [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:application];
             }
 #endif
@@ -142,7 +142,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         [self _applicationDidFinishLaunchingWithOptions:note.userInfo];
     } else if ([note.name isEqualToString:UIApplicationWillEnterForegroundNotification]) {
         [self _applicationWillEnterForeground];
-    } else if ([note.name isEqualToString: UIApplicationDidEnterBackgroundNotification]) {
+    } else if ([note.name isEqualToString:UIApplicationDidEnterBackgroundNotification]) {
       [self _applicationDidEnterBackground];
     }
 }
@@ -155,9 +155,9 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
     if ([note.name isEqualToString:NSApplicationDidFinishLaunchingNotification]) {
         [self _applicationDidFinishLaunchingWithOptions:note.userInfo];
-    } else if ([note.name isEqualToString:NSApplicationWillUnhideNotification]) {
+    } else if ([note.name isEqualToString:NSApplicationWillBecomeActiveNotification]) {
         [self _applicationWillEnterForeground];
-    } else if ([note.name isEqualToString: NSApplicationDidHideNotification]) {
+    } else if ([note.name isEqualToString:NSApplicationDidResignActiveNotification]) {
       [self _applicationDidEnterBackground];
     }
 }

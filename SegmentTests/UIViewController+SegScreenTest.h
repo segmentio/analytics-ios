@@ -9,13 +9,14 @@
 #ifndef UIViewController_SegScreenTest_h
 #define UIViewController_SegScreenTest_h
 
-
+#if !TARGET_OS_OSX
 @interface UIViewController (Testing)
 /// We need to expose this normally private method to tests, as the public facing
 /// `+ (UIViewController *)seg_topViewController` relies on the `application` property
 /// of `SEGAnalyticsConfiguration`, which won't be set in these tests.
 + (UIViewController *)seg_topViewController:(UIViewController *)rootViewController;
 @end
+#endif
 
 
 #endif /* UIViewController_SegScreenTest_h */

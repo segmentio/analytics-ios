@@ -7,6 +7,7 @@ import Foundation
 @testable import Segment
 import XCTest
 
+#if os(iOS)
 class AutoScreenReportingTests: XCTestCase {
     
     var window: UIWindow!
@@ -91,3 +92,4 @@ class AutoScreenReportingTests: XCTestCase {
         XCTAssertEqual(actualVC, expectedVC)
     }
 }
+#endif

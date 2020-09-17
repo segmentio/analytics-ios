@@ -14,6 +14,12 @@ import Nocilla
 import Segment
 import XCTest
 
+#if os(iOS)
+import UIKit
+#else
+import Cocoa
+#endif
+
 class PassthroughMiddleware: Middleware {
   var lastContext: Context?
   
@@ -174,7 +180,11 @@ class TestApplication: NSObject, ApplicationProtocol {
   var backgroundTasks = [BackgroundTask]()
   
   // MARK: - ApplicationProtocol
+    #if os(iOS)
   var delegate: UIApplicationDelegate? = nil
+    #else
+    var delegate: NSApplicationDelegate? = nil
+    #endif
   func seg_beginBackgroundTask(withName taskName: String?, expirationHandler handler: (() -> Void)? = nil) -> UInt {
     let backgroundTask = BackgroundTask(identifier: (backgroundTasks.map({ $0.identifier }).max() ?? 0) + 1)
     backgroundTasks.append(backgroundTask)
@@ -204,3 +214,4 @@ extension XCTestCase {
         wait(for: [expectation], timeout: time)
     }
 }
+

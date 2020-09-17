@@ -141,6 +141,7 @@ class AnalyticsTests: XCTestCase {
         expectUntil(2.0, expression: self.analytics.test_integrationsManager()?.test_segmentIntegration()?.test_traits()?.count == 0)
     }
     
+    #if os(iOS)
     func testFiresApplicationOpenedForAppLaunchingEvent() {
         testMiddleware.swallowEvent = true
         NotificationCenter.default.post(name: UIApplication.didFinishLaunchingNotification, object: testApplication, userInfo: [
@@ -153,10 +154,16 @@ class AnalyticsTests: XCTestCase {
         XCTAssertEqual(event?.properties?["referring_application"] as? String, "testApp")
         XCTAssertEqual(event?.properties?["url"] as? String, "test://test")
     }
+    #else
+    #endif
     
     func testFiresApplicationEnterForeground() {
         testMiddleware.swallowEvent = true
+        #if os(iOS)
         NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: testApplication)
+        #else
+        NotificationCenter.default.post(name: NSApplication.willBecomeActiveNotification, object: testApplication)
+        #endif
         let event = testMiddleware.lastContext?.payload as? TrackPayload
         XCTAssertEqual(event?.event, "Application Opened")
         XCTAssertEqual(event?.properties?["from_background"] as? Bool, true)
@@ -164,14 +171,22 @@ class AnalyticsTests: XCTestCase {
     
     func testFiresApplicationDuringEnterBackground() {
         testMiddleware.swallowEvent = true
+        #if os(iOS)
         NotificationCenter.default.post(name: UIApplication.didEnterBackgroundNotification, object: testApplication)
+        #else
+        NotificationCenter.default.post(name: NSApplication.didResignActiveNotification, object: testApplication)
+        #endif
         let event = testMiddleware.lastContext?.payload as? TrackPayload
         XCTAssertEqual(event?.event, "Application Backgrounded")
     }
     
     func testFlushesWhenApplicationBackgroundIsFired() {
         analytics.track("test")
+        #if os(iOS)
         NotificationCenter.default.post(name: UIApplication.didEnterBackgroundNotification, object: testApplication)
+        #else
+        NotificationCenter.default.post(name: NSApplication.didResignActiveNotification, object: testApplication)
+        #endif
         
         expectUntil(2.0, expression: self.testApplication.backgroundTasks.count == 1)
         expectUntil(2.0, expression: self.testApplication.backgroundTasks[0].isEnded == false)
@@ -195,6 +210,7 @@ class AnalyticsTests: XCTestCase {
         }
     }
     
+    #if os(iOS)
     func testProtocolConformanceShouldNotInterfere() {
         // In Xcode8/iOS10, UIApplication.h typedefs UIBackgroundTaskIdentifier as NSUInteger,
         // whereas Swift has UIBackgroundTaskIdentifier typealiaed to Int.
@@ -207,6 +223,7 @@ class AnalyticsTests: XCTestCase {
         let task = UIApplication.shared.beginBackgroundTask(expirationHandler: nil)
         UIApplication.shared.endBackgroundTask(task)
     }
+    #endif
     
     func testFlushesUsingFlushTimer() {
         let integration = analytics.test_integrationsManager()?.test_segmentIntegration()

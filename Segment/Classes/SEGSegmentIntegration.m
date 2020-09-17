@@ -30,6 +30,12 @@ NSString *const kSEGUserIdFilename = @"segmentio.userId";
 NSString *const kSEGQueueFilename = @"segmentio.queue.plist";
 NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
+#if TARGET_OS_IPHONE
+NSUInteger const kSEGBackgroundTaskInvalid = 0;
+#else
+NSUInteger const kSEGBackgroundTaskInvalid = 0;
+#endif
+
 @interface SEGSegmentIntegration ()
 
 @property (nonatomic, strong) NSMutableArray *queue;
@@ -51,6 +57,8 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
 #if TARGET_OS_IPHONE
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
+#else
+@property (nonatomic, assign) NSUInteger flushTaskID;
 #endif
 
 @end
@@ -77,6 +85,8 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
         self.backgroundTaskQueue = seg_dispatch_queue_create_specific("io.segment.analytics.backgroundTask", DISPATCH_QUEUE_SERIAL);
 #if TARGET_OS_IPHONE
         self.flushTaskID = UIBackgroundTaskInvalid;
+#else
+        self.flushTaskID = 0; // the actual value of UIBackgroundTaskInvalid
 #endif
         
         // load traits & user from disk.
@@ -121,7 +131,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     seg_dispatch_specific_sync(_serialQueue, block);
 }
 
-#if TARGET_OS_IPHONE
 - (void)beginBackgroundTask
 {
     [self endBackgroundTask];
@@ -146,17 +155,16 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     // attempt to call forwardSelector:arguments:options:
     // See https://github.com/segmentio/analytics-ios/issues/683
     seg_dispatch_specific_sync(_backgroundTaskQueue, ^{
-        if (self.flushTaskID != UIBackgroundTaskInvalid) {
+        if (self.flushTaskID != kSEGBackgroundTaskInvalid) {
             id<SEGApplicationProtocol> application = [self.analytics oneTimeConfiguration].application;
             if (application && [application respondsToSelector:@selector(seg_endBackgroundTask:)]) {
                 [application seg_endBackgroundTask:self.flushTaskID];
             }
 
-            self.flushTaskID = UIBackgroundTaskInvalid;
+            self.flushTaskID = kSEGBackgroundTaskInvalid;
         }
     });
 }
-#endif
 
 - (NSString *)description
 {
@@ -339,7 +347,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
         [self sendData:batch];
     };
     
-#if TARGET_OS_IPHONE
     [self dispatchBackground:^{
         if ([self.queue count] == 0) {
             SEGLog(@"%@ No queued API calls to flush.", self);
@@ -353,9 +360,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
         // here
         startBatch();
     }];
-#elif TARGET_OS_OSX
-    startBatch();
-#endif
 }
 
 - (void)flushQueueByLength
@@ -402,8 +406,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     SEGLog(@"Flushing batch %@.", payload);
 
     self.batchRequest = [self.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
-        
-#if TARGET_OS_IPHONE
         void (^completion)(void) = ^{
             if (retry) {
                 [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
@@ -418,20 +420,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
             self.batchRequest = nil;
             [self endBackgroundTask];
         };
-#elif TARGET_OS_OSX
-        void (^completion)(void) = ^{
-            if (retry) {
-                [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
-                self.batchRequest = nil;
-                return;
-            }
-
-            [self.queue removeObjectsInArray:batch];
-            [self persistQueue];
-            [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
-            self.batchRequest = nil;
-        };
-#endif
         
         [self dispatchBackground:completion];
     }];
@@ -439,7 +427,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     [self notifyForName:SEGSegmentDidSendRequestNotification userInfo:batch];
 }
 
-#if TARGET_OS_IPHONE
 - (void)applicationDidEnterBackground
 {
     [self beginBackgroundTask];
@@ -447,7 +434,6 @@ NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
     // since there is a chance that the user will never launch the app again.
     [self flush];
 }
-#endif
 
 - (void)applicationWillTerminate
 {
