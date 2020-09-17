@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/brandon.sneed/work/analytics-ios/Segment.xcodeproj">
+      location = "self:Segment.xcodeproj">
    </FileRef>
 </Workspace>
