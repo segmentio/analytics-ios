@@ -14,75 +14,75 @@ import Nocilla
 import Segment
 import XCTest
 
-#if os(iOS)
-import UIKit
-#else
+#if os(macOS)
 import Cocoa
+#else
+import UIKit
 #endif
 
 class PassthroughMiddleware: Middleware {
-  var lastContext: Context?
-  
-  func context(_ context: Context, next: @escaping SEGMiddlewareNext) {
-    lastContext = context;
-    next(context)
-  }
+    var lastContext: Context?
+
+    func context(_ context: Context, next: @escaping SEGMiddlewareNext) {
+        lastContext = context;
+        next(context)
+    }
 }
 
 class TestMiddleware: Middleware {
-  var lastContext: Context?
-  var swallowEvent = false
-  func context(_ context: Context, next: @escaping SEGMiddlewareNext) {
-    lastContext = context
-    if !swallowEvent {
-      next(context)
+    var lastContext: Context?
+    var swallowEvent = false
+    func context(_ context: Context, next: @escaping SEGMiddlewareNext) {
+        lastContext = context
+        if !swallowEvent {
+            next(context)
+        }
     }
-  }
 }
 
 extension Analytics {
-  func test_integrationsManager() -> IntegrationsManager? {
-    return self.value(forKey: "integrationsManager") as? IntegrationsManager
-  }
+    func test_integrationsManager() -> IntegrationsManager? {
+        return self.value(forKey: "integrationsManager") as? IntegrationsManager
+    }
 }
 
 extension IntegrationsManager {
-  func test_integrations() -> [String: Integration]? {
-    return self.value(forKey: "integrations") as? [String: Integration]
-  }
-  func test_segmentIntegration() -> SegmentIntegration? {
-    return self.test_integrations()?["Segment.io"] as? SegmentIntegration
-  }
-  func test_setCachedSettings(settings: NSDictionary) {
-    self.perform(Selector(("setCachedSettings:")), with: settings)
-  }
+    func test_integrations() -> [String: Integration]? {
+        return self.value(forKey: "integrations") as? [String: Integration]
+    }
+    func test_segmentIntegration() -> SegmentIntegration? {
+        return self.test_integrations()?["Segment.io"] as? SegmentIntegration
+    }
+    func test_setCachedSettings(settings: NSDictionary) {
+        self.perform(Selector(("setCachedSettings:")), with: settings)
+    }
 }
 
 extension SegmentIntegration {
-  func test_fileStorage() -> FileStorage? {
-    return self.value(forKey: "fileStorage") as? FileStorage
-  }
-  func test_referrer() -> [String: AnyObject]? {
-    return self.value(forKey: "referrer") as? [String: AnyObject]
-  }
-  func test_userId() -> String? {
-    return self.value(forKey: "userId") as? String
-  }
-  func test_traits() -> [String: AnyObject]? {
-    return self.value(forKey: "traits") as? [String: AnyObject]
-  }
-  func test_flushTimer() -> Timer? {
-    return self.value(forKey: "flushTimer") as? Timer
-  }
-  func test_batchRequest() -> URLSessionUploadTask? {
-    return self.value(forKey: "batchRequest") as? URLSessionUploadTask
-  }
-  func test_queue() -> [AnyObject]? {
-    return self.value(forKey: "queue") as? [AnyObject]
-  }
-  func test_dispatchBackground(block: @escaping @convention(block) () -> Void) {
-    self.perform(Selector(("dispatchBackground:")), with: block)
-  }
+    func test_fileStorage() -> FileStorage? {
+        return self.value(forKey: "fileStorage") as? FileStorage
+    }
+    func test_referrer() -> [String: AnyObject]? {
+        return self.value(forKey: "referrer") as? [String: AnyObject]
+    }
+    func test_userId() -> String? {
+        return self.value(forKey: "userId") as? String
+    }
+    func test_traits() -> [String: AnyObject]? {
+        return self.value(forKey: "traits") as? [String: AnyObject]
+    }
+    func test_flushTimer() -> Timer? {
+        return self.value(forKey: "flushTimer") as? Timer
+    }
+    func test_batchRequest() -> URLSessionUploadTask? {
+        return self.value(forKey: "batchRequest") as? URLSessionUploadTask
+    }
+    func test_queue() -> [AnyObject]? {
+        return self.value(forKey: "queue") as? [AnyObject]
+    }
+    func test_dispatchBackground(block: @escaping @convention(block) () -> Void) {
+        self.perform(Selector(("dispatchBackground:")), with: block)
+    }
 }
 
 /* TODO: Needs Nocilla
@@ -168,39 +168,39 @@ extension LSStubRequestDSL {
  */
 
 class TestApplication: NSObject, ApplicationProtocol {
-  class BackgroundTask {
-    let identifier: Int
-    var isEnded = false
+    class BackgroundTask {
+        let identifier: Int
+        var isEnded = false
     
-    init(identifier: Int) {
-      self.identifier = identifier
+        init(identifier: Int) {
+            self.identifier = identifier
+        }
     }
-  }
+
+    var backgroundTasks = [BackgroundTask]()
   
-  var backgroundTasks = [BackgroundTask]()
-  
-  // MARK: - ApplicationProtocol
-    #if os(iOS)
-  var delegate: UIApplicationDelegate? = nil
-    #else
+    // MARK: - ApplicationProtocol
+    #if os(macOS)
     var delegate: NSApplicationDelegate? = nil
+    #else
+    var delegate: UIApplicationDelegate? = nil
     #endif
-  func seg_beginBackgroundTask(withName taskName: String?, expirationHandler handler: (() -> Void)? = nil) -> UInt {
-    let backgroundTask = BackgroundTask(identifier: (backgroundTasks.map({ $0.identifier }).max() ?? 0) + 1)
-    backgroundTasks.append(backgroundTask)
-    return UInt(backgroundTask.identifier)
-  }
+    
+    func seg_beginBackgroundTask(withName taskName: String?, expirationHandler handler: (() -> Void)? = nil) -> UInt {
+        let backgroundTask = BackgroundTask(identifier: (backgroundTasks.map({ $0.identifier }).max() ?? 0) + 1)
+        backgroundTasks.append(backgroundTask)
+        return UInt(backgroundTask.identifier)
+    }
   
-  func seg_endBackgroundTask(_ identifier: UInt) {
-    guard let index = backgroundTasks.firstIndex(where: { $0.identifier == identifier }) else { return }
-    backgroundTasks[index].isEnded = true
-  }
+    func seg_endBackgroundTask(_ identifier: UInt) {
+        guard let index = backgroundTasks.firstIndex(where: { $0.identifier == identifier }) else { return }
+        backgroundTasks[index].isEnded = true
+    }
 }
 
 extension XCTestCase {
     
     func expectUntil(_ time: TimeInterval, expression: @escaping @autoclosure () throws -> Bool) {
-        
         let expectation = self.expectation(description: "Expect Until")
         DispatchQueue.global().async {
             while (true) {

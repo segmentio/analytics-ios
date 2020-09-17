@@ -159,10 +159,10 @@ class AnalyticsTests: XCTestCase {
     
     func testFiresApplicationEnterForeground() {
         testMiddleware.swallowEvent = true
-        #if os(iOS)
-        NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: testApplication)
-        #else
+        #if os(macOS)
         NotificationCenter.default.post(name: NSApplication.willBecomeActiveNotification, object: testApplication)
+        #else
+        NotificationCenter.default.post(name: UIApplication.willEnterForegroundNotification, object: testApplication)
         #endif
         let event = testMiddleware.lastContext?.payload as? TrackPayload
         XCTAssertEqual(event?.event, "Application Opened")
@@ -171,10 +171,10 @@ class AnalyticsTests: XCTestCase {
     
     func testFiresApplicationDuringEnterBackground() {
         testMiddleware.swallowEvent = true
-        #if os(iOS)
-        NotificationCenter.default.post(name: UIApplication.didEnterBackgroundNotification, object: testApplication)
-        #else
+        #if os(macOS)
         NotificationCenter.default.post(name: NSApplication.didResignActiveNotification, object: testApplication)
+        #else
+        NotificationCenter.default.post(name: UIApplication.didEnterBackgroundNotification, object: testApplication)
         #endif
         let event = testMiddleware.lastContext?.payload as? TrackPayload
         XCTAssertEqual(event?.event, "Application Backgrounded")
@@ -182,10 +182,10 @@ class AnalyticsTests: XCTestCase {
     
     func testFlushesWhenApplicationBackgroundIsFired() {
         analytics.track("test")
-        #if os(iOS)
-        NotificationCenter.default.post(name: UIApplication.didEnterBackgroundNotification, object: testApplication)
-        #else
+        #if os(macOS)
         NotificationCenter.default.post(name: NSApplication.didResignActiveNotification, object: testApplication)
+        #else
+        NotificationCenter.default.post(name: UIApplication.didEnterBackgroundNotification, object: testApplication)
         #endif
         
         expectUntil(2.0, expression: self.testApplication.backgroundTasks.count == 1)
@@ -210,7 +210,7 @@ class AnalyticsTests: XCTestCase {
         }
     }
     
-    #if os(iOS)
+    #if !os(macOS)
     func testProtocolConformanceShouldNotInterfere() {
         // In Xcode8/iOS10, UIApplication.h typedefs UIBackgroundTaskIdentifier as NSUInteger,
         // whereas Swift has UIBackgroundTaskIdentifier typealiaed to Int.
