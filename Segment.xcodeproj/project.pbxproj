@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		21C86DB63CBAD35B41365A20 /* Pods_SegmentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C31674B18CD818C64F8F3935 /* Pods_SegmentTests.framework */; };
 		5AF0E8AE77F57B356DACCFE7 /* AutoScreenReportingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E8457CCFC077382BF449 /* AutoScreenReportingTest.swift */; };
 		630FC8EA2107F2A500A759C5 /* SEGScreenReporting.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E265C791FB1178C0030E08E /* IntegrationsManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */; };
@@ -97,23 +96,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		040D0B04F50D16BAA1525C24 /* Pods-SegmentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SegmentTests.release.xcconfig"; path = "Target Support Files/Pods-SegmentTests/Pods-SegmentTests.release.xcconfig"; sourceTree = "<group>"; };
 		5AF0E8457CCFC077382BF449 /* AutoScreenReportingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoScreenReportingTest.swift; sourceTree = "<group>"; };
 		5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGScreenReporting.h; sourceTree = "<group>"; };
 		63E090D722DD49C300DEC7EC /* UIViewController+SegScreenTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SegScreenTest.h"; sourceTree = "<group>"; };
 		6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationsManagerTest.swift; sourceTree = "<group>"; };
 		6EEC1C702017EA370089C478 /* EndToEndTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EndToEndTests.swift; sourceTree = "<group>"; tabWidth = 4; };
-		7C198900515C6A326B7625F2 /* Pods-SegmentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SegmentTests.debug.xcconfig"; path = "Target Support Files/Pods-SegmentTests/Pods-SegmentTests.debug.xcconfig"; sourceTree = "<group>"; };
 		96A12C2624B680DB00949804 /* NSViewController+SEGScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSViewController+SEGScreen.h"; sourceTree = "<group>"; };
 		96A12C2724B680DB00949804 /* NSViewController+SEGScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSViewController+SEGScreen.m"; sourceTree = "<group>"; };
-		974378F9663DDE4FB63FA05E /* Pods-SegmentTestsTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SegmentTestsTVOS.release.xcconfig"; path = "Target Support Files/Pods-SegmentTestsTVOS/Pods-SegmentTestsTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		A31958EE2385AC3A00A47EFA /* SerializationTests.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SerializationTests.m; sourceTree = "<group>"; tabWidth = 4; };
 		A34CC6DB249AAEBA00C5E368 /* SEGState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SEGState.m; sourceTree = "<group>"; };
 		A34CC6DC249AAEBB00C5E368 /* SEGState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGState.h; sourceTree = "<group>"; };
 		A352175F23AD5825005B07F6 /* SEGMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGMacros.h; sourceTree = "<group>"; };
 		A3BECDCE24BCE1E3009E2BD3 /* ObjcUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjcUtils.h; sourceTree = "<group>"; };
 		A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjcUtils.m; sourceTree = "<group>"; };
-		B50E32998298AE582CE0183A /* Pods-SegmentTestsTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SegmentTestsTVOS.debug.xcconfig"; path = "Target Support Files/Pods-SegmentTestsTVOS/Pods-SegmentTestsTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		C31674B18CD818C64F8F3935 /* Pods_SegmentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SegmentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA88A5971DED7608009FB66A /* SEGSerializableValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGSerializableValue.h; sourceTree = "<group>"; };
 		EA8F09731E24C5C600B8B93F /* MiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
@@ -205,24 +200,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3B6E29925116B3A00609A13 /* Segment.framework in Frameworks */,
-				21C86DB63CBAD35B41365A20 /* Pods_SegmentTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		14BF89C893339D4171174443 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				7C198900515C6A326B7625F2 /* Pods-SegmentTests.debug.xcconfig */,
-				040D0B04F50D16BAA1525C24 /* Pods-SegmentTests.release.xcconfig */,
-				B50E32998298AE582CE0183A /* Pods-SegmentTestsTVOS.debug.xcconfig */,
-				974378F9663DDE4FB63FA05E /* Pods-SegmentTestsTVOS.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		245A982558D113AD25B2912E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,7 +222,6 @@
 				EADEB86B1DECD0EF005322DA /* AnalyticsTests */,
 				EADEB85C1DECD080005322DA /* Products */,
 				EADEB8FE1DED36ED005322DA /* Supporting Files */,
-				14BF89C893339D4171174443 /* Pods */,
 				245A982558D113AD25B2912E /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -769,7 +751,6 @@
 		};
 		EADEB8721DECD0EF005322DA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C198900515C6A326B7625F2 /* Pods-SegmentTests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = SegmentTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -786,7 +767,6 @@
 		};
 		EADEB8731DECD0EF005322DA /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 040D0B04F50D16BAA1525C24 /* Pods-SegmentTests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = SegmentTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

@@ -1,4 +1,4 @@
-XC_ARGS := -workspace Segment.xcworkspace GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES
+XC_ARGS := -project Segment.xcodeproj GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES
 IOS_XCARGS := $(XC_ARGS) -destination "platform=iOS Simulator,name=iPhone 11" -sdk iphonesimulator
 TVOS_XCARGS := $(XC_ARGS) -destination "platform=tvOS Simulator,name=Apple TV"
 MACOS_XCARGS := $(XC_ARGS) -destination "platform=macOS"
