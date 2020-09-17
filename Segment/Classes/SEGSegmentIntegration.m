@@ -30,11 +30,8 @@ NSString *const kSEGUserIdFilename = @"segmentio.userId";
 NSString *const kSEGQueueFilename = @"segmentio.queue.plist";
 NSString *const kSEGTraitsFilename = @"segmentio.traits.plist";
 
-#if TARGET_OS_IPHONE
+// Equiv to UIBackgroundTaskInvalid.
 NSUInteger const kSEGBackgroundTaskInvalid = 0;
-#else
-NSUInteger const kSEGBackgroundTaskInvalid = 0;
-#endif
 
 @interface SEGSegmentIntegration ()
 

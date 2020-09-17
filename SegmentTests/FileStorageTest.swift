@@ -17,10 +17,10 @@ class FileStorageTest : XCTestCase {
         super.setUp()
         let url = FileStorage.applicationSupportDirectoryURL()
         XCTAssertNotNil(url, "URL Should not be nil")
-        #if os(iOS)
-        XCTAssertEqual(url?.lastPathComponent, "Application Support")
-        #else
+        #if os(macOS)
         XCTAssertEqual(url?.lastPathComponent, "segment-test")
+        #else
+        XCTAssertEqual(url?.lastPathComponent, "Application Support")
         #endif
         storage = FileStorage(folder: url!, crypto: nil)
     }
