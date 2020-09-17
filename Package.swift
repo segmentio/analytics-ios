@@ -36,12 +36,5 @@ let package = Package(
                 .linkedFramework("CoreTelephony", .when(platforms: [.iOS, .macOS]))
             ]
         ),
-        .testTarget(
-          name: "SegmentTests",
-          dependencies: ["Segment"],
-          path: "SegmentTests/",
-          sources: ["./", "Utils"]
-          //exclude: ["Resources/GoogleService-Info.plist"],
-        )
     ]
 )
