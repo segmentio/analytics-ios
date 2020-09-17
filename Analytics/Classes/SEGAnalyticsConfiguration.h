@@ -128,11 +128,6 @@ NS_SWIFT_NAME(AnalyticsConfiguration)
 @property (nonatomic, assign) BOOL trackDeepLinks;
 
 /**
- * Whether the analytics client should automatically track attribution data from enabled providers using the mobile service.
- */
-@property (nonatomic, assign) BOOL trackAttributionData;
-
-/**
  * Dictionary indicating the options the app was launched with.
  */
 @property (nonatomic, strong, nullable) NSDictionary *launchOptions;
