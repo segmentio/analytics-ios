@@ -1,0 +1,29 @@
+Segment Owned
+-------------
+analytics-ios-integration-firebase
+analytics-ios-integration-amplitude
+analytics-ios-integration-mixpanel
+analytics-ios-integration-google-analytics
+analytics-ios-integration-localytics
+analytics-ios-integration-adjust
+analytics-ios-integration-comscore
+analytics-ios-integration-facebook-app-events
+analytics-ios-integration-flurry
+analytics-ios-integration-optimizely
+analytics-ios-integration-intercom
+analytics-ios-integration-taplytics
+analytics-ios-integration-optimizely-x
+analytics-ios-integration-adobe-analytics
+analytics-ios-integration-nielsen-dcr
+analytics-ios-integration-crittercism
+analytics-ios-integration-bugsnag
+analytics-ios-integration-countly
+analytics-ios-integration-quantcast
+analytics-ios-integration-nielsen-dtvr
+
+Partner Owned
+-------------
+analytics-ios-integration-tapstream
+clevertap-segment-ios
+segment-appsflyer-ios
+appboy-segment-ios
