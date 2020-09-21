@@ -32,8 +32,10 @@ class AnalyticsTests: XCTestCase {
         config.trackApplicationLifecycleEvents = true
         
         UserDefaults.standard.set("test SEGQueue should be removed", forKey: "SEGQueue")
+        // pump the run loop so we can be sure the value was written.
+        RunLoop.current.run(until: Date.distantPast)
         XCTAssertNotNil(UserDefaults.standard.string(forKey: "SEGQueue"))
-        
+
         analytics = Analytics(configuration: config)
         analytics.test_integrationsManager()?.test_setCachedSettings(settings: cachedSettings)
     }
