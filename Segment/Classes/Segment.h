@@ -21,3 +21,4 @@ FOUNDATION_EXPORT const unsigned char SegmentVersionString[];
 #import "SEGMiddleware.h"
 #import "SEGScreenReporting.h"
 #import "SEGAnalyticsUtils.h"
+#import "SEGWebhookIntegration.h"
