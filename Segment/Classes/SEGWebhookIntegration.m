@@ -5,16 +5,20 @@
 #import "SEGAnalyticsUtils.h"
 #import "SEGUtils.h"
 
-
+NS_ASSUME_NONNULL_BEGIN
 @interface SEGWebhookIntegration : NSObject <SEGIntegration>
-@property(nonatomic, strong) SEGHTTPClient *client;
-@property(nonatomic, strong) NSString *webhookUrl;
-@property(nonatomic, strong) NSString *name;
-@property(nonatomic, strong) SEGAnalytics *analytics;
+
+@property (nonatomic, strong) SEGHTTPClient *client;
+@property (nonatomic, strong) NSString *webhookUrl;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) SEGAnalytics *analytics;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 
 - (instancetype)initWithAnalytics:(SEGAnalytics *)analytics httpClient:(SEGHTTPClient *)client webhookUrl:(NSString *)webhookUrl name:(NSString *)name;
+
 @end
+
+NS_ASSUME_NONNULL_END
 
 @implementation SEGWebhookIntegration
 
@@ -68,22 +72,22 @@
         }
         if (code < 400) {
             // 3xx response codes. Retry.
-            SEGLog(@"Server responded with unexpected HTTP code %d.", code);
+            SEGLog(@"Server responded with unexpected HTTP code %zd.", code);
             return;
         }
         if (code == 429) {
             // 429 response codes. Retry.
-            SEGLog(@"Server limited client with response code %d.", code);
+            SEGLog(@"Server limited client with response code %zd.", code);
             return;
         }
         if (code < 500) {
             // non-429 4xx response codes. Don't retry.
-            SEGLog(@"Server rejected payload with HTTP code %d.", code);
+            SEGLog(@"Server rejected payload with HTTP code %zd.", code);
             return;
         }
 
         // 5xx response codes. Retry.
-        SEGLog(@"Server error with HTTP code %d.", code);
+        SEGLog(@"Server error with HTTP code %zd.", code);
     }];
     [task resume];
 }
