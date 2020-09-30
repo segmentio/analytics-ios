@@ -413,7 +413,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
             if (isUnitTesting()) {
                 integrationSettings = @{};
             }
-            if (integrationSettings) {
+            if (integrationSettings || [key hasPrefix:@"webhook_"]) {
                 id<SEGIntegration> integration = [factory createWithSettings:integrationSettings forAnalytics:self.analytics];
                 if (integration != nil) {
                     self.integrations[key] = integration;

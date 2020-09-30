@@ -11,6 +11,8 @@
 		630FC8EA2107F2A500A759C5 /* SEGScreenReporting.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E265C791FB1178C0030E08E /* IntegrationsManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */; };
 		6EEC1C712017EA370089C478 /* EndToEndTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC1C702017EA370089C478 /* EndToEndTests.swift */; };
+		75FD4202252401B500BC8970 /* SEGWebhookIntegration.m in Sources */ = {isa = PBXBuildFile; fileRef = 75FD4201252401B500BC8970 /* SEGWebhookIntegration.m */; };
+		75FD42052524F1E000BC8970 /* SEGWebhookIntegration.h in Headers */ = {isa = PBXBuildFile; fileRef = 75FD42002524019100BC8970 /* SEGWebhookIntegration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96A12C2824B680DB00949804 /* NSViewController+SEGScreen.h in Headers */ = {isa = PBXBuildFile; fileRef = 96A12C2624B680DB00949804 /* NSViewController+SEGScreen.h */; };
 		96A12C2924B680DB00949804 /* NSViewController+SEGScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A12C2724B680DB00949804 /* NSViewController+SEGScreen.m */; };
 		A31958EF2385AC3A00A47EFA /* SerializationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A31958EE2385AC3A00A47EFA /* SerializationTests.m */; };
@@ -101,6 +103,8 @@
 		63E090D722DD49C300DEC7EC /* UIViewController+SegScreenTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SegScreenTest.h"; sourceTree = "<group>"; };
 		6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationsManagerTest.swift; sourceTree = "<group>"; };
 		6EEC1C702017EA370089C478 /* EndToEndTests.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = EndToEndTests.swift; sourceTree = "<group>"; tabWidth = 4; };
+		75FD42002524019100BC8970 /* SEGWebhookIntegration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SEGWebhookIntegration.h; sourceTree = "<group>"; };
+		75FD4201252401B500BC8970 /* SEGWebhookIntegration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SEGWebhookIntegration.m; sourceTree = "<group>"; };
 		96A12C2624B680DB00949804 /* NSViewController+SEGScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSViewController+SEGScreen.h"; sourceTree = "<group>"; };
 		96A12C2724B680DB00949804 /* NSViewController+SEGScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSViewController+SEGScreen.m"; sourceTree = "<group>"; };
 		A31958EE2385AC3A00A47EFA /* SerializationTests.m */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = SerializationTests.m; sourceTree = "<group>"; tabWidth = 4; };
@@ -313,6 +317,8 @@
 				EADEB88B1DECD12B005322DA /* SEGTrackPayload.m */,
 				EADEB88F1DECD12B005322DA /* SEGAnalyticsUtils.h */,
 				EADEB8901DECD12B005322DA /* SEGAnalyticsUtils.m */,
+				75FD42002524019100BC8970 /* SEGWebhookIntegration.h */,
+				75FD4201252401B500BC8970 /* SEGWebhookIntegration.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -395,6 +401,7 @@
 				EADEB8DE1DECD12B005322DA /* SEGAnalyticsConfiguration.h in Headers */,
 				EADEB8D61DECD12B005322DA /* UIViewController+SEGScreen.h in Headers */,
 				EADEB8CF1DECD12B005322DA /* SEGStorage.h in Headers */,
+				75FD42052524F1E000BC8970 /* SEGWebhookIntegration.h in Headers */,
 				A352176023AD5825005B07F6 /* SEGMacros.h in Headers */,
 				EADEB8D21DECD12B005322DA /* SEGUserDefaultsStorage.h in Headers */,
 				EADEB8D01DECD12B005322DA /* SEGStoreKitTracker.h in Headers */,
@@ -519,6 +526,7 @@
 				EADEB8C01DECD12B005322DA /* SEGTrackPayload.m in Sources */,
 				EADEB8AF1DECD12B005322DA /* SEGAES256Crypto.m in Sources */,
 				EADEB8C81DECD12B005322DA /* SEGHTTPClient.m in Sources */,
+				75FD4202252401B500BC8970 /* SEGWebhookIntegration.m in Sources */,
 				EADEB8CC1DECD12B005322DA /* SEGSegmentIntegration.m in Sources */,
 				EADEB8B21DECD12B005322DA /* SEGAliasPayload.m in Sources */,
 				EADEB8BA1DECD12B005322DA /* SEGIntegrationsManager.m in Sources */,

@@ -56,6 +56,28 @@ class AnalyticsTests: XCTestCase {
         XCTAssertNil(config.httpSessionDelegate)
         XCTAssertNotNil(analytics.getAnonymousId())
     }
+
+    func testWebhookIntegrationInitializedCorrectly() {
+        let webhookIntegration = WebhookIntegrationFactory.init(name: "dest1", webhookUrl: "blah")
+        let webhookIntegrationKey = webhookIntegration.key()
+        var initialized = false
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: SEGAnalyticsIntegrationDidStart), object: nil, queue: nil) { (notification) in
+            let key = notification.object as? String
+            if (key == webhookIntegrationKey) {
+                initialized = true
+            }
+        }
+        let config2 = AnalyticsConfiguration(writeKey: "TESTKEY")
+        config2.use(webhookIntegration)
+        let analytics2 = Analytics(configuration: config2)
+        let factoryList = (config2.value(forKey: "factories") as? NSMutableArray)
+        XCTAssertEqual(factoryList?.count, 1)
+
+        while (!initialized) { // wait for WebhookIntegration to get setup
+            sleep(1)
+        }
+        XCTAssertNotNil(analytics2.test_integrationsManager()?.test_integrations()?[webhookIntegrationKey])
+    }
     
     func testClearsSEGQueueFromUserDefaults() {
         expectUntil(2.0, expression: UserDefaults.standard.string(forKey: "SEGQueue") == nil)
