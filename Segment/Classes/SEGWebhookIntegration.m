@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_END
     NSURLSession *session = self.client.genericSession;
 
     NSURL *url = [NSURL URLWithString:self.webhookUrl];
-    NSMutableURLRequest *request = self.client.requestFactory(url);
+    NSMutableURLRequest *request = [self.client.requestFactory(url) mutableCopy];
 
     // This is a workaround for an IOS 8.3 bug that causes Content-Type to be incorrectly set
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];

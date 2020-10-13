@@ -6,10 +6,10 @@ static const NSUInteger kMaxBatchSize = 475000; // 475KB
 
 @implementation SEGHTTPClient
 
-+ (NSMutableURLRequest * (^)(NSURL *))defaultRequestFactory
++ (NSURLRequest * (^)(NSURL *))defaultRequestFactory
 {
     return ^(NSURL *url) {
-        return [NSMutableURLRequest requestWithURL:url];
+        return [NSURLRequest requestWithURL:url];
     };
 }
 
@@ -73,7 +73,7 @@ static const NSUInteger kMaxBatchSize = 475000; // 475KB
     NSURLSession *session = [self sessionForWriteKey:writeKey];
 
     NSURL *url = [SEGMENT_API_BASE URLByAppendingPathComponent:@"batch"];
-    NSMutableURLRequest *request = self.requestFactory(url);
+    NSMutableURLRequest *request = [self.requestFactory(url) mutableCopy];
 
     // This is a workaround for an IOS 8.3 bug that causes Content-Type to be incorrectly set
     [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
@@ -147,7 +147,7 @@ static const NSUInteger kMaxBatchSize = 475000; // 475KB
     NSURLSession *session = self.genericSession;
 
     NSURL *url = [SEGMENT_CDN_BASE URLByAppendingPathComponent:[NSString stringWithFormat:@"/projects/%@/settings", writeKey]];
-    NSMutableURLRequest *request = self.requestFactory(url);
+    NSMutableURLRequest *request = [self.requestFactory(url) mutableCopy];
     [request setHTTPMethod:@"GET"];
 
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {

@@ -35,7 +35,7 @@ NS_SWIFT_NAME(ApplicationProtocol)
 #endif
 
 
-typedef NSMutableURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
+typedef NSURLRequest *_Nonnull (^SEGRequestFactory)(NSURL *_Nonnull);
 typedef NSString *_Nonnull (^SEGAdSupportBlock)(void);
 
 @protocol SEGIntegrationFactory;
