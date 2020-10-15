@@ -110,6 +110,7 @@
 
 - (void)setEdgeFunctionMiddleware:(id<SEGEdgeFunctionMiddleware>)edgeFunctionMiddleware
 {
+    _edgeFunctionMiddleware = edgeFunctionMiddleware;
     self.sourceMiddleware = edgeFunctionMiddleware.sourceMiddleware;
     self.destinationMiddleware = edgeFunctionMiddleware.destinationMiddleware;
 }
