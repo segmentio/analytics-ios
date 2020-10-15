@@ -8,6 +8,7 @@
 
 #import "SEGAnalyticsConfiguration.h"
 #import "SEGAnalytics.h"
+#import "SEGMiddleware.h"
 #import "SEGCrypto.h"
 #if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
@@ -105,6 +106,12 @@
 - (NSArray<id<SEGMiddleware>> *)middlewares
 {
     return self.sourceMiddleware;
+}
+
+- (void)setEdgeFunctionMiddleware:(id<SEGEdgeFunctionMiddleware>)edgeFunctionMiddleware
+{
+    self.sourceMiddleware = edgeFunctionMiddleware.sourceMiddleware;
+    self.destinationMiddleware = edgeFunctionMiddleware.destinationMiddleware;
 }
 
 @end
