@@ -562,4 +562,9 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     [self.runner run:context callback:nil];
 }
 
+- (id<SEGEdgeFunctionMiddleware>)edgeFunction
+{
+    return _oneTimeConfiguration.edgeFunctionMiddleware;
+}
+
 @end

@@ -74,5 +74,8 @@ NS_SWIFT_NAME(EdgeFunctionMiddleware)
 @property (nonatomic, readonly, nullable) NSArray<id<SEGMiddleware>> *sourceMiddleware;
 @property (nonatomic, readonly, nullable) NSArray<SEGDestinationMiddleware *> *destinationMiddleware;
 - (void)setEdgeFunctionData:(NSDictionary *_Nullable)data;
+- (void)addToDataBridge:(NSString * _Nonnull)key value:(id _Nonnull)value NS_SWIFT_NAME(addToDataBridge(key:value:));
+- (void)removeFromDataBridge:(NSString * _Nonnull)key NS_SWIFT_NAME(removeFromDataBridge(key:));
+- (NSDictionary<NSString *, id> * _Nonnull)dataBridgeSnapshot;
 @end
 

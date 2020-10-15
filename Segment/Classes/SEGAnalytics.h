@@ -3,6 +3,7 @@
 #import "SEGCrypto.h"
 #import "SEGAnalyticsConfiguration.h"
 #import "SEGSerializableValue.h"
+#import "SEGMiddleware.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -217,6 +218,9 @@ NS_SWIFT_NAME(Analytics)
 
 /** Returns the registered device token of this device */
 - (NSString *)getDeviceToken;
+
+/** Returns the configured Edge Function value */
+- (nullable id<SEGEdgeFunctionMiddleware>)edgeFunction;
 
 @end
 
