@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'Security', 'StoreKit', 'SystemConfiguration', 'UIKit'
 
   s.source_files = [
-    'Segment/Classes/**/*',
-    'Segment/Internal/**/*'
+    'Segment/Classes/**/*.{h,m}',
+    'Segment/Internal/**/*.{h,m}'
   ]
 end
