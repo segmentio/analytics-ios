@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import Analytics
+import Segment
 
 class ViewController: NSViewController {
     

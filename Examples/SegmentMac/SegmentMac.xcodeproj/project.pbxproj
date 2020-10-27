@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		961C616D24BE5BA200A8B8E3 /* Analytics in Frameworks */ = {isa = PBXBuildFile; productRef = 961C616C24BE5BA200A8B8E3 /* Analytics */; };
 		96A12BAE24B3AEE200949804 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A12BAD24B3AEE200949804 /* AppDelegate.swift */; };
 		96A12BB024B3AEE200949804 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A12BAF24B3AEE200949804 /* ViewController.swift */; };
 		96A12BB224B3AEE400949804 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96A12BB124B3AEE400949804 /* Assets.xcassets */; };
 		96A12BB524B3AEE400949804 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96A12BB324B3AEE400949804 /* Main.storyboard */; };
+		96E46DAA2547A9090086871C /* Segment in Frameworks */ = {isa = PBXBuildFile; productRef = 96E46DA92547A9090086871C /* Segment */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				961C616D24BE5BA200A8B8E3 /* Analytics in Frameworks */,
+				96E46DAA2547A9090086871C /* Segment in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +104,7 @@
 			);
 			name = SegmentMac;
 			packageProductDependencies = (
-				961C616C24BE5BA200A8B8E3 /* Analytics */,
+				96E46DA92547A9090086871C /* Segment */,
 			);
 			productName = SegmentMac;
 			productReference = 96A12BAA24B3AEE200949804 /* SegmentMac.app */;
@@ -363,17 +363,17 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/segmentio/analytics-ios.git";
 			requirement = {
-				branch = migs647/macconversion;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		961C616C24BE5BA200A8B8E3 /* Analytics */ = {
+		96E46DA92547A9090086871C /* Segment */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 961C616B24BE5BA200A8B8E3 /* XCRemoteSwiftPackageReference "analytics-ios" */;
-			productName = Analytics;
+			productName = Segment;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
