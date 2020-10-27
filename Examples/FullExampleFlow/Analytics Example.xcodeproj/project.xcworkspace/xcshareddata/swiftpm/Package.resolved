@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "Analytics",
+        "package": "Segment",
         "repositoryURL": "https://github.com/segmentio/analytics-ios.git",
         "state": {
-          "branch": "migs647/macconversion",
-          "revision": "bd012c2c3fe26e228bdf386a7e38c0a6b4b761fc",
-          "version": null
+          "branch": null,
+          "revision": "66c416d06646dc042f7963ccd6787ef30e127adc",
+          "version": "4.1.0"
         }
       }
     ]
