@@ -1,5 +1,11 @@
 Change Log
 ==========
+Version 4.1.1 *(27 October, 2020)*
+-----------------------------
+* [Fix](https://github.com/segmentio/analytics-ios/pull/955) Fixed example projects using old branch for SPM.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/953) Repaired mac example project.
+* [Fix] Fixed carthage support for main library and destinations.
+
 Version 4.1.0 *(19 October, 2020)*
 -----------------------------
 * [New](https://github.com/segmentio/analytics-ios/pull/945) Added Webhook Integration.
