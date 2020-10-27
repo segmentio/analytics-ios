@@ -197,7 +197,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         @"version" : currentVersion ?: @"",
         @"build" : currentBuild ?: @"",
         @"referring_application" : launchOptions[UIApplicationLaunchOptionsSourceApplicationKey] ?: @"",
-        @"url" : launchOptions[UIApplicationLaunchOptionsURLKey] ?: @"",
+        @"url" : [launchOptions[UIApplicationLaunchOptionsURLKey] absoluteString] ?: @"",
     }];
 #elif TARGET_OS_OSX
     [self track:@"Application Opened" properties:@{

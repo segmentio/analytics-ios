@@ -168,17 +168,17 @@ class AnalyticsTests: XCTestCase {
     #if os(iOS)
     func testFiresApplicationOpenedForAppLaunchingEvent() {
         testMiddleware.swallowEvent = true
+        let url = URL(string: "test://url")!
         NotificationCenter.default.post(name: UIApplication.didFinishLaunchingNotification, object: testApplication, userInfo: [
             UIApplication.LaunchOptionsKey.sourceApplication: "testApp",
-            UIApplication.LaunchOptionsKey.url: "test://test",
+            UIApplication.LaunchOptionsKey.url: url,
         ])
         let event = testMiddleware.lastContext?.payload as? TrackPayload
         XCTAssertEqual(event?.event, "Application Opened")
         XCTAssertEqual(event?.properties?["from_background"] as? Bool, false)
         XCTAssertEqual(event?.properties?["referring_application"] as? String, "testApp")
-        XCTAssertEqual(event?.properties?["url"] as? String, "test://test")
+        XCTAssertEqual(event?.properties?["url"] as? String, url.absoluteString)
     }
-    #else
     #endif
     
     func testFiresApplicationEnterForeground() {
