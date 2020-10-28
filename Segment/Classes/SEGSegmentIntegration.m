@@ -312,6 +312,7 @@ NSUInteger const kSEGBackgroundTaskInvalid = 0;
 - (void)queuePayload:(NSDictionary *)payload
 {
     @try {
+        SEGLog(@"Queue is at max capacity (%tu), removing oldest payload.", self.queue.count);
         // Trim the queue to maxQueueSize - 1 before we add a new element.
         trimQueue(self.queue, self.analytics.oneTimeConfiguration.maxQueueSize - 1);
         [self.queue addObject:payload];
