@@ -78,12 +78,13 @@ class TrackingTests: XCTestCase {
     }
     
     func testHandlesScreen() {
-        analytics.screen("Home", properties: [
+        analytics.screen("Home", category:"test", properties: [
             "referrer": "Google"
         ])
         XCTAssertEqual(passthrough.lastContext?.eventType, EventType.screen)
         let screen = passthrough.lastContext?.payload as? ScreenPayload
         XCTAssertEqual(screen?.name, "Home")
+        XCTAssertEqual(screen?.category, "test")
         XCTAssertEqual(screen?.properties?["referrer"] as? String, "Google")
     }
     
