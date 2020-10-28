@@ -328,20 +328,36 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 - (void)screen:(NSString *)screenTitle
 {
-    [self screen:screenTitle properties:nil options:nil];
+    [self screen:screenTitle category:nil properties:nil options:nil];
+}
+
+- (void)screen:(NSString *)screenTitle category:(NSString *)category
+{
+    [self screen:screenTitle category:category properties:nil options:nil];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties
 {
-    [self screen:screenTitle properties:properties options:nil];
+    [self screen:screenTitle category:nil properties:properties options:nil];
+}
+
+- (void)screen:(NSString *)screenTitle category:(NSString *)category properties:(SERIALIZABLE_DICT _Nullable)properties
+{
+    [self screen:screenTitle category:category properties:properties options:nil];
 }
 
 - (void)screen:(NSString *)screenTitle properties:(NSDictionary *)properties options:(NSDictionary *)options
+{
+    [self screen:screenTitle category:nil properties:properties options:options];
+}
+
+- (void)screen:(NSString *)screenTitle category:(NSString *)category properties:(SERIALIZABLE_DICT _Nullable)properties options:(SERIALIZABLE_DICT _Nullable)options
 {
     NSCAssert1(screenTitle.length > 0, @"screen name (%@) must not be empty.", screenTitle);
 
     [self run:SEGEventTypeScreen payload:
                                      [[SEGScreenPayload alloc] initWithName:screenTitle
+                                                                   category:category
                                                                  properties:SEGCoerceDictionary(properties)
                                                                     context:SEGCoerceDictionary([options objectForKey:@"context"])
                                                                integrations:[options objectForKey:@"integrations"]]];
