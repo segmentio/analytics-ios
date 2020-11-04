@@ -543,10 +543,10 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
         
         if ([aValue conformsToProtocol:@protocol(SEGSerializableDeepCopy)]) {
             theCopy = [aValue serializableDeepCopy:mutable];
-        } else if ([aValue conformsToProtocol:@protocol(NSCopying)]) {
-            theCopy = [aValue copy];
         } else if ([aValue conformsToProtocol:@protocol(SEGSerializable)]) {
             theCopy = [aValue serializeToAppropriateType];
+        } else if ([aValue conformsToProtocol:@protocol(NSCopying)]) {
+            theCopy = [aValue copy];
         } else {
             theCopy = aValue;
         }
@@ -594,10 +594,10 @@ NSString *SEGEventNameForScreenTitle(NSString *title)
 
         if ([aValue conformsToProtocol:@protocol(SEGSerializableDeepCopy)]) {
             theCopy = [aValue serializableDeepCopy:mutable];
-        } else if ([aValue conformsToProtocol:@protocol(NSCopying)]) {
-            theCopy = [aValue copy];
         } else if ([aValue conformsToProtocol:@protocol(SEGSerializable)]) {
             theCopy = [aValue serializeToAppropriateType];
+        } else if ([aValue conformsToProtocol:@protocol(NSCopying)]) {
+            theCopy = [aValue copy];
         } else {
             theCopy = aValue;
         }

@@ -98,11 +98,17 @@ JSON_DICT SEGCoerceDictionary(NSDictionary *_Nullable dict);
     XCTAssertThrows([nonserializable serializableDeepCopy]);
     
     NSDictionary *testCoersion1 = @{@"test1": @[date], @"test2": url, @"test3": @1};
-    NSDictionary *coersionResult1 = SEGCoerceDictionary(testCoersion1);
-    XCTAssertNotNil(coersionResult1);
+    NSDictionary *coersionResult = SEGCoerceDictionary(testCoersion1);
+    XCTAssertNotNil(coersionResult);
     
     NSDictionary *testCoersion2 = @{@"test1": @[date], @"test2": url, @"test3": @1, @"test4": data};
     XCTAssertThrows(SEGCoerceDictionary(testCoersion2));
+    
+    NSError *error = nil;
+    NSData *json = [NSJSONSerialization dataWithJSONObject:coersionResult options:NSJSONWritingPrettyPrinted error:&error];
+    
+    XCTAssertNil(error);
+    XCTAssertNotNil(json);
 }
 
 @end
