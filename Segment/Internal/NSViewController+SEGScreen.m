@@ -12,7 +12,6 @@
 #import "SEGAnalyticsUtils.h"
 #import "SEGScreenReporting.h"
 
-
 #if TARGET_OS_OSX
 @implementation NSViewController (SEGScreen)
 
@@ -22,7 +21,7 @@
     dispatch_once(&onceToken, ^{
         Class class = [self class];
 
-        SEL originalSelector = @selector(viewDidAppear:);
+        SEL originalSelector = @selector(viewDidAppear);
         SEL swizzledSelector = @selector(seg_viewDidAppear:);
 
         Method originalMethod = class_getInstanceMethod(class, originalSelector);
