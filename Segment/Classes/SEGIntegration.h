@@ -1,4 +1,4 @@
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "SEGIdentifyPayload.h"
 #import "SEGTrackPayload.h"
 #import "SEGScreenPayload.h"

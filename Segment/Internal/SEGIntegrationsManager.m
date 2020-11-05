@@ -7,7 +7,7 @@
 //
 
 #if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
+@import UIKit;
 #endif
 #import <objc/runtime.h>
 #import "SEGAnalyticsUtils.h"

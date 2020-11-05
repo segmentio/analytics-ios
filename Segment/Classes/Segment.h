@@ -6,7 +6,7 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 //! Project version number for Analytics.
 FOUNDATION_EXPORT double SegmentVersionNumber;

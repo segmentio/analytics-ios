@@ -7,7 +7,7 @@
 //
 // https://github.com/nicklockwood/GZIP/blob/master/GZIP/NSData%2BGZIP.m
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 
 @interface NSData (SEGGUNZIPP)

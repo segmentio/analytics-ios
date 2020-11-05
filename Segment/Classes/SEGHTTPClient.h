@@ -1,4 +1,4 @@
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "SEGAnalytics.h"
 
 // TODO: Make this configurable via SEGAnalyticsConfiguration

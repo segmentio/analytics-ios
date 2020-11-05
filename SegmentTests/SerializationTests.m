@@ -6,7 +6,7 @@
 //  Copyright © 2019 Segment. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+@import XCTest;
 @import Segment;
 
 #pragma mark - Internal copy-overs for testing

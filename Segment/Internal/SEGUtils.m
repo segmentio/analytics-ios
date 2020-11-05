@@ -11,12 +11,11 @@
 #include <sys/sysctl.h>
 
 #if TARGET_OS_IOS && TARGET_OS_MACCATALYST == 0
-#import <CoreTelephony/CTCarrier.h>
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+@import CoreTelephony;
 
 static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 #elif TARGET_OS_OSX
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 #endif
 
 @implementation SEGUtils

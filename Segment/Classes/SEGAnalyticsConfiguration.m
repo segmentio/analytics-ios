@@ -11,9 +11,9 @@
 #import "SEGMiddleware.h"
 #import "SEGCrypto.h"
 #if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
+@import UIKit;
 #elif TARGET_OS_OSX
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 #endif
 
 #if TARGET_OS_IPHONE

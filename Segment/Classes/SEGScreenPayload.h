@@ -1,4 +1,4 @@
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "SEGPayload.h"
 
 NS_ASSUME_NONNULL_BEGIN

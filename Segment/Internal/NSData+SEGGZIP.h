@@ -31,7 +31,7 @@
 //
 
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 extern void *_Nullable seg_libzOpen(void);
 
