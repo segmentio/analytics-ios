@@ -291,7 +291,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         [SEGState sharedInstance].userInfo.userId = userId;
     }
     // merge w/ existing traits and set them.
-    [existingTraitsCopy addEntriesFromDictionary:traits];
+    [existingTraitsCopy addEntriesFromDictionary:traitsCopy];
     [SEGState sharedInstance].userInfo.traits = existingTraitsCopy;
     
     [self run:SEGEventTypeIdentify payload:

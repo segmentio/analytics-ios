@@ -41,6 +41,24 @@ class TrackingTests: XCTestCase {
         XCTAssertEqual(identify?.traits?["firstName"] as? String, "Peter")
     }
     
+    func testHandlesIdentifyAndUserIdPass() {
+        analytics.identify("testUserId1", traits: [
+            "firstName": "Peter"
+        ])
+        XCTAssertEqual(passthrough.lastContext?.eventType, EventType.identify)
+        let identify = passthrough.lastContext?.payload as? IdentifyPayload
+        XCTAssertEqual(identify?.userId, "testUserId1")
+        XCTAssertNotNil(identify?.anonymousId)
+        XCTAssertEqual(identify?.traits?["firstName"] as? String, "Peter")
+        XCTAssertEqual(identify?.traits?["userId"] as? String, "testUserId1")
+        
+        analytics.identify("testUserId1")
+        XCTAssertEqual(passthrough.lastContext?.eventType, EventType.identify)
+        let identify2 = passthrough.lastContext?.payload as? IdentifyPayload
+        XCTAssertEqual(identify2?.userId, "testUserId1")
+        XCTAssertEqual(identify2?.traits?["userId"] as? String, "testUserId1")
+    }
+    
     func testHandlesIdentifyWithCustomAnonymousId() {
         analytics.identify("testUserId1", traits: [
             "firstName": "Peter"
