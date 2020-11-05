@@ -18,9 +18,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '10.0'
   s.tvos.deployment_target = '9.0'
 
-  s.ios.frameworks = 'CoreTelephony'
-  s.frameworks = 'Security', 'StoreKit', 'SystemConfiguration', 'UIKit'
-
   s.source_files = [
     'Segment/Classes/**/*.{h,m}',
     'Segment/Internal/**/*.{h,m}'
