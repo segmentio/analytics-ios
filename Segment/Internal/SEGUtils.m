@@ -10,12 +10,9 @@
 
 #include <sys/sysctl.h>
 
-#if TARGET_OS_IOS && TARGET_OS_MACCATALYST == 0
+#if TARGET_OS_IOS && !TARGET_OS_MACCATALYST
 @import CoreTelephony;
-
 static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
-#elif TARGET_OS_OSX
-@import Cocoa;
 #endif
 
 @implementation SEGUtils
@@ -332,7 +329,7 @@ NSDictionary *getLiveContext(SEGReachability *reachability, NSDictionary *referr
             network[@"cellular"] = @(reachability.isReachableViaWWAN);
         }
 
-#if TARGET_OS_IOS && TARGET_OS_MACCATALYST == 0
+#if TARGET_OS_IOS && !TARGET_OS_MACCATALYST
         static dispatch_once_t networkInfoOnceToken;
         dispatch_once(&networkInfoOnceToken, ^{
             _telephonyNetworkInfo = [[CTTelephonyNetworkInfo alloc] init];

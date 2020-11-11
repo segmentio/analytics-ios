@@ -13,10 +13,6 @@
 @import UIKit;
 #endif
 
-#if TARGET_OS_IOS
-@import CoreTelephony;
-#endif
-
 NSString *const SEGSegmentDidSendRequestNotification = @"SegmentDidSendRequest";
 NSString *const SEGSegmentRequestDidSucceedNotification = @"SegmentRequestDidSucceed";
 NSString *const SEGSegmentRequestDidFailNotification = @"SegmentRequestDidFail";
