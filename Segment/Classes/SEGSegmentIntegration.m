@@ -10,12 +10,7 @@
 #import "SEGState.h"
 
 #if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
-#endif
-
-#if TARGET_OS_IOS
-#import <CoreTelephony/CTCarrier.h>
-#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+@import UIKit;
 #endif
 
 NSString *const SEGSegmentDidSendRequestNotification = @"SegmentDidSendRequest";

@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Segment",
     platforms: [
-        .iOS(.v12), .tvOS(.v12)
+        .iOS(.v10), .tvOS(.v10), .macOS(.v10_13)
     ],
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
@@ -31,10 +31,7 @@ let package = Package(
             cSettings: [
                 .headerSearchPath("Internal"),
                 .headerSearchPath("Classes")
-            ],
-            linkerSettings: [
-                .linkedFramework("CoreTelephony", .when(platforms: [.iOS, .macOS]))
             ]
-        ),
+        )
     ]
 )

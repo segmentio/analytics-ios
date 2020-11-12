@@ -6,12 +6,12 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 #if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
+@import UIKit;
 #elif TARGET_OS_OSX
-#import <Cocoa/Cocoa.h>
+@import Cocoa;
 #endif
 
 NS_SWIFT_NAME(ApplicationProtocol)

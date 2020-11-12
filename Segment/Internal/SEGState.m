@@ -28,7 +28,7 @@ typedef _Nullable id (^SEGStateGetBlock)(void);
 
 @protocol SEGStateObject
 @property (nonatomic, weak) SEGState *state;
-- (instancetype)initWithState:(SEGState *)state;
+- (instancetype)initWithState:(SEGState *)aState;
 @end
 
 
@@ -50,10 +50,10 @@ typedef _Nullable id (^SEGStateGetBlock)(void);
 @synthesize userId = _userId;
 @synthesize traits = _traits;
 
-- (instancetype)initWithState:(SEGState *)state
+- (instancetype)initWithState:(SEGState *)aState
 {
     if (self = [super init]) {
-        self.state = state;
+        self.state = aState;
     }
     return self;
 }
@@ -114,10 +114,10 @@ typedef _Nullable id (^SEGStateGetBlock)(void);
 @synthesize cachedStaticContext = _cachedStaticContext;
 @synthesize deviceToken = _deviceToken;
 
-- (instancetype)initWithState:(SEGState *)state
+- (instancetype)initWithState:(SEGState *)aState
 {
     if (self = [super init]) {
-        self.state = state;
+        self.state = aState;
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
         [self.reachability startNotifier];
     }

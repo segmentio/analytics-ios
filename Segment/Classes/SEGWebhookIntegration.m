@@ -1,4 +1,4 @@
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "SEGWebhookIntegration.h"
 #import "SEGHTTPClient.h"
 #import "SEGState.h"

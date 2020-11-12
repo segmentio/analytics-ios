@@ -6,7 +6,7 @@
 //  Copyright © 2016 Segment. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 #import "SEGContext.h"
 
 typedef void (^SEGMiddlewareNext)(SEGContext *_Nullable newContext);
