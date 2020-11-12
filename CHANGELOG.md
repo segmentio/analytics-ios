@@ -1,5 +1,13 @@
 Change Log
 ==========
+Version 4.1.2 *(12 November, 2020)*
+-----------------------------
+* [Fix](https://github.com/segmentio/analytics-ios/pull/966) Standarized all SDK versions between dependency managers. Migrated to importing modules vs headers. Removed all linked frameworks.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/963) Fixed missing userId in traits.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/962) Fixed an issue with NSCopying preceding SEGSerialization.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/957) Output log messages when events are trimmed from the queue.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/956) Added category option to screen calls.
+
 Version 4.1.1 *(27 October, 2020)*
 -----------------------------
 * [Fix](https://github.com/segmentio/analytics-ios/pull/955) Fixed example projects using old branch for SPM.
