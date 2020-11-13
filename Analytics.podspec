@@ -17,7 +17,9 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '10.0'
   s.tvos.deployment_target = '10.0'
-  s.osx.deployment_target = '10.13'  
+  s.osx.deployment_target = '10.13'
+
+  s.static_framework = true  
 
   s.source_files = [
     'Segment/Classes/**/*.{h,m}',
