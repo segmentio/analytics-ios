@@ -61,6 +61,7 @@ Analytics is available through [CocoaPods](http://cocoapods.org) and [Carthage](
 ```ruby
 pod "Analytics", "3.7.0"
 ```
+Note: Dynamic frameworks are the default and recommended. If you prefer static libraries add `use_modular_headers!` or `use_frameworks! :linkage => :static` in your Podfile. 
 
 ### Carthage
 
