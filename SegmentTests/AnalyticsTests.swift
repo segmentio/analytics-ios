@@ -12,7 +12,7 @@ import XCTest
 
 class AnalyticsTests: XCTestCase {
     
-    let config = AnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
+    var config: AnalyticsConfiguration!
     let cachedSettings = [
         "integrations": [
             "Segment.io": [
@@ -36,7 +36,7 @@ class AnalyticsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        UserDefaults.standard.removeObject(forKey: "segment_apihost")
+        config = AnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
         
         testMiddleware = TestMiddleware()
         config.sourceMiddleware = [testMiddleware]
@@ -59,6 +59,8 @@ class AnalyticsTests: XCTestCase {
     }
     
     func testInitializedCorrectly() {
+        UserDefaults.standard.removeObject(forKey: "segment_apihost")
+        
         XCTAssertEqual(config.flushAt, 20)
         XCTAssertEqual(config.flushInterval, 30)
         XCTAssertEqual(config.maxQueueSize, 1000)

@@ -30,7 +30,6 @@ const NSString *segment_apiHost = @"segment_apihost";
     }
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:apiHost forKey:[segment_apiHost copy]];
-    [defaults synchronize];
 }
 
 + (nonnull NSString *)getAPIHost
