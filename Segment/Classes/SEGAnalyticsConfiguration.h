@@ -54,10 +54,19 @@ NS_SWIFT_NAME(AnalyticsConfiguration)
 
 /**
  * Creates and returns a configuration with default settings and the given write key.
+ * This will use the API host `https://api.segment.io/v1` as the default.
  *
  * @param writeKey Your project's write key from segment.io.
  */
 + (_Nonnull instancetype)configurationWithWriteKey:(NSString *_Nonnull)writeKey;
+
+/**
+ * Creates and returns a configuration with default settings and the given write key.
+ *
+ * @param writeKey Your project's write key from segment.io.
+ * @param defaultAPIHost The default API host to be used if none are supplied from Segment.com
+ */
++ (_Nonnull instancetype)configurationWithWriteKey:(NSString *_Nonnull)writeKey defaultAPIHost:(NSURL *_Nullable)defaultAPIHost;
 
 /**
  * Your project's write key from segment.io.
@@ -65,6 +74,12 @@ NS_SWIFT_NAME(AnalyticsConfiguration)
  * @see +configurationWithWriteKey:
  */
 @property (nonatomic, copy, readonly, nonnull) NSString *writeKey;
+
+/**
+ * The API host to be used for network requests to Segment.
+ * This value can change based on settings obtained from Segment.com.
+ */
+@property (nonatomic, copy, readonly, nullable) NSURL *apiHost;
 
 /**
  * Whether the analytics client should use location services.
