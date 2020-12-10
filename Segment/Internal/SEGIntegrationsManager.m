@@ -403,6 +403,12 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 
 - (void)updateIntegrationsWithSettings:(NSDictionary *)projectSettings
 {
+    // see if we have a new segment API host and set it.
+    NSString *apiHost = projectSettings[@"Segment.io"][@"apiHost"];
+    if (apiHost) {
+        [SEGUtils saveAPIHost:apiHost];
+    }
+    
     seg_dispatch_specific_sync(_serialQueue, ^{
         if (self.initialized) {
             return;
@@ -443,8 +449,29 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
     }
 }
 
+- (NSDictionary *)defaultSettings
+{
+    return @{
+        @"integrations" : @{
+            @"Segment.io" : @{
+                    @"apiKey" : self.configuration.writeKey,
+                    @"apiHost" : [SEGUtils getAPIHost]
+            },
+        },
+        @"plan" : @{@"track" : @{}}
+    };
+}
+
 - (void)refreshSettings
 {
+    // look at our cache immediately, lets try to get things running
+    // with the last values while we wait to see about any updates.
+    NSDictionary *previouslyCachedSettings = [self cachedSettings];
+    if (previouslyCachedSettings && [previouslyCachedSettings count] > 0) {
+        [self setCachedSettings:previouslyCachedSettings];
+        [self configureEdgeFunctions:previouslyCachedSettings];
+    }
+    
     seg_dispatch_specific_async(_serialQueue, ^{
         if (self.settingsRequest) {
             return;
@@ -459,23 +486,24 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
                     NSDictionary *previouslyCachedSettings = [self cachedSettings];
                     if (previouslyCachedSettings && [previouslyCachedSettings count] > 0) {
                         [self setCachedSettings:previouslyCachedSettings];
-                        [self configureEdgeFunctions:settings];
+                        [self configureEdgeFunctions:previouslyCachedSettings];
                     } else if (self.configuration.defaultSettings != nil) {
                         // If settings request fail, load a user-supplied version if present.
                         // but make sure segment.io is in the integrations
                         NSMutableDictionary *newSettings = [self.configuration.defaultSettings serializableMutableDeepCopy];
-                        newSettings[@"integrations"][@"Segment.io"][@"apiKey"] = self.configuration.writeKey;
+                        NSMutableDictionary *integrations = newSettings[@"integrations"];
+                        if (integrations != nil) {
+                            integrations[@"Segment.io"] = @{@"apiKey": self.configuration.writeKey, @"apiHost": [SEGUtils getAPIHost]};
+                        } else {
+                            newSettings[@"integrations"] = @{@"integrations": @{@"apiKey": self.configuration.writeKey, @"apiHost": [SEGUtils getAPIHost]}};
+                        }
+                        
                         [self setCachedSettings:newSettings];
                         // don't configure edge functions here.  it'll do the right thing on it's own.
                     } else {
                         // If settings request fail, fall back to using just Segment integration.
                         // Doesn't address situations where this callback never gets called (though we don't expect that to ever happen).
-                        [self setCachedSettings:@{
-                            @"integrations" : @{
-                                @"Segment.io" : @{@"apiKey" : self.configuration.writeKey},
-                            },
-                            @"plan" : @{@"track" : @{}}
-                        }];
+                        [self setCachedSettings:[self defaultSettings]];
                         // don't configure edge functions here.  it'll do the right thing on it's own.
                     }
                 }

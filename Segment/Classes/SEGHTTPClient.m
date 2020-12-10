@@ -1,8 +1,13 @@
 #import "SEGHTTPClient.h"
 #import "NSData+SEGGZIP.h"
 #import "SEGAnalyticsUtils.h"
+#import "SEGUtils.h"
+
+#define SEGMENT_CDN_BASE [NSURL URLWithString:@"https://cdn-settings.segment.com/v1"]
 
 static const NSUInteger kMaxBatchSize = 475000; // 475KB
+
+NSString * const kSegmentAPIBaseHost = @"https://api.segment.io/v1";
 
 @implementation SEGHTTPClient
 
@@ -72,7 +77,7 @@ static const NSUInteger kMaxBatchSize = 475000; // 475KB
     //    batch = SEGCoerceDictionary(batch);
     NSURLSession *session = [self sessionForWriteKey:writeKey];
 
-    NSURL *url = [SEGMENT_API_BASE URLByAppendingPathComponent:@"batch"];
+    NSURL *url = [[SEGUtils getAPIHostURL] URLByAppendingPathComponent:@"batch"];
     NSMutableURLRequest *request = self.requestFactory(url);
 
     // This is a workaround for an IOS 8.3 bug that causes Content-Type to be incorrectly set

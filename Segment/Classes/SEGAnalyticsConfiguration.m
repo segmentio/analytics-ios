@@ -10,6 +10,8 @@
 #import "SEGAnalytics.h"
 #import "SEGMiddleware.h"
 #import "SEGCrypto.h"
+#import "SEGHTTPClient.h"
+#import "SEGUtils.h"
 #if TARGET_OS_IPHONE
 @import UIKit;
 #elif TARGET_OS_OSX
@@ -41,6 +43,8 @@
 @property (nonatomic, strong, readonly) NSMutableArray *factories;
 @property (nonatomic, strong) SEGAnalyticsExperimental *experimental;
 
+- (instancetype)initWithWriteKey:(NSString *)writeKey defaultAPIHost:(NSURL * _Nullable)defaultAPIHost;
+
 @end
 
 
@@ -48,13 +52,30 @@
 
 + (instancetype)configurationWithWriteKey:(NSString *)writeKey
 {
-    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey];
+    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey defaultAPIHost:nil];
 }
 
-- (instancetype)initWithWriteKey:(NSString *)writeKey
++ (instancetype)configurationWithWriteKey:(NSString *)writeKey defaultAPIHost:(NSURL * _Nullable)defaultAPIHost
+{
+    return [[SEGAnalyticsConfiguration alloc] initWithWriteKey:writeKey defaultAPIHost:defaultAPIHost];
+}
+
+- (instancetype)initWithWriteKey:(NSString *)writeKey defaultAPIHost:(NSURL * _Nullable)defaultAPIHost
 {
     if (self = [self init]) {
         self.writeKey = writeKey;
+        
+        // get the host we have stored
+        NSString *host = [SEGUtils getAPIHost];
+        if ([host isEqualToString:kSegmentAPIBaseHost]) {
+            // we're getting the generic host back.  have they
+            // supplied something other than that?
+            if (defaultAPIHost && ![host isEqualToString:defaultAPIHost.absoluteString]) {
+                // we should use the supplied default.
+                host = defaultAPIHost.absoluteString;
+                [SEGUtils saveAPIHost:host];
+            }
+        }
     }
     return self;
 }
@@ -84,6 +105,11 @@
 #endif
     }
     return self;
+}
+
+- (NSURL *)apiHost
+{
+    return [SEGUtils getAPIHostURL];
 }
 
 - (void)use:(id<SEGIntegrationFactory>)factory

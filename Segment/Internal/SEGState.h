@@ -39,7 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedInstance;
 - (instancetype)init __unavailable;
 
-- (void)setUserInfo:(SEGUserInfo *)userInfo;
 @end
 
 NS_ASSUME_NONNULL_END

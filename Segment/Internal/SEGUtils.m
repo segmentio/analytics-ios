@@ -7,6 +7,7 @@
 #import "SEGAnalyticsConfiguration.h"
 #import "SEGReachability.h"
 #import "SEGAnalytics.h"
+#import "SEGHTTPClient.h"
 
 #include <sys/sysctl.h>
 
@@ -15,7 +16,36 @@
 static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 #endif
 
+const NSString *segment_apiHost = @"segment_apihost";
+
 @implementation SEGUtils
+
++ (void)saveAPIHost:(nonnull NSString *)apiHost
+{
+    if (!apiHost) {
+        return;
+    }
+    if (![apiHost containsString:@"https://"]) {
+        apiHost = [NSString stringWithFormat:@"https://%@", apiHost];
+    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:apiHost forKey:[segment_apiHost copy]];
+}
+
++ (nonnull NSString *)getAPIHost
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *result = [defaults stringForKey:[segment_apiHost copy]];
+    if (!result) {
+        result = kSegmentAPIBaseHost;
+    }
+    return result;
+}
+
++ (nullable NSURL *)getAPIHostURL
+{
+    return [NSURL URLWithString:[SEGUtils getAPIHost]];
+}
 
 + (NSData *_Nullable)dataFromPlist:(nonnull id)plist
 {

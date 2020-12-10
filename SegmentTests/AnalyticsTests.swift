@@ -12,10 +12,21 @@ import XCTest
 
 class AnalyticsTests: XCTestCase {
     
-    let config = AnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
+    var config: AnalyticsConfiguration!
     let cachedSettings = [
         "integrations": [
-            "Segment.io": ["apiKey": "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE"]
+            "Segment.io": [
+                "apiKey": "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE",
+            ]
+        ],
+        "plan": ["track": [:]],
+        ] as NSDictionary
+    let cachedSettingsWithHost = [
+        "integrations": [
+            "Segment.io": [
+                "apiKey": "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE",
+                "apiHost": "in.eu2.segmentapis.com/v1"
+            ]
         ],
         "plan": ["track": [:]],
         ] as NSDictionary
@@ -25,6 +36,8 @@ class AnalyticsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
+        config = AnalyticsConfiguration(writeKey: "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
+        
         testMiddleware = TestMiddleware()
         config.sourceMiddleware = [testMiddleware]
         testApplication = TestApplication()
@@ -46,15 +59,56 @@ class AnalyticsTests: XCTestCase {
     }
     
     func testInitializedCorrectly() {
+        UserDefaults.standard.removeObject(forKey: "segment_apihost")
+        
         XCTAssertEqual(config.flushAt, 20)
         XCTAssertEqual(config.flushInterval, 30)
         XCTAssertEqual(config.maxQueueSize, 1000)
         XCTAssertEqual(config.writeKey, "QUI5ydwIGeFFTa1IvCBUhxL9PyW5B0jE")
+        XCTAssertEqual(config.apiHost?.absoluteString, "https://api.segment.io/v1")
         XCTAssertEqual(config.shouldUseLocationServices, false)
         XCTAssertEqual(config.enableAdvertisingTracking, true)
         XCTAssertEqual(config.shouldUseBluetooth,  false)
         XCTAssertNil(config.httpSessionDelegate)
         XCTAssertNotNil(analytics.getAnonymousId())
+    }
+    
+    func testConfigAPIHost() {
+        // gotta remove the key first
+        UserDefaults.standard.removeObject(forKey: "segment_apihost")
+        
+        let dummyHost = URL(string: "https://blah.com/")
+        let config2 = AnalyticsConfiguration(writeKey: "TESTKEY", defaultAPIHost: dummyHost)
+        
+        let currentHost = config2.apiHost?.absoluteString
+        let storedHost = UserDefaults.standard.string(forKey: "segment_apihost")
+        
+        XCTAssertEqual(config2.apiHost, dummyHost)
+        XCTAssertEqual(currentHost, storedHost)
+    }
+    
+    func testCachedSettingsAPIHost() {
+        UserDefaults.standard.removeObject(forKey: "segment_apihost")
+        
+        var initialized = false
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: SEGAnalyticsIntegrationDidStart), object: nil, queue: nil) { (notification) in
+            let key = notification.object as? String
+            if (key == "Segment.io") {
+                initialized = true
+            }
+        }
+
+        let config2 = AnalyticsConfiguration(writeKey: "TESTKEY")
+        let analytics2 = Analytics(configuration: config2)
+        analytics2.test_integrationsManager()?.test_setCachedSettings(settings: cachedSettingsWithHost)
+        
+        while (!initialized) { // wait for integrations to get setup
+            sleep(1)
+        }
+        
+        // see if the value in use is the correct endpoint.
+        XCTAssertEqual(config2.apiHost?.absoluteString, "https://in.eu2.segmentapis.com/v1")
+        analytics2.test_integrationsManager()?.test_setCachedSettings(settings: cachedSettings)
     }
 
     func testWebhookIntegrationInitializedCorrectly() {
