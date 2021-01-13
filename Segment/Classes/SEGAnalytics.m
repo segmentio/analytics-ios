@@ -274,6 +274,8 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
     NSString *anonId = [options objectForKey:@"anonymousId"];
     if (anonId == nil) {
         anonId = [self getAnonymousId];
+    } else {
+        [self.integrationsManager saveAnonymousId:anonId];
     }
     // configure traits to match what is seen on android.
     NSMutableDictionary *existingTraitsCopy = [[SEGState sharedInstance].userInfo.traits mutableCopy];
