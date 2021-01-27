@@ -27,6 +27,7 @@ static SEGAnalytics *__sharedInstance = nil;
 @property (nonatomic, strong) SEGStoreKitTracker *storeKitTracker;
 @property (nonatomic, strong) SEGIntegrationsManager *integrationsManager;
 @property (nonatomic, strong) SEGMiddlewareRunner *runner;
+@property (nonatomic, strong) NSString *lastIDFA;
 @end
 
 
@@ -47,6 +48,7 @@ static SEGAnalytics *__sharedInstance = nil;
     if (self = [self init]) {
         self.oneTimeConfiguration = configuration;
         self.enabled = YES;
+        self.lastIDFA = nil;
 
         // In swift this would not have been OK... But hey.. It's objc
         // TODO: Figure out if this is really the best way to do things here.
@@ -554,6 +556,16 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 {
     if (!self.enabled) {
         return;
+    }
+    
+    if (getAdTrackingEnabled(self.oneTimeConfiguration)) {
+        // if idfa has changed since last we looked, we need to rebuild
+        // the static context to pick up the change.
+        NSString *idfa = self.oneTimeConfiguration.adSupportBlock();
+        if (![idfa isEqualToString:self.lastIDFA]) {
+            self.lastIDFA = idfa;
+            [[SEGState sharedInstance].context updateStaticContext];
+        }
     }
     
     if (self.oneTimeConfiguration.experimental.nanosecondTimestamps) {
