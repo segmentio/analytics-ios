@@ -27,7 +27,7 @@ static SEGAnalytics *__sharedInstance = nil;
 @property (nonatomic, strong) SEGStoreKitTracker *storeKitTracker;
 @property (nonatomic, strong) SEGIntegrationsManager *integrationsManager;
 @property (nonatomic, strong) SEGMiddlewareRunner *runner;
-@property (nonatomic, strong) NSString *lastIDFA;
+@property (nonatomic, copy) NSString *lastIDFA;
 @end
 
 
@@ -547,7 +547,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 {
     // this has to match the actual version, NOT what's in info.plist
     // because Apple only accepts X.X.X as versions in the review process.
-    return @"4.1.2";
+    return @"4.1.3";
 }
 
 #pragma mark - Helpers

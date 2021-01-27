@@ -1,5 +1,11 @@
 Change Log
 ==========
+Version 4.1.3 *(27 January, 2021)*
+-----------------------------
+* [Fix](https://github.com/segmentio/analytics-ios/pull/982) Pull IDFA if it has changed and rebuild context if necessary.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/973) Support Data Residency.
+* [Fix](https://github.com/segmentio/analytics-ios/pull/968) Added static lib support for Cocoapods.
+
 Version 4.1.2 *(12 November, 2020)*
 -----------------------------
 * [Fix](https://github.com/segmentio/analytics-ios/pull/966) Standarized all SDK versions between dependency managers. Migrated to importing modules vs headers. Removed all linked frameworks.
