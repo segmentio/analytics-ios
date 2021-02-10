@@ -24,7 +24,7 @@ class ContextTests: XCTestCase {
         var exception: NSException?
         
         exception = objc_tryCatch {
-            context = Context()
+            context = SEGContext()
         }
         
         XCTAssertNil(context)
@@ -32,13 +32,13 @@ class ContextTests: XCTestCase {
     }
     
     func testInitializedCorrectly() {
-        let context = Context(analytics: analytics)
+        let context = SEGContext(analytics: analytics)
         XCTAssertEqual(context._analytics, analytics)
         XCTAssertEqual(context.eventType, EventType.undefined)
     }
     
     func testAcceptsModifications() {
-        let context = Context(analytics: analytics)
+        let context = SEGContext(analytics: analytics)
         
         let newContext = context.modify { context in
             context.payload = TrackPayload()
@@ -50,7 +50,7 @@ class ContextTests: XCTestCase {
     }
     
     func testModifiesCopyInDebugMode() {
-        let context = Context(analytics: analytics).modify { context in
+        let context = SEGContext(analytics: analytics).modify { context in
             context.debug = true
             context.eventType = .track
         }
@@ -65,7 +65,7 @@ class ContextTests: XCTestCase {
     }
     
     func testModifiesSelfInNonDebug() {
-        let context = Context(analytics: analytics).modify { context in
+        let context = SEGContext(analytics: analytics).modify { context in
             context.debug = false
             context.eventType = .track
         }
