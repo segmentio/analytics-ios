@@ -48,7 +48,6 @@ typedef NS_ENUM(NSInteger, SEGEventType) {
 @protocol SEGMutableContext;
 
 
-NS_SWIFT_NAME(Context)
 @interface SEGContext : NSObject <NSCopying>
 
 // Loopback reference to the top level SEGAnalytics object.
