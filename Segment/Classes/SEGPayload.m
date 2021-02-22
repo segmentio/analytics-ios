@@ -1,5 +1,6 @@
 #import "SEGPayload.h"
 #import "SEGState.h"
+#import "SEGUtils.h"
 
 @implementation SEGPayload
 
@@ -16,7 +17,7 @@
         [combinedContext addEntriesFromDictionary:internalContext];
         [combinedContext addEntriesFromDictionary:context];
 
-        _context = [combinedContext copy];
+        _context = [combinedContext serializableDeepCopy];
         _integrations = [integrations copy];
         _messageId = nil;
         _userId = nil;
