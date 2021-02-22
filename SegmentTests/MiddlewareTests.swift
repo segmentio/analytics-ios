@@ -10,6 +10,30 @@
 import Segment
 import XCTest
 
+// Changing existing context bits
+let updateContext = BlockMiddleware { (context, next) in
+    if context.eventType == .track {
+        next(context.modify { ctx in
+            guard let track = ctx.payload as? TrackPayload else {
+                return
+            }
+            let newEvent = "[New] \(track.event)"
+            var newContext = track.context
+            var device = newContext["device"] as! Dictionary<String, String>
+            device["type"] = "mac"
+            newContext["device"] = device
+            ctx.payload = TrackPayload(
+                event: newEvent,
+                properties: track.properties,
+                context: newContext,
+                integrations: track.integrations
+            )
+        })
+    } else {
+        next(context)
+    }
+}
+
 // Changing event names and adding custom attributes
 let customizeAllTrackCalls = BlockMiddleware { (context, next) in
     if context.eventType == .track {
@@ -38,6 +62,22 @@ let eatAllCalls = BlockMiddleware { (context, next) in
 }
 
 class SourceMiddlewareTests: XCTestCase {
+    func testContextModification() {
+        let config = AnalyticsConfiguration(writeKey: "TESTKEY")
+        
+        let passthrough = PassthroughMiddleware()
+        config.sourceMiddleware = [
+            updateContext,
+            passthrough
+        ]
+        let analytics = Analytics(configuration: config)
+        analytics.track("testContext")
+        XCTAssertEqual(passthrough.lastContext?.eventType, EventType.track)
+        let track = passthrough.lastContext?.payload as? TrackPayload
+        XCTAssertEqual(track?.event, "[New] testContext")
+        let device = track?.context["device"] as? [String: Any]
+        XCTAssertEqual(device?["type"] as? String, "mac")
+    }
     
     func testReceivesEvents() {
         let config = AnalyticsConfiguration(writeKey: "TESTKEY")
