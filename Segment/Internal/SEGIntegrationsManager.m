@@ -397,7 +397,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 - (void)updateIntegrationsWithSettings:(NSDictionary *)projectSettings
 {
     // see if we have a new segment API host and set it.
-    NSString *apiHost = projectSettings[@"Segment.io"][@"apiHost"];
+    NSString *apiHost = projectSettings[kSEGSegmentDestinationName][@"apiHost"];
     if (apiHost) {
         [SEGUtils saveAPIHost:apiHost];
     }
@@ -521,7 +521,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 + (BOOL)isIntegration:(NSString *)key enabledInOptions:(NSDictionary *)options
 {
     // If the event is in the tracking plan, it should always be sent to api.segment.io.
-    if ([@"Segment.io" isEqualToString:key]) {
+    if ([kSEGSegmentDestinationName isEqualToString:key]) {
         return YES;
     }
     if (options[key]) {
@@ -551,7 +551,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 + (BOOL)isTrackEvent:(NSString *)event enabledForIntegration:(NSString *)key inPlan:(NSDictionary *)plan
 {
     // Whether the event is enabled or disabled, it should always be sent to api.segment.io.
-    if ([key isEqualToString:@"Segment.io"]) {
+    if ([key isEqualToString:kSEGSegmentDestinationName]) {
         return YES;
     }
 
