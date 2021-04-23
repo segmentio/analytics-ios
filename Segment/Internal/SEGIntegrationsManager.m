@@ -21,6 +21,7 @@
 #import "SEGUserDefaultsStorage.h"
 #import "SEGIntegrationsManager.h"
 #import "SEGSegmentIntegrationFactory.h"
+#import "SEGSegmentIntegration.h"
 #import "SEGPayload.h"
 #import "SEGIdentifyPayload.h"
 #import "SEGTrackPayload.h"
@@ -443,15 +444,25 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
 
 - (NSDictionary *)defaultSettings
 {
-    return @{
+    NSDictionary *segment = [self segmentSettings];
+    NSDictionary *result = @{
         @"integrations" : @{
-            @"Segment.io" : @{
-                    @"apiKey" : self.configuration.writeKey,
-                    @"apiHost" : [SEGUtils getAPIHost]
-            },
+            kSEGSegmentDestinationName : segment
         },
-        @"plan" : @{@"track" : @{}}
+        @"plan" : @{
+            @"track" : @{}
+        }
     };
+    return result;
+}
+
+- (NSDictionary *)segmentSettings
+{
+    NSDictionary *result = @{
+        @"apiKey" : self.configuration.writeKey,
+        @"apiHost" : [SEGUtils getAPIHost]
+    };
+    return result;
 }
 
 - (void)refreshSettings
@@ -485,9 +496,9 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
                         NSMutableDictionary *newSettings = [self.configuration.defaultSettings serializableMutableDeepCopy];
                         NSMutableDictionary *integrations = newSettings[@"integrations"];
                         if (integrations != nil) {
-                            integrations[@"Segment.io"] = @{@"apiKey": self.configuration.writeKey, @"apiHost": [SEGUtils getAPIHost]};
+                            integrations[kSEGSegmentDestinationName] = [self segmentSettings];
                         } else {
-                            newSettings[@"integrations"] = @{@"integrations": @{@"apiKey": self.configuration.writeKey, @"apiHost": [SEGUtils getAPIHost]}};
+                            newSettings[@"integrations"] = @{kSEGSegmentDestinationName: [self segmentSettings]};
                         }
                         
                         [self setCachedSettings:newSettings];
