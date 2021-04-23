@@ -5,6 +5,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern NSString *const kSEGSegmentDestinationName;
+
 extern NSString *const SEGSegmentDidSendRequestNotification;
 extern NSString *const SEGSegmentRequestDidSucceedNotification;
 extern NSString *const SEGSegmentRequestDidFailNotification;
