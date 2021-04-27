@@ -22,3 +22,4 @@ FOUNDATION_EXPORT const unsigned char SegmentVersionString[];
 #import "SEGScreenReporting.h"
 #import "SEGAnalyticsUtils.h"
 #import "SEGWebhookIntegration.h"
+#import "SEGReachability.h"
