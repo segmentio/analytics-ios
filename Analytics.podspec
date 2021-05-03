@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = "Analytics"
   s.module_name      = "Segment"
-  s.version          = "4.1.3"
+  s.version          = "4.1.4"
   s.summary          = "The hassle-free way to add analytics to your iOS app."
 
   s.description      = <<-DESC
