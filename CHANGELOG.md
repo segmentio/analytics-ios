@@ -1,5 +1,10 @@
 Change Log
 ==========
+Version 4.1.5 *(9 July, 2021)*
+-----------------------------
+* [Fix](https://github.com/segmentio/analytics-ios/pull/999) Add missing nullability identifier 
+* [Fix](https://github.com/segmentio/analytics-ios/pull/1002) Update Readme with SPM guide 
+
 Version 4.1.4 *(3 May, 2021)*
 -----------------------------
 * [Fix](https://github.com/segmentio/analytics-ios/pull/994) Add missing import in Segment.h for Xcode 12.5
