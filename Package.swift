@@ -25,7 +25,6 @@ let package = Package(
             name: "Segment",
             dependencies: [],
             path: "Segment/",
-            exclude: ["SwiftSources"],
             sources: ["Classes", "Internal"],
             publicHeadersPath: "Classes",
             cSettings: [
