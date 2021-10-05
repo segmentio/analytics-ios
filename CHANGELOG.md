@@ -1,5 +1,11 @@
 Change Log
 ==========
+
+Version 4.1.6 *(5 October, 2021)*
+-----------------------------
+* [Fix](https://github.com/segmentio/analytics-ios/pull/1016) Removed unused exclude in Package.swift
+* [Fix](https://github.com/segmentio/analytics-ios/pull/1009) Fix potential deadlock on first app launch
+
 Version 4.1.5 *(9 July, 2021)*
 -----------------------------
 * [Fix](https://github.com/segmentio/analytics-ios/pull/999) Add missing nullability identifier 
