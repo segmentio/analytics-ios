@@ -27,7 +27,7 @@ NS_SWIFT_NAME(HTTPClient)
  * NOTE: You need to re-dispatch within the completionHandler onto a desired queue to avoid threading issues.
  * Completion handlers are called on a dispatch queue internal to SEGHTTPClient. 
  */
-- (nullable NSURLSessionUploadTask *)upload:(JSON_DICT)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler;
+- (nullable NSURLSessionUploadTask *)upload:(JSON_DICT)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry, NSError * _Nullable error))completionHandler;
 
 - (NSURLSessionDataTask *)settingsForWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL success, JSON_DICT _Nullable settings))completionHandler;
 
