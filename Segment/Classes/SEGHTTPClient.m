@@ -124,7 +124,7 @@ NSString * const kSegmentAPIBaseHost = @"https://api.segment.io/v1";
         NSInteger code = ((NSHTTPURLResponse *)response).statusCode;
         
         NSDictionary *userInfo = @{
-            NSLocalizedDescriptionKey:NSLocalizedString(@"Server responded with unexpected HTTP code %d.", @(code).stringValue)
+            NSLocalizedDescriptionKey:[NSString stringWithFormat:@"Server responded with unexpected HTTP code %ld.", (long)code]
         };
         
         NSError *responseError = [NSError errorWithDomain:kSegmentHttpClientErrorDomain code:SegHttpClientErrorRequest userInfo:userInfo];
