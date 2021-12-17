@@ -269,7 +269,7 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
 - (void)identify:(NSString *)userId traits:(NSDictionary *)traits options:(NSDictionary *)options
 {
-    NSCAssert2(userId.length > 0 || traits.count > 0, @"either userId (%@) or traits (%@) must be provided.", userId, traits);
+    NSCAssert2((userId != null && userId.length > 0) || traits.count > 0, @"either userId (%@) or traits (%@) must be provided.", userId, traits);
 
     // this is done here to match functionality on android where these are inserted BEFORE being spread out amongst destinations.
     // it will be set globally later when it runs through SEGIntegrationManager.identify.
