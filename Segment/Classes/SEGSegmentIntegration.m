@@ -263,7 +263,10 @@ NSUInteger const kSEGBackgroundTaskInvalid = 0;
         if ([integration isEqualToString:kSEGSegmentDestinationName]) {
             continue;
         }
-        dict[integration] = @NO;
+        if ([dict objectForKey:integration] == nil) {
+            // Only disable the integration if it wasn't manually set.
+            dict[integration] = @NO;
+        }
     }
     return [dict copy];
 }
