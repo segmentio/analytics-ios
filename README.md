@@ -1,8 +1,6 @@
-## Developer Feedback Requested: Analytics-Swift Pilot
 
-**A pilot release of the new Analytics-Swift library is available at the [Analytics-Swift repository](https://github.com/segmentio/analytics-swift). This library is governed by [Segment’s First-Access and Beta terms](https://segment.com/legal/first-access-beta-preview/), and should not be used in production scenarios.**
+**The new [Analytics-Swift](https://github.com/segmentio/analytics-swift) library is now available!**
 
-During the pilot phase, Segment wants your feedback, contributions, and ideas. If you have requirements or ideas for features for Analytics-Swift and Segment's integration with the Apple platform, let us know.
 
 # Analytics
 [![Circle CI](https://circleci.com/gh/segmentio/analytics-ios.svg?style=shield&circle-token=31c5b3e5edeb404b30141ead9dcef3eb37d16d4d)](https://circleci.com/gh/segmentio/analytics-ios)
