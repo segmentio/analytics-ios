@@ -18,7 +18,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let configuration = AnalyticsConfiguration(writeKey: "GM88xxNqA6PfthZE9ZzA2AREQBMjc6xA")
+        let configuration = AnalyticsConfiguration(writeKey: "<WRITE KEY>")
 
         // Enable this to record certain application events automatically!
         configuration.trackApplicationLifecycleEvents = true
