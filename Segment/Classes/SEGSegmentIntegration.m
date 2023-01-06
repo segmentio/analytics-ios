@@ -389,6 +389,7 @@ NSUInteger const kSEGBackgroundTaskInvalid = 0;
 {
     NSMutableDictionary *payload = [[NSMutableDictionary alloc] init];
     [payload setObject:iso8601FormattedString([NSDate date]) forKey:@"sentAt"];
+    [payload setObject:_configuration.writeKey forKey:@"writeKey"];
     [payload setObject:batch forKey:@"batch"];
 
     SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)batch.count, (unsigned long)self.queue.count);

@@ -18,12 +18,13 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let configuration = AnalyticsConfiguration(writeKey: "8XpdAWa7qJVBJMK8V4FfXQOrnvCzu3Ie")
+        let configuration = AnalyticsConfiguration(writeKey: "<WRITE KEY>")
 
         // Enable this to record certain application events automatically!
         configuration.trackApplicationLifecycleEvents = true
         // Enable this to record screen views automatically!
         configuration.recordScreenViews = true
+        configuration.flushAt = 1
         Analytics.setup(with: configuration)
 
 

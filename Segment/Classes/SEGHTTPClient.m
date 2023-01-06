@@ -54,7 +54,6 @@ NSString * const kSegmentAPIBaseHost = @"https://api.segment.io/v1";
             @"Accept-Encoding" : @"gzip",
             @"Content-Encoding" : @"gzip",
             @"Content-Type" : @"application/json",
-            @"Authorization" : [@"Basic " stringByAppendingString:[[self class] authorizationHeader:writeKey]],
             @"User-Agent" : [NSString stringWithFormat:@"analytics-ios/%@", [SEGAnalytics version]],
         };
         session = [NSURLSession sessionWithConfiguration:config delegate:self.httpSessionDelegate delegateQueue:NULL];

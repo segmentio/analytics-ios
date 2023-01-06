@@ -18,6 +18,10 @@ static CTTelephonyNetworkInfo *_telephonyNetworkInfo;
 
 const NSString *segment_apiHost = @"segment_apihost";
 
+@interface SEGAnalyticsConfiguration(InstanceId)
+@property (nonatomic, strong) NSString *instanceId;
+@end
+
 @implementation SEGUtils
 
 + (void)saveAPIHost:(nonnull NSString *)apiHost
@@ -182,6 +186,8 @@ NSDictionary *getStaticContext(SEGAnalyticsConfiguration *configuration, NSStrin
         @"name" : @"analytics-ios",
         @"version" : [SEGAnalytics version]
     };
+    
+    dict[@"instanceId"] = configuration.instanceId;
 
     NSMutableDictionary *infoDictionary = [[[NSBundle mainBundle] infoDictionary] mutableCopy];
     [infoDictionary addEntriesFromDictionary:[[NSBundle mainBundle] localizedInfoDictionary]];

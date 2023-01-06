@@ -42,6 +42,7 @@
 @property (nonatomic, copy, readwrite) NSString *writeKey;
 @property (nonatomic, strong, readonly) NSMutableArray *factories;
 @property (nonatomic, strong) SEGAnalyticsExperimental *experimental;
+@property (nonatomic, strong) NSString *instanceId;
 
 - (instancetype)initWithWriteKey:(NSString *)writeKey defaultAPIHost:(NSURL * _Nullable)defaultAPIHost;
 
@@ -64,6 +65,7 @@
 {
     if (self = [self init]) {
         self.writeKey = writeKey;
+        self.instanceId = [NSUUID UUID].UUIDString;
         
         // get the host we have stored
         NSString *host = [SEGUtils getAPIHost];
