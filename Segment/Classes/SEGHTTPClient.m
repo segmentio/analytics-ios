@@ -103,7 +103,7 @@ NSString * const kSegmentAPIBaseHost = @"https://api.segment.io/v1";
         completionHandler(NO);
         return nil;
     }
-    NSData *gzippedPayload = [payload seg_gzippedData];
+    NSData *gzippedPayload = [payload respondsToSelector:@selector(seg_gzippedData)] ? [payload seg_gzippedData] : payload;
 
     NSURLSessionUploadTask *task = [session uploadTaskWithRequest:request fromData:gzippedPayload completionHandler:^(NSData *_Nullable data, NSURLResponse *_Nullable response, NSError *_Nullable error) {
         if (error) {
