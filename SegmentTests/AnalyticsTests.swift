@@ -372,4 +372,30 @@ class AnalyticsTests: XCTestCase {
             XCTAssertNotNil(data)
         }
     }
+    
+    #if os(tvOS)
+    func testTVOSSettingsBad() {
+        // this test is expected to crash if it fails.
+        var initialized = false
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: SEGAnalyticsIntegrationDidStart), object: nil, queue: nil) { (notification) in
+            let key = notification.object as? String
+            if (key == "Segment.io") {
+                initialized = true
+            }
+        }
+
+        var config = AnalyticsConfiguration(writeKey: "1234")
+        let url = Bundle(for: AnalyticsTests.self).url(forResource: "tvOSSettingsBad.json", withExtension: nil)
+        let data = try! Data(contentsOf: url!)
+        let settings = try! JSONSerialization.jsonObject(with: data) as! NSDictionary
+        
+        let analytics = Analytics(configuration: config)
+        
+        analytics.test_integrationsManager()?.test_setCachedSettings(settings: settings as NSDictionary)
+        
+        while (!initialized) { // wait for integrations to get setup
+            RunLoop.main.run(until: Date.distantPast)
+        }
+    }
+    #endif
 }

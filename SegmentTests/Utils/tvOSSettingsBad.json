@@ -1,0 +1,49 @@
+{
+    "integrations": {
+      "Segment.io": {
+        "apiKey": "1234",
+        "unbundledIntegrations": [],
+        "addBundledMetadata": true
+      }
+    },
+    "edgeFunction": {},
+    "analyticsNextEnabled": false,
+    "middlewareSettings": {
+      "routingRules": [
+        {
+          "transformers": [
+            [
+              {
+                "type": "drop"
+              }
+            ],
+            [
+              {
+                "type": "allow_properties",
+                "config": {
+                  "allow": {
+                    "traits": null,
+                    "context": null,
+                    "_metadata": null,
+                    "integrations": null,
+                    "properties.content": [
+                      "asset_id",
+                      "full_episode",
+                      "load_type",
+                      "program",
+                      "title",
+                      "video_tms_id"
+                    ]
+                  }
+                }
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    "enabledMiddleware": {},
+    "metrics": {
+      "sampleRate": 0.1
+    },
+  }

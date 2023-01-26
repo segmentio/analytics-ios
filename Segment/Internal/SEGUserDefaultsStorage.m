@@ -94,10 +94,10 @@
 {
     if (!self.crypto) {
         key = [self namespacedKey:key];
-        [self setObject:dictionary forKey:key];
+        [self setObject:[dictionary plistCompatible] forKey:key];
         return;
     }
-    [self setPlist:dictionary forKey:key];
+    [self setPlist:[dictionary plistCompatible] forKey:key];
 }
 
 - (NSArray *)arrayForKey:(NSString *)key
@@ -113,10 +113,10 @@
 {
     if (!self.crypto) {
         key = [self namespacedKey:key];
-        [self setObject:array forKey:key];
+        [self setObject:[array plistCompatible] forKey:key];
         return;
     }
-    [self setPlist:array forKey:key];
+    [self setPlist:[array plistCompatible] forKey:key];
 }
 
 - (NSString *)stringForKey:(NSString *)key

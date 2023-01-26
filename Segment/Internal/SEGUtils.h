@@ -82,5 +82,14 @@ NSString *SEGEventNameForScreenTitle(NSString *title);
 @interface NSArray(SerializableDeepCopy) <SEGSerializableDeepCopy>
 @end
 
+@interface NSDictionary(PListJSON)
+- (NSDictionary *)plistCompatible;
+@end
+
+@interface NSArray(PListJSON)
+- (NSDictionary *)plistCompatible;
+@end
+
+
 
 NS_ASSUME_NONNULL_END

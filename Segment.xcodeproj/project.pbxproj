@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		460367F52981A8E30081CCA3 /* tvOSSettingsBad.json in Resources */ = {isa = PBXBuildFile; fileRef = 460367F42981A8E30081CCA3 /* tvOSSettingsBad.json */; };
+		460367F62981AAA50081CCA3 /* tvOSSettingsBad.json in Resources */ = {isa = PBXBuildFile; fileRef = 460367F42981A8E30081CCA3 /* tvOSSettingsBad.json */; };
 		5AF0E8AE77F57B356DACCFE7 /* AutoScreenReportingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E8457CCFC077382BF449 /* AutoScreenReportingTest.swift */; };
 		630FC8EA2107F2A500A759C5 /* SEGScreenReporting.h in Headers */ = {isa = PBXBuildFile; fileRef = 5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6E265C791FB1178C0030E08E /* IntegrationsManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E265C781FB1178C0030E08E /* IntegrationsManagerTest.swift */; };
@@ -98,6 +100,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		460367F42981A8E30081CCA3 /* tvOSSettingsBad.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tvOSSettingsBad.json; sourceTree = "<group>"; };
 		5AF0E8457CCFC077382BF449 /* AutoScreenReportingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoScreenReportingTest.swift; sourceTree = "<group>"; };
 		5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGScreenReporting.h; sourceTree = "<group>"; };
 		63E090D722DD49C300DEC7EC /* UIViewController+SegScreenTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SegScreenTest.h"; sourceTree = "<group>"; };
@@ -359,6 +362,7 @@
 				EADEB8E41DECD335005322DA /* TestUtils.swift */,
 				A3BECDCE24BCE1E3009E2BD3 /* ObjcUtils.h */,
 				A3BECDCF24BCE1E3009E2BD3 /* ObjcUtils.m */,
+				460367F42981A8E30081CCA3 /* tvOSSettingsBad.json */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -501,6 +505,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				460367F62981AAA50081CCA3 /* tvOSSettingsBad.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,6 +513,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				460367F52981A8E30081CCA3 /* tvOSSettingsBad.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
