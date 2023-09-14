@@ -29,7 +29,7 @@
 #import <netdb.h>
 #import "SEGReachability.h"
 
-
+#if !TARGET_OS_WATCH
 NSString *const kSEGReachabilityChangedNotification = @"kSEGReachabilityChangedNotification";
 
 
@@ -497,3 +497,4 @@ static void TMReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkRea
 }
 
 @end
+#endif

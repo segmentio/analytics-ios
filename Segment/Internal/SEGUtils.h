@@ -36,7 +36,9 @@ NSDictionary *getLiveContext(SEGReachability *reachability, NSDictionary * _Null
 
 NSString *GenerateUUIDString(void);
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+NSDictionary *watchSpecifications(SEGAnalyticsConfiguration *configuration, NSString * _Nullable deviceToken);
+#elif TARGET_OS_IPHONE
 NSDictionary *mobileSpecifications(SEGAnalyticsConfiguration *configuration, NSString * _Nullable deviceToken);
 #elif TARGET_OS_OSX
 NSDictionary *desktopSpecifications(SEGAnalyticsConfiguration *configuration, NSString * _Nullable deviceToken);

@@ -201,7 +201,9 @@ NSDictionary *getStaticContext(SEGAnalyticsConfiguration *configuration, NSStrin
     }
 
     NSDictionary *settingsDictionary = nil;
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+    settingsDictionary = watchSpecifications(configuration, deviceToken);
+#elif TARGET_OS_IPHONE
     settingsDictionary = mobileSpecifications(configuration, deviceToken);
 #elif TARGET_OS_OSX
     settingsDictionary = desktopSpecifications(configuration, deviceToken);
@@ -216,7 +218,49 @@ NSDictionary *getStaticContext(SEGAnalyticsConfiguration *configuration, NSStrin
     return dict;
 }
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+NSDictionary *watchSpecifications(SEGAnalyticsConfiguration *configuration, NSString *deviceToken)
+{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+    WKInterfaceDevice *device = [WKInterfaceDevice currentDevice];
+    dict[@"device"] = ({
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        dict[@"manufacturer"] = @"Apple";
+        dict[@"type"] = @"watchos";
+        dict[@"name"] = [device model];
+        dict[@"model"] = getDeviceModel();
+        dict[@"id"] = [[device identifierForVendor] UUIDString];
+        if (getAdTrackingEnabled(configuration)) {
+            NSString *idfa = configuration.adSupportBlock();
+            // This isn't ideal.  We're doing this because we can't actually check if IDFA is enabled on
+            // the customer device.  Apple docs and tests show that if it is disabled, one gets back all 0's.
+            BOOL adTrackingEnabled = (![idfa isEqualToString:@"00000000-0000-0000-0000-000000000000"]);
+            dict[@"adTrackingEnabled"] = @(adTrackingEnabled);
+
+            if (adTrackingEnabled) {
+                dict[@"advertisingId"] = idfa;
+            }
+        }
+        if (deviceToken && deviceToken.length > 0) {
+            dict[@"token"] = deviceToken;
+        }
+        dict;
+    });
+
+    dict[@"os"] = @{
+        @"name" : device.systemName,
+        @"version" : device.systemVersion
+    };
+
+    CGSize screenSize = device.screenBounds.size;
+    dict[@"screen"] = @{
+        @"width" : @(screenSize.width),
+        @"height" : @(screenSize.height)
+    };
+
+    return dict;
+}
+#elif TARGET_OS_IPHONE
 NSDictionary *mobileSpecifications(SEGAnalyticsConfiguration *configuration, NSString *deviceToken)
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
@@ -360,10 +404,12 @@ NSDictionary *getLiveContext(SEGReachability *reachability, NSDictionary *referr
     context[@"network"] = ({
         NSMutableDictionary *network = [[NSMutableDictionary alloc] init];
 
+#if !TARGET_OS_WATCH
         if (reachability.isReachable) {
             network[@"wifi"] = @(reachability.isReachableViaWiFi);
             network[@"cellular"] = @(reachability.isReachableViaWWAN);
         }
+#endif
 
 #if TARGET_OS_IOS && !TARGET_OS_MACCATALYST
         static dispatch_once_t networkInfoOnceToken;

@@ -127,7 +127,7 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
         if (application) {
             // Attach to application state change hooks
             NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE && !TARGET_OS_WATCH
             [nc addObserver:self selector:@selector(onAppForeground:) name:UIApplicationWillEnterForegroundNotification object:application];
 #elif TARGET_OS_OSX
             [nc addObserver:self selector:@selector(onAppForeground:) name:NSApplicationWillBecomeActiveNotification object:application];
@@ -167,7 +167,20 @@ NSString *const kSEGCachedSettingsFilename = @"analytics.settings.v2.plist";
     static NSDictionary *selectorMapping;
     static dispatch_once_t selectorMappingOnce;
     dispatch_once(&selectorMappingOnce, ^{
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+        selectorMapping = @{
+            WKApplicationDidFinishLaunchingNotification :
+                NSStringFromSelector(@selector(applicationDidFinishLaunching:)),
+            WKApplicationDidEnterBackgroundNotification :
+                NSStringFromSelector(@selector(applicationDidEnterBackground)),
+            WKApplicationWillEnterForegroundNotification :
+                NSStringFromSelector(@selector(applicationWillEnterForeground)),
+            WKApplicationWillResignActiveNotification :
+                NSStringFromSelector(@selector(applicationWillResignActive)),
+            WKApplicationDidBecomeActiveNotification :
+                NSStringFromSelector(@selector(applicationDidBecomeActive))
+        };
+#elif TARGET_OS_IPHONE
 
         selectorMapping = @{
             UIApplicationDidFinishLaunchingNotification :

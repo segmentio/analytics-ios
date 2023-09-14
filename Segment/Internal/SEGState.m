@@ -108,7 +108,9 @@ typedef _Nullable id (^SEGStateGetBlock)(void);
 @implementation SEGPayloadContext
 
 @synthesize state;
+#if !TARGET_OS_WATCH
 @synthesize reachability;
+#endif
 
 @synthesize referrer = _referrer;
 @synthesize cachedStaticContext = _cachedStaticContext;
@@ -118,8 +120,10 @@ typedef _Nullable id (^SEGStateGetBlock)(void);
 {
     if (self = [super init]) {
         self.state = aState;
+#if !TARGET_OS_WATCH
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
         [self.reachability startNotifier];
+#endif
     }
     return self;
 }

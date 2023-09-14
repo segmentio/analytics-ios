@@ -1,6 +1,6 @@
 #import "SEGSerializableValue.h"
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE && !TARGET_OS_WATCH
 @import UIKit;
 
 @interface UIViewController (SEGScreen)

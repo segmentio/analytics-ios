@@ -34,7 +34,9 @@ NSUInteger const kSEGBackgroundTaskInvalid = 0;
 
 @property (nonatomic, strong) NSMutableArray *queue;
 @property (nonatomic, strong) NSURLSessionUploadTask *batchRequest;
+#if !TARGET_OS_WATCH
 @property (nonatomic, strong) SEGReachability *reachability;
+#endif
 @property (nonatomic, strong) NSTimer *flushTimer;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
 @property (nonatomic, strong) dispatch_queue_t backgroundTaskQueue;
@@ -47,7 +49,7 @@ NSUInteger const kSEGBackgroundTaskInvalid = 0;
 @property (nonatomic, strong) id<SEGStorage> fileStorage;
 @property (nonatomic, strong) id<SEGStorage> userDefaultsStorage;
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE && !TARGET_OS_WATCH
 @property (nonatomic, assign) UIBackgroundTaskIdentifier flushTaskID;
 #else
 @property (nonatomic, assign) NSUInteger flushTaskID;
@@ -70,11 +72,13 @@ NSUInteger const kSEGBackgroundTaskInvalid = 0;
         self.httpClient.httpSessionDelegate = analytics.oneTimeConfiguration.httpSessionDelegate;
         self.fileStorage = fileStorage;
         self.userDefaultsStorage = userDefaultsStorage;
+#if !TARGET_OS_WATCH
         self.reachability = [SEGReachability reachabilityWithHostname:@"google.com"];
         [self.reachability startNotifier];
+#endif
         self.serialQueue = seg_dispatch_queue_create_specific("io.segment.analytics.segmentio", DISPATCH_QUEUE_SERIAL);
         self.backgroundTaskQueue = seg_dispatch_queue_create_specific("io.segment.analytics.backgroundTask", DISPATCH_QUEUE_SERIAL);
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE && !TARGET_OS_WATCH
         self.flushTaskID = UIBackgroundTaskInvalid;
 #else
         self.flushTaskID = 0; // the actual value of UIBackgroundTaskInvalid
