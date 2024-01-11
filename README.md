@@ -1,5 +1,8 @@
 
-**The new [Analytics-Swift](https://github.com/segmentio/analytics-swift) library is now available!**
+⚠️ **WARNING** ⚠️
+
+Segment will continue to accept incoming traffic from Analytics-iOS. However, we have launched our new flagship library, [Analytics-Swift](https://github.com/segmentio/analytics-swift), with [significantly improved performance](https://segment.com/blog/sdk-performance-improvements/) as well as new business-tier functionality such as [Destination Filters](https://segment.com/docs/connections/sources/catalog/libraries/mobile/apple/swift-destination-filters/), Live Plugins, and Flush Policies, with more to come. 
+
 
 
 # Analytics
