@@ -377,10 +377,10 @@ NSUInteger const kSEGBackgroundTaskInvalid = 0;
     }];
 }
 
-- (void)notifyForName:(NSString *)name userInfo:(id)userInfo
+- (void)notifyForName:(NSString *)name object:(id)object userInfo:(id)userInfo
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:name object:userInfo];
+        [[NSNotificationCenter defaultCenter] postNotificationName:name object:object userInfo:userInfo];
         SEGLog(@"sent notification %@", name);
     });
 }
@@ -395,10 +395,15 @@ NSUInteger const kSEGBackgroundTaskInvalid = 0;
     SEGLog(@"%@ Flushing %lu of %lu queued API calls.", self, (unsigned long)batch.count, (unsigned long)self.queue.count);
     SEGLog(@"Flushing batch %@.", payload);
 
-    self.batchRequest = [self.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry) {
+    self.batchRequest = [self.httpClient upload:payload forWriteKey:self.configuration.writeKey completionHandler:^(BOOL retry, NSError *error) {
         void (^completion)(void) = ^{
+            NSDictionary *errorDict;
+            if (error != nil) {
+                errorDict = @{ @"Error":error };
+            }
+
             if (retry) {
-                [self notifyForName:SEGSegmentRequestDidFailNotification userInfo:batch];
+                [self notifyForName:SEGSegmentRequestDidFailNotification object:batch userInfo:errorDict];
                 self.batchRequest = nil;
                 [self endBackgroundTask];
                 return;
@@ -406,7 +411,7 @@ NSUInteger const kSEGBackgroundTaskInvalid = 0;
 
             [self.queue removeObjectsInArray:batch];
             [self persistQueue];
-            [self notifyForName:SEGSegmentRequestDidSucceedNotification userInfo:batch];
+            [self notifyForName:SEGSegmentRequestDidSucceedNotification object:batch userInfo:errorDict];
             self.batchRequest = nil;
             [self endBackgroundTask];
         };
@@ -414,7 +419,7 @@ NSUInteger const kSEGBackgroundTaskInvalid = 0;
         [self dispatchBackground:completion];
     }];
 
-    [self notifyForName:SEGSegmentDidSendRequestNotification userInfo:batch];
+    [self notifyForName:SEGSegmentDidSendRequestNotification object:batch userInfo:nil];
 }
 
 - (void)applicationDidEnterBackground

@@ -5,6 +5,13 @@
 
 #define SEGMENT_CDN_BASE [NSURL URLWithString:@"https://cdn-settings.segment.com/v1"]
 
+NSString * const kSegmentHttpClientErrorDomain = @"com.segment.httpclient";
+
+typedef NS_ENUM(NSInteger, SegHttpClientError) {
+    SegHttpClientErrorBatchSizeLimit = 1000,
+    SegHttpClientErrorRequest
+};
+
 static const NSUInteger kMaxBatchSize = 475000; // 475KB
 
 NSString * const kSegmentAPIBaseHost = @"https://api.segment.io/v1";
@@ -71,7 +78,7 @@ NSString * const kSegmentAPIBaseHost = @"https://api.segment.io/v1";
 }
 
 
-- (nullable NSURLSessionUploadTask *)upload:(NSDictionary *)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry))completionHandler
+- (nullable NSURLSessionUploadTask *)upload:(NSDictionary *)batch forWriteKey:(NSString *)writeKey completionHandler:(void (^)(BOOL retry, NSError * _Nullable error))completionHandler
 {
     //    batch = SEGCoerceDictionary(batch);
     NSURLSession *session = [self sessionForWriteKey:writeKey];
@@ -95,12 +102,12 @@ NSString * const kSegmentAPIBaseHost = @"https://api.segment.io/v1";
     }
     if (error || exception) {
         SEGLog(@"Error serializing JSON for batch upload %@", error);
-        completionHandler(NO); // Don't retry this batch.
+        completionHandler(NO, error); // Don't retry this batch.
         return nil;
     }
     if (payload.length >= kMaxBatchSize) {
         SEGLog(@"Payload exceeded the limit of %luKB per batch", kMaxBatchSize / 1000);
-        completionHandler(NO);
+        completionHandler(NO, [NSError errorWithDomain: kSegmentHttpClientErrorDomain code: SegHttpClientErrorBatchSizeLimit userInfo: nil]);
         return nil;
     }
     NSData *gzippedPayload = [payload seg_gzippedData];
@@ -109,38 +116,45 @@ NSString * const kSegmentAPIBaseHost = @"https://api.segment.io/v1";
         if (error) {
             // Network error. Retry.
             SEGLog(@"Error uploading request %@.", error);
-            completionHandler(YES);
+            completionHandler(YES, error);
             return;
         }
 
         NSInteger code = ((NSHTTPURLResponse *)response).statusCode;
+        
+        NSDictionary *userInfo = @{
+            NSLocalizedDescriptionKey:[NSString stringWithFormat:@"Server responded with unexpected HTTP code %ld.", (long)code]
+        };
+        
+        NSError *responseError = [NSError errorWithDomain:kSegmentHttpClientErrorDomain code:SegHttpClientErrorRequest userInfo:userInfo];
+
         if (code < 300) {
             // 2xx response codes. Don't retry.
-            completionHandler(NO);
+            completionHandler(NO, nil);
             return;
         }
         if (code < 400) {
             // 3xx response codes. Retry.
             SEGLog(@"Server responded with unexpected HTTP code %d.", code);
-            completionHandler(YES);
+            completionHandler(YES, responseError);
             return;
         }
         if (code == 429) {
           // 429 response codes. Retry.
           SEGLog(@"Server limited client with response code %d.", code);
-          completionHandler(YES);
+          completionHandler(YES, responseError);
           return;
         }
         if (code < 500) {
             // non-429 4xx response codes. Don't retry.
             SEGLog(@"Server rejected payload with HTTP code %d.", code);
-            completionHandler(NO);
+            completionHandler(NO, responseError);
             return;
         }
 
         // 5xx response codes. Retry.
         SEGLog(@"Server error with HTTP code %d.", code);
-        completionHandler(YES);
+        completionHandler(YES, responseError);
     }];
     [task resume];
     return task;
