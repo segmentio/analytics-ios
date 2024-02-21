@@ -18,7 +18,7 @@
 @import Cocoa;
 #endif
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE && !TARGET_OS_WATCH
 @implementation UIApplication (SEGApplicationProtocol)
 
 - (UIBackgroundTaskIdentifier)seg_beginBackgroundTaskWithName:(nullable NSString *)taskName expirationHandler:(void (^__nullable)(void))handler
@@ -96,7 +96,11 @@
             @"(fb\\d+://authorize#access_token=)([^ ]+)": @"$1((redacted/fb-auth-token))"
         };
         _factories = [NSMutableArray array];
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+        if ([WKApplication respondsToSelector:@selector(sharedApplication)]){
+            _application = [WKApplication performSelector:@selector(sharedApplication)];
+        }
+#elif TARGET_OS_IPHONE
         if ([UIApplication respondsToSelector:@selector(sharedApplication)]) {
             _application = [UIApplication performSelector:@selector(sharedApplication)];
         }

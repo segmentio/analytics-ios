@@ -60,7 +60,17 @@ static SEGAnalytics *__sharedInstance = nil;
         // Pass through for application state change events
         id<SEGApplicationProtocol> application = configuration.application;
         if (application) {
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+            // Attach to application state change hooks
+            NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+            for (NSString *name in @[ WKApplicationDidEnterBackgroundNotification,
+                                      WKApplicationDidFinishLaunchingNotification,
+                                      WKApplicationWillEnterForegroundNotification,
+                                      WKApplicationWillResignActiveNotification,
+                                      WKApplicationDidBecomeActiveNotification ]) {
+                [nc addObserver:self selector:@selector(handleAppStateNotification:) name:name object:application];
+            }
+#elif TARGET_OS_IPHONE
             // Attach to application state change hooks
             NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
             for (NSString *name in @[ UIApplicationDidEnterBackgroundNotification,
@@ -85,7 +95,7 @@ static SEGAnalytics *__sharedInstance = nil;
 #endif
         }
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE && !TARGET_OS_WATCH
         if (configuration.recordScreenViews) {
             [UIViewController seg_swizzleViewDidAppear];
         }
@@ -98,7 +108,7 @@ static SEGAnalytics *__sharedInstance = nil;
             _storeKitTracker = [SEGStoreKitTracker trackTransactionsForAnalytics:self];
         }
 
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_WATCH
         if (configuration.trackPushNotifications && configuration.launchOptions) {
 #if TARGET_OS_IOS
             NSDictionary *remoteNotification = configuration.launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -128,7 +138,22 @@ NSString *const SEGVersionKey = @"SEGVersionKey";
 NSString *const SEGBuildKeyV1 = @"SEGBuildKey";
 NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+- (void)handleAppStateNotification:(NSNotification *)note
+{
+    SEGApplicationLifecyclePayload *payload = [[SEGApplicationLifecyclePayload alloc] init];
+    payload.notificationName = note.name;
+    [self run:SEGEventTypeApplicationLifecycle payload:payload];
+
+    if ([note.name isEqualToString:WKApplicationDidFinishLaunchingNotification]) {
+        [self _applicationDidFinishLaunchingWithOptions:note.userInfo];
+    } else if ([note.name isEqualToString:WKApplicationWillEnterForegroundNotification]) {
+        [self _applicationWillEnterForeground];
+    } else if ([note.name isEqualToString:WKApplicationDidEnterBackgroundNotification]) {
+      [self _applicationDidEnterBackground];
+    }
+}
+#elif TARGET_OS_IPHONE
 - (void)handleAppStateNotification:(NSNotification *)note
 {
     SEGApplicationLifecyclePayload *payload = [[SEGApplicationLifecyclePayload alloc] init];
@@ -198,8 +223,10 @@ NSString *const SEGBuildKeyV2 = @"SEGBuildKeyV2";
         @"from_background" : @NO,
         @"version" : currentVersion ?: @"",
         @"build" : currentBuild ?: @"",
+#if !TARGET_OS_WATCH
         @"referring_application" : launchOptions[UIApplicationLaunchOptionsSourceApplicationKey] ?: @"",
         @"url" : launchOptions[UIApplicationLaunchOptionsURLKey] ?: @"",
+#endif
     }];
 #elif TARGET_OS_OSX
     [self track:@"Application Opened" properties:@{

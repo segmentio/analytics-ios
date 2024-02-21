@@ -1,3 +1,6 @@
+#import <TargetConditionals.h>
+
+#if !TARGET_OS_WATCH
 /*
  Copyright (c) 2011, Tony Million.
  All rights reserved.
@@ -103,3 +106,4 @@ NS_SWIFT_NAME(Reachability)
 @end
 
 NS_ASSUME_NONNULL_END
+#endif

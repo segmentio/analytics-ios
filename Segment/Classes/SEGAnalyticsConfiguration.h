@@ -8,7 +8,9 @@
 
 @import Foundation;
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+@import WatchKit;
+#elif TARGET_OS_IPHONE
 @import UIKit;
 #elif TARGET_OS_OSX
 @import Cocoa;
@@ -17,7 +19,9 @@
 NS_SWIFT_NAME(ApplicationProtocol)
 @protocol SEGApplicationProtocol <NSObject>
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_WATCH
+@property (nullable, nonatomic, assign) id<WKApplicationDelegate> delegate;
+#elif TARGET_OS_IPHONE
 @property (nullable, nonatomic, assign) id<UIApplicationDelegate> delegate;
 #elif TARGET_OS_OSX
 @property (nullable, nonatomic, assign) id<NSApplicationDelegate> delegate;
