@@ -1,3 +1,9 @@
+### WHOOP Fork
+
+We are forking this repo so that the iOS app is not blocked by Apple for missing privacy manifest declarations: https://whoopinc.atlassian.net/browse/IG-1324
+
+When we have time, we should update to Analytics-Swift as described below: 
+
 ### ⚠️ Maintenance ⚠️
 This library is in maintenance mode. It will send data as intended, but receive no new feature support and only critical maintenance updates from Segment.
 

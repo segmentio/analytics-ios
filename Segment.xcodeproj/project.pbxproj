@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17B71C012BB5D921002EC763 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 17B71C002BB5D921002EC763 /* PrivacyInfo.xcprivacy */; };
 		460367F52981A8E30081CCA3 /* tvOSSettingsBad.json in Resources */ = {isa = PBXBuildFile; fileRef = 460367F42981A8E30081CCA3 /* tvOSSettingsBad.json */; };
 		460367F62981AAA50081CCA3 /* tvOSSettingsBad.json in Resources */ = {isa = PBXBuildFile; fileRef = 460367F42981A8E30081CCA3 /* tvOSSettingsBad.json */; };
 		5AF0E8AE77F57B356DACCFE7 /* AutoScreenReportingTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0E8457CCFC077382BF449 /* AutoScreenReportingTest.swift */; };
@@ -100,6 +101,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17B71C002BB5D921002EC763 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		460367F42981A8E30081CCA3 /* tvOSSettingsBad.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = tvOSSettingsBad.json; sourceTree = "<group>"; };
 		5AF0E8457CCFC077382BF449 /* AutoScreenReportingTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoScreenReportingTest.swift; sourceTree = "<group>"; };
 		5AF0EDFEDC0EE79A0A0EB713 /* SEGScreenReporting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEGScreenReporting.h; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		EADEB8511DECD080005322DA = {
 			isa = PBXGroup;
 			children = (
+				17B71C002BB5D921002EC763 /* PrivacyInfo.xcprivacy */,
 				EADEB85D1DECD080005322DA /* Analytics */,
 				EADEB86B1DECD0EF005322DA /* AnalyticsTests */,
 				EADEB85C1DECD080005322DA /* Products */,
@@ -505,6 +508,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17B71C012BB5D921002EC763 /* PrivacyInfo.xcprivacy in Resources */,
 				460367F62981AAA50081CCA3 /* tvOSSettingsBad.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
