@@ -23,4 +23,5 @@ Pod::Spec.new do |s|
     'Segment/Classes/**/*.{h,m}',
     'Segment/Internal/**/*.{h,m}'
   ]
+  s.resources = ['Segment/PrivacyInfo.xcprivacy']
 end
