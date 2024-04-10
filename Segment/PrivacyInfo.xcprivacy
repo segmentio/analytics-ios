@@ -65,10 +65,5 @@
 			</array>
 		</dict>
 	</array>
-	<key>NSPrivacyTrackingDomains</key>
-	<array>
-		<string>cdn-settings.segment.com/v1/projects/&lt;writekey&gt;/settings</string>
-		<string>https://api.segment.io/v1/b </string>
-	</array>
 </dict>
 </plist>
