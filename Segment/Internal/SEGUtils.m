@@ -309,7 +309,7 @@ NSDictionary *desktopSpecifications(SEGAnalyticsConfiguration *configuration, NS
         dict[@"type"] = @"macos";
         dict[@"model"] = getDeviceModel();
         dict[@"id"] = getMacUUID();
-        dict[@"name"] = [deviceInfo hostName];
+        dict[@"name"] = @"unknown";
         
         if (getAdTrackingEnabled(configuration)) {
             NSString *idfa = configuration.adSupportBlock();
