@@ -1,7 +1,7 @@
-### ⚠️ Maintenance ⚠️
-This library is in maintenance mode. It will send data as intended, but receive no new feature support and only critical maintenance updates from Segment.
+## ⚠️ End-of-Support Announcement for Analytics-iOS - March 2026 ⚠️
+The end-of-support (EoS) for the Analytics-iOS SDK is scheduled for March 2026. 
 
-We highly recommend using our upgraded [Analytics-Swift](https://github.com/segmentio/analytics-swift) to benefit from feature enhancements and ongoing support.
+Segment's future development efforts concentrate on the new [Analytics-Swift](/docs/connections/sources/catalog/libraries/mobile/swift/) SDK. If you'd like to migrate to Analytics-Swift, see the [migration guide](/docs/connections/sources/catalog/libraries/mobile/swift/migration/).
 
 
 # Analytics
