@@ -1,7 +1,7 @@
 ## ⚠️ End-of-Support Announcement for Analytics-iOS - March 2026 ⚠️
 The end-of-support (EoS) for the Analytics-iOS SDK is scheduled for March 2026. 
 
-Segment's future development efforts concentrate on the new [Analytics-Swift](/docs/connections/sources/catalog/libraries/mobile/swift/) SDK. If you'd like to migrate to Analytics-Swift, see the [migration guide](/docs/connections/sources/catalog/libraries/mobile/swift/migration/).
+Segment's future development efforts concentrate on the new [Analytics-Swift](https://segment.com/docs/connections/sources/catalog/libraries/mobile/apple/) SDK. If you'd like to migrate to Analytics-Swift, see the [migration guide](https://segment.com/docs/connections/sources/catalog/libraries/mobile/apple/migration/).
 
 
 # Analytics
